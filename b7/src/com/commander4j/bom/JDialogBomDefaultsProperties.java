@@ -120,7 +120,7 @@ public class JDialogBomDefaultsProperties extends JDialog
 				jDesktopPane1.setLayout(null);
 				{
 					jLabelDestinationValue = new JLabel4j_std();
-					jLabelDestinationValue.setBounds(9, 54, 138, 19);
+					jLabelDestinationValue.setBounds(9, 48, 138, 22);
 					jDesktopPane1.add(jLabelDestinationValue);
 					jLabelDestinationValue.setText(lang.get("lbl_Destination_Value"));
 					jLabelDestinationValue.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -128,7 +128,7 @@ public class JDialogBomDefaultsProperties extends JDialog
 				}
 				{
 					jLabelSourceValue = new JLabel4j_std();
-					jLabelSourceValue.setBounds(10, 25, 137, 19);
+					jLabelSourceValue.setBounds(10, 19, 137, 22);
 					jDesktopPane1.add(jLabelSourceValue);
 					jLabelSourceValue.setText(lang.get("lbl_Source_Value"));
 					jLabelSourceValue.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -175,7 +175,7 @@ public class JDialogBomDefaultsProperties extends JDialog
 				}
 				{
 					jTextFieldSourceValue = new JTextField4j(JDBControl.field_key_value);
-					jTextFieldSourceValue.setBounds(159, 19, 252, 25);
+					jTextFieldSourceValue.setBounds(159, 19, 252, 22);
 					jDesktopPane1.add(jTextFieldSourceValue);
 					jTextFieldSourceValue.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldSourceValue.setFocusCycleRoot(false);
@@ -185,7 +185,7 @@ public class JDialogBomDefaultsProperties extends JDialog
 				
 				{
 					jTextFieldDestinationValue = new JTextField4j(JDBControl.field_description);
-					jTextFieldDestinationValue.setBounds(159, 48, 252, 25);
+					jTextFieldDestinationValue.setBounds(159, 48, 252, 22);
 					jDesktopPane1.add(jTextFieldDestinationValue);
 					jTextFieldDestinationValue.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDestinationValue.setFocusCycleRoot(true);

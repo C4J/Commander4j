@@ -49,6 +49,7 @@ import com.commander4j.db.JDBMaterialBatch;
 import com.commander4j.db.JDBModule;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
@@ -57,7 +58,7 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import com.commander4j.util.JDateControl;
+
 import com.commander4j.calendar.JCalendarButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -265,13 +266,13 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelJourneyRef);
 					jLabelJourneyRef.setText(lang.get("lbl_Journey_Ref"));
 					jLabelJourneyRef.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelJourneyRef.setBounds(0, 12, 167, 21);
+					jLabelJourneyRef.setBounds(0, 12, 167, 22);
 				}
 				{
 					jTextFieldJourneyRef = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldJourneyRef);
 					jTextFieldJourneyRef.setText(ljourney);
-					jTextFieldJourneyRef.setBounds(174, 12, 126, 21);
+					jTextFieldJourneyRef.setBounds(174, 12, 126, 22);
 					jTextFieldJourneyRef.setEnabled(false);
 					jTextFieldJourneyRef.setEditable(false);
 				}
@@ -280,7 +281,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelDespatchNo);
 					jLabelDespatchNo.setText(lang.get("lbl_Despatch_No"));
 					jLabelDespatchNo.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelDespatchNo.setBounds(0, 40, 167, 21);
+					jLabelDespatchNo.setBounds(0, 40, 167, 22);
 				}
 				{
 					jTextFieldDespatchNo = new JTextField4j(JDBMaterialBatch.field_batch_number);
@@ -307,7 +308,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 					});
 					jDesktopPane1.add(jTextFieldDespatchNo);
 					jTextFieldDespatchNo.setText(lbatch);
-					jTextFieldDespatchNo.setBounds(174, 40, 126, 21);
+					jTextFieldDespatchNo.setBounds(174, 40, 126, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(
@@ -315,7 +316,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 					jComboBoxStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
-					jComboBoxStatus.setBounds(174, 68, 150, 21);
+					jComboBoxStatus.setBounds(174, 68, 150, 22);
 					jComboBoxStatus.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -329,7 +330,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelStatus);
 					jLabelStatus.setText(lang.get("lbl_Journey_Status"));
 					jLabelStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelStatus.setBounds(0, 68, 167, 21);
+					jLabelStatus.setBounds(0, 68, 167, 22);
 				}
 				{
 					jStatusText = new JLabel4j_std();
@@ -341,7 +342,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 				JLabel4j_std jLabelLocation = new JLabel4j_std();
 				jLabelLocation.setText(lang.get("lbl_Location_ID"));
 				jLabelLocation.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabelLocation.setBounds(0, 98, 167, 21);
+				jLabelLocation.setBounds(0, 98, 167, 22);
 				jDesktopPane1.add(jLabelLocation);
 				jTextFieldLocation.addKeyListener(new KeyAdapter() {
 					@Override
@@ -350,7 +351,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 					}
 				});
 
-				jTextFieldLocation.setBounds(174, 98, 103, 21);
+				jTextFieldLocation.setBounds(174, 98, 103, 22);
 				jDesktopPane1.add(jTextFieldLocation);
 
 				JButton4j button4j = new JButton4j(Common.icon_lookup_16x16);
@@ -367,13 +368,13 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 						}
 					}
 				});
-				button4j.setBounds(278, 98, 21, 21);
+				button4j.setBounds(278, 98, 21, 22);
 				jDesktopPane1.add(button4j);
 
 				JLabel4j_std jLabelTimeslot = new JLabel4j_std();
 				jLabelTimeslot.setText(lang.get("lbl_Timeslot"));
 				jLabelTimeslot.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabelTimeslot.setBounds(0, 126, 167, 25);
+				jLabelTimeslot.setBounds(0, 126, 167, 22);
 				jDesktopPane1.add(jLabelTimeslot);
 				dateControlTimeslot.addChangeListener(new ChangeListener()
 				{
@@ -382,7 +383,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				dateControlTimeslot.setBounds(174, 126, 128, 25);
+				dateControlTimeslot.setBounds(174, 126, 128, 22);
 				jDesktopPane1.add(dateControlTimeslot);
 
 				calendarButton = new JCalendarButton(dateControlTimeslot);
@@ -399,18 +400,18 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 				JLabel4j_std jLabelHaulier = new JLabel4j_std();
 				jLabelHaulier.setText(lang.get("lbl_Haulier"));
 				jLabelHaulier.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabelHaulier.setBounds(0, 217, 167, 25);
+				jLabelHaulier.setBounds(0, 217, 167, 22);
 				jDesktopPane1.add(jLabelHaulier);
 				
 				JLabel4j_std jLabelLoadTypeDesc = new JLabel4j_std();
 				jLabelLoadTypeDesc.setText(lang.get("lbl_LoadTypeDesc"));
 				jLabelLoadTypeDesc.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabelLoadTypeDesc.setBounds(0, 189, 167, 21);
+				jLabelLoadTypeDesc.setBounds(0, 189, 167, 22);
 				jDesktopPane1.add(jLabelLoadTypeDesc);
 				
 				jLabelLoadType.setText(lang.get("lbl_LoadType"));
 				jLabelLoadType.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabelLoadType.setBounds(0, 159, 167, 21);
+				jLabelLoadType.setBounds(0, 159, 167, 22);
 				jDesktopPane1.add(jLabelLoadType);
 				jTextFieldLoadType.addKeyListener(new KeyAdapter() {
 					@Override
@@ -421,7 +422,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 				
 
 				jTextFieldLoadType.setText((String) null);
-				jTextFieldLoadType.setBounds(174, 159, 126, 21);
+				jTextFieldLoadType.setBounds(174, 159, 126, 22);
 				jDesktopPane1.add(jTextFieldLoadType);
 				jTextFieldLoadTypeDesc.addKeyListener(new KeyAdapter() {
 					@Override
@@ -432,7 +433,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 				
 	
 				jTextFieldLoadTypeDesc.setText((String) null);
-				jTextFieldLoadTypeDesc.setBounds(174, 189, 281, 21);
+				jTextFieldLoadTypeDesc.setBounds(174, 189, 281, 22);
 				jDesktopPane1.add(jTextFieldLoadTypeDesc);
 				jTextFieldHaulier.addKeyListener(new KeyAdapter() {
 					@Override
@@ -443,7 +444,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 				
 
 				jTextFieldHaulier.setText((String) null);
-				jTextFieldHaulier.setBounds(174, 217, 225, 21);
+				jTextFieldHaulier.setBounds(174, 217, 225, 22);
 				jDesktopPane1.add(jTextFieldHaulier);
 
 			}

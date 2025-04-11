@@ -55,7 +55,7 @@ public class JDialogDisplayLicense extends JDialog
 		contentPanel.setLayout(null);
 
 
-		scrollPane.setBounds(6, 24, 755, 492);
+		scrollPane.setBounds(4, 18, 755, 492);
 		contentPanel.add(scrollPane);
 
 		loadLicense(license.licenceFilename);
@@ -67,7 +67,7 @@ public class JDialogDisplayLicense extends JDialog
 
 
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(6, 520, 755, 39);
+		buttonPane.setBounds(6, 510, 755, 39);
 		contentPanel.add(buttonPane);
 		buttonPane.setLayout(null);
 		{

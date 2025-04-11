@@ -42,7 +42,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -53,6 +52,7 @@ import com.commander4j.db.JDBOperatives;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JRadioButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
@@ -76,8 +76,8 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 	private JButton4j jButtonAdd;
 	private String id;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JRadioButton rdbtnEnabled;
-	private JRadioButton rdbtnDisabled;
+	private JRadioButton4j rdbtnEnabled;
+	private JRadioButton4j rdbtnDisabled;
 
 	private void delete() {
 		if (jListOperatives.isSelectionEmpty() == false)
@@ -192,7 +192,7 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(375, 402));
-			this.setBounds(0, 0, 425, 419);
+			this.setBounds(0, 0, 536, 419);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -207,7 +207,7 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(280, 5, 126, 32);
+					jButtonAdd.setBounds(390, 12, 126, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_OPERATIVES_ADD"));
 					jButtonAdd.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -221,7 +221,7 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(280, 36, 126, 32);
+					jButtonDelete.setBounds(390, 43, 126, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_OPERATIVES_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.addActionListener(new ActionListener() {
@@ -236,7 +236,7 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(280, 67, 126, 32);
+					jButtonEdit.setBounds(390, 74, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_OPERATIVES_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -249,7 +249,7 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonRename);
 					jButtonRename.setText(lang.get("btn_Rename"));
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
-					jButtonRename.setBounds(280, 98, 126, 32);
+					jButtonRename.setBounds(390, 105, 126, 32);
 					jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_OPERATIVES_RENAME"));
 					jButtonRename.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -263,7 +263,7 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(280, 129, 126, 32);
+					jButtonPrint.setBounds(390, 136, 126, 32);
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							print();
@@ -275,14 +275,14 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(280, 160, 126, 32);
+					jButtonHelp.setBounds(390, 167, 126, 32);
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(280, 191, 126, 32);
+					jButtonRefresh.setBounds(390, 198, 126, 32);
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							populateList("");
@@ -294,7 +294,7 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(280, 222, 126, 32);
+					jButtonClose.setBounds(390, 229, 126, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -305,14 +305,13 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 				ButtonGroup bgroup = new ButtonGroup();
 				JPanel panel = new JPanel();
 				panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-				panel.setBounds(281, 266, 125, 68);
+				panel.setBounds(391, 273, 125, 68);
 				jDesktopPane1.add(panel);
 				panel.setLayout(null);
 
-				rdbtnEnabled = new JRadioButton(lang.get("lbl_Enabled"));
-				rdbtnEnabled.setBounds(8, 8, 102, 23);
+				rdbtnEnabled = new JRadioButton4j(lang.get("lbl_Enabled"));
+				rdbtnEnabled.setBounds(8, 8, 102, 22);
 				panel.add(rdbtnEnabled);
-				rdbtnEnabled.setFont(Common.font_std);
 				rdbtnEnabled.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -323,10 +322,9 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 				rdbtnEnabled.setSelected(true);
 				bgroup.add(rdbtnEnabled);
 
-				rdbtnDisabled = new JRadioButton(lang.get("lbl_Disabled"));
-				rdbtnDisabled.setBounds(8, 35, 102, 23);
+				rdbtnDisabled = new JRadioButton4j(lang.get("lbl_Disabled"));
+				rdbtnDisabled.setBounds(8, 35, 102, 22);
 				panel.add(rdbtnDisabled);
-				rdbtnDisabled.setFont(Common.font_std);
 				rdbtnDisabled.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -340,7 +338,7 @@ public class JInternalFrameOperativeAdmin extends JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 0, 273, 387);
+					jScrollPane1.setBounds(0, 0, 378, 387);
 					{
 						ListModel<JDBOperatives> jList1Model = new DefaultComboBoxModel<JDBOperatives>();
 						jListOperatives = new JList4j<JDBOperatives>();

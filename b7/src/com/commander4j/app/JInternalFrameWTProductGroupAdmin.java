@@ -38,7 +38,6 @@ import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -47,6 +46,7 @@ import javax.swing.ListModel;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBWTProductGroups;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
 import com.commander4j.sys.Common;
@@ -436,7 +436,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonExcel);
 				}
 
-				JLabel lbl_Legend = new JLabel("Product Group           Nominal Weight    Tare Weight   Lower Limit   Upper Limit   Samples");
+				JLabel4j_std lbl_Legend = new JLabel4j_std("Product Group           Nominal Weight    Tare Weight   Lower Limit   Upper Limit   Samples");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
 				lbl_Legend.setBounds(6, 12, 671, 15);
 				jDesktopPane1.add(lbl_Legend);

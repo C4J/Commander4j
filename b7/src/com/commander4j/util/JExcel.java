@@ -40,7 +40,6 @@ import java.sql.SQLException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
@@ -58,6 +57,7 @@ import org.apache.poi.ss.usermodel.VerticalAlignment;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JCheckBox4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.sys.Common;
 
 public class JExcel
@@ -67,7 +67,7 @@ public class JExcel
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JExcel.class);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-	public void setExcelRowLimit(JCheckBox4j cb, JSpinner spin)
+	public void setExcelRowLimit(JCheckBox4j cb, JSpinner4j spin)
 	{
 		if (cb.isSelected())
 		{

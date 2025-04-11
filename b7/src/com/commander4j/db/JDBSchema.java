@@ -32,11 +32,11 @@ import java.awt.Rectangle;
 import java.sql.Statement;
 import java.util.LinkedList;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 
 import com.commander4j.app.JVersion;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
 import com.commander4j.util.JSplashScreenUtils;
@@ -216,7 +216,7 @@ public class JDBSchema {
 		return result;
 	}
 
-	public boolean executeDDL(LinkedList<JDBDDL> ddl, JProgressBar progress, JLabel commandLabel)
+	public boolean executeDDL(LinkedList<JDBDDL> ddl, JProgressBar progress, JLabel4j_std commandLabel)
 	{
 		Statement stmtupdate;
 		boolean result = true;

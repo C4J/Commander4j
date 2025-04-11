@@ -54,10 +54,10 @@ import com.commander4j.db.JDBUom;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
@@ -317,7 +317,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jDesktopPane1.add(jTextFieldSSCC);
 					jTextFieldSSCC.setEditable(true);
 					jTextFieldSSCC.setEnabled(true);
-					jTextFieldSSCC.setBounds(147, 14, 133, 21);
+					jTextFieldSSCC.setBounds(147, 14, 133, 22);
 				}
 				{
 					jButtonConfirm = new JButton4j(Common.icon_scanner_16x16);
@@ -440,13 +440,13 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Pallet_SSCC"));
-					jLabel1.setBounds(7, 14, 133, 21);
+					jLabel1.setBounds(7, 14, 133, 22);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel5);
-					jLabel5.setBounds(7, 275, 133, 21);
+					jLabel5.setBounds(7, 275, 133, 22);
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel5.setText(lang.get("lbl_Material_UOM"));
 				}
@@ -456,12 +456,12 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Material"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(7, 98, 133, 21);
+					jLabel2.setBounds(7, 98, 133, 22);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(147, 98, 119, 21);
+					jTextFieldMaterial.setBounds(147, 98, 119, 22);
 					jTextFieldMaterial.setEnabled(false);
 				}
 				{
@@ -469,12 +469,12 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Material_Batch"));
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel3.setBounds(7, 185, 133, 21);
+					jLabel3.setBounds(7, 185, 133, 22);
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
 					jDesktopPane1.add(jTextFieldBatch);
-					jTextFieldBatch.setBounds(147, 185, 119, 21);
+					jTextFieldBatch.setBounds(147, 185, 119, 22);
 					jTextFieldBatch.setEnabled(false);
 				}
 
@@ -483,12 +483,12 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jDesktopPane1.add(jLabelProcessOrder);
 					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
 					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(7, 42, 133, 21);
+					jLabelProcessOrder.setBounds(7, 42, 133, 22);
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
 					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(147, 42, 119, 21);
+					jTextFieldProcessOrder.setBounds(147, 42, 119, 22);
 					jTextFieldProcessOrder.setEnabled(false);
 
 				}
@@ -498,12 +498,12 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jLabel6.setText(lang.get("lbl_Material_UOM_EAN"));
 					jLabel6.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel6.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel6.setBounds(7, 356, 133, 21);
+					jLabel6.setBounds(7, 356, 133, 22);
 				}
 				{
 					jTextFieldEAN = new JTextField4j(JDBMaterialUom.field_ean);
 					jDesktopPane1.add(jTextFieldEAN);
-					jTextFieldEAN.setBounds(147, 356, 119, 21);
+					jTextFieldEAN.setBounds(147, 356, 119, 22);
 					jTextFieldEAN.setFocusCycleRoot(true);
 					jTextFieldEAN.setEnabled(false);
 				}
@@ -513,12 +513,12 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jLabel7.setText(lang.get("lbl_Material_UOM_Variant"));
 					jLabel7.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel7.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel7.setBounds(7, 384, 133, 21);
+					jLabel7.setBounds(7, 384, 133, 22);
 				}
 				{
 					jTextFieldVariant = new JTextField4j(JDBMaterialUom.field_variant);
 					jDesktopPane1.add(jTextFieldVariant);
-					jTextFieldVariant.setBounds(147, 384, 29, 21);
+					jTextFieldVariant.setBounds(147, 384, 29, 22);
 					jTextFieldVariant.setFocusCycleRoot(true);
 					jTextFieldVariant.setEnabled(false);
 				}
@@ -527,14 +527,12 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jDesktopPane1.add(jLabelQuantity);
 					jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
 					jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelQuantity.setBounds(7, 245, 133, 21);
+					jLabelQuantity.setBounds(7, 245, 133, 22);
 				}
 				{
 					jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
 					jDesktopPane1.add(jFormattedTextFieldQuantity);
-					jFormattedTextFieldQuantity.setFont(Common.font_std);
-					jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jFormattedTextFieldQuantity.setBounds(147, 245, 91, 21);
+					jFormattedTextFieldQuantity.setBounds(147, 245, 91, 22);
 					jFormattedTextFieldQuantity.setEnabled(false);
 
 				}
@@ -542,7 +540,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 				{
 					jTextFieldProcessOrderDescription = new JTextField4j(JDBProcessOrder.field_description);
 					jDesktopPane1.add(jTextFieldProcessOrderDescription);
-					jTextFieldProcessOrderDescription.setBounds(147, 70, 287, 21);
+					jTextFieldProcessOrderDescription.setBounds(147, 70, 287, 22);
 					jTextFieldProcessOrderDescription.setEnabled(false);
 				}
 				{
@@ -550,19 +548,19 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jDesktopPane1.add(jLabel8);
 					jLabel8.setText(lang.get("lbl_Description"));
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8.setBounds(7, 70, 133, 21);
+					jLabel8.setBounds(7, 70, 133, 22);
 				}
 				{
 					jLabel9 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel9);
 					jLabel9.setText(lang.get("lbl_Description"));
 					jLabel9.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel9.setBounds(7, 126, 133, 21);
+					jLabel9.setBounds(7, 126, 133, 22);
 				}
 				{
 					jTextFieldMaterialDescription = new JTextField4j(JDBMaterial.field_description);
 					jDesktopPane1.add(jTextFieldMaterialDescription);
-					jTextFieldMaterialDescription.setBounds(147, 126, 287, 21);
+					jTextFieldMaterialDescription.setBounds(147, 126, 287, 22);
 					jTextFieldMaterialDescription.setEnabled(false);
 
 				}
@@ -578,7 +576,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jLabelQuantity_1 = new JLabel4j_std();
 					jLabelQuantity_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabelQuantity_1.setText(lang.get("lbl_Pallet_Base_Quantity"));
-					jLabelQuantity_1.setBounds(7, 302, 133, 21);
+					jLabelQuantity_1.setBounds(7, 302, 133, 22);
 					jDesktopPane1.add(jLabelQuantity_1);
 				}
 
@@ -586,9 +584,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jFormattedTextFieldBaseQuantity = new JQuantityInput(new BigDecimal("0"));
 					jFormattedTextFieldBaseQuantity.setFocusable(false);
 					jFormattedTextFieldBaseQuantity.setEnabled(false);
-					jFormattedTextFieldBaseQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jFormattedTextFieldBaseQuantity.setFont(Common.font_std);
-					jFormattedTextFieldBaseQuantity.setBounds(147, 302, 91, 21);
+					jFormattedTextFieldBaseQuantity.setBounds(147, 302, 91, 22);
 					jDesktopPane1.add(jFormattedTextFieldBaseQuantity);
 				}
 
@@ -596,7 +592,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jTextFieldBaseUom = new JTextField4j(JDBUom.field_uom);
 					jTextFieldBaseUom.setEnabled(false);
 					jTextFieldBaseUom.setFocusCycleRoot(true);
-					jTextFieldBaseUom.setBounds(147, 329, 119, 21);
+					jTextFieldBaseUom.setBounds(147, 329, 119, 22);
 					jDesktopPane1.add(jTextFieldBaseUom);
 				}
 
@@ -604,7 +600,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jLabelQuantity_2 = new JLabel4j_std();
 					jLabelQuantity_2.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabelQuantity_2.setText(lang.get("lbl_Pallet_Base_UOM"));
-					jLabelQuantity_2.setBounds(7, 329, 133, 21);
+					jLabelQuantity_2.setBounds(7, 329, 133, 22);
 					jDesktopPane1.add(jLabelQuantity_2);
 				}
 
@@ -612,14 +608,14 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jLabelProductionDate_1 = new JLabel4j_std();
 					jLabelProductionDate_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabelProductionDate_1.setText(lang.get("lbl_Confirmed"));
-					jLabelProductionDate_1.setBounds(7, 410, 133, 21);
+					jLabelProductionDate_1.setBounds(7, 410, 133, 22);
 					jDesktopPane1.add(jLabelProductionDate_1);
 				}
 
 				{
 					checkBoxConfirmed.setBackground(Color.WHITE);
 					checkBoxConfirmed.setText("");
-					checkBoxConfirmed.setBounds(144, 410, 32, 24);
+					checkBoxConfirmed.setBounds(147, 410, 32, 22);
 					checkBoxConfirmed.setEnabled(false);
 					jDesktopPane1.add(checkBoxConfirmed);
 				}
@@ -628,13 +624,13 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jLabel4 = new JLabel4j_std();
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel4.setText(lang.get("lbl_Location_ID"));
-					jLabel4.setBounds(7, 153, 133, 21);
+					jLabel4.setBounds(7, 153, 133, 22);
 					jDesktopPane1.add(jLabel4);
 				}
 
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
-					jTextFieldLocation.setBounds(147, 153, 119, 21);
+					jTextFieldLocation.setBounds(147, 153, 119, 22);
 					jTextFieldLocation.setEnabled(false);
 					jDesktopPane1.add(jTextFieldLocation);
 				}
@@ -643,20 +639,20 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jLabel10 = new JLabel4j_std();
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel10.setText(lang.get("lbl_Material_Batch_Status"));
-					jLabel10.setBounds(7, 215, 133, 21);
+					jLabel10.setBounds(7, 215, 133, 22);
 					jDesktopPane1.add(jLabel10);
 				}
 
 				{
 					jTextFieldBatchStatus = new JTextField4j(JDBMaterialBatch.field_batch_status);
 					jTextFieldBatchStatus.setEnabled(false);
-					jTextFieldBatchStatus.setBounds(147, 215, 119, 21);
+					jTextFieldBatchStatus.setBounds(147, 215, 119, 22);
 					jDesktopPane1.add(jTextFieldBatchStatus);
 				}
 
 				{
 					jTextFieldUom = new JTextField4j(JDBUom.field_uom);
-					jTextFieldUom.setBounds(147, 275, 119, 21);
+					jTextFieldUom.setBounds(147, 275, 119, 22);
 					jTextFieldUom.setEnabled(false);
 					jDesktopPane1.add(jTextFieldUom);
 				}
@@ -664,7 +660,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 				jTextFieldProcessOrderStatus.setText("");
 				jTextFieldProcessOrderStatus.setEnabled(false);
 				jTextFieldProcessOrderStatus.setEditable(false);
-				jTextFieldProcessOrderStatus.setBounds(308, 44, 126, 21);
+				jTextFieldProcessOrderStatus.setBounds(308, 42, 126, 22);
 				jDesktopPane1.add(jTextFieldProcessOrderStatus);
 			}
 		}

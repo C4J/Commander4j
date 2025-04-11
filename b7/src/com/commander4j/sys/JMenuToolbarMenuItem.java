@@ -28,6 +28,8 @@ package com.commander4j.sys;
  */
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -49,7 +51,64 @@ public class JMenuToolbarMenuItem extends JButton
 		this.setMinimumSize(new Dimension(Common.buttonToolbarSize,Common.buttonToolbarSize));
 		this.setPreferredSize(new Dimension(Common.buttonToolbarSize,Common.buttonToolbarSize));
 		this.setSize(Common.buttonToolbarSize,Common.buttonToolbarSize);
-		this.setFont(Common.font_small);
+		this.setFont(Common.font_btn_small);
+
+		setForeground(Common.color_button_font);
+		setOpaque(true);
+		setBackground(Common.color_button);
+		setContentAreaFilled(true);
+		
+		// Hover listener
+		addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{
+				if (isEnabled())
+				{
+					setBackground(Common.color_button_hover);
+					setForeground(Common.color_button_font_hover);
+					setFont(Common.font_btn_small_bold);
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				setBackground(Common.color_button);
+				setForeground(Common.color_button_font);
+				setFont(Common.font_btn_small);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				if (isEnabled())
+				{
+					setBackground(Common.color_button_hover);
+					setForeground(Common.color_button_font_hover);
+					setFont(Common.font_btn_small_bold);
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				setBackground(Common.color_button);
+				setForeground(Common.color_button_font);
+				setFont(Common.font_btn_small);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				if (isEnabled())
+				{
+					setBackground(Common.color_button);
+					setForeground(Common.color_button_font);
+				}
+			}
+		});
 	}
 	
 	public JMenuToolbarMenuItem(JMenuOption mo)

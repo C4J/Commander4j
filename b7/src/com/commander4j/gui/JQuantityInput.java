@@ -1,4 +1,8 @@
-package com.commander4j.util;
+package com.commander4j.gui;
+
+import java.awt.Color;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 /**
  * @author David Garratt
@@ -31,19 +35,34 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import javax.swing.JFormattedTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 import com.commander4j.sys.Common;
+import com.commander4j.util.JUtility;
 
 public class JQuantityInput extends JFormattedTextField
 {
 
 	private static final long serialVersionUID = 1L;
+    private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
+	
+	private void init()
+	{
+		setOpaque(true);
+        setBorder(EMPTY_BORDER);
+		setFont(Common.font_input);
+		setHorizontalAlignment(SwingConstants.TRAILING);
+		
+	}
 	
 	public JQuantityInput(BigDecimal arg0)
 	{
 		super(new DecimalFormat("###,##0.000"));
 		this.setValue(arg0);
-		this.setFont(Common.font_std);
+        init();
+        initFocusBehavior();
 	}
 	
 	public BigDecimal getQuantity()
@@ -66,5 +85,26 @@ public class JQuantityInput extends JFormattedTextField
 	{
 		setText(qty.toString());
 	}
+	
+    private void initFocusBehavior() {
+        addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+            	if (isEditable())
+            	{
+                    setBackground(Common.color_textfield_background_focus_color);
+            	}
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+            	if (isEditable())
+            	{
+                setBackground(Common.color_textfield_background_nofocus_color);
+            	}
+            }
+        });
+    }
 		
 }

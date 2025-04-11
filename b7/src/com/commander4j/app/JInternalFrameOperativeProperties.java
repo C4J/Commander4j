@@ -126,7 +126,7 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jLabel_ID = new JLabel4j_std();
-					jLabel_ID.setBounds(0, 7, 98, 21);
+					jLabel_ID.setBounds(0, 7, 98, 22);
 					jDesktopPane1.add(jLabel_ID);
 					jLabel_ID.setText(lang.get("lbl_Operator_ID"));
 					jLabel_ID.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -134,7 +134,7 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 				}
 				{
 					jTextFieldID = new JTextField4j(JDBOperatives.field_id);
-					jTextFieldID.setBounds(105, 7, 100, 21);
+					jTextFieldID.setBounds(105, 7, 100, 22);
 					jDesktopPane1.add(jTextFieldID);
 					jTextFieldID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldID.setEditable(false);
@@ -142,7 +142,7 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 				}
 				{
 					jLabelSurname = new JLabel4j_std();
-					jLabelSurname.setBounds(0, 73, 98, 21);
+					jLabelSurname.setBounds(0, 73, 98, 22);
 					jDesktopPane1.add(jLabelSurname);
 					jLabelSurname.setText(lang.get("lbl_surname"));
 					jLabelSurname.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -150,7 +150,7 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 				}
 				{
 					jTextFieldSurname = new JTextField4j(JDBOperatives.field_surname);
-					jTextFieldSurname.setBounds(104, 73, 238, 21);
+					jTextFieldSurname.setBounds(104, 73, 238, 22);
 					jDesktopPane1.add(jTextFieldSurname);
 					jTextFieldSurname.addKeyListener(new KeyAdapter()
 					{
@@ -209,7 +209,7 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 				jLabelForename.setText(lang.get("lbl_forename"));
 				jLabelForename.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabelForename.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabelForename.setBounds(0, 40, 98, 21);
+				jLabelForename.setBounds(0, 40, 98, 22);
 				jDesktopPane1.add(jLabelForename);
 
 				jTextFieldForename = new JTextField4j(JDBOperatives.field_forename);
@@ -223,11 +223,11 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 				});
 				jTextFieldForename.setFocusCycleRoot(true);
 				jTextFieldForename.setCaretPosition(0);
-				jTextFieldForename.setBounds(105, 40, 238, 21);
+				jTextFieldForename.setBounds(105, 40, 238, 22);
 				jDesktopPane1.add(jTextFieldForename);
 
 				JLabel4j_std label_Enabled = new JLabel4j_std();
-				label_Enabled.setBounds(0, 106, 97, 21);
+				label_Enabled.setBounds(0, 102, 97, 22);
 				label_Enabled.setText(lang.get("lbl_Enabled"));
 				label_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
 				jDesktopPane1.add(label_Enabled);
@@ -239,7 +239,7 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 					}
 				});
 
-				chckbxEnabled.setBounds(105, 102, 21, 23);
+				chckbxEnabled.setBounds(105, 102, 21, 22);
 				jDesktopPane1.add(chckbxEnabled);
 			}
 		}

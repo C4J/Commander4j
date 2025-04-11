@@ -50,8 +50,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -66,17 +65,19 @@ import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBJourneyRefTableModel;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
@@ -112,7 +113,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonEdit;
 	private JButton4j jButtonClose;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JTextField4j jTextFieldDespatchNo;
 	private JComboBox4j<String> jComboBoxStatus;
 	private JLabel4j_std jLabel5;
@@ -137,7 +138,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JTextField4j jTextFieldLocationID = new JTextField4j(15);
 	private JCheckBox4j jCheckBoxLimit;
-	private JSpinner jSpinnerLimit;
+	private JSpinner4j jSpinnerLimit;
 	private JTextField4j jTextFieldLoadType = new JTextField4j();
 	private JTextField4j jTextFieldLoadTypeDesc = new JTextField4j();
 	private JTextField4j jTextFieldHaulier = new JTextField4j();
@@ -746,32 +747,32 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Journey_Ref"));
-					jLabel1.setBounds(12, 11, 113, 21);
+					jLabel1.setBounds(12, 11, 113, 22);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldJourneyRef = new JTextField4j(JDBJourney.field_journey_ref);
 					jDesktopPane1.add(jTextFieldJourneyRef);
-					jTextFieldJourneyRef.setBounds(132, 11, 168, 23);
+					jTextFieldJourneyRef.setBounds(132, 11, 168, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Despatch_No"));
-					jLabel3.setBounds(299, 11, 113, 21);
+					jLabel3.setBounds(299, 11, 113, 22);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldDespatchNo = new JTextField4j(JDBJourney.field_despatch_no);
 					jDesktopPane1.add(jTextFieldDespatchNo);
-					jTextFieldDespatchNo.setBounds(419, 11, 174, 23);
+					jTextFieldDespatchNo.setBounds(419, 11, 174, 22);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(220, 116, 113, 21);
+					jLabel10.setBounds(220, 118, 113, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -779,7 +780,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(342, 116, 141, 23);
+					jComboBoxSortBy.setBounds(342, 118, 141, 22);
 					jComboBoxSortBy.setSelectedItem("TIMESLOT");
 				}
 				{
@@ -787,19 +788,19 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Journey_Status"));
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(12, 45, 113, 21);
+					jLabel5.setBounds(12, 45, 113, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.JourneyRefStatusIncBlank);
 					jComboBoxStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
-					jComboBoxStatus.setBounds(132, 44, 168, 23);
+					jComboBoxStatus.setBounds(132, 45, 168, 22);
 				}
 				{
-					jToggleButtonSequence = new JToggleButton();
+					jToggleButtonSequence = new JToggleButton4j();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(489, 118, 21, 21);
+					jToggleButtonSequence.setBounds(489, 118, 21, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -811,13 +812,13 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 
 				{
-					timeslotFrom.setBounds(440, 79, 125, 25);
+					timeslotFrom.setBounds(440, 83, 128, 22);
 					timeslotFrom.setEnabled(false);
 					jDesktopPane1.add(timeslotFrom);
 				}
 
 				{
-					timeslotTo.setBounds(730, 79, 125, 25);
+					timeslotTo.setBounds(730, 83, 128, 22);
 					timeslotTo.setEnabled(false);
 					jDesktopPane1.add(timeslotTo);
 				}
@@ -826,7 +827,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jLabel5_1 = new JLabel4j_std();
 					jLabel5_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel5_1.setText(lang.get("lbl_Timeslot"));
-					jLabel5_1.setBounds(299, 83, 113, 21);
+					jLabel5_1.setBounds(299, 83, 113, 22);
 					jDesktopPane1.add(jLabel5_1);
 				}
 
@@ -849,7 +850,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxFrom.setBackground(new Color(255, 255, 255));
-					jCheckBoxFrom.setBounds(419, 80, 21, 21);
+					jCheckBoxFrom.setBounds(419, 84, 21, 21);
 					jDesktopPane1.add(jCheckBoxFrom);
 				}
 
@@ -872,7 +873,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxTo.setBackground(new Color(255, 255, 255));
-					jCheckBoxTo.setBounds(709, 80, 21, 21);
+					jCheckBoxTo.setBounds(709, 83, 21, 22);
 					jDesktopPane1.add(jCheckBoxTo);
 				}
 
@@ -964,10 +965,10 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					JLabel4j_std label4j_std = new JLabel4j_std();
 					label4j_std.setText(lang.get("lbl_Location_ID"));
 					label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-					label4j_std.setBounds(599, 11, 113, 21);
+					label4j_std.setBounds(599, 11, 113, 22);
 					jDesktopPane1.add(label4j_std);
 
-					jTextFieldLocationID.setBounds(719, 11, 139, 23);
+					jTextFieldLocationID.setBounds(719, 11, 139, 22);
 					jDesktopPane1.add(jTextFieldLocationID);
 
 					JButton4j button4j_LocationLookup = new JButton4j(Common.icon_lookup_16x16);
@@ -983,7 +984,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 							}
 						}
 					});
-					button4j_LocationLookup.setBounds(866, 11, 21, 21);
+					button4j_LocationLookup.setBounds(866, 11, 21, 22);
 					jDesktopPane1.add(button4j_LocationLookup);
 				}
 
@@ -1007,12 +1008,11 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jSpinnerIntModel.setMinimum(1);
 					jSpinnerIntModel.setMaximum(5000);
 					jSpinnerIntModel.setStepSize(1);
-					jSpinnerLimit = new JSpinner();
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std);
+					jSpinnerLimit = new JSpinner4j();
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					jSpinnerLimit.setBounds(644, 118, 68, 21);
+					jSpinnerLimit.setBounds(644, 118, 68, 22);
 					jSpinnerLimit.setValue(1000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);
@@ -1023,13 +1023,13 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Limit"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(522, 118, 91, 21);
+					jLabel10.setBounds(522, 118, 91, 22);
 				}
 				{
 					jCheckBoxLimit = new JCheckBox4j();
 					jDesktopPane1.add(jCheckBoxLimit);
 					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxLimit.setBounds(616, 118, 21, 21);
+					jCheckBoxLimit.setBounds(616, 119, 21, 21);
 					jCheckBoxLimit.setSelected(true);
 					jCheckBoxLimit.addActionListener(new ActionListener()
 					{
@@ -1050,28 +1050,28 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				JLabel4j_std label4j_stdLoadType = new JLabel4j_std();
 				label4j_stdLoadType.setText(lang.get("lbl_LoadType"));
 				label4j_stdLoadType.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_stdLoadType.setBounds(299, 45, 113, 21);
+				label4j_stdLoadType.setBounds(299, 45, 113, 22);
 				jDesktopPane1.add(label4j_stdLoadType);
 
-				jTextFieldLoadType.setBounds(419, 44, 179, 23);
+				jTextFieldLoadType.setBounds(419, 45, 179, 22);
 				jDesktopPane1.add(jTextFieldLoadType);
 
-				jTextFieldLoadTypeDesc.setBounds(719, 44, 262, 23);
+				jTextFieldLoadTypeDesc.setBounds(719, 45, 262, 22);
 				jDesktopPane1.add(jTextFieldLoadTypeDesc);
 
 				JLabel4j_std label4j_stdLoadTypeDesc = new JLabel4j_std();
 				label4j_stdLoadTypeDesc.setText(lang.get("lbl_LoadTypeDesc"));
 				label4j_stdLoadTypeDesc.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_stdLoadTypeDesc.setBounds(599, 45, 113, 21);
+				label4j_stdLoadTypeDesc.setBounds(599, 45, 113, 22);
 				jDesktopPane1.add(label4j_stdLoadTypeDesc);
 
-				jTextFieldHaulier.setBounds(132, 81, 168, 23);
+				jTextFieldHaulier.setBounds(132, 83, 168, 22);
 				jDesktopPane1.add(jTextFieldHaulier);
 
 				JLabel4j_std label4j_stdHaulier = new JLabel4j_std();
 				label4j_stdHaulier.setText(lang.get("lbl_Haulier"));
 				label4j_stdHaulier.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_stdHaulier.setBounds(12, 83, 113, 21);
+				label4j_stdHaulier.setBounds(12, 83, 113, 22);
 				jDesktopPane1.add(label4j_stdHaulier);
 
 			}

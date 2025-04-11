@@ -176,7 +176,7 @@ public class JInternalFrameWasteTransactionProperties extends JInternalFrame
 					jLabel_WasteTransaction.setText(lang.get("lbl_Transaction_ID"));
 					jLabel_WasteTransaction.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_WasteTransaction.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_WasteTransaction.setBounds(0, 10, 149, 21);
+					jLabel_WasteTransaction.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldTransactionType = new JTextField4j(JDBWasteLocation.field_WasteLocationID);
@@ -184,7 +184,7 @@ public class JInternalFrameWasteTransactionProperties extends JInternalFrame
 					jTextFieldTransactionType.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldTransactionType.setEditable(false);
 					jTextFieldTransactionType.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldTransactionType.setBounds(155, 10, 237, 21);
+					jTextFieldTransactionType.setBounds(155, 10, 237, 22);
 					jTextFieldTransactionType.setEnabled(false);
 				}
 				{
@@ -226,7 +226,7 @@ public class JInternalFrameWasteTransactionProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 43, 149, 21);
+					jLabel_Description.setBounds(0, 43, 149, 22);
 				}
 
 				{
@@ -234,41 +234,41 @@ public class JInternalFrameWasteTransactionProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 43, 433, 21);
+					jTextFieldDescription.setBounds(155, 43, 433, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
 						}
 					});
 					
-					chckbx_IncludeInTotals.setBounds(155, 75, 29, 23);
+					chckbx_IncludeInTotals.setBounds(155, 75, 29, 22);
 					jDesktopPane1.add(chckbx_IncludeInTotals);
 					
-					chckbx_StoreAsNegative.setBounds(155, 103, 29, 23);
+					chckbx_StoreAsNegative.setBounds(155, 103, 29, 22);
 					jDesktopPane1.add(chckbx_StoreAsNegative);
 					
-					chckbx_Enabled.setBounds(155, 130, 29, 23);
+					chckbx_Enabled.setBounds(155, 130, 29, 22);
 					jDesktopPane1.add(chckbx_Enabled);
 					
 					JLabel4j_std jLabel_IncludeInTotals = new JLabel4j_std();
 					jLabel_IncludeInTotals.setText(lang.get("lbl_Include_In_Totals"));
 					jLabel_IncludeInTotals.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_IncludeInTotals.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_IncludeInTotals.setBounds(0, 77, 149, 21);
+					jLabel_IncludeInTotals.setBounds(0, 75, 149, 22);
 					jDesktopPane1.add(jLabel_IncludeInTotals);
 					
 					JLabel4j_std jLabel_StoreAsNegative = new JLabel4j_std();
 					jLabel_StoreAsNegative.setText(lang.get("lbl_Store_As_Negative"));
 					jLabel_StoreAsNegative.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_StoreAsNegative.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_StoreAsNegative.setBounds(0, 105, 149, 21);
+					jLabel_StoreAsNegative.setBounds(0, 103, 149, 22);
 					jDesktopPane1.add(jLabel_StoreAsNegative);
 					
 					JLabel4j_std jLabel_Enabled = new JLabel4j_std();
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Enabled.setBounds(0, 132, 149, 21);
+					jLabel_Enabled.setBounds(0, 130, 149, 22);
 					jDesktopPane1.add(jLabel_Enabled);
 				}
 				

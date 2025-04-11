@@ -44,14 +44,13 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
+
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
@@ -71,9 +70,12 @@ import com.commander4j.db.JDBQuery;
 import com.commander4j.db.JDBUser;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
+import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JRadioButton4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
@@ -123,17 +125,17 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private JTextField4j textFieldDespatchStatus;
 	private JTextField4j textFieldDespatchLocationFrom;
 	private JLabel4j_std jLabel10_1;
-	private JSpinner spinnerUnassignedLimit;
+	private JSpinner4j spinnerUnassignedLimit;
 	private JCheckBox4j jCheckBoxLimit;
 	private JLabel4j_std jLabel10;
 	private JTextField4j textFieldBatch;
 	private JTextField4j textFieldMaterial;
 	private JTextField4j textFieldSSCC;
-	private JComboBox<String> comboBoxPalletStatus;
+	private JComboBox4j<String> comboBoxPalletStatus;
 	private JList4j<String> list_assigned;
 	private JList4j<String> list_unassigned;
 	private JList4j<JDBDespatch> list_despatch;
-	private JSpinner spinnerDespatchLimit = new JSpinner();
+	private JSpinner4j spinnerDespatchLimit = new JSpinner4j();
 	private JDBDespatch despatch = new JDBDespatch(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBJourney journey = new JDBJourney(Common.selectedHostID, Common.sessionID);
@@ -147,8 +149,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private LinkedList<JDBDespatch> despList = new LinkedList<JDBDespatch>();
 	private LinkedList<String> unassignedList = new LinkedList<String>();
 	private LinkedList<String> assignedList = new LinkedList<String>();
-	private JRadioButton confirmedRadioButton = new JRadioButton();
-	private JRadioButton unconfirmedRadioButton = new JRadioButton();
+	private JRadioButton4j confirmedRadioButton = new JRadioButton4j();
+	private JRadioButton4j unconfirmedRadioButton = new JRadioButton4j();
 	private JButton4j findButton = new JButton4j(Common.icon_find_16x16);
 	private JButton4j jButtonHelp = new JButton4j(Common.icon_help_16x16);
 	private JButton4j newButton = new JButton4j(Common.icon_add_16x16);
@@ -322,10 +324,9 @@ public class JInternalFrameDespatch extends JInternalFrame
 		list_assigned.setBackground(Common.color_list_assigned);
 		scrollPane_2.setViewportView(list_assigned);
 
-		comboBoxPalletStatus = new JComboBox<String>();
+		comboBoxPalletStatus = new JComboBox4j<String>();
 
-		comboBoxPalletStatus.setFont(Common.font_std);
-		comboBoxPalletStatus.setBounds(686, 137, 143, 21);
+		comboBoxPalletStatus.setBounds(686, 137, 143, 22);
 
 		ComboBoxModel<String> jComboBoxDefaultPalletStatusModel = new DefaultComboBoxModel<String>(Common.palletStatusIncBlank);
 		comboBoxPalletStatus.setModel(jComboBoxDefaultPalletStatusModel);
@@ -333,35 +334,35 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(comboBoxPalletStatus);
 
 		textFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
-		textFieldSSCC.setBounds(686, 52, 143, 21);
+		textFieldSSCC.setBounds(686, 52, 143, 22);
 		desktopPane.add(textFieldSSCC);
 
 		final JLabel4j_std palletStatusLabel = new JLabel4j_std();
 		palletStatusLabel.setText(lang.get("lbl_Pallet_Status"));
-		palletStatusLabel.setBounds(686, 117, 128, 20);
+		palletStatusLabel.setBounds(686, 117, 143, 22);
 		desktopPane.add(palletStatusLabel);
 
 		final JLabel4j_std ssccLabel = new JLabel4j_std();
 		ssccLabel.setText(lang.get("lbl_Pallet_SSCC"));
-		ssccLabel.setBounds(686, 37, 128, 16);
+		ssccLabel.setBounds(686, 37, 143, 16);
 		desktopPane.add(ssccLabel);
 
 		textFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-		textFieldMaterial.setBounds(686, 92, 124, 21);
+		textFieldMaterial.setBounds(686, 92, 124, 22);
 		desktopPane.add(textFieldMaterial);
 
 		final JLabel4j_std materialLabel = new JLabel4j_std();
 		materialLabel.setText(lang.get("lbl_Material"));
-		materialLabel.setBounds(686, 77, 128, 16);
+		materialLabel.setBounds(686, 77, 143, 16);
 		desktopPane.add(materialLabel);
 
 		textFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
-		textFieldBatch.setBounds(686, 177, 124, 21);
+		textFieldBatch.setBounds(686, 177, 124, 22);
 		desktopPane.add(textFieldBatch);
 
 		final JLabel4j_std batchLabel = new JLabel4j_std();
 		batchLabel.setText(lang.get("lbl_Batch"));
-		batchLabel.setBounds(686, 162, 128, 16);
+		batchLabel.setBounds(686, 162, 143, 16);
 		desktopPane.add(batchLabel);
 		buttonAssign.setEnabled(false);
 
@@ -485,7 +486,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		newButton.setText(lang.get("btn_New"));
-		newButton.setBounds(6, 444, 116, 30);
+		newButton.setBounds(6, 444, 116, 32);
 		desktopPane.add(newButton);
 
 		deleteButton.setText(lang.get("btn_Delete"));
@@ -517,7 +518,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 				}
 			}
 		});
-		deleteButton.setBounds(242, 444, 116, 30);
+		deleteButton.setBounds(242, 444, 116, 32);
 		desktopPane.add(deleteButton);
 
 		findButton.setText(lang.get("btn_Find"));
@@ -529,7 +530,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 				populateUnassignedList(listStatement, "");
 			}
 		});
-		findButton.setBounds(686, 300, 143, 30);
+		findButton.setBounds(686, 300, 143, 32);
 		desktopPane.add(findButton);
 
 		final JButton4j printButton = new JButton4j(Common.icon_report_16x16);
@@ -552,27 +553,26 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		printButton.setText(lang.get("btn_Print"));
-		printButton.setBounds(478, 444, 116, 30);
+		printButton.setBounds(478, 444, 116, 32);
 		desktopPane.add(printButton);
 
 		jLabel10 = new JLabel4j_std();
 		jLabel10.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
 		jLabel10.setText(lang.get("lbl_Limit"));
-		jLabel10.setBounds(686, 246, 128, 21);
+		jLabel10.setBounds(686, 246, 143, 22);
 		desktopPane.add(jLabel10);
 
 		jCheckBoxLimit = new JCheckBox4j();
 		jCheckBoxLimit.setSelected(true);
 		jCheckBoxLimit.setBackground(new Color(255, 255, 255));
-		jCheckBoxLimit.setBounds(686, 266, 21, 21);
+		jCheckBoxLimit.setBounds(686, 266, 21, 22);
 		desktopPane.add(jCheckBoxLimit);
 
-		spinnerUnassignedLimit = new JSpinner();
-		JSpinner.NumberEditor ne1 = new JSpinner.NumberEditor(spinnerUnassignedLimit);
-		ne1.getTextField().setFont(Common.font_std);
+		spinnerUnassignedLimit = new JSpinner4j();
+		JSpinner4j.NumberEditor ne1 = new JSpinner4j.NumberEditor(spinnerUnassignedLimit);
 		spinnerUnassignedLimit.setEditor(ne1);
-		spinnerUnassignedLimit.setBounds(715, 266, 114, 20);
+		spinnerUnassignedLimit.setBounds(715, 266, 114, 22);
 		spinnerUnassignedLimit.setValue(1000);
 		desktopPane.add(spinnerUnassignedLimit);
 
@@ -587,7 +587,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		closeButton.setText(lang.get("btn_Close"));
 		closeButton.setMnemonic(lang.getMnemonicChar());
-		closeButton.setBounds(714, 444, 116, 30);
+		closeButton.setBounds(714, 444, 116, 32);
 		desktopPane.add(closeButton);
 
 		jButtonHelp.addActionListener(new ActionListener()
@@ -597,7 +597,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		jButtonHelp.setText(lang.get("btn_Help"));
-		jButtonHelp.setBounds(596, 444, 116, 30);
+		jButtonHelp.setBounds(596, 444, 116, 32);
 		desktopPane.add(jButtonHelp);
 
 		//
@@ -639,12 +639,12 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 
-		confirmButton.setBounds(360, 444, 116, 30);
+		confirmButton.setBounds(360, 444, 116, 32);
 		desktopPane.add(confirmButton);
 
 		final JLabel4j_title despatchesLabel = new JLabel4j_title();
 		despatchesLabel.setText(lang.get("lbl_Despatches"));
-		despatchesLabel.setBounds(10, 10, 75, 16);
+		despatchesLabel.setBounds(10, 10, 150, 16);
 		desktopPane.add(despatchesLabel);
 
 		final JLabel4j_title unassignedLabel = new JLabel4j_title();
@@ -659,7 +659,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		final JLabel4j_title palletFilterCriteriaLabel = new JLabel4j_title();
 		palletFilterCriteriaLabel.setText(lang.get("lbl_Unassigned_Filter"));
-		palletFilterCriteriaLabel.setBounds(686, 10, 125, 16);
+		palletFilterCriteriaLabel.setBounds(686, 10, 143, 16);
 		desktopPane.add(palletFilterCriteriaLabel);
 
 		final JButton4j refreshButton = new JButton4j(Common.icon_refresh_16x16);
@@ -671,24 +671,24 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		refreshButton.setText(lang.get("btn_Refresh"));
-		refreshButton.setBounds(124, 444, 116, 30);
+		refreshButton.setBounds(124, 444, 116, 32);
 		desktopPane.add(refreshButton);
 
 		SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
 		jSpinnerIntModel.setMinimum(1);
 		jSpinnerIntModel.setMaximum(50000);
 		jSpinnerIntModel.setStepSize(1);
-		JSpinner.NumberEditor ne2 = new JSpinner.NumberEditor(spinnerDespatchLimit);
-		ne2.getTextField().setFont(Common.font_std);
+		JSpinner4j.NumberEditor ne2 = new JSpinner4j.NumberEditor(spinnerDespatchLimit);
+
 		spinnerDespatchLimit.setEditor(ne2);
 		spinnerDespatchLimit.setModel(jSpinnerIntModel);
-		spinnerDespatchLimit.setBounds(15, 332, 60, 20);
+		spinnerDespatchLimit.setBounds(15, 335, 60, 22);
 		spinnerDespatchLimit.setValue(50);
 		desktopPane.add(spinnerDespatchLimit);
 
 		jLabel10_1 = new JLabel4j_std();
 		jLabel10_1.setText(lang.get("lbl_Limit"));
-		jLabel10_1.setBounds(85, 332, 75, 21);
+		jLabel10_1.setBounds(85, 336, 75, 21);
 		desktopPane.add(jLabel10_1);
 
 		textFieldDespatchLocationFrom = new JTextField4j(JDBLocation.field_location_id);
@@ -707,71 +707,71 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		textFieldDespatchLocationFrom.setEditable(false);
-		textFieldDespatchLocationFrom.setBounds(172, 30, 120, 20);
+		textFieldDespatchLocationFrom.setBounds(172, 30, 122, 22);
 		desktopPane.add(textFieldDespatchLocationFrom);
 
 		final JLabel4j_std locationLabel_1 = new JLabel4j_std();
 		locationLabel_1.setText(lang.get("lbl_From_Location"));
-		locationLabel_1.setBounds(172, 12, 100, 16);
+		locationLabel_1.setBounds(172, 10, 141, 22);
 		desktopPane.add(locationLabel_1);
 
 		final JLabel4j_std palletStatusLabel_1 = new JLabel4j_std();
 		palletStatusLabel_1.setText(lang.get("lbl_Despatch_Status"));
-		palletStatusLabel_1.setBounds(172, 268, 128, 20);
+		palletStatusLabel_1.setBounds(172, 272, 141, 22);
 		desktopPane.add(palletStatusLabel_1);
 
 		textFieldDespatchStatus = new JTextField4j(JDBDespatch.field_status);
 		textFieldDespatchStatus.setEditable(false);
-		textFieldDespatchStatus.setBounds(172, 290, 141, 20);
+		textFieldDespatchStatus.setBounds(172, 290, 141, 22);
 		desktopPane.add(textFieldDespatchStatus);
 
 		textFieldDespatchLocationTo = new JTextField4j(JDBLocation.field_location_id);
 		textFieldDespatchLocationTo.setEditable(false);
-		textFieldDespatchLocationTo.setBounds(172, 73, 120, 20);
+		textFieldDespatchLocationTo.setBounds(172, 73, 122, 22);
 		desktopPane.add(textFieldDespatchLocationTo);
 
 		final JLabel4j_std locationLabel_1_1 = new JLabel4j_std();
 		locationLabel_1_1.setText(lang.get("lbl_To_Location"));
-		locationLabel_1_1.setBounds(172, 54, 100, 16);
+		locationLabel_1_1.setBounds(172, 54, 141, 16);
 		desktopPane.add(locationLabel_1_1);
 
 		final JLabel4j_std palletStatusLabel_1_1 = new JLabel4j_std();
 		palletStatusLabel_1_1.setText(lang.get("lbl_Despatch_Date"));
-		palletStatusLabel_1_1.setBounds(172, 312, 125, 20);
+		palletStatusLabel_1_1.setBounds(172, 317, 141, 22);
 		desktopPane.add(palletStatusLabel_1_1);
 
 		final JLabel4j_std lbl_NoOfPallets = new JLabel4j_std();
 		lbl_NoOfPallets.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_NoOfPallets.setText(lang.get("lbl_No_Of_Pallets"));
-		lbl_NoOfPallets.setBounds(120, 364, 120, 20);
+		lbl_NoOfPallets.setBounds(120, 365, 120, 22);
 		desktopPane.add(lbl_NoOfPallets);
 		
 		final JLabel4j_std lbl_QtyOfEquipment = new JLabel4j_std();
 		lbl_QtyOfEquipment.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_QtyOfEquipment.setText(lang.get("lbl_Quantity_Of_Equipment"));
-		lbl_QtyOfEquipment.setBounds(120, 397, 120, 20);
+		lbl_QtyOfEquipment.setBounds(120, 396, 120, 22);
 		desktopPane.add(lbl_QtyOfEquipment);
 
 		textFieldNoOfPallets = new JTextField4j();
 		textFieldNoOfPallets.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldNoOfPallets.setEditable(false);
-		textFieldNoOfPallets.setBounds(251, 365, 41, 20);
+		textFieldNoOfPallets.setBounds(251, 365, 41, 22);
 		desktopPane.add(textFieldNoOfPallets);
 		
 		textFieldQtyOfEquipment = new JTextField4j();
 		textFieldQtyOfEquipment.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldQtyOfEquipment.setEditable(false);
-		textFieldQtyOfEquipment.setBounds(251, 396, 41, 20);
+		textFieldQtyOfEquipment.setBounds(251, 396, 43, 22);
 		desktopPane.add(textFieldQtyOfEquipment);
 
 		jTextFieldDespatchDate = new JTextField4j();
 		jTextFieldDespatchDate.setEditable(false);
-		jTextFieldDespatchDate.setBounds(172, 335, 141, 20);
+		jTextFieldDespatchDate.setBounds(172, 335, 141, 22);
 		desktopPane.add(jTextFieldDespatchDate);
 
 		jButtonLookupLocationFrom = new JButton4j(Common.icon_lookup_16x16);
 		jButtonLookupLocationFrom.setEnabled(false);
-		jButtonLookupLocationFrom.setBounds(293, 29, 21, 21);
+		jButtonLookupLocationFrom.setBounds(293, 30, 22, 22);
 		jButtonLookupLocationFrom.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -793,7 +793,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		jButtonLookupLocationTo = new JButton4j(Common.icon_lookup_16x16);
 		jButtonLookupLocationTo.setEnabled(false);
-		jButtonLookupLocationTo.setBounds(293, 72, 21, 21);
+		jButtonLookupLocationTo.setBounds(293, 73, 22, 22);
 		jButtonLookupLocationTo.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -829,7 +829,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(jButtonLookupLocationTo);
 
 		jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
-		jButtonLookupMaterial.setBounds(809, 92, 21, 21);
+		jButtonLookupMaterial.setBounds(809, 92, 22, 22);
 		jButtonLookupMaterial.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -846,7 +846,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(jButtonLookupMaterial);
 
 		jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
-		jButtonLookupBatch.setBounds(809, 177, 21, 21);
+		jButtonLookupBatch.setBounds(809, 177, 22, 22);
 		jButtonLookupBatch.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -864,8 +864,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		confirmedRadioButton.setBackground(Common.color_app_window);
 		confirmedRadioButton.setText(lang.get("lbl_Confirmed"));
-		confirmedRadioButton.setBounds(10, 369, 129, 20);
-		confirmedRadioButton.setFont(Common.font_std);
+		confirmedRadioButton.setBounds(10, 367, 129, 20);
 		confirmedRadioButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -880,9 +879,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		unconfirmedRadioButton.setBackground(Common.color_app_window);
 		unconfirmedRadioButton.setText(lang.get("lbl_Unconfirmed"));
-		unconfirmedRadioButton.setBounds(10, 392, 129, 20);
+		unconfirmedRadioButton.setBounds(10, 398, 129, 20);
 		unconfirmedRadioButton.setSelected(true);
-		unconfirmedRadioButton.setFont(Common.font_std);
 		unconfirmedRadioButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -900,23 +898,23 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		final JLabel4j_std palletStatusLabel_1_2 = new JLabel4j_std();
 		palletStatusLabel_1_2.setText(lang.get("lbl_Trailer"));
-		palletStatusLabel_1_2.setBounds(172, 93, 105, 20);
+		palletStatusLabel_1_2.setBounds(172, 98, 141, 22);
 		desktopPane.add(palletStatusLabel_1_2);
 
 		textFieldTrailer = new JTextField4j(JDBDespatch.field_trailer);
 		textFieldTrailer.setEditable(false);
-		textFieldTrailer.setBounds(172, 116, 120, 20);
+		textFieldTrailer.setBounds(172, 116, 122, 22);
 
 		desktopPane.add(textFieldTrailer);
 
 		final JLabel4j_std palletStatusLabel_1_2_1 = new JLabel4j_std();
 		palletStatusLabel_1_2_1.setText(lang.get("lbl_Haulier"));
-		palletStatusLabel_1_2_1.setBounds(172, 137, 105, 20);
+		palletStatusLabel_1_2_1.setBounds(172, 140, 141, 22);
 		desktopPane.add(palletStatusLabel_1_2_1);
 
 		textFieldHaulier = new JTextField4j(JDBDespatch.field_haulier);
 		textFieldHaulier.setEditable(false);
-		textFieldHaulier.setBounds(172, 160, 120, 20);
+		textFieldHaulier.setBounds(172, 160, 122, 22);
 		desktopPane.add(textFieldHaulier);
 
 		jButtonLookupTrailer = new JButton4j();
@@ -938,7 +936,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 				}
 			}
 		});
-		jButtonLookupTrailer.setBounds(293, 115, 21, 21);
+		jButtonLookupTrailer.setBounds(293, 116, 22, 22);
 		desktopPane.add(jButtonLookupTrailer);
 
 		jButtonLookupHaulier = new JButton4j();
@@ -960,18 +958,18 @@ public class JInternalFrameDespatch extends JInternalFrame
 				}
 			}
 		});
-		jButtonLookupHaulier.setBounds(293, 159, 21, 21);
+		jButtonLookupHaulier.setBounds(293, 160, 22, 22);
 		desktopPane.add(jButtonLookupHaulier);
 
 		JLabel4j_std lblLoadNo = new JLabel4j_std();
 		lblLoadNo.setText(lang.get("lbl_Load_No"));
-		lblLoadNo.setBounds(172, 180, 105, 20);
+		lblLoadNo.setBounds(172, 180, 141, 22);
 		desktopPane.add(lblLoadNo);
 
 		textFieldLoadNo = new JTextField4j(JDBDespatch.field_load_no);
 		textFieldLoadNo.setText("");
 		textFieldLoadNo.setEditable(false);
-		textFieldLoadNo.setBounds(172, 203, 120, 20);
+		textFieldLoadNo.setBounds(172, 203, 122, 22);
 		desktopPane.add(textFieldLoadNo);
 
 		jButtonLookupLoadNo = new JButton4j();
@@ -995,7 +993,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		jButtonLookupLoadNo.setText("...");
 		jButtonLookupLoadNo.setEnabled(false);
-		jButtonLookupLoadNo.setBounds(293, 202, 21, 21);
+		jButtonLookupLoadNo.setBounds(293, 203, 22, 22);
 		desktopPane.add(jButtonLookupLoadNo);
 		
 		jButtonEquipment = new JButton4j();
@@ -1016,18 +1014,18 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		jButtonEquipment.setText("...");
 		jButtonEquipment.setEnabled(false);
-		jButtonEquipment.setBounds(293, 396, 21, 21);
+		jButtonEquipment.setBounds(293, 396, 22, 22);
 		desktopPane.add(jButtonEquipment);
 
 		JLabel4j_std label = new JLabel4j_std();
 		label.setText(lang.get("lbl_User_ID"));
-		label.setBounds(686, 340, 128, 16);
+		label.setBounds(686, 340, 143, 16);
 		desktopPane.add(label);
 
 		textFieldUserID = new JTextField4j(JDBUser.field_user_id);
 		textFieldUserID.setText("");
 		textFieldUserID.setEditable(false);
-		textFieldUserID.setBounds(686, 358, 122, 20);
+		textFieldUserID.setBounds(686, 358, 124, 22);
 		desktopPane.add(textFieldUserID);
 
 		buttonSetUserID = new JButton4j(Common.icon_lookup_16x16);
@@ -1049,11 +1047,11 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		buttonSetUserID.setEnabled(false);
-		buttonSetUserID.setBounds(809, 357, 21, 21);
+		buttonSetUserID.setBounds(809, 358, 22, 22);
 		desktopPane.add(buttonSetUserID);
 
 		textFieldDespatchNo = new JTextField4j(JDBDespatch.field_despatch_no);
-		textFieldDespatchNo.setBounds(686, 217, 143, 21);
+		textFieldDespatchNo.setBounds(686, 217, 143, 22);
 		desktopPane.add(textFieldDespatchNo);
 
 		JLabel4j_std despatchNolabel = new JLabel4j_std();
@@ -1063,13 +1061,13 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		JLabel4j_std label4j_std = new JLabel4j_std();
 		label4j_std.setText(lang.get("lbl_Journey_Ref"));
-		label4j_std.setBounds(172, 225, 105, 20);
+		label4j_std.setBounds(172, 225, 141, 20);
 		desktopPane.add(label4j_std);
 
 		textFieldJourneyRef = new JTextField4j(20);
 		textFieldJourneyRef.setText("");
 		textFieldJourneyRef.setEditable(false);
-		textFieldJourneyRef.setBounds(172, 246, 79, 20);
+		textFieldJourneyRef.setBounds(172, 246, 79, 22);
 		desktopPane.add(textFieldJourneyRef);
 
 		jButtonLookupJourneyRef = new JButton4j(Common.icon_lookup_16x16);
@@ -1094,7 +1092,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		jButtonLookupJourneyRef.setText("");
 		jButtonLookupJourneyRef.setEnabled(false);
-		jButtonLookupJourneyRef.setBounds(251, 245, 21, 21);
+		jButtonLookupJourneyRef.setBounds(251, 246, 21, 22);
 		desktopPane.add(jButtonLookupJourneyRef);
 		jButtonRemoveJourneyRef.addActionListener(new ActionListener()
 		{
@@ -1109,7 +1107,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		jButtonRemoveJourneyRef.setEnabled(false);
 		jButtonRemoveJourneyRef.setToolTipText(lang.get("btn_Despatch_BLANK_Journey"));
-		jButtonRemoveJourneyRef.setBounds(272, 245, 21, 21);
+		jButtonRemoveJourneyRef.setBounds(272, 246, 21, 22);
 		desktopPane.add(jButtonRemoveJourneyRef);
 
 		jButtonAddJourneyRef.addActionListener(new ActionListener()
@@ -1129,12 +1127,12 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		jButtonAddJourneyRef.setEnabled(false);
-		jButtonAddJourneyRef.setBounds(293, 245, 21, 21);
+		jButtonAddJourneyRef.setBounds(293, 246, 21, 22);
 		jButtonAddJourneyRef.setToolTipText(lang.get("btn_Despatch_NO_JOURNEY"));
 		desktopPane.add(jButtonAddJourneyRef);
 
 		btn_Picklist.setText(lang.get("lbl_Picklist"));
-		btn_Picklist.setBounds(686, 395, 143, 30);
+		btn_Picklist.setBounds(686, 395, 143, 32);
 		btn_Picklist.setEnabled(false);
 		desktopPane.add(btn_Picklist);
 

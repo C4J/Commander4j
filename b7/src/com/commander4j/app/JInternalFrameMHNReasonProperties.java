@@ -122,7 +122,7 @@ public class JInternalFrameMHNReasonProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_Reason"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(0, 7, 98, 21);
+					jLabel1.setBounds(0, 7, 118, 22);
 				}
 				{
 					jTextFieldReason = new JTextField4j(JDBMHNReasons.field_reason);
@@ -130,7 +130,7 @@ public class JInternalFrameMHNReasonProperties extends JInternalFrame
 					jTextFieldReason.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldReason.setEditable(false);
 					jTextFieldReason.setEnabled(false);
-					jTextFieldReason.setBounds(105, 7, 80, 21);
+					jTextFieldReason.setBounds(126, 7, 80, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
@@ -138,12 +138,12 @@ public class JInternalFrameMHNReasonProperties extends JInternalFrame
 					jLabel3.setText(lang.get("lbl_Description"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(0, 35, 98, 21);
+					jLabel3.setBounds(0, 35, 118, 22);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBMHNReasons.field_description);
 					jDesktopPane1.add(jTextFieldDescription, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jTextFieldDescription.setBounds(105, 35, 238, 21);
+					jTextFieldDescription.setBounds(126, 35, 238, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonUpdate.setEnabled(true);

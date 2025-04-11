@@ -41,7 +41,6 @@ import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.border.EtchedBorder;
@@ -53,6 +52,7 @@ import com.commander4j.db.JDBWasteReportingIDS;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JRadioButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
@@ -89,8 +89,8 @@ public class JInternalFrameWasteReportIDAdmin extends javax.swing.JInternalFrame
 	private JScrollPane jScrollPane1;
 	private String lReportIDString;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JRadioButton rdbtnEnabled;
-	private JRadioButton rdbtnDisabled;
+	private JRadioButton4j rdbtnEnabled;
+	private JRadioButton4j rdbtnDisabled;
 
 	private void addrecord()
 	{
@@ -533,10 +533,9 @@ public class JInternalFrameWasteReportIDAdmin extends javax.swing.JInternalFrame
 				jDesktopPane1.add(panel);
 				panel.setLayout(null);
 
-				rdbtnEnabled = new JRadioButton(lang.get("lbl_Enabled"));
-				rdbtnEnabled.setBounds(8, 8, 102, 23);
+				rdbtnEnabled = new JRadioButton4j(lang.get("lbl_Enabled"));
+				rdbtnEnabled.setBounds(8, 8, 102, 22);
 				panel.add(rdbtnEnabled);
-				rdbtnEnabled.setFont(Common.font_std);
 				rdbtnEnabled.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -547,10 +546,9 @@ public class JInternalFrameWasteReportIDAdmin extends javax.swing.JInternalFrame
 				rdbtnEnabled.setSelected(true);
 				bgroup.add(rdbtnEnabled);
 
-				rdbtnDisabled = new JRadioButton(lang.get("lbl_Disabled"));
-				rdbtnDisabled.setBounds(8, 35, 102, 23);
+				rdbtnDisabled = new JRadioButton4j(lang.get("lbl_Disabled"));
+				rdbtnDisabled.setBounds(8, 35, 102, 22);
 				panel.add(rdbtnDisabled);
-				rdbtnDisabled.setFont(Common.font_std);
 				rdbtnDisabled.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

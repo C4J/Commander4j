@@ -39,7 +39,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
+
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -50,6 +50,7 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
@@ -72,7 +73,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 	private JDBBomList bomList = new JDBBomList(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std lblLocalUom;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JSpinner jSpinnerLimit_Sequence;
+	private JSpinner4j jSpinnerLimit_Sequence;
 	private JDBBomListRecord listRecord = new JDBBomListRecord();
 
 
@@ -153,7 +154,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_List_ID"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(0, 10, 110, 21);
+					jLabel1.setBounds(0, 10, 110, 22);
 				}
 				{
 					jTextFieldListID = new JTextField4j();
@@ -162,7 +163,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldListID);
 					jTextFieldListID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldListID.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldListID.setBounds(120, 10, 264, 21);
+					jTextFieldListID.setBounds(120, 10, 264, 22);
 				}
 				{
 					jLabel2 = new JLabel4j_std();
@@ -170,7 +171,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jLabel2.setText(lang.get("lbl_Item"));
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel2.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel2.setBounds(0, 43, 110, 21);
+					jLabel2.setBounds(0, 43, 110, 22);
 				}
 				{
 					jTextFieldItem = new JTextField4j();
@@ -179,7 +180,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldItem);
 					jTextFieldItem.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldItem.setFocusCycleRoot(true);
-					jTextFieldItem.setBounds(120, 43, 264, 21);
+					jTextFieldItem.setBounds(120, 43, 264, 22);
 					jTextFieldItem.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -225,7 +226,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jLabel3.setText(lang.get("lbl_Enabled"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(0, 109, 110, 21);
+					jLabel3.setBounds(0, 109, 110, 22);
 				}
 				
 				SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
@@ -233,7 +234,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 				jSpinnerIntModel.setMaximum(99);
 				jSpinnerIntModel.setStepSize(1);
 
-				jSpinnerLimit_Sequence = new JSpinner();
+				jSpinnerLimit_Sequence = new JSpinner4j();
 				jSpinnerLimit_Sequence.addChangeListener(new ChangeListener()
 				{
 					public void stateChanged(ChangeEvent e)
@@ -244,20 +245,17 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 				jDesktopPane1.add(jSpinnerLimit_Sequence);
 
 				jSpinnerLimit_Sequence.setModel(jSpinnerIntModel);
-				JSpinner.NumberEditor ne_jSpinnerLimit_Sequence = new JSpinner.NumberEditor(jSpinnerLimit_Sequence);
-				ne_jSpinnerLimit_Sequence.getTextField().setFont(Common.font_input);
+				JSpinner4j.NumberEditor ne_jSpinnerLimit_Sequence = new JSpinner4j.NumberEditor(jSpinnerLimit_Sequence);
 				jSpinnerLimit_Sequence.setEditor(ne_jSpinnerLimit_Sequence);
-				jSpinnerLimit_Sequence.setBounds(120, 76, 46, 21);
+				jSpinnerLimit_Sequence.setBounds(120, 76, 46, 22);
 				jSpinnerLimit_Sequence.getEditor().setSize(45, 21);
-				jSpinnerLimit_Sequence.getEditor().setFont(Common.font_input);
-
 				
 				{
 					lblLocalUom = new JLabel4j_std();
 					lblLocalUom.setText(lang.get("lbl_Sequence_ID"));
 					lblLocalUom.setHorizontalTextPosition(SwingConstants.RIGHT);
 					lblLocalUom.setHorizontalAlignment(SwingConstants.RIGHT);
-					lblLocalUom.setBounds(0, 76, 110, 21);
+					lblLocalUom.setBounds(0, 76, 110, 22);
 					jDesktopPane1.add(lblLocalUom);
 				}
 
@@ -271,7 +269,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jDesktopPane1.add(jCheckBoxEnabled);
 					jCheckBoxEnabled.setPreferredSize(new java.awt.Dimension(40, 20));
 					jCheckBoxEnabled.setFocusCycleRoot(true);
-					jCheckBoxEnabled.setBounds(120, 109, 24, 21);
+					jCheckBoxEnabled.setBounds(120, 109, 24, 22);
 				}
 				
 				SwingUtilities.invokeLater(new Runnable() {

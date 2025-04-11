@@ -181,7 +181,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					jLabel_WasteLocation.setText(lang.get("lbl_Location_ID"));
 					jLabel_WasteLocation.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_WasteLocation.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_WasteLocation.setBounds(0, 10, 149, 21);
+					jLabel_WasteLocation.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldLocationID = new JTextField4j(JDBWasteLocation.field_WasteLocationID);
@@ -189,7 +189,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					jTextFieldLocationID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldLocationID.setEditable(false);
 					jTextFieldLocationID.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldLocationID.setBounds(155, 10, 237, 21);
+					jTextFieldLocationID.setBounds(155, 10, 237, 22);
 					jTextFieldLocationID.setEnabled(false);
 				}
 				{
@@ -231,7 +231,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 43, 149, 21);
+					jLabel_Description.setBounds(0, 43, 149, 22);
 				}
 
 				{
@@ -239,41 +239,41 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 43, 433, 21);
+					jTextFieldDescription.setBounds(155, 43, 433, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
 						}
 					});
 					
-					chckbx_PO_Reqd.setBounds(155, 101, 29, 23);
+					chckbx_PO_Reqd.setBounds(155, 101, 29, 22);
 					jDesktopPane1.add(chckbx_PO_Reqd);
 					
-					chckbx_Reason_Reqd.setBounds(155, 131, 29, 23);
+					chckbx_Reason_Reqd.setBounds(155, 131, 29, 22);
 					jDesktopPane1.add(chckbx_Reason_Reqd);
 					
-					chckbx_Enabled.setBounds(155, 161, 29, 23);
+					chckbx_Enabled.setBounds(155, 161, 29, 22);
 					jDesktopPane1.add(chckbx_Enabled);
 					
 					JLabel4j_std jLabel_Description = new JLabel4j_std();
 					jLabel_Description.setText(lang.get("lbl_PO_Required"));
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 103, 149, 21);
+					jLabel_Description.setBounds(0, 101, 149, 22);
 					jDesktopPane1.add(jLabel_Description);
 					
 					JLabel4j_std jLabel_Reason_Reqd = new JLabel4j_std();
 					jLabel_Reason_Reqd.setText(lang.get("lbl_Reason_Reqd"));
 					jLabel_Reason_Reqd.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Reason_Reqd.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Reason_Reqd.setBounds(0, 133, 149, 21);
+					jLabel_Reason_Reqd.setBounds(0, 131, 149, 22);
 					jDesktopPane1.add(jLabel_Reason_Reqd);
 					
 					JLabel4j_std jLabel_Enabled = new JLabel4j_std();
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Enabled.setBounds(0, 163, 149, 21);
+					jLabel_Enabled.setBounds(0, 161, 149, 22);
 					jDesktopPane1.add(jLabel_Enabled);
 					
 					chckbx_PO_Reqd.addActionListener(new ActionListener() {
@@ -296,7 +296,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					JLabel4j_std jLabel_Permitted_Types = new JLabel4j_std();
 					jLabel_Permitted_Types.setHorizontalAlignment(SwingConstants.LEFT);
 					jLabel_Permitted_Types.setText(lang.get("lbl_Permitted_Types"));
-					jLabel_Permitted_Types.setBounds(191, 76, 397, 21);
+					jLabel_Permitted_Types.setBounds(191, 76, 397, 22);
 					jLabel_Permitted_Types.setFont(Common.font_bold);
 					jDesktopPane1.add(jLabel_Permitted_Types);
 					

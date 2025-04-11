@@ -144,25 +144,25 @@ public class JDialogQMActivityProperties extends javax.swing.JDialog
 		getContentPane().add(desktopPane);
 		
 		JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
-		lblInspectionID.setBounds(8, 27, 87, 16);
+		lblInspectionID.setBounds(8, 22, 87, 22);
 		desktopPane.add(lblInspectionID);
 		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		JLabel4j_std lblActivityID = new JLabel4j_std(lang.get("lbl_Activity_ID"));
-		lblActivityID.setBounds(6, 67, 89, 16);
+		lblActivityID.setBounds(6, 67, 89, 22);
 		desktopPane.add(lblActivityID);
 		lblActivityID.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
 		textFieldInspectionID.setEnabled(false);
-		textFieldInspectionID.setBounds(108, 22, 153, 28);
+		textFieldInspectionID.setBounds(108, 22, 153, 22);
 		desktopPane.add(textFieldInspectionID);
 		textFieldInspectionID.setColumns(10);
 		
 		
 		textFieldInspectionDescription = new JTextField4j(JDBQMInspection.field_description);
 		textFieldInspectionDescription.setEnabled(false);
-		textFieldInspectionDescription.setBounds(377, 22, 463, 28);
+		textFieldInspectionDescription.setBounds(377, 22, 463, 22);
 		desktopPane.add(textFieldInspectionDescription);
 		textFieldInspectionDescription.setColumns(10);
 		
@@ -176,7 +176,7 @@ public class JDialogQMActivityProperties extends javax.swing.JDialog
 			}
 		});
 		btnSave.setIcon(Common.icon_update_16x16);
-		btnSave.setBounds(292, 113, 117, 29);
+		btnSave.setBounds(291, 104, 117, 32);
 		desktopPane.add(btnSave);
 		
 		btnClose = new JButton4j(lang.get("btn_Close"));
@@ -186,12 +186,12 @@ public class JDialogQMActivityProperties extends javax.swing.JDialog
 			}
 		});
 		btnClose.setIcon(Common.icon_close_16x16);
-		btnClose.setBounds(413, 113, 117, 29);
+		btnClose.setBounds(412, 104, 117, 32);
 		desktopPane.add(btnClose);
 		
 		JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Description"));
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(273, 27, 92, 16);
+		label4j_std_1.setBounds(273, 22, 92, 22);
 		desktopPane.add(label4j_std_1);
 		
 		textFieldActivityID = new JTextField4j(JDBQMActivity.field_activity_id);
@@ -204,12 +204,12 @@ public class JDialogQMActivityProperties extends javax.swing.JDialog
 		textFieldActivityID.setEnabled(false);
 		textFieldActivityID.setText("<dynamic>");
 		textFieldActivityID.setColumns(10);
-		textFieldActivityID.setBounds(108, 62, 153, 28);
+		textFieldActivityID.setBounds(108, 67, 153, 22);
 		desktopPane.add(textFieldActivityID);
 		
 		JLabel4j_std label4j_std_2 = new JLabel4j_std(lang.get("lbl_Description"));
 		label4j_std_2.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_2.setBounds(267, 67, 98, 16);
+		label4j_std_2.setBounds(267, 67, 98, 22);
 		desktopPane.add(label4j_std_2);
 		
 		textFieldActivityDescription = new JTextField4j(JDBQMActivity.field_description);
@@ -220,7 +220,7 @@ public class JDialogQMActivityProperties extends javax.swing.JDialog
 			}
 		});
 		textFieldActivityDescription.setColumns(10);
-		textFieldActivityDescription.setBounds(377, 63, 463, 28);
+		textFieldActivityDescription.setBounds(377, 67, 463, 22);
 		desktopPane.add(textFieldActivityDescription);
 		
 		inspectionid = JUtility.replaceNullStringwithBlank(inspectionid);

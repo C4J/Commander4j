@@ -50,6 +50,7 @@ public class Start
 {
 	public static void main(String[] args)
 	{
+		System.setProperty("apple.laf.useScreenMenuBar", "true");
 		Logger logger = org.apache.logging.log4j.LogManager.getLogger(Start.class);
 		WatchDog watchdog;
 		JDBLanguage lang;

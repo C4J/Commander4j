@@ -128,7 +128,7 @@ public class JDialogControlProperties extends JDialog
 				jDesktopPane1.setLayout(null);
 				{
 					jLabelSystemKey = new JLabel4j_std();
-					jLabelSystemKey.setBounds(9, 67, 87, 19);
+					jLabelSystemKey.setBounds(9, 65, 87, 22);
 					jDesktopPane1.add(jLabelSystemKey);
 					jLabelSystemKey.setText(lang.get("lbl_Description"));
 					jLabelSystemKey.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -136,7 +136,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jLabelKeyValue = new JLabel4j_std();
-					jLabelKeyValue.setBounds(5, 12, 93, 19);
+					jLabelKeyValue.setBounds(5, 10, 93, 22);
 					jDesktopPane1.add(jLabelKeyValue);
 					jLabelKeyValue.setText(lang.get("lbl_System_Key"));
 					jLabelKeyValue.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -144,7 +144,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
-					jLabelDescription.setBounds(10, 41, 88, 19);
+					jLabelDescription.setBounds(10, 39, 88, 22);
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Value"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -187,7 +187,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jTextFieldSystemKey = new JTextField4j(JDBControl.field_system_key);
-					jTextFieldSystemKey.setBounds(106, 10, 252, 21);
+					jTextFieldSystemKey.setBounds(106, 10, 252, 22);
 					jTextFieldSystemKey.setFocusable(false);
 					jDesktopPane1.add(jTextFieldSystemKey);
 					jTextFieldSystemKey.setHorizontalAlignment(SwingConstants.LEFT);
@@ -197,7 +197,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jTextFieldKeyValue = new JTextField4j(JDBControl.field_key_value);
-					jTextFieldKeyValue.setBounds(106, 39, 604, 21);
+					jTextFieldKeyValue.setBounds(106, 39, 604, 22);
 					jDesktopPane1.add(jTextFieldKeyValue);
 					jTextFieldKeyValue.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldKeyValue.setFocusCycleRoot(true);
@@ -212,7 +212,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBControl.field_description);
-					jTextFieldDescription.setBounds(106, 65, 604, 21);
+					jTextFieldDescription.setBounds(106, 65, 604, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);

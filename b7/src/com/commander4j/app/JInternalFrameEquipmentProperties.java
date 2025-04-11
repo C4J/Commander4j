@@ -49,10 +49,10 @@ import com.commander4j.db.JDBEquipmentType;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
@@ -164,7 +164,7 @@ public class JInternalFrameEquipmentProperties extends JInternalFrame
 					jLabel_EquipmentType.setText(lang.get("lbl_Material_Equipment_Type"));
 					jLabel_EquipmentType.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_EquipmentType.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_EquipmentType.setBounds(0, 10, 149, 21);
+					jLabel_EquipmentType.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldEquipmentType = new JTextField4j(JDBEquipmentType.field_EquipmentType);
@@ -172,7 +172,7 @@ public class JInternalFrameEquipmentProperties extends JInternalFrame
 					jTextFieldEquipmentType.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldEquipmentType.setEditable(false);
 					jTextFieldEquipmentType.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldEquipmentType.setBounds(155, 10, 110, 21);
+					jTextFieldEquipmentType.setBounds(155, 10, 110, 22);
 					jTextFieldEquipmentType.setEnabled(false);
 				}
 				{
@@ -214,7 +214,7 @@ public class JInternalFrameEquipmentProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 43, 149, 21);
+					jLabel_Description.setBounds(0, 43, 149, 22);
 				}
 				
 				{
@@ -223,7 +223,7 @@ public class JInternalFrameEquipmentProperties extends JInternalFrame
 					jLabel_WeightKG.setText(lang.get("lbl_Weight"));
 					jLabel_WeightKG.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_WeightKG.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_WeightKG.setBounds(0, 76, 149, 21);
+					jLabel_WeightKG.setBounds(0, 76, 149, 22);
 				}
 				
 				{
@@ -232,7 +232,7 @@ public class JInternalFrameEquipmentProperties extends JInternalFrame
 					jLabel_WeightKGUOM.setText("KG");
 					jLabel_WeightKGUOM.setHorizontalAlignment(SwingConstants.LEFT);
 					jLabel_WeightKGUOM.setHorizontalTextPosition(SwingConstants.LEFT);
-					jLabel_WeightKGUOM.setBounds(219, 76, 60, 21);
+					jLabel_WeightKGUOM.setBounds(219, 76, 60, 22);
 				}
 
 				{
@@ -240,21 +240,21 @@ public class JInternalFrameEquipmentProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 43, 433, 21);
+					jTextFieldDescription.setBounds(155, 43, 433, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
 						}
 					});
 					
-					chckbx_Enabled.setBounds(155, 104, 29, 23);
+					chckbx_Enabled.setBounds(155, 104, 29, 22);
 					jDesktopPane1.add(chckbx_Enabled);
 					
 					JLabel4j_std jLabel_Enabled = new JLabel4j_std();
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Enabled.setBounds(0, 106, 149, 21);
+					jLabel_Enabled.setBounds(0, 104, 149, 22);
 					jDesktopPane1.add(jLabel_Enabled);
 					chckbx_Enabled.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -266,9 +266,7 @@ public class JInternalFrameEquipmentProperties extends JInternalFrame
 					{
 						jFormattedTextFieldWeightKG = new JQuantityInput(new BigDecimal("0"));
 						jDesktopPane1.add(jFormattedTextFieldWeightKG);
-						jFormattedTextFieldWeightKG.setFont(Common.font_std);
-						jFormattedTextFieldWeightKG.setHorizontalAlignment(SwingConstants.TRAILING);
-						jFormattedTextFieldWeightKG.setBounds(155, 76, 60, 21);
+						jFormattedTextFieldWeightKG.setBounds(155, 76, 60, 22);
 						jFormattedTextFieldWeightKG.addKeyListener(new KeyAdapter() {
 							public void keyReleased(KeyEvent evt) {
 								jButtonSave.setEnabled(true);

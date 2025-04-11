@@ -107,7 +107,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(389, 143));
-			this.setBounds(0, 0, 399, 226);
+			this.setBounds(0, 0, 399, 210);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -118,7 +118,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jLabel_ID = new JLabel4j_std();
-					jLabel_ID.setBounds(0, 7, 98, 21);
+					jLabel_ID.setBounds(0, 10, 98, 22);
 					jDesktopPane1.add(jLabel_ID);
 					jLabel_ID.setText(lang.get("lbl_Supplier_ID"));
 					jLabel_ID.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -127,7 +127,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				
 				{
 					jLabel_Type = new JLabel4j_std();
-					jLabel_Type.setBounds(0, 40, 98, 21);
+					jLabel_Type.setBounds(0, 39, 98, 22);
 					jDesktopPane1.add(jLabel_Type);
 					jLabel_Type.setText(lang.get("lbl_Supplier_Type"));
 					jLabel_Type.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -136,7 +136,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				
 				{
 					jLabel_Enabled = new JLabel4j_std();
-					jLabel_Enabled.setBounds(0, 101, 98, 21);
+					jLabel_Enabled.setBounds(0, 97, 98, 22);
 					jDesktopPane1.add(jLabel_Enabled);
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -145,7 +145,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				
 				{
 					jTextFieldSupplierID = new JTextField4j(JDBSuppliers.field_supplier_id);
-					jTextFieldSupplierID.setBounds(105, 7, 80, 21);
+					jTextFieldSupplierID.setBounds(105, 10, 80, 22);
 					jDesktopPane1.add(jTextFieldSupplierID);
 					jTextFieldSupplierID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldSupplierID.setEditable(false);
@@ -153,7 +153,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				}
 				{
 					jLabel_Description = new JLabel4j_std();
-					jLabel_Description.setBounds(0, 69, 98, 21);
+					jLabel_Description.setBounds(0, 68, 98, 22);
 					jDesktopPane1.add(jLabel_Description);
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -163,7 +163,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				
 				{
 					jTextFieldType = new JTextField4j(JDBSuppliers.field_supplier_type);
-					jTextFieldType.setBounds(105, 40, 125, 21);
+					jTextFieldType.setBounds(105, 39, 125, 22);
 					jDesktopPane1.add(jTextFieldType);
 					jTextFieldType.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
@@ -175,7 +175,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				
 				{
 					jTextFieldDescription = new JTextField4j(JDBSuppliers.field_description);
-					jTextFieldDescription.setBounds(105, 69, 238, 21);
+					jTextFieldDescription.setBounds(105, 68, 238, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
@@ -186,7 +186,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				}
 				{
 					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
-					jButtonUpdate.setBounds(24, 150, 112, 32);
+					jButtonUpdate.setBounds(24, 134, 112, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -205,14 +205,14 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.setBounds(136, 150, 112, 32);
+					jButtonHelp.setBounds(136, 134, 112, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jButtonClose.setBounds(249, 150, 112, 32);
+					jButtonClose.setBounds(249, 134, 112, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -229,7 +229,7 @@ public class JInternalFrameSupplierProperties extends JInternalFrame
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					chckbxEnabled.setBounds(102, 101, 22, 23);
+					chckbxEnabled.setBounds(102, 97, 22, 22);
 					jDesktopPane1.add(chckbxEnabled);
 				}
 			}

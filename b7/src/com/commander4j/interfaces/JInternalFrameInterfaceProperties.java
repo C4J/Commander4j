@@ -40,19 +40,19 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBLanguage;
+import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
@@ -69,28 +69,28 @@ import com.commander4j.util.JUtility;
  */
 public class JInternalFrameInterfaceProperties extends JInternalFrame
 {
-	private JLabel jLabel2_2;
+	private JLabel4j_std jLabel2_2;
 	private JComboBox4j<String> comboBoxDevice = new JComboBox4j<String>();
 	private JComboBox4j<String> comboBoxFormat = new JComboBox4j<String>();
 	private JComboBox4j<String> comboBoxUOMConversion = new JComboBox4j<String>();
-	private JLabel jLabel2_1;
-	private JButton jButtonExecDirChooser;
+	private JLabel4j_std jLabel2_1;
+	private JButton4j jButtonExecDirChooser;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
-	private JButton jButtonCancel;
-	private JButton jButtonHelp;
-	private JButton jButtonUpdate;
+	private JButton4j jButtonCancel;
+	private JButton4j jButtonHelp;
+	private JButton4j jButtonUpdate;
 	private String ltype;
 	private String ldirection;
 	private JDBInterface interfaceConfig = new JDBInterface(Common.selectedHostID, Common.sessionID);
-	private JTextField jTextFieldPath;
-	private JLabel jLabel2;
-	private JTextField jComboBoxInterfaceDirection;
-	private JLabel jLabel3;
-	private JTextField jTextFieldInterfaceType;
-	private JLabel jLabel1;
+	private JTextField4j jTextFieldPath;
+	private JLabel4j_std jLabel2;
+	private JTextField4j jComboBoxInterfaceDirection;
+	private JLabel4j_std jLabel3;
+	private JTextField4j jTextFieldInterfaceType;
+	private JLabel4j_std jLabel1;
 	final JCheckBox4j checkBox = new JCheckBox4j();
-	private JTextField textField_addresses;
+	private JTextField4j textField_addresses;
 	private JCheckBox4j checkBox_success = new JCheckBox4j();
 	private JCheckBox4j checkBox_warning = new JCheckBox4j();
 	private JCheckBox4j checkBox_error = new JCheckBox4j();
@@ -111,7 +111,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 			});
 
-			checkBox_success.setBounds(234, 222, 21, 24);
+			checkBox_success.setBounds(234, 222, 21, 22);
 			checkBox_success.setEnabled(true);
 			checkBox_success.setBackground(Color.WHITE);
 			jDesktopPane1.add(checkBox_success);
@@ -123,7 +123,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 			});
 
-			checkBox_warning.setBounds(399, 222, 21, 24);
+			checkBox_warning.setBounds(399, 222, 21, 22);
 			checkBox_warning.setEnabled(true);
 			checkBox_warning.setBackground(Color.WHITE);
 			jDesktopPane1.add(checkBox_warning);
@@ -135,46 +135,42 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 			});
 
-			checkBox_error.setBounds(566, 222, 21, 24);
+			checkBox_error.setBounds(566, 222, 21, 22);
 			checkBox_error.setEnabled(true);
 			checkBox_error.setBackground(Color.WHITE);
 			jDesktopPane1.add(checkBox_error);
 		}
 		{
-			JLabel lblEmailSuccess = new JLabel();
-			lblEmailSuccess.setBounds(136, 225, 96, 21);
+			JLabel4j_std lblEmailSuccess = new JLabel4j_std();
+			lblEmailSuccess.setBounds(136, 222, 96, 22);
 			lblEmailSuccess.setText(lang.get("lbl_Email_Success"));
 			lblEmailSuccess.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblEmailSuccess.setFont(Common.font_std);
 			jDesktopPane1.add(lblEmailSuccess);
 		}
 		{
-			JLabel lblEmailWarning = new JLabel();
-			lblEmailWarning.setBounds(290, 225, 102, 21);
+			JLabel4j_std lblEmailWarning = new JLabel4j_std();
+			lblEmailWarning.setBounds(290, 222, 102, 22);
 			lblEmailWarning.setText(lang.get("lbl_Email_Warning"));
 			lblEmailWarning.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblEmailWarning.setFont(Common.font_std);
 			jDesktopPane1.add(lblEmailWarning);
 		}
 		{
-			JLabel lblEmailError = new JLabel();
-			lblEmailError.setBounds(451, 225, 112, 21);
+			JLabel4j_std lblEmailError = new JLabel4j_std();
+			lblEmailError.setBounds(451, 222, 112, 22);
 			lblEmailError.setText(lang.get("lbl_Email_Error"));
 			lblEmailError.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblEmailError.setFont(Common.font_std);
 			jDesktopPane1.add(lblEmailError);
 		}
 		{
-			JLabel lblEmailNotifications = new JLabel();
-			lblEmailNotifications.setBounds(12, 225, 102, 21);
+			JLabel4j_std lblEmailNotifications = new JLabel4j_std();
+			lblEmailNotifications.setBounds(12, 222, 102, 22);
 			lblEmailNotifications.setText(lang.get("lbl_Email_Notifications"));
 
 			lblEmailNotifications.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblEmailNotifications.setFont(Common.font_std);
 			jDesktopPane1.add(lblEmailNotifications);
 		}
 		{
-			textField_addresses = new JTextField(JDBInterface.field_email_addresses);
+			textField_addresses = new JTextField4j(JDBInterface.field_email_addresses);
 			textField_addresses.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyTyped(KeyEvent e) {
@@ -182,18 +178,16 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 			});
 			textField_addresses.setText((String) null);
-			textField_addresses.setFont(Common.font_std);
 			textField_addresses.setEnabled(true);
 			textField_addresses.setDisabledTextColor(Color.BLACK);
-			textField_addresses.setBounds(126, 255, 557, 21);
+			textField_addresses.setBounds(126, 255, 557, 22);
 			jDesktopPane1.add(textField_addresses);
 		}
 		{
-			JLabel lblEmailAddresses = new JLabel();
+			JLabel4j_std lblEmailAddresses = new JLabel4j_std();
 			lblEmailAddresses.setText(lang.get("lbl_Email_Addresses"));
 			lblEmailAddresses.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblEmailAddresses.setFont(Common.font_std);
-			lblEmailAddresses.setBounds(12, 257, 102, 21);
+			lblEmailAddresses.setBounds(12, 255, 102, 22);
 			jDesktopPane1.add(lblEmailAddresses);
 		}
 		{
@@ -203,16 +197,14 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 			});
 
-			comboBoxUOMConversion.setFont(Common.font_combo);
-			comboBoxUOMConversion.setBounds(126, 162, 159, 23);
+			comboBoxUOMConversion.setBounds(126, 162, 159, 22);
 			jDesktopPane1.add(comboBoxUOMConversion);
 		}
 		{
-			JLabel lblUomConversion = new JLabel();
+			JLabel4j_std lblUomConversion = new JLabel4j_std();
 			lblUomConversion.setText(lang.get("lbl_UOM_Conversion"));
 			lblUomConversion.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblUomConversion.setFont(Common.font_std);
-			lblUomConversion.setBounds(12, 163, 102, 21);
+			lblUomConversion.setBounds(12, 162, 102, 22);
 			jDesktopPane1.add(lblUomConversion);
 		}
 
@@ -280,13 +272,12 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 182));
 				jDesktopPane1.setLayout(null);
 				{
-					jButtonUpdate = new JButton(Common.icon_update_16x16);
+					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
 					jButtonUpdate.setBounds(159, 288, 112, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
-					jButtonUpdate.setFont(Common.font_btn);
 					jButtonUpdate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -314,20 +305,18 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton(Common.icon_help_16x16);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jButtonHelp.setBounds(273, 288, 112, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setFont(Common.font_btn);
 				}
 				{
-					jButtonCancel = new JButton(Common.icon_close_16x16);
+					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jButtonCancel.setBounds(387, 288, 112, 32);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setFont(Common.font_btn);
 					jButtonCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -335,83 +324,75 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 					});
 				}
 				{
-					jLabel1 = new JLabel();
-					jLabel1.setBounds(12, 9, 102, 21);
+					jLabel1 = new JLabel4j_std();
+					jLabel1.setBounds(12, 9, 102, 22);
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Interface_Type"));
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel1.setFont(Common.font_std);
 				}
 				{
-					jTextFieldInterfaceType = new JTextField(JDBInterface.field_interface_type);
-					jTextFieldInterfaceType.setBounds(126, 9, 299, 21);
+					jTextFieldInterfaceType = new JTextField4j(JDBInterface.field_interface_type);
+					jTextFieldInterfaceType.setBounds(126, 9, 299, 22);
 					jDesktopPane1.add(jTextFieldInterfaceType);
-					jTextFieldInterfaceType.setFont(Common.font_std);
 					jTextFieldInterfaceType.setText(ltype);
 					jTextFieldInterfaceType.setEnabled(false);
 					jTextFieldInterfaceType.setEditable(false);
 					jTextFieldInterfaceType.setDisabledTextColor(Common.color_text_disabled);
 				}
 				{
-					jLabel3 = new JLabel();
-					jLabel3.setBounds(12, 194, 102, 21);
+					jLabel3 = new JLabel4j_std();
+					jLabel3.setBounds(12, 192, 102, 22);
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Interface_Path"));
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel3.setFont(Common.font_std);
 				}
 				{
-					jTextFieldPath = new JTextField(JDBInterface.field_path);
-					jTextFieldPath.setBounds(126, 192, 544, 21);
+					jTextFieldPath = new JTextField4j(JDBInterface.field_path);
+					jTextFieldPath.setBounds(126, 192, 544, 22);
 					jTextFieldPath.addKeyListener(new KeyAdapter() {
 						public void keyTyped(final KeyEvent e) {
 							jButtonUpdate.setEnabled(true);
 						}
 					});
 					jDesktopPane1.add(jTextFieldPath);
-					jTextFieldPath.setFont(Common.font_std);
 					jTextFieldPath.setText(ldirection);
 					jTextFieldPath.setEnabled(true);
 					jTextFieldPath.setDisabledTextColor(Common.color_text_disabled);
 				}
 				{
-					jComboBoxInterfaceDirection = new JTextField(JDBInterface.field_interface_direction);
-					jComboBoxInterfaceDirection.setBounds(126, 39, 126, 21);
+					jComboBoxInterfaceDirection = new JTextField4j(JDBInterface.field_interface_direction);
+					jComboBoxInterfaceDirection.setBounds(126, 39, 126, 22);
 					jDesktopPane1.add(jComboBoxInterfaceDirection);
-					jComboBoxInterfaceDirection.setFont(Common.font_combo);
 					jComboBoxInterfaceDirection.setEnabled(false);
 					jComboBoxInterfaceDirection.setEditable(false);
 
 				}
 				{
-					jLabel2 = new JLabel();
-					jLabel2.setBounds(12, 40, 102, 21);
+					jLabel2 = new JLabel4j_std();
+					jLabel2.setBounds(12, 39, 102, 22);
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Interface_Direction"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setFont(Common.font_std);
 				}
 				{
-					comboBoxFormat.setBounds(126, 132, 126, 23);
+					comboBoxFormat.setBounds(126, 132, 126, 22);
 					comboBoxFormat.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							jButtonUpdate.setEnabled(true);
 						}
 					});
 
-					comboBoxFormat.setFont(Common.font_combo);
 					jDesktopPane1.add(comboBoxFormat);
 				}
 				{
-					JLabel lblFormat = new JLabel();
-					lblFormat.setBounds(12, 132, 102, 21);
+					JLabel4j_std lblFormat = new JLabel4j_std();
+					lblFormat.setBounds(12, 132, 102, 22);
 					lblFormat.setText(lang.get("lbl_Interface_Format"));
 					lblFormat.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblFormat.setFont(Common.font_std);
 					jDesktopPane1.add(lblFormat);
 				}
 				{
-					jButtonExecDirChooser = new JButton();
+					jButtonExecDirChooser = new JButton4j();
 					jButtonExecDirChooser.setBounds(670, 192, 14, 21);
 					jButtonExecDirChooser.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
@@ -451,7 +432,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 
 				{
-					checkBox.setBounds(126, 69, 21, 24);
+					checkBox.setBounds(126, 69, 21, 22);
 
 					checkBox.setBackground(Color.WHITE);
 					checkBox.addActionListener(new ActionListener() {
@@ -464,18 +445,16 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 
 				{
-					jLabel2_1 = new JLabel();
-					jLabel2_1.setBounds(12, 72, 102, 21);
+					jLabel2_1 = new JLabel4j_std();
+					jLabel2_1.setBounds(12, 69, 102, 22);
 					jLabel2_1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2_1.setFont(Common.font_std);
 					jLabel2_1.setText(lang.get("lbl_Interface_Enabled"));
 					jDesktopPane1.add(jLabel2_1);
 				}
 
 				{
-					comboBoxDevice.setBounds(126, 102, 126, 23);
+					comboBoxDevice.setBounds(126, 102, 126, 22);
 
-					comboBoxDevice.setFont(Common.font_combo);
 					comboBoxDevice.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
 							jButtonUpdate.setEnabled(true);
@@ -485,10 +464,9 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 
 				{
-					jLabel2_2 = new JLabel();
-					jLabel2_2.setBounds(12, 102, 102, 21);
+					jLabel2_2 = new JLabel4j_std();
+					jLabel2_2.setBounds(12, 102, 102, 22);
 					jLabel2_2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2_2.setFont(Common.font_std);
 					jLabel2_2.setText(lang.get("lbl_Interface_Device"));
 					jDesktopPane1.add(jLabel2_2);
 				}

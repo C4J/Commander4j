@@ -35,18 +35,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBQMSelectList;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JSpinner;
+
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import com.commander4j.gui.JCheckBox4j;
@@ -73,7 +75,7 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 	private JTextField4j textFieldValue;
 	private JButton4j btnSave;
 	private JButton4j btnClose;
-	private JSpinner spinnerSequence;
+	private JSpinner4j spinnerSequence;
 	private JCheckBox4j chckbxVisible = new JCheckBox4j("");
 	
 	private void enableSave()
@@ -147,12 +149,12 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 		getContentPane().add(desktopPane);
 		
 		JLabel4j_std lblListID = new JLabel4j_std(lang.get("lbl_List_ID"));
-		lblListID.setBounds(8, 27, 87, 16);
+		lblListID.setBounds(8, 22, 87, 22);
 		desktopPane.add(lblListID);
 		lblListID.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		JLabel4j_std lblValue = new JLabel4j_std(lang.get("lbl_Value"));
-		lblValue.setBounds(220, 27, 89, 16);
+		lblValue.setBounds(220, 22, 89, 22);
 		desktopPane.add(lblValue);
 		lblValue.setHorizontalAlignment(SwingConstants.TRAILING);
 		
@@ -164,7 +166,7 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 			}
 		});
 		textFieldListID.setEnabled(false);
-		textFieldListID.setBounds(103, 22, 117, 28);
+		textFieldListID.setBounds(103, 22, 117, 22);
 		desktopPane.add(textFieldListID);
 		textFieldListID.setColumns(10);
 			
@@ -176,7 +178,7 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 			}
 		});
 		btnSave.setIcon(Common.icon_update_16x16);
-		btnSave.setBounds(118, 143, 117, 29);
+		btnSave.setBounds(113, 131, 117, 32);
 		desktopPane.add(btnSave);
 		
 		btnClose = new JButton4j(lang.get("btn_Close"));
@@ -186,7 +188,7 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 			}
 		});
 		btnClose.setIcon(Common.icon_close_16x16);
-		btnClose.setBounds(240, 143, 117, 29);
+		btnClose.setBounds(235, 131, 117, 32);
 		desktopPane.add(btnClose);
 		
 		textFieldValue = new JTextField4j(JDBQMSelectList.field_value_id);
@@ -199,12 +201,12 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 		textFieldValue.setEnabled(false);
 		textFieldValue.setText("<dynamic>");
 		textFieldValue.setColumns(10);
-		textFieldValue.setBounds(329, 22, 60, 28);
+		textFieldValue.setBounds(329, 22, 60, 22);
 		desktopPane.add(textFieldValue);
 		
 		JLabel4j_std lblDescription = new JLabel4j_std(lang.get("lbl_Description"));
 		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDescription.setBounds(6, 64, 89, 16);
+		lblDescription.setBounds(6, 63, 89, 16);
 		desktopPane.add(lblDescription);
 		
 		textFieldDescription = new JTextField4j(JDBQMSelectList.field_description);
@@ -215,23 +217,22 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 			}
 		});
 		textFieldDescription.setColumns(10);
-		textFieldDescription.setBounds(103, 57, 286, 28);
+		textFieldDescription.setBounds(103, 57, 286, 22);
 		desktopPane.add(textFieldDescription);
 		
 		JLabel4j_std lblSeq = new JLabel4j_std(lang.get("lbl_Sequence_ID"));
 		lblSeq.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblSeq.setBounds(8, 99, 87, 16);
+		lblSeq.setBounds(8, 97, 87, 22);
 		desktopPane.add(lblSeq);		
 
-		spinnerSequence = new JSpinner();
+		spinnerSequence = new JSpinner4j();
 		spinnerSequence.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				enableSave();
 			}
 		});
-		spinnerSequence.setBounds(103, 92, 60, 27);
-		JSpinner.NumberEditor ne = new JSpinner.NumberEditor(spinnerSequence);
-		ne.getTextField().setFont(Common.font_std); 
+		spinnerSequence.setBounds(103, 97, 60, 22);
+		JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(spinnerSequence);
 		spinnerSequence.setEditor(ne);
 		spinnerSequence.setValue(100);
 		desktopPane.add(spinnerSequence);
@@ -249,7 +250,7 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 		
 		JLabel4j_std lblVisible = new JLabel4j_std(lang.get("lbl_Visible"));
 		lblVisible.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblVisible.setBounds(257, 99, 92, 16);
+		lblVisible.setBounds(257, 97, 92, 22);
 		desktopPane.add(lblVisible);
 		
 
@@ -287,5 +288,15 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 		}
 		
 		btnSave.setEnabled(false);
+		
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				textFieldDescription.requestFocus();
+			}
+		});
+		
+		
 	}
 }

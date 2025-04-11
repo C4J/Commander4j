@@ -111,7 +111,7 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(389, 143));
-			this.setBounds(0, 0, 399, 167);
+			this.setBounds(0, 0, 399, 188);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -122,7 +122,7 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jLabel1 = new JLabel4j_std();
-					jLabel1.setBounds(0, 7, 98, 21);
+					jLabel1.setBounds(0, 10, 98, 22);
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Reason"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -131,7 +131,7 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 				
 				{
 					jLabel2 = new JLabel4j_std();
-					jLabel2.setBounds(0, 57, 98, 21);
+					jLabel2.setBounds(0, 68, 98, 22);
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Enabled"));
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -140,7 +140,7 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 				
 				{
 					jTextFieldReason = new JTextField4j(JDBSampleReasons.field_sample_reason);
-					jTextFieldReason.setBounds(105, 7, 80, 21);
+					jTextFieldReason.setBounds(105, 10, 80, 22);
 					jDesktopPane1.add(jTextFieldReason);
 					jTextFieldReason.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldReason.setEditable(false);
@@ -148,7 +148,7 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 				}
 				{
 					jLabel3 = new JLabel4j_std();
-					jLabel3.setBounds(0, 35, 98, 21);
+					jLabel3.setBounds(0, 39, 98, 22);
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Description"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -158,7 +158,7 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 				
 				{
 					jTextFieldDescription = new JTextField4j(JDBSampleReasons.field_description);
-					jTextFieldDescription.setBounds(105, 35, 238, 21);
+					jTextFieldDescription.setBounds(105, 39, 238, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
@@ -169,7 +169,7 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 				}
 				{
 					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
-					jButtonUpdate.setBounds(26, 90, 112, 32);
+					jButtonUpdate.setBounds(26, 102, 112, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -186,14 +186,14 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.setBounds(138, 90, 112, 32);
+					jButtonHelp.setBounds(138, 102, 112, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jButtonClose.setBounds(251, 90, 112, 32);
+					jButtonClose.setBounds(251, 102, 112, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -210,7 +210,7 @@ public class JInternalFrameSampleReasonProperties extends JInternalFrame
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					chckbxEnabled.setBounds(102, 57, 22, 23);
+					chckbxEnabled.setBounds(102, 68, 22, 22);
 					jDesktopPane1.add(chckbxEnabled);
 				}
 			}

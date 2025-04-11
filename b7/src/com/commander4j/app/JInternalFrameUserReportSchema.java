@@ -120,11 +120,11 @@ public class JInternalFrameUserReportSchema extends JInternalFrame {
 		scrollPaneFields.setViewportView(jListFields);
 
 		JLabel4j_std lblCriteria = new JLabel4j_std(lang.get("lbl_Fields"));
-		lblCriteria.setBounds(289, 12, 126, 15);
+		lblCriteria.setBounds(289, 6, 126, 22);
 		desktopPane.add(lblCriteria);
 
 		JLabel4j_std lblReport = new JLabel4j_std(lang.get("lbl_Database_Tables"));
-		lblReport.setBounds(12, 12, 126, 15);
+		lblReport.setBounds(12, 6, 126, 22);
 		desktopPane.add(lblReport);
 		
 		JButton4j button4jClose = new JButton4j(Common.icon_close_16x16);

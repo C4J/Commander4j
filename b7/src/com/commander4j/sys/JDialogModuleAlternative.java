@@ -1,4 +1,4 @@
-package com.commander4j.app;
+package com.commander4j.sys;
 
 /**
  * @author David Garratt
@@ -63,7 +63,6 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
-import com.commander4j.sys.Common;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
@@ -156,7 +155,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 					jLabelLineID.setText(lang.get("btn_Alternative"));
 					jLabelLineID.setHorizontalAlignment(SwingConstants.LEFT);
 					jLabelLineID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelLineID.setBounds(29, 393, 139, 21);
+					jLabelLineID.setBounds(29, 393, 139, 22);
 				}
 				{
 					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
@@ -172,7 +171,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonUpdate.setBounds(298, 87, 112, 32);
+					jButtonUpdate.setBounds(298, 94, 112, 32);
 
 				}
 				{
@@ -180,14 +179,14 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(298, 175, 112, 32);
+					jButtonHelp.setBounds(298, 193, 112, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(298, 204, 112, 32);
+					jButtonClose.setBounds(298, 226, 112, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -199,7 +198,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.setBounds(298, 116, 112, 32);
+					jButtonExcel.setBounds(298, 127, 112, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -223,7 +222,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 					}
 				});
 				jButtonRefresh.setText(lang.get("btn_Refresh"));
-				jButtonRefresh.setBounds(298, 145, 112, 32);
+				jButtonRefresh.setBounds(298, 160, 112, 32);
 				jDesktopPane1.add(jButtonRefresh);
 
 				JScrollPane scrollPaneWorkstations = new JScrollPane();
@@ -292,13 +291,13 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 				}
 			});
 
-			comboBox4jAlternativeModule.setBounds(29, 416, 386, 21);
+			comboBox4jAlternativeModule.setBounds(29, 416, 386, 22);
 
 			jDesktopPane1.add(comboBox4jAlternativeModule);
 
 			{
 				jButtonDelete = new JButton4j(Common.icon_delete_16x16);
-				jButtonDelete.setBounds(298, 57, 112, 32);
+				jButtonDelete.setBounds(298, 61, 112, 32);
 				jDesktopPane1.add(jButtonDelete);
 				jButtonDelete.setText(lang.get("btn_Delete"));
 				jButtonDelete.setMnemonic(lang.getMnemonicChar());

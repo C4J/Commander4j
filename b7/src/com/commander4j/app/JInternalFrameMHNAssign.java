@@ -46,15 +46,13 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -82,16 +80,18 @@ import com.commander4j.db.JDBUom;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JQuantityInput;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.tablemodel.JDBMHNPalletTableModelAssign;
-import com.commander4j.util.JDateControl;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
@@ -123,7 +123,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 	private JLabel4j_std jLabel23;
 	private JButton4j jButtonLookupProcessOrder;
 	private JCheckBox4j jCheckBoxLimit;
-	private JSpinner jSpinnerLimit;
+	private JSpinner4j jSpinnerLimit;
 	private JLabel4j_std jLabel7;
 	private JDateControl domDateTo;
 	private JCheckBox4j jCheckBoxDOMTo;
@@ -148,13 +148,13 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 	private JLabel4j_std jLabelSCC;
 	private JTextField4j jTextFieldSSCC;
 	private JTextField4j jTextFieldCustomer;
-	private JButton jButtonLookupBatch;
+	private JButton4j jButtonLookupBatch;
 	private JCheckBox4j jCheckBoxDOMFrom;
 	private JButton4j jButtonLookupLocation;
 	private JButton4j jButtonLookupMaterial;
 	private JQuantityInput jFormattedTextFieldQuantity;
 	private JLabel4j_std jLabelQuantity;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JLabel4j_std jLabel15;
 	private JComboBox4j<String> jComboBoxPalletStatus;
 	private JComboBox4j<String> jComboBoxSortBy;
@@ -993,43 +993,43 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-					jTextFieldMaterial.setBounds(345, 11, 98, 22);
+					jTextFieldMaterial.setBounds(345, 11, 100, 22);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
-					jTextFieldLocation.setBounds(571, 11, 98, 22);
+					jTextFieldLocation.setBounds(581, 11, 134, 22);
 				}
 				{
 					jTextFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
-					jTextFieldCustomer.setBounds(346, 105, 98, 22);
+					jTextFieldCustomer.setBounds(345, 110, 100, 22);
 				}
 				{
 					jLabel1 = new JLabel4j_std();
-					jLabel1.setBounds(251, 11, 88, 21);
+					jLabel1.setBounds(251, 11, 88, 22);
 					jLabel1.setText(lang.get("lbl_Material"));
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
-					jLabel3.setBounds(490, 11, 74, 21);
+					jLabel3.setBounds(497, 11, 74, 22);
 					jLabel3.setText(lang.get("lbl_Location_ID"));
 				}
 				{
 					jLabel23 = new JLabel4j_std();
-					jLabel23.setBounds(265, 105, 74, 21);
+					jLabel23.setBounds(265, 110, 74, 22);
 					jLabel23.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel23.setText(lang.get("lbl_Customer_ID"));
 				}
 				{
 					ComboBoxModel<JDBUom> jComboBox2Model = new DefaultComboBoxModel<JDBUom>(uomList);
 					jComboBoxUOM = new JComboBox4j<JDBUom>();
-					jComboBoxUOM.setBounds(571, 75, 119, 23);
+					jComboBoxUOM.setBounds(581, 77, 155, 22);
 					jComboBoxUOM.setModel(jComboBox2Model);
 					jComboBoxUOM.setMaximumRowCount(12);
 				}
 				{
 					jLabel4 = new JLabel4j_std();
-					jLabel4.setBounds(487, 75, 77, 21);
+					jLabel4.setBounds(497, 77, 74, 22);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel4.setText(lang.get("lbl_Material_UOM"));
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1050,7 +1050,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jLabel10 = new JLabel4j_std();
-					jLabel10.setBounds(744, 136, 126, 21);
+					jLabel10.setBounds(744, 143, 126, 22);
 					jLabel10.setText(lang.get("lbl_Limit"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
@@ -1058,24 +1058,24 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "DATE_OF_MANUFACTURE", "SSCC", "MATERIAL", "PROCESS_ORDER", "BATCH_NUMBER", "DATE_OF_MANUFACTURE",
 							"STATUS", "LOCATION_ID" });
 					jComboBoxSortBy = new JComboBox4j<String>();
-					jComboBoxSortBy.setBounds(571, 138, 195, 23);
+					jComboBoxSortBy.setBounds(571, 143, 210, 22);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 				}
 				{
 					ComboBoxModel<String> jComboBoxDefaultPalletStatusModel = new DefaultComboBoxModel<String>(Common.palletStatusIncBlank);
 					jComboBoxPalletStatus = new JComboBox4j<String>();
-					jComboBoxPalletStatus.setBounds(803, 44, 155, 23);
+					jComboBoxPalletStatus.setBounds(827, 44, 155, 22);
 					jComboBoxPalletStatus.setModel(jComboBoxDefaultPalletStatusModel);
 				}
 				{
 					jLabel15 = new JLabel4j_std();
-					jLabel15.setBounds(702, 44, 97, 21);
+					jLabel15.setBounds(726, 44, 97, 22);
 					jLabel15.setText(lang.get("lbl_Pallet_Status"));
 					jLabel15.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jToggleButtonSequence = new JToggleButton();
-					jToggleButtonSequence.setBounds(778, 138, 21, 21);
+					jToggleButtonSequence = new JToggleButton4j();
+					jToggleButtonSequence.setBounds(778, 143, 21, 22);
 					jToggleButtonSequence.setSelected(true);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
@@ -1087,73 +1087,71 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jLabelQuantity = new JLabel4j_std();
-					jLabelQuantity.setBounds(476, 105, 88, 21);
+					jLabelQuantity.setBounds(497, 110, 74, 22);
 					jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
 					jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 
 					jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
-					jFormattedTextFieldQuantity.setBounds(599, 105, 91, 22);
-					jFormattedTextFieldQuantity.setFont(Common.font_std);
-					jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
+					jFormattedTextFieldQuantity.setBounds(603, 110, 91, 22);
 					jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
 					jFormattedTextFieldQuantity.setEnabled(false);
 				}
 				{
 					jLabel2 = new JLabel4j_std();
-					jLabel2.setBounds(710, 11, 89, 21);
+					jLabel2.setBounds(734, 11, 89, 22);
 					jLabel2.setText(lang.get("lbl_Material_Batch"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
-					jTextFieldBatch.setBounds(803, 11, 134, 22);
+					jTextFieldBatch.setBounds(827, 11, 134, 22);
 				}
 				{
 					jLabelProcessOrder = new JLabel4j_std();
-					jLabelProcessOrder.setBounds(475, 44, 89, 21);
+					jLabelProcessOrder.setBounds(497, 44, 74, 22);
 					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
 					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-					jTextFieldProcessOrder.setBounds(571, 44, 98, 22);
+					jTextFieldProcessOrder.setBounds(581, 44, 134, 22);
 				}
 				{
 					jLabelProductionDate = new JLabel4j_std();
-					jLabelProductionDate.setBounds(2, 42, 119, 25);
+					jLabelProductionDate.setBounds(2, 44, 119, 22);
 					jLabelProductionDate.setText(lang.get("lbl_Pallet_DOM"));
 					jLabelProductionDate.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldEAN = new JTextField4j(JDBMaterialUom.field_ean);
-					jTextFieldEAN.setBounds(803, 105, 119, 22);
+					jTextFieldEAN.setBounds(827, 110, 119, 22);
 					jTextFieldEAN.setFocusCycleRoot(true);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
-					jLabel5.setBounds(702, 105, 97, 21);
+					jLabel5.setBounds(726, 110, 97, 22);
 					jLabel5.setText(lang.get("lbl_Material_UOM_EAN"));
 					jLabel5.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel5.setHorizontalTextPosition(SwingConstants.RIGHT);
 				}
 				{
 					jLabel6 = new JLabel4j_std();
-					jLabel6.setBounds(922, 105, 15, 21);
+					jLabel6.setBounds(950, 111, 10, 21);
 					jLabel6.setText("/");
 					jLabel6.setHorizontalAlignment(SwingConstants.CENTER);
 					jLabel6.setHorizontalTextPosition(SwingConstants.RIGHT);
 				}
 				{
 					jTextFieldVariant = new JTextField4j(JDBMaterialUom.field_ean);
-					jTextFieldVariant.setBounds(937, 105, 30, 22);
+					jTextFieldVariant.setBounds(961, 110, 21, 22);
 					jTextFieldVariant.setHorizontalAlignment(SwingConstants.CENTER);
 					jTextFieldVariant.setFocusCycleRoot(true);
 				}
 				{
 					jCheckBoxQuantity = new JCheckBox4j();
-					jCheckBoxQuantity.setBounds(571, 105, 21, 21);
+					jCheckBoxQuantity.setBounds(581, 110, 22, 22);
 					jCheckBoxQuantity.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxQuantity.addActionListener(new ActionListener()
 					{
@@ -1174,13 +1172,13 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					domDateFrom = new JDateControl();
-					domDateFrom.setBounds(148, 40, 120, 25);
+					domDateFrom.setBounds(148, 44, 128, 22);
 					domDateFrom.setEnabled(false);
 
 				}
 				{
 					jCheckBoxDOMTo = new JCheckBox4j();
-					jCheckBoxDOMTo.setBounds(319, 40, 21, 25);
+					jCheckBoxDOMTo.setBounds(311, 44, 22, 22);
 					jCheckBoxDOMTo.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxDOMTo.addActionListener(new ActionListener()
 					{
@@ -1201,12 +1199,12 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					domDateTo = new JDateControl();
-					domDateTo.setBounds(345, 40, 120, 25);
+					domDateTo.setBounds(335, 44, 128, 22);
 					domDateTo.setEnabled(false);
 				}
 				{
 					jLabel7 = new JLabel4j_std();
-					jLabel7.setBounds(466, 138, 98, 21);
+					jLabel7.setBounds(466, 143, 98, 22);
 					jLabel7.setText(lang.get("lbl_Sort_By"));
 					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
@@ -1215,19 +1213,17 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					jSpinnerIntModel.setMinimum(1);
 					jSpinnerIntModel.setMaximum(5000);
 					jSpinnerIntModel.setStepSize(1);
-					jSpinnerLimit = new JSpinner();
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std); 
+					jSpinnerLimit = new JSpinner4j();
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 					jSpinnerLimit.setEditor(ne);
-					jSpinnerLimit.setBounds(902, 136, 71, 22);
-					jSpinnerLimit.setFont(Common.font_std);
+					jSpinnerLimit.setBounds(902, 143, 71, 22);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
 					jSpinnerLimit.setValue(1000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 				}
 				{
 					jCheckBoxLimit = new JCheckBox4j();
-					jCheckBoxLimit.setBounds(877, 136, 21, 21);
+					jCheckBoxLimit.setBounds(877, 143, 21, 22);
 					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxLimit.setSelected(true);
 					jCheckBoxLimit.addActionListener(new ActionListener()
@@ -1247,7 +1243,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupProcessOrder.setBounds(669, 44, 21, 21);
+					jButtonLookupProcessOrder.setBounds(715, 44, 21, 22);
 					jButtonLookupProcessOrder.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1263,7 +1259,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupBatch.setBounds(937, 11, 21, 21);
+					jButtonLookupBatch.setBounds(961, 11, 21, 22);
 					jButtonLookupBatch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1279,7 +1275,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupMaterial.setBounds(444, 11, 21, 21);
+					jButtonLookupMaterial.setBounds(444, 11, 21, 22);
 					jButtonLookupMaterial.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1295,7 +1291,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupLocation.setBounds(669, 11, 21, 21);
+					jButtonLookupLocation.setBounds(715, 11, 21, 22);
 					jButtonLookupLocation.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1311,7 +1307,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jButtonLookupCustomer = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupCustomer.setBounds(444, 105, 21, 21);
+					jButtonLookupCustomer.setBounds(444, 110, 21, 22);
 					jButtonLookupCustomer.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1327,7 +1323,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jCheckBoxDOMFrom = new JCheckBox4j();
-					jCheckBoxDOMFrom.setBounds(126, 40, 21, 25);
+					jCheckBoxDOMFrom.setBounds(125, 44, 22, 22);
 					jCheckBoxDOMFrom.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxDOMFrom.addActionListener(new ActionListener()
 					{
@@ -1348,33 +1344,33 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
-					jTextFieldSSCC.setBounds(135, 105, 133, 22);
+					jTextFieldSSCC.setBounds(125, 110, 133, 22);
 				}
 				{
 					jLabelSCC = new JLabel4j_std();
-					jLabelSCC.setBounds(2, 105, 119, 21);
+					jLabelSCC.setBounds(2, 110, 119, 22);
 					jLabelSCC.setText(lang.get("lbl_Pallet_SSCC"));
 					jLabelSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					expiryDateFrom = new JDateControl();
-					expiryDateFrom.setBounds(148, 71, 120, 25);
+					expiryDateFrom.setBounds(148, 77, 128, 22);
 					expiryDateFrom.setEnabled(false);
 				}
 				{
 					expiryDateTo = new JDateControl();
-					expiryDateTo.setBounds(345, 71, 120, 25);
+					expiryDateTo.setBounds(335, 77, 128, 22);
 					expiryDateTo.setEnabled(false);
 				}
 				{
 					jLabel8 = new JLabel4j_std();
-					jLabel8.setBounds(2, 71, 119, 25);
+					jLabel8.setBounds(2, 77, 119, 22);
 					jLabel8.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jCheckBoxExpiryFrom = new JCheckBox4j();
-					jCheckBoxExpiryFrom.setBounds(126, 72, 21, 25);
+					jCheckBoxExpiryFrom.setBounds(125, 77, 22, 22);
 					jCheckBoxExpiryFrom.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxExpiryFrom.addActionListener(new ActionListener()
 					{
@@ -1395,7 +1391,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jCheckBoxExpiryTo = new JCheckBox4j();
-					jCheckBoxExpiryTo.setBounds(319, 71, 21, 25);
+					jCheckBoxExpiryTo.setBounds(311, 77, 22, 22);
 					jCheckBoxExpiryTo.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxExpiryTo.addActionListener(new ActionListener()
 					{
@@ -1417,14 +1413,14 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 
 				{
 					jLabel8_1 = new JLabel4j_std();
-					jLabel8_1.setBounds(702, 75, 97, 21);
+					jLabel8_1.setBounds(726, 77, 97, 22);
 					jLabel8_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel8_1.setText(lang.get("lbl_Despatch_No"));
 				}
 
 				{
 					jTextFieldDespatch_No = new JTextField4j(JDBDespatch.field_despatch_no);
-					jTextFieldDespatch_No.setBounds(803, 75, 119, 22);
+					jTextFieldDespatch_No.setBounds(827, 77, 155, 22);
 					jTextFieldDespatch_No.setFocusCycleRoot(true);
 				}
 
@@ -1451,29 +1447,29 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 
 				button_CalendardomDateFrom = new JCalendarButton(domDateFrom);
-				button_CalendardomDateFrom.setBounds(273, 42, 21, 21);
+				button_CalendardomDateFrom.setBounds(275, 44, 22, 22);
 				button_CalendardomDateFrom.setEnabled(false);
 
 				button_CalendardomDateTo = new JCalendarButton(domDateTo);
-				button_CalendardomDateTo.setBounds(470, 42, 21, 21);
+				button_CalendardomDateTo.setBounds(464, 44, 22, 22);
 				button_CalendardomDateTo.setEnabled(false);
 
 				calendarButtonexpiryDateFrom = new JCalendarButton(expiryDateFrom);
-				calendarButtonexpiryDateFrom.setBounds(273, 74, 21, 21);
+				calendarButtonexpiryDateFrom.setBounds(275, 77, 22, 22);
 				calendarButtonexpiryDateFrom.setEnabled(false);
 
 				calendarButtonexpiryDateTo = new JCalendarButton(expiryDateTo);
-				calendarButtonexpiryDateTo.setBounds(470, 74, 21, 21);
+				calendarButtonexpiryDateTo.setBounds(464, 77, 22, 22);
 				calendarButtonexpiryDateTo.setEnabled(false);
 
 				jTextFieldMHN = new JTextField4j(JDBMHN.field_mhn_number);
 				jTextFieldMHN.setForeground(Color.RED);
-				jTextFieldMHN.setBounds(148, 11, 120, 21);
+				jTextFieldMHN.setBounds(125, 11, 133, 22);
 				jTextFieldMHN.setEditable(false);
 				jDesktopPane1.setLayout(null);
 
 				JLabel4j_std label = new JLabel4j_std();
-				label.setBounds(42, 11, 93, 21);
+				label.setBounds(2, 11, 119, 22);
 				label.setText(lang.get("lbl_MHN_Number"));
 				label.setHorizontalAlignment(SwingConstants.TRAILING);
 

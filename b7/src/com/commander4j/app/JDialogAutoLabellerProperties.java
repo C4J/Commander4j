@@ -47,7 +47,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -74,6 +73,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
@@ -110,7 +110,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 	private JButton4j jButtonAssignPrinter = new JButton4j(Common.icon_arrow_left_16x16);
 	private JButton4j jButtonUnAssignPrinter = new JButton4j(Common.icon_arrow_right_16x16);
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
-	private JSpinner JSpinnerSSCCSequence = new JSpinner();
+	private JSpinner4j JSpinnerSSCCSequence = new JSpinner4j();
 	private JTextField4j jTextFieldSSCCPrefix = new JTextField4j();
 	private JTextField4j textField4SSCCCheckDigit = new JTextField4j();
 	private String SSCCPrefix;
@@ -239,12 +239,12 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					jLabelLineID.setText(lang.get("lbl_Line_ID"));
 					jLabelLineID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelLineID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelLineID.setBounds(12, 17, 83, 21);
+					jLabelLineID.setBounds(12, 17, 83, 22);
 				}
 				comboBox4jGroup.setEnabled(false);
 				comboBox4jGroup.setPreferredSize(new Dimension(40, 20));
 				comboBox4jGroup.setFocusCycleRoot(true);
-				comboBox4jGroup.setBounds(105, 51, 167, 21);
+				comboBox4jGroup.setBounds(105, 51, 167, 22);
 
 				comboBox4jGroup.setModel(new DefaultComboBoxModel<String>(Common.printerGroup));
 				comboBox4jGroup.addActionListener(new ActionListener()
@@ -261,7 +261,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					jTextFieldType.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldType.setEditable(false);
 					jTextFieldType.setEnabled(false);
-					jTextFieldType.setBounds(105, 17, 284, 21);
+					jTextFieldType.setBounds(105, 17, 284, 22);
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
@@ -269,12 +269,12 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDescription.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDescription.setBounds(382, 17, 107, 21);
+					jLabelDescription.setBounds(382, 17, 107, 22);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBAutoLabeller.field_description);
 					jDesktopPane1.add(jTextFieldDescription, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jTextFieldDescription.setBounds(496, 17, 287, 21);
+					jTextFieldDescription.setBounds(496, 17, 287, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -355,13 +355,13 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				textField4SSCCCheckDigit.setHorizontalAlignment(SwingConstants.RIGHT);
 				textField4SSCCCheckDigit.setEnabled(false);
 				textField4SSCCCheckDigit.setEditable(false);
-				textField4SSCCCheckDigit.setBounds(732, 50, 22, 28);
+				textField4SSCCCheckDigit.setBounds(732, 45, 22, 28);
 				jDesktopPane1.add(textField4SSCCCheckDigit);
 
 				jTextFieldSSCCPrefix.setHorizontalAlignment(SwingConstants.CENTER);
 				jTextFieldSSCCPrefix.setEnabled(false);
 				jTextFieldSSCCPrefix.setEditable(false);
-				jTextFieldSSCCPrefix.setBounds(549, 50, 96, 28);
+				jTextFieldSSCCPrefix.setBounds(549, 45, 96, 28);
 				jDesktopPane1.add(jTextFieldSSCCPrefix);
 
 				SSCCPrefix = ctrl.getKeyValue("SSCC PREFIX");
@@ -369,9 +369,8 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				jTextFieldSSCCPrefix.setText(SSCCPrefix);
 				pattern = JUtility.padString(18 - PrefixLen - 1, "0");
 
-				JSpinnerSSCCSequence.setBounds(646, 50, 83, 28);
-				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(JSpinnerSSCCSequence, pattern);
-				ne.getTextField().setFont(Common.font_std);
+				JSpinnerSSCCSequence.setBounds(646, 45, 83, 28);
+				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(JSpinnerSSCCSequence, pattern);
 				JSpinnerSSCCSequence.setEditor(ne);
 				jDesktopPane1.add(JSpinnerSSCCSequence);
 
@@ -379,7 +378,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				jLabelSSCCSequence.setText(lang.get("lbl_SSCC_Sequence"));
 				jLabelSSCCSequence.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabelSSCCSequence.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabelSSCCSequence.setBounds(376, 53, 134, 21);
+				jLabelSSCCSequence.setBounds(376, 51, 134, 22);
 				jDesktopPane1.add(jLabelSSCCSequence);
 				chckbxSSCCRange.addActionListener(new ActionListener()
 				{
@@ -477,7 +476,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				label4jValidateResources.setText(lang.get("lbl_Validate_Process_Order_Resource"));
 				label4jValidateResources.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4jValidateResources.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4jValidateResources.setBounds(1, 86, 179, 21);
+				label4jValidateResources.setBounds(1, 84, 179, 22);
 				jDesktopPane1.add(label4jValidateResources);
 
 				checkBox4jValidateResource.setSelected(false);
@@ -494,7 +493,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				jDesktopPane1.add(checkBox4jValidateResource);
 
 				checkBox4jValidateWorkstation.setSelected(autolab.isValidateWorkstation());
-				checkBox4jValidateWorkstation.setBounds(517, 84, 28, 23);
+				checkBox4jValidateWorkstation.setBounds(517, 83, 28, 23);
 				jDesktopPane1.add(checkBox4jValidateWorkstation);
 				checkBox4jValidateWorkstation.addActionListener(new ActionListener()
 				{
@@ -546,7 +545,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 
 				JLabel4j_title label4j_title_21 = new JLabel4j_title();
 				label4j_title_21.setText(lang.get("lbl_Unassigned"));
-				label4j_title_21.setBounds(830, 131, 180, 21);
+				label4j_title_21.setBounds(830, 131, 180, 22);
 				jDesktopPane1.add(label4j_title_21);
 				jButtonAssignPrinter.addActionListener(new ActionListener()
 				{
@@ -686,7 +685,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				label4jValidateWorkstations.setText(lang.get("lbl_Validate_Workstation_ID"));
 				label4jValidateWorkstations.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4jValidateWorkstations.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4jValidateWorkstations.setBounds(240, 86, 270, 21);
+				label4jValidateWorkstations.setBounds(240, 84, 270, 22);
 				jDesktopPane1.add(label4jValidateWorkstations);
 				
 				jTextFieldPrefixCode = new JTextField4j(4);
@@ -700,21 +699,21 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 
 				jTextFieldPrefixCode.setFocusCycleRoot(true);
 				jTextFieldPrefixCode.setCaretPosition(0);
-				jTextFieldPrefixCode.setBounds(928, 17, 72, 21);
+				jTextFieldPrefixCode.setBounds(928, 17, 72, 22);
 				jDesktopPane1.add(jTextFieldPrefixCode);
 				
 				JLabel4j_std jLabelPrexfixCode = new JLabel4j_std();
 				jLabelPrexfixCode.setText(lang.get("lbl_Prefix_Code"));
 				jLabelPrexfixCode.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabelPrexfixCode.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabelPrexfixCode.setBounds(793, 17, 120, 21);
+				jLabelPrexfixCode.setBounds(793, 17, 120, 22);
 				jDesktopPane1.add(jLabelPrexfixCode);
 
 				JLabel4j_std jLabelEnabled = new JLabel4j_std();
 				jLabelEnabled.setText(lang.get("lbl_Enabled"));
 				jLabelEnabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabelEnabled.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabelEnabled.setBounds(779, 50, 134, 21);
+				jLabelEnabled.setBounds(779, 51, 134, 22);
 				jDesktopPane1.add(jLabelEnabled);
 				
 				jButtonUpdate.setEnabled(false);

@@ -152,7 +152,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_UOM_Internal"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(0, 10, 149, 21);
+					jLabel1.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldUOM = new JTextField4j(JDBUom.field_uom);
@@ -160,7 +160,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 					jTextFieldUOM.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldUOM.setEditable(false);
 					jTextFieldUOM.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldUOM.setBounds(155, 10, 51, 21);
+					jTextFieldUOM.setBounds(155, 10, 51, 22);
 					jTextFieldUOM.setEnabled(false);
 				}
 				{
@@ -169,14 +169,14 @@ public class JInternalFrameUomProperties extends JInternalFrame
 					jLabel2.setText(lang.get("lbl_UOM_ISO"));
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel2.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel2.setBounds(0, 43, 149, 21);
+					jLabel2.setBounds(0, 43, 149, 22);
 				}
 				{
 					jTextFieldISO_UOM = new JTextField4j(JDBUom.field_uom);
 					jDesktopPane1.add(jTextFieldISO_UOM);
 					jTextFieldISO_UOM.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldISO_UOM.setFocusCycleRoot(true);
-					jTextFieldISO_UOM.setBounds(155, 43, 53, 21);
+					jTextFieldISO_UOM.setBounds(155, 43, 53, 22);
 					jTextFieldISO_UOM.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -222,7 +222,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 					jLabel3.setText(lang.get("lbl_Description"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(0, 109, 149, 21);
+					jLabel3.setBounds(0, 109, 149, 22);
 				}
 				{
 					jTextFieldLocal_UOM = new JTextField4j(JDBUom.field_uom);
@@ -235,7 +235,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 					jTextFieldLocal_UOM.setPreferredSize(new Dimension(40, 20));
 					jTextFieldLocal_UOM.setFocusCycleRoot(true);
 					jTextFieldLocal_UOM.setCaretPosition(0);
-					jTextFieldLocal_UOM.setBounds(155, 76, 53, 21);
+					jTextFieldLocal_UOM.setBounds(155, 76, 53, 22);
 					jDesktopPane1.add(jTextFieldLocal_UOM);
 				}
 				{
@@ -243,7 +243,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 					lblLocalUom.setText(lang.get("lbl_UOM_Local"));
 					lblLocalUom.setHorizontalTextPosition(SwingConstants.RIGHT);
 					lblLocalUom.setHorizontalAlignment(SwingConstants.RIGHT);
-					lblLocalUom.setBounds(0, 76, 149, 21);
+					lblLocalUom.setBounds(0, 76, 149, 22);
 					jDesktopPane1.add(lblLocalUom);
 				}
 
@@ -252,7 +252,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 109, 237, 21);
+					jTextFieldDescription.setBounds(155, 109, 237, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);

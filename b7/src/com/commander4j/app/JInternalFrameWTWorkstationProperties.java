@@ -44,7 +44,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
+
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -60,6 +60,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
@@ -104,7 +105,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 	private Vector<String> portList = new Vector<String>();
 	private String[] standardPorts = new String[] { "","COM1", "COM2", "COM3", "COM4", "COM5", "COM6" };
 	private JCheckBox4j checkOverride = new JCheckBox4j();
-	private JSpinner jSpinnerLimit = new JSpinner();
+	private JSpinner4j jSpinnerLimit = new JSpinner4j();
 	private JLabel4j_std label4j_SampleSize = new JLabel4j_std();
 
 	public void setWorkstationID(String wstation)
@@ -172,7 +173,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		
 		ComboBoxModel<String> jComboBoxModelPort = new DefaultComboBoxModel<String>(portList);
 		comboBox_Ports.setModel(jComboBoxModelPort);
-		comboBox_Ports.setBounds(155, 187, 387, 24);
+		comboBox_Ports.setBounds(155, 187, 387, 22);
 		comboBox_Ports.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -270,7 +271,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_Workstation"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(0, 10, 149, 21);
+					jLabel1.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldWorkstation = new JTextField4j(JDBWTWorkstation.field_WorkstationID);
@@ -278,7 +279,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jTextFieldWorkstation.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldWorkstation.setEditable(false);
 					jTextFieldWorkstation.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldWorkstation.setBounds(155, 10, 237, 24);
+					jTextFieldWorkstation.setBounds(155, 10, 237, 22);
 					jTextFieldWorkstation.setEnabled(false);
 				}
 				{
@@ -287,14 +288,14 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jLabel_Location.setText(lang.get("lbl_Storage_Location"));
 					jLabel_Location.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Location.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Location.setBounds(0, 76, 149, 21);
+					jLabel_Location.setBounds(0, 76, 149, 22);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBWTWorkstation.field_Location);
 					jDesktopPane1.add(jTextFieldLocation);
 					jTextFieldLocation.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldLocation.setFocusCycleRoot(true);
-					jTextFieldLocation.setBounds(155, 76, 237, 24);
+					jTextFieldLocation.setBounds(155, 76, 237, 22);
 					jTextFieldLocation.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -346,7 +347,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 43, 149, 21);
+					jLabel_Description.setBounds(0, 43, 149, 22);
 				}
 
 				{
@@ -354,7 +355,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 43, 237, 24);
+					jTextFieldDescription.setBounds(155, 43, 237, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -368,14 +369,14 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 				label4j_Scale_ID.setText(lang.get("lbl_Scale_ID"));
 				label4j_Scale_ID.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Scale_ID.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Scale_ID.setBounds(0, 151, 149, 21);
+				label4j_Scale_ID.setBounds(0, 148, 149, 22);
 				jDesktopPane1.add(label4j_Scale_ID);
 
 				JLabel4j_std label4j_Scale_Port = new JLabel4j_std();
 				label4j_Scale_Port.setText(lang.get("lbl_Scale_Port"));
 				label4j_Scale_Port.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Scale_Port.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Scale_Port.setBounds(0, 190, 149, 21);
+				label4j_Scale_Port.setBounds(0, 187, 149, 22);
 				jDesktopPane1.add(label4j_Scale_Port);
 
 
@@ -383,7 +384,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 				scaleList.addAll(scale.getScales());
 				ComboBoxModel<JDBWTScale> jComboBoxModelScale = new DefaultComboBoxModel<JDBWTScale>(scaleList);
 				comboBox_Scales.setModel(jComboBoxModelScale);
-				comboBox_Scales.setBounds(155, 148, 387, 24);
+				comboBox_Scales.setBounds(155, 148, 387, 22);
 				comboBox_Scales.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -397,7 +398,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 				samplePointList.addAll(samplePoint.getSamplePoints(JDBWTSamplePoint.displayType_COMBO));
 				ComboBoxModel<JDBWTSamplePoint> jComboBoxModelSamplePoint = new DefaultComboBoxModel<JDBWTSamplePoint>(samplePointList);
 				comboBox4j_SamplePoint.setModel(jComboBoxModelSamplePoint);
-				comboBox4j_SamplePoint.setBounds(155, 112, 387, 24);
+				comboBox4j_SamplePoint.setBounds(155, 112, 387, 22);
 				comboBox4j_SamplePoint.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -411,26 +412,26 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 				label4j_SamplePoint.setText(lang.get("lbl_SamplePoint"));
 				label4j_SamplePoint.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_SamplePoint.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_SamplePoint.setBounds(0, 115, 149, 21);
+				label4j_SamplePoint.setBounds(0, 112, 149, 22);
 				jDesktopPane1.add(label4j_SamplePoint);
 				
 				JLabel4j_std label4j_Override = new JLabel4j_std();
 				label4j_Override.setText(lang.get("lbl_Override"));
 				label4j_Override.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Override.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Override.setBounds(0, 223, 149, 21);
+				label4j_Override.setBounds(0, 223, 149, 22);
 				jDesktopPane1.add(label4j_Override);
 				
 
 				label4j_SampleSize.setText(lang.get("lbl_SampleSize"));
 				label4j_SampleSize.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_SampleSize.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_SampleSize.setBounds(184, 224, 78, 21);
+				label4j_SampleSize.setBounds(184, 223, 78, 22);
 				jDesktopPane1.add(label4j_SampleSize);
 				
 				
 				checkOverride.setBackground(Color.WHITE);
-				checkOverride.setBounds(155, 219, 21, 25);
+				checkOverride.setBounds(155, 223, 21, 22);
 				jDesktopPane1.add(checkOverride);
 				
 				{
@@ -438,11 +439,10 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jSpinnerIntModel.setMinimum(1);
 					jSpinnerIntModel.setMaximum(25000);
 					jSpinnerIntModel.setStepSize(1);
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std);
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					jSpinnerLimit.setBounds(269, 223, 68, 21);
+					jSpinnerLimit.setBounds(269, 223, 68, 22);
 					jSpinnerLimit.setValue(2000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);

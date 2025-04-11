@@ -35,13 +35,13 @@ import javax.swing.DefaultListModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.thread.InterfaceThread;
 import com.commander4j.util.JUtility;
@@ -55,7 +55,7 @@ public class JInternalFrameInterfaceControl extends javax.swing.JInternalFrame
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonCancel;
 
-	final JToggleButton startToggleButton = new JToggleButton(Common.icon_ok_16x16);
+	final JToggleButton4j startToggleButton = new JToggleButton4j(Common.icon_ok_16x16);
 	private boolean threadsRunning = false;
 	private DefaultListModel<String> model = new DefaultListModel<String>();
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -159,7 +159,6 @@ public class JInternalFrameInterfaceControl extends javax.swing.JInternalFrame
 				{
 
 					startToggleButton.setSelectedIcon(Common.icon_cancel_16x16);
-					startToggleButton.setFont(Common.font_btn);
 					startToggleButton.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
 

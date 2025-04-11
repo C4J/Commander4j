@@ -44,6 +44,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
+import javax.swing.border.EtchedBorder;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBListData;
@@ -53,14 +54,13 @@ import com.commander4j.db.JDBWasteLocationTypes;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JRadioButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import javax.swing.JRadioButton;
-import javax.swing.border.EtchedBorder;
 
 /**
  * The JInternalFrameWasteLocationAdmin class allows a user to maintain the
@@ -92,8 +92,8 @@ public class JInternalFrameWasteLocationAdmin extends javax.swing.JInternalFrame
 	private JButton4j jButtonLabel;
 	private String lLocationString;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JRadioButton rdbtnEnabled;
-	private JRadioButton rdbtnDisabled;
+	private JRadioButton4j rdbtnEnabled;
+	private JRadioButton4j rdbtnDisabled;
 
 	private void addrecord()
 	{
@@ -589,10 +589,9 @@ public class JInternalFrameWasteLocationAdmin extends javax.swing.JInternalFrame
 				jDesktopPane1.add(panel);
 				panel.setLayout(null);
 
-				rdbtnEnabled = new JRadioButton(lang.get("lbl_Enabled"));
-				rdbtnEnabled.setBounds(8, 8, 102, 23);
+				rdbtnEnabled = new JRadioButton4j(lang.get("lbl_Enabled"));
+				rdbtnEnabled.setBounds(8, 8, 102, 22);
 				panel.add(rdbtnEnabled);
-				rdbtnEnabled.setFont(Common.font_std);
 				rdbtnEnabled.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -603,10 +602,9 @@ public class JInternalFrameWasteLocationAdmin extends javax.swing.JInternalFrame
 				rdbtnEnabled.setSelected(true);
 				bgroup.add(rdbtnEnabled);
 
-				rdbtnDisabled = new JRadioButton(lang.get("lbl_Disabled"));
-				rdbtnDisabled.setBounds(8, 35, 102, 23);
-				panel.add(rdbtnDisabled);
-				rdbtnDisabled.setFont(Common.font_std);
+				rdbtnDisabled = new JRadioButton4j(lang.get("lbl_Disabled"));
+				rdbtnDisabled.setBounds(8, 35, 102, 22);
+				panel.add(rdbtnDisabled);;
 				rdbtnDisabled.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

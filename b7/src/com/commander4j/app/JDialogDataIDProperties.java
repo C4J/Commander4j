@@ -87,7 +87,7 @@ public class JDialogDataIDProperties extends javax.swing.JDialog {
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setTitle("Data ID Properties");
 		this.setResizable(false);
-		this.setSize( 469, 156);
+		this.setSize( 469, 171);
 
 		Dimension screensize = Common.mainForm.getSize();
 
@@ -143,7 +143,7 @@ public class JDialogDataIDProperties extends javax.swing.JDialog {
 					jLabel1.setText(lang.get("lbl_Data_ID"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(6, 17, 175, 21);
+					jLabel1.setBounds(6, 17, 175, 22);
 				}
 				{
 					jTextFieldType = new JTextField4j();
@@ -151,7 +151,7 @@ public class JDialogDataIDProperties extends javax.swing.JDialog {
 					jTextFieldType.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldType.setEditable(false);
 					jTextFieldType.setEnabled(false);
-					jTextFieldType.setBounds(185, 17, 238, 21);
+					jTextFieldType.setBounds(185, 17, 272, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
@@ -159,12 +159,12 @@ public class JDialogDataIDProperties extends javax.swing.JDialog {
 					jLabel3.setText(lang.get("lbl_Description"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(6, 49, 175, 21);
+					jLabel3.setBounds(6, 49, 175, 22);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBDataIDs.field_description);
 					desktopPane.add(jTextFieldDescription, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jTextFieldDescription.setBounds(185, 49, 238, 21);
+					jTextFieldDescription.setBounds(185, 49, 272, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt)
 						{

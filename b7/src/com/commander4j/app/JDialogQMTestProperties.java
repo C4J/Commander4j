@@ -36,7 +36,7 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JSpinner;
+
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -49,6 +49,7 @@ import com.commander4j.db.JDBQMTest;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -88,7 +89,7 @@ public class JDialogQMTestProperties extends javax.swing.JDialog
 	private JDBQMActivity active = new JDBQMActivity(Common.selectedHostID,Common.sessionID);
 	private JDBQMTest test = new JDBQMTest(Common.selectedHostID,Common.sessionID);
 	private JDBQMDictionary dictionary = new JDBQMDictionary(Common.selectedHostID,Common.sessionID);
-	private JSpinner spinnerSequence;
+	private JSpinner4j spinnerSequence;
 	private JComboBox4j<JDBQMDictionary> comboBoxTestID;
 	private DefaultComboBoxModel<JDBQMDictionary> comboBoxTestModel;
 	private JTextField4j textFieldInspectionDescription;
@@ -97,7 +98,7 @@ public class JDialogQMTestProperties extends javax.swing.JDialog
 	private JTextField4j textFieldActivityID;
 	private JButton4j btnSave;
 	private JButton4j btnClose;
-	private JSpinner.NumberEditor ne;
+	private JSpinner4j.NumberEditor ne;
 	
 	private void populateTestList(String inspectionid,String activityid,String testid) 
 	{
@@ -178,28 +179,28 @@ public class JDialogQMTestProperties extends javax.swing.JDialog
 		getContentPane().add(desktopPane);
 		
 		JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
-		lblInspectionID.setBounds(8, 27, 87, 16);
+		lblInspectionID.setBounds(8, 22, 87, 22);
 		desktopPane.add(lblInspectionID);
 		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		JLabel4j_std lblActivityID = new JLabel4j_std(lang.get("lbl_Activity_ID"));
-		lblActivityID.setBounds(6, 67, 89, 16);
+		lblActivityID.setBounds(6, 69, 89, 16);
 		desktopPane.add(lblActivityID);
 		lblActivityID.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		JLabel4j_std lblTestID = new JLabel4j_std(lang.get("lbl_Test_ID"));
-		lblTestID.setBounds(188, 105, 98, 16);
+		lblTestID.setBounds(188, 102, 98, 22);
 		desktopPane.add(lblTestID);
 		lblTestID.setHorizontalAlignment(SwingConstants.TRAILING);
 		
 		textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
 		textFieldInspectionID.setEnabled(false);
-		textFieldInspectionID.setBounds(108, 22, 153, 28);
+		textFieldInspectionID.setBounds(108, 22, 153, 22);
 		desktopPane.add(textFieldInspectionID);
 		textFieldInspectionID.setColumns(10);
 		
 		JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Sequence_ID"));
-		label4j_std.setBounds(8, 105, 87, 16);
+		label4j_std.setBounds(8, 102, 87, 22);
 		desktopPane.add(label4j_std);
 		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
 		
@@ -209,13 +210,12 @@ public class JDialogQMTestProperties extends javax.swing.JDialog
 				enableSave();
 			}
 		});
-		comboBoxTestID.setBounds(298, 102, 542, 27);
+		comboBoxTestID.setBounds(298, 102, 542, 22);
 		desktopPane.add(comboBoxTestID);
 		
-		spinnerSequence = new JSpinner();
-		spinnerSequence.setBounds(108, 102, 68, 28);
-		ne = new JSpinner.NumberEditor(spinnerSequence);
-		ne.getTextField().setFont(Common.font_std); 
+		spinnerSequence = new JSpinner4j();
+		spinnerSequence.setBounds(108, 102, 68, 22);
+		ne = new JSpinner4j.NumberEditor(spinnerSequence);
 		spinnerSequence.setEditor(ne);
 		spinnerSequence.setValue(100);
 		spinnerSequence.addChangeListener(new ChangeListener() {
@@ -227,7 +227,7 @@ public class JDialogQMTestProperties extends javax.swing.JDialog
 		
 		textFieldInspectionDescription = new JTextField4j(JDBQMInspection.field_description);
 		textFieldInspectionDescription.setEnabled(false);
-		textFieldInspectionDescription.setBounds(377, 22, 463, 28);
+		textFieldInspectionDescription.setBounds(377, 22, 463, 22);
 		desktopPane.add(textFieldInspectionDescription);
 		textFieldInspectionDescription.setColumns(10);
 		
@@ -241,7 +241,7 @@ public class JDialogQMTestProperties extends javax.swing.JDialog
 			}
 		});
 		btnSave.setIcon(Common.icon_update_16x16);
-		btnSave.setBounds(319, 154, 117, 29);
+		btnSave.setBounds(308, 139, 117, 32);
 		desktopPane.add(btnSave);
 		
 		btnClose = new JButton4j(lang.get("btn_Close"));
@@ -251,30 +251,30 @@ public class JDialogQMTestProperties extends javax.swing.JDialog
 			}
 		});
 		btnClose.setIcon(Common.icon_close_16x16);
-		btnClose.setBounds(440, 154, 117, 29);
+		btnClose.setBounds(429, 139, 117, 32);
 		desktopPane.add(btnClose);
 		
 		JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Description"));
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(273, 27, 92, 16);
+		label4j_std_1.setBounds(273, 22, 92, 22);
 		desktopPane.add(label4j_std_1);
 		
 		textFieldActivityID = new JTextField4j(JDBQMActivity.field_activity_id);
 		textFieldActivityID.setEnabled(false);
 		textFieldActivityID.setText("<dynamic>");
 		textFieldActivityID.setColumns(10);
-		textFieldActivityID.setBounds(108, 62, 153, 28);
+		textFieldActivityID.setBounds(108, 63, 153, 22);
 		desktopPane.add(textFieldActivityID);
 		
 		JLabel4j_std label4j_std_2 = new JLabel4j_std(lang.get("lbl_Description"));
 		label4j_std_2.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_2.setBounds(267, 67, 98, 16);
+		label4j_std_2.setBounds(267, 63, 98, 22);
 		desktopPane.add(label4j_std_2);
 		
 		textFieldActivityDescription = new JTextField4j(JDBQMActivity.field_description);
 		textFieldActivityDescription.setEnabled(false);
 		textFieldActivityDescription.setColumns(10);
-		textFieldActivityDescription.setBounds(377, 63, 463, 28);
+		textFieldActivityDescription.setBounds(377, 63, 463, 22);
 		desktopPane.add(textFieldActivityDescription);
 		
 		inspectionid = JUtility.replaceNullStringwithBlank(inspectionid);

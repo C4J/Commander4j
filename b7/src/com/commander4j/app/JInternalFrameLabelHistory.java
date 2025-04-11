@@ -39,7 +39,7 @@ import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
@@ -57,6 +57,7 @@ import com.commander4j.db.JDBQuery2;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
@@ -89,7 +90,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private PreparedStatement listStatement;
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
-	private JSpinner jSpinnerLimit = new JSpinner();
+	private JSpinner4j jSpinnerLimit = new JSpinner4j();
 	private JLabel4j_std jStatusText;
 
 	public JInternalFrameLabelHistory(String line, String group)
@@ -196,7 +197,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jButtonClose = new JButton4j(Common.icon_close_16x16);
 				this.getContentPane().add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setBounds(527, 484, 115, 35);
+				jButtonClose.setBounds(527, 484, 115, 32);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
 				jButtonClose.addActionListener(new ActionListener()
 				{
@@ -210,7 +211,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jButtonPrint = new JButton4j(Common.icon_report_16x16);
 				this.getContentPane().add(jButtonPrint);
 				jButtonPrint.setText(lang.get("btn_Print"));
-				jButtonPrint.setBounds(294, 484, 115, 35);
+				jButtonPrint.setBounds(294, 484, 115, 32);
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.addActionListener(new ActionListener()
 				{
@@ -227,7 +228,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jButtonHelp = new JButton4j(Common.icon_help_16x16);
 				this.getContentPane().add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setBounds(410, 484, 115, 35);
+				jButtonHelp.setBounds(410, 484, 115, 32);
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 
 			}
@@ -247,7 +248,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				});
 				jButtonExcel.setText(lang.get("btn_Excel"));
 				jButtonExcel.setMnemonic(lang.getMnemonicChar());
-				jButtonExcel.setBounds(178, 484, 115, 35);
+				jButtonExcel.setBounds(178, 484, 115, 32);
 				getContentPane().add(jButtonExcel);
 			}
 			{
@@ -261,7 +262,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				});
 				jButtonRefresh.setText(lang.get("btn_Refresh"));
 				jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-				jButtonRefresh.setBounds(62, 484, 115, 35);
+				jButtonRefresh.setBounds(62, 484, 115, 32);
 				getContentPane().add(jButtonRefresh);
 			}
 
@@ -269,7 +270,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Limit"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(736, 494, 84, 21);
+				label4j_std.setBounds(687, 495, 133, 21);
 				getContentPane().add(label4j_std);
 			}
 
@@ -283,19 +284,18 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				});
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(834, 494, 21, 21);
+				jCheckBoxLimit.setBounds(834, 495, 21, 21);
 				getContentPane().add(jCheckBoxLimit);
 			}
 
 			{
 				SpinnerModel model = new SpinnerNumberModel(100, 50, 10000, 50);
-				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-				ne.getTextField().setFont(Common.font_std);
+				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 
 				jSpinnerLimit.setEditor(ne);
 				jSpinnerLimit.setValue(100);
 				jSpinnerLimit.setModel(model);
-				jSpinnerLimit.setBounds(863, 494, 68, 21);
+				jSpinnerLimit.setBounds(863, 495, 68, 21);
 				getContentPane().add(jSpinnerLimit);
 
 				ChangeListener listener = new ChangeListener()

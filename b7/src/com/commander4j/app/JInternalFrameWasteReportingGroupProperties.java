@@ -36,7 +36,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JCheckBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -46,6 +45,7 @@ import javax.swing.SwingUtilities;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBWasteReportingGroup;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
@@ -76,7 +76,7 @@ public class JInternalFrameWasteReportingGroupProperties extends JInternalFrame
 	private JDBWasteReportingGroup wasteGroups = new JDBWasteReportingGroup(Common.selectedHostID, Common.sessionID);
 	private String lreportingid;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JCheckBox chckbx_Enabled = new JCheckBox("");
+	private JCheckBox4j chckbx_Enabled = new JCheckBox4j("");
 
 
 	public void setGroup(String group)
@@ -155,7 +155,7 @@ public class JInternalFrameWasteReportingGroupProperties extends JInternalFrame
 					jLabel_WasteGroup.setText(lang.get("lbl_Reporting_Group"));
 					jLabel_WasteGroup.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_WasteGroup.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_WasteGroup.setBounds(0, 10, 149, 21);
+					jLabel_WasteGroup.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldWasteGroup = new JTextField4j(JDBWasteReportingGroup.field_WasteReportingGroup);
@@ -163,7 +163,7 @@ public class JInternalFrameWasteReportingGroupProperties extends JInternalFrame
 					jTextFieldWasteGroup.setHorizontalAlignment(SwingConstants.CENTER);
 					jTextFieldWasteGroup.setEditable(false);
 					jTextFieldWasteGroup.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldWasteGroup.setBounds(155, 10, 95, 21);
+					jTextFieldWasteGroup.setBounds(155, 10, 95, 22);
 					jTextFieldWasteGroup.setEnabled(false);
 				}
 				{
@@ -205,7 +205,7 @@ public class JInternalFrameWasteReportingGroupProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 45, 149, 21);
+					jLabel_Description.setBounds(0, 45, 149, 22);
 				}
 
 				{
@@ -213,7 +213,7 @@ public class JInternalFrameWasteReportingGroupProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 45, 433, 21);
+					jTextFieldDescription.setBounds(155, 45, 433, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -221,14 +221,14 @@ public class JInternalFrameWasteReportingGroupProperties extends JInternalFrame
 					});
 					
 					
-					chckbx_Enabled.setBounds(155, 78, 29, 23);
+					chckbx_Enabled.setBounds(155, 78, 29, 22);
 					jDesktopPane1.add(chckbx_Enabled);
 					
 					JLabel4j_std jLabel_Enabled = new JLabel4j_std();
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Enabled.setBounds(0, 80, 149, 21);
+					jLabel_Enabled.setBounds(0, 78, 149, 22);
 					chckbx_Enabled.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							jButtonSave.setEnabled(true);

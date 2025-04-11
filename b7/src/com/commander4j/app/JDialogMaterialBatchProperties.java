@@ -52,10 +52,10 @@ import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialBatch;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
@@ -204,13 +204,13 @@ public class JDialogMaterialBatchProperties extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Material"));
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel1.setBounds(49, 13, 70, 21);
+					jLabel1.setBounds(7, 13, 112, 22);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
 					jTextFieldMaterial.setText(lmaterial);
-					jTextFieldMaterial.setBounds(126, 13, 126, 21);
+					jTextFieldMaterial.setBounds(126, 13, 150, 22);
 					jTextFieldMaterial.setEnabled(false);
 					jTextFieldMaterial.setEditable(false);
 				}
@@ -219,13 +219,13 @@ public class JDialogMaterialBatchProperties extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Material_Batch"));
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel3.setBounds(49, 41, 70, 21);
+					jLabel3.setBounds(7, 41, 112, 22);
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
 					jDesktopPane1.add(jTextFieldBatch);
 					jTextFieldBatch.setText(lbatch);
-					jTextFieldBatch.setBounds(126, 41, 126, 21);
+					jTextFieldBatch.setBounds(126, 41, 150, 22);
 					jTextFieldBatch.setEnabled(false);
 					jTextFieldBatch.setEditable(false);
 				}
@@ -234,14 +234,14 @@ public class JDialogMaterialBatchProperties extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(35, 97, 84, 21);
+					jLabel5.setBounds(7, 97, 112, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.batchStatusIncBlank);
 					jComboBoxStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
-					jComboBoxStatus.setBounds(126, 69, 150, 21);
+					jComboBoxStatus.setBounds(126, 69, 150, 22);
 					jComboBoxStatus.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -255,7 +255,7 @@ public class JDialogMaterialBatchProperties extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Material_Batch_Status"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(42, 69, 77, 21);
+					jLabel2.setBounds(7, 69, 112, 22);
 				}
 
 				{
@@ -296,7 +296,7 @@ public class JDialogMaterialBatchProperties extends javax.swing.JDialog
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					calendarButton.setBounds(255, 101, 21, 21);
+					calendarButton.setBounds(255, 97, 22, 22);
 					jDesktopPane1.add(calendarButton);
 				}
 				

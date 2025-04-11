@@ -39,9 +39,9 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
+
 import javax.swing.JDesktopPane;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -51,6 +51,7 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBListData;
 
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
 import com.commander4j.sys.Common;
@@ -62,7 +63,7 @@ import com.commander4j.util.JUtility;
 
 public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 {
-	private JButton jButtonExcel;
+	private JButton4j jButtonExcel;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JList4j<JDBListData> jListBomStructure;
@@ -76,7 +77,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 	private JButton4j jButtonAdd;
 	private JScrollPane jScrollPane1;
 
-	private JLabel lbl_Description;
+	private JLabel4j_std lbl_Description;
 
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
@@ -412,7 +413,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			});
 			jDesktopPane1.add(jButtonExcel);
 
-			lbl_Description = new JLabel("Parent ID               Data ID");
+			lbl_Description = new JLabel4j_std("Parent ID               Data ID");
 			lbl_Description.setFont(new Font("Monospaced", Font.BOLD, 11));
 			lbl_Description.setBounds(5, 4, 326, 15);
 			jDesktopPane1.add(lbl_Description);

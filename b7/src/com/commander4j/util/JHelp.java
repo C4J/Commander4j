@@ -33,13 +33,15 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URI;
 
-import javax.swing.JButton;
+
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.Logger;
 
+import com.commander4j.gui.JButton4j;
 import com.commander4j.sys.Common;
+import com.commander4j.sys.JMenuToolbarMenuItem;
 
 public class JHelp
 {
@@ -89,8 +91,24 @@ public class JHelp
 			HelpAvailable = false;
 		}
 	}
+	
+	public void enableHelpOnButton(JMenuToolbarMenuItem button, String helpsetID)
+	{
+		if (HelpAvailable)
+		{
+			try
+			{
+				setHelpURL(helpsetID);
+				ButtonHandler buttonhandler = new ButtonHandler();
+				button.addActionListener(buttonhandler);
+			} catch (Exception ex)
+			{
+				HelpAvailable = false;
+			}
+		}
+	}
 
-	public void enableHelpOnButton(JButton button, String helpsetID)
+	public void enableHelpOnButton(JButton4j button, String helpsetID)
 	{
 		if (HelpAvailable)
 		{

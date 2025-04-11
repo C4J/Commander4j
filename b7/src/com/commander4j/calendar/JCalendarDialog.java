@@ -36,14 +36,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
-import com.commander4j.sys.Common;
-import com.commander4j.util.JDateControl;
+import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDateControl;
 /**
  * The JCalendarDialog is used to provide a popup window showing a calendar control.
  * <p>
@@ -112,7 +111,7 @@ public class JCalendarDialog extends JDialog
 		calendarPanel.setBounds(5, 5, 264, 218);
 		desktopPane.add(calendarPanel);
 		
-		JButton buttonOK = new JButton(new ImageIcon("images\\OK.gif"));
+		JButton4j buttonOK = new JButton4j(new ImageIcon("images\\OK.gif"));
 		buttonOK.setBounds(36, 224, 90, 26);
 		desktopPane.add(buttonOK);
 		buttonOK.addActionListener(new ActionListener() {
@@ -122,9 +121,8 @@ public class JCalendarDialog extends JDialog
 			}
 		});
 		buttonOK.setText("OK");
-		buttonOK.setFont(Common.font_std);
 		
-		JButton buttonCancel = new JButton(new ImageIcon("images\\Cancel.gif"));
+		JButton4j buttonCancel = new JButton4j(new ImageIcon("images\\Cancel.gif"));
 		buttonCancel.setBounds(132, 224, 90, 26);
 		desktopPane.add(buttonCancel);
 		buttonCancel.addActionListener(new ActionListener() {
@@ -134,6 +132,5 @@ public class JCalendarDialog extends JDialog
 			}
 		});
 		buttonCancel.setText("Cancel");
-		buttonCancel.setFont(Common.font_std);
 	}
 }

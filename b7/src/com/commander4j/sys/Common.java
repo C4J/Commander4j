@@ -176,7 +176,7 @@ public class Common
 	public final static int splashDelay = 10;
 
 	public final static Font font_dates = new Font("Arial", Font.PLAIN, 11);
-	public final static Font font_small = new Font("Arial", Font.PLAIN, 9);
+
 	public final static Font font_std = new Font("Arial", Font.PLAIN, 11);
 	public final static Font font_input = new Font("Arial", Font.PLAIN, 11);
 	public final static Font font_input_large = new Font("Arial", Font.PLAIN, 13);
@@ -184,6 +184,9 @@ public class Common
 	public final static Font font_bold = new Font("Arial", Font.BOLD, 11);
 	public final static Font font_italic = new Font("Arial", Font.ITALIC, 11);
 	public final static Font font_btn = new Font("Arial", Font.PLAIN, 11);
+	public final static Font font_btn_bold = new Font("Arial", Font.BOLD, 9);
+	public final static Font font_btn_small = new Font("Arial", Font.PLAIN, 9);
+	public final static Font font_btn_small_bold = new Font("Arial", Font.BOLD, 9);
 	public final static Font font_title = new Font("Arial", Font.ITALIC, 12);
 	public final static Font font_tree = new Font("Arial", Font.PLAIN, 12);
 	public final static Font font_menu = new Font("Arial", Font.PLAIN, 12);
@@ -202,7 +205,7 @@ public class Common
 	
 	public final static Color color_textfield_foreground_focus_color = Color.BLACK;
 	public final static Color color_textfield_forground_nofocus_color = Color.BLACK;
-	public final static Color color_textfield_background_focus_color = Color.WHITE;
+	public final static Color color_textfield_background_focus_color = new Color(255, 255, 200);
 	public final static Color color_textfield_background_nofocus_color = Color.WHITE;
 	public final static Color color_text_maxsize_color = Color.RED;
 	public final static Color color_list_assigned = new Color(233, 255, 233);
@@ -219,6 +222,10 @@ public class Common
 	public final static Color color_text_disabled = Color.BLACK;
 	public final static Color color_edit_properties = new Color(241, 241, 241);
 	public final static Color color_app_window = new Color(241, 241, 241);
+	public final static Color color_button = new Color(233,236,242);
+	public final static Color color_button_hover =  new Color(214, 214, 214);
+	public final static Color color_button_font = Color.black;
+	public final static Color color_button_font_hover = Color.black;
 
 	public final static int menuTreeWidth = 250;
 	public static JWindowSplash splash;

@@ -182,17 +182,17 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Common.color_edit_properties);
-		desktopPane.setBounds(0, 0, 468, 184);
+		desktopPane.setBounds(0, 0, 455, 168);
 		getContentPane().add(desktopPane);
 
 		JLabel4j_std lblShiftID = new JLabel4j_std(lang.get("lbl_Shift_ID"));
-		lblShiftID.setBounds(6, 6, 126, 28);
+		lblShiftID.setBounds(6, 6, 126, 21);
 		desktopPane.add(lblShiftID);
 		lblShiftID.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		textFieldShiftID = new JTextField4j(JDBShifts.field_shift_id);
 		textFieldShiftID.setEnabled(false);
-		textFieldShiftID.setBounds(145, 6, 110, 28);
+		textFieldShiftID.setBounds(145, 6, 110, 21);
 		desktopPane.add(textFieldShiftID);
 		textFieldShiftID.setColumns(10);
 
@@ -206,7 +206,7 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 			}
 		});
 		btnSave.setIcon(Common.icon_update_16x16);
-		btnSave.setBounds(116, 106, 117, 29);
+		btnSave.setBounds(116, 106, 117, 32);
 		desktopPane.add(btnSave);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
@@ -218,12 +218,12 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 			}
 		});
 		btnClose.setIcon(Common.icon_close_16x16);
-		btnClose.setBounds(247, 106, 117, 29);
+		btnClose.setBounds(247, 106, 117, 32);
 		desktopPane.add(btnClose);
 
 		JLabel4j_std label4j_std_Description = new JLabel4j_std(lang.get("lbl_Description"));
 		label4j_std_Description.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_Description.setBounds(6, 66, 126, 28);
+		label4j_std_Description.setBounds(6, 66, 126, 21);
 		desktopPane.add(label4j_std_Description);
 
 		textFieldDescription = new JTextField4j(JDBShifts.field_description);
@@ -236,7 +236,7 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 			}
 		});
 		textFieldDescription.setColumns(10);
-		textFieldDescription.setBounds(145, 66, 286, 28);
+		textFieldDescription.setBounds(145, 66, 286, 21);
 		desktopPane.add(textFieldDescription);
 
 		shiftid = JUtility.replaceNullStringwithBlank(shiftid);
@@ -268,7 +268,7 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 		}
 
 		textField4jStartTime.setColumns(10);
-		textField4jStartTime.setBounds(145, 36, 85, 28);
+		textField4jStartTime.setBounds(145, 36, 85, 21);
 		textField4jStartTime.setFont(Common.font_std);
 
 		textField4jStartTime.setText(shifts.getStartTime());
@@ -285,24 +285,24 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 		});
 		textField4jEndTime.setText(shifts.getEndTime());
 		textField4jEndTime.setColumns(10);
-		textField4jEndTime.setBounds(344, 36, 85, 28);
+		textField4jEndTime.setBounds(344, 36, 85, 21);
 		textField4jEndTime.setFont(Common.font_std);
 		desktopPane.add(textField4jEndTime);
 
 		JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Start_Time"));
 		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std.setBounds(6, 36, 126, 28);
+		label4j_std.setBounds(6, 36, 126, 21);
 		desktopPane.add(label4j_std);
 
 		JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_End_Time"));
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(232, 36, 99, 28);
+		label4j_std_1.setBounds(232, 36, 99, 21);
 		desktopPane.add(label4j_std_1);
 
 		statusBar.setText("");
 		statusBar.setForeground(Color.RED);
 		statusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-		statusBar.setBounds(0, 147, 451, 21);
+		statusBar.setBounds(0, 147, 451, 22);
 		desktopPane.add(statusBar);
 
 		SwingUtilities.invokeLater(new Runnable()

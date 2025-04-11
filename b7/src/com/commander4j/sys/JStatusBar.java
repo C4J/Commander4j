@@ -39,11 +39,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.BevelBorder;
 
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.util.JWait;
 
 class JStatusBar extends JPanel
@@ -80,7 +81,7 @@ class JStatusBar extends JPanel
 
 		add(statusTitle);
 		statusData.setPreferredSize(new Dimension(200, 20));
-		statusData.setHorizontalAlignment(JLabel.LEFT);
+		statusData.setHorizontalAlignment(JLabel4j_std.LEFT);
 		add(statusData);
 		setStatusReady();
 		add(new Separator());
@@ -116,7 +117,7 @@ class JStatusBar extends JPanel
 		JWait.milliSec(1000);
 	}
 
-	class Separator extends JLabel
+	class Separator extends JLabel4j_std
 	{
 		private static final long serialVersionUID = 1;
 
@@ -127,7 +128,7 @@ class JStatusBar extends JPanel
 		}
 	}
 
-	class titlePane extends JLabel
+	class titlePane extends JLabel4j_std
 	{
 		private static final long serialVersionUID = 1;
 
@@ -143,7 +144,7 @@ class JStatusBar extends JPanel
 		}
 	}
 
-	class dataPane extends JLabel
+	class dataPane extends JLabel4j_std
 	{
 		private static final long serialVersionUID = 1;
 

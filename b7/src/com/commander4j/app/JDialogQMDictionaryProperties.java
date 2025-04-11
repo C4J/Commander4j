@@ -39,8 +39,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JSpinner;
+
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -54,6 +53,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -87,7 +87,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 	private JComboBox4j<String> comboBoxDataType;
 	private JCheckBox4j chckbxVisible;
 	private JTextField4j textFieldDefaultValue;
-	private JSpinner spinnerWidth;
+	private JSpinner4j spinnerWidth;
 	private String[] fieldAlignment = new String[] { "Left", "Right", "Center" };
 	private JComboBox4j<String> comboBoxAlignment;
 
@@ -113,7 +113,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 
 		if (dict.isValid(insp) == false) {
 			// dict.create(insp,description);
-			dict.create(insp, JLabel.TRAILING, comboBoxDataType.getSelectedItem().toString(), "","Y", description, visible, Integer.valueOf(spinnerWidth.getValue().toString()), textFieldDefaultValue.getText());
+			dict.create(insp, JLabel4j_std.TRAILING, comboBoxDataType.getSelectedItem().toString(), "","Y", description, visible, Integer.valueOf(spinnerWidth.getValue().toString()), textFieldDefaultValue.getText());
 		}
 
 		dict.setFieldAlignment(comboBoxAlignment.getSelectedItem().toString());
@@ -136,7 +136,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setTitle("Dictionary Properties");
 		this.setResizable(false);
-		this.setSize(593, 336);
+		this.setSize(593, 325);
 
 		Dimension screensize = Common.mainForm.getSize();
 
@@ -158,7 +158,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 		getContentPane().add(desktopPane);
 
 		JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Test_ID"));
-		lblInspectionID.setBounds(8, 27, 92, 16);
+		lblInspectionID.setBounds(8, 22, 92, 22);
 		desktopPane.add(lblInspectionID);
 		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 
@@ -170,7 +170,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 			}
 		});
 		textFieldITestD.setEnabled(false);
-		textFieldITestD.setBounds(112, 22, 231, 28);
+		textFieldITestD.setBounds(112, 22, 231, 22);
 		desktopPane.add(textFieldITestD);
 		textFieldITestD.setColumns(10);
 
@@ -181,7 +181,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 				enableSave();
 			}
 		});
-		textFieldDescription.setBounds(112, 55, 463, 28);
+		textFieldDescription.setBounds(112, 55, 463, 22);
 		desktopPane.add(textFieldDescription);
 		textFieldDescription.setColumns(10);
 
@@ -193,7 +193,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 			}
 		});
 		btnSave.setIcon(Common.icon_update_16x16);
-		btnSave.setBounds(175, 263, 117, 29);
+		btnSave.setBounds(175, 246, 117, 32);
 		desktopPane.add(btnSave);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
@@ -203,17 +203,17 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 			}
 		});
 		btnClose.setIcon(Common.icon_close_16x16);
-		btnClose.setBounds(304, 263, 117, 29);
+		btnClose.setBounds(304, 246, 117, 32);
 		desktopPane.add(btnClose);
 
 		JLabel4j_std lblDescription = new JLabel4j_std(lang.get("lbl_Description"));
 		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDescription.setBounds(8, 60, 92, 16);
+		lblDescription.setBounds(8, 55, 92, 22);
 		desktopPane.add(lblDescription);
 
 		JLabel4j_std lblDataType = new JLabel4j_std(lang.get("lbl_DataType"));
 		lblDataType.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDataType.setBounds(8, 97, 92, 16);
+		lblDataType.setBounds(8, 94, 92, 22);
 		desktopPane.add(lblDataType);
 
 		ComboBoxModel<String> jComboBox1Model = new DefaultComboBoxModel<String>(Common.dataTypes);
@@ -224,7 +224,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 			}
 		});
 		comboBoxDataType.setModel(jComboBox1Model);
-		comboBoxDataType.setBounds(111, 94, 153, 27);
+		comboBoxDataType.setBounds(111, 94, 153, 22);
 		desktopPane.add(comboBoxDataType);
 
 		comboBoxSelectList = new JComboBox4j<String>();
@@ -247,12 +247,12 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 			comboBoxSelectList.addItem(items.get(x));
 		}
 
-		comboBoxSelectList.setBounds(112, 133, 153, 27);
+		comboBoxSelectList.setBounds(112, 133, 153, 22);
 		desktopPane.add(comboBoxSelectList);
 
 		JLabel4j_std lblSelectListID = new JLabel4j_std(lang.get("lbl_List_ID"));
 		lblSelectListID.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblSelectListID.setBounds(8, 138, 92, 16);
+		lblSelectListID.setBounds(8, 133, 92, 22);
 		desktopPane.add(lblSelectListID);
 
 		chckbxVisible = new JCheckBox4j("");
@@ -267,12 +267,12 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 
 		JLabel4j_std lblVisible = new JLabel4j_std(lang.get("lbl_Visible"));
 		lblVisible.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblVisible.setBounds(8, 179, 92, 16);
+		lblVisible.setBounds(8, 173, 92, 22);
 		desktopPane.add(lblVisible);
 
 		JLabel4j_std lblUOM = new JLabel4j_std(lang.get("lbl_default"));
 		lblUOM.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblUOM.setBounds(8, 213, 92, 16);
+		lblUOM.setBounds(8, 206, 92, 22);
 		desktopPane.add(lblUOM);
 
 		textFieldDefaultValue = new JTextField4j(JDBQMDictionary.field_uom);
@@ -284,13 +284,13 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 		});
 		textFieldDefaultValue.setText("");
 		textFieldDefaultValue.setColumns(10);
-		textFieldDefaultValue.setBounds(112, 206, 143, 28);
+		textFieldDefaultValue.setBounds(112, 206, 143, 22);
 		desktopPane.add(textFieldDefaultValue);
 
-		spinnerWidth = new JSpinner();
+		spinnerWidth = new JSpinner4j();
 
-		spinnerWidth.setBounds(494, 132, 68, 28);
-		JSpinner.NumberEditor ne_spinnerWidth = new JSpinner.NumberEditor(spinnerWidth);
+		spinnerWidth.setBounds(494, 133, 68, 22);
+		JSpinner4j.NumberEditor ne_spinnerWidth = new JSpinner4j.NumberEditor(spinnerWidth);
 		ne_spinnerWidth.getTextField().addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -298,7 +298,6 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 			}
 		});
 
-		ne_spinnerWidth.getTextField().setFont(Common.font_std);
 		spinnerWidth.setEditor(ne_spinnerWidth);
 		spinnerWidth.setValue(50);
 		spinnerWidth.addChangeListener(new ChangeListener() {
@@ -311,13 +310,13 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 
 		JLabel4j_std label4j_std = new JLabel4j_std("Width");
 		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std.setBounds(392, 136, 92, 16);
+		label4j_std.setBounds(392, 133, 92, 22);
 		desktopPane.add(label4j_std);
 
 		ComboBoxModel<String> jComboBox1ModelTypes = new DefaultComboBoxModel<String>(fieldAlignment);
 		comboBoxAlignment = new JComboBox4j<String>();
 		comboBoxAlignment.setModel(jComboBox1ModelTypes);
-		comboBoxAlignment.setBounds(464, 94, 98, 27);
+		comboBoxAlignment.setBounds(464, 94, 98, 22);
 		desktopPane.add(comboBoxAlignment);
 
 		// ****************** //
@@ -367,7 +366,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 		JLabel4j_std label4j_std_1 = new JLabel4j_std("Width");
 		label4j_std_1.setText("Align");
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(364, 97, 92, 16);
+		label4j_std_1.setBounds(364, 94, 92, 22);
 		desktopPane.add(label4j_std_1);
 
 	}

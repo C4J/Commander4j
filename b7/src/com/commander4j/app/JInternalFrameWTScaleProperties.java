@@ -220,7 +220,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 424, 572);
+			this.setBounds(25, 25, 424, 554);
 			setVisible(true);
 			this.setTitle("Scale Properties");
 			{
@@ -234,7 +234,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jLabel_Scale.setText(lang.get("lbl_Scale_ID"));
 					jLabel_Scale.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Scale.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Scale.setBounds(0, 10, 149, 21);
+					jLabel_Scale.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldScale = new JTextField4j(JDBWTScale.field_ScaleID);
@@ -242,7 +242,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jTextFieldScale.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldScale.setEditable(false);
 					jTextFieldScale.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldScale.setBounds(155, 10, 237, 24);
+					jTextFieldScale.setBounds(155, 10, 237, 22);
 					jTextFieldScale.setEnabled(false);
 				}
 				{
@@ -251,7 +251,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jLabel_Connection.setText(lang.get("lbl_Connection"));
 					jLabel_Connection.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Connection.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Connection.setBounds(0, 192, 149, 21);
+					jLabel_Connection.setBounds(0, 192, 149, 22);
 				}
 				{
 					comboBox_Connection = new JComboBox4j<String>();
@@ -266,7 +266,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jDesktopPane1.add(comboBox_Connection);
 					comboBox_Connection.setPreferredSize(new java.awt.Dimension(40, 20));
 					comboBox_Connection.setFocusCycleRoot(true);
-					comboBox_Connection.setBounds(155, 192, 109, 24);
+					comboBox_Connection.setBounds(155, 192, 109, 22);
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);
@@ -275,7 +275,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(42, 488, 110, 32);
+					jButtonSave.setBounds(42, 473, 110, 32);
 					jButtonSave.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -289,14 +289,14 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(154, 488, 110, 32);
+					jButtonHelp.setBounds(154, 473, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(266, 488, 110, 32);
+					jButtonClose.setBounds(266, 473, 110, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -311,7 +311,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 46, 149, 21);
+					jLabel_Description.setBounds(0, 43, 149, 22);
 				}
 				
 				{
@@ -320,7 +320,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jLabel_SerialNo.setText(lang.get("lbl_Serial_No"));
 					jLabel_SerialNo.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_SerialNo.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_SerialNo.setBounds(0, 82, 149, 21);
+					jLabel_SerialNo.setBounds(0, 79, 149, 22);
 				}
 
 				{
@@ -328,7 +328,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 43, 237, 24);
+					jTextFieldDescription.setBounds(155, 43, 237, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -344,7 +344,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldSerialNo);
 					jTextFieldSerialNo.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldSerialNo.setFocusCycleRoot(true);
-					jTextFieldSerialNo.setBounds(155, 79, 237, 24);
+					jTextFieldSerialNo.setBounds(155, 79, 237, 22);
 					jTextFieldSerialNo.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -358,14 +358,14 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				label4j_Make.setText(lang.get("lbl_Make"));
 				label4j_Make.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Make.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Make.setBounds(0, 117, 149, 24);
+				label4j_Make.setBounds(0, 117, 149, 22);
 				jDesktopPane1.add(label4j_Make);
 
 				JLabel4j_std label4j_Model = new JLabel4j_std();
 				label4j_Model.setText(lang.get("lbl_Model"));
 				label4j_Model.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Model.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Model.setBounds(0, 156, 149, 24);
+				label4j_Model.setBounds(0, 156, 149, 22);
 				jDesktopPane1.add(label4j_Model);
 				comboBox_Model.addActionListener(new ActionListener()
 				{
@@ -376,7 +376,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				});
 				comboBox_Model.setModel(new DefaultComboBoxModel<String>(new String[] {"N/A", "ICS465", "MONOBLOC", "ZK830","VIPER"}));
 
-				comboBox_Model.setBounds(155, 156, 237, 24);
+				comboBox_Model.setBounds(155, 156, 237, 22);
 				jDesktopPane1.add(comboBox_Model);
 				comboBox_Make.addActionListener(new ActionListener()
 				{
@@ -418,7 +418,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				comboBox_Make.setModel(new DefaultComboBoxModel<String>(new String[]
 				{ "NONE", "AVERY W-TRONIX","METTLER TOLEDO" }));
 
-				comboBox_Make.setBounds(155, 117, 237, 24);
+				comboBox_Make.setBounds(155, 117, 237, 22);
 				jDesktopPane1.add(comboBox_Make);
 
 				{
@@ -434,7 +434,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					{ "1200", "2400", "4800", "9600", "19200", "38400", "57600", "115200" }));
 					comboBox_Baud.setPreferredSize(new Dimension(40, 20));
 					comboBox_Baud.setFocusCycleRoot(true);
-					comboBox_Baud.setBounds(155, 225, 81, 24);
+					comboBox_Baud.setBounds(155, 225, 81, 22);
 					jDesktopPane1.add(comboBox_Baud);
 				}
 				{
@@ -450,7 +450,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					{ "8", "7" }));
 					comboBox_DataBits.setPreferredSize(new Dimension(40, 20));
 					comboBox_DataBits.setFocusCycleRoot(true);
-					comboBox_DataBits.setBounds(155, 261, 49, 24);
+					comboBox_DataBits.setBounds(155, 261, 49, 22);
 					jDesktopPane1.add(comboBox_DataBits);
 				}
 				{
@@ -466,7 +466,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					{ "1", "1.5","2" }));
 					comboBox_StopBits.setPreferredSize(new Dimension(40, 20));
 					comboBox_StopBits.setFocusCycleRoot(true);
-					comboBox_StopBits.setBounds(155, 297, 49, 24);
+					comboBox_StopBits.setBounds(155, 297, 49, 22);
 					jDesktopPane1.add(comboBox_StopBits);
 				}
 				{
@@ -482,7 +482,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					{ "NONE", "XON/XOFF" }));
 					comboBox_FlowControl.setPreferredSize(new Dimension(40, 20));
 					comboBox_FlowControl.setFocusCycleRoot(true);
-					comboBox_FlowControl.setBounds(155, 368, 109, 24);
+					comboBox_FlowControl.setBounds(155, 368, 109, 22);
 					jDesktopPane1.add(comboBox_FlowControl);
 				}
 
@@ -490,35 +490,35 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				label4j_Baud.setText(lang.get("lbl_BaudRate"));
 				label4j_Baud.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Baud.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Baud.setBounds(0, 225, 149, 21);
+				label4j_Baud.setBounds(0, 225, 149, 22);
 				jDesktopPane1.add(label4j_Baud);
 
 				JLabel4j_std label4j_DataBits = new JLabel4j_std();
 				label4j_DataBits.setText(lang.get("lbl_DataBits"));
 				label4j_DataBits.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_DataBits.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_DataBits.setBounds(0, 264, 149, 21);
+				label4j_DataBits.setBounds(0, 261, 149, 22);
 				jDesktopPane1.add(label4j_DataBits);
 
 				JLabel4j_std label4j_StopBits = new JLabel4j_std();
 				label4j_StopBits.setText(lang.get("lbl_StopBits"));
 				label4j_StopBits.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_StopBits.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_StopBits.setBounds(0, 300, 149, 21);
+				label4j_StopBits.setBounds(0, 297, 149, 22);
 				jDesktopPane1.add(label4j_StopBits);
 
 				JLabel4j_std label4j_FlowControl = new JLabel4j_std();
 				label4j_FlowControl.setText(lang.get("lbl_FlowControl"));
 				label4j_FlowControl.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_FlowControl.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_FlowControl.setBounds(0, 371, 149, 21);
+				label4j_FlowControl.setBounds(0, 368, 149, 22);
 				jDesktopPane1.add(label4j_FlowControl);
 				
 				JLabel4j_std label4j_Parity = new JLabel4j_std();
 				label4j_Parity.setText(lang.get("lbl_Parity"));
 				label4j_Parity.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Parity.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Parity.setBounds(0, 336, 149, 21);
+				label4j_Parity.setBounds(0, 333, 149, 22);
 				jDesktopPane1.add(label4j_Parity);
 				
 				comboBox_Parity = new JComboBox4j<String>();
@@ -530,21 +530,21 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				comboBox_Parity.setModel(new DefaultComboBoxModel<String>(new String[] {"None", "Odd", "Even", "Mark", "Space"}));
 				comboBox_Parity.setPreferredSize(new Dimension(40, 20));
 				comboBox_Parity.setFocusCycleRoot(true);
-				comboBox_Parity.setBounds(155, 333, 81, 24);
+				comboBox_Parity.setBounds(155, 333, 81, 22);
 				jDesktopPane1.add(comboBox_Parity);
 				
 				JLabel4j_std label4j_EndOfLine = new JLabel4j_std();
 				label4j_EndOfLine.setText(lang.get("lbl_EndOfLine"));
 				label4j_EndOfLine.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_EndOfLine.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_EndOfLine.setBounds(0, 404, 149, 21);
+				label4j_EndOfLine.setBounds(0, 401, 149, 22);
 				jDesktopPane1.add(label4j_EndOfLine);
 				
 				JLabel4j_std label4j_CommandPrefix = new JLabel4j_std();
 				label4j_CommandPrefix.setText(lang.get("lbl_CommandPrefix"));
 				label4j_CommandPrefix.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_CommandPrefix.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_CommandPrefix.setBounds(0, 437, 149, 21);
+				label4j_CommandPrefix.setBounds(0, 434, 149, 22);
 				jDesktopPane1.add(label4j_CommandPrefix);
 				
 				comboBox_EndOfLine = new JComboBox4j<String>();
@@ -556,7 +556,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				comboBox_EndOfLine.setModel(new DefaultComboBoxModel<String>(new String[] {"<NONE>", "<CR>", "<LF>","<CR><LF>", "<CR><LF><EOT>"}));
 				comboBox_EndOfLine.setPreferredSize(new Dimension(40, 20));
 				comboBox_EndOfLine.setFocusCycleRoot(true);
-				comboBox_EndOfLine.setBounds(155, 401, 134, 24);
+				comboBox_EndOfLine.setBounds(155, 401, 134, 22);
 				jDesktopPane1.add(comboBox_EndOfLine);
 				
 				
@@ -569,7 +569,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				comboBox_CommandPrefix.setModel(new DefaultComboBoxModel<String>(new String[] {"<NONE>", "<CR>", "<LF>","<CR><LF>", "<CR><LF><EOT>"}));
 				comboBox_CommandPrefix.setPreferredSize(new Dimension(40, 20));
 				comboBox_CommandPrefix.setFocusCycleRoot(true);
-				comboBox_CommandPrefix.setBounds(155, 434, 134, 24);
+				comboBox_CommandPrefix.setBounds(155, 434, 134, 22);
 				jDesktopPane1.add(comboBox_CommandPrefix);
 
 			}

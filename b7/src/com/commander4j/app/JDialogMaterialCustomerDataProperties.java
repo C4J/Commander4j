@@ -132,7 +132,7 @@ public class JDialogMaterialCustomerDataProperties extends javax.swing.JDialog
 		getContentPane().add(desktopPane);
 		
 		JLabel4j_std lblIMaterial = new JLabel4j_std(lang.get("lbl_Material"));
-		lblIMaterial.setBounds(8, 27, 114, 28);
+		lblIMaterial.setBounds(8, 27, 114, 22);
 		desktopPane.add(lblIMaterial);
 		lblIMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
 		
@@ -144,7 +144,7 @@ public class JDialogMaterialCustomerDataProperties extends javax.swing.JDialog
 			}
 		});
 		textFieldMaterialID.setEnabled(false);
-		textFieldMaterialID.setBounds(134, 27, 153, 28);
+		textFieldMaterialID.setBounds(134, 27, 153, 22);
 		desktopPane.add(textFieldMaterialID);
 		textFieldMaterialID.setText(material);
 		
@@ -156,7 +156,7 @@ public class JDialogMaterialCustomerDataProperties extends javax.swing.JDialog
 				enableSave();
 			}
 		});
-		textFieldData.setBounds(299, 106, 537, 28);
+		textFieldData.setBounds(299, 106, 537, 22);
 		desktopPane.add(textFieldData);
 		
 		btnSave = new JButton4j(lang.get("btn_Save"));
@@ -167,7 +167,7 @@ public class JDialogMaterialCustomerDataProperties extends javax.swing.JDialog
 			}
 		});
 		btnSave.setIcon(Common.icon_update_16x16);
-		btnSave.setBounds(296, 150, 117, 29);
+		btnSave.setBounds(296, 150, 117, 32);
 		desktopPane.add(btnSave);
 		
 		btnClose = new JButton4j(lang.get("btn_Close"));
@@ -177,12 +177,12 @@ public class JDialogMaterialCustomerDataProperties extends javax.swing.JDialog
 			}
 		});
 		btnClose.setIcon(Common.icon_close_16x16);
-		btnClose.setBounds(417, 150, 117, 29);
+		btnClose.setBounds(417, 150, 117, 32);
 		desktopPane.add(btnClose);
 		
 		JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Data_ID"));
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(8, 106, 114, 28);
+		label4j_std_1.setBounds(8, 106, 114, 22);
 		desktopPane.add(label4j_std_1);
 		
 		material = JUtility.replaceNullStringwithBlank(material);
@@ -190,27 +190,27 @@ public class JDialogMaterialCustomerDataProperties extends javax.swing.JDialog
 		textFieldMaterialID.setText(material);
 	
 		textFieldCustomerID.setEnabled(false);
-		textFieldCustomerID.setBounds(134, 67, 153, 28);
+		textFieldCustomerID.setBounds(134, 67, 153, 22);
 		textFieldCustomerID.setText(customer);
 		desktopPane.add(textFieldCustomerID);
 		
 		JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Customer_ID"));
 		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std.setBounds(8, 67, 114, 28);
+		label4j_std.setBounds(8, 67, 114, 22);
 		desktopPane.add(label4j_std);
 		
 
 		textFieldMaterialDescription.setEnabled(false);
-		textFieldMaterialDescription.setBounds(299, 27, 537, 28);
+		textFieldMaterialDescription.setBounds(299, 27, 537, 22);
 		desktopPane.add(textFieldMaterialDescription);
 		
 		textFieldCustomerDescription.setEnabled(false);
-		textFieldCustomerDescription.setBounds(299, 67, 537, 28);
+		textFieldCustomerDescription.setBounds(299, 67, 537, 22);
 		desktopPane.add(textFieldCustomerDescription);
 		
 		JTextField4j textFieldDataID = new JTextField4j(JDBMaterialCustomerData.field_data_id);
 		textFieldDataID.setEnabled(false);
-		textFieldDataID.setBounds(134, 106, 153, 28);
+		textFieldDataID.setBounds(134, 106, 153, 22);
 		textFieldDataID.setText(dataid);
 		desktopPane.add(textFieldDataID);
 

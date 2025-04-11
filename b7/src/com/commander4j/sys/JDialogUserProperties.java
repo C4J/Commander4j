@@ -59,9 +59,9 @@ import com.commander4j.db.JDBUser;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
@@ -193,7 +193,7 @@ public class JDialogUserProperties extends JDialog
 
 		try
 		{
-			lbl_accountExpiryDate.setBounds(201, 333, 128, 25);
+			lbl_accountExpiryDate.setBounds(201, 335, 128, 22);
 			lbl_accountExpiryDate.setDate(user.getAccountExpiryDate());
 		}
 		catch (Exception e)
@@ -281,7 +281,7 @@ public class JDialogUserProperties extends JDialog
 	{
 
 		this.setPreferredSize(new java.awt.Dimension(417, 432));
-		this.setBounds(0, 0, 418, 511);
+		this.setBounds(0, 0, 418, 526);
 		setModal(true);
 		this.setTitle("User Properties");
 		getContentPane().setLayout(null);
@@ -293,54 +293,54 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1 = new JDesktopPane();
 			jDesktopPane1.setBackground(Common.color_app_window);
 			lbl_Comment = new JLabel4j_std();
-			lbl_Comment.setBounds(0, 35, 158, 20);
+			lbl_Comment.setBounds(0, 34, 163, 22);
 			lbl_Password1 = new JLabel4j_std();
-			lbl_Password1.setBounds(0, 62, 158, 20);
+			lbl_Password1.setBounds(0, 62, 163, 22);
 			lbl_UserID = new JLabel4j_std();
-			lbl_UserID.setBounds(0, 7, 158, 20);
+			lbl_UserID.setBounds(0, 7, 163, 22);
 			lbl_Password2 = new JLabel4j_std();
-			lbl_Password2.setBounds(0, 89, 158, 20);
+			lbl_Password2.setBounds(0, 89, 163, 22);
 			jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
-			jTextFieldUserID.setBounds(172, 7, 150, 20);
+			jTextFieldUserID.setBounds(172, 7, 150, 22);
 			jTextFieldComment = new JTextField4j(JDBUser.field_comment);
-			jTextFieldComment.setBounds(172, 34, 217, 21);
+			jTextFieldComment.setBounds(172, 34, 217, 22);
 			jPasswordField1 = new JPasswordField(JDBUser.field_password);
-			jPasswordField1.setBounds(172, 62, 150, 20);
+			jPasswordField1.setBounds(172, 62, 150, 22);
 			jPasswordField2 = new JPasswordField(JDBUser.field_password);
-			jPasswordField2.setBounds(172, 89, 150, 20);
+			jPasswordField2.setBounds(172, 89, 150, 22);
 			jComboBoxLanguage = new JComboBox4j<String>();
-			jComboBoxLanguage.setBounds(172, 116, 69, 21);
+			jComboBoxLanguage.setBounds(172, 116, 69, 22);
 			jComboBoxLanguage.setModel(new DefaultComboBoxModel<String>(Common.languages));
 			jTextFieldLastLogon = new JTextField4j();
-			jTextFieldLastLogon.setBounds(172, 144, 150, 20);
+			jTextFieldLastLogon.setBounds(172, 144, 150, 22);
 			jTextFieldLastPasswordChange = new JTextField4j();
-			jTextFieldLastPasswordChange.setBounds(172, 171, 150, 20);
+			jTextFieldLastPasswordChange.setBounds(172, 171, 150, 22);
 			lbl_Language = new JLabel4j_std();
-			lbl_Language.setBounds(0, 117, 158, 20);
+			lbl_Language.setBounds(0, 116, 163, 22);
 			lbl_LastLogon = new JLabel4j_std();
-			lbl_LastLogon.setBounds(0, 144, 158, 20);
+			lbl_LastLogon.setBounds(0, 144, 163, 22);
 			lbl_PasswordChanged = new JLabel4j_std();
-			lbl_PasswordChanged.setBounds(0, 171, 158, 20);
+			lbl_PasswordChanged.setBounds(0, 171, 163, 22);
 			lbl_AccountLocked = new JLabel4j_std();
-			lbl_AccountLocked.setBounds(0, 225, 158, 20);
+			lbl_AccountLocked.setBounds(0, 225, 163, 22);
 			lbl_PasswordExpires = new JLabel4j_std();
-			lbl_PasswordExpires.setBounds(0, 253, 158, 20);
+			lbl_PasswordExpires.setBounds(0, 253, 163, 22);
 			lbl_BadPasswords = new JLabel4j_std();
-			lbl_BadPasswords.setBounds(0, 308, 158, 20);
+			lbl_BadPasswords.setBounds(0, 308, 163, 22);
 			jTextFieldBadPasswords = new JTextField4j();
-			jTextFieldBadPasswords.setBounds(172, 308, 30, 20);
+			jTextFieldBadPasswords.setBounds(172, 308, 30, 22);
 			lbl_ChangeAllowed = new JLabel4j_std();
-			lbl_ChangeAllowed.setBounds(0, 281, 158, 20);
+			lbl_ChangeAllowed.setBounds(0, 280, 163, 22);
 			jCheckBoxAccountLocked = new JCheckBox4j();
-			jCheckBoxAccountLocked.setBounds(170, 224, 21, 21);
+			jCheckBoxAccountLocked.setBounds(170, 224, 22, 22);
 			jCheckBoxPasswordExpires = new JCheckBox4j();
-			jCheckBoxPasswordExpires.setBounds(169, 252, 21, 21);
+			jCheckBoxPasswordExpires.setBounds(169, 252, 22, 22);
 			jCheckBoxPasswordChangeAllowed = new JCheckBox4j();
-			jCheckBoxPasswordChangeAllowed.setBounds(169, 280, 21, 21);
+			jCheckBoxPasswordChangeAllowed.setBounds(169, 280, 22, 22);
 
 			jCheckBoxAccountEnabled = new JCheckBox4j();
 			jCheckBoxAccountEnabled.setBackground(Color.WHITE);
-			jCheckBoxAccountEnabled.setBounds(170, 197, 21, 21);
+			jCheckBoxAccountEnabled.setBounds(170, 197, 22, 22);
 			jCheckBoxAccountEnabled.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -351,9 +351,9 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1.add(jCheckBoxAccountEnabled);
 
 			jButtonSave = new JButton4j(Common.icon_update_16x16);
-			jButtonSave.setBounds(20, 420, 112, 32);
+			jButtonSave.setBounds(20, 425, 112, 32);
 			jButtonCancel = new JButton4j(Common.icon_close_16x16);
-			jButtonCancel.setBounds(284, 420, 112, 32);
+			jButtonCancel.setBounds(284, 425, 112, 32);
 
 			BorderLayout thisLayout = new BorderLayout();
 			this.getContentPane().setLayout(thisLayout);
@@ -385,7 +385,7 @@ public class JDialogUserProperties extends JDialog
 
 			jCheckBoxPasswordChangeRequired = new JCheckBox4j();
 			jCheckBoxPasswordChangeRequired.setBackground(Color.WHITE);
-			jCheckBoxPasswordChangeRequired.setBounds(169, 363, 22, 21);
+			jCheckBoxPasswordChangeRequired.setBounds(169, 363, 22, 22);
 			jDesktopPane1.add(jCheckBoxPasswordChangeRequired);
 			jCheckBoxPasswordChangeRequired.addActionListener(new ActionListener()
 			{
@@ -502,7 +502,6 @@ public class JDialogUserProperties extends JDialog
 			});
 
 			jDesktopPane1.add(jCheckBoxPasswordExpires);
-			jCheckBoxPasswordExpires.setFont(Common.font_std);
 			jCheckBoxPasswordExpires.setBackground(new java.awt.Color(255, 255, 255));
 			jCheckBoxPasswordExpires.addActionListener(new ActionListener()
 			{
@@ -539,14 +538,14 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1.add(jButtonCancel);
 			{
 				jButtonHelp = new JButton4j(Common.icon_help_16x16);
-				jButtonHelp.setBounds(152, 420, 112, 32);
+				jButtonHelp.setBounds(152, 425, 112, 32);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 			}
 			{
 				jCheckBoxAccountExpires = new JCheckBox4j();
-				jCheckBoxAccountExpires.setBounds(169, 335, 22, 21);
+				jCheckBoxAccountExpires.setBounds(169, 335, 22, 22);
 				jDesktopPane1.add(jCheckBoxAccountExpires);
 				jCheckBoxAccountExpires.setBackground(new java.awt.Color(255, 255, 255));
 				jCheckBoxAccountExpires.addActionListener(new ActionListener()
@@ -559,14 +558,14 @@ public class JDialogUserProperties extends JDialog
 			}
 			{
 				lbl_AccountExpires = new JLabel4j_std();
-				lbl_AccountExpires.setBounds(0, 336, 158, 20);
+				lbl_AccountExpires.setBounds(0, 335, 163, 22);
 				jDesktopPane1.add(lbl_AccountExpires);
 				lbl_AccountExpires.setText(lang.get("lbl_User_Account_Expires"));
 				lbl_AccountExpires.setHorizontalAlignment(SwingConstants.TRAILING);
 			}
 			{
 				jLabelAccountExpiryDate = new JLabel4j_std();
-				jLabelAccountExpiryDate.setBounds(0, 363, 158, 20);
+				jLabelAccountExpiryDate.setBounds(0, 363, 163, 22);
 				jDesktopPane1.add(jLabelAccountExpiryDate);
 				jLabelAccountExpiryDate.setText(lang.get("lbl_Password_Change_Required"));
 				jLabelAccountExpiryDate.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -599,7 +598,7 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1.add(lbl_accountExpiryDate);
 
 			lbl_EmailAddress = new JTextField4j();
-			lbl_EmailAddress.setBounds(172, 392, 217, 21);
+			lbl_EmailAddress.setBounds(172, 393, 217, 22);
 			lbl_EmailAddress.addKeyListener(new KeyAdapter()
 			{
 				public void keyTyped(final KeyEvent e)
@@ -611,20 +610,20 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1.add(lbl_EmailAddress);
 
 			jLabel2_1 = new JLabel4j_std();
-			jLabel2_1.setBounds(0, 393, 158, 20);
+			jLabel2_1.setBounds(0, 393, 163, 22);
 			jLabel2_1.setHorizontalAlignment(SwingConstants.TRAILING);
 			jLabel2_1.setText(lang.get("lbl_User_Account_Email"));
 			jDesktopPane1.add(jLabel2_1);
 
 			calendarButton = new JCalendarButton(lbl_accountExpiryDate);
-			calendarButton.setBounds(329, 335, 21, 21);
+			calendarButton.setBounds(329, 335, 22, 22);
 			calendarButton.setEnabled(false);
 			jDesktopPane1.add(calendarButton);
 
 			JLabel4j_std lbl_AccountEnabled = new JLabel4j_std();
 			lbl_AccountEnabled.setText(lang.get("lbl_User_Account_Enabled"));
 			lbl_AccountEnabled.setHorizontalAlignment(SwingConstants.TRAILING);
-			lbl_AccountEnabled.setBounds(0, 198, 158, 20);
+			lbl_AccountEnabled.setBounds(0, 198, 163, 22);
 			jDesktopPane1.add(lbl_AccountEnabled);
 
 			JButton4j jButtonLock = new JButton4j(Common.icon_lock_16x16);
@@ -636,12 +635,12 @@ public class JDialogUserProperties extends JDialog
 					randomPassword();
 				}
 			});
-			jButtonLock.setBounds(326, 60, 21, 25);
+			jButtonLock.setBounds(322, 62, 22, 22);
 			jDesktopPane1.add(jButtonLock);
 
 			jStatusText.setForeground(Color.RED);
 			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(0, 464, 418, 21);
+			jStatusText.setBounds(0, 469, 418, 21);
 			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			jDesktopPane1.add(jStatusText);
 

@@ -50,7 +50,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
@@ -65,6 +64,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.tablemodel.JDBInterfaceTableModel;
@@ -89,20 +89,20 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 {
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonExcel;
+	private JButton4j jButtonClear;
 	private JLabel4j_std jStatusBar;
 	private JButton4j jButtonAdd;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonEdit;
 	private JButton4j jButtonClose;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JTextField4j jTextFieldPath;
 	private JComboBox4j<String> jComboBoxInterfaceDirection;
 	private JLabel4j_std jLabel5;
 	private JComboBox4j<String> jComboBoxSortBy;
 	private JLabel4j_std jLabel10;
 	private JLabel4j_std jLabel3;
-	private JTextField4j jTextFieldinterfaceType;
 	private JLabel4j_std jLabel1;
 	private JTable4j jTable1;
 	private JButton4j jButtonHelp;
@@ -114,6 +114,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private PreparedStatement listStatement;
+	private JComboBox4j<String> comboBoxInterfaceType = new JComboBox4j<String>();
 
 	public JInternalFrameInterfaceAdmin()
 	{
@@ -141,7 +142,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 	private void clearFilter()
 	{
 
-		jTextFieldinterfaceType.setText("");
+		comboBoxInterfaceType.setSelectedItem("");
 
 		jTextFieldPath.setText("");
 
@@ -157,19 +158,20 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		if (row >= 0)
 		{
 
-			if (fieldname.equals("Interface_Type") == true)
+			if (fieldname.equals("INTERFACE_TYPE") == true)
 			{
-				jTextFieldinterfaceType.setText(jTable1.getValueAt(row, 0).toString());
+				comboBoxInterfaceType.setSelectedItem(jTable1.getValueAt(row, 0).toString());
 			}
 
-			if (fieldname.equals("Interface_Direction") == true)
+			if (fieldname.equals("PATH") == true)
+
 			{
-				jTextFieldPath.setText(jTable1.getValueAt(row, 1).toString());
+				jTextFieldPath.setText(jTable1.getValueAt(row, 5).toString());
 			}
 
-			if (fieldname.equals("Path") == true)
+			if (fieldname.equals("INTERFACE_DIRECTION") == true)
 			{
-				jComboBoxInterfaceDirection.setSelectedItem(jTable1.getValueAt(row, 2).toString());
+				jComboBoxInterfaceDirection.setSelectedItem(jTable1.getValueAt(row, 1).toString());
 			}
 
 			search();
@@ -181,7 +183,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 	{
 		this();
 		ltype = material;
-		jTextFieldinterfaceType.setText(ltype);
+		comboBoxInterfaceType.setSelectedItem("");
 		jTextFieldPath.setText(ldirection);
 		buildSQL();
 		populateList();
@@ -289,7 +291,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		this();
 		ltype = type;
 		ldirection = direction;
-		jTextFieldinterfaceType.setText(ltype);
+		comboBoxInterfaceType.setSelectedItem(ltype);
 		jTextFieldPath.setText(ldirection);
 		buildSQL();
 		populateList();
@@ -301,16 +303,25 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		JDBQuery.closeStatement(listStatement);
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+		
 		query.clear();
 
 		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}SYS_INTERFACE"));
-		query.addParamtoSQL("interface_type=", jTextFieldinterfaceType.getText());
-		query.addParamtoSQL("path=", jTextFieldPath.getText());
-		query.addParamtoSQL("interface_direction=", jComboBoxInterfaceDirection.getSelectedItem().toString());
+		
+		if (comboBoxInterfaceType.getSelectedItem().toString().equals("") == false)
+		{
+			query.addParamtoSQL("INTERFACE_TYPE=", comboBoxInterfaceType.getSelectedItem().toString());
+		}
+		
+		query.addParamtoSQL("PATH=", jTextFieldPath.getText());
+		
+		query.addParamtoSQL("INTERFACE_DIRECTION=", jComboBoxInterfaceDirection.getSelectedItem().toString());
 
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+		query.applyRestriction(false, Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), 1000);
 
 		query.bindParams();
+		
 		listStatement = query.getPreparedStatement();
 	}
 
@@ -578,8 +589,15 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					}
 				}
 				{
+					comboBoxInterfaceType.setMaximumRowCount(20);
+
+					comboBoxInterfaceType.setModel(new DefaultComboBoxModel<String>(Common.messageTypesincBlank));
+					comboBoxInterfaceType.setBounds(152, 11, 210, 22);
+					jDesktopPane1.add(comboBoxInterfaceType);
+				}
+				{
 					jButtonSearch = new JButton4j(Common.icon_search_16x16);
-					jButtonSearch.setBounds(1, 143, 134, 32);
+					jButtonSearch.setBounds(2, 143, 118, 32);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.addActionListener(new ActionListener()
@@ -593,7 +611,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				}
 				{
 					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
-					jButtonEdit.setBounds(406, 143, 134, 32);
+					jButtonEdit.setBounds(482, 143, 118, 32);
 
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
@@ -608,14 +626,14 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.setBounds(676, 143, 134, 32);
+					jButtonHelp.setBounds(722, 143, 118, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jButtonClose.setBounds(811, 143, 134, 32);
+					jButtonClose.setBounds(842, 143, 118, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
@@ -630,46 +648,41 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				}
 				{
 					jLabel1 = new JLabel4j_std();
-					jLabel1.setBounds(12, 11, 133, 21);
+					jLabel1.setBounds(12, 11, 133, 22);
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Interface_Type"));
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jTextFieldinterfaceType = new JTextField4j();
-					jTextFieldinterfaceType.setBounds(152, 11, 380, 21);
-					jDesktopPane1.add(jTextFieldinterfaceType);
-				}
-				{
 					jLabel3 = new JLabel4j_std();
-					jLabel3.setBounds(12, 77, 133, 21);
+					jLabel3.setBounds(12, 77, 133, 22);
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Interface_Path"));
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldPath = new JTextField4j();
-					jTextFieldPath.setBounds(152, 77, 694, 21);
+					jTextFieldPath.setBounds(152, 77, 694, 22);
 					jDesktopPane1.add(jTextFieldPath);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
-					jLabel10.setBounds(12, 112, 133, 21);
+					jLabel10.setBounds(12, 110, 133, 22);
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-					{ "Interface_Type", "Interface_Direction", "Path" });
+					{ "INTERFACE_TYPE", "INTERFACE_DIRECTION", "PATH" });
 					jComboBoxSortBy = new JComboBox4j<String>();
-					jComboBoxSortBy.setBounds(152, 110, 209, 23);
+					jComboBoxSortBy.setBounds(152, 110, 209, 22);
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
-					jLabel5.setBounds(12, 46, 133, 21);
+					jLabel5.setBounds(12, 44, 133, 22);
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Interface_Direction"));
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -678,13 +691,13 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(new String[]
 					{ "", "Input", "Output" });
 					jComboBoxInterfaceDirection = new JComboBox4j<String>();
-					jComboBoxInterfaceDirection.setBounds(152, 44, 134, 23);
+					jComboBoxInterfaceDirection.setBounds(152, 44, 134, 22);
 					jDesktopPane1.add(jComboBoxInterfaceDirection);
 					jComboBoxInterfaceDirection.setModel(jComboBoxStatusModel);
 				}
 				{
-					jToggleButtonSequence = new JToggleButton();
-					jToggleButtonSequence.setBounds(367, 110, 21, 21);
+					jToggleButtonSequence = new JToggleButton4j();
+					jToggleButtonSequence.setBounds(361, 110, 22, 22);
 					jDesktopPane1.add(jToggleButtonSequence);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
@@ -697,7 +710,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 				{
 					jButtonAdd = new JButton4j(Common.icon_add_16x16);
-					jButtonAdd.setBounds(136, 143, 134, 32);
+					jButtonAdd.setBounds(242, 143, 118, 32);
 					jButtonAdd.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -722,7 +735,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.setBounds(541, 143, 134, 32);
+					jButtonExcel.setBounds(602, 143, 118, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -734,10 +747,25 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jDesktopPane1.add(jButtonExcel);
 				}
+				
+				{
+					jButtonClear = new JButton4j(Common.icon_clear_16x16);
+					jButtonClear.setBounds(122, 143, 118, 32);
+					jButtonClear.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							clearFilter();
+						}
+					});
+					jButtonClear.setMnemonic(KeyEvent.VK_Z);
+					jButtonClear.setText(lang.get("btn_Clear_Filter"));
+					jDesktopPane1.add(jButtonClear);
+				}
 
 				{
 					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
-					jButtonDelete.setBounds(271, 143, 134, 32);
+					jButtonDelete.setBounds(362, 143, 118, 32);
 					jButtonDelete.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)

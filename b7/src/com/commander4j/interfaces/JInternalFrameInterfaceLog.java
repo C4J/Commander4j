@@ -51,7 +51,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -68,9 +68,11 @@ import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
@@ -83,7 +85,6 @@ import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
 import com.commander4j.messages.OutgoingProductionUnConfirm;
 import com.commander4j.sys.Common;
 import com.commander4j.tablemodel.JDBInterfaceLogTableModel;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
@@ -96,7 +97,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 	private JButton4j jButtonRefresh;
 	private JScrollPane jScrollPane1;
 	private SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
-	private JSpinner spinner = new JSpinner();
+	private JSpinner4j spinner = new JSpinner4j();
 	private int row;
 	private SelectionListener listener = new SelectionListener();
 	private JDateControl dateControlfrom = new JDateControl();
@@ -639,139 +640,137 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 						jSpinnerIntModel.setMaximum(5000);
 						jSpinnerIntModel.setStepSize(100);
 						spinner.setModel(jSpinnerIntModel);
-						JSpinner.NumberEditor ne = new JSpinner.NumberEditor(spinner);
-						ne.getTextField().setFont(Common.font_std); 
+						JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(spinner);
 						spinner.setEditor(ne);
-						spinner.setFont(Common.font_std);
 						spinner.setBounds(896, 109, 80, 22);
 						jDesktopPane1.add(spinner);
 					}
 					{
 						JLabel4j_std lblErrorMessage = new JLabel4j_std(lang.get("lbl_Message_Error"));
-						lblErrorMessage.setBounds(9, 513, 96, 21);
+						lblErrorMessage.setBounds(9, 513, 96, 22);
 						lblErrorMessage.setHorizontalAlignment(SwingConstants.TRAILING);
 						jDesktopPane1.add(lblErrorMessage);
 					}
 					{
 						errorMessage = new JTextField4j();
 						errorMessage.setEditable(false);
-						errorMessage.setBounds(110, 513, 860, 20);
+						errorMessage.setBounds(110, 513, 860, 22);
 						jDesktopPane1.add(errorMessage);
 						errorMessage.setColumns(10);
 					}
 					{
 						JLabel4j_std lblRowsToDisplay = new JLabel4j_std(lang.get("lbl_Limit"));
 						lblRowsToDisplay.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblRowsToDisplay.setBounds(779, 109, 81, 21);
+						lblRowsToDisplay.setBounds(733, 109, 127, 22);
 						jDesktopPane1.add(lblRowsToDisplay);
 					}
 
 					lblMessageDate = new JLabel4j_std(lang.get("lbl_Message_Date"));
 					lblMessageDate.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMessageDate.setBounds(19, 483, 84, 21);
+					lblMessageDate.setBounds(19, 483, 84, 22);
 					jDesktopPane1.add(lblMessageDate);
 					{
 						messageDate = new JTextField4j();
 						messageDate.setEditable(false);
 						messageDate.setColumns(10);
-						messageDate.setBounds(110, 483, 146, 20);
+						messageDate.setBounds(110, 483, 146, 22);
 						jDesktopPane1.add(messageDate);
 					}
 					{
 						workstation = new JTextField4j();
 						workstation.setEditable(false);
 						workstation.setColumns(10);
-						workstation.setBounds(368, 483, 376, 20);
+						workstation.setBounds(368, 483, 376, 22);
 						jDesktopPane1.add(workstation);
 					}
 					{
 						JLabel4j_std lblWorkstation = new JLabel4j_std(lang.get("lbl_Workstation"));
 						lblWorkstation.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblWorkstation.setBounds(280, 483, 81, 21);
+						lblWorkstation.setBounds(280, 483, 81, 22);
 						jDesktopPane1.add(lblWorkstation);
 					}
 					{
 						comboBoxInterfaceType.setMaximumRowCount(20);
 
 						comboBoxInterfaceType.setModel(new DefaultComboBoxModel<String>(Common.messageTypesincBlank));
-						comboBoxInterfaceType.setBounds(766, 12, 210, 23);
+						comboBoxInterfaceType.setBounds(766, 11, 210, 22);
 						jDesktopPane1.add(comboBoxInterfaceType);
 					}
 					{
 
 						comboBoxDirection.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Input", "Output" }));
-						comboBoxDirection.setBounds(130, 12, 136, 23);
+						comboBoxDirection.setBounds(130, 11, 136, 22);
 						jDesktopPane1.add(comboBoxDirection);
 					}
 					{
 
 						comboBoxStatus.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Error", "Success", "Warning" }));
-						comboBoxStatus.setBounds(457, 12, 113, 23);
+						comboBoxStatus.setBounds(492, 11, 113, 22);
 						jDesktopPane1.add(comboBoxStatus);
 					}
 					{
 
 						comboBoxAction.setModel(new DefaultComboBoxModel<String>(new String[] { "", "DB Update", "File Write" }));
-						comboBoxAction.setBounds(132, 74, 136, 23);
+						comboBoxAction.setBounds(130, 77, 136, 22);
 						jDesktopPane1.add(comboBoxAction);
 					}
 					{
 						JLabel4j_std lblMessageType = new JLabel4j_std(lang.get("lbl_Message_Type"));
 						lblMessageType.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblMessageType.setBounds(588, 12, 172, 25);
+						lblMessageType.setBounds(588, 11, 172, 22);
 						jDesktopPane1.add(lblMessageType);
 					}
 					{
 						JLabel4j_std lblDirection = new JLabel4j_std(lang.get("lbl_Interface_Direction"));
 						lblDirection.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblDirection.setBounds(5, 12, 115, 25);
+						lblDirection.setBounds(5, 11, 115, 22);
 						jDesktopPane1.add(lblDirection);
 					}
 					{
 						JLabel4j_std lblStatus = new JLabel4j_std(lang.get("lbl_Message_Status"));
 						lblStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblStatus.setBounds(287, 12, 163, 25);
+						lblStatus.setBounds(320, 11, 163, 22);
 						jDesktopPane1.add(lblStatus);
 					}
 					{
 						textFieldMessageRef = new JTextField4j(JDBInterfaceLog.field_message_ref);
-						textFieldMessageRef.setBounds(130, 45, 213, 22);
+						textFieldMessageRef.setBounds(130, 44, 213, 22);
 						jDesktopPane1.add(textFieldMessageRef);
 						textFieldMessageRef.setColumns(10);
 					}
 					{
 						textFieldMessageInfo = new JTextField4j(JDBInterfaceLog.field_message_information);
 						textFieldMessageInfo.setColumns(10);
-						textFieldMessageInfo.setBounds(492, 45, 484, 22);
+						textFieldMessageInfo.setBounds(492, 44, 484, 22);
 						jDesktopPane1.add(textFieldMessageInfo);
 					}
 					{
 						JLabel4j_std lblMessageRef = new JLabel4j_std(lang.get("lbl_Message_Reference"));
 						lblMessageRef.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblMessageRef.setBounds(5, 42, 113, 25);
+						lblMessageRef.setBounds(5, 44, 115, 22);
 						jDesktopPane1.add(lblMessageRef);
 					}
 					{
 						JLabel4j_std lblMessageInfo = new JLabel4j_std(lang.get("lbl_Message_Information"));
 						lblMessageInfo.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblMessageInfo.setBounds(356, 46, 127, 21);
+						lblMessageInfo.setBounds(356, 44, 127, 22);
 						jDesktopPane1.add(lblMessageInfo);
 					}
 					{
 						JLabel4j_std lblEventDate = new JLabel4j_std();
 						lblEventDate.setText(lang.get("lbl_Message_Event_Date"));
 						lblEventDate.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblEventDate.setBounds(3, 110, 113, 21);
+						lblEventDate.setBounds(5, 110, 115, 22);
 						jDesktopPane1.add(lblEventDate);
 					}
 					{
 
-						dateControlfrom.setBounds(157, 106, 125, 25);
+						dateControlfrom.setBounds(156, 110, 128, 22);
 						jDesktopPane1.add(dateControlfrom);
 					}
 					{
 						dateControlTo.setEnabled(false);
-						dateControlTo.setBounds(312, 106, 125, 25);
+						dateControlTo.setBounds(318, 110, 128, 22);
 						jDesktopPane1.add(dateControlTo);
 					}
 					jButtonClose.addActionListener(new ActionListener() {
@@ -824,26 +823,26 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 				});
 
 				checkBoxEventDate.setBackground(Color.WHITE);
-				checkBoxEventDate.setBounds(124, 110, 21, 21);
+				checkBoxEventDate.setBounds(130, 110, 21, 22);
 				jDesktopPane1.add(checkBoxEventDate);
 			}
 			{
 
 				checkBoxLimit.setSelected(true);
 				checkBoxLimit.setBackground(Color.WHITE);
-				checkBoxLimit.setBounds(863, 109, 21, 21);
+				checkBoxLimit.setBounds(868, 109, 21, 22);
 				jDesktopPane1.add(checkBoxLimit);
 			}
 			{
 				JLabel4j_std label = new JLabel4j_std(lang.get("lbl_Message_Error"));
 				label.setHorizontalAlignment(SwingConstants.TRAILING);
-				label.setBounds(356, 72, 127, 25);
+				label.setBounds(356, 77, 127, 22);
 				jDesktopPane1.add(label);
 			}
 			{
 				textFielderrorMessage = new JTextField4j(JDBInterfaceLog.field_message_error);
 				textFielderrorMessage.setColumns(10);
-				textFielderrorMessage.setBounds(492, 75, 484, 22);
+				textFielderrorMessage.setBounds(492, 77, 484, 22);
 				jDesktopPane1.add(textFielderrorMessage);
 			}
 			{
@@ -881,14 +880,14 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			{
 				lblFilename = new JLabel4j_std(lang.get("lbl_Interface_Filename"));
 				lblFilename.setHorizontalAlignment(SwingConstants.TRAILING);
-				lblFilename.setBounds(9, 543, 96, 21);
+				lblFilename.setBounds(9, 543, 96, 22);
 				jDesktopPane1.add(lblFilename);
 			}
 
 			textFieldFilename = new JTextField4j();
 			textFieldFilename.setEditable(false);
 			textFieldFilename.setColumns(10);
-			textFieldFilename.setBounds(110, 543, 860, 20);
+			textFieldFilename.setBounds(110, 543, 860, 22);
 			jDesktopPane1.add(textFieldFilename);
 
 			JButton4j btnResubmit = new JButton4j(Common.icon_release_16x16);
@@ -929,17 +928,17 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			
 			calendarButtonFrom = new JCalendarButton(dateControlfrom);
 			calendarButtonFrom.setEnabled(false);
-			calendarButtonFrom.setBounds(284, 110, 21, 21);
+			calendarButtonFrom.setBounds(285, 110, 21, 22);
 			jDesktopPane1.add(calendarButtonFrom);
 			
 			calendarButtonTo = new JCalendarButton(dateControlTo);
 			calendarButtonTo.setEnabled(false);
-			calendarButtonTo.setBounds(439, 110, 21, 21);
+			calendarButtonTo.setBounds(447, 110, 21, 22);
 			jDesktopPane1.add(calendarButtonTo);
 			
 			JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Message_Action"));
 			label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-			label4j_std.setBounds(5, 72, 115, 25);
+			label4j_std.setBounds(5, 77, 115, 22);
 			jDesktopPane1.add(label4j_std);
 		}
 		catch (Exception e)

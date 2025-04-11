@@ -56,11 +56,11 @@ import com.commander4j.db.JDBListData;
 import com.commander4j.db.JDBShifts;
 import com.commander4j.db.JDBUserReport;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
@@ -112,17 +112,17 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 795, 568);
+		setBounds(100, 100, 795, 639);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 806, 565);
+		desktopPane.setBounds(0, 0, 806, 609);
 		desktopPane.setBackground(Common.color_app_window);
 		getContentPane().add(desktopPane);
 
 		JScrollPane scrollPaneReports = new JScrollPane();
 		scrollPaneReports.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
-		scrollPaneReports.setBounds(12, 30, 569, 253);
+		scrollPaneReports.setBounds(12, 30, 569, 305);
 		desktopPane.add(scrollPaneReports);
 		jListUserReports.addListSelectionListener(new ListSelectionListener()
 		{
@@ -151,7 +151,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 
 		JScrollPane scrollPaneShifts = new JScrollPane();
 		scrollPaneShifts.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
-		scrollPaneShifts.setBounds(12, 312, 569, 161);
+		scrollPaneShifts.setBounds(12, 371, 569, 161);
 		desktopPane.add(scrollPaneShifts);
 		jListShifts.addMouseListener(new MouseAdapter()
 		{
@@ -217,32 +217,31 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 
 		JLabel4j_std lblCriteria = new JLabel4j_std("Criteria - Quick Set");
 		lblCriteria.setText(lang.get("mod_FRM_ADMIN_SHIFT"));
-		lblCriteria.setBounds(12, 295, 126, 15);
+		lblCriteria.setBounds(12, 347, 194, 22);
 		desktopPane.add(lblCriteria);
 
 		JLabel4j_std lblReport = new JLabel4j_std(lang.get("mod_FRM_ADMIN_USER_REPORT"));
-		lblReport.setBounds(12, 12, 126, 15);
+		lblReport.setBounds(12, 10, 231, 22);
 		desktopPane.add(lblReport);
 
 		label4j_statusBar.setForeground(Color.RED);
 		label4j_statusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-		label4j_statusBar.setBounds(0, 514, 782, 21);
+		label4j_statusBar.setBounds(0, 588, 782, 21);
 		desktopPane.add(label4j_statusBar);
 		panelDateParams.setBackground(Common.color_app_window);
 
-		panelDateParams.setBounds(604, 312, 165, 161);
+		panelDateParams.setBounds(604, 371, 165, 161);
 		panelDateParams.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		desktopPane.add(panelDateParams);
 		panelDateParams.setLayout(null);
 
 		JLabel4j_std lblStart = new JLabel4j_std(lang.get("web_From"));
-		lblStart.setBounds(11, 12, 145, 15);
+		lblStart.setBounds(11, 10, 145, 22);
 		panelDateParams.add(lblStart);
 
 		domDateFrom = new JDateControl();
-		domDateFrom.setBounds(6, 27, 128, 25);
+		domDateFrom.setBounds(11, 30, 128, 22);
 		panelDateParams.add(domDateFrom);
-		domDateFrom.setFont(Common.font_std);
 
 		button_CalendardomDateFrom = new JCalendarButton(domDateFrom);
 		button_CalendardomDateFrom.setSize(21, 21);
@@ -251,13 +250,12 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		panelDateParams.add(button_CalendardomDateFrom);
 
 		JLabel4j_std label4jEnd = new JLabel4j_std(lang.get("web_To"));
-		label4jEnd.setBounds(11, 67, 149, 15);
+		label4jEnd.setBounds(11, 62, 149, 22);
 		panelDateParams.add(label4jEnd);
 
 		domDateTo = new JDateControl();
-		domDateTo.setBounds(6, 82, 128, 25);
+		domDateTo.setBounds(11, 86, 128, 22);
 		panelDateParams.add(domDateTo);
-		domDateTo.setFont(Common.font_std);
 
 		button_CalendardomDateTo = new JCalendarButton(domDateTo);
 		button_CalendardomDateTo.setSize(21, 21);
@@ -265,7 +263,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		button_CalendardomDateTo.setBounds(135, 86, 21, 21);
 		panelDateParams.add(button_CalendardomDateTo);
 
-		button4j_Backwards.setBounds(36, 115, 25, 25);
+		button4j_Backwards.setBounds(41, 119, 25, 25);
 		panelDateParams.add(button4j_Backwards);
 		button4j_Backwards.addActionListener(new ActionListener()
 		{
@@ -277,7 +275,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		});
 		button4j_Backwards.setEnabled(true);
 
-		button4j_Forwards.setBounds(73, 115, 25, 25);
+		button4j_Forwards.setBounds(78, 119, 25, 25);
 		panelDateParams.add(button4j_Forwards);
 		button4j_Forwards.addActionListener(new ActionListener()
 		{
@@ -292,11 +290,11 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		JPanel panelButtons = new JPanel();
 		panelButtons.setBackground(Common.color_app_window);
 		panelButtons.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		panelButtons.setBounds(604, 30, 165, 253);
+		panelButtons.setBounds(604, 30, 165, 305);
 		desktopPane.add(panelButtons);
 		panelButtons.setLayout(null);
 
-		btn4jAdd.setBounds(20, 6, 126, 29);
+		btn4jAdd.setBounds(18, 12, 126, 32);
 		panelButtons.add(btn4jAdd);
 		btn4jAdd.addActionListener(new ActionListener()
 		{
@@ -309,7 +307,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		btn4jAdd.setMnemonic('0');
 		btn4jEdit.setEnabled(false);
 
-		btn4jEdit.setBounds(20, 36, 126, 29);
+		btn4jEdit.setBounds(18, 44, 126, 32);
 		panelButtons.add(btn4jEdit);
 		btn4jEdit.addActionListener(new ActionListener()
 		{
@@ -322,7 +320,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		btn4jEdit.setMnemonic('0');
 		btn4jEdit.setFocusTraversalKeysEnabled(false);
 
-		btn4jDelete.setBounds(20, 66, 126, 29);
+		btn4jDelete.setBounds(18, 76, 126, 32);
 		panelButtons.add(btn4jDelete);
 		btn4jDelete.addActionListener(new ActionListener()
 		{
@@ -334,7 +332,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		btn4jDelete.setText(lang.get("btn_Delete"));
 		btn4jDelete.setMnemonic('0');
 
-		btn4jCopy.setBounds(20, 96, 126, 29);
+		btn4jCopy.setBounds(18, 108, 126, 32);
 		panelButtons.add(btn4jCopy);
 		btn4jCopy.addActionListener(new ActionListener()
 		{
@@ -346,7 +344,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		btn4jCopy.setText(lang.get("btn_Copy"));
 		btn4jCopy.setMnemonic('0');
 
-		btn4jRefresh.setBounds(20, 126, 126, 29);
+		btn4jRefresh.setBounds(18, 140, 126, 32);
 		panelButtons.add(btn4jRefresh);
 		btn4jRefresh.addActionListener(new ActionListener()
 		{
@@ -366,7 +364,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		btn4jRefresh.setText(lang.get("btn_Refresh"));
 		btn4jRefresh.setMnemonic('0');
 
-		btn4jRun.setBounds(20, 156, 126, 29);
+		btn4jRun.setBounds(18, 172, 126, 32);
 		panelButtons.add(btn4jRun);
 		btn4jRun.addActionListener(new ActionListener()
 		{
@@ -408,12 +406,12 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		btn4jRun.setText(lang.get("btn_Run"));
 		btn4jRun.setMnemonic('0');
 
-		btn4jHelp.setBounds(20, 186, 126, 29);
+		btn4jHelp.setBounds(18, 204, 126, 32);
 		panelButtons.add(btn4jHelp);
 		btn4jHelp.setText(lang.get("btn_Help"));
 		btn4jHelp.setMnemonic('0');
 
-		btn4jClose.setBounds(20, 216, 126, 29);
+		btn4jClose.setBounds(18, 236, 126, 32);
 		panelButtons.add(btn4jClose);
 		btn4jClose.addActionListener(new ActionListener()
 		{
@@ -427,7 +425,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 
 		JPanel panelShiftButtons = new JPanel();
 		panelShiftButtons.setBackground(Common.color_app_window);
-		panelShiftButtons.setBounds(12, 475, 120, 32);
+		panelShiftButtons.setBounds(12, 544, 120, 32);
 		desktopPane.add(panelShiftButtons);
 		panelShiftButtons.setLayout(null);
 
@@ -441,7 +439,6 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		});
 		button4jShiftAdd.setBounds(0, 0, 28, 28);
 		panelShiftButtons.add(button4jShiftAdd);
-		button4jShiftAdd.setFont(Common.font_std);
 		button4jShiftAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_SHIFT_ADD"));
 		button4jShiftAdd.setMnemonic('0');
 
@@ -457,7 +454,6 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		panelShiftButtons.add(button4jShiftDelete);
 		button4jShiftDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_SHIFT_DELETE"));
 		button4jShiftDelete.setMnemonic('0');
-		button4jShiftDelete.setFont(Common.font_std);
 
 		JButton4j button4jShiftEdit = new JButton4j(Common.icon_edit_16x16);
 		button4jShiftEdit.addActionListener(new ActionListener()
@@ -471,7 +467,6 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		panelShiftButtons.add(button4jShiftEdit);
 		button4jShiftEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_SHIFT_EDIT"));
 		button4jShiftEdit.setMnemonic('0');
-		button4jShiftEdit.setFont(Common.font_std);
 
 		JButton4j button4jShiftRefresh = new JButton4j(Common.icon_refresh_16x16);
 		button4jShiftRefresh.setBounds(87, 0, 28, 28);
@@ -484,7 +479,6 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 			}
 		});
 		button4jShiftRefresh.setMnemonic('0');
-		button4jShiftRefresh.setFont(Common.font_std);
 
 		populateListUserReports("");
 		populateListUserShifts("");

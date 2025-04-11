@@ -216,11 +216,11 @@ public class JDialogDespatchEquipment extends javax.swing.JDialog
 					JLabel4j_std lbl_NoOfPallets = new JLabel4j_std();
 					lbl_NoOfPallets.setText(lang.get("lbl_No_Of_Pallets"));
 					lbl_NoOfPallets.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_NoOfPallets.setBounds(48, 218, 120, 20);
+					lbl_NoOfPallets.setBounds(48, 218, 120, 22);
 					panel_1.add(lbl_NoOfPallets);
 
 					textFieldNoOfPallets.setHorizontalAlignment(SwingConstants.CENTER);
-					textFieldNoOfPallets.setBounds(179, 219, 41, 20);
+					textFieldNoOfPallets.setBounds(179, 219, 41, 22);
 					textFieldNoOfPallets.setEditable(false);
 					panel_1.add(textFieldNoOfPallets);
 

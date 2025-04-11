@@ -41,7 +41,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Enumeration;
 
-import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -62,6 +61,7 @@ import javax.swing.tree.TreeSelectionModel;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBModule;
+import com.commander4j.gui.JButton4j;
 
 
 /**
@@ -78,10 +78,10 @@ public class JInternalFrameMenuTree extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
 	protected JToolBar jtreeToolbar;
-	protected JButton btnExpandAll;
-	protected JButton btnExpandNode;
-	protected JButton btnCollapseAll;
-	protected JButton btnCollapseNode;
+	protected JButton4j btnExpandAll;
+	protected JButton4j btnExpandNode;
+	protected JButton4j btnCollapseAll;
+	protected JButton4j btnCollapseNode;
 	protected JTree tree;
 	final int screenWidth = 300;
 	final int screenHeight = 600;
@@ -224,7 +224,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		jtreeToolbar.setOrientation(0);
 		jtreeToolbar.setFloatable(false);
 
-		btnExpandAll = new JButton(Common.icon_expand_all_16x16);
+		btnExpandAll = new JButton4j(Common.icon_expand_all_16x16);
 		btnExpandAll.addActionListener(buttonhandler);
 		btnExpandAll.setToolTipText("Expand all menu items");
 		btnExpandAll.setSize(30,30);
@@ -232,7 +232,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		btnExpandAll.setMinimumSize(new Dimension(30,30));
 		btnExpandAll.setPreferredSize(new Dimension(30,30));
 
-		btnExpandNode = new JButton(Common.icon_expand_node_16x16);
+		btnExpandNode = new JButton4j(Common.icon_expand_node_16x16);
 		btnExpandNode.addActionListener(buttonhandler);
 		btnExpandNode.setToolTipText("Expand selected menu branch");
 		btnExpandNode.setSize(30,30);
@@ -240,7 +240,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		btnExpandNode.setMinimumSize(new Dimension(30,30));
 		btnExpandNode.setPreferredSize(new Dimension(30,30));
 
-		btnCollapseAll = new JButton(Common.icon_collapse_all_16x16);
+		btnCollapseAll = new JButton4j(Common.icon_collapse_all_16x16);
 		btnCollapseAll.addActionListener(buttonhandler);
 		btnCollapseAll.setToolTipText("Collapse menu tree");
 		btnCollapseAll.setSize(30,30);
@@ -248,7 +248,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		btnCollapseAll.setMinimumSize(new Dimension(30,30));
 		btnCollapseAll.setPreferredSize(new Dimension(30,30));
 
-		btnCollapseNode = new JButton(Common.icon_collapse_node_16x16);
+		btnCollapseNode = new JButton4j(Common.icon_collapse_node_16x16);
 		btnCollapseNode.addActionListener(buttonhandler);
 		btnCollapseNode.setToolTipText("Collapse selected menu branch");
 		btnCollapseNode.setSize(30,30);

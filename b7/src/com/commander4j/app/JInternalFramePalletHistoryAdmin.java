@@ -49,8 +49,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -78,20 +77,22 @@ import com.commander4j.db.JDBUser;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JQuantityInput;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBPalletHistoryTableModel;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
 
@@ -138,7 +139,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 	private JLabel4j_std jLabel4;
 	private JButton4j jButtonLookupProcessOrder;
 	private JCheckBox4j jCheckBoxLimit;
-	private JSpinner jSpinnerLimit;
+	private JSpinner4j jSpinnerLimit;
 	private JLabel4j_std jLabel7;
 	private JCheckBox4j jCheckBoxQuantity;
 	private JTextField4j jTextFieldVariant;
@@ -157,7 +158,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 	private JButton4j jButtonLookupMaterial;
 	private JQuantityInput jFormattedTextFieldQuantity;
 	private JLabel4j_std jLabelQuantity;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JLabel4j_std jLabel15;
 	private JComboBox4j<String> jComboBoxPalletStatus;
 	private JComboBox4j<String> jComboBoxSortBy;
@@ -368,12 +369,12 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		
 		calendarButtontransactionDateFrom = new JCalendarButton(transactionDateFrom);
 		calendarButtontransactionDateFrom.setEnabled(false);
-		calendarButtontransactionDateFrom.setBounds(282, 9, 21, 21);
+		calendarButtontransactionDateFrom.setBounds(282, 11, 22, 22);
 		jDesktopPane1.add(calendarButtontransactionDateFrom);
 		
 		calendarButtontransactionDateTo = new JCalendarButton(transactionDateTo);
 		calendarButtontransactionDateTo.setEnabled(false);
-		calendarButtontransactionDateTo.setBounds(476, 9, 21, 21);
+		calendarButtontransactionDateTo.setBounds(476, 11, 22, 22);
 		jDesktopPane1.add(calendarButtontransactionDateTo);
 		
 		setSequence(dlg_sort_descending);
@@ -1145,32 +1146,32 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(134, 44, 127, 22);
+					jTextFieldMaterial.setBounds(134, 44, 128, 22);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(jTextFieldLocation);
-					jTextFieldLocation.setBounds(593, 44, 98, 22);
+					jTextFieldLocation.setBounds(593, 44, 99, 22);
 				}
 				{
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(1, 44, 121, 21);
+					jLabel1.setBounds(1, 45, 127, 22);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Location_ID"));
-					jLabel3.setBounds(476, 44, 112, 21);
+					jLabel3.setBounds(476, 45, 112, 22);
 				}
 				{
 					ComboBoxModel<JDBUom> jComboBox2Model = new DefaultComboBoxModel<JDBUom>(uomList);
 					jComboBoxUOM = new JComboBox4j<JDBUom>();
 					jDesktopPane1.add(jComboBoxUOM);
 					jComboBoxUOM.setModel(jComboBox2Model);
-					jComboBoxUOM.setBounds(865, 77, 130, 22);
+					jComboBoxUOM.setBounds(843, 77, 152, 22);
 					jComboBoxUOM.setMaximumRowCount(12);
 				}
 				{
@@ -1178,7 +1179,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel4);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel4.setText(lang.get("lbl_Pallet_UOM"));
-					jLabel4.setBounds(752, 77, 108, 21);
+					jLabel4.setBounds(749, 77, 87, 22);
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -1234,7 +1235,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Limit"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(796, 143, 87, 21);
+					jLabel10.setBounds(806, 143, 87, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "TRANSACTION_REF,SSCC", "TRANSACTION_TYPE,TRANSACTION_SUBTYPE", "TRANSACTION_DATE,SSCC", "MATERIAL,BATCH_NUMBER", "MATERIAL,PROCESS_ORDER", "BATCH_NUMBER,MATERIAL", "PROCESS_ORDER", "QUANTITY",
@@ -1251,20 +1252,20 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jComboBoxPalletStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxPalletStatus);
 					jComboBoxPalletStatus.setModel(jComboBoxDefaultPalletStatusModel);
-					jComboBoxPalletStatus.setBounds(844, 44, 150, 22);
+					jComboBoxPalletStatus.setBounds(843, 44, 152, 22);
 				}
 				{
 					jLabel15 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel15);
 					jLabel15.setText(lang.get("lbl_Pallet_Status"));
 					jLabel15.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel15.setBounds(709, 44, 130, 21);
+					jLabel15.setBounds(706, 44, 130, 22);
 				}
 				{
-					jToggleButtonSequence = new JToggleButton();
+					jToggleButtonSequence = new JToggleButton4j();
 					jToggleButtonSequence.setSelected(true);
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(631, 143, 21, 22);
+					jToggleButtonSequence.setBounds(630, 143, 22, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							setSequence(jToggleButtonSequence.isSelected());
@@ -1276,15 +1277,13 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelQuantity);
 					jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
 					jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelQuantity.setBounds(665, 143, 70, 21);
+					jLabelQuantity.setBounds(665, 143, 70, 22);
 				}
 				{
 
 					jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
 					jDesktopPane1.add(jFormattedTextFieldQuantity);
-					jFormattedTextFieldQuantity.setFont(Common.font_std);
-					jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jFormattedTextFieldQuantity.setBounds(765, 143, 70, 21);
+					jFormattedTextFieldQuantity.setBounds(765, 143, 70, 22);
 					jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
 					jFormattedTextFieldQuantity.setEnabled(false);
 				}
@@ -1293,7 +1292,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Material_Batch"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(266, 44, 77, 21);
+					jLabel2.setBounds(266, 45, 77, 22);
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
@@ -1305,12 +1304,12 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelProcessOrder);
 					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
 					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(701, 110, 144, 21);
+					jLabelProcessOrder.setBounds(708, 110, 128, 22);
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
 					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(854, 110, 120, 22);
+					jTextFieldProcessOrder.setBounds(843, 110, 131, 22);
 				}
 				{
 					jTextFieldEAN = new JTextField4j(JDBMaterialUom.field_ean);
@@ -1324,7 +1323,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel5.setText(lang.get("lbl_Material_UOM_EAN"));
 					jLabel5.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel5.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel5.setBounds(476, 77, 112, 21);
+					jLabel5.setBounds(476, 78, 112, 22);
 				}
 				{
 					jLabel6 = new JLabel4j_std();
@@ -1344,7 +1343,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jCheckBoxQuantity = new JCheckBox4j();
 					jDesktopPane1.add(jCheckBoxQuantity);
 					jCheckBoxQuantity.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxQuantity.setBounds(735, 143, 21, 21);
+					jCheckBoxQuantity.setBounds(735, 143, 22, 22);
 					jCheckBoxQuantity.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							if (jCheckBoxQuantity.isSelected())
@@ -1365,7 +1364,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel7);
 					jLabel7.setText(lang.get("lbl_Sort_By"));
 					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel7.setBounds(261, 144, 79, 21);
+					jLabel7.setBounds(261, 143, 79, 22);
 				}
 				{
 					SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
@@ -1373,14 +1372,13 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jSpinnerIntModel.setMaximum(100000);
 					jSpinnerIntModel.setStepSize(1);
 
-					jSpinnerLimit = new JSpinner();
+					jSpinnerLimit = new JSpinner4j();
 					jDesktopPane1.add(jSpinnerLimit);
 					
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std); 
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 					jSpinnerLimit.setEditor(ne);
-					jSpinnerLimit.setBounds(911, 143, 73, 21);
+					jSpinnerLimit.setBounds(923, 143, 73, 22);
 					jSpinnerLimit.setValue(1000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 				}
@@ -1388,7 +1386,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jCheckBoxLimit = new JCheckBox4j();
 					jDesktopPane1.add(jCheckBoxLimit);
 					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxLimit.setBounds(890, 143, 21, 21);
+					jCheckBoxLimit.setBounds(900, 143, 21, 22);
 					jCheckBoxLimit.setSelected(true);
 					jCheckBoxLimit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -1406,7 +1404,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupProcessOrder);
-					jButtonLookupProcessOrder.setBounds(974, 110, 21, 21);
+					jButtonLookupProcessOrder.setBounds(974, 110, 22, 22);
 					jButtonLookupProcessOrder.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							JLaunchLookup.dlgCriteriaDefault = "Ready";
@@ -1421,7 +1419,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupBatch);
-					jButtonLookupBatch.setBounds(454, 44, 21, 21);
+					jButtonLookupBatch.setBounds(454, 44, 22, 22);
 					jButtonLookupBatch.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
@@ -1436,7 +1434,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupMaterial);
-					jButtonLookupMaterial.setBounds(261, 44, 21, 21);
+					jButtonLookupMaterial.setBounds(261, 44, 22, 22);
 					jButtonLookupMaterial.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							JLaunchLookup.dlgAutoExec = false;
@@ -1451,7 +1449,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupLocation);
-					jButtonLookupLocation.setBounds(691, 44, 21, 21);
+					jButtonLookupLocation.setBounds(691, 44, 22, 22);
 					jButtonLookupLocation.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							JLaunchLookup.dlgAutoExec = true;
@@ -1472,7 +1470,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabelSCC = new JLabel4j_std();
 					jDesktopPane1.add(jLabelSCC);
 					jLabelSCC.setText(lang.get("lbl_Pallet_SSCC"));
-					jLabelSCC.setBounds(1, 77, 121, 21);
+					jLabelSCC.setBounds(1, 78, 127, 22);
 					jLabelSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 
@@ -1480,7 +1478,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel8_1 = new JLabel4j_std();
 					jLabel8_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel8_1.setText(lang.get("lbl_Despatch_No"));
-					jLabel8_1.setBounds(266, 77, 77, 21);
+					jLabel8_1.setBounds(266, 78, 77, 22);
 					jDesktopPane1.add(jLabel8_1);
 				}
 
@@ -1495,13 +1493,13 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel1_1 = new JLabel4j_std();
 					jLabel1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel1_1.setText(lang.get("lbl_Transaction_Ref"));
-					jLabel1_1.setBounds(476, 110, 112, 21);
+					jLabel1_1.setBounds(476, 110, 112, 22);
 					jDesktopPane1.add(jLabel1_1);
 				}
 
 				{
 					transactionDateFrom = new JDateControl();
-					transactionDateFrom.setBounds(154, 7, 128, 25);
+					transactionDateFrom.setBounds(154, 11, 128, 25);
 					transactionDateFrom.setEnabled(false);
 					jDesktopPane1.add(transactionDateFrom);
 				}
@@ -1527,7 +1525,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxTransactionDate.setBackground(new Color(255, 255, 255));
-					jCheckBoxTransactionDate.setBounds(129, 9, 21, 21);
+					jCheckBoxTransactionDate.setBounds(129, 12, 21, 21);
 					jDesktopPane1.add(jCheckBoxTransactionDate);
 				}
 
@@ -1543,7 +1541,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel1_3 = new JLabel4j_std();
 					jLabel1_3.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel1_3.setText(lang.get("lbl_Transaction_Type"));
-					jLabel1_3.setBounds(476, 11, 112, 21);
+					jLabel1_3.setBounds(476, 12, 112, 21);
 					jDesktopPane1.add(jLabel1_3);
 				}
 
@@ -1551,7 +1549,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel1_4 = new JLabel4j_std();
 					jLabel1_4.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel1_4.setText(lang.get("lbl_Transaction_Subtype"));
-					jLabel1_4.setBounds(721, 11, 140, 23);
+					jLabel1_4.setBounds(721, 11, 115, 22);
 					jDesktopPane1.add(jLabel1_4);
 				}
 
@@ -1559,14 +1557,14 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					comboBoxTransactionType = new JComboBox4j<String>();
 					comboBoxTransactionType.setModel(new DefaultComboBoxModel<String>(Common.transactionTypes));
 					comboBoxTransactionType.setMaximumRowCount(15);
-					comboBoxTransactionType.setBounds(593, 10, 124, 22);
+					comboBoxTransactionType.setBounds(593, 11, 124, 22);
 					jDesktopPane1.add(comboBoxTransactionType);
 				}
 
 				{
 					comboBoxTransactionSubtype = new JComboBox4j<String>();
 					comboBoxTransactionSubtype.setModel(new DefaultComboBoxModel<String>(Common.transactionSubTypes));
-					comboBoxTransactionSubtype.setBounds(865, 10, 130, 22);
+					comboBoxTransactionSubtype.setBounds(843, 11, 152, 22);
 					comboBoxTransactionSubtype.setMaximumRowCount(15);
 					jDesktopPane1.add(comboBoxTransactionSubtype);
 				}
@@ -1579,7 +1577,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 
 				{
 					transactionDateTo = new JDateControl();
-					transactionDateTo.setBounds(347, 7, 128, 25);
+					transactionDateTo.setBounds(347, 11, 128, 25);
 					transactionDateTo.setEnabled(false);
 					jDesktopPane1.add(transactionDateTo);
 				}
@@ -1606,7 +1604,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel5_1 = new JLabel4j_std();
 					jLabel5_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel5_1.setText(lang.get("lbl_User_ID"));
-					jLabel5_1.setBounds(266, 110, 77, 21);
+					jLabel5_1.setBounds(266, 110, 77, 22);
 					jDesktopPane1.add(jLabel5_1);
 				}
 
@@ -1625,11 +1623,11 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Customer_ID"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(0, 111, 122, 21);
+				label4j_std.setBounds(0, 110, 127, 22);
 				jDesktopPane1.add(label4j_std);
 				
 
-				jTextFieldCustomer.setBounds(134, 110, 127, 22);
+				jTextFieldCustomer.setBounds(134, 110, 128, 22);
 				jDesktopPane1.add(jTextFieldCustomer);
 				
 				JButton4j button4j = new JButton4j(Common.icon_lookup_16x16);
@@ -1643,13 +1641,13 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 						}
 					}
 				});
-				button4j.setBounds(261, 110, 21, 21);
+				button4j.setBounds(261, 110, 22, 22);
 				jDesktopPane1.add(button4j);
 				
 				JLabel4j_std label4j_MHN = new JLabel4j_std();
 				label4j_MHN.setText(lang.get("lbl_MHN_Number"));
 				label4j_MHN.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_MHN.setBounds(0, 144, 122, 21);
+				label4j_MHN.setBounds(0, 143, 127, 22);
 				jDesktopPane1.add(label4j_MHN);
 				
 				textField4j_MHN = new JTextField4j(JDBMHN.field_mhn_number);

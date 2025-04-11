@@ -13,7 +13,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
+
 import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -26,6 +26,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
@@ -76,7 +77,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 	JScrollPane scrollPane = new JScrollPane();
 	JTextArea textArea_LookupSQL = new JTextArea();
 
-	private JSpinner jSpinnerLimit_MaxOccurences;
+	private JSpinner4j jSpinnerLimit_MaxOccurences;
 
 	private JComboBox4j<String> comboBoxDataType = new JComboBox4j<String>();
 	ComboBoxModel<String> jComboBox1Model = new DefaultComboBoxModel<String>(new String[] { "", "decimal", "string", "timestamp" });
@@ -165,92 +166,92 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 				getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setLayout(null);
 
-				jLabel_Data_ID.setBounds(22, 8, 112, 21);
+				jLabel_Data_ID.setBounds(22, 8, 112, 22);
 				jDesktopPane1.add(jLabel_Data_ID);
 				jLabel_Data_ID.setText(lang.get("lbl_Data_ID"));
 				jLabel_Data_ID.setHorizontalAlignment(SwingConstants.RIGHT);
 				jLabel_Data_ID.setHorizontalTextPosition(SwingConstants.RIGHT);
 
-				jLabel_Description.setBounds(22, 37, 112, 21);
+				jLabel_Description.setBounds(22, 37, 112, 22);
 				jDesktopPane1.add(jLabel_Description);
 				jLabel_Description.setText(lang.get("lbl_Description"));
 				jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 				jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
 
-				jLabel_DataType.setBounds(22, 66, 112, 21);
+				jLabel_DataType.setBounds(22, 66, 112, 22);
 				jLabel_DataType.setText((String) null);
 				jLabel_DataType.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_DataType.setHorizontalAlignment(SwingConstants.RIGHT);
 				jLabel_DataType.setText(lang.get("lbl_Data_Type"));
 				jDesktopPane1.add(jLabel_DataType);
 
-				jLabel_IconFilename.setBounds(22, 95, 112, 21);
+				jLabel_IconFilename.setBounds(22, 95, 112, 22);
 				jLabel_IconFilename.setText(lang.get("lbl_Module_Icon_Filename"));
 				jLabel_IconFilename.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_IconFilename.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_IconFilename);
 
-				jLabel_MaxOccurs.setBounds(22, 124, 112, 21);
+				jLabel_MaxOccurs.setBounds(22, 123, 112, 22);
 				jLabel_MaxOccurs.setText(lang.get("lbl_Max_Occurrences"));
 				jLabel_MaxOccurs.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_MaxOccurs.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_MaxOccurs);
 
-				jLabel_EnableCreate.setBounds(22, 167, 112, 21);
+				jLabel_EnableCreate.setBounds(22, 164, 112, 22);
 				jLabel_EnableCreate.setText(lang.get("lbl_Create"));
 				jLabel_EnableCreate.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_EnableCreate.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_EnableCreate);
 
-				jLabel_EnableEdit.setBounds(22, 194, 112, 21);
+				jLabel_EnableEdit.setBounds(22, 191, 112, 22);
 				jLabel_EnableEdit.setText(lang.get("lbl_Edit"));
 				jLabel_EnableEdit.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_EnableEdit.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_EnableEdit);
 
-				jLabel_Enable_Clipboard.setBounds(22, 275, 112, 21);
+				jLabel_Enable_Clipboard.setBounds(22, 272, 112, 22);
 				jLabel_Enable_Clipboard.setText(lang.get("lbl_Clipboard"));
 				jLabel_Enable_Clipboard.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_Enable_Clipboard.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_Enable_Clipboard);
 
-				jLabel_Enable_Lookup.setBounds(22, 302, 112, 21);
+				jLabel_Enable_Lookup.setBounds(22, 299, 112, 22);
 				jLabel_Enable_Lookup.setText(lang.get("lbl_Lookup"));
 				jLabel_Enable_Lookup.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_Enable_Lookup.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_Enable_Lookup);
 
-				jLabel_LookupSQL.setBounds(178, 150, 175, 21);
+				jLabel_LookupSQL.setBounds(178, 150, 175, 22);
 				jLabel_LookupSQL.setText(lang.get("lbl_Lookup_SQL"));
 				jLabel_LookupSQL.setHorizontalTextPosition(SwingConstants.LEFT);
 				jLabel_LookupSQL.setHorizontalAlignment(SwingConstants.LEFT);
 				jDesktopPane1.add(jLabel_LookupSQL);
 
-				jLabel_LookupField.setBounds(52, 325, 112, 21);
+				jLabel_LookupField.setBounds(52, 325, 112, 22);
 				jLabel_LookupField.setText(lang.get("lbl_Lookup_Field"));
 				jLabel_LookupField.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_LookupField.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_LookupField);
 
-				jLabel_EnableDelete.setBounds(22, 221, 112, 21);
+				jLabel_EnableDelete.setBounds(22, 218, 112, 22);
 				jLabel_EnableDelete.setText(lang.get("lbl_Delete"));
 				jLabel_EnableDelete.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_EnableDelete.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_EnableDelete);
 
-				jLabel_EnableDuplicate.setBounds(22, 248, 112, 21);
+				jLabel_EnableDuplicate.setBounds(22, 245, 112, 22);
 				jLabel_EnableDuplicate.setText(lang.get("lbl_Duplicate"));
 				jLabel_EnableDuplicate.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_EnableDuplicate.setHorizontalAlignment(SwingConstants.RIGHT);
 				jDesktopPane1.add(jLabel_EnableDuplicate);
 
-				jTextField_DataID.setBounds(143, 8, 141, 21);
+				jTextField_DataID.setBounds(143, 8, 141, 22);
 				jDesktopPane1.add(jTextField_DataID);
 				jTextField_DataID.setHorizontalAlignment(SwingConstants.LEFT);
 				jTextField_DataID.setEditable(false);
 				jTextField_DataID.setEnabled(false);
 
-				jTextField_Description.setBounds(143, 37, 332, 21);
+				jTextField_Description.setBounds(143, 37, 332, 22);
 				jDesktopPane1.add(jTextField_Description);
 				jTextField_Description.setFocusCycleRoot(true);
 				jTextField_Description.addKeyListener(new KeyAdapter()
@@ -261,7 +262,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 					}
 				});
 
-				comboBoxDataType.setBounds(143, 66, 141, 21);
+				comboBoxDataType.setBounds(143, 66, 141, 22);
 				comboBoxDataType.setEnabled(true);
 				comboBoxDataType.setModel(jComboBox1Model);
 				jDesktopPane1.add(comboBoxDataType);
@@ -273,7 +274,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 					}
 				});
 
-				jTextField_IconFilename.setBounds(143, 95, 184, 21);
+				jTextField_IconFilename.setBounds(143, 95, 184, 22);
 				jDesktopPane1.add(jTextField_IconFilename);
 				jTextField_IconFilename.addKeyListener(new KeyAdapter()
 				{
@@ -289,7 +290,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 				jSpinnerIntModel.setMaximum(99);
 				jSpinnerIntModel.setStepSize(1);
 
-				jSpinnerLimit_MaxOccurences = new JSpinner();
+				jSpinnerLimit_MaxOccurences = new JSpinner4j();
 				jSpinnerLimit_MaxOccurences.addChangeListener(new ChangeListener()
 				{
 					public void stateChanged(ChangeEvent e)
@@ -300,15 +301,13 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 				jDesktopPane1.add(jSpinnerLimit_MaxOccurences);
 
 				jSpinnerLimit_MaxOccurences.setModel(jSpinnerIntModel);
-				JSpinner.NumberEditor ne_jSpinnerLimit_MaxOccurences = new JSpinner.NumberEditor(jSpinnerLimit_MaxOccurences);
-				ne_jSpinnerLimit_MaxOccurences.getTextField().setFont(Common.font_input);
+				JSpinner4j.NumberEditor ne_jSpinnerLimit_MaxOccurences = new JSpinner4j.NumberEditor(jSpinnerLimit_MaxOccurences);
 				jSpinnerLimit_MaxOccurences.setEditor(ne_jSpinnerLimit_MaxOccurences);
-				jSpinnerLimit_MaxOccurences.setBounds(143, 123, 46, 21);
+				jSpinnerLimit_MaxOccurences.setBounds(143, 123, 46, 22);
 				jSpinnerLimit_MaxOccurences.getEditor().setSize(45, 21);
-				jSpinnerLimit_MaxOccurences.getEditor().setFont(Common.font_input);
 
 				checkBox_EnableCreate = new JCheckBox4j();
-				checkBox_EnableCreate.setBounds(143, 164, 21, 24);
+				checkBox_EnableCreate.setBounds(143, 164, 21, 22);
 				checkBox_EnableCreate.setBackground(Color.WHITE);
 				jDesktopPane1.add(checkBox_EnableCreate);
 				checkBox_EnableCreate.addActionListener(new ActionListener()
@@ -319,7 +318,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 					}
 				});
 
-				checkBox_EnableEdit.setBounds(143, 191, 21, 24);
+				checkBox_EnableEdit.setBounds(143, 191, 21, 22);
 				checkBox_EnableEdit.setBackground(Color.WHITE);
 				jDesktopPane1.add(checkBox_EnableEdit);
 				checkBox_EnableEdit.addActionListener(new ActionListener()
@@ -330,7 +329,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 					}
 				});
 
-				checkBox_EnableDelete.setBounds(143, 218, 21, 24);
+				checkBox_EnableDelete.setBounds(143, 218, 21, 22);
 				checkBox_EnableDelete.setBackground(Color.WHITE);
 				jDesktopPane1.add(checkBox_EnableDelete);
 				checkBox_EnableDelete.addActionListener(new ActionListener()
@@ -341,7 +340,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 					}
 				});
 
-				checkBox_EnableDuplicate.setBounds(143, 245, 21, 24);
+				checkBox_EnableDuplicate.setBounds(143, 245, 21, 22);
 				checkBox_EnableDuplicate.setBackground(Color.WHITE);
 				jDesktopPane1.add(checkBox_EnableDuplicate);
 				checkBox_EnableDuplicate.addActionListener(new ActionListener()
@@ -352,7 +351,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 					}
 				});
 
-				checkBox_EnableClipboard.setBounds(143, 272, 21, 24);
+				checkBox_EnableClipboard.setBounds(143, 272, 21, 22);
 				checkBox_EnableClipboard.setBackground(Color.WHITE);
 				jDesktopPane1.add(checkBox_EnableClipboard);
 				checkBox_EnableClipboard.addActionListener(new ActionListener()
@@ -363,7 +362,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 					}
 				});
 
-				checkBox_EnableLookup.setBounds(143, 299, 21, 24);
+				checkBox_EnableLookup.setBounds(143, 299, 21, 22);
 				checkBox_EnableLookup.setBackground(Color.WHITE);
 				jDesktopPane1.add(checkBox_EnableLookup);
 				checkBox_EnableLookup.addActionListener(new ActionListener()
@@ -373,7 +372,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 						setButtonState(true);
 					}
 				});
-				jTextField_LookupField.setBounds(178, 325, 119, 21);
+				jTextField_LookupField.setBounds(178, 325, 119, 22);
 
 				scrollPane.setBounds(180, 170, 332, 149);
 				jDesktopPane1.add(scrollPane);
@@ -402,7 +401,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 				});
 
 				jButtonUpdate = new JButton4j(Common.icon_update_16x16);
-				jButtonUpdate.setBounds(97, 358, 112, 28);
+				jButtonUpdate.setBounds(97, 358, 112, 32);
 				jButtonUpdate.setEnabled(false);
 				jButtonUpdate.setText(lang.get("btn_Save"));
 				jButtonUpdate.setMnemonic(lang.getMnemonicChar());
@@ -419,7 +418,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 				});
 
 				jButtonClose = new JButton4j(Common.icon_close_16x16);
-				jButtonClose.setBounds(361, 358, 112, 28);
+				jButtonClose.setBounds(361, 358, 112, 32);
 				jDesktopPane1.add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -432,7 +431,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 				});
 
 				jButtonHelp = new JButton4j(Common.icon_help_16x16);
-				jButtonHelp.setBounds(230, 358, 112, 28);
+				jButtonHelp.setBounds(230, 358, 112, 32);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
@@ -440,7 +439,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 				jButtonIconFileChooser = new JButton4j();
 				jDesktopPane1.add(jButtonIconFileChooser);
 				jButtonIconFileChooser.setText("..");
-				jButtonIconFileChooser.setBounds(327, 95, 17, 21);
+				jButtonIconFileChooser.setBounds(327, 95, 22, 22);
 				jButtonIconFileChooser.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt)

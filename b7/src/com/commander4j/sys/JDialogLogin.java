@@ -80,10 +80,6 @@ public class JDialogLogin extends JDialog {
 
 		setTitle("Login (" + Common.hostList.getHost(Common.selectedHostID).getSiteDescription() + ")");
 
-		JLabel4j_std lname = new JLabel4j_std("User name");
-		lname.setFont(Common.font_std);
-		JLabel4j_std lpassword = new JLabel4j_std("Password");
-		lpassword.setFont(Common.font_std);
 
 		ButtonHandler buttonhandler = new ButtonHandler();
 
@@ -94,7 +90,6 @@ public class JDialogLogin extends JDialog {
 		fld_userName.setText(System.getProperty("user.name"));
 		getContentPane().add(fld_userName);
 
-		fld_userName.setFont(Common.font_std);
 		fld_userName.setCaretPosition(fld_userName.getText().length());
 		btn_close = new JButton4j("Close", Common.icon_cancel_16x16);
 		btn_close.setBounds(150, 114, 104, 32);
@@ -112,23 +107,21 @@ public class JDialogLogin extends JDialog {
 
 		getRootPane().setDefaultButton(btn_login);
 		jCheckbox_chgPassword = new JCheckBox4j("Change Password");
-		jCheckbox_chgPassword.setBounds(103, 82, 133, 20);
+		jCheckbox_chgPassword.setBounds(103, 82, 133, 22);
 		getContentPane().add(jCheckbox_chgPassword);
-		jCheckbox_chgPassword.setFont(Common.font_std);
 		jCheckbox_chgPassword.setMnemonic('P');
 		jCheckbox_chgPassword.setToolTipText("Check to change password.");
 		fld_password = new JPasswordField4j(JDBUser.field_password);
 		fld_password.setBounds(103, 48, 146, 22);
 		getContentPane().add(fld_password);
-		fld_password.setFont(Common.font_std);
 
 		JLabel4j_std lblUsername = new JLabel4j_std("Username :");
-		lblUsername.setBounds(12, 14, 83, 16);
+		lblUsername.setBounds(12, 12, 83, 22);
 		lblUsername.setHorizontalAlignment(SwingConstants.TRAILING);
 		getContentPane().add(lblUsername);
 
 		JLabel4j_std lblPassword = new JLabel4j_std("Password :");
-		lblPassword.setBounds(12, 54, 83, 16);
+		lblPassword.setBounds(12, 48, 83, 22);
 		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 		getContentPane().add(lblPassword);
 		fld_password.addKeyListener(keyboardhandler);

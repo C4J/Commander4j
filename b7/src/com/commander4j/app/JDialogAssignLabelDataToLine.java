@@ -44,6 +44,8 @@ import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import com.commander4j.db.JDBAutoLabeller;
 import com.commander4j.db.JDBLabelData;
@@ -53,17 +55,14 @@ import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
-
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
 
 /**
  * Called from the Case Labelling screen once the user has selected the required
@@ -251,19 +250,19 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			jDesktopPane1.add(jButtonAssign);
 			jButtonAssign.setText(lang.get("btn_Assign"));
 			jButtonAssign.setMnemonic(lang.getMnemonicChar());
-			jButtonAssign.setBounds(80, 387, 130, 30);
+			jButtonAssign.setBounds(80, 387, 130, 32);
 
 			jButtonHelp = new JButton4j(Common.icon_help_16x16);
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
-			jButtonHelp.setBounds(364, 387, 130, 30);
+			jButtonHelp.setBounds(364, 387, 130, 32);
 
 			jButtonCancel = new JButton4j(Common.icon_close_16x16);
 			jDesktopPane1.add(jButtonCancel);
 			jButtonCancel.setText(lang.get("btn_Close"));
 			jButtonCancel.setMnemonic(lang.getMnemonicChar());
-			jButtonCancel.setBounds(504, 387, 130, 30);
+			jButtonCancel.setBounds(504, 387, 130, 32);
 			jButtonCancel.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -275,34 +274,34 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			lbl_ProcessOrder = new JLabel4j_std();
 			jDesktopPane1.add(lbl_ProcessOrder);
 			lbl_ProcessOrder.setText(lang.get("lbl_Process_Order"));
-			lbl_ProcessOrder.setBounds(12, 10, 125, 21);
+			lbl_ProcessOrder.setBounds(12, 10, 125, 22);
 			lbl_ProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 
 			JLabel4j_std lbl_Material = new JLabel4j_std();
 			lbl_Material.setHorizontalAlignment(SwingConstants.TRAILING);
 			lbl_Material.setText(lang.get("lbl_Material"));
-			lbl_Material.setBounds(12, 40, 125, 21);
+			lbl_Material.setBounds(12, 40, 125, 22);
 			jDesktopPane1.add(lbl_Material);
 
 			JLabel4j_std lbl_ExpiryDate = new JLabel4j_std();
-			lbl_ExpiryDate.setBounds(306, 100, 125, 21);
+			lbl_ExpiryDate.setBounds(306, 100, 125, 22);
 			lbl_ExpiryDate.setHorizontalAlignment(SwingConstants.RIGHT);
 			lbl_ExpiryDate.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
 			jDesktopPane1.add(lbl_ExpiryDate);
 
 			JLabel4j_std lbl_User_ID = new JLabel4j_std();
 			lbl_User_ID.setHorizontalAlignment(SwingConstants.RIGHT);
-			lbl_User_ID.setBounds(12, 227, 125, 21);
+			lbl_User_ID.setBounds(12, 227, 125, 22);
 			lbl_User_ID.setText(lang.get("lbl_User_ID"));
 			jDesktopPane1.add(lbl_User_ID);
 
 			JLabel4j_std lbl_Production_Date = new JLabel4j_std(lang.get("lbl_Pallet_DOM"));
 			lbl_Production_Date.setHorizontalAlignment(SwingConstants.TRAILING);
-			lbl_Production_Date.setBounds(12, 100, 125, 21);
+			lbl_Production_Date.setBounds(12, 100, 125, 22);
 			jDesktopPane1.add(lbl_Production_Date);
 
 			lbl_BatchNumber = new JLabel4j_std();
-			lbl_BatchNumber.setBounds(12, 70, 125, 21);
+			lbl_BatchNumber.setBounds(12, 70, 125, 22);
 			lbl_BatchNumber.setHorizontalTextPosition(SwingConstants.CENTER);
 			lbl_BatchNumber.setHorizontalAlignment(SwingConstants.TRAILING);
 			lbl_BatchNumber.setText(lang.get("lbl_Batch"));
@@ -311,37 +310,37 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			JLabel4j_std lbl_WorkstationID = new JLabel4j_std();
 			lbl_WorkstationID.setText(lang.get("lbl_Workstation"));
 			lbl_WorkstationID.setHorizontalAlignment(SwingConstants.RIGHT);
-			lbl_WorkstationID.setBounds(306, 229, 125, 21);
+			lbl_WorkstationID.setBounds(306, 229, 125, 22);
 			jDesktopPane1.add(lbl_WorkstationID);
 
 			JTextField4j textField4j_ProcessOrder = new JTextField4j();
 			textField4j_ProcessOrder.setEnabled(false);
-			textField4j_ProcessOrder.setBounds(154, 10, 139, 21);
+			textField4j_ProcessOrder.setBounds(154, 10, 139, 22);
 			textField4j_ProcessOrder.setText(labdat.getProcessOrder());
 			jDesktopPane1.add(textField4j_ProcessOrder);
 
 			JTextField4j textField4j_Material = new JTextField4j();
 			textField4j_Material.setEnabled(false);
-			textField4j_Material.setBounds(154, 38, 139, 21);
+			textField4j_Material.setBounds(154, 38, 139, 22);
 			textField4j_Material.setText(labdat.getMaterial());
 			jDesktopPane1.add(textField4j_Material);
 
 			JTextField4j textField4j_BatchNumber = new JTextField4j();
 			textField4j_BatchNumber.setEnabled(false);
-			textField4j_BatchNumber.setBounds(154, 68, 139, 21);
+			textField4j_BatchNumber.setBounds(154, 68, 139, 22);
 			textField4j_BatchNumber.setText(labdat.getBatchNumber());
 			jDesktopPane1.add(textField4j_BatchNumber);
 
 			JTextField4j textField4j_User_ID = new JTextField4j();
 			textField4j_User_ID.setEnabled(false);
-			textField4j_User_ID.setBounds(154, 227, 152, 21);
+			textField4j_User_ID.setBounds(154, 227, 152, 22);
 			textField4j_User_ID.setText(labdat.getUserID());
 			jDesktopPane1.add(textField4j_User_ID);
 
 			JTextField4j textField4j_WorkstationID = new JTextField4j();
 			textField4j_WorkstationID.setEditable(false);
 			textField4j_WorkstationID.setEnabled(false);
-			textField4j_WorkstationID.setBounds(448, 227, 208, 21);
+			textField4j_WorkstationID.setBounds(448, 227, 208, 22);
 			textField4j_WorkstationID.setText(labdat.getWorkstationID());
 			jDesktopPane1.add(textField4j_WorkstationID);
 
@@ -361,7 +360,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 
 			JTextField4j textField4j_Description = new JTextField4j();
 			textField4j_Description.setEnabled(false);
-			textField4j_Description.setBounds(305, 38, 351, 21);
+			textField4j_Description.setBounds(305, 38, 351, 22);
 			if (mat.getMaterialProperties(labdat.getMaterial()))
 			{
 				textField4j_Description.setText(mat.getDescription());
@@ -371,31 +370,29 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			JLabel4j_std lbl_ResourceID = new JLabel4j_std();
 			lbl_ResourceID.setText(lang.get("lbl_Resource_Key"));
 			lbl_ResourceID.setHorizontalAlignment(SwingConstants.RIGHT);
-			lbl_ResourceID.setBounds(306, 70, 125, 21);
+			lbl_ResourceID.setBounds(306, 70, 125, 22);
 			jDesktopPane1.add(lbl_ResourceID);
 
 			JTextField4j textField4j_Resource = new JTextField4j();
 			textField4j_Resource.setEnabled(false);
-			textField4j_Resource.setBounds(448, 68, 208, 21);
+			textField4j_Resource.setBounds(448, 68, 208, 22);
 			textField4j_Resource.setText(labdat.getRequiredResource());
 			jDesktopPane1.add(textField4j_Resource);
 
 			JLabel4j_std lbl_Status = new JLabel4j_std();
 			lbl_Status.setText(lang.get("lbl_Process_Order_Status"));
 			lbl_Status.setHorizontalAlignment(SwingConstants.RIGHT);
-			lbl_Status.setBounds(353, 10, 152, 21);
+			lbl_Status.setBounds(353, 10, 152, 22);
 			jDesktopPane1.add(lbl_Status);
 
 			JQuantityInput jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
 			jDesktopPane1.add(jFormattedTextFieldQuantity);
-			jFormattedTextFieldQuantity.setFont(Common.font_std);
-			jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-			jFormattedTextFieldQuantity.setBounds(154, 198, 74, 21);
+			jFormattedTextFieldQuantity.setBounds(154, 198, 74, 22);
 			jFormattedTextFieldQuantity.setEnabled(false);
 
 			JTextField4j textField4j_Status = new JTextField4j();
 			textField4j_Status.setEnabled(false);
-			textField4j_Status.setBounds(517, 10, 139, 21);
+			textField4j_Status.setBounds(517, 10, 139, 22);
 			if (po.getProcessOrderProperties(labdat.getProcessOrder()))
 			{
 				textField4j_Status.setText(po.getStatus());
@@ -428,18 +425,18 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			});
 			JButtonRefresh.setText(lang.get("btn_Refresh"));
 			JButtonRefresh.setMnemonic('0');
-			JButtonRefresh.setBounds(222, 387, 130, 30);
+			JButtonRefresh.setBounds(222, 387, 130, 32);
 			jDesktopPane1.add(JButtonRefresh);
 
 			JLabel4j_std label4j_Production_UOM = new JLabel4j_std((String) null);
 			label4j_Production_UOM.setHorizontalAlignment(SwingConstants.TRAILING);
-			label4j_Production_UOM.setBounds(12, 165, 125, 21);
+			label4j_Production_UOM.setBounds(12, 165, 125, 22);
 			label4j_Production_UOM.setText(lang.get("lbl_Production_UOM"));
 			jDesktopPane1.add(label4j_Production_UOM);
 
 			JLabel4j_std label4j_std_Base_UOM = new JLabel4j_std((String) null);
 			label4j_std_Base_UOM.setHorizontalAlignment(SwingConstants.TRAILING);
-			label4j_std_Base_UOM.setBounds(12, 132, 125, 21);
+			label4j_std_Base_UOM.setBounds(12, 132, 125, 22);
 			label4j_std_Base_UOM.setText(lang.get("lbl_Base_UOM"));
 			jDesktopPane1.add(label4j_std_Base_UOM);
 
@@ -447,111 +444,111 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			textField4j_Prod_EAN.setHorizontalAlignment(SwingConstants.CENTER);
 			textField4j_Prod_EAN.setEnabled(false);
 			textField4j_Prod_EAN.setText(labdat.getProdEAN());
-			textField4j_Prod_EAN.setBounds(315, 165, 139, 21);
+			textField4j_Prod_EAN.setBounds(315, 165, 139, 22);
 			jDesktopPane1.add(textField4j_Prod_EAN);
 
 			JTextField4j textField4j_Base_EAN = new JTextField4j();
 			textField4j_Base_EAN.setHorizontalAlignment(SwingConstants.CENTER);
 			textField4j_Base_EAN.setEnabled(false);
 			textField4j_Base_EAN.setText(labdat.getBaseEAN());
-			textField4j_Base_EAN.setBounds(315, 132, 139, 21);
+			textField4j_Base_EAN.setBounds(315, 132, 139, 22);
 			jDesktopPane1.add(textField4j_Base_EAN);
 
 			JTextField4j textField4j_Prod_UOM = new JTextField4j();
 			textField4j_Prod_UOM.setHorizontalAlignment(SwingConstants.CENTER);
 			textField4j_Prod_UOM.setEnabled(false);
 			textField4j_Prod_UOM.setText(labdat.getProdUom());
-			textField4j_Prod_UOM.setBounds(258, 165, 51, 21);
+			textField4j_Prod_UOM.setBounds(258, 165, 51, 22);
 			jDesktopPane1.add(textField4j_Prod_UOM);
 
 			JTextField4j textField4j_Prod_Variant = new JTextField4j();
 			textField4j_Prod_Variant.setHorizontalAlignment(SwingConstants.CENTER);
 			textField4j_Prod_Variant.setEnabled(false);
 			textField4j_Prod_Variant.setText(labdat.getProdVariant());
-			textField4j_Prod_Variant.setBounds(472, 165, 51, 21);
+			textField4j_Prod_Variant.setBounds(472, 165, 51, 22);
 			jDesktopPane1.add(textField4j_Prod_Variant);
 
 			JTextField4j textField4j_Base_Variant = new JTextField4j();
 			textField4j_Base_Variant.setHorizontalAlignment(SwingConstants.CENTER);
 			textField4j_Base_Variant.setEnabled(false);
 			textField4j_Base_Variant.setText(labdat.getBaseVariant());
-			textField4j_Base_Variant.setBounds(472, 132, 51, 21);
+			textField4j_Base_Variant.setBounds(472, 132, 51, 22);
 			jDesktopPane1.add(textField4j_Base_Variant);
 
 			JTextField4j textField4j_Base_UOM = new JTextField4j();
 			textField4j_Base_UOM.setHorizontalAlignment(SwingConstants.CENTER);
 			textField4j_Base_UOM.setEnabled(false);
 			textField4j_Base_UOM.setText(labdat.getBaseUom());
-			textField4j_Base_UOM.setBounds(258, 132, 51, 21);
+			textField4j_Base_UOM.setBounds(258, 132, 51, 22);
 			jDesktopPane1.add(textField4j_Base_UOM);
 
 			JLabel4j_std label4j_std_Pallet_Quantity = new JLabel4j_std((String) null);
 			label4j_std_Pallet_Quantity.setText(lang.get("lbl_Pallet_Quantity"));
 			label4j_std_Pallet_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
-			label4j_std_Pallet_Quantity.setBounds(12, 198, 125, 21);
+			label4j_std_Pallet_Quantity.setBounds(12, 198, 125, 22);
 			jDesktopPane1.add(label4j_std_Pallet_Quantity);
 
 			JLabel4j_std label4j_std_1 = new JLabel4j_std((String) null);
 			label4j_std_1.setText("x");
 			label4j_std_1.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std_1.setBounds(232, 165, 22, 21);
+			label4j_std_1.setBounds(232, 165, 22, 22);
 			jDesktopPane1.add(label4j_std_1);
 
 			JLabel4j_std label4j_std_2 = new JLabel4j_std((String) null);
 			label4j_std_2.setText("x");
 			label4j_std_2.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std_2.setBounds(232, 132, 22, 21);
+			label4j_std_2.setBounds(232, 132, 22, 22);
 			jDesktopPane1.add(label4j_std_2);
 
 			JLabel4j_std label4j_std_3 = new JLabel4j_std((String) null);
 			label4j_std_3.setText("/");
 			label4j_std_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std_3.setBounds(453, 165, 22, 21);
+			label4j_std_3.setBounds(453, 165, 22, 22);
 			jDesktopPane1.add(label4j_std_3);
 
 			JLabel4j_std label4j_std_4 = new JLabel4j_std((String) null);
 			label4j_std_4.setText("/");
 			label4j_std_4.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std_4.setBounds(453, 132, 22, 21);
+			label4j_std_4.setBounds(453, 132, 22, 22);
 			jDesktopPane1.add(label4j_std_4);
 
 			JTextField4j textField4j_Prod_Quantity = new JTextField4j();
 			textField4j_Prod_Quantity.setEnabled(false);
 			textField4j_Prod_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
-			textField4j_Prod_Quantity.setBounds(154, 165, 74, 21);
+			textField4j_Prod_Quantity.setBounds(154, 165, 74, 22);
 			textField4j_Prod_Quantity.setText(labdat.getProdQuantity().toString());
 			jDesktopPane1.add(textField4j_Prod_Quantity);
 
 			JTextField4j textField4j_Base_Quantity = new JTextField4j();
 			textField4j_Base_Quantity.setEnabled(false);
 			textField4j_Base_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
-			textField4j_Base_Quantity.setBounds(154, 132, 74, 21);
+			textField4j_Base_Quantity.setBounds(154, 132, 74, 22);
 			textField4j_Base_Quantity.setText(labdat.getBaseQuantity().toString());
 			jDesktopPane1.add(textField4j_Base_Quantity);
 
 			JTextField4j textField4j_Pallet_UOM = new JTextField4j();
 			textField4j_Pallet_UOM.setEnabled(false);
 			textField4j_Pallet_UOM.setHorizontalAlignment(SwingConstants.CENTER);
-			textField4j_Pallet_UOM.setBounds(258, 198, 51, 21);
+			textField4j_Pallet_UOM.setBounds(258, 198, 51, 22);
 			textField4j_Pallet_UOM.setText(labdat.getProdUom());
 			jDesktopPane1.add(textField4j_Pallet_UOM);
 
 			JLabel4j_std label4j_std = new JLabel4j_std((String) null);
 			label4j_std.setText("x");
 			label4j_std.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std.setBounds(232, 198, 22, 21);
+			label4j_std.setBounds(232, 198, 22, 22);
 			jDesktopPane1.add(label4j_std);
 
 			JLabel4j_std lbl_ReportID = new JLabel4j_std((String) null);
 			lbl_ReportID.setText(lang.get("lbl_Report_ID"));
 			lbl_ReportID.setHorizontalAlignment(SwingConstants.TRAILING);
-			lbl_ReportID.setBounds(306, 198, 125, 21);
+			lbl_ReportID.setBounds(306, 198, 125, 22);
 			jDesktopPane1.add(lbl_ReportID);
 
 			JTextField4j textField4j_Report_ID = new JTextField4j();
 			textField4j_Report_ID.setEditable(false);
 			textField4j_Report_ID.setText(labdat.getModuleID());
-			textField4j_Report_ID.setBounds(448, 196, 208, 21);
+			textField4j_Report_ID.setBounds(448, 196, 208, 22);
 			jDesktopPane1.add(textField4j_Report_ID);
 
 		} catch (Exception e)

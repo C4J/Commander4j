@@ -43,7 +43,6 @@ import java.sql.PreparedStatement;
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
@@ -51,7 +50,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -67,10 +65,12 @@ import com.commander4j.db.JDBMaterialLocation;
 import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.tablemodel.JDBProcessOrderResourceTableModel;
@@ -101,7 +101,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonEdit;
 	private JButton4j jButtonClose;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JTextField4j jTextFieldDescription;
 	private JLabel4j_std jLabelBatchSuffix;
 	private JComboBox4j<String> jComboBoxSortBy;
@@ -119,7 +119,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 	private JDBLanguage lang;
 	private PreparedStatement listStatement;
 	private JTextField4j jTextFieldBatchSuffix = new JTextField4j(20);
-	private JCheckBox chckbxEnabled = new JCheckBox("");
+	private JCheckBox4j chckbxEnabled = new JCheckBox4j("");
 	private JButton4j button4jClear;
 	private JButton4j button4jDelete;
 	
@@ -615,32 +615,32 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jLabelResource = new JLabel4j_std();
 					jDesktopPane1.add(jLabelResource);
 					jLabelResource.setText(lang.get("lbl_Process_Order_Required_Resource"));
-					jLabelResource.setBounds(0, 10, 150, 21);
+					jLabelResource.setBounds(0, 10, 150, 22);
 					jLabelResource.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldResource = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldResource);
-					jTextFieldResource.setBounds(154, 10, 141, 21);
+					jTextFieldResource.setBounds(154, 10, 141, 22);
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Description"));
-					jLabelDescription.setBounds(0, 37, 150, 21);
+					jLabelDescription.setBounds(0, 39, 150, 22);
 					jLabelDescription.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(jTextFieldDescription);
-					jTextFieldDescription.setBounds(154, 37, 341, 21);
+					jTextFieldDescription.setBounds(154, 39, 341, 22);
 				}
 				{
 					jLabelSortBy = new JLabel4j_std();
 					jDesktopPane1.add(jLabelSortBy);
 					jLabelSortBy.setText(lang.get("lbl_Sort_By"));
 					jLabelSortBy.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelSortBy.setBounds(0, 120, 150, 21);
+					jLabelSortBy.setBounds(0, 126, 150, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -648,20 +648,20 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(154, 118, 162, 23);
+					jComboBoxSortBy.setBounds(154, 126, 162, 22);
 				}
 				{
 					jLabelBatchSuffix = new JLabel4j_std();
 					jDesktopPane1.add(jLabelBatchSuffix);
 					jLabelBatchSuffix.setText(lang.get("lbl_Batch_Suffix"));
 					jLabelBatchSuffix.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelBatchSuffix.setBounds(0, 65, 150, 21);
+					jLabelBatchSuffix.setBounds(0, 68, 150, 22);
 				}
 
 				{
-					jToggleButtonSequence = new JToggleButton();
+					jToggleButtonSequence = new JToggleButton4j();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(320, 118, 21, 23);
+					jToggleButtonSequence.setBounds(316, 126, 22, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -715,27 +715,27 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jTextFieldPlantID = new JTextField4j(JDBProcessOrderResource.field_Plant_id);
 					jDesktopPane1.add(jTextFieldPlantID);
 					jTextFieldPlantID.setText("");
-					jTextFieldPlantID.setBounds(154, 91, 104, 21);
+					jTextFieldPlantID.setBounds(154, 97, 104, 22);
 				}
 				{
 					jLabelPlantID = new JLabel4j_std();
 					jDesktopPane1.add(jLabelPlantID);
 					jLabelPlantID.setText(lang.get("lbl_Plant"));
 					jLabelPlantID.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelPlantID.setBounds(37, 91, 113, 21);
+					jLabelPlantID.setBounds(37, 97, 113, 22);
 				}
 
-				jTextFieldBatchSuffix.setBounds(154, 64, 80, 21);
+				jTextFieldBatchSuffix.setBounds(154, 68, 80, 22);
 				jDesktopPane1.add(jTextFieldBatchSuffix);
 
 				JLabel4j_std label4jEnabled = new JLabel4j_std();
 				label4jEnabled.setText(lang.get("lbl_Enabled"));
 				label4jEnabled.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4jEnabled.setBounds(234, 65, 135, 21);
+				label4jEnabled.setBounds(234, 68, 135, 22);
 				jDesktopPane1.add(label4jEnabled);
 				chckbxEnabled.setSelected(true);
 
-				chckbxEnabled.setBounds(373, 62, 29, 23);
+				chckbxEnabled.setBounds(373, 68, 29, 22);
 				jDesktopPane1.add(chckbxEnabled);
 
 				button4jClear = new JButton4j(Common.icon_clear_16x16);

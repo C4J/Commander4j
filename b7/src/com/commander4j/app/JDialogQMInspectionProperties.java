@@ -137,7 +137,7 @@ public class JDialogQMInspectionProperties extends javax.swing.JDialog
 		getContentPane().add(desktopPane);
 		
 		JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
-		lblInspectionID.setBounds(8, 27, 87, 16);
+		lblInspectionID.setBounds(8, 22, 87, 22);
 		desktopPane.add(lblInspectionID);
 		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 		
@@ -149,7 +149,7 @@ public class JDialogQMInspectionProperties extends javax.swing.JDialog
 			}
 		});
 		textFieldInspectionID.setEnabled(false);
-		textFieldInspectionID.setBounds(108, 22, 153, 28);
+		textFieldInspectionID.setBounds(108, 22, 153, 22);
 		desktopPane.add(textFieldInspectionID);
 		textFieldInspectionID.setColumns(10);
 		
@@ -161,7 +161,7 @@ public class JDialogQMInspectionProperties extends javax.swing.JDialog
 				enableSave();
 			}
 		});
-		textFieldInspectionDescription.setBounds(377, 22, 463, 28);
+		textFieldInspectionDescription.setBounds(377, 22, 463, 22);
 		desktopPane.add(textFieldInspectionDescription);
 		textFieldInspectionDescription.setColumns(10);
 		
@@ -175,7 +175,7 @@ public class JDialogQMInspectionProperties extends javax.swing.JDialog
 			}
 		});
 		btnSave.setIcon(Common.icon_update_16x16);
-		btnSave.setBounds(293, 75, 117, 29);
+		btnSave.setBounds(293, 57, 117, 32);
 		desktopPane.add(btnSave);
 		
 		btnClose = new JButton4j(lang.get("btn_Close"));
@@ -185,12 +185,12 @@ public class JDialogQMInspectionProperties extends javax.swing.JDialog
 			}
 		});
 		btnClose.setIcon(Common.icon_close_16x16);
-		btnClose.setBounds(414, 75, 117, 29);
+		btnClose.setBounds(414, 57, 117, 32);
 		desktopPane.add(btnClose);
 		
 		JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Description"));
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(273, 27, 92, 16);
+		label4j_std_1.setBounds(273, 22, 92, 22);
 		desktopPane.add(label4j_std_1);
 		
 		inspectionid = JUtility.replaceNullStringwithBlank(inspectionid);

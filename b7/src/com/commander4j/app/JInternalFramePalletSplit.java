@@ -43,7 +43,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
+
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -60,12 +60,13 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JQuantityInput;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JPrint;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
@@ -99,10 +100,10 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JLabelPrint lab = new JLabelPrint(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
-	private JSpinner jSpinnerQuantity = new JSpinner();
+	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
 	private JCheckBox4j checkBoxIncHeaderText = new JCheckBox4j();
 	private JCheckBox4j jCheckBoxAutoPreview;
-	private JSpinner jSpinnerCopies = new JSpinner();
+	private JSpinner4j jSpinnerCopies = new JSpinner4j();
 	private JLabel4j_std labelPreview;
 	private PreparedStatement listStatement;
 	private JQuantityInput jFormattedTextFieldQuantity;
@@ -308,54 +309,48 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 					}
 				});
 				jDesktopPane1.add(jTextFieldSSCC);
-				jTextFieldSSCC.setBounds(121, 24, 134, 21);
+				jTextFieldSSCC.setBounds(121, 24, 134, 22);
 
 				jTextFieldNewSSCC = new JTextField4j();
 				jDesktopPane1.add(jTextFieldNewSSCC);
 				jTextFieldNewSSCC.setEditable(false);
 				jTextFieldNewSSCC.setEnabled(false);
-				jTextFieldNewSSCC.setBounds(121, 53, 134, 21);
+				jTextFieldNewSSCC.setBounds(121, 53, 134, 22);
 
 				jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
 				jDesktopPane1.add(jFormattedTextFieldQuantity);
-				jFormattedTextFieldQuantity.setFont(Common.font_std);
-				jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				jFormattedTextFieldQuantity.setBounds(464, 24, 91, 21);
+				jFormattedTextFieldQuantity.setBounds(464, 24, 91, 22);
 				jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
 				jFormattedTextFieldQuantity.setEnabled(false);
 
 				jFormattedTextFieldNewQuantity = new JQuantityInput(new BigDecimal("0"));
 				jDesktopPane1.add(jFormattedTextFieldNewQuantity);
-				jFormattedTextFieldNewQuantity.setFont(Common.font_std);
-				jFormattedTextFieldNewQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				jFormattedTextFieldNewQuantity.setBounds(464, 53, 91, 21);
+				jFormattedTextFieldNewQuantity.setBounds(464, 53, 91, 22);
 				jFormattedTextFieldNewQuantity.setVerifyInputWhenFocusTarget(false);
 				jFormattedTextFieldNewQuantity.setEnabled(false);
 
 				jFormattedTextFieldSplitQuantity = new JQuantityInput(new BigDecimal("0"));
 				jDesktopPane1.add(jFormattedTextFieldSplitQuantity);
-				jFormattedTextFieldSplitQuantity.setFont(Common.font_std);
-				jFormattedTextFieldSplitQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				jFormattedTextFieldSplitQuantity.setBounds(269, 87, 91, 21);
+				jFormattedTextFieldSplitQuantity.setBounds(269, 87, 91, 22);
 				jFormattedTextFieldSplitQuantity.setVerifyInputWhenFocusTarget(false);
 
 				labelSSCCQuantity = new JLabel4j_std();
 				jDesktopPane1.add(labelSSCCQuantity);
 				labelSSCCQuantity.setText(lang.get("lbl_Pallet_Quantity"));
 				labelSSCCQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelSSCCQuantity.setBounds(369, 24, 88, 21);
+				labelSSCCQuantity.setBounds(369, 24, 88, 22);
 
 				labelSSCCNewQuantity = new JLabel4j_std();
 				jDesktopPane1.add(labelSSCCNewQuantity);
 				labelSSCCNewQuantity.setText(lang.get("lbl_Pallet_Quantity"));
 				labelSSCCNewQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelSSCCNewQuantity.setBounds(369, 53, 88, 21);
+				labelSSCCNewQuantity.setBounds(369, 53, 88, 22);
 
 				labelNewSSCCQuantity = new JLabel4j_std();
 				jDesktopPane1.add(labelNewSSCCQuantity);
 				labelNewSSCCQuantity.setText(lang.get("lbl_Required_Quantity"));
 				labelNewSSCCQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelNewSSCCQuantity.setBounds(137, 86, 125, 21);
+				labelNewSSCCQuantity.setBounds(137, 87, 125, 22);
 
 				jButtonSplit = new JButton4j(Common.icon_split_16x16);
 				jButtonSplit.addActionListener(new ActionListener()
@@ -414,62 +409,58 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				labelSSCC = new JLabel4j_std();
 				jDesktopPane1.add(labelSSCC);
 				labelSSCC.setText(lang.get("lbl_Source_SSCC"));
-				labelSSCC.setBounds(6, 24, 103, 21);
+				labelSSCC.setBounds(6, 24, 103, 22);
 				labelSSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 
 				labelNewSSCC = new JLabel4j_std();
 				jDesktopPane1.add(labelNewSSCC);
 				labelNewSSCC.setText(lang.get("lbl_Destination_SSCC"));
-				labelNewSSCC.setBounds(18, 53, 91, 21);
+				labelNewSSCC.setBounds(18, 53, 91, 22);
 				labelNewSSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 
 				JLabel4j_std labelHeader = new JLabel4j_std();
 				labelHeader.setHorizontalAlignment(SwingConstants.TRAILING);
 				labelHeader.setText(lang.get("lbl_Label_Header_Text"));
-				labelHeader.setBounds(18, 112, 91, 21);
+				labelHeader.setBounds(18, 112, 91, 22);
 				jDesktopPane1.add(labelHeader);
 
 				checkBoxIncHeaderText.setSelected(true);
 				checkBoxIncHeaderText.setBackground(Color.WHITE);
-				checkBoxIncHeaderText.setBounds(121, 112, 21, 21);
+				checkBoxIncHeaderText.setBounds(121, 112, 21, 22);
 				jDesktopPane1.add(checkBoxIncHeaderText);
 
 				JLabel4j_std labelQuantity = new JLabel4j_std();
-				labelQuantity.setBounds(248, 112, 182, 21);
+				labelQuantity.setBounds(248, 112, 182, 22);
 				labelQuantity.setHorizontalAlignment(SwingConstants.RIGHT);
 				labelQuantity.setText(lang.get("lbl_Number_of_SSCCs"));
 				jDesktopPane1.add(labelQuantity);
 
 				labelCopies.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelCopies.setBounds(248, 141, 182, 21);
+				labelCopies.setBounds(248, 141, 182, 22);
 				labelCopies.setText(lang.get("lbl_Labels_Per_SSCC"));
 				jDesktopPane1.add(labelCopies);
 
 				jSpinnerQuantity.setEnabled(false);
 				jSpinnerQuantity.setModel(new SpinnerNumberModel(Integer.valueOf(1), null, null,Integer.valueOf(1)));
-				jSpinnerQuantity.setFont(Common.font_std);
-				jSpinnerQuantity.setBounds(437, 112, 39, 21);
-				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerQuantity);
-				ne.getTextField().setFont(Common.font_std);
+				jSpinnerQuantity.setBounds(437, 112, 39, 22);
+				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerQuantity);
 				jSpinnerQuantity.setEditor(ne);
 				jDesktopPane1.add(jSpinnerQuantity);
 
-				jSpinnerCopies.setFont(Common.font_std);
-				jSpinnerCopies.setBounds(437, 141, 39, 21);
+				jSpinnerCopies.setBounds(437, 141, 39, 22);
 				jSpinnerCopies.setInputVerifier(null);
 				jSpinnerCopies.setModel(copiesnumbermodel);
-				JSpinner.NumberEditor nec2 = new JSpinner.NumberEditor(jSpinnerCopies);
-				nec2.getTextField().setFont(Common.font_std);
+				JSpinner4j.NumberEditor nec2 = new JSpinner4j.NumberEditor(jSpinnerCopies);
 				jSpinnerCopies.setEditor(nec2);
 				jDesktopPane1.add(jSpinnerCopies);
 
 				JLabel4j_std label_3 = new JLabel4j_std(lang.get("lbl_Print_Queue"));
 				label_3.setHorizontalAlignment(SwingConstants.TRAILING);
-				label_3.setBounds(18, 174, 91, 21);
+				label_3.setBounds(18, 170, 91, 22);
 				jDesktopPane1.add(label_3);
 
 				comboBoxPrintQueue.setSelectedIndex(-1);
-				comboBoxPrintQueue.setBounds(121, 170, 499, 23);
+				comboBoxPrintQueue.setBounds(121, 170, 499, 22);
 				jDesktopPane1.add(comboBoxPrintQueue);
 
 				jCheckBoxAutoPreview = new JCheckBox4j();
@@ -477,12 +468,12 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				jCheckBoxAutoPreview.setSelected(true);
 				jCheckBoxAutoPreview.setEnabled(false);
 				jCheckBoxAutoPreview.setBackground(Color.WHITE);
-				jCheckBoxAutoPreview.setBounds(121, 141, 21, 21);
+				jCheckBoxAutoPreview.setBounds(121, 141, 21, 22);
 				jCheckBoxAutoPreview.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRODDEC_PREVIEW"));
 				jDesktopPane1.add(jCheckBoxAutoPreview);
 
 				labelPreview = new JLabel4j_std();
-				labelPreview.setBounds(18, 141, 91, 21);
+				labelPreview.setBounds(18, 141, 91, 22);
 				labelPreview.setHorizontalTextPosition(SwingConstants.CENTER);
 				labelPreview.setHorizontalAlignment(SwingConstants.TRAILING);
 				labelPreview.setText(lang.get("lbl_Preview"));
@@ -502,11 +493,11 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				panel.setLayout(null);
 
 				checkBoxPrintOldSSCC.setSelected(true);
-				checkBoxPrintOldSSCC.setBounds(32, 17, 28, 23);
+				checkBoxPrintOldSSCC.setBounds(32, 17, 28, 22);
 				panel.add(checkBoxPrintOldSSCC);
 
 				checkBoxPrintNewSSCC.setSelected(true);
-				checkBoxPrintNewSSCC.setBounds(32, 46, 28, 23);
+				checkBoxPrintNewSSCC.setBounds(32, 46, 28, 22);
 				panel.add(checkBoxPrintNewSSCC);
 
 				populatePrinterList(JPrint.getDefaultPrinterQueueName());

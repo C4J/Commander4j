@@ -40,7 +40,7 @@ import java.io.File;
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
+
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
@@ -52,6 +52,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JFileFilterExecs;
 import com.commander4j.util.JFileFilterImages;
@@ -74,7 +75,7 @@ import com.commander4j.util.JUtility;
 
 public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 {
-	private JSpinner jSpinnerPrintCopies;
+	private JSpinner4j jSpinnerPrintCopies;
 	private JLabel4j_std jLabel3_3;
 	private JLabel4j_std jLabel3_2;
 	private JLabel4j_std jLabel3_1;
@@ -206,7 +207,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(573, 396));
-			this.setBounds(0, 0, 653, 505);
+			this.setBounds(0, 0, 698, 505);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Module Properties");
@@ -214,7 +215,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 			getContentPane().setLayout(null);
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 645, 475);
+				jDesktopPane1.setBounds(0, 0, 690, 475);
 				jDesktopPane1.setBackground(Common.color_app_window);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(577, 280));
@@ -224,7 +225,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					textFieldTranslatedDescripton.setEditable(false);
 					textFieldTranslatedDescripton.setFocusCycleRoot(true);
 					textFieldTranslatedDescripton.setCaretPosition(0);
-					textFieldTranslatedDescripton.setBounds(164, 60, 280, 21);
+					textFieldTranslatedDescripton.setBounds(164, 65, 280, 22);
 					jDesktopPane1.add(textFieldTranslatedDescripton);
 				}
 				{
@@ -233,13 +234,13 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel1.setText(lang.get("lbl_Module_ID"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(0, 10, 152, 21);
+					jLabel1.setBounds(0, 10, 152, 22);
 				}
 				{
 					lblReportType = new JLabel4j_std();
 					lblReportType.setText(lang.get("lbl_Module_Report_Type"));
 					lblReportType.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblReportType.setBounds(0, 206, 152, 21);
+					lblReportType.setBounds(0, 206, 152, 22);
 					jDesktopPane1.add(lblReportType);
 				}
 				{
@@ -247,14 +248,14 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jTextFieldModuleId);
 					jTextFieldModuleId.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldModuleId.setEditable(false);
-					jTextFieldModuleId.setBounds(164, 10, 280, 21);
+					jTextFieldModuleId.setBounds(164, 10, 280, 22);
 					jTextFieldModuleId.setEnabled(false);
 				}
 				{
 					jTextFieldResourceKey = new JTextField4j(JDBModule.field_resource_key);
 					jDesktopPane1.add(jTextFieldResourceKey);
 					jTextFieldResourceKey.setFocusCycleRoot(true);
-					jTextFieldResourceKey.setBounds(164, 35, 280, 21);
+					jTextFieldResourceKey.setBounds(164, 38, 280, 22);
 					jTextFieldResourceKey.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonUpdate.setEnabled(true);
@@ -269,7 +270,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
-					jButtonUpdate.setBounds(107, 424, 112, 32);
+					jButtonUpdate.setBounds(125, 425, 112, 32);
 					jButtonUpdate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -326,7 +327,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(449, 424, 112, 32);
+					jButtonClose.setBounds(467, 425, 112, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -339,7 +340,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel3.setText(lang.get("lbl_Module_Type"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(0, 93, 152, 21);
+					jLabel3.setBounds(0, 93, 152, 22);
 				}
 				{
 					jLabel4 = new JLabel4j_std();
@@ -347,7 +348,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel4.setText(lang.get("lbl_Module_Desktop"));
 					jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel4.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel4.setBounds(0, 122, 152, 21);
+					jLabel4.setBounds(0, 122, 152, 22);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
@@ -355,7 +356,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel5.setText(lang.get("lbl_Description"));
 					jLabel5.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel5.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel5.setBounds(0, 60, 152, 21);
+					jLabel5.setBounds(0, 65, 152, 22);
 				}
 				{
 					comboBox = new JComboBox4j<String>();
@@ -364,7 +365,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					comboBox.setBounds(164, 206, 180, 23);
+					comboBox.setBounds(164, 206, 180, 22);
 					comboBox.addItem("");
 					comboBox.addItem("Standard");
 					comboBox.addItem("Label");
@@ -377,7 +378,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jComboBoxType.setEditable(false);
 					jComboBoxType.setLightWeightPopupEnabled(true);
 					jComboBoxType.setIgnoreRepaint(false);
-					jComboBoxType.setBounds(164, 93, 180, 23);
+					jComboBoxType.setBounds(164, 93, 180, 22);
 					jComboBoxType.addItem("EXEC");
 					jComboBoxType.addItem("FORM");
 					jComboBoxType.addItem("FUNCTION");
@@ -454,7 +455,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jCheckBoxScanner = new JCheckBox4j();
 					jDesktopPane1.add(jCheckBoxScanner);
 					jCheckBoxScanner.setSelected(true);
-					jCheckBoxScanner.setBounds(164, 146, 21, 21);
+					jCheckBoxScanner.setBounds(164, 146, 21, 22);
 					jCheckBoxScanner.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxScanner.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -467,7 +468,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jCheckBoxDesktop = new JCheckBox4j();
 					jDesktopPane1.add(jCheckBoxDesktop);
 					jCheckBoxDesktop.setSelected(true);
-					jCheckBoxDesktop.setBounds(164, 122, 21, 21);
+					jCheckBoxDesktop.setBounds(164, 122, 21, 22);
 					jCheckBoxDesktop.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxDesktop.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -482,14 +483,14 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel6.setText(lang.get("lbl_Module_Scanner"));
 					jLabel6.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel6.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel6.setBounds(0, 146, 152, 21);
+					jLabel6.setBounds(0, 146, 152, 22);
 				}
 
 				{
 					jLabelMnemonic = new JLabel4j_std();
 					jDesktopPane1.add(jLabelMnemonic);
 					jLabelMnemonic.setText(lang.get("lbl_Language_Mnemonic"));
-					jLabelMnemonic.setBounds(449, 60, 112, 21);
+					jLabelMnemonic.setBounds(462, 65, 151, 22);
 					jLabelMnemonic.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelMnemonic.setHorizontalTextPosition(SwingConstants.RIGHT);
 				}
@@ -500,7 +501,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jTextFieldMnemonic);
 					jTextFieldMnemonic.setText("");
 
-					jTextFieldMnemonic.setBounds(566, 60, 42, 21);
+					jTextFieldMnemonic.setBounds(618, 65, 42, 22);
 					jTextFieldMnemonic.setToolTipText("Character to underline");
 					jTextFieldMnemonic.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
@@ -512,13 +513,13 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel2 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Module_Executable_Directory"));
-					jLabel2.setBounds(0, 291, 152, 21);
+					jLabel2.setBounds(0, 291, 152, 22);
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldIconFilename = new JTextField4j(JDBModule.field_icon_filename);
 					jDesktopPane1.add(jTextFieldIconFilename);
-					jTextFieldIconFilename.setBounds(164, 177, 218, 22);
+					jTextFieldIconFilename.setBounds(164, 177, 220, 22);
 					jTextFieldIconFilename.addKeyListener(new KeyAdapter() {
 						public void keyReleased(KeyEvent evt) {
 							jButtonIconPreview.setIcon(JDBModule.getModuleIcon16x16(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
@@ -533,7 +534,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jButtonIconFileChooser = new JButton4j();
 					jDesktopPane1.add(jButtonIconFileChooser);
 					jButtonIconFileChooser.setText("..");
-					jButtonIconFileChooser.setBounds(383, 177, 17, 21);
+					jButtonIconFileChooser.setBounds(383, 177, 22, 22);
 					jButtonIconFileChooser.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -581,7 +582,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				{
 					jTextFieldHelpsetid = new JTextField4j(JDBModule.field_helpset_id);
 					jDesktopPane1.add(jTextFieldHelpsetid);
-					jTextFieldHelpsetid.setBounds(164, 318, 427, 21);
+					jTextFieldHelpsetid.setBounds(164, 318, 475, 22);
 					jTextFieldHelpsetid.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 
@@ -593,14 +594,14 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel7 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel7);
 					jLabel7.setText(lang.get("lbl_Module_Help"));
-					jLabel7.setBounds(0, 318, 152, 21);
+					jLabel7.setBounds(0, 318, 152, 22);
 					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(335, 424, 112, 32);
+					jButtonHelp.setBounds(353, 425, 112, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
@@ -622,13 +623,13 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jLabel8);
 					jLabel8.setText(lang.get("lbl_Module_Icon_Filename"));
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8.setBounds(0, 178, 152, 21);
+					jLabel8.setBounds(0, 178, 152, 22);
 				}
 				{
 					jButtonReportFileChooser = new JButton4j();
 					jDesktopPane1.add(jButtonReportFileChooser);
 					jButtonReportFileChooser.setText("..");
-					jButtonReportFileChooser.setBounds(467, 234, 17, 21);
+					jButtonReportFileChooser.setBounds(467, 234, 22, 22);
 					jButtonReportFileChooser.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -683,7 +684,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				{
 					jTextFieldExecDir = new JTextField4j();
 					jDesktopPane1.add(jTextFieldExecDir);
-					jTextFieldExecDir.setBounds(164, 290, 427, 22);
+					jTextFieldExecDir.setBounds(164, 290, 475, 22);
 					jTextFieldExecDir.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonUpdate.setEnabled(true);
@@ -697,7 +698,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				{
 					jTextFieldExecFilename = new JTextField4j(JDBModule.field_exec_dir);
 					jDesktopPane1.add(jTextFieldExecFilename);
-					jTextFieldExecFilename.setBounds(164, 262, 427, 22);
+					jTextFieldExecFilename.setBounds(164, 262, 475, 22);
 					jTextFieldExecFilename.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonUpdate.setEnabled(true);
@@ -713,20 +714,20 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jLabel9);
 					jLabel9.setText(lang.get("lbl_Module_Report_Filename"));
 					jLabel9.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel9.setBounds(0, 234, 152, 21);
+					jLabel9.setBounds(0, 234, 152, 22);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Module_Executable_Filename"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(0, 263, 152, 21);
+					jLabel10.setBounds(0, 263, 152, 22);
 				}
 				{
 					jButtonExecDirChooser = new JButton4j();
 					jDesktopPane1.add(jButtonExecDirChooser);
 					jButtonExecDirChooser.setText("..");
-					jButtonExecDirChooser.setBounds(591, 290, 17, 21);
+					jButtonExecDirChooser.setBounds(638, 290, 22, 22);
 					jButtonExecDirChooser.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -766,7 +767,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jButtonExecFileChooser = new JButton4j();
 					jDesktopPane1.add(jButtonExecFileChooser);
 					jButtonExecFileChooser.setText("..");
-					jButtonExecFileChooser.setBounds(591, 262, 17, 21);
+					jButtonExecFileChooser.setBounds(638, 262, 22, 22);
 					jButtonExecFileChooser.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -843,7 +844,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 						}
 					});
 					jButtonExecDirChooser_1.setText("..");
-					jButtonExecDirChooser_1.setBounds(591, 318, 17, 21);
+					jButtonExecDirChooser_1.setBounds(638, 318, 22, 22);
 					jDesktopPane1.add(jButtonExecDirChooser_1);
 				}
 
@@ -856,7 +857,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					});
 					jCheckBoxPrintPreview.setSelected(true);
 					jCheckBoxPrintPreview.setBackground(new Color(255, 255, 255));
-					jCheckBoxPrintPreview.setBounds(566, 177, 21, 21);
+					jCheckBoxPrintPreview.setBounds(639, 177, 21, 22);
 					jDesktopPane1.add(jCheckBoxPrintPreview);
 				}
 
@@ -869,7 +870,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					});
 					jCheckBoxPrintDialog.setSelected(true);
 					jCheckBoxPrintDialog.setBackground(new Color(255, 255, 255));
-					jCheckBoxPrintDialog.setBounds(566, 205, 21, 21);
+					jCheckBoxPrintDialog.setBounds(639, 205, 21, 22);
 					jDesktopPane1.add(jCheckBoxPrintDialog);
 				}
 
@@ -878,7 +879,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel3_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel3_1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3_1.setText(lang.get("lbl_Module_Print_Preview"));
-					jLabel3_1.setBounds(421, 177, 141, 21);
+					jLabel3_1.setBounds(488, 176, 141, 22);
 					jDesktopPane1.add(jLabel3_1);
 				}
 
@@ -887,7 +888,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel3_2.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel3_2.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3_2.setText(lang.get("lbl_Module_Print_Dialog"));
-					jLabel3_2.setBounds(415, 205, 147, 21);
+					jLabel3_2.setBounds(482, 205, 147, 22);
 					jDesktopPane1.add(jLabel3_2);
 				}
 
@@ -896,19 +897,18 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel3_3.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel3_3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3_3.setText(lang.get("lbl_Module_Print_Copies"));
-					jLabel3_3.setBounds(421, 233, 141, 21);
+					jLabel3_3.setBounds(467, 233, 141, 22);
 					jDesktopPane1.add(jLabel3_3);
 				}
 
 				{
-					jSpinnerPrintCopies = new JSpinner();
+					jSpinnerPrintCopies = new JSpinner4j();
 					jSpinnerPrintCopies.addChangeListener(new ChangeListener() {
 						public void stateChanged(ChangeEvent e) {
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					jSpinnerPrintCopies.setFont(Common.font_std);
-					jSpinnerPrintCopies.setBounds(566, 233, 42, 21);
+					jSpinnerPrintCopies.setBounds(618, 234, 42, 22);
 					jDesktopPane1.add(jSpinnerPrintCopies);
 				}
 				
@@ -917,20 +917,20 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					lblResourceKey.setText(lang.get("lbl_Language_Key"));
 					lblResourceKey.setHorizontalTextPosition(SwingConstants.RIGHT);
 					lblResourceKey.setHorizontalAlignment(SwingConstants.RIGHT);
-					lblResourceKey.setBounds(0, 35, 152, 21);
+					lblResourceKey.setBounds(0, 38, 152, 22);
 					jDesktopPane1.add(lblResourceKey);
 				}
 				
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Command_File"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(0, 364, 152, 21);
+				label4j_std.setBounds(0, 364, 152, 22);
 				jDesktopPane1.add(label4j_std);
 				
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
 				label4j_std_1.setText(lang.get("lbl_Label_File"));
 				label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std_1.setBounds(0, 391, 152, 21);
+				label4j_std_1.setBounds(0, 391, 152, 22);
 				jDesktopPane1.add(label4j_std_1);
 				jTextFieldAutoLabelCommandFilename.addKeyListener(new KeyAdapter() {
 					@Override
@@ -939,7 +939,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					}
 				});
 				
-				jTextFieldAutoLabelCommandFilename.setBounds(164, 363, 218, 22);
+				jTextFieldAutoLabelCommandFilename.setBounds(164, 363, 220, 22);
 				jDesktopPane1.add(jTextFieldAutoLabelCommandFilename);
 				jTextFieldAutoLabelLabelFilename.addKeyListener(new KeyAdapter() {
 					@Override
@@ -948,7 +948,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					}
 				});
 				
-				jTextFieldAutoLabelLabelFilename.setBounds(164, 391, 218, 21);
+				jTextFieldAutoLabelLabelFilename.setBounds(164, 391, 220, 22);
 				jDesktopPane1.add(jTextFieldAutoLabelLabelFilename);
 				
 				
@@ -990,7 +990,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					}
 				});
 				jButtonAutoLabelCommandFileChooser.setText("..");
-				jButtonAutoLabelCommandFileChooser.setBounds(383, 363, 17, 21);
+				jButtonAutoLabelCommandFileChooser.setBounds(383, 363, 22, 22);
 				jDesktopPane1.add(jButtonAutoLabelCommandFileChooser);
 				
 
@@ -1031,13 +1031,13 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					}
 				});
 				jButtonAutoLabelLabelDirChooser.setText("..");
-				jButtonAutoLabelLabelDirChooser.setBounds(383, 391, 17, 21);
+				jButtonAutoLabelLabelDirChooser.setBounds(383, 391, 22, 22);
 				jDesktopPane1.add(jButtonAutoLabelLabelDirChooser);
 					
 				JLabel4j_std label4j_std_AutoLabeller = new JLabel4j_std();
 				label4j_std_AutoLabeller.setText(lang.get("lbl_Auto_Labeller"));
 				label4j_std_AutoLabeller.setHorizontalAlignment(SwingConstants.CENTER);
-				label4j_std_AutoLabeller.setBounds(163, 341, 237, 21);
+				label4j_std_AutoLabeller.setBounds(163, 341, 237, 22);
 				jDesktopPane1.add(label4j_std_AutoLabeller);
 				
 				jButtonAlternative = new JButton4j(Common.icon_alternative_16x16);
@@ -1049,7 +1049,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				jButtonAlternative.setText(lang.get("btn_Alternative"));
 				jButtonAlternative.setMnemonic('A');
 				jButtonAlternative.setEnabled(false);
-				jButtonAlternative.setBounds(221, 424, 112, 32);
+				jButtonAlternative.setBounds(239, 425, 112, 32);
 				jDesktopPane1.add(jButtonAlternative);
 				
 			}

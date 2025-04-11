@@ -50,11 +50,11 @@ import com.commander4j.db.JDBSampleDefectIDs;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JTextArea4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.db.JDBSampleDefectTypes;
@@ -66,7 +66,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 	private JButton4j jButtonClose;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonUpdate;
-	private JTextArea jTextFieldLongDescription;
+	private JTextArea4j jTextFieldLongDescription;
 	private JTextField4j jTextFieldDescription;
 	private JLabel4j_std jLabel3;
 	private JTextField4j jTextFieldDefectID;
@@ -139,7 +139,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jLabel1 = new JLabel4j_std();
-					jLabel1.setBounds(0, 7, 128, 21);
+					jLabel1.setBounds(0, 7, 128, 22);
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Defect_ID"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -148,7 +148,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 				
 				{
 					jLabel2 = new JLabel4j_std();
-					jLabel2.setBounds(0, 179, 128, 21);
+					jLabel2.setBounds(0, 179, 128, 22);
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Enabled"));
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -157,7 +157,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 				
 				{
 					jTextFieldDefectID = new JTextField4j(JDBSampleDefectIDs.field_sample_defect_type);
-					jTextFieldDefectID.setBounds(139, 7, 170, 21);
+					jTextFieldDefectID.setBounds(139, 7, 170, 22);
 					jDesktopPane1.add(jTextFieldDefectID);
 					jTextFieldDefectID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldDefectID.setEditable(false);
@@ -165,7 +165,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 				}
 				{
 					jLabel3 = new JLabel4j_std();
-					jLabel3.setBounds(0, 81, 128, 21);
+					jLabel3.setBounds(0, 81, 128, 22);
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Description"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -180,7 +180,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					jTextFieldDescription.setBounds(138, 81, 585, 21);
+					jTextFieldDescription.setBounds(138, 81, 585, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setFocusCycleRoot(true);
 					Border border = BorderFactory.createLineBorder(Color.BLACK);
@@ -188,7 +188,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 				}
 				
 				{
-					jTextFieldLongDescription = new JTextArea();
+					jTextFieldLongDescription = new JTextArea4j();
 					jTextFieldLongDescription.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyTyped(KeyEvent e) {
@@ -248,7 +248,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					chckbxEnabled.setBounds(136, 179, 22, 23);
+					chckbxEnabled.setBounds(136, 179, 22, 22);
 					jDesktopPane1.add(chckbxEnabled);
 				}
 				
@@ -256,12 +256,12 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 				jLabel3_1.setText(lang.get("lbl_Long_Description"));
 				jLabel3_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel3_1.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel3_1.setBounds(0, 114, 128, 21);
+				jLabel3_1.setBounds(0, 114, 128, 22);
 				jDesktopPane1.add(jLabel3_1);
 				
 
 				panelDefectType.setLayout(null);
-				panelDefectType.setBounds(138, 40, 299, 27);
+				panelDefectType.setBounds(138, 40, 585, 27);
 				jDesktopPane1.add(panelDefectType);
 				
 				defectTypeList.add(new JDBSampleDefectTypes(Common.selectedHostID, Common.sessionID));
@@ -275,7 +275,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 				});
 				jComboBoxDefectType.setModel(jComboBox6Model);
 				jComboBoxDefectType.setEditable(false);
-				jComboBoxDefectType.setBounds(2, 2, 293, 23);
+				jComboBoxDefectType.setBounds(2, 2, 583, 22);
 				panelDefectType.add(jComboBoxDefectType);
 				jComboBoxDefectType.setMaximumRowCount(20);
 				jComboBoxDefectType.setEditable(false);
@@ -283,7 +283,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 				JLabel4j_std jLabelDefectType = new JLabel4j_std();
 				jLabelDefectType.setText(lang.get("lbl_Defect_Type"));
 				jLabelDefectType.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabelDefectType.setBounds(-16, 40, 144, 21);
+				jLabelDefectType.setBounds(-16, 45, 144, 22);
 				jDesktopPane1.add(jLabelDefectType);
 			}
 		}

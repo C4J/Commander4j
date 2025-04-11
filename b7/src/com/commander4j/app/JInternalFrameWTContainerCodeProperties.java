@@ -146,7 +146,7 @@ public class JInternalFrameWTContainerCodeProperties extends JInternalFrame
 					jLabel_ContainerCode.setText(lang.get("lbl_Container_Code"));
 					jLabel_ContainerCode.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_ContainerCode.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_ContainerCode.setBounds(0, 10, 149, 21);
+					jLabel_ContainerCode.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldContainerCode = new JTextField4j(JDBWTContainerCode.field_ContainerCode);
@@ -154,7 +154,7 @@ public class JInternalFrameWTContainerCodeProperties extends JInternalFrame
 					jTextFieldContainerCode.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldContainerCode.setEditable(false);
 					jTextFieldContainerCode.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldContainerCode.setBounds(155, 10, 237, 21);
+					jTextFieldContainerCode.setBounds(155, 10, 237, 22);
 					jTextFieldContainerCode.setEnabled(false);
 				}
 				{
@@ -196,7 +196,7 @@ public class JInternalFrameWTContainerCodeProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 43, 149, 21);
+					jLabel_Description.setBounds(0, 43, 149, 22);
 				}
 
 				{
@@ -204,7 +204,7 @@ public class JInternalFrameWTContainerCodeProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 43, 237, 21);
+					jTextFieldDescription.setBounds(155, 43, 237, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);

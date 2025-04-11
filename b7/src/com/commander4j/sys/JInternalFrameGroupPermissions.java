@@ -215,13 +215,13 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					jLabelAssigned = new JLabel4j_title();
 					jDesktopPane1.add(jLabelAssigned);
 					jLabelAssigned.setText(lang.get("lbl_Assigned"));
-					jLabelAssigned.setBounds(15, 0, 152, 21);
+					jLabelAssigned.setBounds(15, 0, 152, 22);
 				}
 				{
 					jLabelAvailable = new JLabel4j_title();
 					jDesktopPane1.add(jLabelAvailable);
 					jLabelAvailable.setText(lang.get("lbl_Unassigned"));
-					jLabelAvailable.setBounds(370, 0, 142, 21);
+					jLabelAvailable.setBounds(370, 0, 142, 22);
 				}
 				{
 					jButtonAssign = new JButton4j(Common.icon_arrow_left_16x16);

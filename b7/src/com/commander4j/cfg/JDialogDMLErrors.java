@@ -34,10 +34,12 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -47,14 +49,10 @@ import javax.swing.WindowConstants;
 
 import com.commander4j.db.JDBDDL;
 import com.commander4j.db.JDBUpdateRequest;
+import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileFilterXML;
-
-import java.awt.Font;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileWriter;
 
 /**
  * The JDialogDMLErrors is used to display any SQL errors which are encountered
@@ -69,7 +67,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JList4j<String> jListErrors;
-	private JButton jButtonClose;
+	private JButton4j jButtonClose;
 	private JScrollPane jScrollPane1;
 	private LinkedList<JDBDDL> ddlLocal;
 	private JDialogDMLErrors me = this;
@@ -151,14 +149,13 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					}
 				}
 				{
-					jButtonClose = new JButton(Common.icon_close_16x16);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText("Close");
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setFont(Common.font_btn);
-					jButtonClose.setBounds(473, 453, 112, 28);
+					jButtonClose.setBounds(473, 453, 112, 32);
 					
-					JButton jButtonSave = new JButton(Common.icon_file_save_16x16);
+					JButton4j jButtonSave = new JButton4j(Common.icon_file_save_16x16);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							saveAs("Errors.txt",me);
@@ -166,8 +163,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					});
 					jButtonSave.setText("Save to File");
 					jButtonSave.setMnemonic(KeyEvent.VK_S);
-					jButtonSave.setFont(new Font("Arial", Font.PLAIN, 11));
-					jButtonSave.setBounds(359, 453, 112, 28);
+					jButtonSave.setBounds(359, 453, 112, 32);
 					jDesktopPane1.add(jButtonSave);
 					jButtonClose.addActionListener(new ActionListener()
 					{

@@ -44,7 +44,7 @@ import java.net.URI;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -241,7 +241,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelVersion.setHorizontalAlignment(SwingConstants.CENTER);
 					}
 					
-					JLabel labelLogo = new JLabel("New label");
+					JLabel4j_std labelLogo = new JLabel4j_std("New label");
 					labelLogo.setIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"images"+File.separator+"16x16"+File.separator+"about.jpg"));
 					labelLogo.setBounds(4, 0, 404, 169);
 					jDesktopPane1.add(labelLogo);

@@ -123,7 +123,7 @@ public class JDialogeGroupProperties extends JDialog
 				jDesktopPane1.setLayout(null);
 				{
 					jTextFieldGroupId = new JTextField4j(JDBGroup.field_group_id);
-					jTextFieldGroupId.setBounds(101, 10, 170, 21);
+					jTextFieldGroupId.setBounds(101, 10, 170, 22);
 					jDesktopPane1.add(jTextFieldGroupId);
 					jTextFieldGroupId.setPreferredSize(new java.awt.Dimension(100, 20));
 					jTextFieldGroupId.setHorizontalAlignment(SwingConstants.LEFT);
@@ -134,7 +134,7 @@ public class JDialogeGroupProperties extends JDialog
 				}
 				{
 					jLabelGroupID = new JLabel4j_std();
-					jLabelGroupID.setBounds(5, 10, 83, 21);
+					jLabelGroupID.setBounds(5, 10, 83, 22);
 					jDesktopPane1.add(jLabelGroupID);
 					jLabelGroupID.setText(lang.get("lbl_Group_ID"));
 					jLabelGroupID.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -142,7 +142,7 @@ public class JDialogeGroupProperties extends JDialog
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
-					jLabelDescription.setBounds(5, 37, 86, 21);
+					jLabelDescription.setBounds(5, 37, 86, 22);
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -189,7 +189,7 @@ public class JDialogeGroupProperties extends JDialog
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBGroup.field_description);
-					jTextFieldDescription.setBounds(101, 37, 314, 21);
+					jTextFieldDescription.setBounds(101, 37, 314, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);

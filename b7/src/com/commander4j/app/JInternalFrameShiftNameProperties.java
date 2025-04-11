@@ -128,7 +128,7 @@ public class JInternalFrameShiftNameProperties extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jLabel_ShiftID = new JLabel4j_std();
-					jLabel_ShiftID.setBounds(0, 7, 98, 21);
+					jLabel_ShiftID.setBounds(0, 7, 98, 22);
 					jDesktopPane1.add(jLabel_ShiftID);
 					jLabel_ShiftID.setText(lang.get("lbl_Shift_ID"));
 					jLabel_ShiftID.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -136,7 +136,7 @@ public class JInternalFrameShiftNameProperties extends JInternalFrame
 				}
 				{
 					jTextFieldShiftID = new JTextField4j(JDBShiftNames.field_shift_id);
-					jTextFieldShiftID.setBounds(105, 7, 100, 21);
+					jTextFieldShiftID.setBounds(105, 7, 100, 22);
 					jDesktopPane1.add(jTextFieldShiftID);
 					jTextFieldShiftID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldShiftID.setEditable(false);
@@ -144,7 +144,7 @@ public class JInternalFrameShiftNameProperties extends JInternalFrame
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
-					jLabelDescription.setBounds(0, 40, 98, 21);
+					jLabelDescription.setBounds(0, 40, 98, 22);
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -152,7 +152,7 @@ public class JInternalFrameShiftNameProperties extends JInternalFrame
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBShiftNames.field_description);
-					jTextFieldDescription.setBounds(105, 40, 238, 21);
+					jTextFieldDescription.setBounds(105, 40, 238, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
@@ -205,7 +205,7 @@ public class JInternalFrameShiftNameProperties extends JInternalFrame
 				}
 
 				JLabel4j_std label_Enabled = new JLabel4j_std();
-				label_Enabled.setBounds(0, 73, 97, 21);
+				label_Enabled.setBounds(0, 69, 97, 22);
 				label_Enabled.setText(lang.get("lbl_Enabled"));
 				label_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
 				jDesktopPane1.add(label_Enabled);
@@ -216,7 +216,7 @@ public class JInternalFrameShiftNameProperties extends JInternalFrame
 				});
 				
 
-				chckbxEnabled.setBounds(105, 69, 21, 23);
+				chckbxEnabled.setBounds(105, 69, 21, 22);
 				jDesktopPane1.add(chckbxEnabled);
 			}
 		}

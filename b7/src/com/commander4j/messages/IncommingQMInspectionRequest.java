@@ -27,7 +27,6 @@ package com.commander4j.messages;
  * 
  */
 
-import javax.swing.JLabel;
 
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBProcessOrder;
@@ -36,6 +35,7 @@ import com.commander4j.db.JDBQMDictionary;
 import com.commander4j.db.JDBQMExtension;
 import com.commander4j.db.JDBQMInspection;
 import com.commander4j.db.JDBQMTest;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.util.JUtility;
 
 public class IncommingQMInspectionRequest
@@ -271,7 +271,7 @@ public class IncommingQMInspectionRequest
 					qmDictionary.setTestID(testID);
 					if (qmDictionary.isValid()==false)
 					{
-						qmDictionary.create(testID, JLabel.LEADING, testDataType, testUOM, testRequired, testDescription, testVisible,50,testDefaultValue);
+						qmDictionary.create(testID, JLabel4j_std.LEADING, testDataType, testUOM, testRequired, testDescription, testVisible,50,testDefaultValue);
 						
 					}
 					else

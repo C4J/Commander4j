@@ -74,8 +74,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -92,6 +92,8 @@ import org.apache.logging.log4j.core.LoggerContext;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBModule;
+import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
 
@@ -1864,7 +1866,7 @@ public class JUtility
 	 * @param filename
 	 *            String
 	 */
-	public static void previewIcon(JButton btn, String filename)
+	public static void previewIcon(JButton4j btn, String filename)
 	{
 		try
 		{
@@ -2047,7 +2049,7 @@ public class JUtility
 		}
 	}
 
-	public static void setResultRecordCountColour(JLabel label, boolean limitSet, Integer limitRecords, Integer ActualRecords)
+	public static void setResultRecordCountColour(JLabel4j_std label, boolean limitSet, Integer limitRecords, Integer ActualRecords)
 	{
 		String warning = "";
 

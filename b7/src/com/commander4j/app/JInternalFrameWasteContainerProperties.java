@@ -48,10 +48,10 @@ import com.commander4j.db.JDBWasteContainer;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
@@ -163,7 +163,7 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 					jLabel_WasteContainer.setText(lang.get("lbl_Container_ID"));
 					jLabel_WasteContainer.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_WasteContainer.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_WasteContainer.setBounds(0, 10, 149, 21);
+					jLabel_WasteContainer.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldContainerID = new JTextField4j(JDBWasteContainer.field_WasteContainerID);
@@ -171,7 +171,7 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 					jTextFieldContainerID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldContainerID.setEditable(false);
 					jTextFieldContainerID.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldContainerID.setBounds(155, 10, 237, 21);
+					jTextFieldContainerID.setBounds(155, 10, 237, 22);
 					jTextFieldContainerID.setEnabled(false);
 				}
 				{
@@ -213,7 +213,7 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 43, 149, 21);
+					jLabel_Description.setBounds(0, 43, 149, 22);
 				}
 				
 				{
@@ -222,7 +222,7 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 					jLabel_TareWeight.setText(lang.get("lbl_Tare_Weight"));
 					jLabel_TareWeight.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_TareWeight.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_TareWeight.setBounds(0, 76, 149, 21);
+					jLabel_TareWeight.setBounds(0, 76, 149, 22);
 				}
 				
 				{
@@ -231,7 +231,7 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 					jLabel_TareWeightUOM.setText("KG");
 					jLabel_TareWeightUOM.setHorizontalAlignment(SwingConstants.LEFT);
 					jLabel_TareWeightUOM.setHorizontalTextPosition(SwingConstants.LEFT);
-					jLabel_TareWeightUOM.setBounds(219, 76, 60, 21);
+					jLabel_TareWeightUOM.setBounds(219, 76, 60, 22);
 				}
 
 				{
@@ -239,21 +239,21 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 43, 433, 21);
+					jTextFieldDescription.setBounds(155, 43, 433, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
 						}
 					});
 					
-					chckbx_Enabled.setBounds(155, 104, 29, 23);
+					chckbx_Enabled.setBounds(155, 104, 29, 22);
 					jDesktopPane1.add(chckbx_Enabled);
 					
 					JLabel4j_std jLabel_Enabled = new JLabel4j_std();
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Enabled.setBounds(0, 106, 149, 21);
+					jLabel_Enabled.setBounds(0, 104, 149, 22);
 					jDesktopPane1.add(jLabel_Enabled);
 					chckbx_Enabled.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -265,9 +265,8 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 					{
 						jFormattedTextFieldTareWeight = new JQuantityInput(new BigDecimal("0"));
 						jDesktopPane1.add(jFormattedTextFieldTareWeight);
-						jFormattedTextFieldTareWeight.setFont(Common.font_std);
 						jFormattedTextFieldTareWeight.setHorizontalAlignment(SwingConstants.TRAILING);
-						jFormattedTextFieldTareWeight.setBounds(155, 76, 60, 21);
+						jFormattedTextFieldTareWeight.setBounds(155, 76, 60, 22);
 						jFormattedTextFieldTareWeight.addKeyListener(new KeyAdapter() {
 							public void keyReleased(KeyEvent evt) {
 								jButtonSave.setEnabled(true);

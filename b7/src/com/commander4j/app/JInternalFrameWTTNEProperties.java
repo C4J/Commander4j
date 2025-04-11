@@ -29,7 +29,6 @@ package com.commander4j.app;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -49,10 +48,10 @@ import com.commander4j.db.JDBUom;
 import com.commander4j.db.JDBWTTNE;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
@@ -182,7 +181,7 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 					jLabel_Nominal.setText(lang.get("lbl_Nominal_Weight"));
 					jLabel_Nominal.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Nominal.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Nominal.setBounds(29, 12, 137, 21);
+					jLabel_Nominal.setBounds(29, 12, 137, 22);
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);
@@ -223,7 +222,7 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 					jDesktopPane1.add(jTextField_Nominal_Uom);
 					jTextField_Nominal_Uom.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextField_Nominal_Uom.setFocusCycleRoot(true);
-					jTextField_Nominal_Uom.setBounds(296, 12, 50, 21);
+					jTextField_Nominal_Uom.setBounds(296, 12, 50, 22);
 					jTextField_Nominal_Uom.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -233,7 +232,6 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 				
 				jTextField_Nominal.setVerifyInputWhenFocusTarget(false);
 				jTextField_Nominal.setHorizontalAlignment(SwingConstants.TRAILING);
-				jTextField_Nominal.setFont(new Font("Arial", Font.PLAIN, 11));
 				jTextField_Nominal.setBounds(176, 12, 108, 22);
 				jDesktopPane1.add(jTextField_Nominal);
 				
@@ -246,7 +244,6 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 				});
 				jTextField_TNE.setVerifyInputWhenFocusTarget(false);
 				jTextField_TNE.setHorizontalAlignment(SwingConstants.TRAILING);
-				jTextField_TNE.setFont(new Font("Arial", Font.PLAIN, 11));
 				jTextField_TNE.setBounds(176, 46, 108, 22);
 				jDesktopPane1.add(jTextField_TNE);
 				
@@ -254,24 +251,23 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 				jLabel_TNE.setText(lang.get("lbl_TNE"));
 				jLabel_TNE.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_TNE.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_TNE.setBounds(29, 47, 137, 21);
+				jLabel_TNE.setBounds(29, 47, 137, 22);
 				jDesktopPane1.add(jLabel_TNE);
 				jTextField_TNE_Uom.setText("");
 				jTextField_TNE_Uom.setPreferredSize(new Dimension(40, 20));
 				jTextField_TNE_Uom.setFocusCycleRoot(true);
 				jTextField_TNE_Uom.setCaretPosition(0);
-				jTextField_TNE_Uom.setBounds(296, 48, 50, 21);
+				jTextField_TNE_Uom.setBounds(296, 48, 50, 22);
 				jDesktopPane1.add(jTextField_TNE_Uom);
 				
 				JLabel4j_std jLabel_NegT1 = new JLabel4j_std();
 				jLabel_NegT1.setText(lang.get("lbl_NegT1"));
 				jLabel_NegT1.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_NegT1.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_NegT1.setBounds(29, 81, 137, 21);
+				jLabel_NegT1.setBounds(29, 81, 137, 22);
 				jDesktopPane1.add(jLabel_NegT1);
 				jTextField_NegT1.setVerifyInputWhenFocusTarget(false);
 				jTextField_NegT1.setHorizontalAlignment(SwingConstants.TRAILING);
-				jTextField_NegT1.setFont(new Font("Arial", Font.PLAIN, 11));
 				jTextField_NegT1.setBounds(176, 80, 108, 22);
 				jDesktopPane1.add(jTextField_NegT1);
 				
@@ -281,25 +277,24 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 				jTextField_NegT1_UOM.setPreferredSize(new Dimension(40, 20));
 				jTextField_NegT1_UOM.setFocusCycleRoot(true);
 				jTextField_NegT1_UOM.setCaretPosition(0);
-				jTextField_NegT1_UOM.setBounds(296, 82, 50, 21);
+				jTextField_NegT1_UOM.setBounds(296, 82, 50, 22);
 				jDesktopPane1.add(jTextField_NegT1_UOM);
 				
 				JLabel4j_std jLabel_NegT2 = new JLabel4j_std();
 				jLabel_NegT2.setText(lang.get("lbl_NegT2"));
 				jLabel_NegT2.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_NegT2.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_NegT2.setBounds(29, 115, 137, 21);
+				jLabel_NegT2.setBounds(29, 115, 137, 22);
 				jDesktopPane1.add(jLabel_NegT2);
 				jTextField_NegT2.setVerifyInputWhenFocusTarget(false);
 				jTextField_NegT2.setHorizontalAlignment(SwingConstants.TRAILING);
-				jTextField_NegT2.setFont(new Font("Arial", Font.PLAIN, 11));
 				jTextField_NegT2.setBounds(176, 114, 108, 22);
 				jDesktopPane1.add(jTextField_NegT2);
 				jTextField_NegT2_UOM.setText("");
 				jTextField_NegT2_UOM.setPreferredSize(new Dimension(40, 20));
 				jTextField_NegT2_UOM.setFocusCycleRoot(true);
 				jTextField_NegT2_UOM.setCaretPosition(0);
-				jTextField_NegT2_UOM.setBounds(296, 116, 50, 21);
+				jTextField_NegT2_UOM.setBounds(296, 116, 50, 22);
 				jDesktopPane1.add(jTextField_NegT2_UOM);
 				
 

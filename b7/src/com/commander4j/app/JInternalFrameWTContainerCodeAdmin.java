@@ -46,6 +46,7 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBWTContainerCode;
 
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
 import com.commander4j.sys.Common;
@@ -54,7 +55,6 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import javax.swing.JLabel;
 import java.awt.Font;
 
 /**
@@ -84,7 +84,7 @@ public class JInternalFrameWTContainerCodeAdmin extends javax.swing.JInternalFra
 	private JScrollPane jScrollPane1;
 	private String lContainerCode;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JLabel label;
+	private JLabel4j_std label;
 
 	private void addrecord() {
 		JDBWTContainerCode u = new JDBWTContainerCode(Common.selectedHostID, Common.sessionID);
@@ -198,7 +198,7 @@ public class JInternalFrameWTContainerCodeAdmin extends javax.swing.JInternalFra
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_WEIGHT_CONTAINERCODE"));
 		{
-			label = new JLabel("Container Code     Description");
+			label = new JLabel4j_std("Container Code     Description");
 			label.setFont(new Font("Monospaced", Font.BOLD, 11));
 			label.setBounds(8, 12, 518, 15);
 			jDesktopPane1.add(label);

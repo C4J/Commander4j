@@ -29,7 +29,6 @@ package com.commander4j.clone;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.Rectangle;
@@ -140,7 +139,7 @@ public class JFrameCloneDB extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		desktopPane.setBounds(0, 0, 574, 549);
-		desktopPane.setBackground(Color.WHITE);
+		desktopPane.setBackground(Common.color_app_window);
 		contentPane.add(desktopPane);
 
 		Common.sessionID = JUnique.getUniqueID();
@@ -306,7 +305,7 @@ public class JFrameCloneDB extends JFrame
 
 			jScrollPaneFrom = new JScrollPane();
 			desktopPane.add(jScrollPaneFrom);
-			jScrollPaneFrom.setBounds(20, 37, 258, 395);
+			jScrollPaneFrom.setBounds(20, 20, 258, 410);
 
 			ListModel<JHost> jListHostsModelFrom = new DefaultComboBoxModel<JHost>();
 			jListHostFrom = new JList4j<JHost>();
@@ -323,7 +322,7 @@ public class JFrameCloneDB extends JFrame
 
 			jScrollPaneTo = new JScrollPane();
 			desktopPane.add(jScrollPaneTo);
-			jScrollPaneTo.setBounds(295, 37, 258, 395);
+			jScrollPaneTo.setBounds(295, 20, 258, 410);
 
 			ListModel<JHost> jListHostsModelTo = new DefaultComboBoxModel<JHost>();
 			jListHostTo = new JList4j<JHost>();
@@ -341,7 +340,7 @@ public class JFrameCloneDB extends JFrame
 			jButtonClone = new JButton4j(Common.icon_clone_16x16);
 			desktopPane.add(jButtonClone);
 			jButtonClone.setText("Clone Database");
-			jButtonClone.setBounds(118, 444, 160, 36);
+			jButtonClone.setBounds(118, 444, 160, 32);
 			jButtonClone.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -593,7 +592,7 @@ public class JFrameCloneDB extends JFrame
 			jButtonClose = new JButton4j(Common.icon_close_16x16);
 			desktopPane.add(jButtonClose);
 			jButtonClose.setText("Close");
-			jButtonClose.setBounds(295, 444, 160, 36);
+			jButtonClose.setBounds(295, 444, 160, 32);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -604,7 +603,7 @@ public class JFrameCloneDB extends JFrame
 			});
 
 			progressBar.setBounds(0, 490, 573, 28);
-			progressBar.setBackground(Color.WHITE);
+			progressBar.setBackground(Common.color_app_window);
 			progressBar.setForeground(Color.BLUE);
 			desktopPane.add(progressBar);
 
@@ -613,21 +612,17 @@ public class JFrameCloneDB extends JFrame
 			desktopPane.add(labelCommand);
 
 			JLabel4j_std label4j_std = new JLabel4j_std();
-			label4j_std.setForeground(Color.BLACK);
-			label4j_std.setFont(new Font("Arial", Font.PLAIN, 16));
 			label4j_std.setText("Source");
 			label4j_std.setHorizontalTextPosition(SwingConstants.LEFT);
 			label4j_std.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std.setBounds(20, 15, 258, 21);
+			label4j_std.setBounds(20, 0, 258, 21);
 			desktopPane.add(label4j_std);
 
 			JLabel4j_std label4j_std_1 = new JLabel4j_std();
-			label4j_std_1.setForeground(Color.BLACK);
 			label4j_std_1.setText("Destination");
 			label4j_std_1.setHorizontalTextPosition(SwingConstants.LEFT);
 			label4j_std_1.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std_1.setFont(new Font("Arial", Font.PLAIN, 16));
-			label4j_std_1.setBounds(295, 15, 248, 21);
+			label4j_std_1.setBounds(295, 0, 248, 21);
 			desktopPane.add(label4j_std_1);
 
 		}

@@ -144,7 +144,7 @@ public class JInternalFrameBomStructureProperties extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
-					jButtonUpdate.setBounds(49, 96, 112, 28);
+					jButtonUpdate.setBounds(49, 96, 112, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -163,14 +163,14 @@ public class JInternalFrameBomStructureProperties extends JInternalFrame
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.setBounds(182, 96, 112, 28);
+					jButtonHelp.setBounds(182, 96, 112, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jButtonClose.setBounds(313, 96, 112, 28);
+					jButtonClose.setBounds(313, 96, 112, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -184,7 +184,7 @@ public class JInternalFrameBomStructureProperties extends JInternalFrame
 				}
 
 				ComboBoxModel<JDBListData> jComboBox1Model = new DefaultComboBoxModel<JDBListData>(elementList);
-				comboBoxDataID.setBounds(143, 57, 282, 27);
+				comboBoxDataID.setBounds(143, 57, 282, 22);
 				comboBoxDataID.setModel(jComboBox1Model);
 				comboBoxDataID.addActionListener(new ActionListener()
 				{
@@ -197,7 +197,7 @@ public class JInternalFrameBomStructureProperties extends JInternalFrame
 				jDesktopPane1.add(comboBoxDataID);
 
 				ComboBoxModel<JDBListData> jComboBox2Model = new DefaultComboBoxModel<JDBListData>(elementList);
-				comboBoxParentDataID.setBounds(143, 18, 282, 27);
+				comboBoxParentDataID.setBounds(143, 18, 282, 22);
 				comboBoxParentDataID.setModel(jComboBox2Model);
 				comboBoxParentDataID.addActionListener(new ActionListener()
 				{
@@ -209,13 +209,13 @@ public class JInternalFrameBomStructureProperties extends JInternalFrame
 				jDesktopPane1.add(comboBoxParentDataID);
 
 
-				jLabel_Data_ID.setBounds(22, 63, 112, 21);
+				jLabel_Data_ID.setBounds(22, 57, 112, 22);
 				jDesktopPane1.add(jLabel_Data_ID);
 				jLabel_Data_ID.setText(lang.get("lbl_Data_ID"));
 				jLabel_Data_ID.setHorizontalAlignment(SwingConstants.RIGHT);
 				jLabel_Data_ID.setHorizontalTextPosition(SwingConstants.RIGHT);
 
-				jLabel_Parent_Data_ID.setBounds(22, 24, 112, 21);
+				jLabel_Parent_Data_ID.setBounds(22, 18, 112, 22);
 				jDesktopPane1.add(jLabel_Parent_Data_ID);
 				jLabel_Parent_Data_ID.setText(lang.get("lbl_Parent_Data_ID"));
 				jLabel_Parent_Data_ID.setHorizontalAlignment(SwingConstants.RIGHT);

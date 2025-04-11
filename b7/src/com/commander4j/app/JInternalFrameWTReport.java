@@ -30,7 +30,6 @@ package com.commander4j.app;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -48,9 +47,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -71,15 +67,17 @@ import com.commander4j.db.JDBWTWorkstation;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBViewWeightSamplModel;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
@@ -106,7 +104,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 	private JCheckBox4j checkBox4jToEnabled = new JCheckBox4j();
 	private JTextField4j fld_Container_Code = new JTextField4j(JDBQMSample.field_data_2);
 	private JTextField4j fld_Material = new JTextField4j(JDBMaterial.field_material);
-	private JTextField fld_Process_Order = new JTextField(JDBProcessOrder.field_process_order);
+	private JTextField4j fld_Process_Order = new JTextField4j(JDBProcessOrder.field_process_order);
 	private JTextField4j fld_Product_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
 	private JTextField4j fld_SamplePoint = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
 	private JTextField4j fld_SamplePointReportingGroup = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
@@ -118,9 +116,9 @@ public class JInternalFrameWTReport extends JInternalFrame
 	private JCheckBox4j jCheckBoxLimit;
 	private JComboBox4j<String> jComboBoxSortBy;
 	private JDesktopPane jDesktopPane1;
-	private JSpinner jSpinnerLimit = new JSpinner();
+	private JSpinner4j jSpinnerLimit = new JSpinner4j();
 	private JLabel4j_std jStatusText;
-	private JToggleButton jToggleButtonSequence = new JToggleButton();
+	private JToggleButton4j jToggleButtonSequence = new JToggleButton4j();
 	private JDBLanguage lang;
 	private JLabel4j_std lbl_Material;
 	private JLabel4j_std lbl_Process_Order;
@@ -355,14 +353,14 @@ public class JInternalFrameWTReport extends JInternalFrame
 					jDesktopPane1.add(btn_Help);
 					btn_Help.setText(lang.get("btn_Help"));
 					btn_Help.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					btn_Help.setBounds(718, 125, 140, 32);
+					btn_Help.setBounds(728, 126, 140, 32);
 				}
 				{
 					btn_Close = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(btn_Close);
 					btn_Close.setText(lang.get("btn_Close"));
 					btn_Close.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					btn_Close.setBounds(861, 125, 140, 32);
+					btn_Close.setBounds(871, 126, 140, 32);
 					btn_Close.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -377,26 +375,24 @@ public class JInternalFrameWTReport extends JInternalFrame
 					lbl_Process_Order = new JLabel4j_std();
 					jDesktopPane1.add(lbl_Process_Order);
 					lbl_Process_Order.setText(lang.get("lbl_Process_Order"));
-					lbl_Process_Order.setBounds(0, 88, 120, 25);
+					lbl_Process_Order.setBounds(0, 92, 120, 22);
 					lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					fld_Process_Order.setFont(Common.font_input);
-
 					jDesktopPane1.add(fld_Process_Order);
-					fld_Process_Order.setBounds(128, 88, 107, 25);
+					fld_Process_Order.setBounds(128, 92, 110, 22);
 				}
 				{
 					lbl_Material = new JLabel4j_std();
 					jDesktopPane1.add(lbl_Material);
 					lbl_Material.setText(lang.get("lbl_Material"));
-					lbl_Material.setBounds(279, 51, 94, 25);
+					lbl_Material.setBounds(279, 51, 94, 22);
 					lbl_Material.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 
 					jDesktopPane1.add(fld_Material);
-					fld_Material.setBounds(379, 51, 93, 25);
+					fld_Material.setBounds(379, 51, 93, 22);
 				}
 
 				{
@@ -415,7 +411,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					});
 
-					btn_Process_Order_Lookup.setBounds(236, 88, 21, 25);
+					btn_Process_Order_Lookup.setBounds(236, 92, 22, 22);
 					jDesktopPane1.add(btn_Process_Order_Lookup);
 				}
 
@@ -451,13 +447,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 						}
 					});
-					btn_SamplePoint_Lookup.setBounds(236, 51, 21, 25);
+					btn_SamplePoint_Lookup.setBounds(236, 51, 22, 22);
 					jDesktopPane1.add(btn_SamplePoint_Lookup);
 				}
 
 				{
 					jStatusText = new JLabel4j_std();
-					jStatusText.setFont(new Font("Arial", Font.PLAIN, 11));
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
 					jStatusText.setBounds(0, 614, 1006, 21);
@@ -468,33 +463,33 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std lbl_SamplePoint = new JLabel4j_std();
 				lbl_SamplePoint.setText(lang.get("lbl_SamplePoint"));
 				lbl_SamplePoint.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_SamplePoint.setBounds(0, 51, 122, 25);
+				lbl_SamplePoint.setBounds(0, 51, 122, 22);
 				jDesktopPane1.add(lbl_SamplePoint);
-				fld_SamplePoint.setBounds(128, 51, 107, 25);
+				fld_SamplePoint.setBounds(128, 51, 109, 22);
 				jDesktopPane1.add(fld_SamplePoint);
 
 				JLabel4j_std lbl_Product_Group = new JLabel4j_std();
 				lbl_Product_Group.setText(lang.get("lbl_Product_Group"));
 				lbl_Product_Group.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Product_Group.setBounds(748, 14, 107, 25);
+				lbl_Product_Group.setBounds(748, 14, 107, 22);
 				jDesktopPane1.add(lbl_Product_Group);
 
-				fld_Product_Group.setBounds(861, 14, 120, 25);
+				fld_Product_Group.setBounds(861, 14, 120, 22);
 				jDesktopPane1.add(fld_Product_Group);
 
 				JLabel4j_std lbl_Container_Code = new JLabel4j_std();
 				lbl_Container_Code.setText(lang.get("lbl_Container_Code"));
 				lbl_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Container_Code.setBounds(748, 51, 107, 25);
+				lbl_Container_Code.setBounds(748, 51, 107, 22);
 				jDesktopPane1.add(lbl_Container_Code);
 
-				fld_Container_Code.setBounds(861, 51, 120, 25);
+				fld_Container_Code.setBounds(861, 51, 120, 22);
 				jDesktopPane1.add(fld_Container_Code);
 
 				JLabel4j_std lbl_Sample_Date = new JLabel4j_std();
 				lbl_Sample_Date.setText(lang.get("lbl_Sample_Date"));
 				lbl_Sample_Date.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Sample_Date.setBounds(261, 14, 120, 25);
+				lbl_Sample_Date.setBounds(261, 14, 120, 22);
 				jDesktopPane1.add(lbl_Sample_Date);
 				checkBox4jFromEnabled.addActionListener(new ActionListener()
 				{
@@ -515,11 +510,11 @@ public class JInternalFrameWTReport extends JInternalFrame
 				});
 
 				checkBox4jFromEnabled.setBackground(Color.WHITE);
-				checkBox4jFromEnabled.setBounds(391, 14, 21, 25);
+				checkBox4jFromEnabled.setBounds(391, 14, 22, 22);
 				jDesktopPane1.add(checkBox4jFromEnabled);
 
 				sampleDateFrom.setEnabled(false);
-				sampleDateFrom.setBounds(415, 14, 128, 25);
+				sampleDateFrom.setBounds(415, 14, 128, 22);
 				jDesktopPane1.add(sampleDateFrom);
 				checkBox4jToEnabled.addActionListener(new ActionListener()
 				{
@@ -539,14 +534,14 @@ public class JInternalFrameWTReport extends JInternalFrame
 				});
 
 				checkBox4jToEnabled.setBackground(Color.WHITE);
-				checkBox4jToEnabled.setBounds(576, 14, 21, 25);
+				checkBox4jToEnabled.setBounds(576, 14, 22, 22);
 				jDesktopPane1.add(checkBox4jToEnabled);
 
 				sampleDateTo.setEnabled(false);
-				sampleDateTo.setBounds(603, 14, 128, 25);
+				sampleDateTo.setBounds(603, 14, 128, 22);
 				jDesktopPane1.add(sampleDateTo);
 
-				scrollPane.setBounds(0, 169, 1014, 433);
+				scrollPane.setBounds(5, 169, 1014, 433);
 				jDesktopPane1.add(scrollPane);
 
 				tableResults = new JTable4j();
@@ -582,13 +577,13 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 				btn_Search.setText(lang.get("btn_Search"));
 				btn_Search.setMnemonic(KeyEvent.VK_S);
-				btn_Search.setBounds(0, 125, 140, 32);
+				btn_Search.setBounds(10, 126, 140, 32);
 				jDesktopPane1.add(btn_Search);
 
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Sort_By"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(279, 92, 99, 21);
+				label4j_std.setBounds(279, 92, 99, 22);
 				jDesktopPane1.add(label4j_std);
 
 				ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -604,7 +599,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jComboBoxSortBy = new JComboBox4j<String>();
 				jComboBoxSortBy.setMaximumRowCount(15);
 				jComboBoxSortBy.setModel(jComboBoxSortByModel);
-				jComboBoxSortBy.setBounds(400, 91, 391, 22);
+				jComboBoxSortBy.setBounds(400, 92, 391, 22);
 				jDesktopPane1.add(jComboBoxSortBy);
 				jToggleButtonSequence.addActionListener(new ActionListener()
 				{
@@ -617,7 +612,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jCheckBoxLimit = new JCheckBox4j();
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(910, 92, 21, 21);
+				jCheckBoxLimit.setBounds(910, 92, 21, 22);
 				jDesktopPane1.add(jCheckBoxLimit);
 
 				jToggleButtonSequence.addActionListener(new ActionListener()
@@ -629,13 +624,13 @@ public class JInternalFrameWTReport extends JInternalFrame
 				});
 
 				jToggleButtonSequence.setSelected(false);
-				jToggleButtonSequence.setBounds(791, 91, 21, 22);
+				jToggleButtonSequence.setBounds(791, 92, 22, 22);
 				jDesktopPane1.add(jToggleButtonSequence);
 
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
 				label4j_std_1.setText(lang.get("lbl_Limit"));
 				label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std_1.setBounds(834, 92, 74, 21);
+				label4j_std_1.setBounds(834, 92, 74, 22);
 				jDesktopPane1.add(label4j_std_1);
 
 
@@ -644,11 +639,10 @@ public class JInternalFrameWTReport extends JInternalFrame
 					jSpinnerIntModel.setMinimum(1);
 					jSpinnerIntModel.setMaximum(25000);
 					jSpinnerIntModel.setStepSize(1);
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std);
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					jSpinnerLimit.setBounds(933, 92, 68, 21);
+					jSpinnerLimit.setBounds(933, 92, 68, 22);
 					jSpinnerLimit.setValue(2000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);
@@ -656,12 +650,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 				button_CalendarSampleDateFrom = new JCalendarButton(sampleDateFrom);
 				button_CalendarSampleDateFrom.setEnabled(false);
-				button_CalendarSampleDateFrom.setBounds(542, 18, 21, 21);
+				button_CalendarSampleDateFrom.setBounds(542, 14, 22, 22);
 				jDesktopPane1.add(button_CalendarSampleDateFrom);
 
 				button_CalendarSampleDateTo = new JCalendarButton(sampleDateTo);
 				button_CalendarSampleDateTo.setEnabled(false);
-				button_CalendarSampleDateTo.setBounds(732, 18, 21, 21);
+				button_CalendarSampleDateTo.setBounds(732, 14, 22, 22);
 				jDesktopPane1.add(button_CalendarSampleDateTo);
 
 				{
@@ -674,7 +668,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(146, 125, 140, 32);
+					jButtonClear.setBounds(156, 126, 140, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
 
@@ -689,7 +683,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					});
 					jButtonDetails.setText(lang.get("btn_Details"));
-					jButtonDetails.setBounds(432, 125, 140, 32);
+					jButtonDetails.setBounds(442, 126, 140, 32);
 					jDesktopPane1.add(jButtonDetails);
 				}
 
@@ -703,12 +697,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					});
 					jButtonReports.setText(lang.get("btn_Print"));
-					jButtonReports.setBounds(289, 125, 140, 32);
+					jButtonReports.setBounds(299, 126, 140, 32);
 					jDesktopPane1.add(jButtonReports);
 				}
 
 				JButton4j btn_LookupProductGroup = new JButton4j(Common.icon_lookup_16x16);
-				btn_LookupProductGroup.setBounds(980, 14, 21, 25);
+				btn_LookupProductGroup.setBounds(980, 14, 21, 22);
 				jDesktopPane1.add(btn_LookupProductGroup);
 				btn_LookupProductGroup.addActionListener(new ActionListener()
 				{
@@ -739,12 +733,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					}
 				});
-				btn_LookupContainerCode.setBounds(980, 51, 21, 25);
+				btn_LookupContainerCode.setBounds(980, 51, 21, 22);
 				jDesktopPane1.add(btn_LookupContainerCode);
 
 				{
 					jButtonMaterialLookup = new JButton4j(Common.icon_lookup_16x16);
-					jButtonMaterialLookup.setBounds(471, 51, 21, 25);
+					jButtonMaterialLookup.setBounds(471, 51, 21, 22);
 					jDesktopPane1.add(jButtonMaterialLookup);
 					jButtonMaterialLookup.addActionListener(new ActionListener()
 					{
@@ -762,7 +756,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.setBounds(575, 125, 140, 32);
+					jButtonExcel.setBounds(585, 126, 140, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -775,29 +769,29 @@ public class JInternalFrameWTReport extends JInternalFrame
 					jDesktopPane1.add(jButtonExcel);
 				}
 				checkBox4j_T1.setBackground(Color.WHITE);
-				checkBox4j_T1.setBounds(610, 51, 21, 25);
+				checkBox4j_T1.setBounds(610, 51, 21, 22);
 				jDesktopPane1.add(checkBox4j_T1);
 				checkBox4j_T2.setBackground(Color.WHITE);
-				checkBox4j_T2.setBounds(670, 51, 21, 25);
+				checkBox4j_T2.setBounds(670, 51, 21, 22);
 				jDesktopPane1.add(checkBox4j_T2);
 
 				JLabel4j_std label4j_T1 = new JLabel4j_std();
 				label4j_T1.setText("T2");
 				label4j_T1.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_T1.setBounds(645, 51, 21, 25);
+				label4j_T1.setBounds(645, 51, 21, 22);
 				jDesktopPane1.add(label4j_T1);
 
 				JLabel4j_std label4j_T2 = new JLabel4j_std();
 				label4j_T2.setText("T1");
 				label4j_T2.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_T2.setBounds(553, 51, 52, 25);
+				label4j_T2.setBounds(553, 51, 52, 22);
 				jDesktopPane1.add(label4j_T2);
 				fld_SamplePointReportingGroup.setEnabled(false);
 				
 				fld_SamplePointReportingGroup.setToolTipText("None");
 				fld_SamplePointReportingGroup.setEditable(false);
 				fld_SamplePointReportingGroup.setCaretPosition(0);
-				fld_SamplePointReportingGroup.setBounds(128, 14, 107, 25);
+				fld_SamplePointReportingGroup.setBounds(128, 14, 109, 22);
 				jDesktopPane1.add(fld_SamplePointReportingGroup);
 				
 				JButton4j btn_SamplePointGroup_Lookup = new JButton4j(Common.icon_lookup_16x16);
@@ -811,13 +805,13 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					}
 				});
-				btn_SamplePointGroup_Lookup.setBounds(236, 14, 21, 25);
+				btn_SamplePointGroup_Lookup.setBounds(236, 14, 22, 22);
 				jDesktopPane1.add(btn_SamplePointGroup_Lookup);
 				
 				JLabel4j_std lbl_SamplePointGroup = new JLabel4j_std();
 				lbl_SamplePointGroup.setText(lang.get("lbl_Reporting_Group"));
 				lbl_SamplePointGroup.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_SamplePointGroup.setBounds(0, 14, 122, 25);
+				lbl_SamplePointGroup.setBounds(0, 14, 122, 22);
 				jDesktopPane1.add(lbl_SamplePointGroup);
 			}
 		}

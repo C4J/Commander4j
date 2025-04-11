@@ -130,7 +130,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jTextFieldResourceKey = new JTextField4j(JDBLanguage.field_resource_key);
-					jTextFieldResourceKey.setBounds(130, 10, 355, 21);
+					jTextFieldResourceKey.setBounds(130, 10, 355, 22);
 					jDesktopPane1.add(jTextFieldResourceKey);
 					jTextFieldResourceKey.setPreferredSize(new java.awt.Dimension(100, 20));
 					jTextFieldResourceKey.setHorizontalAlignment(SwingConstants.LEFT);
@@ -139,7 +139,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 				}
 				{
 					jLabel1 = new JLabel4j_std();
-					jLabel1.setBounds(8, 43, 115, 21);
+					jLabel1.setBounds(8, 43, 115, 22);
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Resource_Key"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -147,7 +147,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 				}
 				{
 					jLabel1 = new JLabel4j_std();
-					jLabel1.setBounds(8, 10, 115, 21);
+					jLabel1.setBounds(8, 10, 115, 22);
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Language_ID"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -155,7 +155,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 				}
 				{
 					jLabel2 = new JLabel4j_std();
-					jLabel2.setBounds(8, 76, 115, 21);
+					jLabel2.setBounds(8, 76, 115, 22);
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Text"));
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -163,7 +163,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 				}
 				{
 					jLabel2 = new JLabel4j_std();
-					jLabel2.setBounds(8, 109, 115, 21);
+					jLabel2.setBounds(8, 109, 115, 22);
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Mnemonic"));
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -202,7 +202,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 				}
 				{
 					jTextFieldText = new JTextField4j(JDBLanguage.field_text);
-					jTextFieldText.setBounds(130, 76, 561, 21);
+					jTextFieldText.setBounds(130, 76, 561, 22);
 					jDesktopPane1.add(jTextFieldText);
 					jTextFieldText.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldText.setFocusCycleRoot(true);
@@ -224,7 +224,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 					jTextFieldText.setCaretPosition(jTextFieldText.getText().length());
 
 					JTextFieldLanguage = new JTextField4j(JDBLanguage.field_language);
-					JTextFieldLanguage.setBounds(130, 43, 91, 21);
+					JTextFieldLanguage.setBounds(130, 43, 91, 22);
 					JTextFieldLanguage.setPreferredSize(new Dimension(100, 20));
 					JTextFieldLanguage.setHorizontalAlignment(SwingConstants.LEFT);
 					JTextFieldLanguage.setEnabled(false);
@@ -232,7 +232,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(JTextFieldLanguage);
 
 					JTextFieldMnemonic = new JTextField4j(JDBLanguage.field_mnemonic);
-					JTextFieldMnemonic.setBounds(130, 109, 28, 21);
+					JTextFieldMnemonic.setBounds(130, 109, 28, 22);
 					JTextFieldMnemonic.setPreferredSize(new Dimension(40, 20));
 					JTextFieldMnemonic.setFocusCycleRoot(true);
 					JTextFieldMnemonic.setCaretPosition(0);

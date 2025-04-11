@@ -141,7 +141,7 @@ public class JDialogSysInfo extends javax.swing.JDialog
 		JLabel4j_std lblUsedMemory = new JLabel4j_std();
 		lblUsedMemory.setText("Used Memory :");
 		lblUsedMemory.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblUsedMemory.setBounds(611, 449, 91, 21);
+		lblUsedMemory.setBounds(611, 448, 91, 22);
 		jDesktopPane1.add(lblUsedMemory);
 		
 		textFieldUsedMemory = new JTextField4j();
@@ -149,97 +149,97 @@ public class JDialogSysInfo extends javax.swing.JDialog
 		textFieldUsedMemory.setHorizontalAlignment(SwingConstants.TRAILING);
 		textFieldUsedMemory.setEnabled(false);
 		textFieldUsedMemory.setEditable(false);
-		textFieldUsedMemory.setBounds(714, 448, 119, 21);
+		textFieldUsedMemory.setBounds(714, 448, 119, 22);
 		jDesktopPane1.add(textFieldUsedMemory);
 		
 		JLabel4j_std lblLocale = new JLabel4j_std();
 		lblLocale.setText("Locale :");
 		lblLocale.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblLocale.setBounds(604, 106, 58, 21);
+		lblLocale.setBounds(647, 107, 88, 22);
 		jDesktopPane1.add(lblLocale);
 		
 		textFieldLocale = new JTextField4j();
 		textFieldLocale.setEnabled(false);
 		textFieldLocale.setEditable(false);
-		textFieldLocale.setBounds(753, 106, 80, 20);
+		textFieldLocale.setBounds(753, 107, 80, 22);
 		jDesktopPane1.add(textFieldLocale);
 		textFieldLocale.setText(Locale.getDefault().getCountry()+","+Locale.getDefault().getLanguage());
 		
 		jTextFieldWorkstationID = new JTextField4j();
 		jTextFieldWorkstationID.setText(JUtility.getClientName());
 		jTextFieldWorkstationID.setEditable(false);
-		jTextFieldWorkstationID.setBounds(616, 351, 217, 20);
+		jTextFieldWorkstationID.setBounds(616, 355, 217, 22);
 		jDesktopPane1.add(jTextFieldWorkstationID);
 		
 		JLabel4j_std lbl_WorkstationID = new JLabel4j_std();
 		lbl_WorkstationID.setText("Workstation ID :");
 		lbl_WorkstationID.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_WorkstationID.setBounds(502, 354, 105, 21);
+		lbl_WorkstationID.setBounds(502, 355, 105, 22);
 		jDesktopPane1.add(lbl_WorkstationID);
 		
 		JLabel4j_std label4j_std = new JLabel4j_std();
 		label4j_std.setText("App Version :");
 		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std.setBounds(25, 9, 92, 21);
+		label4j_std.setBounds(25, 9, 92, 22);
 		jDesktopPane1.add(label4j_std);
 		
 		JLabel4j_std label4j_std_1 = new JLabel4j_std();
 		label4j_std_1.setText("Hosts FIle Version :");
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(232, 12, 119, 21);
+		label4j_std_1.setBounds(232, 9, 119, 22);
 		jDesktopPane1.add(label4j_std_1);
 		
 		JTextField4j jTextFieldAppVersion = new JTextField4j();
 		jTextFieldAppVersion.setText(JVersion.getProgramVersion());
 		jTextFieldAppVersion.setEnabled(false);
 		jTextFieldAppVersion.setEditable(false);
-		jTextFieldAppVersion.setBounds(129, 11, 100, 20);
+		jTextFieldAppVersion.setBounds(129, 9, 100, 22);
 		jDesktopPane1.add(jTextFieldAppVersion);
 		
 		JTextField4j jTextFieldHostsVersion = new JTextField4j();
 		jTextFieldHostsVersion.setText(Common.hostVersion);
 		jTextFieldHostsVersion.setEnabled(false);
 		jTextFieldHostsVersion.setEditable(false);
-		jTextFieldHostsVersion.setBounds(360, 11, 100, 20);
+		jTextFieldHostsVersion.setBounds(360, 9, 100, 22);
 		jDesktopPane1.add(jTextFieldHostsVersion);
 		
 		JLabel4j_std label4j_std_2 = new JLabel4j_std();
 		label4j_std_2.setText("App Update URL :");
 		label4j_std_2.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_2.setBounds(25, 42, 92, 21);
+		label4j_std_2.setBounds(25, 40, 92, 22);
 		jDesktopPane1.add(label4j_std_2);
 		
 		JTextField4j textField4j = new JTextField4j();
 		textField4j.setText(Common.updateURL);
 		textField4j.setEnabled(false);
 		textField4j.setEditable(false);
-		textField4j.setBounds(129, 40, 704, 20);
+		textField4j.setBounds(129, 40, 704, 22);
 		jDesktopPane1.add(textField4j);
 		
 		JLabel4j_std label4j_std_3 = new JLabel4j_std();
 		label4j_std_3.setText("Hosts Update Path :");
 		label4j_std_3.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_3.setBounds(12, 75, 103, 21);
+		label4j_std_3.setBounds(12, 74, 103, 22);
 		jDesktopPane1.add(label4j_std_3);
 		
 		JTextField4j textField4j_1 = new JTextField4j();
 		textField4j_1.setText(Common.hostUpdatePath);
 		textField4j_1.setEnabled(false);
 		textField4j_1.setEditable(false);
-		textField4j_1.setBounds(127, 74, 706, 20);
+		textField4j_1.setBounds(127, 74, 706, 22);
 		jDesktopPane1.add(textField4j_1);
 		
 		JLabel4j_std label4j_std_4 = new JLabel4j_std();
 		label4j_std_4.setText("Update Mode :");
 		label4j_std_4.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_4.setBounds(479, 9, 88, 21);
+		label4j_std_4.setBounds(479, 9, 88, 22);
 		jDesktopPane1.add(label4j_std_4);
 		
 		JTextField4j jTextFieldUpdateMode = new JTextField4j();
 		jTextFieldUpdateMode.setText(Common.updateMODE);
 		jTextFieldUpdateMode.setEnabled(false);
 		jTextFieldUpdateMode.setEditable(false);
-		jTextFieldUpdateMode.setBounds(666, 9, 167, 20);
+		jTextFieldUpdateMode.setBounds(666, 9, 167, 22);
 		jDesktopPane1.add(jTextFieldUpdateMode);
 	}
 
@@ -273,7 +273,7 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText("Version :");
-					jLabel1.setBounds(57, 354, 58, 21);
+					jLabel1.setBounds(57, 355, 58, 22);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -281,96 +281,96 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText("Java Version :");
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(23, 106, 92, 21);
+					jLabel2.setBounds(23, 107, 92, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText("Java VM Version :");
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel3.setBounds(358, 106, 119, 21);
+					jLabel3.setBounds(358, 107, 119, 22);
 				}
 				{
 					jLabel4 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel4);
 					jLabel4.setText("Java Home :");
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel4.setBounds(27, 136, 88, 21);
+					jLabel4.setBounds(27, 139, 88, 21);
 				}
 				{
 					jLabel7 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel7);
 					jLabel7.setText("OS Name :");
 					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel7.setBounds(25, 168, 90, 21);
+					jLabel7.setBounds(25, 168, 90, 22);
 				}
 				{
 					jLabel8 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel8);
 					jLabel8.setText("OS Architecture :");
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8.setBounds(359, 168, 118, 21);
+					jLabel8.setBounds(359, 168, 118, 22);
 				}
 				{
 					jLabel9 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel9);
 					jLabel9.setText("OS Version :");
 					jLabel9.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel9.setBounds(567, 168, 95, 21);
+					jLabel9.setBounds(640, 168, 95, 22);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText("OS User Name :");
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(22, 199, 93, 21);
+					jLabel10.setBounds(22, 200, 93, 22);
 				}
 				{
 					jLabel11 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel11);
 					jLabel11.setText("User Home :");
 					jLabel11.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel11.setBounds(25, 261, 90, 21);
+					jLabel11.setBounds(25, 262, 90, 22);
 				}
 				{
 					jTextFieldJavaHome = new JTextField4j();
 					jDesktopPane1.add(jTextFieldJavaHome);
-					jTextFieldJavaHome.setBounds(127, 138, 706, 20);
+					jTextFieldJavaHome.setBounds(127, 138, 706, 22);
 					jTextFieldJavaHome.setEditable(false);
 					jTextFieldJavaHome.setEnabled(false);
 				}
 				{
 					jTextFieldJavaVersion = new JTextField4j();
 					jDesktopPane1.add(jTextFieldJavaVersion);
-					jTextFieldJavaVersion.setBounds(127, 107, 231, 20);
+					jTextFieldJavaVersion.setBounds(127, 107, 231, 22);
 					jTextFieldJavaVersion.setEditable(false);
 					jTextFieldJavaVersion.setEnabled(false);
 				}
 				{
 					jTextFieldJavaVMVersion = new JTextField4j();
 					jDesktopPane1.add(jTextFieldJavaVMVersion);
-					jTextFieldJavaVMVersion.setBounds(486, 107, 100, 20);
+					jTextFieldJavaVMVersion.setBounds(486, 107, 100, 22);
 					jTextFieldJavaVMVersion.setEditable(false);
 					jTextFieldJavaVMVersion.setEnabled(false);
 				}
 				{
 					jTextFieldOSName = new JTextField4j();
 					jDesktopPane1.add(jTextFieldOSName);
-					jTextFieldOSName.setBounds(127, 169, 231, 20);
+					jTextFieldOSName.setBounds(127, 168, 231, 22);
 					jTextFieldOSName.setEditable(false);
 					jTextFieldOSName.setEnabled(false);
 				}
 				{
 					jTextFieldOSArchitecture = new JTextField4j();
 					jDesktopPane1.add(jTextFieldOSArchitecture);
-					jTextFieldOSArchitecture.setBounds(486, 169, 100, 20);
+					jTextFieldOSArchitecture.setBounds(486, 168, 100, 22);
 					jTextFieldOSArchitecture.setEditable(false);
 					jTextFieldOSArchitecture.setEnabled(false);
 				}
 				{
 					jTextFieldOSVersion = new JTextField4j();
 					jDesktopPane1.add(jTextFieldOSVersion);
-					jTextFieldOSVersion.setBounds(753, 168, 80, 20);
+					jTextFieldOSVersion.setBounds(753, 168, 80, 22);
 					jTextFieldOSVersion.setEditable(false);
 					jTextFieldOSVersion.setEnabled(false);
 				}
@@ -378,27 +378,27 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jTextFieldUserName = new JTextField4j();
 					jDesktopPane1.add(jTextFieldUserName);
 					jTextFieldUserName.setEditable(false);
-					jTextFieldUserName.setBounds(127, 200, 306, 20);
+					jTextFieldUserName.setBounds(127, 200, 306, 22);
 				}
 				{
 					jTextFieldUserHome = new JTextField4j();
 					jDesktopPane1.add(jTextFieldUserHome);
 					jTextFieldUserHome.setEditable(false);
-					jTextFieldUserHome.setBounds(127, 262, 706, 20);
+					jTextFieldUserHome.setBounds(127, 262, 706, 22);
 					jTextFieldUserHome.setEnabled(false);
 				}
 				{
 					jTextFieldUserDir = new JTextField4j();
 					jDesktopPane1.add(jTextFieldUserDir);
 					jTextFieldUserDir.setEditable(false);
-					jTextFieldUserDir.setBounds(127, 293, 706, 20);
+					jTextFieldUserDir.setBounds(127, 293, 706, 22);
 					jTextFieldUserDir.setEnabled(false);
 				}
 				{
 					jTextFieldDatabaseProductName = new JTextField4j();
 					jDesktopPane1.add(jTextFieldDatabaseProductName);
 					jTextFieldDatabaseProductName.setEditable(false);
-					jTextFieldDatabaseProductName.setBounds(127, 324, 377, 20);
+					jTextFieldDatabaseProductName.setBounds(127, 324, 377, 22);
 					jTextFieldDatabaseProductName.setEnabled(false);
 				}
 				{
@@ -406,13 +406,13 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText("Base Dir :");
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(25, 292, 90, 21);
+					jLabel5.setBounds(25, 293, 90, 22);
 				}
 				{
 					jTextFieldDatabaseProductVersion = new JTextField4j();
 					jDesktopPane1.add(jTextFieldDatabaseProductVersion);
 					jTextFieldDatabaseProductVersion.setEditable(false);
-					jTextFieldDatabaseProductVersion.setBounds(127, 355, 377, 20);
+					jTextFieldDatabaseProductVersion.setBounds(127, 355, 377, 22);
 					jTextFieldDatabaseProductVersion.setEnabled(false);
 				}
 				{
@@ -420,27 +420,27 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel6);
 					jLabel6.setText("Version :");
 					jLabel6.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel6.setBounds(64, 416, 51, 21);
+					jLabel6.setBounds(64, 417, 51, 22);
 				}
 				{
 					jLabel12 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel12);
 					jLabel12.setText("Database Name :");
 					jLabel12.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel12.setBounds(15, 323, 100, 21);
+					jLabel12.setBounds(15, 324, 100, 22);
 				}
 				{
 					jTextFieldJDBCDriverName = new JTextField4j();
 					jDesktopPane1.add(jTextFieldJDBCDriverName);
 					jTextFieldJDBCDriverName.setEditable(false);
-					jTextFieldJDBCDriverName.setBounds(127, 386, 377, 20);
+					jTextFieldJDBCDriverName.setBounds(127, 386, 377, 22);
 					jTextFieldJDBCDriverName.setEnabled(false);
 				}
 				{
 					jTextFieldJDBCDriverVersion = new JTextField4j();
 					jDesktopPane1.add(jTextFieldJDBCDriverVersion);
 					jTextFieldJDBCDriverVersion.setEditable(false);
-					jTextFieldJDBCDriverVersion.setBounds(127, 417, 706, 20);
+					jTextFieldJDBCDriverVersion.setBounds(127, 417, 706, 22);
 					jTextFieldJDBCDriverVersion.setEnabled(false);
 				}
 				{
@@ -448,14 +448,14 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel13);
 					jLabel13.setText("Driver Name :");
 					jLabel13.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel13.setBounds(35, 385, 80, 21);
+					jLabel13.setBounds(35, 386, 80, 22);
 				}
 				{
 					jTextFieldTotalMemory = new JTextField4j();
 					jDesktopPane1.add(jTextFieldTotalMemory);
 					jTextFieldTotalMemory.setEditable(false);
 					jTextFieldTotalMemory.setEnabled(false);
-					jTextFieldTotalMemory.setBounds(127, 448, 119, 21);
+					jTextFieldTotalMemory.setBounds(127, 448, 119, 22);
 					jTextFieldTotalMemory.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -463,7 +463,7 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jDesktopPane1.add(jTextFieldFreeMemory);
 					jTextFieldFreeMemory.setEditable(false);
 					jTextFieldFreeMemory.setEnabled(false);
-					jTextFieldFreeMemory.setBounds(448, 449, 119, 21);
+					jTextFieldFreeMemory.setBounds(448, 448, 119, 22);
 					jTextFieldFreeMemory.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -471,28 +471,28 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel14);
 					jLabel14.setText("Total Memory :");
 					jLabel14.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel14.setBounds(10, 448, 105, 21);
+					jLabel14.setBounds(10, 448, 105, 22);
 				}
 				{
 					jLabel15 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel15);
 					jLabel15.setText("Free Memory :");
 					jLabel15.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel15.setBounds(343, 449, 91, 21);
+					jLabel15.setBounds(343, 448, 91, 22);
 				}
 
 				{
 					jLabel101 = new JLabel4j_std();
 					jLabel101.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel101.setText("Client Name :");
-					jLabel101.setBounds(22, 230, 93, 21);
+					jLabel101.setBounds(22, 231, 93, 22);
 					jDesktopPane1.add(jLabel101);
 				}
 
 				{
 					jTextFieldClientName = new JTextField4j();
 					jTextFieldClientName.setEditable(false);
-					jTextFieldClientName.setBounds(127, 231, 350, 20);
+					jTextFieldClientName.setBounds(127, 231, 350, 22);
 					jTextFieldClientName.setText(JUtility.getClientName());
 					jDesktopPane1.add(jTextFieldClientName);
 				}
@@ -501,14 +501,14 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jLabel102 = new JLabel4j_std();
 					jLabel102.setHorizontalAlignment(SwingConstants.TRAILING);
 						jLabel102.setText("Application User Name :");
-					jLabel102.setBounds(440, 198, 146, 21);
+					jLabel102.setBounds(440, 200, 146, 22);
 					jDesktopPane1.add(jLabel102);
 				}
 
 				{
 					jTextFieldUserNameApp = new JTextField4j();
 					jTextFieldUserNameApp.setEditable(false);
-					jTextFieldUserNameApp.setBounds(602, 199, 231, 20);
+					jTextFieldUserNameApp.setBounds(602, 200, 231, 22);
 					jTextFieldUserNameApp.setText(Common.userList.getUser(Common.sessionID).getUserId());
 					jDesktopPane1.add(jTextFieldUserNameApp);
 				}
@@ -517,21 +517,21 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jLabel102_1 = new JLabel4j_std();
 					jLabel102_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel102_1.setText("Session ID :");
-					jLabel102_1.setBounds(468, 229, 118, 21);
+					jLabel102_1.setBounds(468, 231, 118, 22);
 					jDesktopPane1.add(jLabel102_1);
 				}
 
 				{
 					jTextFieldUserSessionID = new JTextField4j();
 					jTextFieldUserSessionID.setEditable(false);
-					jTextFieldUserSessionID.setBounds(602, 229, 231, 20);
+					jTextFieldUserSessionID.setBounds(602, 231, 231, 22);
 					jDesktopPane1.add(jTextFieldUserSessionID);
 				}
 
 				{
 					jTextFieldUserHostID = new JTextField4j();
 					jTextFieldUserHostID.setEditable(false);
-					jTextFieldUserHostID.setBounds(575, 324, 32, 20);
+					jTextFieldUserHostID.setBounds(575, 324, 32, 22);
 					jDesktopPane1.add(jTextFieldUserHostID);
 				}
 
@@ -539,13 +539,13 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jLabel102_2 = new JLabel4j_std();
 					jLabel102_2.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel102_2.setText("Host ID :");
-					jLabel102_2.setBounds(512, 325, 51, 21);
+					jLabel102_2.setBounds(512, 324, 51, 22);
 					jDesktopPane1.add(jLabel102_2);
 				}
 
 				{
 					jTextFieldUserHostDescription = new JTextField4j();
-					jTextFieldUserHostDescription.setBounds(616, 323, 217, 20);
+					jTextFieldUserHostDescription.setBounds(616, 324, 217, 22);
 					jTextFieldUserHostDescription.setEditable(false);
 					jDesktopPane1.add(jTextFieldUserHostDescription);
 				}
@@ -554,14 +554,14 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jLabel102_3 = new JLabel4j_std();
 					jLabel102_3.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel102_3.setText("Unique Host Ref :");
-					jLabel102_3.setBounds(512, 385, 95, 21);
+					jLabel102_3.setBounds(512, 386, 95, 22);
 					jDesktopPane1.add(jLabel102_3);
 				}
 
 				{
 					jTextFieldHosyUniqueRef = new JTextField4j();
 					jTextFieldHosyUniqueRef.setEditable(false);
-					jTextFieldHosyUniqueRef.setBounds(616, 384, 217, 20);
+					jTextFieldHosyUniqueRef.setBounds(616, 386, 217, 22);
 					jDesktopPane1.add(jTextFieldHosyUniqueRef);
 				}
 			}

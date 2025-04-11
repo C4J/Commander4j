@@ -28,8 +28,6 @@ package com.commander4j.app;
  */
 
 import java.awt.Color;
-
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -41,11 +39,9 @@ import java.sql.SQLException;
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -63,8 +59,10 @@ import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JCheckListItem;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.renderer.MultiItemCheckListRenderer;
 import com.commander4j.sys.Common;
@@ -72,7 +70,6 @@ import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.table.JDBQMResultTable;
 import com.commander4j.tablemodel.JDBQueryTableModel;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
@@ -111,7 +108,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 	private JDBQueryTableModel model = new JDBQueryTableModel();
 	private JCalendarButton calendarButtonsampleDateFrom;
 	private JCalendarButton calendarButtonsampleDateTo;
-	private JSpinner jSpinnerLimit;
+	private JSpinner4j jSpinnerLimit;
 	private JCheckBox4j jCheckBoxLimit;
 	private JLabel4j_std jLabel10;
 	private JButton4j jButtonLookup_Shift_Names;
@@ -387,12 +384,12 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		setTitle("Results Enquiry");
 
 		JLabel4j_std lblProcessOrder = new JLabel4j_std(lang.get("lbl_Process_Order"));
-		lblProcessOrder.setBounds(6, 16, 111, 16);
+		lblProcessOrder.setBounds(6, 14, 111, 22);
 		lblProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 		desktopPane.add(lblProcessOrder);
 
 		textFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-		textFieldProcessOrder.setBounds(123, 14, 119, 22);
+		textFieldProcessOrder.setBounds(123, 14, 127, 22);
 
 		desktopPane.add(textFieldProcessOrder);
 		textFieldProcessOrder.setColumns(10);
@@ -421,9 +418,9 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		});
 		desktopPane.add(btnSearch);
 
-		JButton btnProcessOrderLookup = new JButton();
+		JButton4j btnProcessOrderLookup = new JButton4j();
 		btnProcessOrderLookup.setIcon(Common.icon_lookup_16x16);
-		btnProcessOrderLookup.setBounds(240, 14, 21, 22);
+		btnProcessOrderLookup.setBounds(249, 14, 21, 22);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -459,12 +456,12 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 		JLabel4j_std lbl_material = new JLabel4j_std(lang.get("lbl_Material"));
 		lbl_material.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_material.setBounds(263, 16, 111, 16);
+		lbl_material.setBounds(263, 14, 111, 22);
 		desktopPane.add(lbl_material);
 
 		textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
 		textFieldInspectionID.setColumns(10);
-		textFieldInspectionID.setBounds(123, 152, 119, 22);
+		textFieldInspectionID.setBounds(123, 152, 127, 22);
 		desktopPane.add(textFieldInspectionID);
 
 		lbl_inspection = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
@@ -501,7 +498,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 		JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Sample_Date"));
 		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std.setBounds(6, 117, 108, 22);
+		label4j_std.setBounds(6, 114, 108, 22);
 		desktopPane.add(label4j_std);
 
 		checkBoxSampleFrom = new JCheckBox4j();
@@ -522,11 +519,10 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			}
 		});
 		checkBoxSampleFrom.setBackground(Color.WHITE);
-		checkBoxSampleFrom.setBounds(120, 114, 21, 25);
+		checkBoxSampleFrom.setBounds(120, 114, 21, 22);
 		desktopPane.add(checkBoxSampleFrom);
 
 		dateSampleFrom = new JDateControl();
-		dateSampleFrom.setFont(new Font("Arial", Font.PLAIN, 11));
 		dateSampleFrom.setEnabled(false);
 		dateSampleFrom.setBounds(142, 114, 128, 22);
 		desktopPane.add(dateSampleFrom);
@@ -549,11 +545,10 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			}
 		});
 		checkBoxSampleTo.setBackground(Color.WHITE);
-		checkBoxSampleTo.setBounds(373, 114, 21, 25);
+		checkBoxSampleTo.setBounds(373, 114, 21, 22);
 		desktopPane.add(checkBoxSampleTo);
 
 		dateSampleTo = new JDateControl();
-		dateSampleTo.setFont(new Font("Arial", Font.PLAIN, 11));
 		dateSampleTo.setEnabled(false);
 		dateSampleTo.setBounds(396, 114, 128, 22);
 		desktopPane.add(dateSampleTo);
@@ -576,13 +571,13 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		textFieldUserData3 = new JTextField4j(20);
 		textFieldUserData3.setEditable(false);
 		textFieldUserData3.setColumns(20);
-		textFieldUserData3.setBounds(123, 78, 119, 22);
+		textFieldUserData3.setBounds(123, 78, 127, 22);
 		desktopPane.add(textFieldUserData3);
 		
 		{
 			jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
 			desktopPane.add(jButtonLookup_Shift_Names);
-			jButtonLookup_Shift_Names.setBounds(240, 78, 21, 21);
+			jButtonLookup_Shift_Names.setBounds(249, 78, 21, 22);
 			jButtonLookup_Shift_Names.setEnabled(true);
 			jButtonLookup_Shift_Names.addActionListener(new ActionListener()
 			{
@@ -603,7 +598,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		{
 			jButtonLookup_Packing_Line = new JButton4j(Common.icon_lookup_16x16);
 			desktopPane.add(jButtonLookup_Packing_Line);
-			jButtonLookup_Packing_Line.setBounds(503, 45, 21, 21);
+			jButtonLookup_Packing_Line.setBounds(503, 44, 21, 22);
 			jButtonLookup_Packing_Line.setEnabled(true);
 			jButtonLookup_Packing_Line.addActionListener(new ActionListener()
 			{
@@ -633,7 +628,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 		textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
 		textFieldUserData1.setColumns(20);
-		textFieldUserData1.setBounds(123, 44, 138, 22);
+		textFieldUserData1.setBounds(123, 44, 147, 22);
 		desktopPane.add(textFieldUserData1);
 
 		textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
@@ -657,12 +652,11 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		jSpinnerIntModel.setMinimum(1);
 		jSpinnerIntModel.setMaximum(5000);
 		jSpinnerIntModel.setStepSize(1);
-		jSpinnerLimit = new JSpinner();
-		JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-		ne.getTextField().setFont(Common.font_std);
+		jSpinnerLimit = new JSpinner4j();
+		JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 		jSpinnerLimit.setEditor(ne);
 		jSpinnerLimit.setModel(jSpinnerIntModel);
-		jSpinnerLimit.setBounds(456, 152, 68, 25);
+		jSpinnerLimit.setBounds(456, 152, 68, 22);
 		jSpinnerLimit.setValue(1000);
 		jSpinnerLimit.getEditor().setSize(45, 21);
 		desktopPane.add(jSpinnerLimit);
@@ -670,7 +664,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		jCheckBoxLimit = new JCheckBox4j();
 		desktopPane.add(jCheckBoxLimit);
 		jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-		jCheckBoxLimit.setBounds(433, 152, 21, 25);
+		jCheckBoxLimit.setBounds(433, 152, 21, 22);
 		jCheckBoxLimit.setSelected(true);
 		jCheckBoxLimit.addActionListener(new ActionListener()
 		{
@@ -727,10 +721,10 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		desktopPane.add(scrollPaneDictionary);
 
 		JLabel4j_std label4j_std_3 = new JLabel4j_std(lang.get("lbl_Test_ID"));
-		label4j_std_3.setBounds(559, 16, 111, 16);
+		label4j_std_3.setBounds(559, 13, 111, 22);
 		desktopPane.add(label4j_std_3);
 
-		JButton btnInspectionIDLookup = new JButton();
+		JButton4j btnInspectionIDLookup = new JButton4j();
 		btnInspectionIDLookup.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -745,10 +739,10 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			}
 		});
 		btnInspectionIDLookup.setIcon(Common.icon_lookup_16x16);
-		btnInspectionIDLookup.setBounds(240, 152, 21, 22);
+		btnInspectionIDLookup.setBounds(249, 152, 21, 22);
 		desktopPane.add(btnInspectionIDLookup);
 
-		JButton button = new JButton();
+		JButton4j button = new JButton4j();
 		button.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

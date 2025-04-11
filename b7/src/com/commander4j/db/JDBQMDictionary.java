@@ -32,9 +32,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Vector;
-import javax.swing.JLabel;
+
 import org.apache.logging.log4j.Logger;
 import com.commander4j.gui.JCheckListItem;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
@@ -94,7 +95,7 @@ public class JDBQMDictionary
 
 	public void clear()
 	{
-		setFieldAlign(JLabel.TRAILING);
+		setFieldAlign(JLabel4j_std.TRAILING);
 		setFieldWidth(50);
 		setDataType("");
 		setUOM("");
@@ -271,13 +272,13 @@ public class JDBQMDictionary
 	{
 		String result = "Left";
 
-		if (getFieldAlign() == JLabel.LEFT)
+		if (getFieldAlign() == JLabel4j_std.LEFT)
 			result = "Left";
 
-		if (getFieldAlign() == JLabel.CENTER)
+		if (getFieldAlign() == JLabel4j_std.CENTER)
 			result = "Center";
 
-		if (getFieldAlign() == JLabel.RIGHT)
+		if (getFieldAlign() == JLabel4j_std.RIGHT)
 			result = "Right";
 
 		return result;
@@ -285,16 +286,16 @@ public class JDBQMDictionary
 
 	public void setFieldAlignment(String align)
 	{
-		int result = JLabel.LEFT;
+		int result = JLabel4j_std.LEFT;
 
 		if (align.equals("Left"))
-			result = JLabel.LEFT;
+			result = JLabel4j_std.LEFT;
 
 		if (align.equals("Center"))
-			result = JLabel.CENTER;
+			result = JLabel4j_std.CENTER;
 
 		if (align.equals("Right"))
-			result = JLabel.RIGHT;
+			result = JLabel4j_std.RIGHT;
 
 		setFieldAlign(result);
 	}

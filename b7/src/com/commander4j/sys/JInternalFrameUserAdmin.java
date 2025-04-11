@@ -704,7 +704,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 				
 				{
 					JLabel4j_std lblUserDisabled = new JLabel4j_std(lang.get("lbl_Account_Disabled"));
-					lblUserDisabled.setBounds(432, 391, 125, 32);
+					lblUserDisabled.setBounds(432, 391, 125, 22);
 					lblUserDisabled.setIcon(Common.icon_user_disabled_16x16);
 					jDesktopPane1.add(lblUserDisabled);
 				}
@@ -712,14 +712,14 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 				{
 					
 					JLabel4j_std lblUserLocked = new JLabel4j_std(lang.get("lbl_Account_Locked"));
-					lblUserLocked.setBounds(432, 426, 125, 32);
+					lblUserLocked.setBounds(432, 426, 125, 22);
 					lblUserLocked.setIcon(Common.icon_user_locked_16x16);
 					jDesktopPane1.add(lblUserLocked);
 				}
 					
 				{
 					JLabel4j_std lblUserExpired = new JLabel4j_std(lang.get("lbl_Account_Expired"));
-					lblUserExpired.setBounds(432, 461, 125, 32);
+					lblUserExpired.setBounds(432, 461, 125, 22);
 					lblUserExpired.setIcon(Common.icon_user_expired_16x16);
 					jDesktopPane1.add(lblUserExpired);
 				}

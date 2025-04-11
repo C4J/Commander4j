@@ -357,17 +357,17 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 					}
 					{
 						textFieldText = new JTextField4j();
-						textFieldText.setBounds(141, 45, 414, 20);
+						textFieldText.setBounds(141, 45, 414, 22);
 						jDesktopPane1.add(textFieldText);
 						textFieldText.setColumns(10);
 
 						textFieldResourceKey = new JTextField4j();
-						textFieldResourceKey.setBounds(685, 12, 280, 20);
+						textFieldResourceKey.setBounds(685, 12, 280, 22);
 						jDesktopPane1.add(textFieldResourceKey);
 						textFieldResourceKey.setColumns(10);
 
 						textFieldMnemonic = new JTextField4j();
-						textFieldMnemonic.setBounds(685, 45, 35, 20);
+						textFieldMnemonic.setBounds(685, 45, 35, 22);
 						jDesktopPane1.add(textFieldMnemonic);
 						textFieldMnemonic.setColumns(10);
 					}
@@ -408,13 +408,13 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 					label_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 					label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 					label_1.setText(lang.get("lbl_Text"));
-					label_1.setBounds(8, 45, 115, 21);
+					label_1.setBounds(8, 45, 115, 22);
 					jDesktopPane1.add(label_1);
 
 					JLabel4j_std label_2 = new JLabel4j_std();
 					label_2.setHorizontalTextPosition(SwingConstants.RIGHT);
 					label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-					label_2.setBounds(557, 12, 115, 21);
+					label_2.setBounds(557, 12, 115, 22);
 					label_2.setText(lang.get("lbl_Resource_Key"));
 					jDesktopPane1.add(label_2);
 
@@ -422,14 +422,14 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 					label_3.setHorizontalTextPosition(SwingConstants.RIGHT);
 					label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 					label_3.setText(lang.get("lbl_Language_ID"));
-					label_3.setBounds(8, 12, 115, 21);
+					label_3.setBounds(8, 12, 115, 22);
 					jDesktopPane1.add(label_3);
 
 					JLabel4j_std label_4 = new JLabel4j_std();
 					label_4.setText(lang.get("lbl_Mnemonic"));
 					label_4.setHorizontalTextPosition(SwingConstants.RIGHT);
 					label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-					label_4.setBounds(557, 45, 115, 21);
+					label_4.setBounds(557, 45, 115, 22);
 					jDesktopPane1.add(label_4);
 
 					comboBoxLanguageID = new JComboBox4j<String>();
@@ -439,7 +439,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 					comboBoxLanguageID.setIgnoreRepaint(false);
 					comboBoxLanguageID.setEnabled(true);
 					comboBoxLanguageID.setEditable(false);
-					comboBoxLanguageID.setBounds(141, 12, 72, 23);
+					comboBoxLanguageID.setBounds(141, 12, 72, 22);
 					comboBoxLanguageID.addItem("");
 					comboBoxLanguageID.setSelectedItem(Locale.getDefault().getLanguage().toUpperCase());
 					jDesktopPane1.add(comboBoxLanguageID);

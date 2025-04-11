@@ -421,19 +421,19 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					jLabel1 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText("Menu");
-					jLabel1.setBounds(12, 7, 60, 16);
+					jLabel1.setBounds(12, 2, 60, 22);
 				}
 				{
 					jLabel2 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText("Unassigned");
-					jLabel2.setBounds(561, 5, 136, 21);
+					jLabel2.setBounds(561, 2, 245, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText("Assigned");
-					jLabel3.setBounds(267, 5, 71, 18);
+					jLabel3.setBounds(267, 2, 241, 22);
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);

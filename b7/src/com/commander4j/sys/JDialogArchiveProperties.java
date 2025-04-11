@@ -36,7 +36,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JSpinner;
+
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -48,6 +48,7 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
@@ -80,9 +81,9 @@ public class JDialogArchiveProperties extends JDialog
 	private JCheckBox4j chckbxEnabled = new JCheckBox4j();
 	private JCheckBox4j chckbxBackgroundTask = new JCheckBox4j();
 	private JLabel4j_std labelEnabled = new JLabel4j_std();
-	private JSpinner jSpinnerRetention = new JSpinner();
-	private JSpinner jSpinnerSequence = new JSpinner();
-	private JSpinner jSpinnerMaxDelete = new JSpinner();
+	private JSpinner4j jSpinnerRetention = new JSpinner4j();
+	private JSpinner4j jSpinnerSequence = new JSpinner4j();
+	private JSpinner4j jSpinnerMaxDelete = new JSpinner4j();
 	private JTextField4j jTextFieldSQLCriteria = new JTextField4j(JDBArchive.field_sql_criteria);
 	private JDBArchive arch = new JDBArchive(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -168,7 +169,7 @@ public class JDialogArchiveProperties extends JDialog
 					jLabelSQLStatement = new JLabel4j_std();
 					jDesktopPane1.add(jLabelSQLStatement);
 					jLabelSQLStatement.setText(lang.get("lbl_Table"));
-					jLabelSQLStatement.setBounds(5, 86, 185, 19);
+					jLabelSQLStatement.setBounds(5, 84, 185, 22);
 					jLabelSQLStatement.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelSQLStatement.setHorizontalTextPosition(SwingConstants.RIGHT);
 				}
@@ -178,7 +179,7 @@ public class JDialogArchiveProperties extends JDialog
 					jLabelArchiveID.setText(lang.get("lbl_Archive_ID"));
 					jLabelArchiveID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelArchiveID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelArchiveID.setBounds(5, 16, 185, 19);
+					jLabelArchiveID.setBounds(5, 15, 185, 22);
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
@@ -186,7 +187,7 @@ public class JDialogArchiveProperties extends JDialog
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDescription.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDescription.setBounds(5, 51, 185, 19);
+					jLabelDescription.setBounds(5, 49, 185, 22);
 				}
 				{
 
@@ -225,7 +226,7 @@ public class JDialogArchiveProperties extends JDialog
 					jTextFieldArchiveID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldArchiveID.setEditable(false);
 					jTextFieldArchiveID.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldArchiveID.setBounds(202, 15, 151, 21);
+					jTextFieldArchiveID.setBounds(202, 15, 151, 22);
 					jTextFieldArchiveID.setEnabled(false);
 				}
 				{
@@ -233,7 +234,7 @@ public class JDialogArchiveProperties extends JDialog
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(202, 49, 260, 21);
+					jTextFieldDescription.setBounds(202, 49, 260, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -248,7 +249,7 @@ public class JDialogArchiveProperties extends JDialog
 					jDesktopPane1.add(jTextFieldSQLTable);
 					jTextFieldSQLTable.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldSQLTable.setFocusCycleRoot(true);
-					jTextFieldSQLTable.setBounds(202, 84, 260, 21);
+					jTextFieldSQLTable.setBounds(202, 84, 260, 22);
 					jTextFieldSQLTable.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -266,13 +267,13 @@ public class JDialogArchiveProperties extends JDialog
 				}
 
 				labelEnabled.setText(lang.get("lbl_Enabled"));
-				labelEnabled.setFont(Common.font_std);
+
 				labelEnabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 				labelEnabled.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelEnabled.setBounds(468, 16, 151, 19);
+				labelEnabled.setBounds(468, 15, 151, 22);
 				jDesktopPane1.add(labelEnabled);
 
-				chckbxEnabled.setBounds(624, 12, 28, 23);
+				chckbxEnabled.setBounds(624, 15, 28, 22);
 				chckbxEnabled.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -282,7 +283,7 @@ public class JDialogArchiveProperties extends JDialog
 				});
 				jDesktopPane1.add(chckbxEnabled);
 
-				chckbxBackgroundTask.setBounds(624, 47, 28, 23);
+				chckbxBackgroundTask.setBounds(624, 49, 28, 22);
 				chckbxBackgroundTask.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -296,14 +297,14 @@ public class JDialogArchiveProperties extends JDialog
 				label4jRetention.setText(lang.get("lbl_Retention_Days"));
 				label4jRetention.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4jRetention.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4jRetention.setBounds(5, 158, 185, 19);
+				label4jRetention.setBounds(5, 153, 185, 21);
 				jDesktopPane1.add(label4jRetention);
 
 				JLabel4j_std label4j_Sequence = new JLabel4j_std();
 				label4j_Sequence.setText(lang.get("lbl_Sequence_ID"));
 				label4j_Sequence.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Sequence.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Sequence.setBounds(5, 191, 185, 19);
+				label4j_Sequence.setBounds(5, 185, 185, 21);
 				jDesktopPane1.add(label4j_Sequence);
 				
 				
@@ -311,7 +312,7 @@ public class JDialogArchiveProperties extends JDialog
 				label4j_MaxDelete.setText(lang.get("lbl_Max_Delete"));
 				label4j_MaxDelete.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_MaxDelete.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_MaxDelete.setBounds(5, 222, 185, 19);
+				label4j_MaxDelete.setBounds(5, 218, 185, 21);
 				jDesktopPane1.add(label4j_MaxDelete);
 
 				SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
@@ -319,7 +320,7 @@ public class JDialogArchiveProperties extends JDialog
 				jSpinnerIntModel.setMaximum(9999);
 
 				jSpinnerIntModel.setStepSize(1);
-				jSpinnerRetention = new JSpinner();
+				jSpinnerRetention = new JSpinner4j();
 				jSpinnerRetention.addKeyListener(new KeyAdapter()
 				{
 					@Override
@@ -338,11 +339,10 @@ public class JDialogArchiveProperties extends JDialog
 					}
 				});
 				jSpinnerRetention.setModel(jSpinnerIntModel);
-				jSpinnerRetention.setBounds(202, 153, 79, 28);
+				jSpinnerRetention.setBounds(202, 153, 79, 21);
 
 				jSpinnerRetention.getEditor().setSize(45, 21);
-				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerRetention);
-				ne.getTextField().setFont(Common.font_std);
+				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerRetention);
 				jSpinnerRetention.setEditor(ne);
 				jDesktopPane1.add(jSpinnerRetention);
 
@@ -351,7 +351,7 @@ public class JDialogArchiveProperties extends JDialog
 				jSpinnerSeqModel.setMaximum(9990);
 
 				jSpinnerSeqModel.setStepSize(10);
-				jSpinnerSequence = new JSpinner();
+				jSpinnerSequence = new JSpinner4j();
 				jSpinnerSequence.addKeyListener(new KeyAdapter()
 				{
 					@Override
@@ -368,11 +368,10 @@ public class JDialogArchiveProperties extends JDialog
 					}
 				});
 
-				JSpinner.NumberEditor ne2 = new JSpinner.NumberEditor(jSpinnerSequence);
-				ne2.getTextField().setFont(Common.font_std);
+				JSpinner4j.NumberEditor ne2 = new JSpinner4j.NumberEditor(jSpinnerSequence);
 				jSpinnerSequence.setEditor(ne2);
 				jSpinnerSequence.setModel(jSpinnerSeqModel);
-				jSpinnerSequence.setBounds(202, 185, 79, 28);
+				jSpinnerSequence.setBounds(202, 185, 79, 21);
 
 				jSpinnerSequence.getEditor().setSize(45, 21);
 
@@ -384,7 +383,7 @@ public class JDialogArchiveProperties extends JDialog
 				jSpinnerIntModel2.setMaximum(999999);
 
 				jSpinnerIntModel2.setStepSize(1000);
-				jSpinnerMaxDelete = new JSpinner();
+				jSpinnerMaxDelete = new JSpinner4j();
 				jSpinnerMaxDelete.addKeyListener(new KeyAdapter()
 				{
 					@Override
@@ -403,11 +402,10 @@ public class JDialogArchiveProperties extends JDialog
 					}
 				});
 				jSpinnerMaxDelete.setModel(jSpinnerIntModel2);
-				jSpinnerMaxDelete.setBounds(202, 218, 79, 28);
+				jSpinnerMaxDelete.setBounds(202, 218, 79, 21);
 
 				jSpinnerMaxDelete.getEditor().setSize(45, 21);
-				JSpinner.NumberEditor ne3 = new JSpinner.NumberEditor(jSpinnerMaxDelete);
-				ne3.getTextField().setFont(Common.font_std);
+				JSpinner4j.NumberEditor ne3 = new JSpinner4j.NumberEditor(jSpinnerMaxDelete);
 				jSpinnerMaxDelete.setEditor(ne3);
 				jDesktopPane1.add(jSpinnerMaxDelete);
 
@@ -430,7 +428,7 @@ public class JDialogArchiveProperties extends JDialog
 				label4j_Criteria.setText(lang.get("lbl_Criteria"));
 				label4j_Criteria.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Criteria.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Criteria.setBounds(5, 117, 185, 19);
+				label4j_Criteria.setBounds(5, 117, 185, 21);
 				jDesktopPane1.add(label4j_Criteria);
 
 				JButton4j jButtonRun = new JButton4j(Common.icon_execute_16x16);
@@ -450,14 +448,13 @@ public class JDialogArchiveProperties extends JDialog
 				label4jBackgroundTask.setText(lang.get("lbl_Background_Task"));
 				label4jBackgroundTask.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4jBackgroundTask.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4jBackgroundTask.setFont(Common.font_std);
-				label4jBackgroundTask.setBounds(468, 51, 151, 19);
+				label4jBackgroundTask.setBounds(468, 49, 151, 22);
 				jDesktopPane1.add(label4jBackgroundTask);
 
 				label4jArchiveBefore.setText((String) null);
 				label4jArchiveBefore.setHorizontalTextPosition(SwingConstants.LEFT);
 				label4jArchiveBefore.setHorizontalAlignment(SwingConstants.LEFT);
-				label4jArchiveBefore.setBounds(293, 158, 185, 19);
+				label4jArchiveBefore.setBounds(293, 153, 185, 21);
 				jDesktopPane1.add(label4jArchiveBefore);
 
 			}

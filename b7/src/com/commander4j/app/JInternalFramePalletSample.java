@@ -77,8 +77,10 @@ import com.commander4j.db.JDBUom;
 import com.commander4j.db.JDBWTSamplePoint;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
@@ -87,9 +89,7 @@ import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBPalletSampleTableModel;
 import com.commander4j.util.JColorPair;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
@@ -620,7 +620,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jLabel_SSCC = new JLabel4j_std();
-					jLabel_SSCC.setBounds(2, 28, 101, 21);
+					jLabel_SSCC.setBounds(2, 28, 101, 22);
 					panel_Pallet.add(jLabel_SSCC);
 					jLabel_SSCC.setText(lang.get("lbl_Pallet_SSCC"));
 					jLabel_SSCC.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -630,7 +630,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
 					jTextFieldSSCC.setEditable(true);
 					jTextFieldSSCC.setEnabled(true);
-					jTextFieldSSCC.setBounds(108, 28, 133, 21);
+					jTextFieldSSCC.setBounds(108, 28, 133, 22);
 					panel_Pallet.add(jTextFieldSSCC);
 					jTextFieldSSCC.addKeyListener(new KeyAdapter()
 					{
@@ -651,7 +651,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jLabelProcessOrder = new JLabel4j_std();
-					jLabelProcessOrder.setBounds(249, 28, 100, 21);
+					jLabelProcessOrder.setBounds(249, 28, 100, 22);
 					panel_Pallet.add(jLabelProcessOrder);
 					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
 					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -659,14 +659,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-					jTextFieldProcessOrder.setBounds(357, 28, 100, 21);
+					jTextFieldProcessOrder.setBounds(357, 28, 100, 22);
 					panel_Pallet.add(jTextFieldProcessOrder);
 					jTextFieldProcessOrder.setEnabled(false);
 				}
 
 				{
 					jLabel_Material = new JLabel4j_std();
-					jLabel_Material.setBounds(463, 28, 110, 21);
+					jLabel_Material.setBounds(463, 28, 110, 22);
 					panel_Pallet.add(jLabel_Material);
 					jLabel_Material.setText(lang.get("lbl_Material"));
 					jLabel_Material.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -674,14 +674,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-					jTextFieldMaterial.setBounds(579, 28, 128, 21);
+					jTextFieldMaterial.setBounds(579, 28, 128, 22);
 					panel_Pallet.add(jTextFieldMaterial);
 					jTextFieldMaterial.setEnabled(false);
 				}
 
 				{
 					jLabel_Location = new JLabel4j_std();
-					jLabel_Location.setBounds(709, 28, 118, 21);
+					jLabel_Location.setBounds(709, 28, 118, 22);
 					panel_Pallet.add(jLabel_Location);
 					jLabel_Location.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel_Location.setText(lang.get("lbl_Location_ID"));
@@ -689,14 +689,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
-					jTextFieldLocation.setBounds(835, 28, 128, 21);
+					jTextFieldLocation.setBounds(835, 28, 128, 22);
 					panel_Pallet.add(jTextFieldLocation);
 					jTextFieldLocation.setEnabled(false);
 				}
 
 				{
 					jLabelBatchExpiry = new JLabel4j_std();
-					jLabelBatchExpiry.setBounds(709, 59, 118, 21);
+					jLabelBatchExpiry.setBounds(709, 58, 118, 22);
 					panel_Pallet.add(jLabelBatchExpiry);
 					jLabelBatchExpiry.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
 					jLabelBatchExpiry.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -704,14 +704,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					expiryDate = new JDateControl();
-					expiryDate.setBounds(835, 55, 128, 25);
+					expiryDate.setBounds(835, 58, 128, 22);
 					panel_Pallet.add(expiryDate);
 					expiryDate.setEnabled(false);
 				}
 
 				{
 					jLabelProductionDate = new JLabel4j_std();
-					jLabelProductionDate.setBounds(463, 59, 110, 21);
+					jLabelProductionDate.setBounds(463, 58, 110, 22);
 					panel_Pallet.add(jLabelProductionDate);
 					jLabelProductionDate.setText(lang.get("lbl_Pallet_DOM"));
 					jLabelProductionDate.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -720,7 +720,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				{
 					productionDate = new JDateControl();
 					productionDate.setEnabled(false);
-					productionDate.setBounds(579, 55, 128, 25);
+					productionDate.setBounds(579, 58, 128, 22);
 					panel_Pallet.add(productionDate);
 				}
 
@@ -734,14 +734,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldMaterialDescription = new JTextField4j(JDBMaterial.field_description);
-					jTextFieldMaterialDescription.setBounds(108, 59, 349, 21);
+					jTextFieldMaterialDescription.setBounds(108, 58, 349, 22);
 					panel_Pallet.add(jTextFieldMaterialDescription);
 					jTextFieldMaterialDescription.setEnabled(false);
 				}
 
 				{
 					jLabel_Batch = new JLabel4j_std();
-					jLabel_Batch.setBounds(2, 88, 101, 21);
+					jLabel_Batch.setBounds(2, 88, 101, 22);
 					panel_Pallet.add(jLabel_Batch);
 					jLabel_Batch.setText(lang.get("lbl_Material_Batch"));
 					jLabel_Batch.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -749,21 +749,21 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
-					jTextFieldBatch.setBounds(108, 88, 110, 21);
+					jTextFieldBatch.setBounds(108, 88, 110, 22);
 					panel_Pallet.add(jTextFieldBatch);
 					jTextFieldBatch.setEnabled(false);
 				}
 
 				{
 					jTextFieldContainerCode = new JTextField4j();
-					jTextFieldContainerCode.setBounds(108, 146, 110, 21);
+					jTextFieldContainerCode.setBounds(108, 146, 110, 22);
 					panel_Pallet.add(jTextFieldContainerCode);
 					jTextFieldContainerCode.setEnabled(false);
 				}
 
 				{
 					jLabel10 = new JLabel4j_std();
-					jLabel10.setBounds(239, 88, 100, 21);
+					jLabel10.setBounds(239, 88, 100, 22);
 					panel_Pallet.add(jLabel10);
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel10.setText(lang.get("lbl_Material_Batch_Status"));
@@ -771,14 +771,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldBatchStatus = new JTextField4j(JDBMaterialBatch.field_batch_status);
-					jTextFieldBatchStatus.setBounds(347, 88, 110, 21);
+					jTextFieldBatchStatus.setBounds(347, 88, 110, 22);
 					panel_Pallet.add(jTextFieldBatchStatus);
 					jTextFieldBatchStatus.setEnabled(false);
 				}
 
 				{
 					jTextFieldProductGroup = new JTextField4j();
-					jTextFieldProductGroup.setBounds(347, 146, 110, 21);
+					jTextFieldProductGroup.setBounds(347, 146, 110, 22);
 					panel_Pallet.add(jTextFieldProductGroup);
 					jTextFieldProductGroup.setEnabled(false);
 				}
@@ -787,21 +787,19 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					jFormattedTextFieldRequiredUOMQuantity = new JQuantityInput(new BigDecimal("0"));
 					jFormattedTextFieldRequiredUOMQuantity.setEditable(false);
 					panel_Pallet.add(jFormattedTextFieldRequiredUOMQuantity);
-					jFormattedTextFieldRequiredUOMQuantity.setFont(Common.font_std);
-					jFormattedTextFieldRequiredUOMQuantity.setBounds(579, 146, 94, 21);
+					jFormattedTextFieldRequiredUOMQuantity.setBounds(579, 146, 94, 22);
 					jFormattedTextFieldRequiredUOMQuantity.setValue(0);
-					jFormattedTextFieldRequiredUOMQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldBaseUom = new JTextField4j();
 					jTextFieldBaseUom.setHorizontalAlignment(SwingConstants.CENTER);
 					panel_Pallet.add(jTextFieldBaseUom);
-					jTextFieldBaseUom.setBounds(685, 146, 56, 21);
+					jTextFieldBaseUom.setBounds(685, 146, 56, 22);
 					jTextFieldBaseUom.setEnabled(false);
 				}
 				{
 					jLabel_PalletStatus = new JLabel4j_std();
-					jLabel_PalletStatus.setBounds(463, 88, 110, 21);
+					jLabel_PalletStatus.setBounds(463, 88, 110, 22);
 					panel_Pallet.add(jLabel_PalletStatus);
 					jLabel_PalletStatus.setText(lang.get("lbl_Pallet_Status"));
 					jLabel_PalletStatus.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -809,14 +807,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jLabel_Resource = new JLabel4j_std();
-					jLabel_Resource.setBounds(463, 117, 110, 21);
+					jLabel_Resource.setBounds(463, 117, 110, 22);
 					panel_Pallet.add(jLabel_Resource);
 					jLabel_Resource.setText(lang.get("lbl_Process_Order_Required_Resource"));
 					jLabel_Resource.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabel_BaseQuantity = new JLabel4j_std();
-					jLabel_BaseQuantity.setBounds(463, 146, 110, 21);
+					jLabel_BaseQuantity.setBounds(463, 146, 110, 22);
 					panel_Pallet.add(jLabel_BaseQuantity);
 					jLabel_BaseQuantity.setText(lang.get("lbl_Pallet_Base_Quantity"));
 					jLabel_BaseQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -824,20 +822,20 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				{
 					jTextFieldPalletStatus = new JTextField4j();
 					jTextFieldPalletStatus.setEnabled(false);
-					jTextFieldPalletStatus.setBounds(579, 88, 128, 21);
+					jTextFieldPalletStatus.setBounds(579, 88, 128, 22);
 					panel_Pallet.add(jTextFieldPalletStatus);
 				}
 
 				{
 					jTextFieldProcessOrderResource = new JTextField4j();
 					jTextFieldProcessOrderResource.setEnabled(false);
-					jTextFieldProcessOrderResource.setBounds(579, 117, 128, 21);
+					jTextFieldProcessOrderResource.setBounds(579, 117, 128, 22);
 					panel_Pallet.add(jTextFieldProcessOrderResource);
 				}
 
 				{
 					jLabelMHN = new JLabel4j_std();
-					jLabelMHN.setBounds(709, 88, 118, 21);
+					jLabelMHN.setBounds(709, 88, 118, 22);
 					panel_Pallet.add(jLabelMHN);
 					jLabelMHN.setText(lang.get("lbl_MHN_Number"));
 					jLabelMHN.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -848,13 +846,13 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					jTextFieldMHN.setFont(new Font("Arial", Font.BOLD, 11));
 					jTextFieldMHN.setForeground(Color.RED);
 					jTextFieldMHN.setEnabled(false);
-					jTextFieldMHN.setBounds(835, 88, 87, 21);
+					jTextFieldMHN.setBounds(835, 88, 87, 22);
 					panel_Pallet.add(jTextFieldMHN);
 				}
 
 				{
 					jLabelQuantity = new JLabel4j_std();
-					jLabelQuantity.setBounds(2, 117, 101, 21);
+					jLabelQuantity.setBounds(2, 117, 101, 22);
 					panel_Pallet.add(jLabelQuantity);
 					jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
 					jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -862,7 +860,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jLabelContainerCode = new JLabel4j_std();
-					jLabelContainerCode.setBounds(2, 146, 101, 21);
+					jLabelContainerCode.setBounds(2, 146, 101, 22);
 					panel_Pallet.add(jLabelContainerCode);
 					jLabelContainerCode.setText(lang.get("lbl_Container_Code"));
 					jLabelContainerCode.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -870,7 +868,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jLabelProductGroup = new JLabel4j_std();
-					jLabelProductGroup.setBounds(239, 146, 100, 21);
+					jLabelProductGroup.setBounds(239, 146, 100, 22);
 					panel_Pallet.add(jLabelProductGroup);
 					jLabelProductGroup.setText(lang.get("lbl_Product_Group"));
 					jLabelProductGroup.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -879,15 +877,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				{
 					jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
 					jFormattedTextFieldQuantity.setEditable(false);
-					jFormattedTextFieldQuantity.setBounds(108, 117, 91, 21);
+					jFormattedTextFieldQuantity.setBounds(108, 117, 91, 22);
 					panel_Pallet.add(jFormattedTextFieldQuantity);
 					jFormattedTextFieldQuantity.setFont(Common.font_std);
-					jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 
 				{
 					jLabel_UOM = new JLabel4j_std();
-					jLabel_UOM.setBounds(207, 117, 80, 21);
+					jLabel_UOM.setBounds(207, 117, 80, 22);
 					panel_Pallet.add(jLabel_UOM);
 					jLabel_UOM.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel_UOM.setText(lang.get("lbl_Material_UOM"));
@@ -903,14 +900,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldUom = new JTextField4j(JDBUom.field_uom);
-					jTextFieldUom.setBounds(295, 117, 45, 21);
+					jTextFieldUom.setBounds(295, 117, 45, 22);
 					panel_Pallet.add(jTextFieldUom);
 					jTextFieldUom.setEnabled(false);
 				}
 
 				{
 					jLabel_Decision = new JLabel4j_std();
-					jLabel_Decision.setBounds(709, 117, 118, 21);
+					jLabel_Decision.setBounds(709, 117, 118, 22);
 					panel_Pallet.add(jLabel_Decision);
 					jLabel_Decision.setText(lang.get("lbl_Decision"));
 					jLabel_Decision.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -918,7 +915,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldMHNDecision = new JTextField4j(JDBProcessOrder.field_description);
-					jTextFieldMHNDecision.setBounds(835, 117, 131, 21);
+					jTextFieldMHNDecision.setBounds(835, 117, 131, 22);
 					panel_Pallet.add(jTextFieldMHNDecision);
 					jTextFieldMHNDecision.setEnabled(false);
 				}
@@ -929,7 +926,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					checkBoxConfirmed.setSelected(false);
 					checkBoxConfirmed.setEnabled(false);
 					checkBoxConfirmed.setBackground(Color.WHITE);
-					checkBoxConfirmed.setBounds(436, 114, 21, 24);
+					checkBoxConfirmed.setBounds(436, 117, 21, 22);
 					panel_Pallet.add(checkBoxConfirmed);
 				}
 
@@ -937,7 +934,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					JLabel4j_std jLabelProductionDate_1 = new JLabel4j_std();
 					jLabelProductionDate_1.setText(lang.get("lbl_Confirmed"));
 					jLabelProductionDate_1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProductionDate_1.setBounds(348, 117, 80, 21);
+					jLabelProductionDate_1.setBounds(348, 117, 80, 22);
 					panel_Pallet.add(jLabelProductionDate_1);
 				}
 
@@ -950,7 +947,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				JLabel4j_std lbl_First_Case_Time = new JLabel4j_std();
 				lbl_First_Case_Time.setText(lang.get("lbl_First_Case_Time"));
 				lbl_First_Case_Time.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_First_Case_Time.setBounds(2, 25, 117, 21);
+				lbl_First_Case_Time.setBounds(2, 25, 117, 22);
 				panel_Pallet_Extension.add(lbl_First_Case_Time);
 
 				firstCaseTime = new JDateControl();
@@ -962,7 +959,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					}
 				});
 				firstCaseTime.setEnabled(false);
-				firstCaseTime.setBounds(145, 25, 128, 25);
+				firstCaseTime.setBounds(145, 25, 128, 22);
 				panel_Pallet_Extension.add(firstCaseTime);
 
 				calendarButtonFirst = new JCalendarButton((JDateControl) firstCaseTime);
@@ -972,7 +969,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				JLabel4j_std lbl_Last_Case_Time = new JLabel4j_std();
 				lbl_Last_Case_Time.setText(lang.get("lbl_Last_Case_Time"));
 				lbl_Last_Case_Time.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Last_Case_Time.setBounds(274, 27, 117, 21);
+				lbl_Last_Case_Time.setBounds(274, 25, 117, 22);
 				panel_Pallet_Extension.add(lbl_Last_Case_Time);
 
 				lastCaseTime = new JDateControl();
@@ -984,7 +981,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					}
 				});
 				lastCaseTime.setEnabled(false);
-				lastCaseTime.setBounds(420, 25, 128, 25);
+				lastCaseTime.setBounds(420, 25, 128, 22);
 				panel_Pallet_Extension.add(lastCaseTime);
 
 				calendarButtonLast = new JCalendarButton((JDateControl) lastCaseTime);
@@ -994,7 +991,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				JLabel4j_std lbl_Supplier_ID1 = new JLabel4j_std();
 				lbl_Supplier_ID1.setText(lang.get("lbl_Supplier_ID1"));
 				lbl_Supplier_ID1.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Supplier_ID1.setBounds(727, 29, 100, 21);
+				lbl_Supplier_ID1.setBounds(727, 25, 100, 22);
 				panel_Pallet_Extension.add(lbl_Supplier_ID1);
 
 				jTextFieldSupplier_ID1 = new JTextField4j(JDBPalletExtension.field_supplier_id);
@@ -1007,13 +1004,13 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 						palletExtensionModified(true);
 					}
 				});
-				jTextFieldSupplier_ID1.setBounds(835, 29, 110, 21);
+				jTextFieldSupplier_ID1.setBounds(835, 25, 111, 22);
 				panel_Pallet_Extension.add(jTextFieldSupplier_ID1);
 
 				JLabel4j_std lbl_Location = new JLabel4j_std();
 				lbl_Location.setText(lang.get("lbl_Sample_Location"));
 				lbl_Location.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Location.setBounds(12, 65, 124, 21);
+				lbl_Location.setBounds(12, 62, 124, 22);
 				panel_Pallet_Extension.add(lbl_Location);
 
 				jTextFieldSampleLocation = new JTextField4j(JDBWTSamplePoint.field_SamplePoint);
@@ -1026,7 +1023,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 						palletExtensionModified(true);
 					}
 				});
-				jTextFieldSampleLocation.setBounds(145, 65, 106, 21);
+				jTextFieldSampleLocation.setBounds(145, 62, 108, 22);
 				panel_Pallet_Extension.add(jTextFieldSampleLocation);
 
 				jTextFieldShift = new JTextField4j(JDBPalletExtension.field_shift);
@@ -1039,7 +1036,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 						palletExtensionModified(true);
 					}
 				});
-				jTextFieldShift.setBounds(636, 29, 64, 21);
+				jTextFieldShift.setBounds(636, 25, 67, 22);
 				panel_Pallet_Extension.add(jTextFieldShift);
 
 				jTextFieldIncident_Ref = new JTextField4j(JDBPalletExtension.field_incident_ref);
@@ -1052,7 +1049,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					}
 				});
 				jTextFieldIncident_Ref.setEnabled(false);
-				jTextFieldIncident_Ref.setBounds(420, 65, 128, 21);
+				jTextFieldIncident_Ref.setBounds(420, 62, 128, 22);
 				panel_Pallet_Extension.add(jTextFieldIncident_Ref);
 
 				{
@@ -1070,7 +1067,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					});
 					checkBoxFirstCaseInput.setText("");
 					checkBoxFirstCaseInput.setBackground(light_grey);
-					checkBoxFirstCaseInput.setBounds(122, 23, 21, 24);
+					checkBoxFirstCaseInput.setBounds(122, 25, 21, 22);
 					panel_Pallet_Extension.add(checkBoxFirstCaseInput);
 				}
 
@@ -1084,16 +1081,15 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 							palletExtensionModified(true);
 						}
 					});
-					jFormattedTextFieldStartQuantity.setBounds(682, 65, 91, 21);
+					jFormattedTextFieldStartQuantity.setBounds(682, 62, 91, 22);
 					panel_Pallet_Extension.add(jFormattedTextFieldStartQuantity);
 					jFormattedTextFieldStartQuantity.setFont(Common.font_std);
-					jFormattedTextFieldStartQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 
 				}
 
 				{
 					jLabelStartQuantity = new JLabel4j_std();
-					jLabelStartQuantity.setBounds(566, 65, 101, 21);
+					jLabelStartQuantity.setBounds(566, 62, 101, 22);
 					panel_Pallet_Extension.add(jLabelStartQuantity);
 					jLabelStartQuantity.setText(lang.get("lbl_Starting_Quantity"));
 					jLabelStartQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1111,26 +1107,26 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 						}
 					});
 					checkBoxLastCaseInput.setText("");
-					checkBoxLastCaseInput.setBounds(395, 25, 21, 24);
+					checkBoxLastCaseInput.setBounds(395, 25, 21, 22);
 					panel_Pallet_Extension.add(checkBoxLastCaseInput);
 				}
 
 				JLabel4j_std lbl_Shift_ID = new JLabel4j_std();
 				lbl_Shift_ID.setText(lang.get("lbl_Shift_ID"));
 				lbl_Shift_ID.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Shift_ID.setBounds(549, 29, 80, 21);
+				lbl_Shift_ID.setBounds(549, 25, 80, 22);
 				panel_Pallet_Extension.add(lbl_Shift_ID);
 
 				JLabel4j_std lbl_Incident_Ref = new JLabel4j_std();
 				lbl_Incident_Ref.setText(lang.get("lbl_Incident_Ref"));
 				lbl_Incident_Ref.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Incident_Ref.setBounds(284, 65, 127, 21);
+				lbl_Incident_Ref.setBounds(284, 62, 127, 22);
 				panel_Pallet_Extension.add(lbl_Incident_Ref);
 
 				{
 					jButtonLookup_Supplier_ID1 = new JButton4j(Common.icon_lookup_16x16);
 					panel_Pallet_Extension.add(jButtonLookup_Supplier_ID1);
-					jButtonLookup_Supplier_ID1.setBounds(945, 29, 21, 21);
+					jButtonLookup_Supplier_ID1.setBounds(945, 25, 22, 22);
 					jButtonLookup_Supplier_ID1.setEnabled(true);
 					jButtonLookup_Supplier_ID1.addActionListener(new ActionListener()
 					{
@@ -1150,7 +1146,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				{
 					jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
 					panel_Pallet_Extension.add(jButtonLookup_Shift_Names);
-					jButtonLookup_Shift_Names.setBounds(702, 29, 21, 21);
+					jButtonLookup_Shift_Names.setBounds(702, 25, 21, 22);
 					jButtonLookup_Shift_Names.setEnabled(true);
 					jButtonLookup_Shift_Names.addActionListener(new ActionListener()
 					{
@@ -1170,7 +1166,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				{
 					jButtonLookup_SampleLocation = new JButton4j(Common.icon_lookup_16x16);
 					panel_Pallet_Extension.add(jButtonLookup_SampleLocation);
-					jButtonLookup_SampleLocation.setBounds(252, 65, 21, 21);
+					jButtonLookup_SampleLocation.setBounds(252, 62, 21, 22);
 					jButtonLookup_SampleLocation.setEnabled(true);
 					jButtonLookup_SampleLocation.addActionListener(new ActionListener()
 					{
@@ -1268,7 +1264,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 					{
 						jLabel_WeekNumber = new JLabel4j_std();
-						jLabel_WeekNumber.setBounds(205, 92, 101, 21);
+						jLabel_WeekNumber.setBounds(205, 92, 101, 22);
 						panel_Pallet_Extension.add(jLabel_WeekNumber);
 						jLabel_WeekNumber.setText(lang.get("lbl_Week_Number"));
 						jLabel_WeekNumber.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1276,40 +1272,40 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					{
 						jTextFieldWeekNumber = new JTextField4j();
 						jTextFieldWeekNumber.setEditable(false);
-						jTextFieldWeekNumber.setBounds(315, 92, 56, 21);
+						jTextFieldWeekNumber.setBounds(315, 92, 56, 22);
 						panel_Pallet_Extension.add(jTextFieldWeekNumber);
 						jTextFieldWeekNumber.setHorizontalAlignment(SwingConstants.CENTER);
 					}
 
 					JLabel4j_std jLabel_DayOfWeek = new JLabel4j_std();
-					jLabel_DayOfWeek.setBounds(294, 92, 119, 21);
+					jLabel_DayOfWeek.setBounds(294, 92, 119, 22);
 					panel_Pallet_Extension.add(jLabel_DayOfWeek);
 					jLabel_DayOfWeek.setText(lang.get("lbl_Day"));
 					jLabel_DayOfWeek.setHorizontalAlignment(SwingConstants.TRAILING);
 
-					jTextFieldDayOfWeek.setBounds(427, 92, 80, 21);
+					jTextFieldDayOfWeek.setBounds(427, 92, 80, 22);
 					panel_Pallet_Extension.add(jTextFieldDayOfWeek);
 					jTextFieldDayOfWeek.setText("");
 					jTextFieldDayOfWeek.setHorizontalAlignment(SwingConstants.CENTER);
 
 					JLabel4j_std jLabel_Month = new JLabel4j_std();
-					jLabel_Month.setBounds(517, 92, 56, 21);
+					jLabel_Month.setBounds(517, 92, 56, 22);
 					panel_Pallet_Extension.add(jLabel_Month);
 					jLabel_Month.setText(lang.get("lbl_Month"));
 					jLabel_Month.setHorizontalAlignment(SwingConstants.TRAILING);
 
-					jTextFieldMonth.setBounds(579, 92, 80, 21);
+					jTextFieldMonth.setBounds(579, 92, 80, 22);
 					panel_Pallet_Extension.add(jTextFieldMonth);
 					jTextFieldMonth.setText("");
 					jTextFieldMonth.setHorizontalAlignment(SwingConstants.CENTER);
 
 					JLabel4j_std jLabel_Year = new JLabel4j_std();
-					jLabel_Year.setBounds(666, 92, 46, 21);
+					jLabel_Year.setBounds(666, 92, 46, 22);
 					panel_Pallet_Extension.add(jLabel_Year);
 					jLabel_Year.setText(lang.get("lbl_Year"));
 					jLabel_Year.setHorizontalAlignment(SwingConstants.TRAILING);
 
-					jTextFieldYear.setBounds(721, 92, 46, 21);
+					jTextFieldYear.setBounds(721, 92, 46, 22);
 					panel_Pallet_Extension.add(jTextFieldYear);
 					jTextFieldYear.setText("");
 					jTextFieldYear.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1435,7 +1431,6 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				});
 				button4jSampleAdd.setBounds(0, 0, 28, 28);
 				panelShiftButtons.add(button4jSampleAdd);
-				button4jSampleAdd.setFont(Common.font_std);
 				button4jSampleAdd.setMnemonic('0');
 
 				button4jSampleDelete.addActionListener(new ActionListener()
@@ -1449,7 +1444,6 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				button4jSampleDelete.setBounds(58, 0, 28, 28);
 				panelShiftButtons.add(button4jSampleDelete);
 				button4jSampleDelete.setMnemonic('0');
-				button4jSampleDelete.setFont(Common.font_std);
 
 				button4jSampleEdit.addActionListener(new ActionListener()
 				{
@@ -1461,7 +1455,6 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				button4jSampleEdit.setBounds(29, 0, 28, 28);
 				panelShiftButtons.add(button4jSampleEdit);
 				button4jSampleEdit.setMnemonic('0');
-				button4jSampleEdit.setFont(Common.font_std);
 
 				button4jSampleRefresh.setBounds(87, 0, 28, 28);
 				panelShiftButtons.add(button4jSampleRefresh);
@@ -1473,7 +1466,6 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					}
 				});
 				button4jSampleRefresh.setMnemonic('0');
-				button4jSampleRefresh.setFont(Common.font_std);
 
 			}
 		}

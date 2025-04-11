@@ -1,53 +1,106 @@
 package com.commander4j.gui;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JComboBox4j.java
- * 
- * Package Name : com.commander4j.gui
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 
-import javax.swing.JComboBox;
 import com.commander4j.sys.Common;
 
-/**
- * Standard JComboBox4j which is used throughout the application permitting global changes to be applied to look feel etc.
- *
- */
-public class JComboBox4j<T> extends JComboBox<T> {
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-	private static final long serialVersionUID = 1L;
+public class JComboBox4j<E> extends JComboBox<E> {
 
+    private static final long serialVersionUID = 1L;
+    private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
+
+    private void init()
+    {
+        setUI(new FlatComboBoxUI());
+		setFont(Common.font_combo);
+        setFocusable(false);
+        setBorder(EMPTY_BORDER);
+    }
+    
+	public JComboBox4j(E[] items) {
+        super(items);
+        init();
+    }
+	
 	public JComboBox4j() {
 		super();
-		setFont(Common.font_combo);
+        init();
 	}
 
 	public JComboBox4j(String[] fieldAlignment)
 	{
 		super();
-		setFont(Common.font_combo);
+        init();
 	}
 
+    private static class FlatComboBoxUI extends BasicComboBoxUI {
 
+        @Override
+        protected JButton createArrowButton() {
+            JButton button = new JButton(new FlatArrowIcon());
+
+            button.setBorder(BorderFactory.createEmptyBorder());
+            button.setContentAreaFilled(false);
+            button.setFocusPainted(false);
+            button.setOpaque(false);
+            button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            button.setBorder(EMPTY_BORDER);
+
+            button.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    button.setBackground(new Color(230, 230, 230));
+                    button.setOpaque(true);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    button.setOpaque(false);
+                }
+            });
+
+            return button;
+        }
+
+        @Override
+        public void paintCurrentValueBackground(Graphics g, Rectangle bounds, boolean hasFocus) {
+            // Optional: remove highlight rectangle if desired
+        }
+    }
+
+    private static class FlatArrowIcon implements Icon {
+        private final int size = 10;
+
+        @Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            int w = size;
+            int h = size / 2;
+
+            int[] xPoints = { x, x + w / 2, x + w };
+            int[] yPoints = { y, y + h, y };
+
+            g2.setColor(Color.DARK_GRAY);
+            g2.fillPolygon(xPoints, yPoints, 3);
+            g2.dispose();
+        }
+
+        @Override
+        public int getIconWidth() {
+            return size;
+        }
+
+        @Override
+        public int getIconHeight() {
+            return size / 2;
+        }
+    }
 }

@@ -52,7 +52,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -72,19 +71,20 @@ import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.renderer.TableCellRenderer_MHNPallet;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBMHNPalletTableModelProperties;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
@@ -109,7 +109,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonAdd;
 	private JLabel4j_std jLabelReason;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JButton4j jButtonSearch;
 	private JComboBox4j<String> jComboBoxSortBy;
 	private JLabel4j_std jLabel1SortBy;
@@ -355,7 +355,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		jTextFieldMHN.setText(mhnNumber);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(726, 91, 258, 90);
+		scrollPane.setBounds(726, 91, 275, 90);
 		jDesktopPane1.add(scrollPane);
 
 		ListModel<String> jList1Model = new DefaultComboBoxModel<String>(new String[] { "Item One", "Item Two" });
@@ -371,38 +371,38 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		JLabel4j_std jLabelAuthorisor = new JLabel4j_std();
 		jLabelAuthorisor.setText(lang.get("lbl_Authorisor"));
 		jLabelAuthorisor.setHorizontalAlignment(SwingConstants.TRAILING);
-		jLabelAuthorisor.setBounds(785, 7, 79, 21);
+		jLabelAuthorisor.setBounds(785, 7, 79, 22);
 		jDesktopPane1.add(jLabelAuthorisor);
 
 		jTextFieldAuthorisor = new JTextField4j(JDBMHN.field_authorisor);
 		jTextFieldAuthorisor.setEditable(false);
-		jTextFieldAuthorisor.setBounds(875, 7, 89, 21);
+		jTextFieldAuthorisor.setBounds(870, 7, 111, 22);
 		jDesktopPane1.add(jTextFieldAuthorisor);
 
 		JLabel4j_std label_1 = new JLabel4j_std();
 		label_1.setText(lang.get("lbl_Reason") + " 2");
 		label_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label_1.setBounds(5, 65, 87, 21);
+		label_1.setBounds(5, 65, 87, 22);
 		jDesktopPane1.add(label_1);
 
 		ComboBoxModel<JDBMHNReasons> jComboBox2Model = new DefaultComboBoxModel<JDBMHNReasons>(reasonList);
 		textFieldReason2 = new JComboBox4j<JDBMHNReasons>();
 		textFieldReason2.setModel(jComboBox2Model);
 		textFieldReason2.setEditable(false);
-		textFieldReason2.setBounds(101, 65, 273, 23);
+		textFieldReason2.setBounds(101, 65, 273, 22);
 		jDesktopPane1.add(textFieldReason2);
 
 		JLabel4j_std label_2 = new JLabel4j_std();
 		label_2.setText(lang.get("lbl_Reason") + " 3");
 		label_2.setHorizontalAlignment(SwingConstants.TRAILING);
-		label_2.setBounds(5, 93, 87, 21);
+		label_2.setBounds(5, 93, 87, 22);
 		jDesktopPane1.add(label_2);
 
 		ComboBoxModel<JDBMHNReasons> jComboBox3Model = new DefaultComboBoxModel<JDBMHNReasons>(reasonList);
 		textFieldReason3 = new JComboBox4j<JDBMHNReasons>();
 		textFieldReason3.setModel(jComboBox3Model);
 		textFieldReason3.setEditable(false);
-		textFieldReason3.setBounds(101, 93, 273, 23);
+		textFieldReason3.setBounds(101, 93, 273, 22);
 		jDesktopPane1.add(textFieldReason3);
 		
 		JButton4j button = new JButton4j(Common.icon_lookup_16x16);
@@ -416,7 +416,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 				}
 			}
 		});
-		button.setBounds(755, 7, 21, 21);
+		button.setBounds(755, 7, 21, 22);
 		jDesktopPane1.add(button);
 		{
 			button_1 = new JButton4j(Common.icon_lookup_16x16);
@@ -430,26 +430,26 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					}
 				}
 			});
-			button_1.setBounds(964, 7, 21, 21);
+			button_1.setBounds(980, 7, 21, 22);
 			jDesktopPane1.add(button_1);
 		}
 		
-		jTextFieldWriteOffRef.setBounds(834, 37, 149, 21);
+		jTextFieldWriteOffRef.setBounds(834, 37, 167, 22);
 		jDesktopPane1.add(jTextFieldWriteOffRef);
 		
 		JLabel4j_std jLabelWriteOffRef = new JLabel4j_std();
 		jLabelWriteOffRef.setText(lang.get("lbl_Write_Off_Ref"));
 		jLabelWriteOffRef.setHorizontalAlignment(SwingConstants.TRAILING);
-		jLabelWriteOffRef.setBounds(688, 37, 141, 21);
+		jLabelWriteOffRef.setBounds(688, 37, 141, 22);
 		jDesktopPane1.add(jLabelWriteOffRef);
 		
 		JLabel4j_std jlabelGS_GSTD_REF = new JLabel4j_std(); 
 		jlabelGS_GSTD_REF.setText("GS GSTD Ref");
 		jlabelGS_GSTD_REF.setHorizontalAlignment(SwingConstants.TRAILING);
-		jlabelGS_GSTD_REF.setBounds(688, 65, 141, 21);
+		jlabelGS_GSTD_REF.setBounds(688, 65, 141, 22);
 		jDesktopPane1.add(jlabelGS_GSTD_REF);
 		
-		jTextFieldGS_GSTD_REF.setBounds(834, 65, 149, 21);
+		jTextFieldGS_GSTD_REF.setBounds(834, 65, 167, 22);
 		jDesktopPane1.add(jTextFieldGS_GSTD_REF);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -562,7 +562,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					jLabelRecorder = new JLabel4j_std();
 					jDesktopPane1.add(jLabelRecorder);
 					jLabelRecorder.setText(lang.get("lbl_Recorder"));
-					jLabelRecorder.setBounds(372, 7, 71, 21);
+					jLabelRecorder.setBounds(372, 7, 71, 22);
 					jLabelRecorder.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -584,19 +584,19 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					jTextFieldRecorder = new JTextField4j(JDBMHN.field_recorder);
 					jTextFieldRecorder.setEditable(false);
 					jDesktopPane1.add(jTextFieldRecorder);
-					jTextFieldRecorder.setBounds(452, 7, 121, 21);
+					jTextFieldRecorder.setBounds(452, 7, 121, 22);
 				}
 				{
 					jLabelComment = new JLabel4j_std();
 					jDesktopPane1.add(jLabelComment);
 					jLabelComment.setText(lang.get("lbl_Comment"));
-					jLabelComment.setBounds(13, 123, 79, 21);
+					jLabelComment.setBounds(13, 123, 79, 22);
 					jLabelComment.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldComment = new JTextField4j(JDBMHN.field_comments);
 					jDesktopPane1.add(jTextFieldComment);
-					jTextFieldComment.setBounds(101, 123, 610, 21);
+					jTextFieldComment.setBounds(101, 123, 618, 22);
 				}
 				{
 					jScrollPane1 = new JScrollPane();
@@ -915,27 +915,27 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					jLabelInitiator = new JLabel4j_std();
 					jDesktopPane1.add(jLabelInitiator);
 					jLabelInitiator.setText(lang.get("lbl_Initiator"));
-					jLabelInitiator.setBounds(575, 7, 79, 21);
+					jLabelInitiator.setBounds(575, 7, 51, 22);
 					jLabelInitiator.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldInitiator = new JTextField4j(JDBMHN.field_initiator);
 					jTextFieldInitiator.setEditable(false);
 					jDesktopPane1.add(jTextFieldInitiator);
-					jTextFieldInitiator.setBounds(661, 7, 94, 21);
+					jTextFieldInitiator.setBounds(634, 7, 121, 22);
 				}
 				{
 					jTextFieldMHN = new JTextField4j(JDBMHN.field_mhn_number);
 					jTextFieldMHN.setForeground(Color.RED);
 					jTextFieldMHN.setEditable(false);
 					jDesktopPane1.add(jTextFieldMHN);
-					jTextFieldMHN.setBounds(101, 7, 87, 21);
+					jTextFieldMHN.setBounds(101, 7, 87, 22);
 				}
 				{
 					jLabelMHN = new JLabel4j_std();
 					jDesktopPane1.add(jLabelMHN);
 					jLabelMHN.setText(lang.get("lbl_MHN_Number"));
-					jLabelMHN.setBounds(5, 5, 87, 21);
+					jLabelMHN.setBounds(5, 7, 87, 22);
 					jLabelMHN.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -943,19 +943,19 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelResource);
 					jLabelResource.setText(lang.get("lbl_Process_Order_Required_Resource"));
 					jLabelResource.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelResource.setBounds(372, 37, 173, 21);
+					jLabelResource.setBounds(380, 37, 173, 22);
 				}
 				{
 					jTextFieldResource = new JTextField4j(JDBProcessOrder.field_required_resource);
 					jDesktopPane1.add(jTextFieldResource);
-					jTextFieldResource.setBounds(562, 37, 121, 21);
+					jTextFieldResource.setBounds(562, 37, 128, 22);
 				}
 				{
 					jLabelReason = new JLabel4j_std();
 					jDesktopPane1.add(jLabelReason);
 					jLabelReason.setText(lang.get("lbl_Reason") + " 1");
 					jLabelReason.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelReason.setBounds(5, 37, 87, 21);
+					jLabelReason.setBounds(5, 37, 87, 22);
 				}
 				{
 					ComboBoxModel<JDBMHNReasons> jComboBox2Model = new DefaultComboBoxModel<JDBMHNReasons>(reasonList);
@@ -963,7 +963,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					jTextFieldReason1.setModel(jComboBox2Model);
 					jTextFieldReason1.setEditable(false);
 					jDesktopPane1.add(jTextFieldReason1);
-					jTextFieldReason1.setBounds(101, 37, 273, 23);
+					jTextFieldReason1.setBounds(101, 37, 273, 22);
 
 				}
 				{
@@ -971,26 +971,26 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelStatus);
 					jLabelStatus.setText(lang.get("lbl_Status"));
 					jLabelStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelStatus.setBounds(189, 7, 79, 21);
+					jLabelStatus.setBounds(189, 7, 79, 22);
 				}
 				{
 					jTextFieldStatus = new JComboBox4j<String>();
 					jTextFieldStatus.setModel(new DefaultComboBoxModel<String>(new String[] { "Active", "Closed" }));
 					jDesktopPane1.add(jTextFieldStatus);
-					jTextFieldStatus.setBounds(273, 8, 101, 23);
+					jTextFieldStatus.setBounds(273, 7, 101, 22);
 				}
 				{
 					jLabel1SortBy = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1SortBy);
 					jLabel1SortBy.setText(lang.get("lbl_Sort_By"));
 					jLabel1SortBy.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel1SortBy.setBounds(372, 93, 71, 21);
+					jLabel1SortBy.setBounds(372, 93, 71, 22);
 				}
 				{
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(new DefaultComboBoxModel<String>(new String[] { "DECISION", "SSCC", "DATE_OF_MANUFACTURE", "BATCH", "MATERIAL", "PROCESS_ORDER" }));
-					jComboBoxSortBy.setBounds(452, 93, 231, 23);
+					jComboBoxSortBy.setBounds(460, 93, 239, 22);
 					jComboBoxSortBy.setSelectedItem("DATE_OF_MANUFACTURE");
 					jComboBoxSortBy.setRequestFocusEnabled(false);
 				}
@@ -1072,9 +1072,9 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					});
 				}
 				{
-					jToggleButtonSequence = new JToggleButton();
+					jToggleButtonSequence = new JToggleButton4j();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(690, 93, 21, 21);
+					jToggleButtonSequence.setBounds(698, 93, 21, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1099,17 +1099,17 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 				button.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH"));
 				jDesktopPane1.add(button);
 
-				dateControlExpected.setBounds(563, 61, 125, 25);
+				dateControlExpected.setBounds(563, 65, 128, 22);
 				jDesktopPane1.add(dateControlExpected);
 
 				JCalendarButton calendarButtonExpected = new JCalendarButton(dateControlExpected);
-				calendarButtonExpected.setBounds(690, 65, 21, 21);
+				calendarButtonExpected.setBounds(690, 65, 22, 22);
 				jDesktopPane1.add(calendarButtonExpected);
 				{
 					label = new JLabel4j_std();
 					label.setText(lang.get("lbl_Expected"));
 					label.setHorizontalAlignment(SwingConstants.TRAILING);
-					label.setBounds(372, 65, 173, 21);
+					label.setBounds(380, 65, 173, 22);
 					jDesktopPane1.add(label);
 				}
 				button.addActionListener(new ActionListener()

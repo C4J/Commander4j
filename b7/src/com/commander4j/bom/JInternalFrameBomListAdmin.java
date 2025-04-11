@@ -29,6 +29,7 @@ package com.commander4j.bom;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -44,7 +45,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -52,16 +52,16 @@ import javax.swing.border.EtchedBorder;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JRadioButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import javax.swing.JLabel;
-import java.awt.Font;
 
 public class JInternalFrameBomListAdmin extends JInternalFrame
 {
@@ -77,12 +77,12 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 	private JButton4j jButtonPrint;
 	private JButton4j jButtonExcel;
 	private JButton4j jButtonAdd;
-	private JLabel lbl_Description;
+	private JLabel4j_std lbl_Description;
 	private String list_id;
 	private String item_id;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JRadioButton rdbtnEnabled;
-	private JRadioButton rdbtnDisabled;
+	private JRadioButton4j rdbtnEnabled;
+	private JRadioButton4j rdbtnDisabled;
 
 	public void setDataID(String id,String parent_id,boolean enabled)
 	{
@@ -339,10 +339,9 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			jDesktopPane1.add(panel);
 			panel.setLayout(null);
 
-			rdbtnEnabled = new JRadioButton(lang.get("lbl_Enabled"));
-			rdbtnEnabled.setBounds(8, 8, 102, 23);
+			rdbtnEnabled = new JRadioButton4j(lang.get("lbl_Enabled"));
+			rdbtnEnabled.setBounds(8, 8, 102, 22);
 			panel.add(rdbtnEnabled);
-			rdbtnEnabled.setFont(Common.font_std);
 			rdbtnEnabled.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -353,10 +352,10 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			rdbtnEnabled.setSelected(true);
 			bgroup.add(rdbtnEnabled);
 
-			rdbtnDisabled = new JRadioButton(lang.get("lbl_Disabled"));
-			rdbtnDisabled.setBounds(8, 35, 102, 23);
+			rdbtnDisabled = new JRadioButton4j(lang.get("lbl_Disabled"));
+			rdbtnDisabled.setBounds(8, 35, 102, 22);
 			panel.add(rdbtnDisabled);
-			rdbtnDisabled.setFont(Common.font_std);
+
 			rdbtnDisabled.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -453,7 +452,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			newItemMenuItem5.setText(lang.get("btn_Refresh"));
 			popupMenu.add(newItemMenuItem5);
 			
-			lbl_Description = new JLabel("List ID                   Item ID                 Sequence");
+			lbl_Description = new JLabel4j_std("List ID                   Item ID                 Sequence");
 			lbl_Description.setFont(new Font("Monospaced", Font.BOLD, 11));
 			lbl_Description.setBounds(6, 6, 413, 15);
 			jDesktopPane1.add(lbl_Description);

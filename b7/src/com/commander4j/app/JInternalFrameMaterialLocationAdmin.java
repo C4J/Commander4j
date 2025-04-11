@@ -48,10 +48,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -65,8 +65,10 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
@@ -100,7 +102,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonEdit;
 	private JButton4j jButtonClose;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JTextField4j jTextFieldLocation;
 	private JComboBox4j<String> jComboBoxStatus;
 	private JLabel4j_std jLabel5;
@@ -120,7 +122,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 	private JDBLanguage lang;
 	private PreparedStatement listStatement;
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
-	private JSpinner jSpinnerLimit = new JSpinner();
+	private JSpinner4j jSpinnerLimit = new JSpinner4j();
 
 	public JInternalFrameMaterialLocationAdmin()
 	{
@@ -619,32 +621,32 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(20, 10, 106, 21);
+					jLabel1.setBounds(0, 10, 126, 22);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(134, 10, 141, 23);
+					jTextFieldMaterial.setBounds(134, 10, 141, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Location_ID"));
-					jLabel3.setBounds(20, 37, 106, 21);
+					jLabel3.setBounds(0, 37, 126, 22);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(jTextFieldLocation);
-					jTextFieldLocation.setBounds(134, 37, 141, 23);
+					jTextFieldLocation.setBounds(134, 37, 141, 22);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(20, 97, 106, 21);
+					jLabel10.setBounds(0, 97, 126, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -652,26 +654,26 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(134, 95, 141, 23);
+					jComboBoxSortBy.setBounds(134, 95, 141, 22);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Material_Location_Status"));
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(20, 65, 106, 21);
+					jLabel5.setBounds(0, 65, 126, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.locationStatusIncBlank);
 					jComboBoxStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
-					jComboBoxStatus.setBounds(134, 65, 141, 23);
+					jComboBoxStatus.setBounds(134, 65, 141, 22);
 				}
 				{
-					jToggleButtonSequence = new JToggleButton();
+					jToggleButtonSequence = new JToggleButton4j();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(276, 95, 21, 23);
+					jToggleButtonSequence.setBounds(275, 95, 22, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -695,7 +697,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 							}
 						}
 					});
-					jButtonLookupMaterial.setBounds(276, 10, 21, 23);
+					jButtonLookupMaterial.setBounds(276, 10, 21, 22);
 					jDesktopPane1.add(jButtonLookupMaterial);
 				}
 
@@ -714,7 +716,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 
 						}
 					});
-					jButtonLookupLocation.setBounds(276, 37, 21, 23);
+					jButtonLookupLocation.setBounds(276, 37, 21, 22);
 					jDesktopPane1.add(jButtonLookupLocation);
 				}
 
@@ -761,19 +763,27 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Limit"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(20, 123, 106, 21);
+				label4j_std.setBounds(0, 123, 126, 22);
 				jDesktopPane1.add(label4j_std);
 
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(134, 123, 21, 21);
+				jCheckBoxLimit.setBounds(134, 123, 21, 22);
 				jDesktopPane1.add(jCheckBoxLimit);
 
-				JSpinner.NumberEditor ne_jSpinnerLimit = new JSpinner.NumberEditor(jSpinnerLimit);
+				JSpinner4j.NumberEditor ne_jSpinnerLimit = new JSpinner4j.NumberEditor(jSpinnerLimit);
 				jSpinnerLimit.setEditor(ne_jSpinnerLimit);
 				jSpinnerLimit.setValue(1000);
-				jSpinnerLimit.setBounds(163, 123, 68, 21);
+				jSpinnerLimit.setBounds(163, 123, 68, 22);
 				jDesktopPane1.add(jSpinnerLimit);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldMaterial.requestFocus();
+					}
+				});
 
 			}
 		} catch (Exception e)

@@ -50,7 +50,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -65,6 +64,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
@@ -108,7 +108,7 @@ public class JDialogLookup extends javax.swing.JDialog
 	private String errorMessage;
 	private String dataResult;
 	private JButton4j jButtonSearch;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JDialogLookup me;
 	private Dimension startupSize;
 	private PreparedStatement listStatement;
@@ -437,7 +437,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					jButtonSelect = new JButton4j(Common.icon_ok_16x16);
 					jDesktopPane1.add(jButtonSelect);
 					jButtonSelect.setText(lang.get("btn_Select"));
-					jButtonSelect.setBounds(119, 98, 113, 32);
+					jButtonSelect.setBounds(119, 96, 113, 32);
 					jButtonSelect.setMnemonic(java.awt.event.KeyEvent.VK_L);
 					jButtonSelect.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -462,7 +462,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					jButtonCancel = new JButton4j(Common.icon_cancel_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("web_Cancel"));
-					jButtonCancel.setBounds(235, 98, 113, 32);
+					jButtonCancel.setBounds(235, 96, 113, 32);
 					jButtonCancel.setMnemonic(java.awt.event.KeyEvent.VK_C);
 					jButtonCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -483,14 +483,14 @@ public class JDialogLookup extends javax.swing.JDialog
 				{
 					jTextFieldCriteria = new JTextField4j();
 					jDesktopPane1.add(jTextFieldCriteria);
-					jTextFieldCriteria.setBounds(70, 35, 385, 21);
+					jTextFieldCriteria.setBounds(70, 35, 385, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBox1Model = new DefaultComboBoxModel<String>(dlg_table.getFieldNames());
 					jComboBoxCriteria = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxCriteria);
 					jComboBoxCriteria.setModel(jComboBox1Model);
-					jComboBoxCriteria.setBounds(70, 7, 182, 23);
+					jComboBoxCriteria.setBounds(70, 7, 182, 22);
 					jComboBoxCriteria.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							jTextFieldCriteria.setText("");
@@ -503,7 +503,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					jComboBoxOrderBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxOrderBy);
 					jComboBoxOrderBy.setModel(jComboBox2Model);
-					jComboBoxOrderBy.setBounds(70, 63, 182, 23);
+					jComboBoxOrderBy.setBounds(70, 63, 182, 22);
 					jComboBoxOrderBy.setSelectedIndex(dlg_orderBy_name_default_pos);
 				}
 
@@ -511,21 +511,21 @@ public class JDialogLookup extends javax.swing.JDialog
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText("Value :");
-					jLabel1.setBounds(0, 35, 63, 21);
+					jLabel1.setBounds(0, 35, 63, 22);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabel2 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText("Criteria :");
-					jLabel2.setBounds(0, 7, 63, 21);
+					jLabel2.setBounds(0, 7, 63, 22);
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Sort_By")+" :");
-					jLabel3.setBounds(0, 63, 63, 21);
+					jLabel3.setBounds(0, 63, 63, 22);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -573,9 +573,9 @@ public class JDialogLookup extends javax.swing.JDialog
 					}
 				}
 				{
-					jToggleButtonSequence = new JToggleButton(Common.icon_ascending_16x16);
+					jToggleButtonSequence = new JToggleButton4j(Common.icon_ascending_16x16);
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(259, 63, 21, 21);
+					jToggleButtonSequence.setBounds(259, 63, 21, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							setSequence(jToggleButtonSequence.isSelected());
@@ -587,7 +587,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					jButtonSearch = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
-					jButtonSearch.setBounds(3, 98, 113, 32);
+					jButtonSearch.setBounds(3, 96, 113, 32);
 					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonSearch.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -599,7 +599,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					jTextFieldHeading = new JLabel4j_std();
 					jTextFieldHeading.setFont(new Font("Monospaced", Font.PLAIN, 11));
 					jDesktopPane1.add(jTextFieldHeading);
-					jTextFieldHeading.setBounds(7, 133, 448, 21);
+					jTextFieldHeading.setBounds(7, 133, 448, 22);
 					jTextFieldHeading.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldHeading.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 				}
@@ -608,7 +608,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(351, 98, 113, 32);
+					jButtonHelp.setBounds(351, 96, 113, 32);
 				}
 			}
 			this.setSize(470, 566);

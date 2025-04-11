@@ -37,7 +37,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -50,6 +49,7 @@ import com.commander4j.db.JDBMaterialUom;
 import com.commander4j.db.JDBUom;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import javax.swing.JCheckBox;
@@ -70,8 +70,8 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 	private JButton4j jButtonCancel;
 	private JLabel4j_std jLabel2;
 	private JLabel4j_std jLabel4;
-	private JSpinner jSpinnerNumerator;
-	private JSpinner jSpinnerDenominator;
+	private JSpinner4j jSpinnerNumerator;
+	private JSpinner4j jSpinnerDenominator;
 	private JTextField4j jTextFieldVariant;
 	private JTextField4j jTextFieldEAN;
 	private JTextField4j jTextFieldUOM;
@@ -140,7 +140,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(376, 234));
-			this.setBounds(25, 25, 410, 261);
+			this.setBounds(25, 25, 410, 296);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -158,7 +158,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setPreferredSize(new java.awt.Dimension(90, 30));
-					jButtonUpdate.setBounds(11, 181, 120, 32);
+					jButtonUpdate.setBounds(11, 222, 120, 32);
 					jButtonUpdate.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -210,7 +210,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(141, 181, 120, 32);
+					jButtonHelp.setBounds(141, 222, 120, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
@@ -218,7 +218,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
 					jButtonCancel.setPreferredSize(new java.awt.Dimension(90, 30));
-					jButtonCancel.setBounds(271, 181, 120, 32);
+					jButtonCancel.setBounds(271, 222, 120, 32);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -233,7 +233,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_Material"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(11, 9, 147, 21);
+					jLabel1.setBounds(11, 9, 147, 22);
 				}
 				{
 					jLabel2 = new JLabel4j_std();
@@ -241,7 +241,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jLabel2.setText(lang.get("lbl_Material_UOM_EAN"));
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel2.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel2.setBounds(11, 59, 147, 21);
+					jLabel2.setBounds(11, 67, 147, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
@@ -249,7 +249,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jLabel3.setText(lang.get("lbl_Material_UOM_Variant"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(11, 83, 147, 21);
+					jLabel3.setBounds(11, 96, 147, 22);
 				}
 				{
 					jLabel4 = new JLabel4j_std();
@@ -257,7 +257,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jLabel4.setText(lang.get("lbl_Material_UOM_Numerator"));
 					jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel4.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel4.setBounds(11, 107, 147, 21);
+					jLabel4.setBounds(11, 125, 147, 22);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
@@ -265,7 +265,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jLabel5.setText(lang.get("lbl_Material_UOM_Denominator"));
 					jLabel5.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel5.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel5.setBounds(11, 129, 147, 21);
+					jLabel5.setBounds(11, 154, 147, 22);
 				}
 				{
 					jLabel6 = new JLabel4j_std();
@@ -273,7 +273,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jLabel6.setText(lang.get("lbl_Material_UOM"));
 					jLabel6.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel6.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel6.setBounds(11, 34, 147, 21);
+					jLabel6.setBounds(11, 38, 147, 22);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
@@ -281,7 +281,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jTextFieldMaterial.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldMaterial.setEditable(false);
 					jTextFieldMaterial.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldMaterial.setBounds(165, 9, 113, 21);
+					jTextFieldMaterial.setBounds(165, 9, 113, 22);
 					jTextFieldMaterial.setEnabled(false);
 				}
 				{
@@ -290,7 +290,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jTextFieldUOM.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldUOM.setEditable(false);
 					jTextFieldUOM.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldUOM.setBounds(165, 34, 60, 21);
+					jTextFieldUOM.setBounds(165, 38, 60, 22);
 					jTextFieldUOM.setEnabled(false);
 				}
 				{
@@ -298,7 +298,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldEAN);
 					jTextFieldEAN.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldEAN.setFocusCycleRoot(true);
-					jTextFieldEAN.setBounds(165, 59, 175, 21);
+					jTextFieldEAN.setBounds(165, 67, 175, 22);
 					jTextFieldEAN.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -313,7 +313,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldVariant);
 					jTextFieldVariant.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldVariant.setFocusCycleRoot(true);
-					jTextFieldVariant.setBounds(165, 83, 34, 21);
+					jTextFieldVariant.setBounds(165, 96, 34, 22);
 					jTextFieldVariant.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -324,13 +324,12 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 				}
 				{
 
-					jSpinnerDenominator = new JSpinner();
-					JSpinner.NumberEditor ne2 = new JSpinner.NumberEditor(jSpinnerDenominator);
-					ne2.getTextField().setFont(Common.font_std); 
+					jSpinnerDenominator = new JSpinner4j();
+					JSpinner4j.NumberEditor ne2 = new JSpinner4j.NumberEditor(jSpinnerDenominator);
 					jSpinnerDenominator.setEditor(ne2);
 					jDesktopPane1.add(jSpinnerDenominator);
 					jSpinnerDenominator.setModel(denominatornumbermodel);
-					jSpinnerDenominator.setBounds(165, 129, 75, 21);
+					jSpinnerDenominator.setBounds(165, 154, 75, 22);
 					jSpinnerDenominator.addChangeListener(new ChangeListener()
 					{
 						public void stateChanged(ChangeEvent evt)
@@ -341,13 +340,12 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 				}
 				{
 
-					jSpinnerNumerator = new JSpinner();
-					JSpinner.NumberEditor ne1 = new JSpinner.NumberEditor(jSpinnerNumerator);
-					ne1.getTextField().setFont(Common.font_std); 
+					jSpinnerNumerator = new JSpinner4j();
+					JSpinner4j.NumberEditor ne1 = new JSpinner4j.NumberEditor(jSpinnerNumerator);
 					jSpinnerNumerator.setEditor(ne1);
 					jDesktopPane1.add(jSpinnerNumerator);
 					jSpinnerNumerator.setModel(numeratornumbermodel);
-					jSpinnerNumerator.setBounds(165, 107, 75, 21);
+					jSpinnerNumerator.setBounds(165, 125, 75, 22);
 					jSpinnerNumerator.addChangeListener(new ChangeListener()
 					{
 						public void stateChanged(ChangeEvent evt)
@@ -362,7 +360,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					lbl_Override.setText(lang.get("lbl_Override"));
 					lbl_Override.setHorizontalTextPosition(SwingConstants.RIGHT);
 					lbl_Override.setHorizontalAlignment(SwingConstants.RIGHT);
-					lbl_Override.setBounds(11, 152, 147, 21);
+					lbl_Override.setBounds(11, 183, 147, 22);
 					jDesktopPane1.add(lbl_Override);
 				}
 				chckbxOverride.addActionListener(new ActionListener() {
@@ -372,7 +370,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 				});
 				
 
-				chckbxOverride.setBounds(161, 150, 25, 23);
+				chckbxOverride.setBounds(161, 183, 25, 22);
 				jDesktopPane1.add(chckbxOverride);
 			}
 		}

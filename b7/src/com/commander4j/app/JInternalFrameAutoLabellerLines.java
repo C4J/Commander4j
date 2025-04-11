@@ -318,7 +318,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			rdbtnAll.setSelected(true);
 			rdbtnAll.setBackground(Common.color_app_window);
 			buttonGroup.add(rdbtnAll);
-			rdbtnAll.setBounds(120, 8, 54, 23);
+			rdbtnAll.setBounds(120, 9, 54, 22);
 			jDesktopPane1.add(rdbtnAll);
 			
 			rdbtnPack.setBackground(Common.color_app_window);
@@ -328,7 +328,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 					refresh();
 				}
 			});
-			rdbtnPack.setBounds(193, 8, 62, 23);
+			rdbtnPack.setBounds(193, 9, 62, 22);
 			jDesktopPane1.add(rdbtnPack);
 			
 			rdbtnPallet.setBackground(Common.color_app_window);
@@ -338,13 +338,13 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 					refresh();
 				}
 			});
-			rdbtnPallet.setBounds(268, 8, 67, 23);
+			rdbtnPallet.setBounds(268, 9, 67, 22);
 			jDesktopPane1.add(rdbtnPallet);
 			
 			JLabel4j_std label4j_std = new JLabel4j_std();
 			label4j_std.setText("Group");
 			label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std.setBounds(12, 9, 75, 21);
+			label4j_std.setBounds(12, 9, 75, 22);
 			jDesktopPane1.add(label4j_std);
 
 			mod.setModuleId("FRM_ADMIN_PRINTERS");

@@ -35,8 +35,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 
+import com.commander4j.gui.JDateControl;
 import com.commander4j.sys.Common;
-import com.commander4j.util.JDateControl;
 /**
  * The JCalendarButton is used to provide a popup window showing a calendar control.
  * <p>

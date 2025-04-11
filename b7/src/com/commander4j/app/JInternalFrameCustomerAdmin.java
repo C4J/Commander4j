@@ -36,7 +36,7 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -71,7 +71,7 @@ import com.commander4j.util.JUtility;
  */
 public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 {
-	private JButton jButtonExcel;
+	private JButton4j jButtonExcel;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JList4j<JDBCustomer> jListCustomers;

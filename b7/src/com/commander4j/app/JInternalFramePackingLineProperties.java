@@ -118,7 +118,7 @@ public class JInternalFramePackingLineProperties extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jLabel_PackingLineID = new JLabel4j_std();
-					jLabel_PackingLineID.setBounds(12, 12, 118, 21);
+					jLabel_PackingLineID.setBounds(12, 12, 129, 22);
 					jDesktopPane1.add(jLabel_PackingLineID);
 					jLabel_PackingLineID.setText(lang.get("lbl_Packing_Line_ID"));
 					jLabel_PackingLineID.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -126,7 +126,7 @@ public class JInternalFramePackingLineProperties extends JInternalFrame
 				}
 				{
 					jTextFieldPackingLineID = new JTextField4j(JDBPackingLines.field_packing_line_id);
-					jTextFieldPackingLineID.setBounds(148, 12, 170, 21);
+					jTextFieldPackingLineID.setBounds(148, 12, 170, 22);
 					jDesktopPane1.add(jTextFieldPackingLineID);
 					jTextFieldPackingLineID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldPackingLineID.setEditable(false);
@@ -134,7 +134,7 @@ public class JInternalFramePackingLineProperties extends JInternalFrame
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
-					jLabelDescription.setBounds(12, 45, 118, 21);
+					jLabelDescription.setBounds(12, 45, 129, 22);
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -142,7 +142,7 @@ public class JInternalFramePackingLineProperties extends JInternalFrame
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBPackingLines.field_description);
-					jTextFieldDescription.setBounds(148, 45, 265, 21);
+					jTextFieldDescription.setBounds(148, 45, 265, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
@@ -195,7 +195,7 @@ public class JInternalFramePackingLineProperties extends JInternalFrame
 				}
 
 				JLabel4j_std label_Enabled = new JLabel4j_std();
-				label_Enabled.setBounds(12, 78, 117, 21);
+				label_Enabled.setBounds(12, 74, 129, 22);
 				label_Enabled.setText(lang.get("lbl_Enabled"));
 				label_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
 				jDesktopPane1.add(label_Enabled);
@@ -206,7 +206,7 @@ public class JInternalFramePackingLineProperties extends JInternalFrame
 				});
 				
 
-				chckbxEnabled.setBounds(148, 74, 21, 23);
+				chckbxEnabled.setBounds(148, 74, 21, 22);
 				jDesktopPane1.add(chckbxEnabled);
 			}
 		}

@@ -415,14 +415,14 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jLabel1 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Assigned"));
-					jLabel1.setBounds(10, 5, 208, 18);
+					jLabel1.setBounds(10, 5, 208, 22);
 					jLabel1.setFont(Common.font_title);
 				}
 				{
 					jLabel2 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Unassigned"));
-					jLabel2.setBounds(272, 4, 154, 18);
+					jLabel2.setBounds(272, 5, 154, 22);
 					jLabel2.setFont(Common.font_title);
 				}
 			}

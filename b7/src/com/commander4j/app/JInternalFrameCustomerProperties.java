@@ -195,7 +195,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_Customer_ID"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(22, 22, 175, 21);
+					jLabel1.setBounds(12, 22, 185, 22);
 				}
 				{
 					jTextFieldID = new JTextField4j(JDBCustomer.field_customer_id);
@@ -203,7 +203,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jTextFieldID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldID.setEditable(false);
 					jTextFieldID.setEnabled(false);
-					jTextFieldID.setBounds(204, 22, 141, 21);
+					jTextFieldID.setBounds(204, 22, 141, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
@@ -211,13 +211,13 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jLabel3.setText(lang.get("lbl_Customer_Name"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(22, 55, 175, 21);
+					jLabel3.setBounds(12, 55, 185, 22);
 				}
 
 				{
 					jTextFieldName = new JTextField4j(JDBCustomer.field_customer_name);
 					jDesktopPane1.add(jTextFieldName, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jTextFieldName.setBounds(204, 55, 244, 21);
+					jTextFieldName.setBounds(204, 55, 244, 22);
 					jTextFieldName.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -234,7 +234,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonUpdate.setBounds(161, 443, 112, 28);
+					jButtonUpdate.setBounds(147, 444, 112, 32);
 					jButtonUpdate.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -331,14 +331,14 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(294, 443, 112, 28);
+					jButtonHelp.setBounds(280, 444, 112, 32);
 				}
 				{
 					label = new JLabel4j_std();
 					label.setText((String) null);
 					label.setHorizontalTextPosition(SwingConstants.RIGHT);
 					label.setHorizontalAlignment(SwingConstants.RIGHT);
-					label.setBounds(22, 92, 175, 21);
+					label.setBounds(12, 92, 185, 22);
 					label.setText(lang.get("lbl_Print_Customer_on_Label"));
 					jDesktopPane1.add(label);
 				}
@@ -362,7 +362,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(425, 443, 112, 28);
+					jButtonClose.setBounds(411, 444, 112, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -380,7 +380,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				});
 
 				checkBoxOverridePackLabel.setBackground(Color.WHITE);
-				checkBoxOverridePackLabel.setBounds(201, 124, 21, 24);
+				checkBoxOverridePackLabel.setBounds(201, 126, 21, 24);
 				jDesktopPane1.add(checkBoxOverridePackLabel);
 				checkBoxOverridePalletLabel.addActionListener(new ActionListener()
 				{
@@ -391,27 +391,27 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				});
 
 				checkBoxOverridePalletLabel.setBackground(Color.WHITE);
-				checkBoxOverridePalletLabel.setBounds(201, 160, 21, 24);
+				checkBoxOverridePalletLabel.setBounds(201, 162, 21, 24);
 				jDesktopPane1.add(checkBoxOverridePalletLabel);
 
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Override_Pack_Label"));
 				label4j_std.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std.setBounds(22, 128, 175, 21);
+				label4j_std.setBounds(12, 128, 185, 22);
 				jDesktopPane1.add(label4j_std);
 
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
 				label4j_std_1.setText(lang.get("lbl_Override_Pallet_Label"));
 				label4j_std_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std_1.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std_1.setBounds(22, 164, 175, 21);
+				label4j_std_1.setBounds(12, 164, 185, 22);
 				jDesktopPane1.add(label4j_std_1);
 
 				ComboBoxModel<JDBListData> jComboBox1Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPackModuleID.setModel(jComboBox1Model);
 				comboBoxPackModuleID.setEnabled(false);
-				comboBoxPackModuleID.setBounds(230, 121, 219, 27);
+				comboBoxPackModuleID.setBounds(230, 128, 219, 22);
 				comboBoxPackModuleID.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt)
@@ -425,7 +425,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				ComboBoxModel<JDBListData> jComboBox2Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPalletModuleID.setModel(jComboBox2Model);
 				comboBoxPalletModuleID.setEnabled(false);
-				comboBoxPalletModuleID.setBounds(230, 157, 219, 27);
+				comboBoxPalletModuleID.setBounds(230, 164, 219, 22);
 				comboBoxPalletModuleID.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt)
@@ -445,7 +445,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 
 				textField4j_Cust_Data_01.setFocusCycleRoot(true);
 				textField4j_Cust_Data_01.setCaretPosition(0);
-				textField4j_Cust_Data_01.setBounds(204, 199, 244, 21);
+				textField4j_Cust_Data_01.setBounds(204, 199, 244, 22);
 				jDesktopPane1.add(textField4j_Cust_Data_01);
 				textField4j_Cust_Data_02.addKeyListener(new KeyAdapter()
 				{
@@ -458,28 +458,28 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 
 				textField4j_Cust_Data_02.setFocusCycleRoot(true);
 				textField4j_Cust_Data_02.setCaretPosition(0);
-				textField4j_Cust_Data_02.setBounds(204, 232, 244, 21);
+				textField4j_Cust_Data_02.setBounds(204, 232, 244, 22);
 				jDesktopPane1.add(textField4j_Cust_Data_02);
 
 				JLabel4j_std label4j_std2 = new JLabel4j_std();
 				label4j_std2.setText(lang.get("lbl_Customer_Data_01"));
 				label4j_std2.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std2.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std2.setBounds(22, 199, 175, 21);
+				label4j_std2.setBounds(12, 199, 185, 22);
 				jDesktopPane1.add(label4j_std2);
 
 				JLabel4j_std label4j_std3 = new JLabel4j_std();
 				label4j_std3.setText(lang.get("lbl_Customer_Data_02"));
 				label4j_std3.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std3.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std3.setBounds(22, 232, 175, 21);
+				label4j_std3.setBounds(12, 232, 185, 22);
 				jDesktopPane1.add(label4j_std3);
 
 				JLabel4j_std lbl_OverrideBatchFormat = new JLabel4j_std();
 				lbl_OverrideBatchFormat.setText(lang.get("lbl_Override_Batch_Format"));
 				lbl_OverrideBatchFormat.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_OverrideBatchFormat.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_OverrideBatchFormat.setBounds(22, 335, 175, 21);
+				lbl_OverrideBatchFormat.setBounds(12, 335, 185, 22);
 				jDesktopPane1.add(lbl_OverrideBatchFormat);
 				checkBox4jOverideBatchFormat.addActionListener(new ActionListener()
 				{
@@ -498,14 +498,14 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				lbl_BatchFormat.setText(lang.get("lbl_Batch_Format"));
 				lbl_BatchFormat.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_BatchFormat.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_BatchFormat.setBounds(22, 364, 175, 21);
+				lbl_BatchFormat.setBounds(12, 364, 185, 22);
 				jDesktopPane1.add(lbl_BatchFormat);
 
 				JLabel4j_std lbl_BatchValidation = new JLabel4j_std();
 				lbl_BatchValidation.setText(lang.get("lbl_Batch_Validation"));
 				lbl_BatchValidation.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_BatchValidation.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_BatchValidation.setBounds(22, 397, 175, 21);
+				lbl_BatchValidation.setBounds(12, 397, 185, 22);
 				jDesktopPane1.add(lbl_BatchValidation);
 
 				textField4j_BatchFormat.addKeyListener(new KeyAdapter()
@@ -519,7 +519,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				textField4j_BatchFormat.setColumns(80);
 				textField4j_BatchFormat.setFocusCycleRoot(true);
 				textField4j_BatchFormat.setCaretPosition(0);
-				textField4j_BatchFormat.setBounds(204, 364, 410, 21);
+				textField4j_BatchFormat.setBounds(204, 364, 410, 22);
 				jDesktopPane1.add(textField4j_BatchFormat);
 
 				textField4j_BatchValidation.addKeyListener(new KeyAdapter()
@@ -533,14 +533,14 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				textField4j_BatchValidation.setColumns(80);
 				textField4j_BatchValidation.setFocusCycleRoot(true);
 				textField4j_BatchValidation.setCaretPosition(0);
-				textField4j_BatchValidation.setBounds(204, 397, 410, 21);
+				textField4j_BatchValidation.setBounds(204, 397, 410, 22);
 				jDesktopPane1.add(textField4j_BatchValidation);
 
 				JLabel4j_std label4j_std4 = new JLabel4j_std();
 				label4j_std4.setText(lang.get("lbl_Customer_Data_03"));
 				label4j_std4.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std4.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std4.setBounds(22, 265, 175, 21);
+				label4j_std4.setBounds(12, 265, 185, 22);
 				jDesktopPane1.add(label4j_std4);
 				textField4j_Cust_Data_03.addKeyListener(new KeyAdapter()
 				{
@@ -553,14 +553,14 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 
 				textField4j_Cust_Data_03.setFocusCycleRoot(true);
 				textField4j_Cust_Data_03.setCaretPosition(0);
-				textField4j_Cust_Data_03.setBounds(204, 265, 244, 21);
+				textField4j_Cust_Data_03.setBounds(204, 265, 244, 22);
 				jDesktopPane1.add(textField4j_Cust_Data_03);
 
 				JLabel4j_std label4j_std5 = new JLabel4j_std();
 				label4j_std5.setText(lang.get("lbl_Customer_Data_04"));
 				label4j_std5.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std5.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std5.setBounds(22, 298, 175, 21);
+				label4j_std5.setBounds(12, 298, 185, 22);
 				jDesktopPane1.add(label4j_std5);
 				textField4j_Cust_Data_04.addKeyListener(new KeyAdapter()
 				{
@@ -573,7 +573,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 
 				textField4j_Cust_Data_04.setFocusCycleRoot(true);
 				textField4j_Cust_Data_04.setCaretPosition(0);
-				textField4j_Cust_Data_04.setBounds(204, 298, 244, 21);
+				textField4j_Cust_Data_04.setBounds(204, 298, 244, 22);
 				jDesktopPane1.add(textField4j_Cust_Data_04);
 
 			}

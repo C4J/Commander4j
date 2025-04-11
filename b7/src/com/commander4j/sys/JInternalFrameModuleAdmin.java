@@ -45,7 +45,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.border.BevelBorder;
@@ -58,6 +57,7 @@ import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBModuleJList;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JRadioButton4j;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
@@ -84,13 +84,13 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 	private JButton4j jButtonEdit;
 	private JButton4j jButtonPrint;
 	private JButton4j jButtonClose;
-	private JRadioButton jRadioButtonFunctions;
-	private JRadioButton jRadioButtonExec;
-	private JRadioButton jRadioButtonReports;
-	private JRadioButton jRadioButtonUserReports;
-	private JRadioButton jRadioButtonMenus;
-	private JRadioButton jRadioButtonForms;
-	private JRadioButton jRadioButtonAll;
+	private JRadioButton4j jRadioButtonFunctions;
+	private JRadioButton4j jRadioButtonExec;
+	private JRadioButton4j jRadioButtonReports;
+	private JRadioButton4j jRadioButtonUserReports;
+	private JRadioButton4j jRadioButtonMenus;
+	private JRadioButton4j jRadioButtonForms;
+	private JRadioButton4j jRadioButtonAll;
 	private ButtonGroup buttonGroup1;
 	private JButton4j jButtonRename;
 	private JButton4j jButtonRefresh;
@@ -574,7 +574,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jButtonClose.setBounds(378, 384, 167, 32);
+					jButtonClose.setBounds(378, 380, 167, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -603,14 +603,14 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.setBounds(378, 322, 167, 32);
+					jButtonHelp.setBounds(378, 319, 167, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
-					jButtonRefresh.setBounds(378, 353, 167, 32);
+					jButtonRefresh.setBounds(378, 350, 167, 32);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
@@ -623,11 +623,11 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jRadioButtonAll = new JRadioButton();
-					jRadioButtonAll.setBounds(378, 424, 167, 28);
+					jRadioButtonAll = new JRadioButton4j();
+					jRadioButtonAll.setBounds(378, 424, 167, 22);
 					jDesktopPane1.add(jRadioButtonAll);
 					jRadioButtonAll.setText(lang.get("lbl_Module_ALL"));
-					jRadioButtonAll.setFont(Common.font_bold);
+
 					buttonGroup1.add(jRadioButtonAll);
 					jRadioButtonAll.setBackground(Common.color_app_window);
 					jRadioButtonAll.setSelected(true);
@@ -641,11 +641,11 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jRadioButtonForms = new JRadioButton();
-					jRadioButtonForms.setBounds(378, 452, 167, 28);
+					jRadioButtonForms = new JRadioButton4j();
+					jRadioButtonForms.setBounds(378, 452, 167, 22);
 					jDesktopPane1.add(jRadioButtonForms);
 					jRadioButtonForms.setText(lang.get("lbl_Module_Form"));
-					jRadioButtonForms.setFont(Common.font_bold);
+
 					buttonGroup1.add(jRadioButtonForms);
 					jRadioButtonForms.setBackground(Common.color_app_window);
 					jRadioButtonForms.addActionListener(new ActionListener()
@@ -658,11 +658,11 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jRadioButtonFunctions = new JRadioButton();
-					jRadioButtonFunctions.setBounds(378, 480, 167, 28);
+					jRadioButtonFunctions = new JRadioButton4j();
+					jRadioButtonFunctions.setBounds(378, 480, 167, 22);
 					jDesktopPane1.add(jRadioButtonFunctions);
 					jRadioButtonFunctions.setText(lang.get("lbl_Module_Function"));
-					jRadioButtonFunctions.setFont(Common.font_bold);
+
 					buttonGroup1.add(jRadioButtonFunctions);
 					jRadioButtonFunctions.setBackground(Common.color_app_window);
 					jRadioButtonFunctions.addActionListener(new ActionListener()
@@ -675,11 +675,11 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jRadioButtonMenus = new JRadioButton();
-					jRadioButtonMenus.setBounds(378, 508, 167, 28);
+					jRadioButtonMenus = new JRadioButton4j();
+					jRadioButtonMenus.setBounds(378, 508, 167, 22);
 					jDesktopPane1.add(jRadioButtonMenus);
 					jRadioButtonMenus.setText(lang.get("lbl_Module_Menu"));
-					jRadioButtonMenus.setFont(Common.font_bold);
+
 					buttonGroup1.add(jRadioButtonMenus);
 					jRadioButtonMenus.setBackground(Common.color_app_window);
 					jRadioButtonMenus.addActionListener(new ActionListener()
@@ -692,11 +692,11 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jRadioButtonReports = new JRadioButton();
-					jRadioButtonReports.setBounds(378, 536, 167, 28);
+					jRadioButtonReports = new JRadioButton4j();
+					jRadioButtonReports.setBounds(378, 536, 167, 22);
 					jDesktopPane1.add(jRadioButtonReports);
 					jRadioButtonReports.setText(lang.get("lbl_Module_Report"));
-					jRadioButtonReports.setFont(Common.font_bold);
+
 					buttonGroup1.add(jRadioButtonReports);
 					jRadioButtonReports.setBackground(Common.color_app_window);
 					jRadioButtonReports.addActionListener(new ActionListener()
@@ -709,11 +709,11 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jRadioButtonUserReports = new JRadioButton();
-					jRadioButtonUserReports.setBounds(378, 592, 167, 28);
+					jRadioButtonUserReports = new JRadioButton4j();
+					jRadioButtonUserReports.setBounds(378, 592, 167, 22);
 					jDesktopPane1.add(jRadioButtonUserReports);
 					jRadioButtonUserReports.setText(lang.get("lbl_Module_UserReport"));
-					jRadioButtonUserReports.setFont(Common.font_bold);
+
 					buttonGroup1.add(jRadioButtonUserReports);
 					jRadioButtonUserReports.setBackground(Common.color_app_window);
 					jRadioButtonUserReports.addActionListener(new ActionListener()
@@ -727,11 +727,11 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 
 				{
-					jRadioButtonExec = new JRadioButton();
-					jRadioButtonExec.setBounds(378, 564, 167, 28);
+					jRadioButtonExec = new JRadioButton4j();
+					jRadioButtonExec.setBounds(378, 564, 167, 22);
 					jDesktopPane1.add(jRadioButtonExec);
 					jRadioButtonExec.setText(lang.get("lbl_Module_Executable"));
-					jRadioButtonExec.setFont(Common.font_bold);
+
 					jRadioButtonExec.setBackground(Common.color_app_window);
 					buttonGroup1.add(jRadioButtonExec);
 					jRadioButtonExec.addActionListener(new ActionListener()
@@ -746,7 +746,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.setBounds(378, 290, 167, 32);
+					jButtonExcel.setBounds(378, 288, 167, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)

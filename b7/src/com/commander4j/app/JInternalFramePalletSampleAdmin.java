@@ -48,8 +48,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -76,17 +75,19 @@ import com.commander4j.db.JDBWTSamplePoint;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBViewPalletSampleTableModel;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
@@ -118,9 +119,9 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 	private JCheckBox4j jCheckBoxLimit;
 	private JCheckBox4j jCheckBoxYear;
 	private JCheckBox4j jCheckBoxWeekNumber;
-	private JSpinner jSpinnerLimit;
-	private JSpinner jSpinnerYear;
-	private JSpinner jSpinnerWeekNumber;
+	private JSpinner4j jSpinnerLimit;
+	private JSpinner4j jSpinnerYear;
+	private JSpinner4j jSpinnerWeekNumber;
 	private JLabel4j_std jLabel7;
 	private JTextField4j jTextFieldProcessOrder;
 	private JLabel4j_std jLabelProcessOrder;
@@ -132,7 +133,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 	private JButton4j jButtonLookupBatch;
 	private JButton4j jButtonLookupLocationID;
 	private JButton4j jButtonLookupMaterial;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JLabel4j_std jLabel15;
 	private JComboBox4j<String> jComboBoxPalletStatus;
 	private JComboBox4j<String> jComboBoxMonth;
@@ -1188,14 +1189,14 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(695, 43, 121, 21);
+					jLabel1.setBounds(695, 43, 121, 22);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Location_ID"));
-					jLabel3.setBounds(0, 43, 108, 21);
+					jLabel3.setBounds(0, 43, 108, 22);
 				}
 
 				{
@@ -1260,7 +1261,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Limit"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(695, 218, 121, 21);
+					jLabel10.setBounds(695, 218, 121, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -1286,33 +1287,33 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jComboBoxMonth.setMaximumRowCount(13);
 					jDesktopPane1.add(jComboBoxMonth);
 					jComboBoxMonth.setModel(jComboBoxDefaultMonthModel);
-					jComboBoxMonth.setBounds(683, 186, 92, 22);
+					jComboBoxMonth.setBounds(683, 183, 92, 22);
 				}
 				{
 					jLabel15 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel15);
 					jLabel15.setText(lang.get("lbl_Pallet_Status"));
 					jLabel15.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel15.setBounds(236, 148, 102, 21);
+					jLabel15.setBounds(236, 148, 102, 22);
 				}
 				{
 					lblOperative = new JLabel4j_std();
 					lblOperative.setText(lang.get("lbl_Operator_ID"));
 					lblOperative.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblOperative.setBounds(531, 149, 80, 21);
+					lblOperative.setBounds(531, 148, 80, 22);
 					jDesktopPane1.add(lblOperative);
 				}
 				{
 					jTextFieldOperative = new JTextField4j();
 					jTextFieldOperative.setEditable(false);
-					jTextFieldOperative.setBounds(622, 149, 73, 21);
+					jTextFieldOperative.setBounds(622, 148, 73, 22);
 					jDesktopPane1.add(jTextFieldOperative);
 				}
 				
 				{
 					jButtonLookup_Operative = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookup_Operative);
-					jButtonLookup_Operative.setBounds(695, 149, 21, 21);
+					jButtonLookup_Operative.setBounds(695, 148, 21, 22);
 					jButtonLookup_Operative.setEnabled(true);
 					jButtonLookup_Operative.addActionListener(new ActionListener()
 					{
@@ -1329,7 +1330,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				}
 				
 				{
-					jToggleButtonSequence = new JToggleButton();
+					jToggleButtonSequence = new JToggleButton4j();
 					jToggleButtonSequence.setSelected(true);
 					jDesktopPane1.add(jToggleButtonSequence);
 					jToggleButtonSequence.setBounds(674, 218, 21, 22);
@@ -1346,7 +1347,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Material_Batch"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(695, 78, 121, 21);
+					jLabel2.setBounds(695, 78, 121, 22);
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
@@ -1358,7 +1359,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelProcessOrder);
 					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
 					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(695, 113, 121, 21);
+					jLabelProcessOrder.setBounds(695, 113, 121, 22);
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
@@ -1370,7 +1371,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel7);
 					jLabel7.setText(lang.get("lbl_Sort_By"));
 					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel7.setBounds(236, 218, 130, 21);
+					jLabel7.setBounds(236, 218, 130, 22);
 				}
 				{
 					SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
@@ -1378,14 +1379,13 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jSpinnerIntModel.setMaximum(100000);
 					jSpinnerIntModel.setStepSize(1);
 
-					jSpinnerLimit = new JSpinner();
+					jSpinnerLimit = new JSpinner4j();
 					jDesktopPane1.add(jSpinnerLimit);
 
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std);
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 					jSpinnerLimit.setEditor(ne);
-					jSpinnerLimit.setBounds(844, 218, 73, 21);
+					jSpinnerLimit.setBounds(844, 218, 73, 22);
 					jSpinnerLimit.setValue(1000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 				}
@@ -1395,16 +1395,14 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jSpinnerIntModel.setMaximum(2500);
 					jSpinnerIntModel.setStepSize(1);
 
-					jSpinnerYear = new JSpinner();
+					jSpinnerYear = new JSpinner4j();
 					jSpinnerYear.setEnabled(false);
 					jDesktopPane1.add(jSpinnerYear);
 
 					jSpinnerYear.setModel(jSpinnerIntModel);
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerYear, "#");
-					ne.getTextField().setFont(Common.font_std);
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerYear, "#");
 					jSpinnerYear.setEditor(ne);
-					jSpinnerYear.setBounds(329, 186, 63, 21);
-					// jSpinnerYear.setValue(2020);
+					jSpinnerYear.setBounds(329, 183, 63, 22);
 
 					jSpinnerYear.setValue(Integer.valueOf(JUtility.getYear(JUtility.getSQLDateTime())));
 					jSpinnerYear.getEditor().setSize(45, 21);
@@ -1415,15 +1413,14 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jSpinnerIntModel.setMaximum(53);
 					jSpinnerIntModel.setStepSize(1);
 
-					jSpinnerWeekNumber = new JSpinner();
+					jSpinnerWeekNumber = new JSpinner4j();
 					jSpinnerWeekNumber.setEnabled(false);
 					jDesktopPane1.add(jSpinnerWeekNumber);
 
 					jSpinnerWeekNumber.setModel(jSpinnerIntModel);
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerWeekNumber, "#");
-					ne.getTextField().setFont(Common.font_std);
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerWeekNumber, "#");
 					jSpinnerWeekNumber.setEditor(ne);
-					jSpinnerWeekNumber.setBounds(541, 186, 45, 21);
+					jSpinnerWeekNumber.setBounds(541, 183, 45, 22);
 
 					jSpinnerWeekNumber.setValue(Integer.valueOf(JUtility.getWeekOfYear(JUtility.getSQLDateTime())));
 					jSpinnerWeekNumber.getEditor().setSize(45, 21);
@@ -1432,7 +1429,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jCheckBoxLimit = new JCheckBox4j();
 					jDesktopPane1.add(jCheckBoxLimit);
 					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxLimit.setBounds(823, 218, 21, 21);
+					jCheckBoxLimit.setBounds(823, 218, 21, 22);
 					jCheckBoxLimit.setSelected(true);
 					jCheckBoxLimit.addActionListener(new ActionListener()
 					{
@@ -1453,7 +1450,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jCheckBoxYear = new JCheckBox4j();
 					jDesktopPane1.add(jCheckBoxYear);
 					jCheckBoxYear.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxYear.setBounds(300, 186, 21, 21);
+					jCheckBoxYear.setBounds(300, 183, 21, 22);
 					jCheckBoxYear.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1487,7 +1484,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					});
 					jDesktopPane1.add(jCheckBoxWeekNumber);
 					jCheckBoxWeekNumber.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxWeekNumber.setBounds(512, 186, 21, 21);
+					jCheckBoxWeekNumber.setBounds(512, 183, 21, 22);
 					jCheckBoxYear.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1506,7 +1503,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupProcessOrder);
-					jButtonLookupProcessOrder.setBounds(954, 113, 21, 21);
+					jButtonLookupProcessOrder.setBounds(954, 113, 21, 22);
 					jButtonLookupProcessOrder.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1524,7 +1521,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					jButtonLookupMHN = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupMHN);
-					jButtonLookupMHN.setBounds(206, 148, 21, 21);
+					jButtonLookupMHN.setBounds(206, 148, 21, 22);
 					jButtonLookupMHN.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1541,7 +1538,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupBatch);
-					jButtonLookupBatch.setBounds(954, 78, 21, 21);
+					jButtonLookupBatch.setBounds(954, 78, 21, 22);
 					jButtonLookupBatch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1558,7 +1555,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupMaterial);
-					jButtonLookupMaterial.setBounds(954, 43, 21, 21);
+					jButtonLookupMaterial.setBounds(954, 43, 21, 22);
 					jButtonLookupMaterial.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1575,7 +1572,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					jButtonLookupLocationID = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupLocationID);
-					jButtonLookupLocationID.setBounds(206, 43, 21, 21);
+					jButtonLookupLocationID.setBounds(206, 43, 21, 22);
 					jButtonLookupLocationID.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1598,20 +1595,20 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jLabelSCC = new JLabel4j_std();
 					jDesktopPane1.add(jLabelSCC);
 					jLabelSCC.setText(lang.get("lbl_Pallet_SSCC"));
-					jLabelSCC.setBounds(695, 148, 121, 21);
+					jLabelSCC.setBounds(695, 148, 121, 22);
 					jLabelSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 
 				{
 					productionDateFrom = new JDateControl();
-					productionDateFrom.setBounds(189, 7, 128, 25);
+					productionDateFrom.setBounds(189, 9, 128, 25);
 					productionDateFrom.setEnabled(false);
 					jDesktopPane1.add(productionDateFrom);
 				}
 
 				{
 					sampleDateFrom = new JDateControl();
-					sampleDateFrom.setBounds(647, 7, 128, 25);
+					sampleDateFrom.setBounds(647, 9, 128, 22);
 					sampleDateFrom.setEnabled(false);
 					jDesktopPane1.add(sampleDateFrom);
 				}
@@ -1626,7 +1623,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxProductionDate.setBackground(new Color(255, 255, 255));
-					jCheckBoxProductionDate.setBounds(165, 7, 21, 21);
+					jCheckBoxProductionDate.setBounds(165, 9, 21, 22);
 					jDesktopPane1.add(jCheckBoxProductionDate);
 				}
 
@@ -1640,7 +1637,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxSampleDate.setBackground(new Color(255, 255, 255));
-					jCheckBoxSampleDate.setBounds(625, 7, 21, 21);
+					jCheckBoxSampleDate.setBounds(625, 9, 21, 22);
 					jDesktopPane1.add(jCheckBoxSampleDate);
 				}
 
@@ -1648,7 +1645,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jLabel_Sample_Date = new JLabel4j_std();
 					jLabel_Sample_Date.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel_Sample_Date.setText(lang.get("lbl_Sample_Date"));
-					jLabel_Sample_Date.setBounds(486, 9, 128, 21);
+					jLabel_Sample_Date.setBounds(486, 9, 128, 22);
 					jDesktopPane1.add(jLabel_Sample_Date);
 				}
 
@@ -1656,7 +1653,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jLabel_Pallet_DOM = new JLabel4j_std();
 					jLabel_Pallet_DOM.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel_Pallet_DOM.setText(lang.get("lbl_Pallet_DOM"));
-					jLabel_Pallet_DOM.setBounds(0, 9, 152, 21);
+					jLabel_Pallet_DOM.setBounds(0, 9, 152, 22);
 					jDesktopPane1.add(jLabel_Pallet_DOM);
 				}
 
@@ -1664,7 +1661,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					lbl_Reason = new JLabel4j_std();
 					lbl_Reason.setHorizontalAlignment(SwingConstants.TRAILING);
 					lbl_Reason.setText(lang.get("lbl_Reason"));
-					lbl_Reason.setBounds(236, 43, 102, 21);
+					lbl_Reason.setBounds(236, 43, 102, 22);
 					jDesktopPane1.add(lbl_Reason);
 				}
 
@@ -1672,7 +1669,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					lbl_Defect_ID = new JLabel4j_std();
 					lbl_Defect_ID.setHorizontalAlignment(SwingConstants.TRAILING);
 					lbl_Defect_ID.setText(lang.get("lbl_Defect_ID"));
-					lbl_Defect_ID.setBounds(236, 113, 102, 21);
+					lbl_Defect_ID.setBounds(236, 113, 102, 22);
 					jDesktopPane1.add(lbl_Defect_ID);
 				}
 
@@ -1680,7 +1677,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					lbl_Defect_Type = new JLabel4j_std();
 					lbl_Defect_Type.setHorizontalAlignment(SwingConstants.TRAILING);
 					lbl_Defect_Type.setText(lang.get("lbl_Defect_Type"));
-					lbl_Defect_Type.setBounds(236, 78, 102, 21);
+					lbl_Defect_Type.setBounds(236, 78, 102, 22);
 					jDesktopPane1.add(lbl_Defect_Type);
 				}
 
@@ -1691,7 +1688,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jComboBoxSampleReason = new JComboBox4j<JDBSampleReasons>();
 					jComboBoxSampleReason.setModel(jComboBox2Model);
 					jComboBoxSampleReason.setEditable(false);
-					jComboBoxSampleReason.setBounds(346, 43, 300, 23);
+					jComboBoxSampleReason.setBounds(346, 43, 300, 22);
 					jDesktopPane1.add(jComboBoxSampleReason);
 				}
 
@@ -1702,7 +1699,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jComboBoxDefectID = new JComboBox4j<JDBSampleDefectIDs>();
 					jComboBoxDefectID.setModel(jComboBox3Model);
 					jComboBoxDefectID.setEditable(false);
-					jComboBoxDefectID.setBounds(346, 113, 300, 23);
+					jComboBoxDefectID.setBounds(346, 113, 300, 22);
 					jComboBoxDefectID.setMaximumRowCount(20);
 					jDesktopPane1.add(jComboBoxDefectID);
 				}
@@ -1721,21 +1718,21 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					});
 					jComboBoxDefectType.setModel(jComboBox3Model);
 					jComboBoxDefectType.setEditable(false);
-					jComboBoxDefectType.setBounds(346, 78, 300, 23);
+					jComboBoxDefectType.setBounds(346, 78, 300, 22);
 					jComboBoxDefectType.setMaximumRowCount(20);
 					jDesktopPane1.add(jComboBoxDefectType);
 				}
 
 				{
 					productionDateTo = new JDateControl();
-					productionDateTo.setBounds(349, 7, 128, 25);
+					productionDateTo.setBounds(349, 9, 128, 22);
 					productionDateTo.setEnabled(false);
 					jDesktopPane1.add(productionDateTo);
 				}
 
 				{
 					sampleDateTo = new JDateControl();
-					sampleDateTo.setBounds(824, 7, 128, 25);
+					sampleDateTo.setBounds(824, 9, 128, 22);
 					sampleDateTo.setEnabled(false);
 					jDesktopPane1.add(sampleDateTo);
 				}
@@ -1764,7 +1761,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jLabel5_1 = new JLabel4j_std();
 					jLabel5_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel5_1.setText(lang.get("lbl_Incident_Ref"));
-					jLabel5_1.setBounds(0, 186, 108, 21);
+					jLabel5_1.setBounds(0, 183, 108, 22);
 					jDesktopPane1.add(jLabel5_1);
 				}
 
@@ -1772,7 +1769,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					JLabel4j_std lblLeaking = new JLabel4j_std();
 					lblLeaking.setText(lang.get("lbl_Leaking"));
 					lblLeaking.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblLeaking.setBounds(817, 186, 130, 21);
+					lblLeaking.setBounds(817, 183, 130, 22);
 					jDesktopPane1.add(lblLeaking);
 				}
 
@@ -1780,7 +1777,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					JLabel4j_std lblMonth = new JLabel4j_std();
 					lblMonth.setText(lang.get("lbl_Month"));
 					lblMonth.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMonth.setBounds(591, 186, 82, 21);
+					lblMonth.setBounds(591, 184, 82, 21);
 					jDesktopPane1.add(lblMonth);
 				}
 
@@ -1789,19 +1786,19 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					checkBoxLeaking.setOpaque(true);
 					checkBoxLeaking.setText("");
 					checkBoxLeaking.setSelected(false);
-					checkBoxLeaking.setBounds(954, 186, 21, 24);
+					checkBoxLeaking.setBounds(954, 183, 21, 22);
 					jDesktopPane1.add(checkBoxLeaking);
 				}
 
 				JLabel4j_std jLabel_Year = new JLabel4j_std();
-				jLabel_Year.setBounds(216, 186, 78, 21);
+				jLabel_Year.setBounds(216, 183, 78, 22);
 				jDesktopPane1.add(jLabel_Year);
 				jLabel_Year.setText(lang.get("lbl_Year"));
 				jLabel_Year.setHorizontalAlignment(SwingConstants.TRAILING);
 
 				{
 					jLabel_WeekNumber = new JLabel4j_std();
-					jLabel_WeekNumber.setBounds(399, 186, 101, 21);
+					jLabel_WeekNumber.setBounds(399, 183, 101, 22);
 					jDesktopPane1.add(jLabel_WeekNumber);
 					jLabel_WeekNumber.setText(lang.get("lbl_Week_Number"));
 					jLabel_WeekNumber.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1825,7 +1822,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				JLabel4j_std lbl_Sample_Location_Main = new JLabel4j_std();
 				lbl_Sample_Location_Main.setText(lang.get("lbl_Sample_Location"));
 				lbl_Sample_Location_Main.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Sample_Location_Main.setBounds(0, 78, 108, 21);
+				lbl_Sample_Location_Main.setBounds(0, 78, 108, 22);
 				jDesktopPane1.add(lbl_Sample_Location_Main);
 
 				{
@@ -1833,7 +1830,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel_Sample_Point);
 					jLabel_Sample_Point.setText(lang.get("lbl_Sample_SubLocation"));
 					jLabel_Sample_Point.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel_Sample_Point.setBounds(0, 113, 108, 21);
+					jLabel_Sample_Point.setBounds(0, 113, 108, 22);
 				}
 
 				jTextFieldSample_Location_Plant.setBounds(114, 78, 92, 22);
@@ -1852,7 +1849,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 						}
 					}
 				});
-				button4j_sublocation.setBounds(206, 78, 21, 21);
+				button4j_sublocation.setBounds(206, 78, 21, 22);
 				jDesktopPane1.add(button4j_sublocation);
 
 				jTextFieldSample_LocationFiller.setBounds(114, 113, 92, 22);
@@ -1871,13 +1868,13 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 						}
 					}
 				});
-				button4j_samplepoint.setBounds(206, 113, 21, 21);
+				button4j_samplepoint.setBounds(206, 113, 21, 22);
 				jDesktopPane1.add(button4j_samplepoint);
 
 				JLabel4j_std label4j_MHN = new JLabel4j_std();
 				label4j_MHN.setText(lang.get("lbl_MHN_Number"));
 				label4j_MHN.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_MHN.setBounds(0, 148, 108, 21);
+				label4j_MHN.setBounds(0, 148, 108, 22);
 				jDesktopPane1.add(label4j_MHN);
 
 				jTextFieldMHN = new JTextField4j(JDBMHN.field_mhn_number);

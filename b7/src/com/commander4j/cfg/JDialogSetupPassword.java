@@ -34,7 +34,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -43,6 +43,7 @@ import javax.swing.text.AbstractDocument;
 
 import com.commander4j.db.JDBUser;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFixedSizeFilter;
 import com.commander4j.util.JUtility;
@@ -68,20 +69,16 @@ public class JDialogSetupPassword extends JDialog
 
 		setTitle("Setup Password");
 
-		JLabel lname = new JLabel("User name");
-		lname.setFont(Common.font_std);
-		JLabel lpassword = new JLabel("Password");
-		lpassword.setFont(Common.font_std);
 
 		ButtonHandler buttonhandler = new ButtonHandler();
 		getContentPane().setLayout(null);
 
 		btn_close = new JButton4j("Close", Common.icon_cancel_16x16);
-		btn_close.setBounds(142, 52, 104, 25);
+		btn_close.setBounds(142, 52, 104, 32);
 		btn_close.setText("Cancel");
 		getContentPane().add(btn_close);
 		btn_login = new JButton4j("Login", Common.icon_ok_16x16);
-		btn_login.setBounds(19, 52, 104, 25);
+		btn_login.setBounds(19, 52, 104, 32);
 		btn_login.setText("OK");
 		getContentPane().add(btn_login);
 		btn_login.addActionListener(buttonhandler);
@@ -94,16 +91,15 @@ public class JDialogSetupPassword extends JDialog
 		getContentPane().add(fld_password);
 		AbstractDocument doc2 = (AbstractDocument) fld_password.getDocument();
 		doc2.setDocumentFilter(new JFixedSizeFilter(JDBUser.field_password));
-		fld_password.setFont(Common.font_std);
 
-		JLabel lblPassword = new JLabel("Password :");
-		lblPassword.setBounds(19, 24, 83, 16);
+		JLabel4j_std lblPassword = new JLabel4j_std("Password :");
+		lblPassword.setBounds(19, 18, 83, 22);
 		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 		getContentPane().add(lblPassword);
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		this.setSize(284, 119);
+		this.setSize(284, 128);
 		setLocation((screenSize.width - screenWidth) / 2, (screenSize.height - screenHeight) / 2);
 		setResizable(false);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

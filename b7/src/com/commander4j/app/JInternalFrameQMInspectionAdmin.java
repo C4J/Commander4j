@@ -43,7 +43,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
+
 import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -61,6 +61,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
@@ -103,7 +104,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 	private JDBQMTest test = new JDBQMTest(Common.selectedHostID, Common.sessionID);
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private PreparedStatement listStatement;
-	private JSpinner spinnerLimit;
+	private JSpinner4j spinnerLimit;
 	private JCheckBox4j chckbxLimit;
 	private JList4j<JDBQMInspection> listInspection;
 	private JList4j<JDBQMActivity> listActivity;
@@ -363,22 +364,22 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		panelTests.add(btnDictionary);
 
 		JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
-		lblInspectionID.setBounds(6, 12, 83, 16);
+		lblInspectionID.setBounds(6, 9, 83, 22);
 		desktopPane.add(lblInspectionID);
 		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
-		textFieldInspectionID.setBounds(101, 9, 117, 21);
+		textFieldInspectionID.setBounds(101, 9, 117, 22);
 		desktopPane.add(textFieldInspectionID);
 		textFieldInspectionID.setColumns(10);
 
 		JLabel4j_std lblDescription = new JLabel4j_std(lang.get("lbl_Description"));
-		lblDescription.setBounds(252, 12, 110, 16);
+		lblDescription.setBounds(252, 9, 110, 22);
 		desktopPane.add(lblDescription);
 		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		textFieldDescription = new JTextField4j(JDBQMInspection.field_description);
-		textFieldDescription.setBounds(371, 9, 445, 21);
+		textFieldDescription.setBounds(371, 9, 445, 22);
 		desktopPane.add(textFieldDescription);
 		textFieldDescription.setColumns(10);
 
@@ -408,21 +409,20 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		btnClose1.setIcon(Common.icon_close_16x16);
 
 		chckbxLimit = new JCheckBox4j("");
-		chckbxLimit.setBounds(711, 48, 28, 16);
+		chckbxLimit.setBounds(711, 43, 28, 22);
 		desktopPane.add(chckbxLimit);
 		chckbxLimit.setSelected(true);
 
-		spinnerLimit = new JSpinner();
-		spinnerLimit.setBounds(740, 43, 76, 28);
+		spinnerLimit = new JSpinner4j();
+		spinnerLimit.setBounds(740, 43, 76, 22);
 		desktopPane.add(spinnerLimit);
 		spinnerLimit.setValue(100);
-		JSpinner.NumberEditor ne = new JSpinner.NumberEditor(spinnerLimit);
-		ne.getTextField().setFont(Common.font_std);
+		JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(spinnerLimit);
 		spinnerLimit.setEditor(ne);
 
 		JLabel4j_std lbl_Limit = new JLabel4j_std(lang.get("lbl_Limit"));
 		lbl_Limit.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_Limit.setBounds(589, 47, 110, 16);
+		lbl_Limit.setBounds(589, 43, 110, 22);
 		desktopPane.add(lbl_Limit);
 
 		JButton4j btnLookupInspection = new JButton4j("");
@@ -441,7 +441,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				}
 			}
 		});
-		btnLookupInspection.setBounds(216, 8, 21, 22);
+		btnLookupInspection.setBounds(216, 9, 21, 22);
 		desktopPane.add(btnLookupInspection);
 
 		SwingUtilities.invokeLater(new Runnable()

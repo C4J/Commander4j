@@ -40,7 +40,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JSpinner;
+
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -53,6 +53,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
@@ -84,7 +85,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 	private JDBProcessOrder order = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrderResource resource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
-	private JSpinner jSpinnerQuantity = new JSpinner();
+	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
 	private JCheckBox4j jCheckBoxAutoPreview;
 	private JLabel4j_std lbl_Preview;
 	private PreparedStatement listStatement;
@@ -193,7 +194,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 					desktopPane.add(jTextFieldProcessOrder);
 					jTextFieldProcessOrder.setEditable(false);
 					jTextFieldProcessOrder.setEnabled(false);
-					jTextFieldProcessOrder.setBounds(155, 10, 147, 21);
+					jTextFieldProcessOrder.setBounds(155, 10, 147, 22);
 				}
 				{
 					jButtonPrint = new JButton4j(Common.icon_print_16x16);
@@ -236,45 +237,42 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 					lbl_Process_Order = new JLabel4j_std();
 					desktopPane.add(lbl_Process_Order);
 					lbl_Process_Order.setText(lang.get("lbl_Process_Order"));
-					lbl_Process_Order.setBounds(12, 10, 125, 21);
+					lbl_Process_Order.setBounds(12, 10, 125, 22);
 					lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldBatchSuffix.setText("");
-					jTextFieldBatchSuffix.setBounds(454, 10, 39, 21);
+					jTextFieldBatchSuffix.setBounds(454, 10, 39, 22);
 					desktopPane.add(jTextFieldBatchSuffix);
 					
 					JLabel4j_std lbl_Batch_Suffix = new JLabel4j_std();
 					lbl_Batch_Suffix.setText(lang.get("lbl_Batch_Suffix"));
 					lbl_Batch_Suffix.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_Batch_Suffix.setBounds(314, 10, 125, 21);
+					lbl_Batch_Suffix.setBounds(323, 9, 125, 22);
 					desktopPane.add(lbl_Batch_Suffix);
 				}
 				
 				JLabel4j_std lbl_Number_Of_Labels = new JLabel4j_std();
-				lbl_Number_Of_Labels.setBounds(228, 41, 182, 21);
+				lbl_Number_Of_Labels.setBounds(240, 41, 182, 22);
 				lbl_Number_Of_Labels.setHorizontalAlignment(SwingConstants.RIGHT);
 				lbl_Number_Of_Labels.setText(lang.get("lbl_Number_Of_Labels"));
 				desktopPane.add(lbl_Number_Of_Labels);
 			
 		     	jSpinnerQuantity.setEnabled(true);
 				jSpinnerQuantity.setValue(1);
-				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerQuantity);
-				ne.getTextField().setFont(Common.font_std); 
-
-				jSpinnerQuantity.setFont(Common.font_std);
-				jSpinnerQuantity.setBounds(415, 41, 66, 21);
+				
+				jSpinnerQuantity.setBounds(427, 41, 66, 22);
 				jSpinnerQuantity.setValue(1);
 				desktopPane.add(jSpinnerQuantity);
 				
 				JLabel4j_std lbl_Print_Queue = new JLabel4j_std(lang.get("lbl_Print_Queue"));
 				lbl_Print_Queue.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Print_Queue.setBounds(12, 78, 125, 21);
+				lbl_Print_Queue.setBounds(12, 74, 125, 22);
 				desktopPane.add(lbl_Print_Queue);
 				
 
 				comboBoxPrintQueue.setSelectedIndex(-1);
-				comboBoxPrintQueue.setBounds(155, 74, 471, 23);
+				comboBoxPrintQueue.setBounds(155, 74, 471, 22);
 				desktopPane.add(comboBoxPrintQueue);
 				
 				jCheckBoxAutoPreview = new JCheckBox4j();
@@ -293,11 +291,11 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 
 				
 				jCheckBoxAutoPreview.setBackground(Color.WHITE);
-				jCheckBoxAutoPreview.setBounds(155, 41, 21, 21);
+				jCheckBoxAutoPreview.setBounds(155, 41, 21, 22);
 				desktopPane.add(jCheckBoxAutoPreview);
 				
 				lbl_Preview = new JLabel4j_std();
-				lbl_Preview.setBounds(12, 41, 125, 21);
+				lbl_Preview.setBounds(12, 41, 125, 22);
 				lbl_Preview.setHorizontalTextPosition(SwingConstants.CENTER);
 				lbl_Preview.setHorizontalAlignment(SwingConstants.TRAILING);
 				lbl_Preview.setText(lang.get("lbl_Preview"));

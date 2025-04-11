@@ -48,8 +48,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
@@ -68,8 +67,10 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
@@ -110,7 +111,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 	private JButton4j jButtonEdit;
 	private JButton4j jButtonAdd;
 	private JLabel4j_std jLabel8;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JButton4j jButtonSearch;
 	private JComboBox4j<String> jComboBoxSortBy;
 	private JLabel4j_std jLabel10;
@@ -137,7 +138,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JCheckBox4j chkboxLocationEnabled;
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
-	private JSpinner jSpinnerLimit = new JSpinner();
+	private JSpinner4j jSpinnerLimit = new JSpinner4j();
 
 	private void copyToClipboard(String fieldname)
 	{
@@ -482,7 +483,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Storage_Plant"));
-					jLabel1.setBounds(246, 11, 109, 21);
+					jLabel1.setBounds(246, 11, 109, 22);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -500,19 +501,19 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 				{
 					jTextFieldPlant = new JTextField4j(JDBLocation.field_plant);
 					jDesktopPane1.add(jTextFieldPlant);
-					jTextFieldPlant.setBounds(365, 11, 80, 21);
+					jTextFieldPlant.setBounds(365, 11, 80, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Description"));
-					jLabel3.setBounds(12, 77, 91, 21);
+					jLabel3.setBounds(12, 77, 91, 22);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBLocation.field_description);
 					jDesktopPane1.add(jTextFieldDescription);
-					jTextFieldDescription.setBounds(112, 77, 335, 21);
+					jTextFieldDescription.setBounds(112, 77, 335, 22);
 				}
 				{
 					jScrollPane1 = new JScrollPane();
@@ -983,36 +984,36 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jLabel2 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Storage_Warehouse"));
-					jLabel2.setBounds(450, 11, 103, 21);
+					jLabel2.setBounds(450, 11, 103, 22);
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldWarehouse = new JTextField4j(JDBLocation.field_warehouse);
 					jDesktopPane1.add(jTextFieldWarehouse);
-					jTextFieldWarehouse.setBounds(560, 11, 80, 21);
+					jTextFieldWarehouse.setBounds(560, 11, 80, 22);
 				}
 				{
 					jLabel4 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel4);
 					jLabel4.setText(lang.get("lbl_Storage_Bin"));
-					jLabel4.setBounds(650, 44, 113, 21);
+					jLabel4.setBounds(650, 44, 113, 22);
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldStorageBin = new JTextField4j(JDBLocation.field_storage_bin);
 					jDesktopPane1.add(jTextFieldStorageBin);
-					jTextFieldStorageBin.setBounds(775, 44, 80, 21);
+					jTextFieldStorageBin.setBounds(775, 44, 80, 22);
 				}
 				{
 					jTextFieldLocationID = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(jTextFieldLocationID);
-					jTextFieldLocationID.setBounds(112, 11, 126, 21);
+					jTextFieldLocationID.setBounds(112, 11, 126, 22);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Storage_Location"));
-					jLabel5.setBounds(12, 11, 93, 21);
+					jLabel5.setBounds(12, 11, 93, 22);
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -1020,62 +1021,62 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel6);
 					jLabel6.setText(lang.get("lbl_Storage_GLN"));
 					jLabel6.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel6.setBounds(650, 11, 114, 21);
+					jLabel6.setBounds(650, 11, 114, 22);
 				}
 				{
 					jTextFieldGLN = new JTextField4j(JDBMaterialUom.field_ean);
 					jDesktopPane1.add(jTextFieldGLN);
-					jTextFieldGLN.setBounds(775, 11, 126, 21);
+					jTextFieldGLN.setBounds(775, 11, 126, 22);
 				}
 				{
 					jLabel7 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel7);
 					jLabel7.setText(lang.get("lbl_Storage_Section"));
 					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel7.setBounds(450, 44, 103, 21);
+					jLabel7.setBounds(450, 44, 103, 22);
 				}
 				{
 					jTextFieldStorageSection = new JTextField4j(JDBLocation.field_storage_section);
 					jDesktopPane1.add(jTextFieldStorageSection);
-					jTextFieldStorageSection.setBounds(560, 44, 80, 21);
+					jTextFieldStorageSection.setBounds(560, 44, 80, 22);
 				}
 				{
 					jLabel8 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel8);
 					jLabel8.setText(lang.get("lbl_Storage_Location"));
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8.setBounds(0, 44, 105, 21);
+					jLabel8.setBounds(0, 44, 105, 22);
 				}
 				{
 					jTextFieldStorageLocation = new JTextField4j(JDBLocation.field_storage_location);
 					jDesktopPane1.add(jTextFieldStorageLocation);
-					jTextFieldStorageLocation.setBounds(112, 44, 126, 21);
+					jTextFieldStorageLocation.setBounds(112, 44, 126, 22);
 				}
 				{
 					jLabel9 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel9);
 					jLabel9.setText(lang.get("lbl_Storage_Type"));
 					jLabel9.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel9.setBounds(246, 44, 109, 21);
+					jLabel9.setBounds(246, 44, 109, 22);
 				}
 				{
 					jTextFieldStorageType = new JTextField4j(JDBLocation.field_storage_type);
 					jDesktopPane1.add(jTextFieldStorageType);
-					jTextFieldStorageType.setBounds(365, 44, 80, 21);
+					jTextFieldStorageType.setBounds(365, 44, 80, 22);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(416, 77, 103, 21);
+					jLabel10.setBounds(416, 77, 103, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.locationSortBy);
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(526, 77, 231, 23);
+					jComboBoxSortBy.setBounds(526, 77, 231, 22);
 					jComboBoxSortBy.setSelectedItem("LOCATION_ID,PLANT,WAREHOUSE");
 					jComboBoxSortBy.setMaximumRowCount(Common.locationSortBy.length);
 					jComboBoxSortBy.setRequestFocusEnabled(false);
@@ -1167,9 +1168,9 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					});
 				}
 				{
-					jToggleButtonSequence = new JToggleButton();
+					jToggleButtonSequence = new JToggleButton4j();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(764, 77, 21, 23);
+					jToggleButtonSequence.setBounds(757, 76, 22, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							setSequence(jToggleButtonSequence.isSelected());
@@ -1201,24 +1202,23 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Limit"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(785, 77, 84, 21);
+				label4j_std.setBounds(785, 77, 84, 22);
 				jDesktopPane1.add(label4j_std);
 
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(881, 77, 21, 21);
+				jCheckBoxLimit.setBounds(881, 78, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
 
-				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-				ne.getTextField().setFont(Common.font_std);
+				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 				jSpinnerLimit.setEditor(ne);
 				jSpinnerLimit.setValue(1000);
-				jSpinnerLimit.setBounds(910, 77, 68, 21);
+				jSpinnerLimit.setBounds(910, 77, 68, 22);
 				jDesktopPane1.add(jSpinnerLimit);
 				
 				chkboxLocationEnabled = new JCheckBox4j(lang.get("lbl_Enabled"));
 				chkboxLocationEnabled.setSelected(true);
-				chkboxLocationEnabled.setBounds(881, 42, 109, 23);
+				chkboxLocationEnabled.setBounds(881, 44, 109, 22);
 				jDesktopPane1.add(chkboxLocationEnabled);
 			}
 		}

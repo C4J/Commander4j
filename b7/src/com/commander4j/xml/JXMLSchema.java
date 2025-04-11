@@ -33,10 +33,9 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.LinkedList;
 
-import javax.swing.JLabel;
-
 import com.commander4j.app.JVersion;
 import com.commander4j.db.JDBDDL;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.sys.Common;
 
 
@@ -50,7 +49,7 @@ public class JXMLSchema
 	}
 
 
-	public static LinkedList<JDBDDL> loadDDLStatements(String driver, String directory,JLabel commandLabel) {
+	public static LinkedList<JDBDDL> loadDDLStatements(String driver, String directory,JLabel4j_std commandLabel) {
 
 		// String Description = "";
 		String Text = "";

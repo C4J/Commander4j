@@ -160,7 +160,6 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
-					jButtonCancel.setFont(Common.font_btn);
 					jButtonCancel.setBounds(419, 316, 110, 32);
 					jButtonCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {

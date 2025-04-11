@@ -41,6 +41,8 @@ public class Setup
 	public static void main(String[] args) {
 		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(Setup.class);
 		//JUtility.setLookandFeel();
+		JUtility.setLookandFeel();
+		JUtility.adjustForLookandFeel();
 		JUtility.initLogging("");
 		Common.base_dir = System.getProperty("user.dir");
 		Common.applicationMode = "SwingClient";

@@ -39,8 +39,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
+
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -53,6 +52,8 @@ import com.commander4j.db.JDBSampleDefectTypes;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
+import com.commander4j.gui.JTextArea4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
@@ -65,7 +66,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 	private JButton4j jButtonClose;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonUpdate;
-	private JTextArea jTextFieldLongDescription;
+	private JTextArea4j jTextFieldLongDescription;
 	private JTextField4j jTextFieldDescription;
 	private JLabel4j_std jLabelDescription;
 	private JTextField4j jTextFieldDefectID;
@@ -76,7 +77,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 	private String ltype;
 	private JCheckBox4j chckbxEnabled = new JCheckBox4j("");
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JSpinner jSpinnerLimit;
+	private JSpinner4j jSpinnerLimit;
 	private JCheckBox tglbtnLeakingData;
 	private JCheckBox tglbtnNonLeakingData;
 
@@ -126,7 +127,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(389, 143));
-			this.setBounds(0, 0, 751, 299);
+			this.setBounds(0, 0, 751, 284);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -137,7 +138,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jLabelDefectID = new JLabel4j_std();
-					jLabelDefectID.setBounds(0, 7, 128, 21);
+					jLabelDefectID.setBounds(0, 7, 128, 22);
 					jDesktopPane1.add(jLabelDefectID);
 					jLabelDefectID.setText(lang.get("lbl_Defect_ID"));
 					jLabelDefectID.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -146,7 +147,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				
 				{
 					jLabelEnabled = new JLabel4j_std();
-					jLabelEnabled.setBounds(0, 167, 128, 21);
+					jLabelEnabled.setBounds(0, 167, 128, 22);
 					jDesktopPane1.add(jLabelEnabled);
 					jLabelEnabled.setText(lang.get("lbl_Enabled"));
 					jLabelEnabled.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -155,7 +156,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				
 				{
 					jLabelSequence = new JLabel4j_std();
-					jLabelSequence.setBounds(0, 138, 128, 21);
+					jLabelSequence.setBounds(0, 138, 128, 22);
 					jDesktopPane1.add(jLabelSequence);
 					jLabelSequence.setText(lang.get("lbl_Sequence_ID"));
 					jLabelSequence.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -164,7 +165,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				
 				{
 					jTextFieldDefectID = new JTextField4j(JDBSampleDefectTypes.field_sample_defect_type);
-					jTextFieldDefectID.setBounds(139, 7, 170, 21);
+					jTextFieldDefectID.setBounds(139, 7, 170, 22);
 					jDesktopPane1.add(jTextFieldDefectID);
 					jTextFieldDefectID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldDefectID.setEditable(false);
@@ -172,7 +173,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
-					jLabelDescription.setBounds(0, 40, 128, 21);
+					jLabelDescription.setBounds(0, 40, 128, 22);
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -187,7 +188,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					jTextFieldDescription.setBounds(138, 40, 585, 21);
+					jTextFieldDescription.setBounds(138, 40, 585, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setFocusCycleRoot(true);
 					Border border = BorderFactory.createLineBorder(Color.BLACK);
@@ -195,7 +196,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				}
 				
 				{
-					jTextFieldLongDescription = new JTextArea();
+					jTextFieldLongDescription = new JTextArea4j();
 					jTextFieldLongDescription.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyTyped(KeyEvent e) {
@@ -212,7 +213,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				}
 				{
 					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
-					jButtonUpdate.setBounds(176, 223, 112, 32);
+					jButtonUpdate.setBounds(204, 201, 112, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -233,14 +234,14 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.setBounds(288, 223, 112, 32);
+					jButtonHelp.setBounds(316, 201, 112, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jButtonClose.setBounds(401, 223, 112, 32);
+					jButtonClose.setBounds(429, 201, 112, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -257,7 +258,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					chckbxEnabled.setBounds(136, 167, 22, 23);
+					chckbxEnabled.setBounds(136, 167, 22, 22);
 					jDesktopPane1.add(chckbxEnabled);
 				}
 				
@@ -265,7 +266,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				jLabelLongDescription.setText(lang.get("lbl_Long_Description"));
 				jLabelLongDescription.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabelLongDescription.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabelLongDescription.setBounds(0, 73, 128, 21);
+				jLabelLongDescription.setBounds(0, 73, 128, 22);
 				jDesktopPane1.add(jLabelLongDescription);
 				
 				{
@@ -273,17 +274,16 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 					jSpinnerIntModel.setMinimum(10);
 					jSpinnerIntModel.setMaximum(990);
 					jSpinnerIntModel.setStepSize(10);
-					jSpinnerLimit = new JSpinner();
+					jSpinnerLimit = new JSpinner4j();
 					jSpinnerLimit.addChangeListener(new ChangeListener() {
 						public void stateChanged(ChangeEvent e) {
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std);
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					jSpinnerLimit.setBounds(139, 138, 68, 21);
+					jSpinnerLimit.setBounds(139, 138, 68, 22);
 					jSpinnerLimit.setValue(10);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);
@@ -295,7 +295,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				tglbtnLeakingData.setBounds(477, 135, 246, 25);
+				tglbtnLeakingData.setBounds(477, 138, 246, 22);
 				jDesktopPane1.add(tglbtnLeakingData);
 				
 				tglbtnNonLeakingData = new JCheckBox(lang.get("lbl_Non_Leaking_Code"));
@@ -304,7 +304,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				tglbtnNonLeakingData.setBounds(219, 135, 246, 25);
+				tglbtnNonLeakingData.setBounds(219, 138, 246, 22);
 				jDesktopPane1.add(tglbtnNonLeakingData);
 			}
 		}

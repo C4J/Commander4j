@@ -433,7 +433,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 			});
 			rdbtnAll.setSelected(true);
 			rdbtnAll.setBackground(Common.color_app_window);
-			rdbtnAll.setBounds(120, 8, 54, 23);
+			rdbtnAll.setBounds(120, 9, 54, 22);
 			getContentPane().add(rdbtnAll);
 			
 			buttonGroup.add(rdbtnPack);
@@ -443,7 +443,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				}
 			});
 			rdbtnPack.setBackground(Common.color_app_window);
-			rdbtnPack.setBounds(193, 8, 62, 23);
+			rdbtnPack.setBounds(193, 9, 62, 22);
 			getContentPane().add(rdbtnPack);
 			
 			buttonGroup.add(rdbtnPallet);
@@ -453,7 +453,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				}
 			});
 			rdbtnPallet.setBackground(Common.color_app_window);;
-			rdbtnPallet.setBounds(268, 8, 67, 23);
+			rdbtnPallet.setBounds(268, 9, 67, 22);
 			getContentPane().add(rdbtnPallet);
 
 			jStatusText.setForeground(Color.BLACK);
@@ -468,19 +468,19 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 			});
 
 			comboBoxPrinterTypes.setModel(new DefaultComboBoxModel<String>(Common.printerTypesAll));
-			comboBoxPrinterTypes.setBounds(473, 8, 155, 24);
+			comboBoxPrinterTypes.setBounds(473, 9, 155, 22);
 			getContentPane().add(comboBoxPrinterTypes);
 			
 			JLabel4j_std label4j_Type = new JLabel4j_std();
 			label4j_Type.setText("Type");
 			label4j_Type.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_Type.setBounds(387, 10, 75, 21);
+			label4j_Type.setBounds(387, 9, 75, 22);
 			getContentPane().add(label4j_Type);
 			
 			JLabel4j_std label4j_Group = new JLabel4j_std();
 			label4j_Group.setText("Group");
 			label4j_Group.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_Group.setBounds(12, 9, 75, 21);
+			label4j_Group.setBounds(12, 9, 94, 22);
 			getContentPane().add(label4j_Group);
 
 		} catch (Exception e)

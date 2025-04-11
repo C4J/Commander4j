@@ -11,7 +11,7 @@ import java.util.LinkedList;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
+
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,6 +20,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import com.commander4j.db.JDBWTSamplePoint;
+import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckListItem;
 import com.commander4j.gui.JList4j;
 import com.commander4j.renderer.MultiItemCheckListRenderer;
@@ -75,11 +76,11 @@ public class JDialogSamplePointSelect extends JDialog
 		scrollPane.setRowHeaderView(list);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(0, 237, 271, 26);
+			buttonPane.setBounds(0, 237, 271, 32);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
 			{
-				JButton okButton = new JButton("Select");
+				JButton4j okButton = new JButton4j("Select");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						int s = list.getModel().getSize();
@@ -103,20 +104,20 @@ public class JDialogSamplePointSelect extends JDialog
 						dispose();
 					}
 				});
-				okButton.setBounds(53, 0, 75, 25);
+				okButton.setBounds(53, 0, 75, 32);
 				okButton.setActionCommand("Select");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton4j cancelButton = new JButton4j("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						selected = selectedOriginal;
 						dispose();
 					}
 				});
-				cancelButton.setBounds(133, 0, 75, 25);
+				cancelButton.setBounds(133, 0, 75, 32);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

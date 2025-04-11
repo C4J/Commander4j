@@ -50,17 +50,18 @@ import com.commander4j.db.JDBWasteMaterial;
 import com.commander4j.db.JDBWasteReportingIDS;
 import com.commander4j.db.JDBWasteTypes;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
+
 
 /**
  * The JInternalFrameWasteMaterialProperties class allows the user to edit a
@@ -88,7 +89,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 	private JDBWasteTypes wasteTypes = new JDBWasteTypes(Common.selectedHostID, Common.sessionID);
 	private String lmaterialid;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JCheckBox chckbx_Enabled = new JCheckBox("");
+	private JCheckBox4j chckbx_Enabled = new JCheckBox4j("");
 	
 	private Vector<JDBWasteTypes> typeList = new Vector<JDBWasteTypes>();
 	private Vector<JDBUom> uomList = new Vector<JDBUom>();
@@ -187,7 +188,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 					jLabel_WasteMaterialID.setText(lang.get("lbl_Material"));
 					jLabel_WasteMaterialID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_WasteMaterialID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_WasteMaterialID.setBounds(0, 10, 149, 21);
+					jLabel_WasteMaterialID.setBounds(0, 10, 149, 22);
 				}
 				{
 					jTextFieldMaterialID = new JTextField4j(JDBWasteReportingIDS.field_WasteReportingID);
@@ -195,7 +196,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 					jTextFieldMaterialID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldMaterialID.setEditable(false);
 					jTextFieldMaterialID.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldMaterialID.setBounds(155, 10, 237, 21);
+					jTextFieldMaterialID.setBounds(155, 10, 237, 22);
 					jTextFieldMaterialID.setEnabled(false);
 				}
 				{
@@ -241,7 +242,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 45, 149, 21);
+					jLabel_Description.setBounds(0, 45, 149, 22);
 				}
 
 				{
@@ -249,7 +250,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 45, 433, 21);
+					jTextFieldDescription.setBounds(155, 45, 433, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -258,14 +259,14 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 						}
 					});
 
-					chckbx_Enabled.setBounds(155, 143, 29, 23);
+					chckbx_Enabled.setBounds(155, 143, 29, 22);
 					jDesktopPane1.add(chckbx_Enabled);
 
 					JLabel4j_std jLabel_Enabled = new JLabel4j_std();
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Enabled.setBounds(0, 145, 149, 21);
+					jLabel_Enabled.setBounds(0, 143, 149, 22);
 					chckbx_Enabled.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -287,7 +288,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 
 						jComboBoxTypeModel = new DefaultComboBoxModel<JDBWasteTypes>(typeList);
 						jComboBoxMaterialType.setModel(jComboBoxTypeModel);
-						jComboBoxMaterialType.setBounds(155, 80, 433, 21);
+						jComboBoxMaterialType.setBounds(155, 80, 433, 22);
 						jComboBoxMaterialType.addActionListener(new ActionListener()
 						{
 							public void actionPerformed(ActionEvent e)
@@ -302,7 +303,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 					jLabel_WasteType.setText(lang.get("lbl_Type_ID"));
 					jLabel_WasteType.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_WasteType.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_WasteType.setBounds(0, 80, 149, 21);
+					jLabel_WasteType.setBounds(0, 80, 149, 22);
 					jDesktopPane1.add(jLabel_WasteType);
 
 				}
@@ -310,15 +311,14 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 				JLabel4j_std jLabel_CostPerKG = new JLabel4j_std();
 				jLabel_CostPerKG.setText(lang.get("lbl_Cost_Per_KG"));
 				jLabel_CostPerKG.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabel_CostPerKG.setBounds(0, 113, 149, 21);
+				jLabel_CostPerKG.setBounds(0, 113, 149, 22);
 				jDesktopPane1.add(jLabel_CostPerKG);
 				
 				{
 					jFormattedTextFieldCostPerUOM = new JQuantityInput(new BigDecimal("0.000"));
 					jDesktopPane1.add(jFormattedTextFieldCostPerUOM);
-					jFormattedTextFieldCostPerUOM.setFont(Common.font_std);
 					jFormattedTextFieldCostPerUOM.setHorizontalAlignment(SwingConstants.TRAILING);
-					jFormattedTextFieldCostPerUOM.setBounds(155, 113, 60, 21);
+					jFormattedTextFieldCostPerUOM.setBounds(155, 113, 60, 22);
 					jFormattedTextFieldCostPerUOM.addKeyListener(new KeyAdapter() {
 						public void keyReleased(KeyEvent evt) {
 							jButtonSave.setEnabled(true);

@@ -128,7 +128,7 @@ public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 				JLabel4j_std label = new JLabel4j_std();
 				label.setText(lang.get("lbl_Pallet_Status"));
 				label.setHorizontalAlignment(SwingConstants.TRAILING);
-				label.setBounds(0, 73, 97, 21);
+				label.setBounds(0, 73, 97, 22);
 				jDesktopPane1.add(label);
 
 			}
@@ -173,7 +173,7 @@ public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_Decision"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(0, 7, 98, 21);
+					jLabel1.setBounds(0, 7, 98, 22);
 				}
 				{
 					jTextFieldReason = new JTextField4j(JDBMHNReasons.field_reason);
@@ -181,7 +181,7 @@ public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 					jTextFieldReason.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldReason.setEditable(false);
 					jTextFieldReason.setEnabled(false);
-					jTextFieldReason.setBounds(105, 7, 100, 21);
+					jTextFieldReason.setBounds(105, 7, 100, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
@@ -189,12 +189,12 @@ public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 					jLabel3.setText(lang.get("lbl_Description"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(0, 40, 98, 21);
+					jLabel3.setBounds(0, 40, 98, 22);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBMHNDecisions.field_description);
 					jDesktopPane1.add(jTextFieldDescription, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jTextFieldDescription.setBounds(105, 40, 238, 21);
+					jTextFieldDescription.setBounds(105, 40, 238, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonUpdate.setEnabled(true);
@@ -248,7 +248,7 @@ public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 					});
 					jDesktopPane1.add(jComboBoxPalletStatus);
 					jComboBoxPalletStatus.setModel(jComboBoxDefaultPalletStatusModel);
-					jComboBoxPalletStatus.setBounds(105, 73, 213, 23);
+					jComboBoxPalletStatus.setBounds(105, 73, 213, 22);
 				}
 			}
 		}

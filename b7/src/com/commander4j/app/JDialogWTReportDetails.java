@@ -29,6 +29,7 @@ package com.commander4j.app;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Timestamp;
@@ -37,9 +38,9 @@ import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import com.commander4j.db.JDBLanguage;
@@ -47,14 +48,12 @@ import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBWTSampleDetail;
 import com.commander4j.db.JDBWTSampleHeader;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JTextArea4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import javax.swing.JTextArea;
-import java.awt.Font;
-import com.commander4j.gui.JLabel4j_std;
-import javax.swing.SwingConstants;
 
 /**
  * The JInternalFrameWTWorkstationAdmin class allows a user to maintain the
@@ -73,12 +72,12 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 	private JButton4j jButtonClose;
 	private JScrollPane jScrollPane1;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JLabel label;
+	private JLabel4j_std label;
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private JButton4j jButtonHelp = new JButton4j(Common.icon_help_16x16);
 	private JDBWTSampleHeader header = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
 	private JScrollPane scrollPane;
-	private JTextArea textArea;
+	private JTextArea4j textArea;
 
 	private void populateList(String samplePoint, Timestamp sampleDate)
 	{
@@ -115,7 +114,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 		this.setResizable(false);
 
 		this.setPreferredSize(new java.awt.Dimension(455, 518));
-		this.setSize(new Dimension(731, 466));
+		this.setSize(new Dimension(731, 475));
 
 		Dimension screensize = Common.mainForm.getSize();
 
@@ -190,7 +189,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 				}
 
 				{
-					label = new JLabel("Sequence  Date                     Gross        Tare        Net    UOM      T1s      T2s");
+					label = new JLabel4j_std("Sequence  Date                     Gross        Tare        Net    UOM      T1s      T2s");
 
 					label.setFont(Common.font_list_weights);
 					label.setBounds(8, 12, 724, 15);
@@ -201,14 +200,14 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic('0');
-			jButtonHelp.setBounds(234, 401, 130, 30);
+			jButtonHelp.setBounds(234, 401, 130, 32);
 			jDesktopPane1.add(jButtonHelp);
 			{
 				scrollPane = new JScrollPane();
 				scrollPane.setBounds(6, 240, 718, 148);
 				jDesktopPane1.add(scrollPane);
 				{
-					textArea = new JTextArea("<dynamic>");
+					textArea = new JTextArea4j("<dynamic>");
 					textArea.setEditable(false);
 					textArea.setLineWrap(true);
 					textArea.setFont(new Font("Arial", Font.PLAIN, 13));

@@ -62,14 +62,14 @@ import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
@@ -212,7 +212,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					fld_SSCC = new JTextField4j(JDBPallet.field_sscc);
 					jDesktopPane1.add(fld_SSCC);
 					fld_SSCC.setEditable(false);
-					fld_SSCC.setBounds(147, 6, 147, 21);
+					fld_SSCC.setBounds(147, 6, 147, 22);
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);
@@ -255,20 +255,20 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					fld_UOM = new JTextField4j();
 					fld_UOM.setEditable(false);
 					jDesktopPane1.add(fld_UOM);
-					fld_UOM.setBounds(147, 280, 32, 21);
+					fld_UOM.setBounds(147, 276, 32, 22);
 
 				}
 				{
 					lbl_SSCC = new JLabel4j_std();
 					jDesktopPane1.add(lbl_SSCC);
 					lbl_SSCC.setText(lang.get("lbl_Pallet_SSCC"));
-					lbl_SSCC.setBounds(7, 6, 133, 21);
+					lbl_SSCC.setBounds(7, 6, 133, 22);
 					lbl_SSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					lbl_UOM = new JLabel4j_std();
 					jDesktopPane1.add(lbl_UOM);
-					lbl_UOM.setBounds(7, 280, 133, 21);
+					lbl_UOM.setBounds(7, 276, 133, 22);
 					lbl_UOM.setHorizontalAlignment(SwingConstants.TRAILING);
 					lbl_UOM.setText(lang.get("lbl_Material_UOM"));
 				}
@@ -277,13 +277,13 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_PalletStatus);
 					lbl_PalletStatus.setText(lang.get("lbl_Pallet_Status"));
 					lbl_PalletStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_PalletStatus.setBounds(7, 389, 133, 21);
+					lbl_PalletStatus.setBounds(7, 384, 133, 22);
 				}
 				{
 					fld_DespatchNo = new JTextField4j(JDBDespatch.field_despatch_no);
 					fld_DespatchNo.setEditable(false);
 					fld_DespatchNo.setFocusCycleRoot(true);
-					fld_DespatchNo.setBounds(147, 446, 119, 21);
+					fld_DespatchNo.setBounds(147, 438, 119, 22);
 					jDesktopPane1.add(fld_DespatchNo);
 				}
 				{
@@ -291,7 +291,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					fld_PalletStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(fld_PalletStatus);
 					fld_PalletStatus.setModel(jComboBox1Model);
-					fld_PalletStatus.setBounds(147, 389, 168, 21);
+					fld_PalletStatus.setBounds(147, 384, 168, 22);
 					fld_PalletStatus.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_STATUS"));
 					fld_PalletStatus.addActionListener(new ActionListener()
 					{
@@ -306,7 +306,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					fld_BatchStatus = new JTextField4j();
 					fld_BatchStatus.setEditable(false);
 					jDesktopPane1.add(fld_BatchStatus);
-					fld_BatchStatus.setBounds(147, 167, 168, 21);
+					fld_BatchStatus.setBounds(147, 168, 168, 22);
 				}
 
 				{
@@ -314,12 +314,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_Material);
 					lbl_Material.setText(lang.get("lbl_Material"));
 					lbl_Material.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_Material.setBounds(7, 87, 133, 21);
+					lbl_Material.setBounds(7, 87, 133, 22);
 				}
 				{
 					fld_Material = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(fld_Material);
-					fld_Material.setBounds(147, 87, 119, 21);
+					fld_Material.setBounds(147, 87, 119, 22);
 					fld_Material.setEditable(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
 					fld_Material.addKeyListener(new KeyAdapter()
 					{
@@ -334,12 +334,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_MaterialBatch);
 					lbl_MaterialBatch.setText(lang.get("lbl_Material_Batch"));
 					lbl_MaterialBatch.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_MaterialBatch.setBounds(7, 141, 133, 21);
+					lbl_MaterialBatch.setBounds(7, 141, 133, 22);
 				}
 				{
 					fld_MaterialBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
 					jDesktopPane1.add(fld_MaterialBatch);
-					fld_MaterialBatch.setBounds(147, 141, 119, 21);
+					fld_MaterialBatch.setBounds(147, 141, 119, 22);
 					fld_MaterialBatch.addKeyListener(new KeyAdapter()
 					{
 						public void keyReleased(KeyEvent evt)
@@ -351,7 +351,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				{
 					btn_MaterialBatch = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(btn_MaterialBatch);
-					btn_MaterialBatch.setBounds(266, 141, 21, 21);
+					btn_MaterialBatch.setBounds(266, 141, 21, 22);
 					btn_MaterialBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
 					btn_MaterialBatch.addActionListener(new ActionListener()
 					{
@@ -372,12 +372,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_Location);
 					lbl_Location.setText(lang.get("lbl_Location_ID"));
 					lbl_Location.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_Location.setBounds(7, 226, 133, 21);
+					lbl_Location.setBounds(7, 222, 133, 22);
 				}
 				{
 					fld_Location = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(fld_Location);
-					fld_Location.setBounds(147, 226, 119, 21);
+					fld_Location.setBounds(147, 222, 119, 22);
 					fld_Location.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
 					fld_Location.addKeyListener(new KeyAdapter()
 					{
@@ -392,7 +392,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				{
 					btn_Location = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(btn_Location);
-					btn_Location.setBounds(266, 226, 21, 21);
+					btn_Location.setBounds(266, 222, 21, 22);
 					btn_Location.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
 					btn_Location.addActionListener(new ActionListener()
 					{
@@ -413,12 +413,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_ProcessOrder);
 					lbl_ProcessOrder.setText(lang.get("lbl_Process_Order"));
 					lbl_ProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_ProcessOrder.setBounds(7, 33, 133, 21);
+					lbl_ProcessOrder.setBounds(7, 33, 133, 22);
 				}
 				{
 					fld_ProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
 					jDesktopPane1.add(fld_ProcessOrder);
-					fld_ProcessOrder.setBounds(147, 33, 119, 21);
+					fld_ProcessOrder.setBounds(147, 33, 119, 22);
 					fld_ProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
 					fld_ProcessOrder.addKeyListener(new KeyAdapter()
 					{
@@ -431,7 +431,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				{
 					btn_ProcessOrder = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(btn_ProcessOrder);
-					btn_ProcessOrder.setBounds(266, 33, 21, 21);
+					btn_ProcessOrder.setBounds(266, 33, 21, 22);
 					btn_ProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
 					btn_ProcessOrder.addActionListener(new ActionListener()
 					{
@@ -452,7 +452,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					btn_RefreshProcessOrder = new JButton4j(Common.icon_refresh_16x16);
 					btn_RefreshProcessOrder.setToolTipText(lang.get("btn_Refresh"));
 					jDesktopPane1.add(btn_RefreshProcessOrder);
-					btn_RefreshProcessOrder.setBounds(287, 33, 21, 21);
+					btn_RefreshProcessOrder.setBounds(287, 33, 21, 22);
 					btn_RefreshProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
 
 					btn_RefreshProcessOrder.addActionListener(new ActionListener()
@@ -504,12 +504,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					lbl_EAN.setText(lang.get("lbl_Material_UOM_EAN"));
 					lbl_EAN.setHorizontalAlignment(SwingConstants.RIGHT);
 					lbl_EAN.setHorizontalTextPosition(SwingConstants.RIGHT);
-					lbl_EAN.setBounds(7, 335, 133, 21);
+					lbl_EAN.setBounds(7, 330, 133, 22);
 				}
 				{
 					fld_Layers = new JTextField4j();
 					fld_Layers.setEditable(false);
-					fld_Layers.setBounds(147, 308, 32, 21);
+					fld_Layers.setBounds(147, 303, 32, 22);
 					jDesktopPane1.add(fld_Layers);
 				}
 				{
@@ -517,14 +517,14 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					lbl_Layers.setText(lang.get("lbl_Pallet_Layers"));
 					lbl_Layers.setHorizontalTextPosition(SwingConstants.RIGHT);
 					lbl_Layers.setHorizontalAlignment(SwingConstants.RIGHT);
-					lbl_Layers.setBounds(7, 308, 133, 21);
+					lbl_Layers.setBounds(7, 303, 133, 22);
 					jDesktopPane1.add(lbl_Layers);
 				}
 				{
 					fld_EAN = new JTextField4j();
 					fld_EAN.setEditable(false);
 					jDesktopPane1.add(fld_EAN);
-					fld_EAN.setBounds(147, 335, 111, 21);
+					fld_EAN.setBounds(147, 330, 111, 22);
 				}
 				{
 					lbl_Variant = new JLabel4j_std();
@@ -532,20 +532,20 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					lbl_Variant.setText(lang.get("lbl_Material_UOM_Variant"));
 					lbl_Variant.setHorizontalAlignment(SwingConstants.RIGHT);
 					lbl_Variant.setHorizontalTextPosition(SwingConstants.RIGHT);
-					lbl_Variant.setBounds(266, 335, 74, 21);
+					lbl_Variant.setBounds(266, 330, 74, 22);
 				}
 				{
 					fld_Variant = new JTextField4j();
 					fld_Variant.setEditable(false);
 					jDesktopPane1.add(fld_Variant);
-					fld_Variant.setBounds(352, 335, 32, 21);
+					fld_Variant.setBounds(352, 330, 32, 22);
 				}
 				{
 					lbl_Quantity = new JLabel4j_std();
 					jDesktopPane1.add(lbl_Quantity);
 					lbl_Quantity.setText(lang.get("lbl_Pallet_Quantity"));
 					lbl_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_Quantity.setBounds(7, 253, 133, 21);
+					lbl_Quantity.setBounds(7, 249, 133, 22);
 				}
 				{
 					fld_Quantity = new JQuantityInput(new BigDecimal("0"));
@@ -562,9 +562,8 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 						}
 					});
 					jDesktopPane1.add(fld_Quantity);
-					fld_Quantity.setFont(Common.font_std);
 					fld_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					fld_Quantity.setBounds(147, 253, 91, 21);
+					fld_Quantity.setBounds(147, 249, 91, 22);
 					fld_Quantity.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_QUANTITY"));
 					fld_Quantity.addKeyListener(new KeyAdapter()
 					{
@@ -584,19 +583,19 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_DespatchNo);
 					lbl_DespatchNo.setText(lang.get("lbl_Despatch_No"));
 					lbl_DespatchNo.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_DespatchNo.setBounds(7, 444, 133, 21);
+					lbl_DespatchNo.setBounds(7, 438, 133, 22);
 				}
 				{
 					lbl_DOM = new JLabel4j_std();
 					jDesktopPane1.add(lbl_DOM);
 					lbl_DOM.setText(lang.get("lbl_Pallet_DOM"));
 					lbl_DOM.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_DOM.setBounds(7, 416, 133, 21);
+					lbl_DOM.setBounds(7, 411, 133, 22);
 				}
 				{
 					fld_DOM = new JDateControl();
 					jDesktopPane1.add(fld_DOM);
-					fld_DOM.setBounds(147, 416, 125, 25);
+					fld_DOM.setBounds(147, 411, 128, 22);
 					fld_DOM.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROD_DATE"));
 
 				}
@@ -628,27 +627,27 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					fld_ProcessOrderDescription = new JTextField4j(JDBProcessOrder.field_description);
 					fld_ProcessOrderDescription.setEditable(false);
 					jDesktopPane1.add(fld_ProcessOrderDescription);
-					fld_ProcessOrderDescription.setBounds(147, 60, 287, 21);
+					fld_ProcessOrderDescription.setBounds(147, 60, 287, 22);
 				}
 				{
 					lbl_ProcessOrderDescription = new JLabel4j_std();
 					jDesktopPane1.add(lbl_ProcessOrderDescription);
 					lbl_ProcessOrderDescription.setText(lang.get("lbl_Description"));
 					lbl_ProcessOrderDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_ProcessOrderDescription.setBounds(7, 60, 133, 21);
+					lbl_ProcessOrderDescription.setBounds(7, 60, 133, 22);
 				}
 				{
 					lbl_MaterialDescription = new JLabel4j_std();
 					jDesktopPane1.add(lbl_MaterialDescription);
 					lbl_MaterialDescription.setText(lang.get("lbl_Description"));
 					lbl_MaterialDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_MaterialDescription.setBounds(7, 114, 133, 21);
+					lbl_MaterialDescription.setBounds(7, 114, 133, 22);
 				}
 				{
 					fld_MaterialDescription = new JTextField4j(JDBMaterial.field_description);
 					fld_MaterialDescription.setEditable(false);
 					jDesktopPane1.add(fld_MaterialDescription);
-					fld_MaterialDescription.setBounds(147, 114, 287, 21);
+					fld_MaterialDescription.setBounds(147, 114, 287, 22);
 					fld_MaterialDescription.setEnabled(false);
 
 				}
@@ -657,13 +656,13 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_BatchStatus);
 					lbl_BatchStatus.setText(lang.get("lbl_Material_Batch_Status"));
 					lbl_BatchStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_BatchStatus.setBounds(7, 168, 133, 21);
+					lbl_BatchStatus.setBounds(7, 168, 133, 22);
 				}
 
 				{
 					btn_BatchExpiry = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(btn_BatchExpiry);
-					btn_BatchExpiry.setBounds(278, 195, 21, 25);
+					btn_BatchExpiry.setBounds(278, 195, 21, 22);
 					btn_BatchExpiry.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
 					btn_BatchExpiry.addActionListener(new ActionListener()
 					{
@@ -702,7 +701,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 						// btn_BatchExpiry.setEnabled(false);
 					}
 
-					fld_BatchExpiry.setBounds(147, 195, 125, 25);
+					fld_BatchExpiry.setBounds(147, 195, 128, 22);
 					fld_BatchExpiry.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
 					fld_BatchExpiry.getEditor().setSize(87, 21);
 				}
@@ -711,7 +710,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_BatchExpiry);
 					lbl_BatchExpiry.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
 					lbl_BatchExpiry.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_BatchExpiry.setBounds(7, 199, 133, 21);
+					lbl_BatchExpiry.setBounds(7, 195, 133, 22);
 				}
 				{
 					jStatusText = new JLabel4j_std();
@@ -742,7 +741,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					lbl_Confirmed = new JLabel4j_std();
 					lbl_Confirmed.setHorizontalAlignment(SwingConstants.TRAILING);
 					lbl_Confirmed.setText(lang.get("lbl_Confirmed"));
-					lbl_Confirmed.setBounds(7, 503, 133, 21);
+					lbl_Confirmed.setBounds(7, 492, 133, 22);
 					jDesktopPane1.add(lbl_Confirmed);
 				}
 
@@ -765,7 +764,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 						}
 					});
 					fld_Confirmed.setText("");
-					fld_Confirmed.setBounds(147, 500, 21, 24);
+					fld_Confirmed.setBounds(147, 492, 21, 22);
 					jDesktopPane1.add(fld_Confirmed);
 				}
 				{
@@ -783,7 +782,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					JLabel4j_std lbl_Customer = new JLabel4j_std();
 					lbl_Customer.setText(lang.get("lbl_Customer_ID"));
 					lbl_Customer.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_Customer.setBounds(7, 362, 133, 21);
+					lbl_Customer.setBounds(7, 357, 133, 22);
 					jDesktopPane1.add(lbl_Customer);
 
 					fld_Customer = new JTextField4j(JDBCustomer.field_customer_id);
@@ -795,23 +794,23 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 							customerIDChanged(fld_Customer.getText());
 						}
 					});
-					fld_Customer.setBounds(147, 362, 126, 21);
+					fld_Customer.setBounds(147, 357, 126, 22);
 					jDesktopPane1.add(fld_Customer);
 				}
 
 				JLabel4j_std lbl_Equipment = new JLabel4j_std();
 				lbl_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Equipment.setBounds(7, 472, 133, 21);
+				lbl_Equipment.setBounds(7, 465, 133, 22);
 				lbl_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
 				jDesktopPane1.add(lbl_Equipment);
 
-				fld_Equipment.setBounds(147, 472, 126, 21);
+				fld_Equipment.setBounds(147, 465, 126, 22);
 				fld_Equipment.setEnabled(false);
 				jDesktopPane1.add(fld_Equipment);
 
 				JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
 				jButtonLookupEquipment.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_EQUIPMENT"));
-				jButtonLookupEquipment.setBounds(273, 472, 21, 21);
+				jButtonLookupEquipment.setBounds(273, 465, 21, 22);
 				jButtonLookupEquipment.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

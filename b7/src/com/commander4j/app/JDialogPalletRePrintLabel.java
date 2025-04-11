@@ -38,7 +38,6 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -52,6 +51,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
@@ -85,10 +85,10 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 	private JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
 	private JLabelPrint lab = new JLabelPrint(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
-	private JSpinner jSpinnerQuantity = new JSpinner();
+	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
 	private JCheckBox4j checkBoxIncHeaderText = new JCheckBox4j();
 	private JCheckBox4j jCheckBoxAutoPreview;
-	private JSpinner jSpinnerCopies = new JSpinner();
+	private JSpinner4j jSpinnerCopies = new JSpinner4j();
 	private JLabel4j_std label_4;
 	private PreparedStatement listStatement;
 	private String defaultlabel = "";
@@ -101,7 +101,7 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setTitle("Pallet Label Reprint");
 		this.setResizable(false);
-		this.setSize(769, 222);
+		this.setSize(769, 205);
 
 		Dimension screensize = Common.mainForm.getSize();
 
@@ -189,7 +189,7 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				jDesktopPane1.add(jTextFieldSSCC);
 				jTextFieldSSCC.setEditable(false);
 				jTextFieldSSCC.setEnabled(false);
-				jTextFieldSSCC.setBounds(139, 10, 137, 21);
+				jTextFieldSSCC.setBounds(139, 10, 137, 22);
 
 				jButtonPrint = new JButton4j(Common.icon_print_16x16);
 				jButtonPrint.addActionListener(new ActionListener()
@@ -206,19 +206,19 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				jDesktopPane1.add(jButtonPrint);
 				jButtonPrint.setText(lang.get("btn_Print"));
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
-				jButtonPrint.setBounds(231, 136, 111, 28);
+				jButtonPrint.setBounds(231, 136, 111, 22);
 
 				jButtonHelp = new JButton4j(Common.icon_help_16x16);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
-				jButtonHelp.setBounds(344, 136, 111, 28);
+				jButtonHelp.setBounds(344, 136, 111, 22);
 
 				jButtonCancel = new JButton4j(Common.icon_close_16x16);
 				jDesktopPane1.add(jButtonCancel);
 				jButtonCancel.setText(lang.get("btn_Close"));
 				jButtonCancel.setMnemonic(lang.getMnemonicChar());
-				jButtonCancel.setBounds(457, 136, 111, 28);
+				jButtonCancel.setBounds(457, 136, 111, 22);
 				jButtonCancel.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt)
@@ -230,60 +230,58 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				jLabel1 = new JLabel4j_std();
 				jDesktopPane1.add(jLabel1);
 				jLabel1.setText(lang.get("lbl_Pallet_SSCC"));
-				jLabel1.setBounds(6, 10, 125, 21);
+				jLabel1.setBounds(6, 10, 125, 22);
 				jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 
 				JLabel4j_std label = new JLabel4j_std();
 				label.setHorizontalAlignment(SwingConstants.TRAILING);
 				label.setText(lang.get("lbl_Label_Header_Text"));
-				label.setBounds(6, 41, 125, 21);
+				label.setBounds(6, 41, 125, 22);
 				jDesktopPane1.add(label);
 
 				checkBoxIncHeaderText.setSelected(true);
 				checkBoxIncHeaderText.setBackground(Color.WHITE);
-				checkBoxIncHeaderText.setBounds(139, 41, 21, 21);
+				checkBoxIncHeaderText.setBounds(139, 42, 21, 21);
 				jDesktopPane1.add(checkBoxIncHeaderText);
 
 				JLabel4j_std label_1 = new JLabel4j_std();
-				label_1.setBounds(212, 41, 182, 21);
+				label_1.setBounds(212, 41, 182, 22);
 				label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 				label_1.setText(lang.get("lbl_Number_of_SSCCs"));
 				jDesktopPane1.add(label_1);
 
 				JLabel4j_std label_2 = new JLabel4j_std();
 				label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-				label_2.setBounds(212, 70, 182, 21);
+				label_2.setBounds(212, 70, 182, 22);
 				label_2.setText(lang.get("lbl_Labels_Per_SSCC"));
 				jDesktopPane1.add(label_2);
 				jSpinnerQuantity.setEnabled(false);
 
 				jSpinnerQuantity.setModel(new SpinnerNumberModel(Integer.valueOf(1), null, null, Integer.valueOf(1)));
-				jSpinnerQuantity.setFont(Common.font_std);
-				jSpinnerQuantity.setBounds(399, 41, 39, 21);
+				jSpinnerQuantity.setBounds(399, 41, 39, 22);
 				jDesktopPane1.add(jSpinnerQuantity);
 
 				jSpinnerCopies.setModel(new SpinnerNumberModel(Integer.valueOf(2), null, null, Integer.valueOf(1)));
-				jSpinnerCopies.setFont(Common.font_std);
-				jSpinnerCopies.setBounds(399, 70, 39, 21);
+				jSpinnerCopies.setBounds(399, 70, 39, 22);
 				jDesktopPane1.add(jSpinnerCopies);
 
 				JLabel4j_std label_3 = new JLabel4j_std(lang.get("lbl_Print_Queue"));
 				label_3.setHorizontalAlignment(SwingConstants.TRAILING);
-				label_3.setBounds(6, 103, 125, 21);
+				label_3.setBounds(6, 99, 125, 22);
 				jDesktopPane1.add(label_3);
 
 				comboBoxPrintQueue.setSelectedIndex(-1);
-				comboBoxPrintQueue.setBounds(139, 99, 610, 23);
+				comboBoxPrintQueue.setBounds(139, 99, 610, 22);
 				jDesktopPane1.add(comboBoxPrintQueue);
 
 				jCheckBoxAutoPreview = new JCheckBox4j();
 				jCheckBoxAutoPreview.setToolTipText("Auto SSCC");
 				jCheckBoxAutoPreview.setBackground(Color.WHITE);
-				jCheckBoxAutoPreview.setBounds(139, 70, 21, 21);
+				jCheckBoxAutoPreview.setBounds(139, 71, 21, 21);
 				jDesktopPane1.add(jCheckBoxAutoPreview);
 
 				label_4 = new JLabel4j_std();
-				label_4.setBounds(6, 70, 125, 21);
+				label_4.setBounds(6, 70, 125, 22);
 				label_4.setHorizontalTextPosition(SwingConstants.CENTER);
 				label_4.setHorizontalAlignment(SwingConstants.TRAILING);
 				label_4.setText(lang.get("lbl_Preview"));

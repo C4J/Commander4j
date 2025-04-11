@@ -46,6 +46,7 @@ import javax.swing.ListModel;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBWTTNE;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
 import com.commander4j.sys.Common;
@@ -54,7 +55,6 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import javax.swing.JLabel;
 import java.awt.Font;
 
 /**
@@ -417,7 +417,7 @@ public class JInternalFrameWTTNEAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonExcel);
 				}
 				
-				JLabel lbl_Legend = new JLabel("   Nominal            TNE          Neg T1         Neg T2");
+				JLabel4j_std lbl_Legend = new JLabel4j_std("   Nominal            TNE          Neg T1         Neg T2");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
 				lbl_Legend.setBounds(6, 12, 518, 15);
 				jDesktopPane1.add(lbl_Legend);

@@ -36,7 +36,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JCheckBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.SwingConstants;
@@ -45,6 +44,7 @@ import javax.swing.SwingUtilities;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
@@ -82,7 +82,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 	private JTextField4j jTextFieldResource;
 	private JLabel4j_std jLabelResource;
 	private JDBLanguage lang;
-	private JCheckBox checkBoxEnabled;
+	private JCheckBox4j checkBoxEnabled;
 	private JTextField4j textFieldBatchSuffix;
 	private JLabel4j_std label4j_std;
 
@@ -212,13 +212,13 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelResource);
 					jLabelResource.setText(lang.get("lbl_Process_Order_Required_Resource"));
 					jLabelResource.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelResource.setBounds(6, 10, 113, 21);
+					jLabelResource.setBounds(6, 10, 113, 22);
 				}
 				{
 					jTextFieldResource = new JTextField4j(JDBProcessOrderResource.field_Resource_id);
 					jDesktopPane1.add(jTextFieldResource);
 					jTextFieldResource.setText(lresource);
-					jTextFieldResource.setBounds(126, 10, 126, 21);
+					jTextFieldResource.setBounds(126, 10, 126, 22);
 					jTextFieldResource.setEnabled(false);
 					jTextFieldResource.setEditable(false);
 				}
@@ -227,14 +227,14 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelDescription.setBounds(6, 41, 113, 21);
+					jLabelDescription.setBounds(6, 41, 113, 22);
 				}
 				{
 					jLabelPlantID = new JLabel4j_std();
 					jDesktopPane1.add(jLabelPlantID);
 					jLabelPlantID.setText(lang.get("lbl_Plant"));
 					jLabelPlantID.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelPlantID.setBounds(6, 103, 113, 21);
+					jLabelPlantID.setBounds(6, 103, 113, 22);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBProcessOrderResource.field_Description_id);
@@ -246,7 +246,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					});
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setText("");
-					jTextFieldDescription.setBounds(127, 41, 229, 21);
+					jTextFieldDescription.setBounds(127, 41, 229, 22);
 				}
 				{
 					jTextFieldPlantID = new JTextField4j(JDBProcessOrderResource.field_Plant_id);
@@ -258,7 +258,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					});
 					jDesktopPane1.add(jTextFieldPlantID);
 					jTextFieldPlantID.setText("");
-					jTextFieldPlantID.setBounds(125, 103, 104, 21);
+					jTextFieldPlantID.setBounds(125, 103, 104, 22);
 				}
 
 				{
@@ -266,7 +266,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelBatchSuffix);
 					jLabelBatchSuffix.setText(lang.get("lbl_Batch_Suffix"));
 					jLabelBatchSuffix.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelBatchSuffix.setBounds(6, 72, 113, 21);
+					jLabelBatchSuffix.setBounds(6, 72, 113, 22);
 				}
 				
 				textFieldBatchSuffix = new JTextField4j(15);
@@ -277,22 +277,22 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					}
 				});
 				textFieldBatchSuffix.setText("");
-				textFieldBatchSuffix.setBounds(126, 72, 229, 21);
+				textFieldBatchSuffix.setBounds(126, 72, 229, 22);
 				jDesktopPane1.add(textFieldBatchSuffix);
 				
-				checkBoxEnabled = new JCheckBox("");
+				checkBoxEnabled = new JCheckBox4j("");
 				checkBoxEnabled.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				checkBoxEnabled.setBounds(126, 134, 21, 23);
+				checkBoxEnabled.setBounds(126, 134, 21, 22);
 				jDesktopPane1.add(checkBoxEnabled);
 				
 				label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Enabled"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(6, 136, 113, 21);
+				label4j_std.setBounds(6, 134, 113, 22);
 				jDesktopPane1.add(label4j_std);
 				
 			}

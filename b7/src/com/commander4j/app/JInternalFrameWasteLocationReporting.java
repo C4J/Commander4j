@@ -219,14 +219,14 @@ public class JInternalFrameWasteLocationReporting extends javax.swing.JInternalF
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(761, 450));
-			this.setBounds(0, 0, 825, 543);
+			this.setBounds(0, 0, 825, 551);
 			setVisible(true);
 			this.setTitle("Location Reporting Groups");
 			this.setClosable(true);
 			getContentPane().setLayout(null);
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 829, 511);
+				jDesktopPane1.setBounds(0, 0, 829, 532);
 				jDesktopPane1.setBackground(Common.color_app_window);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new Dimension(792, 429));
@@ -234,7 +234,7 @@ public class JInternalFrameWasteLocationReporting extends javax.swing.JInternalF
 				{
 					jScrollPaneMenus = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneMenus);
-					jScrollPaneMenus.setBounds(10, 25, 245, 434);
+					jScrollPaneMenus.setBounds(10, 30, 245, 434);
 					jScrollPaneMenus.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListMenusModel = new DefaultComboBoxModel<JDBListData>();
@@ -262,7 +262,7 @@ public class JInternalFrameWasteLocationReporting extends javax.swing.JInternalF
 				{
 					jScrollPaneUnAssigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneUnAssigned);
-					jScrollPaneUnAssigned.setBounds(561, 25, 245, 434);
+					jScrollPaneUnAssigned.setBounds(561, 30, 245, 434);
 					jScrollPaneUnAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListUnAssignedModel = new DefaultComboBoxModel<JDBListData>();
@@ -277,7 +277,7 @@ public class JInternalFrameWasteLocationReporting extends javax.swing.JInternalF
 				{
 					jScrollPaneAssigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneAssigned);
-					jScrollPaneAssigned.setBounds(267, 25, 245, 434);
+					jScrollPaneAssigned.setBounds(267, 30, 245, 434);
 					jScrollPaneAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListAssignedModel = new DefaultComboBoxModel<JDBListData>();
@@ -367,7 +367,7 @@ public class JInternalFrameWasteLocationReporting extends javax.swing.JInternalF
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(593, 467, 116, 32);
+					jButtonClose.setBounds(592, 476, 116, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -379,7 +379,7 @@ public class JInternalFrameWasteLocationReporting extends javax.swing.JInternalF
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
-					jButtonRefresh.setBounds(357, 467, 116, 32);
+					jButtonRefresh.setBounds(356, 476, 116, 32);
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -393,25 +393,25 @@ public class JInternalFrameWasteLocationReporting extends javax.swing.JInternalF
 					jLabel1 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText("Waste Location");
-					jLabel1.setBounds(10, 7, 235, 16);
+					jLabel1.setBounds(10, 7, 226, 22);
 				}
 				{
 					jLabel2 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText("Unassigned Reporting ID");
-					jLabel2.setBounds(561, 5, 245, 21);
+					jLabel2.setBounds(561, 7, 245, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText("Assigned Reporting ID");
-					jLabel3.setBounds(267, 5, 241, 18);
+					jLabel3.setBounds(267, 7, 241, 22);
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setBounds(121, 467, 116, 32);
+					jButtonSave.setBounds(120, 476, 116, 32);
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setEnabled(false);
 					jButtonSave.addActionListener(new ActionListener() {
@@ -429,14 +429,14 @@ public class JInternalFrameWasteLocationReporting extends javax.swing.JInternalF
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(475, 467, 116, 32);
+					jButtonHelp.setBounds(474, 476, 116, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
 					jDesktopPane1.add(jButtonUndo);
 					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(239, 467, 116, 32);
+					jButtonUndo.setBounds(238, 476, 116, 32);
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
 					jButtonUndo.addActionListener(new ActionListener() {

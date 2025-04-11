@@ -37,7 +37,7 @@ import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
@@ -285,7 +285,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		desktopPane.setLayout(null);
 
 		JLabel4j_std lblProcessOrder = new JLabel4j_std(lang.get("lbl_Process_Order"));
-		lblProcessOrder.setBounds(6, 18, 111, 16);
+		lblProcessOrder.setBounds(6, 15, 111, 22);
 		lblProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 		desktopPane.add(lblProcessOrder);
 
@@ -302,7 +302,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		textFieldProcessOrder.setColumns(10);
 
 		JLabel4j_std lblNewLabel_3 = new JLabel4j_std(lang.get("lbl_Activity_ID"));
-		lblNewLabel_3.setBounds(6, 98, 111, 16);
+		lblNewLabel_3.setBounds(6, 93, 111, 22);
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.TRAILING);
 		desktopPane.add(lblNewLabel_3);
 
@@ -355,7 +355,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		});
 		desktopPane.add(btnRefresh);
 
-		JButton btnProcessOrderLookup = new JButton();
+		JButton4j btnProcessOrderLookup = new JButton4j();
 		btnProcessOrderLookup.setIcon(Common.icon_lookup_16x16);
 		btnProcessOrderLookup.setBounds(261, 15, 21, 22);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
@@ -374,7 +374,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		desktopPane.add(btnProcessOrderLookup);
 
 		comboboxActivities = new JComboBox4j<JDBQMActivity>();
-		comboboxActivities.setBounds(125, 93, 343, 28);
+		comboboxActivities.setBounds(125, 93, 343, 22);
 		comboboxActivities.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -413,7 +413,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 
 		JLabel4j_std lbl_material = new JLabel4j_std(lang.get("lbl_Material"));
 		lbl_material.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_material.setBounds(294, 18, 111, 16);
+		lbl_material.setBounds(294, 15, 111, 22);
 		desktopPane.add(lbl_material);
 
 		textField4InspectionID = new JTextField4j();
@@ -424,7 +424,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 
 		lbl_inspection = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
 		lbl_inspection.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_inspection.setBounds(6, 56, 111, 16);
+		lbl_inspection.setBounds(6, 52, 111, 22);
 		desktopPane.add(lbl_inspection);
 
 		textField4jInspectionDescription = new JTextField4j();

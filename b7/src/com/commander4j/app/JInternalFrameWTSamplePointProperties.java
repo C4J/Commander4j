@@ -178,7 +178,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_SamplePoint"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(0, 10, 149, 21);
+					jLabel1.setBounds(0, 10, 149, 22);
 				}
 				{
 					jLabelEnabled = new JLabel4j_std();
@@ -186,7 +186,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jLabelEnabled.setText(lang.get("lbl_Enabled"));
 					jLabelEnabled.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelEnabled.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelEnabled.setBounds(400, 10, 106, 21);
+					jLabelEnabled.setBounds(400, 10, 106, 22);
 				}
 				
 				{
@@ -195,7 +195,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jTextFieldSamplePoint.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldSamplePoint.setEditable(false);
 					jTextFieldSamplePoint.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldSamplePoint.setBounds(155, 10, 237, 21);
+					jTextFieldSamplePoint.setBounds(155, 10, 237, 22);
 					jTextFieldSamplePoint.setEnabled(false);
 				}
 				{
@@ -204,14 +204,14 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jLabel_Location.setText(lang.get("lbl_Storage_Location"));
 					jLabel_Location.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Location.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Location.setBounds(0, 76, 149, 21);
+					jLabel_Location.setBounds(0, 76, 149, 22);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBWTSamplePoint.field_Location);
 					jDesktopPane1.add(jTextFieldLocation);
 					jTextFieldLocation.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldLocation.setFocusCycleRoot(true);
-					jTextFieldLocation.setBounds(155, 76, 237, 21);
+					jTextFieldLocation.setBounds(155, 76, 237, 22);
 					jTextFieldLocation.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -257,7 +257,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jLabel_Description.setText(lang.get("lbl_Description"));
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 43, 149, 21);
+					jLabel_Description.setBounds(0, 43, 149, 22);
 				}
 
 				{
@@ -265,7 +265,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(155, 43, 237, 21);
+					jTextFieldDescription.setBounds(155, 43, 237, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -277,7 +277,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 				resourceList.addAll(poResources.getResources());
 				ComboBoxModel<JDBProcessOrderResource> comboBox4j_ResourceModel = new DefaultComboBoxModel<JDBProcessOrderResource>(resourceList);
 				comboBox4j_Resources.setModel(comboBox4j_ResourceModel);
-				comboBox4j_Resources.setBounds(155, 109, 387, 24);
+				comboBox4j_Resources.setBounds(155, 109, 387, 22);
 				comboBox4j_Resources.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -291,21 +291,21 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 				label4j_Required_Resource.setText(lang.get("lbl_Process_Order_Required_Resource"));
 				label4j_Required_Resource.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_Required_Resource.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_Required_Resource.setBounds(0, 112, 149, 21);
+				label4j_Required_Resource.setBounds(0, 109, 149, 22);
 				jDesktopPane1.add(label4j_Required_Resource);
 				
 				jTextFieldReportingGroup.setText("");
 				jTextFieldReportingGroup.setPreferredSize(new Dimension(40, 20));
 				jTextFieldReportingGroup.setFocusCycleRoot(true);
 				jTextFieldReportingGroup.setCaretPosition(0);
-				jTextFieldReportingGroup.setBounds(155, 146, 237, 21);
+				jTextFieldReportingGroup.setBounds(155, 146, 237, 22);
 				jDesktopPane1.add(jTextFieldReportingGroup);
 				
 				JLabel4j_std jLabel_ReportingGroup = new JLabel4j_std();
 				jLabel_ReportingGroup.setText(lang.get("lbl_Reporting_Group"));
 				jLabel_ReportingGroup.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_ReportingGroup.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_ReportingGroup.setBounds(0, 146, 149, 21);
+				jLabel_ReportingGroup.setBounds(0, 146, 149, 22);
 				jDesktopPane1.add(jLabel_ReportingGroup);
 				
 				{
@@ -314,7 +314,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					chckbxEnabled.setBounds(509, 8, 22, 23);
+					chckbxEnabled.setBounds(509, 10, 22, 22);
 					jDesktopPane1.add(chckbxEnabled);
 				}
 			}

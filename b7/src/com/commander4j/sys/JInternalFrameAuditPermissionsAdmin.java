@@ -46,8 +46,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -64,13 +63,15 @@ import com.commander4j.db.JDBUser;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.tablemodel.JDBAuditPermissionsTableModel;
-import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
@@ -87,11 +88,11 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 	private JButton4j jButtonClose;
 	private JLabel4j_std lbl_UserID;
 	private JLabel4j_std lbl_Workstation;
-	private JSpinner jSpinnerLimit;
+	private JSpinner4j jSpinnerLimit;
 	private JCheckBox4j jCheckBoxLimit;
 	private JLabel4j_std lbl_Limit;
 	private JButton4j jButtonUserIDLookup;
-	private JToggleButton jToggleButtonSequence;
+	private JToggleButton4j jToggleButtonSequence;
 	private JComboBox4j<String> jComboBoxSortBy;
 	private JComboBox4j<String> jComboBoxEventAction;
 	private JDateControl eventsTo;
@@ -133,21 +134,21 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 		JLabel4j_std lbl_Target = new JLabel4j_std();
 		lbl_Target.setText(lang.get("lbl_Target"));
 		lbl_Target.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_Target.setBounds(676, 11, 125, 21);
+		lbl_Target.setBounds(676, 11, 125, 22);
 		jDesktopPane1.add(lbl_Target);
 
 		jTextFieldTarget = new JTextField4j(JDBAuditPermissions.field_target);
-		jTextFieldTarget.setBounds(815, 11, 168, 21);
+		jTextFieldTarget.setBounds(815, 11, 168, 22);
 		jDesktopPane1.add(jTextFieldTarget);
 		
 		calendarButtonEventFrom = new JCalendarButton(eventsFrom);
 		calendarButtonEventFrom.setEnabled(false);
-		calendarButtonEventFrom.setBounds(274, 82, 21, 21);
+		calendarButtonEventFrom.setBounds(274, 78, 22, 22);
 		jDesktopPane1.add(calendarButtonEventFrom);
 		
 		calendarButtonEventTo = new JCalendarButton(eventsTo);
 		calendarButtonEventTo.setEnabled(false);
-		calendarButtonEventTo.setBounds(458, 82, 21, 21);
+		calendarButtonEventTo.setBounds(458, 78, 22, 22);
 		jDesktopPane1.add(calendarButtonEventTo);
 		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -620,7 +621,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				}
 				{
 					jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
-					jTextFieldUserID.setBounds(124, 11, 149, 22);
+					jTextFieldUserID.setBounds(124, 11, 151, 22);
 					jDesktopPane1.add(jTextFieldUserID);
 				}
 				{
@@ -644,28 +645,28 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				}
 				{
 					lbl_SortBy = new JLabel4j_std();
-					lbl_SortBy.setBounds(480, 80, 135, 21);
+					lbl_SortBy.setBounds(480, 78, 135, 22);
 					jDesktopPane1.add(lbl_SortBy);
 					lbl_SortBy.setText(lang.get("lbl_Sort_By"));
 					lbl_SortBy.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					eventsFrom = new JDateControl();
-					eventsFrom.setBounds(146, 78, 120, 22);
+					eventsFrom.setBounds(146, 78, 128, 22);
 					jDesktopPane1.add(eventsFrom);
 					eventsFrom.setEnabled(false);
 					eventsFrom.getEditor().setPreferredSize(new java.awt.Dimension(86, 32));
 				}
 				{
 					lbl_EventDate = new JLabel4j_std();
-					lbl_EventDate.setBounds(0, 81, 110, 22);
+					lbl_EventDate.setBounds(0, 78, 110, 22);
 					jDesktopPane1.add(lbl_EventDate);
 					lbl_EventDate.setText(lang.get("lbl_Message_Event_Date"));
 					lbl_EventDate.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jCheckBoxEventsFrom = new JCheckBox4j();
-					jCheckBoxEventsFrom.setBounds(120, 81, 21, 22);
+					jCheckBoxEventsFrom.setBounds(120, 78, 22, 22);
 					jDesktopPane1.add(jCheckBoxEventsFrom);
 					jCheckBoxEventsFrom.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxEventsFrom.addActionListener(new ActionListener() {
@@ -686,7 +687,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				}
 				{
 					jCheckBoxEventsTo = new JCheckBox4j();
-					jCheckBoxEventsTo.setBounds(300, 81, 21, 22);
+					jCheckBoxEventsTo.setBounds(303, 78, 22, 22);
 					jDesktopPane1.add(jCheckBoxEventsTo);
 					jCheckBoxEventsTo.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxEventsTo.addActionListener(new ActionListener() {
@@ -707,14 +708,14 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				}
 				{
 					eventsTo = new JDateControl();
-					eventsTo.setBounds(330, 78, 120, 22);
+					eventsTo.setBounds(330, 78, 128, 22);
 					jDesktopPane1.add(eventsTo);
 					eventsTo.setEnabled(false);
 				}
 				{
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.auditEventActions);
 					jComboBoxEventAction = new JComboBox4j<String>();
-					jComboBoxEventAction.setBounds(470, 45, 194, 23);
+					jComboBoxEventAction.setBounds(470, 45, 194, 22);
 					jDesktopPane1.add(jComboBoxEventAction);
 					jComboBoxStatusModel.setSelectedItem("");
 					jComboBoxEventAction.setModel(jComboBoxStatusModel);
@@ -722,7 +723,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "SYS_AUDIT_LOG_ID", "EVENT_TIME", "USER_ID", "EVENT_TYPE", "EVENT_ACTION", "TARGET", "DATA", "WORKSTATION" });
 					jComboBoxSortBy = new JComboBox4j<String>();
-					jComboBoxSortBy.setBounds(625, 80, 168, 23);
+					jComboBoxSortBy.setBounds(625, 78, 168, 22);
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 					jComboBoxSortBy.getModel().setSelectedItem("SYS_AUDIT_LOG_ID");
@@ -735,8 +736,8 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 					lbl_Workstation.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jToggleButtonSequence = new JToggleButton();
-					jToggleButtonSequence.setBounds(791, 80, 21, 21);
+					jToggleButtonSequence = new JToggleButton4j();
+					jToggleButtonSequence.setBounds(791, 78, 22, 22);
 					jDesktopPane1.add(jToggleButtonSequence);
 					jToggleButtonSequence.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -764,14 +765,14 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 
 				{
 					lbl_Limit = new JLabel4j_std();
-					lbl_Limit.setBounds(789, 80, 100, 21);
+					lbl_Limit.setBounds(791, 78, 100, 22);
 					jDesktopPane1.add(lbl_Limit);
 					lbl_Limit.setText(lang.get("lbl_Limit"));
 					lbl_Limit.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jCheckBoxLimit = new JCheckBox4j();
-					jCheckBoxLimit.setBounds(896, 80, 21, 21);
+					jCheckBoxLimit.setBounds(896, 76, 22, 22);
 					jDesktopPane1.add(jCheckBoxLimit);
 					jCheckBoxLimit.setSelected(true);
 					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
@@ -795,14 +796,13 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 					jSpinnerIntModel.setMaximum(5000);
 					jSpinnerIntModel.setStepSize(1);					
 					
-					jSpinnerLimit = new JSpinner();
+					jSpinnerLimit = new JSpinner4j();
 					jDesktopPane1.add(jSpinnerLimit);
 					
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std); 
+					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
 					jSpinnerLimit.setEditor(ne);
-					jSpinnerLimit.setBounds(917, 79, 63, 22);
+					jSpinnerLimit.setBounds(917, 78, 63, 22);
 					jSpinnerLimit.setValue(1000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					
@@ -842,7 +842,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				{
 					ComboBoxModel<String> jComboBox2Model = new DefaultComboBoxModel<String>(Common.auditEventTypes);
 					jComboBoxEventType = new JComboBox4j<String>();
-					jComboBoxEventType.setBounds(470, 11, 194, 23);
+					jComboBoxEventType.setBounds(470, 11, 194, 22);
 					jComboBoxEventType.setModel(jComboBox2Model);
 					jComboBoxEventType.setMaximumRowCount(12);
 					jDesktopPane1.add(jComboBoxEventType);

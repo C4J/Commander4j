@@ -43,11 +43,11 @@ import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
+
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -59,8 +59,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JSpinner4j;
 import com.commander4j.sys.Common;
-import com.commander4j.util.JDateControl;
 /**
  * The JCalendarPanel is used to provide a popup window showing a calendar control.
  * <p>
@@ -83,9 +85,9 @@ public class JCalendarPanel extends JPanel
 	private Border empty = BorderFactory.createEmptyBorder();
 	private Border line = BorderFactory.createLineBorder(Color.BLACK);
 	
-	private JSpinner spinnerHH;
-	private JSpinner spinnerMM;
-	private JSpinner spinnerSS;
+	private JSpinner4j spinnerHH;
+	private JSpinner4j spinnerMM;
+	private JSpinner4j spinnerSS;
 
 	protected Color background;
 	protected Color foreground;
@@ -331,7 +333,7 @@ public class JCalendarPanel extends JPanel
 		year.setBounds(199, 5, 34, 23);
 		add(year);
 
-		JButton button = new JButton(Common.icon_arrow_right_16x16);
+		JButton4j button = new JButton4j(Common.icon_arrow_right_16x16);
 		button.setBorder(empty);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -342,7 +344,7 @@ public class JCalendarPanel extends JPanel
 		button.setBounds(232, 7, 18, 18);
 		add(button);
 
-		JButton button_1 = new JButton(Common.icon_arrow_left_16x16);
+		JButton4j button_1 = new JButton4j(Common.icon_arrow_left_16x16);
 		button_1.setBorder(empty);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -355,9 +357,9 @@ public class JCalendarPanel extends JPanel
 		
 		
 		
-		spinnerHH = new JSpinner();
+		spinnerHH = new JSpinner4j();
 		
-		JSpinner.NumberEditor neHH = new JSpinner.NumberEditor(spinnerHH);
+		JSpinner4j.NumberEditor neHH = new JSpinner4j.NumberEditor(spinnerHH);
 		neHH.getTextField().setFont(Common.font_std);
 		spinnerHH.setEditor(neHH);
 		
@@ -367,7 +369,7 @@ public class JCalendarPanel extends JPanel
 		spinnerHH.setModel(new SpinnerNumberModel(23, 0, 23, 1));
 		spinnerHH.setFont(standard_font);
 		spinnerHH.setBounds(5, 190, 50, 18);
-        JTextField tf1 = ((JSpinner.DefaultEditor)spinnerHH.getEditor()).getTextField();  
+        JTextField tf1 = ((JSpinner4j.DefaultEditor)spinnerHH.getEditor()).getTextField();  
         tf1.setBackground(Color.WHITE);
         tf1.setForeground(Color.BLACK);
 		spinnerHH.addChangeListener(new ChangeListener() {
@@ -378,9 +380,9 @@ public class JCalendarPanel extends JPanel
 		});
 		add(spinnerHH);
 		
-		spinnerMM= new JSpinner();
+		spinnerMM= new JSpinner4j();
 		
-		JSpinner.NumberEditor neMM = new JSpinner.NumberEditor(spinnerMM);
+		JSpinner4j.NumberEditor neMM = new JSpinner4j.NumberEditor(spinnerMM);
 		neMM.getTextField().setFont(Common.font_std);
 		spinnerMM.setEditor(neMM);
 		
@@ -390,7 +392,7 @@ public class JCalendarPanel extends JPanel
 		spinnerMM.setModel(new SpinnerNumberModel(59, 0, 59, 1));
 		spinnerMM.setFont(standard_font);
 		spinnerMM.setBounds(55, 190, 49, 18);
-        JTextField tf2 = ((JSpinner.DefaultEditor)spinnerMM.getEditor()).getTextField();  
+        JTextField tf2 = ((JSpinner4j.DefaultEditor)spinnerMM.getEditor()).getTextField();  
         tf2.setBackground(Color.WHITE);
         tf2.setForeground(Color.BLACK);
 		spinnerMM.addChangeListener(new ChangeListener() {
@@ -401,9 +403,9 @@ public class JCalendarPanel extends JPanel
 		});
 		add(spinnerMM);
 		
-		spinnerSS= new JSpinner();
+		spinnerSS= new JSpinner4j();
 		
-		JSpinner.NumberEditor neSS = new JSpinner.NumberEditor(spinnerSS);
+		JSpinner4j.NumberEditor neSS = new JSpinner4j.NumberEditor(spinnerSS);
 		neSS.getTextField().setFont(Common.font_std);
 		spinnerSS.setEditor(neSS);
 		
@@ -412,7 +414,7 @@ public class JCalendarPanel extends JPanel
 		spinnerSS.setModel(new SpinnerNumberModel(59, 0, 59, 1));
 		spinnerSS.setFont(standard_font);
 		spinnerSS.setBounds(102, 190, 49, 18);
-        JTextField tf3 = ((JSpinner.DefaultEditor)spinnerSS.getEditor()).getTextField();  
+        JTextField tf3 = ((JSpinner4j.DefaultEditor)spinnerSS.getEditor()).getTextField();  
         tf3.setBackground(Color.WHITE);
         tf3.setForeground(Color.BLACK);
 		spinnerSS.addChangeListener(new ChangeListener() {

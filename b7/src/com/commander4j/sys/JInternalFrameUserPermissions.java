@@ -196,13 +196,13 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 					jLabelAssigned = new JLabel4j_title();
 					jDesktopPane1.add(jLabelAssigned);
 					jLabelAssigned.setText(lang.get("lbl_Assigned"));
-					jLabelAssigned.setBounds(10, 12, 161, 17);
+					jLabelAssigned.setBounds(10, 7, 161, 22);
 				}
 				{
 					jLabelAvailable = new JLabel4j_title();
 					jDesktopPane1.add(jLabelAvailable);
 					jLabelAvailable.setText(lang.get("lbl_Unassigned"));
-					jLabelAvailable.setBounds(260, 11, 166, 18);
+					jLabelAvailable.setBounds(260, 7, 166, 22);
 				}
 				{
 					jButtonAssign = new JButton4j(Common.icon_arrow_left_16x16);

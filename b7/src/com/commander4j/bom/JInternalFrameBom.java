@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
+
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
@@ -48,6 +48,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import com.commander4j.calendar.JCalendarDialog2;
 import com.commander4j.db.JDBLanguage;
+import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
@@ -67,15 +68,15 @@ public class JInternalFrameBom extends JInternalFrame
 	private Transferable transferable;
 	private JPanel contentPane;
 	private JToolBar jtreeToolbar;
-	private JButton btnExpandAll;
-	private JButton btnExpandNode;
-	private JButton btnCollapseAll;
-	private JButton btnCollapseNode;
+	private JButton4j btnExpandAll;
+	private JButton4j btnExpandNode;
+	private JButton4j btnCollapseAll;
+	private JButton4j btnCollapseNode;
 
-	private JButton btnImport;
-	private JButton btnSearch;
-	private JButton btnProcess;
-	private JButton btnClose;
+	private JButton4j btnImport;
+	private JButton4j btnSearch;
+	private JButton4j btnProcess;
+	private JButton4j btnClose;
 	private JScrollPane scrollPane = new JScrollPane();
 	private JTextField4j textFieldVersion;
 	private JTextField4j textFieldBOM;
@@ -109,7 +110,7 @@ public class JInternalFrameBom extends JInternalFrame
 		jtreeToolbar.setFloatable(false);
 		jtreeToolbar.setBorder(new EmptyBorder(2, 2, 2, 2));
 
-		btnExpandAll = new JButton(Common.icon_expand_all_16x16);
+		btnExpandAll = new JButton4j(Common.icon_expand_all_16x16);
 		btnExpandAll.addActionListener(buttonhandler);
 		btnExpandAll.setToolTipText("Expand all menu items");
 		btnExpandAll.setSize(30, 30);
@@ -117,7 +118,7 @@ public class JInternalFrameBom extends JInternalFrame
 		btnExpandAll.setMinimumSize(new Dimension(30, 30));
 		btnExpandAll.setPreferredSize(new Dimension(30, 30));
 
-		btnExpandNode = new JButton(Common.icon_expand_node_16x16);
+		btnExpandNode = new JButton4j(Common.icon_expand_node_16x16);
 		btnExpandNode.addActionListener(buttonhandler);
 		btnExpandNode.setToolTipText("Expand selected menu branch");
 		btnExpandNode.setSize(30, 30);
@@ -125,7 +126,7 @@ public class JInternalFrameBom extends JInternalFrame
 		btnExpandNode.setMinimumSize(new Dimension(30, 30));
 		btnExpandNode.setPreferredSize(new Dimension(30, 30));
 
-		btnCollapseAll = new JButton(Common.icon_collapse_all_16x16);
+		btnCollapseAll = new JButton4j(Common.icon_collapse_all_16x16);
 		btnCollapseAll.addActionListener(buttonhandler);
 		btnCollapseAll.setToolTipText("Collapse menu tree");
 		btnCollapseAll.setSize(30, 30);
@@ -133,7 +134,7 @@ public class JInternalFrameBom extends JInternalFrame
 		btnCollapseAll.setMinimumSize(new Dimension(30, 30));
 		btnCollapseAll.setPreferredSize(new Dimension(30, 30));
 
-		btnCollapseNode = new JButton(Common.icon_collapse_node_16x16);
+		btnCollapseNode = new JButton4j(Common.icon_collapse_node_16x16);
 		btnCollapseNode.addActionListener(buttonhandler);
 		btnCollapseNode.setToolTipText("Collapse selected menu branch");
 		btnCollapseNode.setSize(30, 30);
@@ -141,7 +142,7 @@ public class JInternalFrameBom extends JInternalFrame
 		btnCollapseNode.setMinimumSize(new Dimension(30, 30));
 		btnCollapseNode.setPreferredSize(new Dimension(30, 30));
 
-		btnImport = new JButton(Common.icon_import_16x16);
+		btnImport = new JButton4j(Common.icon_import_16x16);
 		btnImport.addActionListener(buttonhandler);
 		btnImport.setToolTipText(lang.get("btn_Import"));
 		btnImport.setSize(30, 30);
@@ -149,7 +150,7 @@ public class JInternalFrameBom extends JInternalFrame
 		btnImport.setMinimumSize(new Dimension(30, 30));
 		btnImport.setPreferredSize(new Dimension(30, 30));
 
-		btnSearch = new JButton(Common.icon_search_16x16);
+		btnSearch = new JButton4j(Common.icon_search_16x16);
 		btnSearch.addActionListener(buttonhandler);
 		btnSearch.setToolTipText(lang.get("btn_Search"));
 		btnSearch.setSize(30, 30);
@@ -157,7 +158,7 @@ public class JInternalFrameBom extends JInternalFrame
 		btnSearch.setMinimumSize(new Dimension(30, 30));
 		btnSearch.setPreferredSize(new Dimension(30, 30));
 
-		btnProcess = new JButton(Common.icon_execute_16x16);
+		btnProcess = new JButton4j(Common.icon_execute_16x16);
 		btnProcess.addActionListener(buttonhandler);
 		btnProcess.setToolTipText(lang.get("btn_Run"));
 		btnProcess.setSize(30, 30);
@@ -165,7 +166,7 @@ public class JInternalFrameBom extends JInternalFrame
 		btnProcess.setMinimumSize(new Dimension(30, 30));
 		btnProcess.setPreferredSize(new Dimension(30, 30));
 
-		btnClose = new JButton(Common.icon_close_16x16);
+		btnClose = new JButton4j(Common.icon_close_16x16);
 		btnClose.addActionListener(buttonhandler);
 		btnClose.setToolTipText(lang.get("btn_Close"));
 		btnClose.setSize(30, 30);

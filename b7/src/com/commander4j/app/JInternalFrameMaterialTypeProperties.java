@@ -185,7 +185,7 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_Material_Type"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(6, 17, 175, 21);
+					jLabel1.setBounds(6, 17, 175, 22);
 				}
 				{
 					jTextFieldType = new JTextField4j(JDBMaterialType.field_material_type);
@@ -193,7 +193,7 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 					jTextFieldType.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldType.setEditable(false);
 					jTextFieldType.setEnabled(false);
-					jTextFieldType.setBounds(185, 17, 104, 21);
+					jTextFieldType.setBounds(185, 17, 104, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
@@ -201,12 +201,12 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 					jLabel3.setText(lang.get("lbl_Description"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(6, 49, 175, 21);
+					jLabel3.setBounds(6, 49, 175, 22);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBMaterialType.field_description);
 					jDesktopPane1.add(jTextFieldDescription, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jTextFieldDescription.setBounds(185, 49, 397, 21);
+					jTextFieldDescription.setBounds(185, 49, 397, 22);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -327,7 +327,7 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 				});
 
 				checkBoxOverridePackLabel.setBackground(Color.WHITE);
-				checkBoxOverridePackLabel.setBounds(185, 82, 21, 24);
+				checkBoxOverridePackLabel.setBounds(185, 79, 21, 22);
 				jDesktopPane1.add(checkBoxOverridePackLabel);
 				checkBoxOverridePalletLabel.addActionListener(new ActionListener()
 				{
@@ -338,27 +338,27 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 				});
 
 				checkBoxOverridePalletLabel.setBackground(Color.WHITE);
-				checkBoxOverridePalletLabel.setBounds(185, 118, 21, 24);
+				checkBoxOverridePalletLabel.setBounds(185, 115, 21, 22);
 				jDesktopPane1.add(checkBoxOverridePalletLabel);
 
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Override_Pack_Label"));
 				label4j_std.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std.setBounds(6, 82, 175, 21);
+				label4j_std.setBounds(6, 79, 175, 22);
 				jDesktopPane1.add(label4j_std);
 
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
 				label4j_std_1.setText(lang.get("lbl_Override_Pallet_Label"));
 				label4j_std_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std_1.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std_1.setBounds(6, 118, 175, 21);
+				label4j_std_1.setBounds(6, 115, 175, 22);
 				jDesktopPane1.add(label4j_std_1);
 
 				ComboBoxModel<JDBListData> jComboBox1Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPackModuleID.setModel(jComboBox1Model);
 				comboBoxPackModuleID.setEnabled(false);
-				comboBoxPackModuleID.setBounds(218, 79, 208, 21);
+				comboBoxPackModuleID.setBounds(218, 79, 208, 22);
 				comboBoxPackModuleID.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt)
@@ -372,7 +372,7 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 				ComboBoxModel<JDBListData> jComboBox2Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPalletModuleID.setModel(jComboBox2Model);
 				comboBoxPalletModuleID.setEnabled(false);
-				comboBoxPalletModuleID.setBounds(218, 115, 208, 21);
+				comboBoxPalletModuleID.setBounds(218, 115, 208, 22);
 				comboBoxPalletModuleID.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt)
