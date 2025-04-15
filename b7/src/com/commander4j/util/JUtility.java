@@ -1992,6 +1992,50 @@ public class JUtility
 		return value;
 	}
 
+	public static int getOSWidthAdjustment()
+	{
+		int result = 0;
+		if (OSValidator.isWindows())
+		{
+			result = 0;
+		}
+		if (OSValidator.isMac())
+		{
+			result = -15;
+		}
+		if (OSValidator.isSolaris())
+		{
+			result = 0;
+		}
+		if (OSValidator.isUnix())
+		{
+			result = 0;
+		}
+		return result;
+	}
+	
+	public static int getOSHeightAdjustment()
+	{
+		int result = 0;
+		if (OSValidator.isWindows())
+		{
+			result = 0;
+		}
+		if (OSValidator.isMac())
+		{
+			result = -13;
+		}
+		if (OSValidator.isSolaris())
+		{
+			result = 0;
+		}
+		if (OSValidator.isUnix())
+		{
+			result = 0;
+		}
+		return result;
+	}
+	
 	public static void adjustForLookandFeel()
 	{
 		LookAndFeel lf = UIManager.getLookAndFeel();

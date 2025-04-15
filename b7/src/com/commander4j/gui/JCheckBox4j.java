@@ -101,7 +101,7 @@ public class JCheckBox4j extends JCheckBox {
             g2.setColor(getForeground());
             FontMetrics fm = g2.getFontMetrics();
             int textX = boxX + boxSize + 6;
-            int textY = (getHeight() + fm.getAscent() - fm.getDescent()) / 2;
+            int textY = (getHeight() + fm.getAscent() - fm.getDescent()) / 2 + 1;
 
             g2.drawString(getText(), textX, textY);
 

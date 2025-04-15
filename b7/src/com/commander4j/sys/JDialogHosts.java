@@ -27,7 +27,7 @@ package com.commander4j.sys;
  * 
  */
 
-import java.awt.BorderLayout;
+
 import java.awt.Cursor;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
@@ -55,6 +55,9 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JList4j;
 import com.commander4j.util.JUtility;
 
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+
 public class JDialogHosts extends JDialog
 {
 	private static final long serialVersionUID = 1;
@@ -62,8 +65,11 @@ public class JDialogHosts extends JDialog
 	private JButton4j jButtonClose;
 	private JList4j<JHost> jListHosts;
 	private JButton4j jButtonConnect;
-	private JScrollPane jScrollPane1;
 	private LinkedList<JHost> temp = new LinkedList<JHost>();
+	private JPanel panel;
+	private JScrollPane scrollPane;
+	private static int widthadjustment = 0;
+	private static int heightadjustment = 0;
 
 	public JDialogHosts(JFrame frame)
 	{
@@ -73,7 +79,10 @@ public class JDialogHosts extends JDialog
 		setCursor(normalCursor);
 		
 		initGUI();
-
+				
+		widthadjustment = JUtility.getOSWidthAdjustment();
+		heightadjustment = JUtility.getOSHeightAdjustment();
+		
 		setTitle("C4J Ver "+JVersion.getProgramVersion()+" ["+Common.hostVersion+"]");
 
 		populateList("");
@@ -84,7 +93,7 @@ public class JDialogHosts extends JDialog
 
 		Rectangle screenBounds = gc.getBounds();
 
-		setBounds(screenBounds.x + ((screenBounds.width - JDialogHosts.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JDialogHosts.this.getHeight()) / 2), JDialogHosts.this.getWidth(), JDialogHosts.this.getHeight());
+		setBounds(screenBounds.x + ((screenBounds.width - JDialogHosts.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JDialogHosts.this.getHeight()) / 2), JDialogHosts.this.getWidth()+widthadjustment, JDialogHosts.this.getHeight()+heightadjustment);
 		Common.selectedHostID = "Cancel";
 		setResizable(false);
 		setModal(true);
@@ -95,6 +104,7 @@ public class JDialogHosts extends JDialog
 			public void run() {
 				jListHosts.requestFocus();
 				jListHosts.setSelectedIndex(0);
+
 			}
 		});
 
@@ -138,39 +148,21 @@ public class JDialogHosts extends JDialog
 	private void initGUI() {
 		try
 		{
+			getContentPane().setLayout(null);
 			{
 				jDesktopPane1 = new JDesktopPane();
+				jDesktopPane1.setBounds(0, 0, 340, 370);
 				jDesktopPane1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 				jDesktopPane1.setBackground(Common.color_app_window);
-				jDesktopPane1.setLayout(null);
-				this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(232, 189));
-				{
-					jScrollPane1 = new JScrollPane();
-					jScrollPane1.setBounds(5, 3, 302, 235);
-					jDesktopPane1.add(jScrollPane1);
-					{
-						ListModel<JHost> jListHostsModel = new DefaultComboBoxModel<JHost>();
-						jListHosts = new JList4j<JHost>();
-						jListHosts.setSelectedIndices(new int[] {0});
-						jListHosts.setBorder(new EmptyBorder(0, 0, 0, 0));
-						jScrollPane1.setViewportView(jListHosts);
-						jListHosts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-						jListHosts.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
-								if (evt.getClickCount() == 2)
-								{
-									selectHost();
-								}
-							}
-						});
-						jListHosts.setModel(jListHostsModel);
-					}
-				}
+				jDesktopPane1.setLayout(null);
+
+
 				{
 
 					jButtonConnect = new JButton4j(Common.icon_connect_16x16);
-					jButtonConnect.setBounds(45, 245, 110, 32);
+					jButtonConnect.setBounds(56, 321, 110, 32);
 					jDesktopPane1.add(jButtonConnect);
 					jButtonConnect.setText("Connect");
 					jButtonConnect.setMnemonic(java.awt.event.KeyEvent.VK_N);
@@ -182,10 +174,31 @@ public class JDialogHosts extends JDialog
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jButtonClose.setBounds(161, 245, 110, 32);
+					jButtonClose.setBounds(172, 321, 110, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText("Close");
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
+					panel = new JPanel();
+					panel.setBorder(null);
+					panel.setBounds(0, 0, 325+widthadjustment, 314+heightadjustment);
+					jDesktopPane1.add(panel);
+					panel.setLayout(new BorderLayout(0, 0));
+					scrollPane = new JScrollPane();
+					panel.add(scrollPane, BorderLayout.CENTER);
+					jListHosts = new JList4j<JHost>();
+					jListHosts.setSelectedIndices(new int[] {0});
+					jListHosts.setBorder(new EmptyBorder(0, 0, 0, 0));
+					scrollPane.setViewportView(jListHosts);
+					jListHosts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					jListHosts.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt) {
+							if (evt.getClickCount() == 2)
+							{
+								selectHost();
+							}
+						}
+					});
+
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							Common.selectedHostID = "Cancel";
@@ -194,7 +207,7 @@ public class JDialogHosts extends JDialog
 					});
 				}
 			}
-			this.setSize(312, 315);
+			this.setSize(340, 399);
 		}
 		catch (Exception e)
 		{

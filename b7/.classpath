@@ -63,8 +63,6 @@
 	<classpathentry kind="lib" path="lib/jasperreports-pdf-7.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports-spring-7.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.5.4.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.6.0.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-forms-1.7.1.jar"/>
 	<classpathentry kind="lib" path="lib/jSerialComm-2.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-analyzers-common-8.11.2.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-core-8.11.2.jar"/>
