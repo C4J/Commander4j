@@ -470,7 +470,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 										
 										pallet.setMaterial(processOrder.getMaterial());
 										fld_Material.setText(processOrder.getMaterial());
-										lbl_MaterialDescription.setText(material.getDescription());
+										fld_MaterialDescription.setText(material.getDescription());
 										
 										pallet.setCustomerID(processOrder.getCustomerID());
 										fld_Customer.setText(processOrder.getCustomerID());
