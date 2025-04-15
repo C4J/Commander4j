@@ -120,7 +120,7 @@ public class JDialogAbout extends javax.swing.JDialog
 				{
 					jDesktopPane1 = new JDesktopPane();
 					jDesktopPane1.setBackground(Common.color_edit_properties);
-					jDesktopPane1.setBounds(0, 0, 422, 344);
+					jDesktopPane1.setBounds(0, 0, 411, 344);
 					this.getContentPane().add(jDesktopPane1);
 					jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 231));
 					jDesktopPane1.setLayout(null);
@@ -247,7 +247,7 @@ public class JDialogAbout extends javax.swing.JDialog
 					jDesktopPane1.add(labelLogo);
 				}
 			}
-			this.setSize(411, 354);
+			this.setSize(411, 368);
 		} catch (Exception e)
 		{
 			e.printStackTrace();

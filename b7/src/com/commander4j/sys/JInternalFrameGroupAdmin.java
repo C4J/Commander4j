@@ -65,7 +65,7 @@ import javax.swing.ListSelectionModel;
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameGroupAdmin.jpg" >
  * 
- * @see com.commander4j.sys.JDialogeGroupProperties JDialogeGroupProperties
+ * @see com.commander4j.sys.JDialogGroupProperties JDialogeGroupProperties
  * @see com.commander4j.sys.JInternalFrameGroupPermissions JInternalFrameGroupPermissions
  * @see com.commander4j.db.JDBGroup JDBGroup
  * @see com.commander4j.db.JDBGroupPermissions JDBGroupPermissions

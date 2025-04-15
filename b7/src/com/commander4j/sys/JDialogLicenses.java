@@ -44,7 +44,7 @@ public class JDialogLicenses extends JDialog
 		super(frame);
 		JDialogLicenses me = this;
 		setTitle("Libraries");
-		setBounds(100, 100, 767, 587);
+		setBounds(100, 100, 767, 599);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

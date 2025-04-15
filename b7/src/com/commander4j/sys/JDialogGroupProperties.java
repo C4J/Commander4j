@@ -61,7 +61,7 @@ import com.commander4j.util.JUtility;
  * @see com.commander4j.db.JDBGroup JDBGroup
  * @see com.commander4j.db.JDBGroupPermissions JDBGroupPermissions
  */
-public class JDialogeGroupProperties extends JDialog
+public class JDialogGroupProperties extends JDialog
 {
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
@@ -77,7 +77,7 @@ public class JDialogeGroupProperties extends JDialog
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
 
-	public JDialogeGroupProperties(JFrame parent,String groupid)
+	public JDialogGroupProperties(JFrame parent,String groupid)
 	{
 		
 		super(parent);

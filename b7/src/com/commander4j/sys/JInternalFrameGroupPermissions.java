@@ -59,7 +59,7 @@ import com.commander4j.util.JUtility;
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameGroupPermissions.jpg" >
  * 
- * @see com.commander4j.sys.JDialogeGroupProperties JDialogeGroupProperties
+ * @see com.commander4j.sys.JDialogGroupProperties JDialogeGroupProperties
  * @see com.commander4j.sys.JInternalFrameGroupAdmin JInternalFrameGroupAdmin
  * @see com.commander4j.db.JDBGroup JDBGroup
  * @see com.commander4j.db.JDBGroupPermissions JDBGroupPermissions

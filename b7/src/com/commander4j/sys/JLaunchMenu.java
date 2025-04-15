@@ -368,8 +368,8 @@ public class JLaunchMenu
 
 		if (optionName.equals("FRM_ADMIN_GROUP_EDIT"))
 		{
-			final JDialogeGroupProperties u;
-			u = new JDialogeGroupProperties(Common.mainForm, strParam);
+			final JDialogGroupProperties u;
+			u = new JDialogGroupProperties(Common.mainForm, strParam);
 			// u.setTitle(mod.getDescription());
 			displayDialog(u, optionName);
 		}
