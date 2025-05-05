@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE DDL SYSTEM "schema.dtd">
-<DDL>
-   
-<statement>ALTER TABLE  `SYS_PRINTERS` MODIFY COLUMN `PRINTER_ID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL FIRST;</statement>
-
-<statement>ALTER TABLE `SYS_PRINTER_LINE_MEMBERSHIP` MODIFY COLUMN `PRINTER_ID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL AFTER `GROUP_ID`;</statement>
-	
-</DDL>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Hosts>
+    <NumberOfSites>3</NumberOfSites>
+    <SplashScreen>Y</SplashScreen>
+    <UpdateURL/>
+    <UpdateMODE>MANUAL</UpdateMODE>
+    <UpdateDIR></UpdateDIR>
+    <hostVersion>3</hostVersion>
+    <hostUpdatePath/>
+    <SetupPassword/>
+    <Site Number="1">
+        <Enabled>Y</Enabled>
+        <UniqueID>service</UniqueID>
+        <Description>mySQL Example Only</Description>
+        <URL>http://</URL>
+        <DatabaseDriver>
+            <jdbcDriver>com.mysql.cj.jdbc.Driver</jdbcDriver>
+            <jdbcConnectString>jdbc:mysql://192.168.1.100:3306/C4J_Demo_Database?connectTimeout=5&amp;socketTimeout=0&amp;autoReconnect=true</jdbcConnectString>
+            <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
+            <jdbcDatabaseSelectLimit>limit</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation>utf8mb4_0900_ai_ci</jdbcDatabaseCollation>
+            <jdbcDatabaseCharacterSet>utf8mb4</jdbcDatabaseCharacterSet>
+            <jdbcDatabaseSchema/>
+        </DatabaseDriver>
+        <DatabaseParameters>
+            <jdbcUsername>c4j_username</jdbcUsername>
+            <jdbcPassword>TePyLCR35/ujHt3d2uaupQ==</jdbcPassword>
+            <jdbcPasswordEncryption>AES</jdbcPasswordEncryption>
+            <jdbcServer>192.168.1.100</jdbcServer>
+            <jdbcPort>3306</jdbcPort>
+            <jdbcSID/>
+            <jdbcDatabase>C4J_Demo_Database</jdbcDatabase>
+        </DatabaseParameters>
+    </Site>
+    <Site Number="2">
+        <Enabled>Y</Enabled>
+        <UniqueID/>
+        <Description>SQL Server Example Only</Description>
+        <URL>http://</URL>
+        <DatabaseDriver>
+            <jdbcDriver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbcDriver>
+            <jdbcConnectString>jdbc:sqlserver://192.168.1.100:1433;databaseName=C4J_Demo_Database;selectMethod=direct</jdbcConnectString>
+            <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
+            <jdbcDatabaseSelectLimit>top</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
+            <jdbcDatabaseSchema/>
+        </DatabaseDriver>
+        <DatabaseParameters>
+            <jdbcUsername>c4j_username</jdbcUsername>
+            <jdbcPassword>TePyLCR35/ujHt3d2uaupQ==</jdbcPassword>
+            <jdbcPasswordEncryption>AES</jdbcPasswordEncryption>
+            <jdbcServer>192.168.1.100</jdbcServer>
+            <jdbcPort>1433</jdbcPort>
+            <jdbcSID/>
+            <jdbcDatabase>C4J_Demo_Database</jdbcDatabase>
+        </DatabaseParameters>
+    </Site>
+    <Site Number="3">
+        <Enabled>Y</Enabled>
+        <UniqueID/>
+        <Description>Oracle Example Only</Description>
+        <URL>http://</URL>
+        <DatabaseDriver>
+            <jdbcDriver>oracle.jdbc.driver.OracleDriver</jdbcDriver>
+            <jdbcConnectString>jdbc:oracle:thin:@//192.168.1.100:1521/orcl</jdbcConnectString>
+            <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
+            <jdbcDatabaseSelectLimit>rownum</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
+            <jdbcDatabaseSchema/>
+        </DatabaseDriver>
+        <DatabaseParameters>
+            <jdbcUsername>c4j_username</jdbcUsername>
+            <jdbcPassword>TePyLCR35/ujHt3d2uaupQ==</jdbcPassword>
+            <jdbcPasswordEncryption>AES</jdbcPasswordEncryption>
+            <jdbcServer>192.168.1.100</jdbcServer>
+            <jdbcPort>1521</jdbcPort>
+            <jdbcSID>orcl</jdbcSID>
+            <jdbcDatabase/>
+        </DatabaseParameters>
+    </Site>
+</Hosts>

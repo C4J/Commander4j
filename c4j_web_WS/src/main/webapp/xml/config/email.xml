@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emailSettings>    
+
+	<email configID="configuration" enabled="false"/>
+	
+    <!-- SMTP No Authentication Example -->
+    
+    <configuration>
+        <property name="mail.smtp.starttls.enable" encrypted="no" value="false"/>
+        <property name="mail.smtp.host" encrypted="no" value="smtp.demo.com"/>
+        <property name="mail.smtp.socketFactory.port" encrypted="no" value="25"/>
+        <property name="mail.smtp.user" encrypted="no" value="demo@email.com"/>
+        <property name="mail.smtp.password" encrypted="no" value=""/>
+        <property name="mail.smtp.socketFactory.class" encrypted="no" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtp.auth" encrypted="no" value="false"/>
+        <property name="mail.smtp.port" encrypted="no" value="25"/>
+        <property name="mail.smtp.from" encrypted="no" value="demo@email.com"/>
+        <property name="mail.debug" encrypted="no" value="true"/>
+    </configuration>
+    
+    <!-- Microsoft smtp.live.com Example -->
+    
+    <configuration1>
+        <property name="mail.smtp.auth" encrypted="no" value="true"/>
+        <property name="mail.smtp.starttls.enable" encrypted="no" value="true"/>
+        <property name="mail.smtp.host" encrypted="no" value="smtp.live.com"/>
+        <property name="mail.smtp.socketFactory.port" encrypted="no" value="25"/>
+        <property name="mail.smtp.user" encrypted="no" value="email@outlook.com"/>
+        <property name="mail.smtp.password" encrypted="no" value="password"/>  -->
+        <property name="mail.smtp.socketFactory.class" encrypted="no" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtp.auth" encrypted="no" value="true"/>
+        <property name="mail.smtp.port" encrypted="no" value="25"/>
+        <property name="mail.smtp.from" encrypted="no" value="email@outlook.com"/>
+        <property name="mail.debug" encrypted="no" value="true"/>
+    </configuration1>
+
+    <!-- Google gmail Example -->
+    
+    <configuration2>
+        <property name="mail.smtp.auth" encrypted="no" value="true"/>
+        <property name="mail.smtp.starttls.enable" encrypted="no" value="true"/>
+        <property name="mail.smtp.host" encrypted="no" value="smtp.gmail.com"/>
+        <property name="mail.smtp.socketFactory.port" encrypted="no" value="465"/>
+        <property name="mail.smtp.user" encrypted="no" value="email@gmail.com"/>
+        <property name="mail.smtp.password" encrypted="no" value="password"/>
+        <property name="mail.smtp.socketFactory.class" encrypted="no" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtp.auth" encrypted="no" value="true"/>
+        <property name="mail.smtp.port" encrypted="no" value="465"/>
+        <property name="mail.smtp.from" encrypted="no" value="email@gmail.com"/>
+        <property name="mail.debug" encrypted="no" value="true"/>
+    </configuration2>
+    
+    <!-- Windows Domain -->
+    
+    <configuration3>
+        <property name="mail.smtp.starttls.enable" value="false"/>
+        <property name="mail.smtp.host" value="smtp.email.com"/>
+        <property name="mail.smtp.socketFactory.port" value="587"/>
+        <property name="mail.smtp.user" value="user@domain.com"/>
+        <property name="mail.smtp.socketFactory.fallback" value="true"/>
+        <property name="mail.mime.charset" value="utf-8"/>
+        <property name="mail.smtp.password" encrypted="no" value="password"/>
+        <property name="mail.smtp.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtp.ssl.enable" value="false"/>
+        <property name="mail.smtp.ssl.protocols" value="TLSv1.2"/>
+        <property name="mail.smtp.ssl.trust" value="smtp.email.com"/>
+        <property name="mail.smtp.auth" value="true"/>
+        <property name="mail.smtp.port" value="587"/>
+        <property name="mail.smtp.from" value="user@domain.com"/>
+        <property name="mail.debug" value="true"/>
+    </configuration3>
+
+
+</emailSettings>
