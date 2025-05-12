@@ -11,10 +11,6 @@
 		
 		<title>Despatch Pallet</title>
 		<link href="style/commander.css" rel="stylesheet" type="text/css">
-		<%
-			String despatchNo = (String) session.getAttribute("despatchNo");
-			despatchNo = despatchNo.trim();
-		%>
 	</head>
 	
 	<jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
