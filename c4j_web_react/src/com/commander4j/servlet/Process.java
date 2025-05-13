@@ -1,19 +1,11 @@
 package com.commander4j.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.HttpSessionAttributeListener;
-import jakarta.servlet.http.HttpSessionBindingEvent;
-import jakarta.servlet.http.HttpSessionEvent;
-import jakarta.servlet.http.HttpSessionListener;
-
 import org.apache.logging.log4j.Logger;
+import org.apache.tomcat.jakartaee.commons.io.FileUtils;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBControl;
@@ -38,6 +30,16 @@ import com.commander4j.sys.JHost;
 import com.commander4j.util.JPlaySound;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSessionAttributeListener;
+import jakarta.servlet.http.HttpSessionBindingEvent;
+import jakarta.servlet.http.HttpSessionEvent;
+import jakarta.servlet.http.HttpSessionListener;
 
 public class Process extends jakarta.servlet.http.HttpServlet implements jakarta.servlet.Servlet, HttpSessionListener, HttpSessionAttributeListener
 {
@@ -389,7 +391,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		int currentDespatchListPage = Integer.valueOf(temp);
 
 		JMenuRFDespatchList dl = new JMenuRFDespatchList(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		String html = dl.buildDespatchList("Unconfirmed", Common.sd.getData(sessionID, "despatchNo"), currentDespatchListPage,despatchListSize);
+		String html = dl.buildDespatchList("Unconfirmed", Common.sd.getData(sessionID, "despatchNo"), currentDespatchListPage, despatchListSize);
 
 		currentDespatchListPage = dl.getReturnedPage();
 		saveData(session, "currentDespatchListPage", String.valueOf(currentDespatchListPage), true);
@@ -832,7 +834,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
 		response.addHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
-		
+
 		if (session.isNew())
 		{
 			response.sendRedirect("sessionTimeout.jsp");
@@ -845,7 +847,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
 		response.addHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
-		
+
 		{
 
 			HttpSession session = request.getSession();
@@ -1072,12 +1074,63 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 			{
 				printerSelect(request, response, button);
 			}
-			
+
 			if (formName.equals("sysInfo.jsp"))
 			{
 				sysInfo(request, response, button);
 			}
 		}
+	}
+	
+	private String getHostPath()
+	{
+		String result = "";
+		
+		String catalinaHome = System.getProperty("catalina.home");
+		String contextPath = getServletContext().getContextPath().replace("/", "");
+
+		File configPath = new File(catalinaHome + File.separator + "c4j_config");
+
+		if (configPath.exists() == false)
+		{
+			configPath.mkdir();
+		}
+
+		configPath = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath);
+
+		if (configPath.exists() == false)
+		{
+			configPath.mkdir();
+		}
+
+		configPath = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath + File.separator + "hosts.xml");
+		
+		result = configPath.getAbsolutePath();
+
+		if (configPath.exists() == false)
+		{
+
+			try
+			{
+				File source = new File(getServletContext().getRealPath("/xml/hosts/hosts.xml"));
+				
+				File destination = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath);
+				
+				FileUtils.copyFileToDirectory(source, destination);
+
+				source = new File(getServletContext().getRealPath("/xml/hosts/hosts.dtd"));
+				
+				FileUtils.copyFileToDirectory(source, destination);
+				
+			}
+			catch (IOException e)
+			{
+				result = getServletContext().getRealPath("/xml/hosts/hosts.xml");
+			}
+
+		}
+
+		return result;
 	}
 
 	public void init(ServletConfig config) throws ServletException
@@ -1098,7 +1151,8 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		Common.paths.put("view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml", getServletContext().getRealPath("/xml/view/view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml"));
 		Common.paths.put("view.oracle.jdbc.driver.OracleDriver.xml", getServletContext().getRealPath("/xml/view/view.oracle.jdbc.driver.OracleDriver.xml"));
 
-		xmlfilename = getServletContext().getRealPath("/xml/hosts/hosts.xml");
+		xmlfilename = getHostPath();
+
 		logfilename = getServletContext().getRealPath("/xml/log/log4j2.xml");
 		JUtility.initLogging(logfilename);
 
@@ -1253,7 +1307,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 			}
 
 			despatchListSize = Integer.valueOf(control.getKeyValueWithDefault("DESPATCH_LIST_SIZE", "8", "Mobile Device Despatch List Size"));
-			
+
 			JDBUser usr = new JDBUser(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 			usr.setUserId(Common.sd.getData(sessionID, "username").toUpperCase());
 			usr.setLoginPassword(Common.sd.getData(sessionID, "password"));
@@ -1337,7 +1391,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 					saveData(session, "wasteMaterialUOM", "", true);
 				}
 
-				wasteComboRefesh(request,session);
+				wasteComboRefesh(request, session);
 
 				response.sendRedirect("wasteLog.jsp");
 			}
@@ -1369,7 +1423,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 			{
 				response.sendRedirect("palletInfo.jsp");
 			}
-			
+
 			if (selectedMenuOption.equals("SYS_INFO"))
 			{
 				response.sendRedirect("sysInfo.jsp");
@@ -1894,7 +1948,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		}
 		displayMenu(request, response);
 	}
-	
+
 	private synchronized void sysInfo(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
 	{
 
@@ -2326,7 +2380,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 				wlog.setMaterialID(post_wasteMaterialID);
 				wlog.setReasonID(post_wasteReasonID);
 				wlog.setComment("");
-				wlog.setProcessOrder(post_wasteProcessOrder);			
+				wlog.setProcessOrder(post_wasteProcessOrder);
 
 				wlog.setWasteReportTime(JUtility.getSQLDateTime());
 				wlog.setWeightKg(new BigDecimal(post_wasteQuantity));
@@ -2337,14 +2391,14 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 					session.setAttribute("_ErrorMessage", "Log " + String.valueOf(txn) + " created.");
 					saveData(session, "_ErrorMessage", "Log " + String.valueOf(txn) + " created.", true);
 					saveData(session, "wasteQuantity", ".000", true);
-					saveData(session,"wasteProcessOrder",wlog.getProcessOrder(), true);
+					saveData(session, "wasteProcessOrder", wlog.getProcessOrder(), true);
 				}
 				else
 				{
 					session.setAttribute("_ErrorMessage", wlog.getErrorMessage());
 					saveData(session, "_ErrorMessage", wlog.getErrorMessage(), true);
 					saveData(session, "wasteQuantity", request.getParameter("wasteQuantity"), true);
-					saveData(session,"wasteProcessOrder",wlog.getProcessOrder(), true);
+					saveData(session, "wasteProcessOrder", wlog.getProcessOrder(), true);
 				}
 
 			}
@@ -2413,19 +2467,24 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 
 		String wasteLocationID = Common.sd.getData(sessionID, "wasteLocationID");
 		JDBWasteLocation wl = new JDBWasteLocation(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteLocationCombo", wl.getHTMLPullDownCombo("wasteLocationCombo"    , wasteLocationID,"onchange=\"document.wasteLog.wasteBarcode.value = '91'.concat(document.wasteLog.wasteLocationCombo.value);javascript:document.wasteLog.submit();"), true);
+		saveData(session, "wasteLocationCombo",
+				wl.getHTMLPullDownCombo("wasteLocationCombo", wasteLocationID, "onchange=\"document.wasteLog.wasteBarcode.value = '91'.concat(document.wasteLog.wasteLocationCombo.value);javascript:document.wasteLog.submit();"), true);
 
 		String wasteContainerID = Common.sd.getData(sessionID, "wasteContainerID");
 		JDBWasteContainer wc = new JDBWasteContainer(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteContainerCombo", wc.getHTMLPullDownCombo("wasteContainerCombo" , wasteContainerID,"onchange=\"document.wasteLog.wasteBarcode.value = '95'.concat(document.wasteLog.wasteContainerCombo.value);javascript:document.wasteLog.submit();"), true);
-		
+		saveData(session, "wasteContainerCombo",
+				wc.getHTMLPullDownCombo("wasteContainerCombo", wasteContainerID, "onchange=\"document.wasteLog.wasteBarcode.value = '95'.concat(document.wasteLog.wasteContainerCombo.value);javascript:document.wasteLog.submit();"), true);
+
 		String wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
 		JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteMaterialCombo",wm.getHTMLPullDownCombofoLocation("wasteMaterialCombo", wasteMaterialID,wasteLocationID, "onchange=\"document.wasteLog.wasteBarcode.value = '92'.concat(document.wasteLog.wasteMaterialCombo.value);javascript:document.wasteLog.submit();"), true);
+		saveData(session, "wasteMaterialCombo",
+				wm.getHTMLPullDownCombofoLocation("wasteMaterialCombo", wasteMaterialID, wasteLocationID, "onchange=\"document.wasteLog.wasteBarcode.value = '92'.concat(document.wasteLog.wasteMaterialCombo.value);javascript:document.wasteLog.submit();"),
+				true);
 
 		String wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
 		JDBWasteReasons wr = new JDBWasteReasons(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteReasonCombo", wr.getHTMLPullDownCombo("wasteReasonCombo", wasteReasonID, "onchange=\"document.wasteLog.wasteBarcode.value = '93'.concat(document.wasteLog.wasteReasonCombo.value);javascript:document.wasteLog.submit();"), true);
+		saveData(session, "wasteReasonCombo", wr.getHTMLPullDownCombo("wasteReasonCombo", wasteReasonID, "onchange=\"document.wasteLog.wasteBarcode.value = '93'.concat(document.wasteLog.wasteReasonCombo.value);javascript:document.wasteLog.submit();"),
+				true);
 
 		String wasteProcessOrder = Common.sd.getData(sessionID, "wasteProcessOrder");
 		saveData(session, "wasteProcessOrder", wasteProcessOrder, true);

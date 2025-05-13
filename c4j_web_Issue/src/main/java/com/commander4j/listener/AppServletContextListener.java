@@ -1,10 +1,12 @@
 package com.commander4j.listener;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.tomcat.jakartaee.commons.io.FileUtils;
 
 import com.commander4j.sys.Common;
 
@@ -42,6 +44,8 @@ public class AppServletContextListener implements ServletContextListener
 		Common.paths.put("view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml", sce.getServletContext().getRealPath("/xml/view/view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml"));
 		Common.paths.put("view.oracle.jdbc.driver.OracleDriver.xml", sce.getServletContext().getRealPath("/xml/view/view.oracle.jdbc.driver.OracleDriver.xml"));
 		
+		xmlfilename = getHostPath(sce);
+		
 		Common.hostList.loadHosts(xmlfilename);
 		
 		logger.debug(Common.hostList.getHosts().toString());
@@ -58,6 +62,57 @@ public class AppServletContextListener implements ServletContextListener
 		logger.debug("contextDestroyed ["+sce.getServletContext().getServletContextName()+"]");
 
 		logger = null;
+	}
+	
+	private String getHostPath(ServletContextEvent sce)
+	{
+		String result = "";
+		
+		String catalinaHome = System.getProperty("catalina.home");
+		String contextPath = sce.getServletContext().getContextPath().replace("/", "");
+
+		File configPath = new File(catalinaHome + File.separator + "c4j_config");
+
+		if (configPath.exists() == false)
+		{
+			configPath.mkdir();
+		}
+
+		configPath = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath);
+
+		if (configPath.exists() == false)
+		{
+			configPath.mkdir();
+		}
+
+		configPath = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath + File.separator + "hosts.xml");
+		
+		result = configPath.getAbsolutePath();
+
+		if (configPath.exists() == false)
+		{
+
+			try
+			{
+				File source = new File(sce.getServletContext().getRealPath("/xml/hosts/hosts.xml"));
+				
+				File destination = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath);
+				
+				FileUtils.copyFileToDirectory(source, destination);
+
+				source = new File(sce.getServletContext().getRealPath("/xml/hosts/hosts.dtd"));
+				
+				FileUtils.copyFileToDirectory(source, destination);
+				
+			}
+			catch (IOException e)
+			{
+				result = sce.getServletContext().getRealPath("/xml/hosts/hosts.xml");
+			}
+
+		}
+
+		return result;
 	}
 
 }
