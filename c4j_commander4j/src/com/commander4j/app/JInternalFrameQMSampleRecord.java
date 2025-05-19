@@ -207,6 +207,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 		jTextFieldUserData3.setText("");
 		jTextFieldUserData4.setText("");
 		sampleDate.setDate(JUtility.getSQLDate());
+		sampleDate.setDisplayMode(JDateControl.mode_disable_not_visible);
 		jButtonSave.setEnabled(false);
 	}
 
@@ -411,6 +412,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 
 				{
 					sampleDate = new JDateControl();
+					sampleDate.setDisplayMode(JDateControl.mode_disable_not_visible);
 					jDesktopPane1.add(sampleDate);
 					sampleDate.setBounds(147, 39, 128, 22);
 					sampleDate.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
@@ -590,6 +592,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				jTextFieldMaterialDescription.setText(material.getDescription());
 
 				sampleDate.setDate(sample.getSampleDate());
+				sampleDate.setDisplayMode(JDateControl.mode_disable_visible);
 
 				jButtonSave.setEnabled(true);
 				jStatusText.setText("Sample " + String.valueOf(sample.getSampleID()) + " retrieved.");

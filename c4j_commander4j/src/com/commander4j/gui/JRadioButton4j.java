@@ -30,6 +30,7 @@ public class JRadioButton4j extends JRadioButton {
         setContentAreaFilled(false);
         setBorderPainted(false);
         setMargin(new Insets(0, 0, 0, 0));
+		setFocusable(false);
 
         addMouseListener(new MouseAdapter() {
             @Override

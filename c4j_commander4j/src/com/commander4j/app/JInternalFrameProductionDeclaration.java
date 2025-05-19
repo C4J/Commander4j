@@ -35,7 +35,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
@@ -51,7 +50,6 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -62,7 +60,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.bar.JLabelPrint;
@@ -377,7 +374,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			
 			if (jTextFieldProcessOrderStatus.getText().equals("Ready") || (jTextFieldProcessOrderStatus.getText().equals("Running")))
 			{
-				jTextFieldProcessOrderStatus.setBackground(Color.WHITE);
+				jTextFieldProcessOrderStatus.setBackground(Common.color_app_window);
 			}
 			else
 			{
@@ -428,10 +425,16 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			
 			batchFormat = materialbatch.getBatchFormatString(processorder);
 			batchValidate = materialbatch.getBatchValidationString(processorder);
+			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_visible);
+			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
+			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_visible);
 
 			calcBBEBatch();
 		} else
 		{
+			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_not_visible);
+			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_not_visible);
+			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_not_visible);
 			jButtonAssign.setEnabled(false);
 			jButtonSave.setEnabled(false);
 		}

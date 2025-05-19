@@ -307,7 +307,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		desktopPane.add(lblNewLabel_3);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
-		btnClose.setBounds(877, 92, 117, 32);
+		btnClose.setBounds(879, 87, 115, 32);
 		btnClose.setIcon(Common.icon_close_16x16);
 		btnClose.addActionListener(new ActionListener()
 		{
@@ -319,7 +319,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		desktopPane.add(btnClose);
 
 		btnEdit = new JButton4j(lang.get("btn_Edit"));
-		btnEdit.setBounds(619, 92, 117, 32);
+		btnEdit.setBounds(648, 87, 115, 32);
 		btnEdit.setIcon(Common.icon_edit_16x16);
 		btnEdit.addActionListener(new ActionListener()
 		{
@@ -331,7 +331,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		desktopPane.add(btnEdit);
 
 		btnDefaults = new JButton4j(lang.get("lbl_default"));
-		btnDefaults.setBounds(748, 92, 117, 32);
+		btnDefaults.setBounds(763, 87, 115, 32);
 		btnDefaults.setIcon(Common.icon_default_16x16);
 		btnDefaults.addActionListener(new ActionListener()
 		{
@@ -344,7 +344,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		desktopPane.add(btnDefaults);
 
 		JButton4j btnRefresh = new JButton4j(lang.get("btn_Refresh"));
-		btnRefresh.setBounds(490, 92, 117, 32);
+		btnRefresh.setBounds(533, 87, 115, 32);
 		btnRefresh.setIcon(Common.icon_refresh_16x16);
 		btnRefresh.addActionListener(new ActionListener()
 		{
@@ -374,7 +374,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		desktopPane.add(btnProcessOrderLookup);
 
 		comboboxActivities = new JComboBox4j<JDBQMActivity>();
-		comboboxActivities.setBounds(125, 93, 343, 22);
+		comboboxActivities.setBounds(125, 93, 393, 22);
 		comboboxActivities.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)

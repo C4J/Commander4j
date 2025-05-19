@@ -17,14 +17,15 @@ import java.awt.event.FocusEvent;
 public class JTextField4j extends JTextField {
 
     private static final long serialVersionUID = 1L;
-    private final Color defaultForeground = Color.BLACK;
     private final Color overflowForeground = Color.RED;
     private JFixedSizeFilter tsf;
     private int characterLimit = -1; // -1 means "no limit"
     private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
+    private boolean hasFocus = false;
     
 	private void init()
 	{
+        setDisabledTextColor(Common.color_textfield_foreground_disabled);
         setBorder(EMPTY_BORDER);
 		setFont(Common.font_input);
 	}
@@ -33,12 +34,14 @@ public class JTextField4j extends JTextField {
         super();
         init();
         initFocusBehavior();
+        updateColors();
     }
     
 	public JTextField4j(String text) {
 		super(text);
 		init();
         initFocusBehavior();
+        updateColors();
 	}
 
     public JTextField4j(int columns) {
@@ -47,24 +50,27 @@ public class JTextField4j extends JTextField {
         this.characterLimit = columns;
         initFocusBehavior();
         initCharacterLimitBehavior();
+        updateColors();
     }
 
     private void initFocusBehavior() {
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
+            	hasFocus = true;
             	if (isEditable())
             	{
-                    setBackground(Common.color_textfield_background_focus_color);
+                   setBackground(Common.color_textfield_background_focus_color);
             	}
 
             }
 
             @Override
             public void focusLost(FocusEvent e) {
+            	hasFocus = false;
             	if (isEditable())
             	{
-                setBackground(Common.color_textfield_background_nofocus_color);
+                  setBackground(Common.color_textfield_background_nofocus_color);
             	}
             }
         });
@@ -89,7 +95,7 @@ public class JTextField4j extends JTextField {
                     if (getText().length() >= characterLimit) {
                         setForeground(overflowForeground);
                     } else {
-                        setForeground(defaultForeground);
+                        updateColors();
                     }
                 }
             });
@@ -107,5 +113,43 @@ public class JTextField4j extends JTextField {
             this.characterLimit = limit;
         }
     }
+    
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        updateColors();
+    }
+
+    @Override
+    public void setEditable(boolean editable) {
+        super.setEditable(editable);
+        updateColors();
+    }
+    
+    @Override
+    public void updateUI() {
+        super.updateUI();
+        setDisabledTextColor(Common.color_textfield_foreground_disabled);
+        updateColors();
+    }
+
+    private void updateColors() {
+        if (!isEnabled()) {
+            setBackground(Common.color_textfield_background_disabled);
+            setForeground(Common.color_textfield_foreground_disabled);
+        } else if (!isEditable()) {
+            setBackground(Common.color_textfield_background_disabled);
+            setForeground(Common.color_textfield_foreground_disabled);
+        } else if (hasFocus){
+            setBackground(Common.color_textfield_background_focus_color);
+            setForeground(Common.color_textfield_foreground_focus_color);
+        } else
+        {
+            setBackground(Common.color_textfield_background_nofocus_color);
+            setForeground(Common.color_textfield_forground_nofocus_color);	
+        }
+        
+    }
+    
 }
 

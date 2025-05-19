@@ -704,6 +704,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					expiryDate = new JDateControl();
+					expiryDate.setDisplayMode(JDateControl.mode_disable_visible);
 					expiryDate.setBounds(835, 58, 128, 22);
 					panel_Pallet.add(expiryDate);
 					expiryDate.setEnabled(false);
@@ -719,6 +720,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					productionDate = new JDateControl();
+					productionDate.setDisplayMode(JDateControl.mode_disable_visible);
 					productionDate.setEnabled(false);
 					productionDate.setBounds(579, 58, 128, 22);
 					panel_Pallet.add(productionDate);
@@ -951,6 +953,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				panel_Pallet_Extension.add(lbl_First_Case_Time);
 
 				firstCaseTime = new JDateControl();
+				firstCaseTime.setDisplayMode(JDateControl.mode_disable_visible);
 				firstCaseTime.addChangeListener(new ChangeListener()
 				{
 					public void stateChanged(ChangeEvent e)
@@ -973,6 +976,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				panel_Pallet_Extension.add(lbl_Last_Case_Time);
 
 				lastCaseTime = new JDateControl();
+				lastCaseTime.setDisplayMode(JDateControl.mode_disable_visible);
 				lastCaseTime.addChangeListener(new ChangeListener()
 				{
 					public void stateChanged(ChangeEvent e)

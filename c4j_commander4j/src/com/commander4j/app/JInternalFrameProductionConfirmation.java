@@ -240,7 +240,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 			
 			if (jTextFieldProcessOrderStatus.getText().equals("Ready") || (jTextFieldProcessOrderStatus.getText().equals("Running")))
 			{
-				jTextFieldProcessOrderStatus.setBackground(Color.WHITE);
+				jTextFieldProcessOrderStatus.setBackground(Common.color_textfield_background_disabled);
 			}
 			else
 			{
@@ -270,7 +270,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 		jButtonUnConfirm.setEnabled(false);
 		
 		jTextFieldProcessOrderStatus.setText("");
-		jTextFieldProcessOrderStatus.setBackground(Color.WHITE);
+		jTextFieldProcessOrderStatus.setBackground(Common.color_textfield_background_disabled);
 		jTextFieldProcessOrderDescription.setText("");
 		jTextFieldMaterialDescription.setText("");
 		jTextFieldLocation.setText("");

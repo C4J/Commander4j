@@ -222,7 +222,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				timer = null;
 			}
 		});
-		
+
 		DOMEditable = Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_MANUAL_EDIT_DOM");
 		ExpiryEditable = Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_MANUAL_EDIT_EXPIRY");
 
@@ -230,10 +230,10 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		clearFields();
 
 		timer.start();
-		
+
 		jTextFieldBatchPrefix.setText("");
 		jTextFieldBatchSuffix.setText("");
-				
+
 		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
 
 		calcBBEBatch();
@@ -247,20 +247,19 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			{
 				jTextFieldProcessOrder.requestFocus();
 				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
-				
 
 				textField4jResource.setText("");
 				textField4jResource.setEnabled(false);
 				textField4jResource.setEditable(false);
 				textField4jResource.setBounds(588, 49, 148, 22);
 				jPanelProcessOrder.add(textField4jResource);
-				
+
 				textField4jCustomer.setText("");
 				textField4jCustomer.setEnabled(false);
 				textField4jCustomer.setEditable(false);
 				textField4jCustomer.setBounds(587, 77, 148, 22);
 				jPanelProcessOrder.add(textField4jCustomer);
-				
+
 				JLabel4j_std jLabelRecipeVersion = new JLabel4j_std();
 				jLabelRecipeVersion.setText("/");
 				jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -271,7 +270,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		});
 
 		populatePrinterList(JPrint.getDefaultPrinterQueueName());
-		
+
 		procOrder = JUtility.replaceNullStringwithBlank(procOrder);
 
 		processOrderChanged(procOrder);
@@ -296,7 +295,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		if (JPrint.getNumberofPrinters() == 0)
 		{
 			comboBoxPrintQueue.setEnabled(false);
-		} else
+		}
+		else
 		{
 			comboBoxPrintQueue.setEnabled(true);
 		}
@@ -318,7 +318,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jCheckBoxAutoPreview.setSelected(false);
 			jCheckBoxAutoPreview.setEnabled(false);
 
-		} else
+		}
+		else
 		{
 			jCheckBoxAutoPreview.setSelected(true);
 			jCheckBoxAutoPreview.setEnabled(true);
@@ -340,7 +341,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			try
 			{
 				jSpinnerDueDate.setDate(processorder.getDueDate());
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 			}
 
@@ -373,13 +375,14 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			valid = true;
 
 			jTextFieldBatchSuffix.setText(processorderResource.getBatchSuffixForResource(processorder.getRequiredResource()));
-			
+
 			batchFormat = materialbatch.getBatchFormatString(processorder);
 			batchValidate = materialbatch.getBatchValidationString(processorder);
-			
+
 			calcBBEBatch();
 
-		} else
+		}
+		else
 		{
 			valid = false;
 		}
@@ -398,7 +401,15 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiryOverride.isSelected()));
 			enableField(jTextFieldBatchPrefix, jCheckBoxBatchPrefixOverride.isSelected());
 			jTextFieldBatchSuffix.setEnabled(true);
-		} else
+			
+
+			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_visible);
+					
+			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
+			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_visible);
+
+		}
+		else
 		{
 
 			jButtonPrint.setEnabled(false);
@@ -417,6 +428,11 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jTextFieldBatchSuffix.setEnabled(false);
 			jCheckBoxBatchPrefixOverride.setSelected(false);
 			jCheckBoxBatchPrefixOverride.setEnabled(false);
+			
+			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_not_visible);
+
+			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_not_visible);
+			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_not_visible);
 		}
 		checkFieldColours();
 	}
@@ -426,7 +442,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		if (allowed == true)
 		{
 			field.setEnabled(true);
-		} else
+		}
+		else
 		{
 			field.setEnabled(false);
 		}
@@ -501,28 +518,33 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 							try
 							{
 								jSpinnerExpiryDate.setDate(materialbatch.getExpiryDate());
-							} catch (Exception e)
+							}
+							catch (Exception e)
 							{
 							}
-						} else
+						}
+						else
 						{
 							Date de = jSpinnerProductionDate.getDate();
 
 							try
 							{
 								jSpinnerExpiryDate.setDate(material.calcBBE(de, material.getShelfLife(), material.getShelfLifeUom(), material.getShelfLifeRule()));
-							} catch (Exception e)
+							}
+							catch (Exception e)
 							{
 							}
 						}
-					} else
+					}
+					else
 					{
 						Date de = jSpinnerProductionDate.getDate();
 
 						try
 						{
 							jSpinnerExpiryDate.setDate(material.calcBBE(de, material.getShelfLife(), material.getShelfLifeUom(), material.getShelfLifeRule()));
-						} catch (Exception e)
+						}
+						catch (Exception e)
 						{
 						}
 					}
@@ -530,7 +552,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			}
 
 			jSpinnerExpiryDate.setDate(material.getRoundedExpiryDate(jSpinnerExpiryDate.getDate()));
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -552,10 +575,10 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		labelData.setProcessOrder(processorder.getProcessOrder());
 		labelData.setRequiredResource(processorder.getRequiredResource());
 		labelData.setLocationID(processorder.getLocation());
-		//labelData.setProdQuantity(jFormattedTextFieldRequiredUOMQuantity.getQuantity());
-		labelData.setProdQuantity(jFormattedTextFieldBaseUOMQuantity.getQuantity());		
+		// labelData.setProdQuantity(jFormattedTextFieldRequiredUOMQuantity.getQuantity());
+		labelData.setProdQuantity(jFormattedTextFieldBaseUOMQuantity.getQuantity());
 		labelData.setProdUom(jTextFieldRequiredUom.getText());
-		//labelData.setBaseQuantity(jFormattedTextFieldBaseUOMQuantity.getQuantity());
+		// labelData.setBaseQuantity(jFormattedTextFieldBaseUOMQuantity.getQuantity());
 		labelData.setBaseQuantity(jFormattedTextFieldRequiredUOMQuantity.getQuantity());
 		labelData.setBaseUom(jTextFieldBaseUom.getText());
 		labelData.setDateofManufacture(JUtility.getTimestampFromDate(jSpinnerProductionDate.getDate()));
@@ -596,7 +619,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				if (JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Quantity_Confirm"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16) == JOptionPane.YES_OPTION)
 				{
 					confirmQuantity = true;
-				} else
+				}
+				else
 				{
 					confirmQuantity = false;
 				}
@@ -611,7 +635,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			String batchNumber = jTextFieldBatchPrefix.getText() + jTextFieldBatchSuffix.getText();
 			Timestamp expiryDate = JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate());
 
-			if (materialbatch.autoCreateMaterialBatch(material, batchNumber,batchValidate, expiryDate, ""))
+			if (materialbatch.autoCreateMaterialBatch(material, batchNumber, batchValidate, expiryDate, ""))
 			{
 
 				String key = createLabelData(noOfLabels);
@@ -631,7 +655,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 					JLaunchMenu.runDialog("FRM_LABEL_DATA_ASSIGN", key);
 				}
 
-			} else
+			}
+			else
 			{
 				JUtility.errorBeep();
 				JOptionPane.showMessageDialog(Common.mainForm, materialbatch.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
@@ -910,7 +935,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			{
 				jSpinnerProductionDate.setDate(JUtility.getSQLDate());
 				jSpinnerProductionDate.setEnabled(getProductionDateManualEditStatus(false));
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 			}
 
@@ -985,6 +1011,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jTextFieldBatchPrefix.setBounds(176, 85, 108, 22);
 			jTextFieldBatchPrefix.setEnabled(false);
 			jSpinnerExpiryDate = new JDateControl();
+			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
 			jSpinnerExpiryDate.addFocusListener(new FocusAdapter()
 			{
 				@Override
@@ -1197,7 +1224,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			label4j_std_2.setBounds(455, 27, 63, 22);
 			jPanelLabel.add(label4j_std_2);
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -1206,30 +1234,30 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 	private boolean getProductionDateManualEditStatus(boolean requestedStatus)
 	{
 		boolean result = DOMEditable;
-		
+
 		if (DOMEditable)
 		{
 			result = requestedStatus;
 		}
-		
+
 		return result;
 	}
-	
+
 	private boolean getExpiryDateManualEditStatus(boolean requestedStatus)
 	{
 		boolean result = ExpiryEditable;
-		
+
 		if (ExpiryEditable)
 		{
 			result = requestedStatus;
 		}
-		
+
 		return result;
-	}	
-	
+	}
+
 	private void checkFieldColours()
 	{
-		Color background = Color.WHITE;
+		Color background = Common.color_app_window;
 
 		try
 		{
@@ -1237,8 +1265,9 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			{
 				if (jTextFieldProcessOrderStatus.getText().equals("Ready") || (jTextFieldProcessOrderStatus.getText().equals("Running")))
 				{
-					jTextFieldProcessOrderStatus.setBackground(Color.WHITE);
-				} else
+					jTextFieldProcessOrderStatus.setBackground(Common.color_app_window);
+				}
+				else
 				{
 					jTextFieldProcessOrderStatus.setBackground(Color.RED);
 				}
@@ -1247,7 +1276,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 					background = Color.YELLOW;
 				}
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			background = Color.YELLOW;
 		}
@@ -1255,7 +1285,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		try
 		{
 			jTextFieldBaseEAN.setBackground(background);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -1269,7 +1300,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 					background = Color.YELLOW;
 				}
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			background = Color.YELLOW;
 		}
@@ -1277,7 +1309,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		try
 		{
 			jTextFieldRequiredEAN.setBackground(background);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -1296,12 +1329,14 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				if (jCheckBoxDOMOverride.isSelected() == false)
 				{
 					jSpinnerProductionDate.setDate(d);
-				} else
+				}
+				else
 				{
 					calcBBEBatch();
 				}
 
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 			}
 		}

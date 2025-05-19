@@ -207,6 +207,8 @@ public class Common
 	public final static Color color_textfield_forground_nofocus_color = Color.BLACK;
 	public final static Color color_textfield_background_focus_color = new Color(255, 255, 200);
 	public final static Color color_textfield_background_nofocus_color = Color.WHITE;
+	public final static Color color_textfield_background_disabled = new Color(241, 241, 241);
+	public final static Color color_textfield_foreground_disabled = Color.BLUE;
 	public final static Color color_text_maxsize_color = Color.RED;
 	public final static Color color_list_assigned = new Color(233, 255, 233);
 	public final static Color color_list_unassigned = new Color(255, 240, 255);

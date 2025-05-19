@@ -1101,7 +1101,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 				}
 
 				{
-					expiryFrom.setBounds(157, 13, 125, 25);
+					expiryFrom.setBounds(157, 13, 125, 22);
 					expiryFrom.setEnabled(false);
 					jDesktopPane1.add(expiryFrom);
 				}

@@ -243,6 +243,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE FREQUENCY", "15", "WEIGHT CHECK FREQUENCY MINS");
 		lSampleFrequency = Integer.valueOf(temp);
+		fld_SampleFrequency.setEnabled(false);
 		fld_SampleFrequency.setText(String.valueOf(lSampleFrequency));
 
 		temp = ctrl.getKeyValueWithDefault("WEIGHT GRAPH MAX PLOTS", "40", "WEIGHT GRAPH MAX PLOTS");
@@ -258,6 +259,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		fld_Workstation.setText(workstation);
 
 		updateWorkstationInfo(workstation, true);
+		fld_SampleSize.setEnabled(false);
 		fld_SampleSize.setText(String.valueOf(lSampleSize));
 		
 		updateSamplePoint("", true);
@@ -792,6 +794,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_Process_Order_Status.setText("");
 				fld_Process_Order_Status.setBounds(344, 37, 93, 22);
 				jDesktopPane1.add(fld_Process_Order_Status);
+				fld_Nominal_Weight.setEnabled(false);
 				fld_Nominal_Weight.setEditable(false);
 
 				fld_Nominal_Weight.setVerifyInputWhenFocusTarget(false);
@@ -806,6 +809,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_Nominal_Weight_UOM.setCaretPosition(0);
 				fld_Nominal_Weight_UOM.setBounds(668, 69, 50, 22);
 				jDesktopPane1.add(fld_Nominal_Weight_UOM);
+				fld_Tare_Weight.setEnabled(false);
 				fld_Tare_Weight.setEditable(false);
 
 				fld_Tare_Weight.setVerifyInputWhenFocusTarget(false);
@@ -884,23 +888,27 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				lbl_Standard_Deviation.setHorizontalAlignment(SwingConstants.RIGHT);
 				lbl_Standard_Deviation.setBounds(786, 537, 126, 22);
 				jDesktopPane1.add(lbl_Standard_Deviation);
+				fld_T1_Lower_Limit.setEnabled(false);
 
 				fld_T1_Lower_Limit.setVerifyInputWhenFocusTarget(false);
 				fld_T1_Lower_Limit.setEditable(false);
 				fld_T1_Lower_Limit.setBounds(583, 101, 73, 22);
 				jDesktopPane1.add(fld_T1_Lower_Limit);
+				fld_Mean.setEnabled(false);
 
 				fld_Mean.setVerifyInputWhenFocusTarget(false);
 				fld_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Mean.setEditable(false);
 				fld_Mean.setBounds(921, 510, 73, 22);
 				jDesktopPane1.add(fld_Mean);
+				fld_Batch_Mean.setEnabled(false);
 
 				fld_Batch_Mean.setVerifyInputWhenFocusTarget(false);
 				fld_Batch_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Batch_Mean.setEditable(false);
 				fld_Batch_Mean.setBounds(921, 564, 73, 22);
 				jDesktopPane1.add(fld_Batch_Mean);
+				fld_Standard_Deviation.setEnabled(false);
 
 				fld_Standard_Deviation.setVerifyInputWhenFocusTarget(false);
 				fld_Standard_Deviation.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -914,6 +922,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				lbl_T2_Lower_Limit.setHorizontalAlignment(SwingConstants.RIGHT);
 				lbl_T2_Lower_Limit.setBounds(722, 101, 108, 22);
 				jDesktopPane1.add(lbl_T2_Lower_Limit);
+				fld_T2_Lower_Limit.setEnabled(false);
 
 				fld_T2_Lower_Limit.setVerifyInputWhenFocusTarget(false);
 				fld_T2_Lower_Limit.setEditable(false);
@@ -950,6 +959,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				lbl_TNE.setHorizontalAlignment(SwingConstants.RIGHT);
 				lbl_TNE.setBounds(224, 101, 108, 22);
 				jDesktopPane1.add(lbl_TNE);
+				fld_TNE.setEnabled(false);
 
 				fld_TNE.setVerifyInputWhenFocusTarget(false);
 				fld_TNE.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -969,6 +979,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				{
 					fld_currentDateTime = new JDateControl();
+					fld_currentDateTime.setDisplayMode(JDateControl.mode_disable_visible);
 					jDesktopPane1.add(fld_currentDateTime);
 					fld_currentDateTime.setEnabled(false);
 					fld_currentDateTime.setVisible(false);
@@ -1425,14 +1436,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				if (key.equals("PRODUCT_GROUP"))
 				{
 					fld_Material_Group.setText(data);
-					fld_Material_Group.setBackground(Color.WHITE);
+					fld_Material_Group.setBackground(Common.color_textfield_background_disabled);
 					materialGroup = data;
 				}
 
 				if (key.equals("CONTAINER_CODE"))
 				{
 					fld_Container_Code.setText(data);
-					fld_Container_Code.setBackground(Color.WHITE);
+					fld_Container_Code.setBackground(Common.color_textfield_background_disabled);
 					containerCode = data;
 				}
 			}
@@ -1460,13 +1471,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			if (key.equals("PRODUCT_GROUP"))
 			{
 				fld_Material_Group.setText("");
-				fld_Material_Group.setBackground(Color.WHITE);
+				fld_Material_Group.setBackground(Common.color_textfield_background_disabled);
 			}
 
 			if (key.equals("CONTAINER_CODE"))
 			{
 				fld_Container_Code.setText("");
-				fld_Container_Code.setBackground(Color.WHITE);
+				fld_Container_Code.setBackground(Common.color_textfield_background_disabled);
 			}
 		}
 
@@ -1491,7 +1502,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				result = true;
 				fld_Description.setText(materialdb.getDescription());
-				fld_Material.setBackground(Color.WHITE);
+				fld_Material.setBackground(Common.color_textfield_background_disabled);
 
 			}
 			else
@@ -1505,7 +1516,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		else
 		{
 			result = false;
-			fld_Material.setBackground(Color.WHITE);
+			fld_Material.setBackground(Common.color_textfield_background_disabled);
 			fld_Material.setText("");
 			fld_Description.setText("");
 		}
@@ -1542,13 +1553,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				customerID = orderdb.getCustomerID();
 				status = orderdb.getStatus();
 
-				fld_Process_Order.setBackground(Color.WHITE);
+				//fld_Process_Order.setBackground(Color.WHITE);
 				fld_Process_Order_Status.setText(status);
 				fld_Material.setText(material);
 
 				if (status.equals("Ready") || (status.equals("Running")))
 				{
-					fld_Process_Order_Status.setBackground(Color.WHITE);
+					fld_Process_Order_Status.setBackground(Common.color_textfield_background_disabled);
 				}
 				else
 				{
@@ -1564,13 +1575,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				status = "";
 				fld_Process_Order_Status.setText("");
 				fld_Process_Order.setBackground(Color.YELLOW);
-				fld_Process_Order_Status.setBackground(Color.WHITE);
+				fld_Process_Order_Status.setBackground(Common.color_textfield_background_disabled);
 			}
 		}
 		else
 		{
 			fld_Process_Order_Status.setText("");
-			fld_Process_Order_Status.setBackground(Color.WHITE);
+			fld_Process_Order_Status.setBackground(Common.color_textfield_background_disabled);
 			result = false;
 		}
 		sampleDetailList.clear();
@@ -1626,7 +1637,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 				else
 				{
-					fld_Nominal_Weight.setBackground(Color.WHITE);
+					fld_Nominal_Weight.setBackground(Common.color_textfield_background_disabled);
 				}
 
 				if (nominalUom.equals(""))
@@ -1635,7 +1646,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 				else
 				{
-					fld_Nominal_Weight_UOM.setBackground(Color.WHITE);
+					fld_Nominal_Weight_UOM.setBackground(Common.color_textfield_background_disabled);
 				}
 
 				if (tare.compareTo(zero) == 0)
@@ -1644,7 +1655,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 				else
 				{
-					fld_Tare_Weight.setBackground(Color.WHITE);
+					fld_Tare_Weight.setBackground(Common.color_textfield_background_disabled);
 				}
 
 				if (tarelUom.equals(""))
@@ -1653,7 +1664,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 				else
 				{
-					fld_Tare_Weight_UOM.setBackground(Color.WHITE);
+					fld_Tare_Weight_UOM.setBackground(Common.color_textfield_background_disabled);
 				}
 
 			}
@@ -1684,10 +1695,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			fld_Nominal_Weight_UOM.setText("");
 			fld_Tare_Weight.setText("0.000");
 			fld_Tare_Weight_UOM.setText("");
-			fld_Nominal_Weight.setBackground(Color.WHITE);
-			fld_Nominal_Weight_UOM.setBackground(Color.WHITE);
-			fld_Tare_Weight.setBackground(Color.WHITE);
-			fld_Tare_Weight_UOM.setBackground(Color.WHITE);
+			fld_Nominal_Weight.setBackground(Common.color_textfield_background_disabled);
+			fld_Nominal_Weight_UOM.setBackground(Common.color_textfield_background_disabled);
+			fld_Tare_Weight.setBackground(Common.color_textfield_background_disabled);
+			fld_Tare_Weight_UOM.setBackground(Common.color_textfield_background_disabled);
 		}
 
 		updateTNEInfo(nominal, nominalUom, result);
@@ -1705,7 +1716,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			if (samplePointdb.getProperties(samplePoint))
 			{
 				result = true;
-				fld_SamplePoint.setBackground(Color.WHITE);
+				fld_SamplePoint.setBackground(Common.color_textfield_background_disabled);
 
 			}
 			else
@@ -1718,7 +1729,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		{
 			result = false;
 			fld_SamplePoint.setText("");
-			fld_SamplePoint.setBackground(Color.WHITE);
+			fld_SamplePoint.setBackground(Common.color_textfield_background_disabled);
 		}
 
 		return result;
@@ -1755,7 +1766,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 				else
 				{
-					fld_T1_Lower_Limit.setBackground(Color.WHITE);
+					fld_T1_Lower_Limit.setBackground(Common.color_textfield_background_disabled);
 				}
 
 				if (negt2.compareTo(zero) == 0)
@@ -1764,7 +1775,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 				else
 				{
-					fld_T2_Lower_Limit.setBackground(Color.WHITE);
+					fld_T2_Lower_Limit.setBackground(Common.color_textfield_background_disabled);
 				}
 
 				if (tne.compareTo(zero) == 0)
@@ -1773,7 +1784,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 				else
 				{
-					fld_TNE.setBackground(Color.WHITE);
+					fld_TNE.setBackground(Common.color_textfield_background_disabled);
 				}
 			}
 			else
@@ -1805,9 +1816,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			fld_T2_Lower_Limit.setText("0.000");
 			fld_TNE.setText("0.000");
 
-			fld_T1_Lower_Limit.setBackground(Color.WHITE);
-			fld_T2_Lower_Limit.setBackground(Color.WHITE);
-			fld_TNE.setBackground(Color.WHITE);
+			fld_T1_Lower_Limit.setBackground(Common.color_textfield_background_disabled);
+			fld_T2_Lower_Limit.setBackground(Common.color_textfield_background_disabled);
+			fld_TNE.setBackground(Common.color_textfield_background_disabled);
 		}
 
 		if (fld_SamplePoint.getText().equals(""))
@@ -1864,7 +1875,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		if (result == true)
 		{
-			fld_Workstation.setBackground(Color.WHITE);
+			fld_Workstation.setBackground(Common.color_textfield_background_disabled);
 
 		}
 		else

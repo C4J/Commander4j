@@ -286,7 +286,8 @@ public class JDialogMaterialBatchProperties extends javax.swing.JDialog
 					{
 						dateTimePicker.setEnabled(true);
 					}
-							
+					
+					dateTimePicker.setDisplayMode(JDateControl.mode_disable_visible);
 					jDesktopPane1.add(dateTimePicker);
 				}
 				{

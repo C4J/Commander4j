@@ -36,10 +36,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -78,8 +76,8 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 	private JCheckBox4j chckbxEnabled = new JCheckBox4j("");
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JSpinner4j jSpinnerLimit;
-	private JCheckBox tglbtnLeakingData;
-	private JCheckBox tglbtnNonLeakingData;
+	private JCheckBox4j tglbtnLeakingData;
+	private JCheckBox4j tglbtnNonLeakingData;
 
 	public JInternalFrameSampleDefectTypeProperties()
 	{
@@ -289,7 +287,7 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 					jDesktopPane1.add(jSpinnerLimit);
 				}
 				
-				tglbtnLeakingData = new JCheckBox(lang.get("lbl_Leaking_Code"));
+				tglbtnLeakingData = new JCheckBox4j(lang.get("lbl_Leaking_Code"));
 				tglbtnLeakingData.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						jButtonUpdate.setEnabled(true);
@@ -298,13 +296,13 @@ public class JInternalFrameSampleDefectTypeProperties extends JInternalFrame
 				tglbtnLeakingData.setBounds(477, 138, 246, 22);
 				jDesktopPane1.add(tglbtnLeakingData);
 				
-				tglbtnNonLeakingData = new JCheckBox(lang.get("lbl_Non_Leaking_Code"));
+				tglbtnNonLeakingData = new JCheckBox4j(lang.get("lbl_Non_Leaking_Code"));
 				tglbtnNonLeakingData.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				tglbtnNonLeakingData.setBounds(219, 138, 246, 22);
+				tglbtnNonLeakingData.setBounds(262, 138, 203, 22);
 				jDesktopPane1.add(tglbtnNonLeakingData);
 			}
 		}

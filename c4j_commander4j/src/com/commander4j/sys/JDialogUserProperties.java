@@ -46,7 +46,6 @@ import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
@@ -61,6 +60,7 @@ import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JPasswordField4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
@@ -87,8 +87,8 @@ public class JDialogUserProperties extends JDialog
 	private JTextField4j jTextFieldLastPasswordChange;
 	private JTextField4j jTextFieldLastLogon;
 	private JComboBox4j<String> jComboBoxLanguage;
-	private JPasswordField jPasswordField2;
-	private JPasswordField jPasswordField1;
+	private JPasswordField4j jPasswordField2;
+	private JPasswordField4j jPasswordField1;
 	private JTextField4j jTextFieldComment;
 	private JTextField4j jTextFieldUserID;
 	private JLabel4j_std lbl_Password2;
@@ -193,7 +193,7 @@ public class JDialogUserProperties extends JDialog
 
 		try
 		{
-			lbl_accountExpiryDate.setBounds(201, 335, 128, 22);
+			lbl_accountExpiryDate.setBounds(201, 337, 128, 22);
 			lbl_accountExpiryDate.setDate(user.getAccountExpiryDate());
 		}
 		catch (Exception e)
@@ -251,11 +251,13 @@ public class JDialogUserProperties extends JDialog
 		{
 			calendarButton.setEnabled(true);
 			lbl_accountExpiryDate.setEnabled(true);
+			lbl_accountExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
 		}
 		else
 		{
 			lbl_accountExpiryDate.setEnabled(false);
 			calendarButton.setEnabled(false);
+			lbl_accountExpiryDate.setDisplayMode(JDateControl.mode_disable_not_visible);
 		}
 	}
 
@@ -304,9 +306,9 @@ public class JDialogUserProperties extends JDialog
 			jTextFieldUserID.setBounds(172, 7, 150, 22);
 			jTextFieldComment = new JTextField4j(JDBUser.field_comment);
 			jTextFieldComment.setBounds(172, 34, 217, 22);
-			jPasswordField1 = new JPasswordField(JDBUser.field_password);
+			jPasswordField1 = new JPasswordField4j(JDBUser.field_password);
 			jPasswordField1.setBounds(172, 62, 150, 22);
-			jPasswordField2 = new JPasswordField(JDBUser.field_password);
+			jPasswordField2 = new JPasswordField4j(JDBUser.field_password);
 			jPasswordField2.setBounds(172, 89, 150, 22);
 			jComboBoxLanguage = new JComboBox4j<String>();
 			jComboBoxLanguage.setBounds(172, 116, 69, 22);
@@ -328,6 +330,7 @@ public class JDialogUserProperties extends JDialog
 			lbl_BadPasswords = new JLabel4j_std();
 			lbl_BadPasswords.setBounds(0, 308, 163, 22);
 			jTextFieldBadPasswords = new JTextField4j();
+			jTextFieldBadPasswords.setHorizontalAlignment(SwingConstants.CENTER);
 			jTextFieldBadPasswords.setBounds(172, 308, 30, 22);
 			lbl_ChangeAllowed = new JLabel4j_std();
 			lbl_ChangeAllowed.setBounds(0, 280, 163, 22);
@@ -616,7 +619,7 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1.add(jLabel2_1);
 
 			calendarButton = new JCalendarButton(lbl_accountExpiryDate);
-			calendarButton.setBounds(329, 335, 22, 22);
+			calendarButton.setBounds(329, 337, 22, 22);
 			calendarButton.setEnabled(false);
 			jDesktopPane1.add(calendarButton);
 

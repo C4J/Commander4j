@@ -1170,7 +1170,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 				{
 					jToggleButtonSequence = new JToggleButton4j();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(757, 76, 22, 22);
+					jToggleButtonSequence.setBounds(757, 77, 22, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							setSequence(jToggleButtonSequence.isSelected());

@@ -22,6 +22,7 @@ public class JCheckBox4j extends JCheckBox {
         setBorderPainted(false);
         setContentAreaFilled(false);
         setMargin(new Insets(0, 0, 0, 0));  // Reduce padding
+		setFocusable(false);
 
         addMouseListener(new MouseAdapter() {
             @Override

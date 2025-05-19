@@ -34,9 +34,11 @@ import java.awt.event.FocusEvent;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
-
+import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerModel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
@@ -45,17 +47,18 @@ import com.commander4j.sys.Common;
 public class JDateControl extends JSpinner4j
 {
 
-	/**
-	 * 
-	 */
+	public static int mode_disable_not_visible = 0;
+	public static int mode_disable_visible = 1;
+	
 	private static final long serialVersionUID = 1L;
-    private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
+	private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
 	SpinnerDateModel datemodel;
+	private int displayMode = mode_disable_not_visible;
 
 	public JDateControl()
 	{
 		super();
-		
+
 		setBorder(EMPTY_BORDER);
 		Date today = new Date();
 		datemodel = new SpinnerDateModel(today, null, null, Calendar.MONTH);
@@ -64,28 +67,103 @@ public class JDateControl extends JSpinner4j
 		editor.getTextField().setFont(Common.font_dates);
 		setEditor(editor);
 
-        JFormattedTextField textField = editor.getTextField();
+		JFormattedTextField textField = editor.getTextField();
 
-        textField.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-               textField.setBackground(Common.color_textfield_background_focus_color);
-            }
+		textField.addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusGained(FocusEvent e)
+			{
+				textField.setBackground(Common.color_textfield_background_focus_color);
+			}
 
-            @Override
-            public void focusLost(FocusEvent e) {
-            	 textField.setBackground(Common.color_textfield_background_nofocus_color);
-            }
-        });
+			@Override
+			public void focusLost(FocusEvent e)
+			{
+				textField.setBackground(Common.color_textfield_background_nofocus_color);
+			}
+		});
+
+		applyStyle();
 	}
 
-	public void setBounds(int x, int y, int width, int height)
+	public JDateControl(SpinnerModel model)
 	{
-		width = 128;
-		height = 22;
-		super.setBounds(x, y, width, height);
+		super(model);
+		applyStyle();
 	}
 
+	@Override
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		applyStyle();
+	}
+
+	@Override
+	public void setEditor(JComponent editor)
+	{
+		super.setEditor(editor);
+		applyStyle();
+	}
+
+	public void setEditable(boolean editable)
+	{
+		JTextField tf = getEditorTextField();
+		if (tf != null)
+		{
+			tf.setEditable(editable);
+		}
+		applyStyle();
+	}
+
+	public boolean isEditable()
+	{
+		JTextField tf = getEditorTextField();
+		return tf != null && tf.isEditable();
+	}
+
+	private JTextField getEditorTextField()
+	{
+		if (getEditor() instanceof DefaultEditor de)
+		{
+			return de.getTextField();
+		}
+		return null;
+	}
+
+	private void applyStyle()
+	{
+		JTextField tf = getEditorTextField();
+		if (tf == null)
+			return;
+
+		tf.setDisabledTextColor(getDisplayModeDisabledForgegroundColor());
+
+		if (!isEnabled())
+		{
+			tf.setBackground(Common.color_textfield_background_disabled);
+			tf.setForeground(getDisplayModeDisabledForgegroundColor());
+		}
+		else if (!isEditable())
+		{
+			tf.setBackground(Common.color_textfield_background_disabled);
+			tf.setForeground(getDisplayModeDisabledForgegroundColor());
+		}
+		else
+		{
+			tf.setBackground(Common.color_textfield_background_nofocus_color);
+			tf.setForeground(Common.color_textfield_forground_nofocus_color);
+		}
+	}
+
+	@Override
+	public void updateUI()
+	{
+		super.updateUI();
+		applyStyle();
+	}
+	
 	public Date getDate()
 	{
 		return datemodel.getDate();
@@ -94,6 +172,30 @@ public class JDateControl extends JSpinner4j
 	public void setDate(Date date)
 	{
 		datemodel.setValue(date);
+	}
+	
+	public void setDisplayMode(int mode)
+	{
+		displayMode = mode;
+		applyStyle();
+	}
+	
+	public int getDisplayMode()
+	{
+		return displayMode;
+	}
+	
+	private Color getDisplayModeDisabledForgegroundColor()
+	{
+		Color result = Color.BLACK;
+		
+		if (displayMode == JDateControl.mode_disable_not_visible)
+			result = Common.color_textfield_background_disabled;
+		
+		if (displayMode == JDateControl.mode_disable_visible)
+			result = Common.color_textfield_foreground_disabled;
+		
+		return result;
 	}
 
 }

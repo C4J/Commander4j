@@ -50,6 +50,7 @@ public class JQuantityInput extends JFormattedTextField
 	
 	private void init()
 	{
+        setDisabledTextColor(Common.color_textfield_foreground_disabled);
 		setOpaque(true);
         setBorder(EMPTY_BORDER);
 		setFont(Common.font_input);
@@ -63,6 +64,7 @@ public class JQuantityInput extends JFormattedTextField
 		this.setValue(arg0);
         init();
         initFocusBehavior();
+        updateColors();
 	}
 	
 	public BigDecimal getQuantity()
@@ -106,5 +108,36 @@ public class JQuantityInput extends JFormattedTextField
             }
         });
     }
-		
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        updateColors();
+    }
+
+    @Override
+    public void setEditable(boolean editable) {
+        super.setEditable(editable);
+        updateColors();
+    }
+    
+    @Override
+    public void updateUI() {
+        super.updateUI();
+        setDisabledTextColor(Common.color_textfield_foreground_disabled);
+        updateColors();
+    }
+
+    private void updateColors() {
+        if (!isEnabled()) {
+            setBackground(Common.color_textfield_background_disabled);
+            setForeground(Common.color_textfield_foreground_disabled);
+        } else if (!isEditable()) {
+            setBackground(Common.color_textfield_background_disabled);
+            setForeground(Common.color_textfield_foreground_disabled);
+        } else {
+            setBackground(Common.color_textfield_background_nofocus_color);
+            setForeground(Common.color_textfield_forground_nofocus_color);
+        }
+    }
 }

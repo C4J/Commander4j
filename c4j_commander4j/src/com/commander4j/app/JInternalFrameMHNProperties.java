@@ -1100,6 +1100,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 				jDesktopPane1.add(button);
 
 				dateControlExpected.setBounds(563, 65, 128, 22);
+				dateControlExpected.setDisplayMode(JDateControl.mode_disable_visible);
 				jDesktopPane1.add(dateControlExpected);
 
 				JCalendarButton calendarButtonExpected = new JCalendarButton(dateControlExpected);

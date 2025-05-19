@@ -53,6 +53,7 @@ public class JButton4j extends JButton
 		setOpaque(true);
 		setBackground(Common.color_button);
 		setContentAreaFilled(true);
+		setFocusable(false);
 
 		// Hover listener
 		addMouseListener(new MouseAdapter()

@@ -520,6 +520,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 
 				{
 					jSpinnerSampleDate = new JDateControl();
+					jSpinnerSampleDate.setDisplayMode(JDateControl.mode_disable_visible);
 					jDesktopPane1.add(jSpinnerSampleDate);
 					jSpinnerSampleDate.setBounds(163, 45, 128, 22);
 					jSpinnerSampleDate.getEditor().setPreferredSize(new java.awt.Dimension(86, 32));

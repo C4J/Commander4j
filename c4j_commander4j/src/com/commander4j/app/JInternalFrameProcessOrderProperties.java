@@ -412,6 +412,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 				}
 				{
 					jSpinnerDueDate = new JDateControl();
+					jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_visible);
 					jDesktopPane1.add(jSpinnerDueDate);
 					jSpinnerDueDate.setBounds(163, 225, 128, 22);
 					jSpinnerDueDate.getEditor().setPreferredSize(new java.awt.Dimension(86, 32));

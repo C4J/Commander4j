@@ -245,6 +245,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			textFieldStatus.setText(po.getStatus());
 			textFieldResource.setText(po.getRequiredResource());
 			dueDate.setDate(po.getDueDate());
+			dueDate.setDisplayMode(JDateControl.mode_disable_visible);
 			processOrderValid = true;
 
 			if (textFieldStatus.getText().equals("Ready") || (textFieldStatus.getText().equals("Running")))
@@ -362,6 +363,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			textFieldUserData3.setText("");
 			textFieldUserData4.setText("");
 			dueDate.setDate(JUtility.getSQLDate());
+			dueDate.setDisplayMode(JDateControl.mode_disable_not_visible);
 			populateActivityList("");
 			processOrderValid = false;
 		}
@@ -689,6 +691,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(textFieldResource);
 
 		dueDate = new JDateControl();
+		dueDate.setDisplayMode(JDateControl.mode_disable_visible);
 		dueDate.setEnabled(false);
 		dueDate.setBounds(411, 100, 128, 22);
 		dueDate.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
@@ -750,6 +753,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblStatusBar);
 
 		sampleDateTime = new JDateControl();
+		sampleDateTime.setDisplayMode(JDateControl.mode_disable_visible);
 		sampleDateTime.addChangeListener(new ChangeListener()
 		{
 			public void stateChanged(ChangeEvent e)

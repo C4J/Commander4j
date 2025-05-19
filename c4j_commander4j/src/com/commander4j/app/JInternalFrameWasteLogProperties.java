@@ -952,6 +952,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 				}
 				{
 					transactionDate = new JDateControl();
+					transactionDate.setDisplayMode(JDateControl.mode_disable_visible);
 					transactionDate.addChangeListener(new ChangeListener()
 					{
 						public void stateChanged(ChangeEvent e)

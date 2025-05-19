@@ -210,6 +210,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					fld_SSCC = new JTextField4j(JDBPallet.field_sscc);
+					fld_SSCC.setEnabled(false);
 					jDesktopPane1.add(fld_SSCC);
 					fld_SSCC.setEditable(false);
 					fld_SSCC.setBounds(147, 6, 147, 22);
@@ -253,6 +254,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				}
 				{
 					fld_UOM = new JTextField4j();
+					fld_UOM.setEnabled(false);
 					fld_UOM.setEditable(false);
 					jDesktopPane1.add(fld_UOM);
 					fld_UOM.setBounds(147, 276, 32, 22);
@@ -281,8 +283,8 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				}
 				{
 					fld_DespatchNo = new JTextField4j(JDBDespatch.field_despatch_no);
+					fld_DespatchNo.setEnabled(false);
 					fld_DespatchNo.setEditable(false);
-					fld_DespatchNo.setFocusCycleRoot(true);
 					fld_DespatchNo.setBounds(147, 438, 119, 22);
 					jDesktopPane1.add(fld_DespatchNo);
 				}
@@ -304,6 +306,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 
 				{
 					fld_BatchStatus = new JTextField4j();
+					fld_BatchStatus.setEnabled(false);
 					fld_BatchStatus.setEditable(false);
 					jDesktopPane1.add(fld_BatchStatus);
 					fld_BatchStatus.setBounds(147, 168, 168, 22);
@@ -508,6 +511,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				}
 				{
 					fld_Layers = new JTextField4j();
+					fld_Layers.setEnabled(false);
 					fld_Layers.setEditable(false);
 					fld_Layers.setBounds(147, 303, 32, 22);
 					jDesktopPane1.add(fld_Layers);
@@ -522,6 +526,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				}
 				{
 					fld_EAN = new JTextField4j();
+					fld_EAN.setEnabled(false);
 					fld_EAN.setEditable(false);
 					jDesktopPane1.add(fld_EAN);
 					fld_EAN.setBounds(147, 330, 111, 22);
@@ -536,6 +541,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				}
 				{
 					fld_Variant = new JTextField4j();
+					fld_Variant.setEnabled(false);
 					fld_Variant.setEditable(false);
 					jDesktopPane1.add(fld_Variant);
 					fld_Variant.setBounds(352, 330, 32, 22);
@@ -594,9 +600,9 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				}
 				{
 					fld_DOM = new JDateControl();
+					fld_DOM.setDisplayMode(JDateControl.mode_disable_visible);
 					jDesktopPane1.add(fld_DOM);
 					fld_DOM.setBounds(147, 411, 128, 22);
-					fld_DOM.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROD_DATE"));
 
 				}
 
@@ -625,6 +631,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 
 				{
 					fld_ProcessOrderDescription = new JTextField4j(JDBProcessOrder.field_description);
+					fld_ProcessOrderDescription.setEnabled(false);
 					fld_ProcessOrderDescription.setEditable(false);
 					jDesktopPane1.add(fld_ProcessOrderDescription);
 					fld_ProcessOrderDescription.setBounds(147, 60, 287, 22);
@@ -676,6 +683,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 
 				{
 					fld_BatchExpiry = new JDateControl();
+					fld_BatchExpiry.setDisplayMode(JDateControl.mode_disable_visible);
 					fld_BatchExpiry.addChangeListener(new ChangeListener()
 					{
 						public void stateChanged(ChangeEvent e)
@@ -769,7 +777,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				}
 				{
 					calendarButtonproductionDate = new JCalendarButton(fld_DOM);
-					calendarButtonproductionDate.setBounds(275, 418, 21, 21);
+					calendarButtonproductionDate.setBounds(275, 412, 21, 21);
 					jDesktopPane1.add(calendarButtonproductionDate);
 				}
 				{
@@ -786,6 +794,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lbl_Customer);
 
 					fld_Customer = new JTextField4j(JDBCustomer.field_customer_id);
+					fld_Customer.setEnabled(false);
 					fld_Customer.setEditable(false);
 					fld_Customer.addKeyListener(new KeyAdapter()
 					{
@@ -803,9 +812,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				lbl_Equipment.setBounds(7, 465, 133, 22);
 				lbl_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
 				jDesktopPane1.add(lbl_Equipment);
+				fld_Equipment.setEnabled(false);
+				fld_Equipment.setEditable(false);
 
 				fld_Equipment.setBounds(147, 465, 126, 22);
-				fld_Equipment.setEnabled(false);
 				jDesktopPane1.add(fld_Equipment);
 
 				JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);

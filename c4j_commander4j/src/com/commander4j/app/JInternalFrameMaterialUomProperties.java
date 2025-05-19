@@ -48,11 +48,11 @@ import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialUom;
 import com.commander4j.db.JDBUom;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
-import javax.swing.JCheckBox;
 
 /**
  * The JInternalFrameMaterialUomProperties is the screen for editing a single unit of  measure record for a Material in the APP_MATERIAL_UOM table.
@@ -89,7 +89,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 	private JDBMaterialUom materialuom = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std status = new JLabel4j_std();
-	private JCheckBox chckbxOverride = new JCheckBox("");
+	private JCheckBox4j chckbxOverride = new JCheckBox4j("");
 
 	public JInternalFrameMaterialUomProperties()
 	{
@@ -370,7 +370,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 				});
 				
 
-				chckbxOverride.setBounds(161, 183, 25, 22);
+				chckbxOverride.setBounds(165, 183, 25, 22);
 				jDesktopPane1.add(chckbxOverride);
 			}
 		}

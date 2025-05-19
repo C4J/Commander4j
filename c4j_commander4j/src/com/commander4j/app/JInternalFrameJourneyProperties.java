@@ -384,6 +384,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 					}
 				});
 				dateControlTimeslot.setBounds(174, 126, 128, 22);
+				dateControlTimeslot.setDisplayMode(JDateControl.mode_disable_visible);
 				jDesktopPane1.add(dateControlTimeslot);
 
 				calendarButton = new JCalendarButton(dateControlTimeslot);

@@ -349,6 +349,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			dateControl_DateofManufacture.setEnabled(false);
 			dateControl_DateofManufacture.setBounds(154, 98, 128, 25);
 			dateControl_DateofManufacture.setDate(labdat.getDateofManufacture());
+			dateControl_DateofManufacture.setDisplayMode(JDateControl.mode_disable_visible);
 			jDesktopPane1.add(dateControl_DateofManufacture);
 
 			JDateControl dateControl_ExpiryDate = new JDateControl();
@@ -356,6 +357,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			dateControl_ExpiryDate.setEnabled(false);
 			dateControl_ExpiryDate.setBounds(448, 98, 128, 25);
 			dateControl_ExpiryDate.setDate(labdat.getExpirtDate());
+			dateControl_ExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
 			jDesktopPane1.add(dateControl_ExpiryDate);
 
 			JTextField4j textField4j_Description = new JTextField4j();

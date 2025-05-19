@@ -1601,7 +1601,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 
 				{
 					productionDateFrom = new JDateControl();
-					productionDateFrom.setBounds(189, 9, 128, 25);
+					productionDateFrom.setBounds(189, 9, 128, 22);
 					productionDateFrom.setEnabled(false);
 					jDesktopPane1.add(productionDateFrom);
 				}
