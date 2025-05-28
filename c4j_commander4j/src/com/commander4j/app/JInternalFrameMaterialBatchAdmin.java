@@ -674,7 +674,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
-					jButtonEdit.setBounds(299, 68, 126, 32);
+					jButtonEdit.setBounds(299, 72, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -689,14 +689,14 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(299, 126, 126, 32);
+					jButtonHelp.setBounds(299, 134, 126, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(299, 155, 126, 32);
+					jButtonClose.setBounds(299, 165, 126, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -893,7 +893,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					});
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(299, 39, 126, 32);
+					jButtonAdd.setBounds(299, 41, 126, 32);
 					jDesktopPane1.add(jButtonAdd);
 				}
 
@@ -918,7 +918,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(299, 97, 126, 32);
+					jButtonExcel.setBounds(299, 103, 126, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 
@@ -931,7 +931,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				{
 					calendarButtonexpiryTo = new JCalendarButton(expiryTo);
 					calendarButtonexpiryTo.setEnabled(false);
-					calendarButtonexpiryTo.setBounds(265, 166, 21, 21);
+					calendarButtonexpiryTo.setBounds(265, 163, 21, 21);
 					jDesktopPane1.add(calendarButtonexpiryTo);
 				}
 				

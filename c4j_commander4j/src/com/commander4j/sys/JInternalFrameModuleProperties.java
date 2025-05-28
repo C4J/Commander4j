@@ -222,6 +222,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					textFieldTranslatedDescripton = new JTextField4j();
+					textFieldTranslatedDescripton.setEnabled(false);
 					textFieldTranslatedDescripton.setEditable(false);
 					textFieldTranslatedDescripton.setFocusCycleRoot(true);
 					textFieldTranslatedDescripton.setCaretPosition(0);
@@ -496,6 +497,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				}
 				{
 					jTextFieldMnemonic = new JTextField4j(JDBModule.field_mneumonic);
+					jTextFieldMnemonic.setEnabled(false);
 					jTextFieldMnemonic.setEditable(false);
 
 					jDesktopPane1.add(jTextFieldMnemonic);
