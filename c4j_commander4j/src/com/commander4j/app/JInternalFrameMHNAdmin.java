@@ -50,6 +50,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -1309,6 +1310,16 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				});
 				buttonResourceLookup.setBounds(214, 105, 21, 22);
 				jDesktopPane1.add(buttonResourceLookup);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldMHN.requestFocus();
+						jTextFieldMHN.setCaretPosition(jTextFieldMHN.getText().length());
+
+					}
+				});
 
 				Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 				Rectangle window = getBounds();

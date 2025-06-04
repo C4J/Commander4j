@@ -51,6 +51,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -778,6 +779,16 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_DELETE"));
 					jDesktopPane1.add(jButtonDelete);
 				}
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldPath.requestFocus();
+						jTextFieldPath.setCaretPosition(jTextFieldPath.getText().length());
+					}
+				});
+				
 			}
 		} catch (Exception e)
 		{

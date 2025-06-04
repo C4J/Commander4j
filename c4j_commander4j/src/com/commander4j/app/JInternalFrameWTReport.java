@@ -447,7 +447,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 						}
 					});
-					btn_SamplePoint_Lookup.setBounds(236, 51, 22, 22);
+					btn_SamplePoint_Lookup.setBounds(238, 51, 22, 22);
 					jDesktopPane1.add(btn_SamplePoint_Lookup);
 				}
 
@@ -813,6 +813,15 @@ public class JInternalFrameWTReport extends JInternalFrame
 				lbl_SamplePointGroup.setHorizontalAlignment(SwingConstants.TRAILING);
 				lbl_SamplePointGroup.setBounds(0, 14, 122, 22);
 				jDesktopPane1.add(lbl_SamplePointGroup);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						fld_Material.requestFocus();
+						fld_Material.setCaretPosition(fld_Material.getText().length());
+					}
+				});
 			}
 		}
 		catch (Exception e)

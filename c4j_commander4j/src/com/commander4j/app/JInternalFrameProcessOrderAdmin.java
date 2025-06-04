@@ -54,6 +54,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -1830,6 +1831,16 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
 				jLabelRecipeVersion.setBounds(706, 45, 21, 21);
 				jDesktopPane1.add(jLabelRecipeVersion);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldProcessOrder.requestFocus();
+						jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
+
+					}
+				});
 			}
 		}
 		catch (Exception e)

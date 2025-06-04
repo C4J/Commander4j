@@ -55,6 +55,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -940,6 +941,15 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
 			label4j_std.setBounds(5, 77, 115, 22);
 			jDesktopPane1.add(label4j_std);
+			
+			SwingUtilities.invokeLater(new Runnable()
+			{
+				public void run()
+				{
+					textFieldMessageRef.requestFocus();
+					textFieldMessageRef.setCaretPosition(textFieldMessageRef.getText().length());
+				}
+			});
 		}
 		catch (Exception e)
 		{

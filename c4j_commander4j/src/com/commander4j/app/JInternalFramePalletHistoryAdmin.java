@@ -53,6 +53,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -1653,6 +1654,16 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				textField4j_MHN = new JTextField4j(JDBMHN.field_mhn_number);
 				textField4j_MHN.setBounds(134, 143, 127, 22);
 				jDesktopPane1.add(textField4j_MHN);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldMaterial.requestFocus();
+						jTextFieldMaterial.setCaretPosition(jTextFieldMaterial.getText().length());
+
+					}
+				});
 			}
 		}
 		catch (Exception e)

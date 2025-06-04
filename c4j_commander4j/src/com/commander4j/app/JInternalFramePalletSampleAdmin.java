@@ -52,6 +52,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -1900,6 +1901,15 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				calendarButtonsampleDateTo.setEnabled(false);
 				calendarButtonsampleDateTo.setBounds(954, 9, 21, 21);
 				jDesktopPane1.add(calendarButtonsampleDateTo);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldLocationID.requestFocus();
+						jTextFieldLocationID.setCaretPosition(jTextFieldLocationID.getText().length());
+					}
+				});
 			}
 		}
 		catch (Exception e)

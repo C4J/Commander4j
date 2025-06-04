@@ -51,6 +51,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -1321,6 +1322,16 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				checkBox4j_Enabled.setBackground(Color.WHITE);
 				checkBox4j_Enabled.setBounds(758, 111, 21, 21);
 				jDesktopPane1.add(checkBox4j_Enabled);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldMaterial.requestFocus();
+						jTextFieldMaterial.setCaretPosition(jTextFieldMaterial.getText().length());
+
+					}
+				});
 
 			}
 		} catch (Exception e)

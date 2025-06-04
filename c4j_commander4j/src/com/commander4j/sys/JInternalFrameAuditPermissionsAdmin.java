@@ -50,6 +50,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -859,6 +860,15 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
 					jDesktopPane1.add(jButtonClear);
 				}
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldUserID.requestFocus();
+						jTextFieldUserID.setCaretPosition(jTextFieldUserID.getText().length());
+					}
+				});
 				
 			}
 		}

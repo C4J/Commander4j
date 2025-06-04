@@ -51,6 +51,7 @@ import javax.swing.JScrollPane;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -1220,6 +1221,16 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 				chkboxLocationEnabled.setSelected(true);
 				chkboxLocationEnabled.setBounds(881, 44, 109, 22);
 				jDesktopPane1.add(chkboxLocationEnabled);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldLocationID.requestFocus();
+						jTextFieldLocationID.setCaretPosition(jTextFieldLocationID.getText().length());
+
+					}
+				});
 			}
 		}
 		catch (Exception e)

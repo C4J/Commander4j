@@ -53,6 +53,7 @@ import javax.swing.JScrollPane;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -1043,6 +1044,15 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 				jSpinnerLimit.setValue(1000);
 				jSpinnerLimit.setBounds(691, 78, 68, 22);
 				jDesktopPane1.add(jSpinnerLimit);
+				
+				SwingUtilities.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						jTextFieldBomID.requestFocus();
+						jTextFieldBomID.setCaretPosition(jTextFieldBomID.getText().length());
+					}
+				});
 
 			}
 		}

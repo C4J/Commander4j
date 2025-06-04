@@ -244,8 +244,8 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		{
 			public void run()
 			{
-				jTextFieldMaterial.requestFocus();
-				jTextFieldMaterial.setCaretPosition(jTextFieldMaterial.getText().length());
+				jTextFieldProcessOrder.requestFocus();
+				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
 			}
 		});
 
