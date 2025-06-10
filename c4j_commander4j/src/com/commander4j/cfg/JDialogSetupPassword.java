@@ -1,40 +1,13 @@
 package com.commander4j.cfg;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JDialogSetupPassword.java
- * 
- * Package Name : com.commander4j.cfg
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Toolkit;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -50,7 +23,6 @@ import com.commander4j.util.JUtility;
 
 public class JDialogSetupPassword extends JDialog
 {
-
 
 	private static final long serialVersionUID = 1;
 
@@ -77,10 +49,12 @@ public class JDialogSetupPassword extends JDialog
 		btn_close.setBounds(142, 52, 104, 32);
 		btn_close.setText("Cancel");
 		getContentPane().add(btn_close);
+		
 		btn_login = new JButton4j("Login", Common.icon_ok_16x16);
 		btn_login.setBounds(19, 52, 104, 32);
 		btn_login.setText("OK");
 		getContentPane().add(btn_login);
+		
 		btn_login.addActionListener(buttonhandler);
 		btn_close.addActionListener(buttonhandler);
 
@@ -89,6 +63,7 @@ public class JDialogSetupPassword extends JDialog
 		fld_password = new JPasswordField(10);
 		fld_password.setBounds(110, 18, 150, 22);
 		getContentPane().add(fld_password);
+		
 		AbstractDocument doc2 = (AbstractDocument) fld_password.getDocument();
 		doc2.setDocumentFilter(new JFixedSizeFilter(JDBUser.field_password));
 
@@ -97,14 +72,20 @@ public class JDialogSetupPassword extends JDialog
 		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 		getContentPane().add(lblPassword);
 
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		setResizable(false);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		this.setSize(284, 128);
-		setLocation((screenSize.width - screenWidth) / 2, (screenSize.height - screenHeight) / 2);
-		setResizable(false);
-		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setVisible(true);
+		
+		GraphicsDevice gd = JUtility.getGraphicsDevice();
+		
+		GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
+		Rectangle screenBounds = gc.getBounds();
+
+		setBounds(screenBounds.x + ((screenBounds.width - JDialogSetupPassword.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JDialogSetupPassword.this.getHeight()) / 2), JDialogSetupPassword.this.getWidth(), JDialogSetupPassword.this.getHeight());
+
+		setVisible(true);
 	}
 	
 	private class ButtonHandler implements ActionListener

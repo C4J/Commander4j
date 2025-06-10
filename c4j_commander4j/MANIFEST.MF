@@ -42,7 +42,7 @@ Class-Path: c4jMiddleware.jar
  lib/cups4j-0.7.9.jar 
  lib/curvesapi-1.08.jar 
  lib/db/mssql-jdbc-12.10.0.jre11.jar 
- lib/db/mysql-connector-j-9.2.0.jar 
+ lib/db/mysql-connector-j-9.3.0.jar 
  lib/db/ojdbc17.jar 
  lib/ecj-3.21.0.jar 
  lib/fastexcel-reader-0.18.4.jar 

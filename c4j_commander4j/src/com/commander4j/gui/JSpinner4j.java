@@ -30,6 +30,14 @@ public class JSpinner4j extends JSpinner
 		applyStyle();
 	}
 
+	public JSpinner4j(NumberEditor ne)
+	{
+		super();
+		setBorder(EMPTY_BORDER);
+		applyFocusHighlight();
+		applyStyle();
+	}
+	
 	public JSpinner4j(SpinnerModel model)
 	{
 		super(model);
@@ -66,18 +74,21 @@ public class JSpinner4j extends JSpinner
 		});
 	}
 	
+
 	@Override
 	public void setEnabled(boolean enabled)
 	{
 		super.setEnabled(enabled);
-		applyStyle();
+		setBorder(EMPTY_BORDER);
+		applyFocusHighlight();
 	}
 
 	@Override
 	public void setEditor(JComponent editor)
 	{
 		super.setEditor(editor);
-		applyStyle();
+		setBorder(EMPTY_BORDER);
+		applyFocusHighlight();
 	}
 
 	public void setEditable(boolean editable)
@@ -87,7 +98,8 @@ public class JSpinner4j extends JSpinner
 		{
 			tf.setEditable(editable);
 		}
-		applyStyle();
+		setBorder(EMPTY_BORDER);
+		applyFocusHighlight();
 	}
 
 	public boolean isEditable()

@@ -268,6 +268,22 @@ public class JXMLHost
 				Element jdbcDatabaseIntegratedSecurity = (Element) document.createElement("jdbcDatabaseIntegratedSecurity");
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseIntegratedSecurityEnable().trim());
 				jdbcDatabaseIntegratedSecurity.appendChild(text);
+				
+				Element jdbcDatabaseLoginTimeoutEnabled = (Element) document.createElement("jdbcDatabaseLoginTimeoutEnabled");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseLoginTimeoutEnabled().trim());
+				jdbcDatabaseLoginTimeoutEnabled.appendChild(text);
+				
+				Element jdbcDatabaseLoginTimeout = (Element) document.createElement("jdbcDatabaseLoginTimeout");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseLoginTimeout().trim());
+				jdbcDatabaseLoginTimeout.appendChild(text);
+				
+				Element jdbcDatabaseSocketTimeoutEnabled = (Element) document.createElement("jdbcDatabaseSocketTimeoutEnabled");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseSocketTimeoutEnabled().trim());
+				jdbcDatabaseSocketTimeoutEnabled.appendChild(text);
+				
+				Element jdbcDatabaseSocketTimeout = (Element) document.createElement("jdbcDatabaseSocketTimeout");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseSocketTimeout().trim());
+				jdbcDatabaseSocketTimeout.appendChild(text);
 
 				Element jdbcDatabaseTrustServerCertificate = (Element) document.createElement("jdbcDatabaseTrustServerCertificate");
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseTrustServerCertificateEnable().trim());
@@ -283,6 +299,10 @@ public class JXMLHost
 				DatabaseParameters.appendChild(jdbcDatabaseEncrypt);
 				DatabaseParameters.appendChild(jdbcDatabaseIntegratedSecurity);
 				DatabaseParameters.appendChild(jdbcDatabaseTrustServerCertificate);
+				DatabaseParameters.appendChild(jdbcDatabaseLoginTimeoutEnabled);
+				DatabaseParameters.appendChild(jdbcDatabaseLoginTimeout);
+				DatabaseParameters.appendChild(jdbcDatabaseSocketTimeoutEnabled);
+				DatabaseParameters.appendChild(jdbcDatabaseSocketTimeout);
 
 				site.appendChild(enabled);
 				site.appendChild(uniqueid);
@@ -372,6 +392,10 @@ public class JXMLHost
 		String singleInstancePort = "";
 		String jdbcTrustServerCertificate = "";
 		String jdbcIntegratedSecurity = "";
+		String jdbcLoginTimeoutEnabled = "";
+		String jdbcSocketTimeoutEnabled = "";
+		String jdbcLoginTimeout = "";
+		String jdbcSocketTimeout = "";
 		String jdbcEncrypt = "";
 
 		LinkedList<JHost> hostList = new LinkedList<JHost>();
@@ -501,6 +525,10 @@ public class JXMLHost
 				jdbcTrustServerCertificate = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseTrustServerCertificate").trim();
 				jdbcIntegratedSecurity = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseIntegratedSecurity").trim();
 				jdbcEncrypt = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseEncrypt").trim();
+				jdbcLoginTimeoutEnabled = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseLoginTimeoutEnabled").trim();
+				jdbcSocketTimeoutEnabled = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseSocketTimeoutEnabled").trim();
+				jdbcLoginTimeout = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseLoginTimeout").trim();
+				jdbcSocketTimeout = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseSocketTimeout").trim();
 
 				sitejdbcConnectString = jdbcConnectString;
 				if (parse)
@@ -535,6 +563,11 @@ public class JXMLHost
 				host.getDatabaseParameters().setjdbcDatabaseEncrypt(jdbcEncrypt);
 				host.getDatabaseParameters().setjdbcDatabaseTrustServerCertificate(jdbcTrustServerCertificate);
 				host.getDatabaseParameters().setjdbcDatabaseIntegratedSecurity(jdbcIntegratedSecurity);
+				host.getDatabaseParameters().setjdbcDatabaseLoginTimeoutEnabled(jdbcLoginTimeoutEnabled);
+				host.getDatabaseParameters().setjdbcDatabaseSocketTimeoutEnabled(jdbcSocketTimeoutEnabled);
+				
+				host.getDatabaseParameters().setjdbcDatabaseLoginTimeout(jdbcLoginTimeout);
+				host.getDatabaseParameters().setjdbcDatabaseSocketTimeout(jdbcSocketTimeout);
 
 				hostList.addLast(host);
 
