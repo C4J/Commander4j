@@ -65,6 +65,8 @@ import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -1231,7 +1233,24 @@ public class JFrameHostAdmin extends JFrame
 			jSpinnerLoginTimeout.setBounds(417, 342, 68, 22);
 			jSpinnerLoginTimeout.setValue(30);
 			jSpinnerLoginTimeout.getEditor().setSize(45, 21);
+			jSpinnerLoginTimeout.getEditor().addKeyListener(new KeyAdapter() {
+				
+				 @Override
+				    public void keyReleased(KeyEvent e) {
+					 jTextFieldKeyTyped();
+				 }
+				
+			});
+			
 			jSpinnerLoginTimeout.setFocusable(true);
+			jSpinnerLoginTimeout.addChangeListener(new ChangeListener()
+			{
+				public void stateChanged(ChangeEvent evt)
+				{
+					jTextFieldKeyTyped();
+				}
+			});
+			
 			desktopPane.add(jSpinnerLoginTimeout);
 
 			SpinnerNumberModel jSpinnerIntModelSocket = new SpinnerNumberModel();
@@ -1246,6 +1265,22 @@ public class JFrameHostAdmin extends JFrame
 			jSpinnerSocketTimeout.setBounds(417, 370, 68, 22);
 			jSpinnerSocketTimeout.setValue(30);
 			jSpinnerSocketTimeout.getEditor().setSize(45, 21);
+			jSpinnerSocketTimeout.getEditor().addKeyListener(new KeyAdapter() {
+				
+				 @Override
+				    public void keyReleased(KeyEvent e) {
+					 jTextFieldKeyTyped();
+				 }
+				
+			});
+			
+			jSpinnerSocketTimeout.addChangeListener(new ChangeListener()
+			{
+				public void stateChanged(ChangeEvent evt)
+				{
+					jTextFieldKeyTyped();
+				}
+			});
 			desktopPane.add(jSpinnerSocketTimeout);
 
 			chckbxSocketTimeout.setBounds(390, 370, 27, 22);

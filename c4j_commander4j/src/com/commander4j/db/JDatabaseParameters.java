@@ -530,14 +530,37 @@ public class JDatabaseParameters
 	public String getjdbcDatabaseLoginTimeoutEnabled()
 	{
 		if (jdbcDatabaseLoginTimeoutEnabled.equals(""))
+		{
 			jdbcDatabaseLoginTimeoutEnabled = "N";
+			
+			if (getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
+			{
+				jdbcDatabaseLoginTimeoutEnabled = "Y";
+			}
+			if (getjdbcDriver().equals("com.mysql.cj.jdbc.Driver"))
+			{
+				jdbcDatabaseLoginTimeoutEnabled = "Y";
+			}
+
+		}
 		return jdbcDatabaseLoginTimeoutEnabled;
 	}
 
 	public String getjdbcDatabaseSocketTimeoutEnabled()
 	{
 		if (jdbcDatabaseSocketTimeoutEnabled.equals(""))
+		{
 			jdbcDatabaseSocketTimeoutEnabled = "N";
+			
+			if (getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
+			{
+				jdbcDatabaseSocketTimeoutEnabled = "Y";
+			}
+			if (getjdbcDriver().equals("com.mysql.cj.jdbc.Driver"))
+			{
+				jdbcDatabaseSocketTimeoutEnabled = "Y";
+			}
+		}
 		return jdbcDatabaseSocketTimeoutEnabled;
 	}
 
@@ -562,7 +585,7 @@ public class JDatabaseParameters
 
 	public boolean isjdbcDatabaseLoginTimeoutEnabled()
 	{
-		if (JUtility.replaceNullStringwithBlank(jdbcDatabaseLoginTimeoutEnabled).equals("Y"))
+		if (JUtility.replaceNullStringwithBlank(getjdbcDatabaseLoginTimeoutEnabled()).equals("Y"))
 		{
 			return true;
 		}
@@ -574,7 +597,7 @@ public class JDatabaseParameters
 
 	public boolean isjdbcDatabaseSocketTimeoutEnabled()
 	{
-		if (JUtility.replaceNullStringwithBlank(jdbcDatabaseSocketTimeoutEnabled).equals("Y"))
+		if (JUtility.replaceNullStringwithBlank(getjdbcDatabaseSocketTimeoutEnabled()).equals("Y"))
 		{
 			return true;
 		}

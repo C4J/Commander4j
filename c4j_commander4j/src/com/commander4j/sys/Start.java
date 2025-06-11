@@ -44,6 +44,7 @@ import com.commander4j.util.JPrint;
 import com.commander4j.util.JSplashScreenUtils;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
+import com.commander4j.util.JWait;
 import com.commander4j.watchdog.WatchDog;
 
 public class Start
@@ -116,6 +117,7 @@ public class Start
 	
 					}
 				}
+				JWait.milliSec(500);
 			}
 			
 			watchdog = new WatchDog(Common.singleInstancePort);
