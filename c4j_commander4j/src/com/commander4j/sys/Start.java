@@ -1,5 +1,7 @@
 package com.commander4j.sys;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
@@ -101,20 +103,24 @@ public class Start
 				}
 				catch (Exception e)
 				{
-
+					logger.debug("Waiting for exclusive runtime");
 				}
 				
 				if (exclusive == false)
 				{
 					try
 					{
-						logger.debug("Requesting other Commander4j instances close.");
+						logger.debug("Requesting other AutoLab instances close.");
 						Socket clientSocket = new Socket("localhost", Common.singleInstancePort);
+						
+			            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+			            out.println("shutdown requested");
 						clientSocket.close();
 					}
-					catch (Exception e)
+					catch (IOException e)
 					{
-	
+
 					}
 				}
 				JWait.milliSec(500);

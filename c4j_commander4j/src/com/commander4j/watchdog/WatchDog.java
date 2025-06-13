@@ -1,8 +1,11 @@
 package com.commander4j.watchdog;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 import org.apache.logging.log4j.Logger;
 
@@ -51,6 +54,7 @@ public class WatchDog extends Thread
 			try
 			{
 				serverSocket = new ServerSocket(port, 1);
+             	logger.debug("WatchDog listening on port " + " : " + String.valueOf(port));
 
 				while (true)
 				{
@@ -59,13 +63,54 @@ public class WatchDog extends Thread
 					
 					clientSocket = serverSocket.accept();
 
-					clientSocket.close();
+					String clientIP = clientSocket.getInetAddress().getHostAddress();
 
-					logger.debug("WatchDog shutdown request detected.");
+					try
+					{
+						clientSocket.setSoTimeout(5000);
 
-					System.exit(0);
+						BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+						String message = in.readLine();
 
-					run = false;
+						if ("shutdown requested".equalsIgnoreCase(message))
+						{
+
+
+							if (run)
+							{
+
+								logger.debug("WatchDog shutdown request detected.");
+
+								System.exit(0);
+					
+
+								run = false;
+							}
+						}
+						else
+						{
+							System.out.println("Unexpected message: " + message);
+						}
+					}
+					catch (SocketTimeoutException e)
+					{
+
+					}
+					catch (IOException e)
+					{
+						System.out.println("I/O error with " + clientIP + ": " + e.getMessage());
+					}
+					finally
+					{
+						try
+						{
+							clientSocket.close();
+						}
+						catch (IOException e)
+						{
+							// Ignore
+						}
+					}
 				}
 			}
 			catch (IOException e1)
