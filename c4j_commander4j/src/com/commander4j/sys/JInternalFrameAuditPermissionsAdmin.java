@@ -178,12 +178,12 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 			
 			if (fieldname.equals("Event Action") == true)
 			{
-				jComboBoxEventAction.setSelectedItem(jTable1.getValueAt(row, 4).toString());
+				jComboBoxEventAction.setSelectedItem(jTable1.getValueAt(row, 5).toString());
 			}
 
 			if (fieldname.equals("Target") == true)
 			{
-				jTextFieldTarget.setText(jTable1.getValueAt(row, 5).toString());
+				jTextFieldTarget.setText(jTable1.getValueAt(row, 4).toString());
 			}
 			
 			if (fieldname.equals("Data") == true)
@@ -205,7 +205,9 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 		jTextFieldUserID.setText("");
 		jTextFieldData.setText("");
 		jComboBoxEventAction.setSelectedItem("");
+		jComboBoxEventType.setSelectedItem("");
 		jTextFieldWorkstation.setText("");
+		jTextFieldTarget.setText("");
 		search();
 	}
 

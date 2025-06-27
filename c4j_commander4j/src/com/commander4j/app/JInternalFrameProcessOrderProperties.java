@@ -49,6 +49,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBLanguage;
@@ -82,6 +83,7 @@ import com.commander4j.util.JUtility;
  * @see com.commander4j.app.JInternalFrameProcessOrderLabel JInternalFrameProcessOrderLabel
  */
 public class JInternalFrameProcessOrderProperties extends JInternalFrame {
+	private JCalendarButton calendarButtonDueDate;
 	private JTextField4j jTextFieldMaterialDescription;
 	private JLabel4j_std jLabelMaterialDesc;
 	private JLabel4j_std jLabelQuantity;
@@ -403,6 +405,23 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 					});
 					jDesktopPane1.add(jTextFieldInspectionID);
 				}
+				JButton4j btnInspectionIDLookup = new JButton4j();
+				btnInspectionIDLookup.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent arg0)
+					{
+						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.dlgCriteriaDefault = "";
+						if (JLaunchLookup.qmInspections())
+						{
+							JLaunchLookup.dlgCriteriaDefault = "";
+							jTextFieldInspectionID.setText(JLaunchLookup.dlgResult);
+						}
+					}
+				});
+				btnInspectionIDLookup.setIcon(Common.icon_lookup_16x16);
+				btnInspectionIDLookup.setBounds(292, 417, 21, 22);
+				jDesktopPane1.add(btnInspectionIDLookup);
 				{
 					jLabelDueDate = new JLabel4j_std();
 					jDesktopPane1.add(jLabelDueDate);
@@ -431,6 +450,11 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 							jButtonSave.setEnabled(true);
 						}
 					});
+				}
+				{
+					calendarButtonDueDate = new JCalendarButton(jSpinnerDueDate);
+					calendarButtonDueDate.setBounds(292, 225, 21, 21);
+					jDesktopPane1.add(calendarButtonDueDate);
 				}
 				{
 					jLabelLocation = new JLabel4j_std();

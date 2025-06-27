@@ -155,7 +155,7 @@ public class JFrameHostAdmin extends JFrame
 	private JLabel4j_std jLabelDatabase = new JLabel4j_std();
 	private JLabel4j_std jLabelDriver = new JLabel4j_std();
 	private JTextArea4j jTextFieldConnect = new JTextArea4j();
-	private JComboBox4j<String> jComboBoxjdbcDriver;
+	private JComboBox4j<String> jComboBoxjdbcDriver  = new JComboBox4j<String>();
 	private JLabel4j_std jLabelDatabaseType = new JLabel4j_std();
 	private JTextField4j jTextFieldDescription;
 	private JButton4j jButtonSave = new JButton4j(Common.icon_update_16x16);;
