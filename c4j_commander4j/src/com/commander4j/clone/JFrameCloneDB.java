@@ -449,6 +449,7 @@ public class JFrameCloneDB extends JFrame
 													// //
 													setStatusBarText("Copying table " + table);
 													Long recordsCopied = (long) 0;
+													int autocommit = 0;
 													try
 													{
 														hstFrom.getConnection(sessionFrom).setAutoCommit(false);
@@ -522,6 +523,12 @@ public class JFrameCloneDB extends JFrame
 																hstTo.getConnection(sessionTo).commit();
 																destinationData.clearParameters();
 																recordsCopied++;
+																autocommit ++;
+																if (autocommit == 1000)
+																{
+																	autocommit = 0;
+																	hstTo.getConnection(sessionTo).commit();
+																}
 
 															}
 															catch (Exception ex)
@@ -540,6 +547,7 @@ public class JFrameCloneDB extends JFrame
 														sourceResultset.close();
 														sourceResultset = null;
 														destinationData.close();
+														hstTo.getConnection(sessionTo).commit();
 														destinationData = null;
 														sourceData.close();
 														sourceData = null;

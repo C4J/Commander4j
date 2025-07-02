@@ -172,8 +172,10 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 							jTextFieldEAN.setText(materialuom.getEan());
 							materialuom.setVariant(jTextFieldVariant.getText());
 							jTextFieldVariant.setText(materialuom.getVariant());
-							materialuom.setNumerator((Integer) jSpinnerNumerator.getValue());
-							materialuom.setDenominator((Integer) jSpinnerDenominator.getValue());
+
+							materialuom.setNumerator(Integer.valueOf(jSpinnerNumerator.getValue().toString()));
+							
+							materialuom.setDenominator(Integer.valueOf(jSpinnerDenominator.getValue().toString()));
 							
 							if (chckbxOverride.isSelected())
 							{
