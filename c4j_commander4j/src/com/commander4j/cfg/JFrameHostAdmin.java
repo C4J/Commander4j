@@ -255,9 +255,12 @@ public class JFrameHostAdmin extends JFrame
 
 	private SpinnerNumberModel jSpinnerIntModelSocket = new SpinnerNumberModel();
 	private SpinnerNumberModel jSpinnerIntModelLogin = new SpinnerNumberModel();
-
+	
 	private JSpinner4j jSpinnerLoginTimeout = new JSpinner4j();
 	private JSpinner4j jSpinnerSocketTimeout = new JSpinner4j();
+	
+	private JSpinner4j.NumberEditor nelogin = new JSpinner4j.NumberEditor(jSpinnerLoginTimeout);
+	private JSpinner4j.NumberEditor nesocket = new JSpinner4j.NumberEditor(jSpinnerSocketTimeout);
 
 	private ComboBoxModel<String> jComboBoxjdbcDriverModel = new DefaultComboBoxModel<String>(new String[]
 	{ "", "mySQL", "Oracle", "SQL Server", "Web URL" });
@@ -1279,7 +1282,7 @@ public class JFrameHostAdmin extends JFrame
 			jSpinnerIntModelLogin.setStepSize(1);
 			jSpinnerLoginTimeout.setModel(jSpinnerIntModelLogin);
 
-			JSpinner4j.NumberEditor nelogin = new JSpinner4j.NumberEditor(jSpinnerLoginTimeout);
+
 			jSpinnerLoginTimeout.setEditor(nelogin);
 			jSpinnerLoginTimeout.setEnabled(false);
 			jSpinnerLoginTimeout.setBounds(417, 342, 68, 22);
@@ -1311,7 +1314,6 @@ public class JFrameHostAdmin extends JFrame
 			jSpinnerIntModelSocket.setStepSize(1);
 			jSpinnerSocketTimeout.setModel(jSpinnerIntModelSocket);
 
-			JSpinner4j.NumberEditor nesocket = new JSpinner4j.NumberEditor(jSpinnerSocketTimeout);
 			jSpinnerSocketTimeout.setEditor(nesocket);
 			jSpinnerSocketTimeout.setEnabled(false);
 			jSpinnerSocketTimeout.setBounds(417, 370, 68, 22);
