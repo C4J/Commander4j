@@ -50,7 +50,7 @@ Class-Path: c4jMiddleware.jar
  lib/groovy-sandbox-1.26-jaspersoft-2.jar 
  lib/httpclient-4.5.14.jar 
  lib/httpcore-4.4.16.jar 
- lib/jSerialComm-2.11.0.jar 
+ lib/jSerialComm-2.11.2.jar 
  lib/jackcess-4.0.8.jar 
  lib/jackson-annotations-2.18.2.jar 
  lib/jackson-core-2.18.2.jar 
