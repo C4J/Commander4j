@@ -83,7 +83,7 @@ public class InterfaceThread extends Thread
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(InterfaceThread.class);
 	private boolean abortThread = false;
 	private int backupMessageRetention = 30;
-	
+
 	Runtime runtime = Runtime.getRuntime();
 	int mb = 1024 * 1024;
 
@@ -246,7 +246,7 @@ public class InterfaceThread extends Thread
 									houseKeeping = true;
 								}
 							}
-							
+
 							JWait.oneSec();
 
 						}
@@ -302,117 +302,123 @@ public class InterfaceThread extends Thread
 
 		String[] emailList = (String[]) arrayConverter.convert(String[].class, interfaceEmailAddresses);
 
+		if (emailList.length == 0)
+		{
+			enableEnterfaceStatusEmails = false;
+		}
+
 		String subject = "";
 		String siteName = Common.hostList.getHost(getHostID()).getSiteDescription();
 		ExceptionHTML ept;
 
-		if (enableEnterfaceStatusEmails == true)
+		switch (EmailType)
 		{
+		case emailType_Startup:
 
-			if (emailList.length > 0)
+			if (enableEnterfaceStatusEmails == true)
 			{
 
-				switch (EmailType)
-				{
-				case emailType_Startup:
+				ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
+				ept.clear();
+				ept.addRow(new ExceptionMsg("Site Name", siteName));
+				ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+				ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
+				ept.addRow(new ExceptionMsg("Interface Status", "Interface service has started"));
+				ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
 
-					ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
-					ept.clear();
-					ept.addRow(new ExceptionMsg("Site Name", siteName));
-					ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
-					ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
-					ept.addRow(new ExceptionMsg("Interface Status", "Interface service has started"));
-					ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+				subject = "Commander4j " + JVersion.getProgramVersion() + " Interface startup for [" + siteName + "] on " + JUtility.getClientName();
 
-					subject = "Commander4j " + JVersion.getProgramVersion() + " Interface startup for [" + siteName + "] on " + JUtility.getClientName();
-
-					Common.sendmail.Send(emailList, subject, ept.getHTML(), "");
-
-					break;
-
-				case emailType_Shutdown:
-
-					ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
-					ept.clear();
-					ept.addRow(new ExceptionMsg("Site Name", siteName));
-					ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
-					ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
-					ept.addRow(new ExceptionMsg("Interface Status", "Interface service has stopped"));
-					ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
-
-					subject = "Commander4j " + JVersion.getProgramVersion() + " Interface shutdown for [" + siteName + "] on " + JUtility.getClientName();
-
-					Common.sendmail.Send(emailList, subject, ept.getHTML(), "");
-
-					break;
-
-				case emailType_Housekeeping:
-
-					logger.debug("HOUSEKEEPING START");
-
-					logger.debug("Initiating data archiving....");
-					
-					ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
-					ept.clear();
-					ept.addRow(new ExceptionMsg("Site Name", siteName));
-					ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
-					ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
-					ept.addRow(new ExceptionMsg("Interface Status", "Housekeeping"));
-					ept.addRow(new ExceptionMsg("Scheduled Time", Common.statusReportTime.substring(0, 5)));
-					ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
-					
-					JDBArchive archive = new JDBArchive(getHostID(), getSessionID());
-					archive.runSQLJobList();
-					String archiveStats = archive.reportData();
-					archive = null;
-					logger.debug("Data archiving complete....");
-
-					try
-					{
-						backupMessageRetention = Integer.valueOf(ctrl.getKeyValueWithDefault("INTERFACE BACKUP RETENTION", "30", "NUMBER OF DAYS TO KEEP BACKUP MESSAGES"));
-					}
-					catch (Exception ex)
-					{
-						backupMessageRetention = 30;
-					}
-
-					// Archive old backup files goes here
-					String archivedFiles = "Backup message files removed by auto archive = ";
-					if (backupMessageRetention > 0)
-					{
-						archivedFiles = archivedFiles + String.valueOf(JArchive.archiveBackupFiles(System.getProperty("user.dir") + File.separator + Common.interface_backup_path, backupMessageRetention));
-					}
-					else
-					{
-						archivedFiles = "Auto archive of messages disabled";
-					}
-					
-					archivedFiles = "<p>"+archivedFiles+"</p>";
-
-					String freeSpace = JUtility.diskFree();
-					
-					freeSpace = "<p>"+freeSpace+"</p>";
-
-					String interfaceStats = GenericMessageHeader.getStats();
-					GenericMessageHeader.clearStats();
-
-					String memoryStats = getMemoryStats();
-					
-					Common.sendmail.Send(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(),
-							EmailHTML.header+ept.getHTML() + interfaceStats + archiveStats + memoryStats +archivedFiles+freeSpace+ EmailHTML.footer, "");
-					
-					logger.debug("Interface Garbage Collection.");
-					logger.debug("HOUSEKEEPING END");
-
-					break;
-
-				case emailType_Statistics:
-
-					break;
-
-				}
-
+				Common.sendmail.Send(emailList, subject, ept.getHTML(), "");
 			}
+
+			break;
+
+		case emailType_Shutdown:
+
+			if (enableEnterfaceStatusEmails == true)
+			{
+
+				ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
+				ept.clear();
+				ept.addRow(new ExceptionMsg("Site Name", siteName));
+				ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+				ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
+				ept.addRow(new ExceptionMsg("Interface Status", "Interface service has stopped"));
+				ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+
+				subject = "Commander4j " + JVersion.getProgramVersion() + " Interface shutdown for [" + siteName + "] on " + JUtility.getClientName();
+
+				Common.sendmail.Send(emailList, subject, ept.getHTML(), "");
+			}
+
+			break;
+
+		case emailType_Housekeeping:
+
+			logger.debug("HOUSEKEEPING START");
+
+			logger.debug("Initiating data archiving....");
+
+			ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
+			ept.clear();
+			ept.addRow(new ExceptionMsg("Site Name", siteName));
+			ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+			ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
+			ept.addRow(new ExceptionMsg("Interface Status", "Housekeeping"));
+			ept.addRow(new ExceptionMsg("Scheduled Time", Common.statusReportTime.substring(0, 5)));
+			ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+
+			JDBArchive archive = new JDBArchive(getHostID(), getSessionID());
+			archive.runSQLJobList();
+			String archiveStats = archive.reportData();
+			archive = null;
+			logger.debug("Data archiving complete....");
+
+			try
+			{
+				backupMessageRetention = Integer.valueOf(ctrl.getKeyValueWithDefault("INTERFACE BACKUP RETENTION", "30", "NUMBER OF DAYS TO KEEP BACKUP MESSAGES"));
+			}
+			catch (Exception ex)
+			{
+				backupMessageRetention = 30;
+			}
+
+			// Archive old backup files goes here
+			String archivedFiles = "Backup message files removed by auto archive = ";
+			if (backupMessageRetention > 0)
+			{
+				archivedFiles = archivedFiles + String.valueOf(JArchive.archiveBackupFiles(System.getProperty("user.dir") + File.separator + Common.interface_backup_path, backupMessageRetention));
+			}
+			else
+			{
+				archivedFiles = "Auto archive of messages disabled";
+			}
+
+			archivedFiles = "<p>" + archivedFiles + "</p>";
+
+			String freeSpace = JUtility.diskFree();
+
+			freeSpace = "<p>" + freeSpace + "</p>";
+
+			String interfaceStats = GenericMessageHeader.getStats();
+			GenericMessageHeader.clearStats();
+
+			String memoryStats = getMemoryStats();
+
+			if (enableEnterfaceStatusEmails == true)
+			{
+				Common.sendmail.Send(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(),EmailHTML.header + ept.getHTML() + interfaceStats + archiveStats + memoryStats + archivedFiles + freeSpace + EmailHTML.footer, "");
+			}
+
+			logger.debug("Interface Garbage Collection.");
+			logger.debug("HOUSEKEEPING END");
+
+			break;
+
+		case emailType_Statistics:
+
+			break;
+
 		}
 
 	}
@@ -484,7 +490,7 @@ public class InterfaceThread extends Thread
 		
 		return result;
 	}
-	
+
 	public void startupThreads()
 	{
 
