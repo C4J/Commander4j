@@ -50,7 +50,7 @@ public class JDBControl
 {
 
 	public static int field_description = 255;
-	public static int field_key_value = 80;
+	public static int field_key_value = 150;
 	public static int field_system_key = 40;
 	private String dbDescription;
 	private String dbErrorMessage;

@@ -761,14 +761,19 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 						public void actionPerformed(final ActionEvent e)
 						{
 							pallet.setConfirmed(fld_Confirmed.isSelected());
-							if (pallet.isConfirmed())
-							{
-								fld_Confirmed.setEnabled(false);
-							}
-							else
-							{
-								fld_Confirmed.setEnabled(true);
-							}
+							
+//							if (pallet.isConfirmed())
+//							{
+//								fld_Confirmed.setEnabled(false);
+//							}
+//							else
+//							{
+//								fld_Confirmed.setEnabled(true);
+//								
+//							}
+							
+							jButtonSave.setEnabled(true);
+
 						}
 					});
 					fld_Confirmed.setText("");
