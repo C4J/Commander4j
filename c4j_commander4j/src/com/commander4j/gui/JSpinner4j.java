@@ -148,5 +148,17 @@ public class JSpinner4j extends JSpinner
 		super.updateUI();
 		applyStyle();
 	}
+	
+	@Override
+	public Object getValue() {
+	    try {
+	        if (getEditor() instanceof DefaultEditor editor) {
+	            editor.getTextField().commitEdit();
+	        }
+	    } catch (java.text.ParseException ex) {
+	        // Ignore or handle invalid input gracefully
+	    }
+	    return super.getValue();
+	}
 
 }
