@@ -164,7 +164,7 @@
     </statement>
     
     <statement>
-      ALTER TABLE `SYS_USER_REPORTS` MODIFY COLUMN `SQL_SELECT` varchar(8000) CHARACTER SET utf8mb4 COLLATE '{collation}' NULL DEFAULT 'SELECT * FROM tablename' AFTER `DESCRIPTION`;
+      ALTER TABLE `SYS_USER_REPORTS` MODIFY COLUMN `SQL_SELECT` varchar(8000) CHARACTER SET {charset} COLLATE '{collation}' NULL DEFAULT 'SELECT * FROM tablename' AFTER `DESCRIPTION`;
     </statement>
 
 </DDL>
