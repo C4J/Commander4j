@@ -44,6 +44,8 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JUtility;
+import com.commander4j.util.RequestCurrentUser;
+
 import java.awt.Dimension;
 
 
@@ -110,7 +112,7 @@ public class JDialogSysInfo extends javax.swing.JDialog
 
 		jTextFieldUserDir.setText(System.getProperty("user.dir"));
 		jTextFieldUserHome.setText(System.getProperty("user.home"));
-		jTextFieldUserName.setText(System.getProperty("user.name"));
+		jTextFieldUserName.setText(RequestCurrentUser.getAuthoritativeUsername().toUpperCase());
 		jTextFieldUserSessionID.setText(Common.sessionID);
 		jTextFieldUserHostID.setText(Common.selectedHostID);
 		jTextFieldUserHostDescription.setText(Common.hostList.getHost(Common.selectedHostID).getSiteDescription());

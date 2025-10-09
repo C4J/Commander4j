@@ -50,6 +50,7 @@ import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JPasswordField4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JUtility;
+import com.commander4j.util.RequestCurrentUser;
 
 public class JDialogLogin extends JDialog {
 
@@ -87,7 +88,7 @@ public class JDialogLogin extends JDialog {
 		getContentPane().setLayout(null);
 		fld_userName = new JTextField4j(JDBUser.field_user_id);
 		fld_userName.setBounds(103, 12, 146, 22);
-		fld_userName.setText(System.getProperty("user.name"));
+		fld_userName.setText(RequestCurrentUser.getAuthoritativeUsername().toUpperCase());
 		getContentPane().add(fld_userName);
 
 		fld_userName.setCaretPosition(fld_userName.getText().length());

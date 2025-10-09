@@ -81,6 +81,8 @@ Class-Path: c4jMiddleware.jar
  lib/jfreechart-1.5.4.jar 
  lib/jgoodies-common-1.6.0.jar 
  lib/jgoodies-forms-1.7.1.jar 
+ lib/jna-5.17.0.jar 
+ lib/jna-platform-5.17.0.jar 
  lib/log4j-api-2.24.3.jar 
  lib/log4j-core-2.24.3.jar 
  lib/lucene-analyzers-common-8.11.2.jar 

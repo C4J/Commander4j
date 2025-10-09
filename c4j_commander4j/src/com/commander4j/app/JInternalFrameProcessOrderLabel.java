@@ -104,7 +104,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setTitle(mod.getDescription());
 		this.setResizable(false);
-		this.setSize(650, 179);
+		this.setSize(650, 190);
 
 		Dimension screensize = Common.mainForm.getSize();
 

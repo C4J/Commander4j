@@ -47,6 +47,7 @@ import com.commander4j.util.JSplashScreenUtils;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
+import com.commander4j.util.RequestCurrentUser;
 import com.commander4j.watchdog.WatchDog;
 
 public class Start
@@ -227,7 +228,7 @@ public class Start
 					// Password Change.
 
 					user = new JDBUser(Common.selectedHostID, Common.sessionID);
-					user.getUserProperties(System.getProperty("user.name").toUpperCase());
+					user.getUserProperties(RequestCurrentUser.getAuthoritativeUsername().toUpperCase());
 
 					// Try and logon using OS username.
 					if (user.login())

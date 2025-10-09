@@ -40,6 +40,7 @@ import com.commander4j.app.JVersion;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.util.JUtility;
+import com.commander4j.util.RequestCurrentUser;
 
 public class parseFunction
 {
@@ -401,7 +402,7 @@ public class parseFunction
 			{
 				if (params.length == 1)
 				{
-					result = System.getProperty("user.name");
+					result = RequestCurrentUser.getAuthoritativeUsername().toUpperCase();
 				}
 				else
 				{

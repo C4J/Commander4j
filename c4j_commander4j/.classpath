@@ -108,6 +108,8 @@
 	<classpathentry kind="lib" path="lib/db/mssql-jdbc-12.10.0.jre11.jar"/>
 	<classpathentry kind="lib" path="lib/jgoodies-common-1.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/jgoodies-forms-1.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/jna-5.17.0.jar"/>
+	<classpathentry kind="lib" path="lib/jna-platform-5.17.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21">
 		<attributes>
 			<attribute name="module" value="true"/>

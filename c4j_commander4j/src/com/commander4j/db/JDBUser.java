@@ -46,6 +46,7 @@ import com.commander4j.app.JVersion;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JCipher;
 import com.commander4j.util.JUtility;
+import com.commander4j.util.RequestCurrentUser;
 
 /**
  * The JDBUser is used to insert/update/delete records in the SYS_USERS table. The users database contains one record for each user in the application. How a user is authenticated is also determined by some system controls in the SYS_CONTROL table.
@@ -1536,7 +1537,7 @@ public class JDBUser
 					return result;
 				}
 
-				if ((passwordMode.equals("PASSTHROUGH_FALLBACK")) && getUserId().equals(System.getProperty("user.name").toUpperCase()))
+				if ((passwordMode.equals("PASSTHROUGH_FALLBACK")) && getUserId().equals(RequestCurrentUser.getAuthoritativeUsername().toUpperCase()))
 				{
 					result = true;
 					return result;
