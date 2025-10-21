@@ -96,14 +96,32 @@
 		<servlet-name>HostController</servlet-name>
 		<url-pattern>/Host</url-pattern>
 		<url-pattern>/Host/*</url-pattern>
-	</servlet-mapping>		
+	</servlet-mapping>	
+		
 	<listener>
 		<listener-class>com.commander4j.listener.AppServletSessionListener</listener-class>
 	</listener>
+	
 	<listener>
 		<listener-class>com.commander4j.listener.AppServletContextListener</listener-class>
 	</listener>
+	
 	<session-config>
 		<session-timeout>60</session-timeout>
 	</session-config>
+	
+	<filter>
+		  <filter-name>CanonicalUrlFilter</filter-name>
+		  <filter-class>com.commander4j.filter.CanonicalUrlFilter</filter-class>
+		  <init-param>
+			    <param-name>mapLocation</param-name>
+			    <param-value>/WEB-INF/canon-paths.properties</param-value>
+		  </init-param>
+	</filter>
+	
+	<filter-mapping>
+		  <filter-name>CanonicalUrlFilter</filter-name>
+		  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>
