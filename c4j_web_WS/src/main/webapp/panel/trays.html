@@ -144,7 +144,7 @@
 		var selected = sessionStorage.getItem('selectedPanel');
 
 		
-		fetch("/c4jWS/Trays?panelID="+selected)
+		fetch(getContextPath()+"/Trays?panelID="+selected)
 			.then(function(response) { return response.json(); })
 			.then(function(trays) {
 				let placeholder = document.querySelector("#trayTable-output");

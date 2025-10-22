@@ -167,7 +167,7 @@
 	function buildUserTable() {
 	
 		
-		fetch("/c4jWS/Users?enabled="+filter)
+		fetch(getContextPath()+"/Users?enabled="+filter)
 			.then(function(response) { return response.json(); })
 			.then(function(users) {
 				let placeholder = document.querySelector("#userTable-output");

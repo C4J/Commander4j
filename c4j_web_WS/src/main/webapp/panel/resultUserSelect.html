@@ -119,7 +119,7 @@
 		
 		var dropdownHTML = '<label for "userSelect">Panelist : </label><select id="userSelect" name="userSelect" class="box" onchange="newSelection()">';
 		
-		fetch("/c4jWS/Users?enabled=Y")
+		fetch(getContextPath()+"/Users?enabled=Y")
 			.then(function(response) { return response.json(); })
 			.then(function(users) {
 				dropdownHTML+='<option value=""></option>';

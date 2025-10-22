@@ -113,6 +113,15 @@ public class JXMLHost
 		String jdbcDatabase = "";
 		String SiteEnabled = "";
 		String uniqueid = "";
+		String singleInstance = "";
+		String singleInstancePort = "";
+		String jdbcTrustServerCertificate = "";
+		String jdbcIntegratedSecurity = "";
+		String jdbcLoginTimeoutEnabled = "";
+		String jdbcSocketTimeoutEnabled = "";
+		String jdbcLoginTimeout = "";
+		String jdbcSocketTimeout = "";
+		String jdbcEncrypt = "";
 
 		LinkedList<JHost> hostList = new LinkedList<JHost>();
 		hostList.clear();
@@ -128,6 +137,21 @@ public class JXMLHost
 		iNumberOfHosts = Integer.valueOf(sNumberOfSites).intValue();
 		splash = xmltest.findXPath("//Hosts/SplashScreen");
 		updateURL = xmltest.findXPath("//Hosts/UpdateURL");
+
+		singleInstance = JUtility.replaceNullStringwithBlank(xmltest.findXPath("//Hosts/singleInstance"));
+
+		if (singleInstance.equals(""))
+		{
+			singleInstance = "N";
+		}
+
+		singleInstancePort = xmltest.findXPath("//Hosts/singleInstancePort");
+		singleInstancePort = JUtility.replaceNullStringwithBlank(singleInstancePort);
+
+		if (singleInstancePort.equals(""))
+		{
+			singleInstancePort = String.valueOf(Common.singleInstancePort);
+		}
 
 		hostVersion = xmltest.findXPath("//Hosts/hostVersion");
 		if (hostVersion.equals(""))
@@ -151,6 +175,17 @@ public class JXMLHost
 		Common.setupPassword = setupPassword;
 		Common.hostVersion = hostVersion;
 		Common.hostUpdatePath = hostUpdatePath;
+
+		if (singleInstance.equals("N"))
+		{
+			Common.singleInstanceMode = false;
+		}
+		else
+		{
+			Common.singleInstanceMode = true;
+		}
+
+		Common.singleInstancePort = Integer.valueOf(singleInstancePort);
 
 		if (splash.equals("N"))
 		{
@@ -212,6 +247,14 @@ public class JXMLHost
 				jdbcSID = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcSID").trim();
 				jdbcDatabase = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabase").trim();
 
+				jdbcTrustServerCertificate = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseTrustServerCertificate").trim();
+				jdbcIntegratedSecurity = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseIntegratedSecurity").trim();
+				jdbcEncrypt = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseEncrypt").trim();
+				jdbcLoginTimeoutEnabled = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseLoginTimeoutEnabled").trim();
+				jdbcSocketTimeoutEnabled = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseSocketTimeoutEnabled").trim();
+				jdbcLoginTimeout = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseLoginTimeout").trim();
+				jdbcSocketTimeout = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseSocketTimeout").trim();
+
 				sitejdbcConnectString = jdbcConnectString;
 				if (parse)
 				{
@@ -241,6 +284,15 @@ public class JXMLHost
 				host.getDatabaseParameters().setjdbcPort(jdbcPort);
 				host.getDatabaseParameters().setjdbcSID(jdbcSID);
 				host.getDatabaseParameters().setjdbcDatabase(jdbcDatabase);
+
+				host.getDatabaseParameters().setjdbcDatabaseEncrypt(jdbcEncrypt);
+				host.getDatabaseParameters().setjdbcDatabaseTrustServerCertificate(jdbcTrustServerCertificate);
+				host.getDatabaseParameters().setjdbcDatabaseIntegratedSecurity(jdbcIntegratedSecurity);
+				host.getDatabaseParameters().setjdbcDatabaseLoginTimeoutEnabled(jdbcLoginTimeoutEnabled);
+				host.getDatabaseParameters().setjdbcDatabaseSocketTimeoutEnabled(jdbcSocketTimeoutEnabled);
+				
+				host.getDatabaseParameters().setjdbcDatabaseLoginTimeout(jdbcLoginTimeout);
+				host.getDatabaseParameters().setjdbcDatabaseSocketTimeout(jdbcSocketTimeout);
 
 				hostList.addLast(host);
 

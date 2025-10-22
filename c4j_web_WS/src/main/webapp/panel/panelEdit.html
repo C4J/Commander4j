@@ -144,7 +144,7 @@
 
 		console.debug('buildTrayEdit  selected panel =' + selectedPanel);
 
-		fetch("/c4jWS/Panels?panelID=" + selectedPanel)
+		fetch(getContextPath()+"/Panels?panelID=" + selectedPanel)
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);

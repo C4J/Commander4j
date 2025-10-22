@@ -97,7 +97,7 @@
 
 		console.debug('buildUserEdit  selected user =' + selectedUser);
 
-		fetch("/c4jWS/Users?userID=" + selectedUser)
+		fetch(getContextPath()+"/Users?userID=" + selectedUser)
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);

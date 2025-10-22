@@ -142,7 +142,7 @@
 	
 	function buildPanelTable() {
 			
-		fetch("/c4jWS/Panels?maxRows=15")
+		fetch(getContextPath()+"/Panels?maxRows=15")
 			.then(function(response) { return response.json(); })
 			.then(function(panels) {
 				let placeholder = document.querySelector("#panelsTable-output");

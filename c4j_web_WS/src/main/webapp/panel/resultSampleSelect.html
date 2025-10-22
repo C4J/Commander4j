@@ -130,7 +130,7 @@
 		var selectedTray = sessionStorage.getItem('selectedTray');
 		var selectedUser = sessionStorage.getItem('selectedUser');
 	
-		fetch("/c4jWS/TrayResults?trayID="+selectedTray+"&userID="+selectedUser)
+		fetch(getContextPath()+"/TrayResults?trayID="+selectedTray+"&userID="+selectedUser)
 			.then(function(response) { return response.json(); })
 			.then(function(samples) {
 				let placeholder = document.querySelector("#sampleTable-output");
@@ -155,7 +155,7 @@
 		
 		var dropdownHTML = '<label for "resultSelect">Decision : </label><select id="resultSelect" name="resultSelect" class="box" onchange="newSelection(this.value)">';
 		
-		fetch("/c4jWS/SelectLists?selectListID=ZWSIPANE")
+		fetch(getContextPath()+"/SelectLists?selectListID=ZWSIPANE")
 			.then(function(response) { return response.json(); })
 			.then(function(records) {
 				dropdownHTML+='<option value=""></option>';
@@ -266,7 +266,7 @@
 	
 		console.log(JSON.stringify(dataObject));
 	
-		let response = fetch("/c4jWS/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
+		let response = fetch(getContextPath()+"/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);

@@ -82,7 +82,7 @@
 		console.debug('buildTrayEdit  selected panel =' + selectedPanel);
 		console.debug('buildTrayEdit  selected tray =' + selectedTray);
 
-		fetch("/c4jWS/Trays?panelID=" + selectedPanel + "&trayID=" + selectedTray)
+		fetch(getContextPath()+"/Trays?panelID=" + selectedPanel + "&trayID=" + selectedTray)
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);

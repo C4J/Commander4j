@@ -22,4 +22,6 @@ public class Common
 	public static boolean displaySplashScreen = false;
 	public static String encryptionKey = "C0mm4nd3r4jP455w";
 	public static String selectedHostID = "";
+	public static Boolean singleInstanceMode = false;
+	public static int singleInstancePort = 16309;
 }
