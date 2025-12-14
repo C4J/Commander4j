@@ -56,6 +56,7 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.Copies;
 import javax.swing.JOptionPane;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBControl;
@@ -63,9 +64,10 @@ import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialType;
 import com.commander4j.db.JDBProcessOrder;
+import com.commander4j.print.JPrintDevice;
+import com.commander4j.spool.PrintJob;
+import com.commander4j.spool.PrintManager;
 import com.commander4j.sys.Common;
-import com.commander4j.util.JFileIO;
-import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
 public class JLabelPrint
@@ -76,7 +78,6 @@ public class JLabelPrint
 	private DocPrintJob v_job;
 	private DocFlavor v_flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
 	private Doc v_doc;
-	private String v_queuename;
 	private File v_template;
 	private PreparedStatement v_ps;
 	private HashMap<String, String> variables = new HashMap<String, String>();
@@ -230,14 +231,12 @@ public class JLabelPrint
 		return result;
 	}
 
-	public void initLabelStaticData(String queuename, String filename, PreparedStatement ps)
+	public void initLabelStaticData(String filename, PreparedStatement ps)
 	{
 
 		try
 		{
 			v_ps = ps;
-			v_queuename = queuename;
-			v_printService = JPrint.getPrinterServicebyName(v_queuename);
 
 			v_template = new File("labels/" + filename);
 			v_string = getTemplate(v_template);
@@ -249,8 +248,8 @@ public class JLabelPrint
 					"Printing Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-	public void print(int copiesOfEachLabel, boolean incLabelHeaderText)
+	
+	public void print(int copiesOfEachLabel, boolean incLabelHeaderText,JPrintDevice printdevice)
 	{
 
 		String all_labels = "";
@@ -317,9 +316,9 @@ public class JLabelPrint
 			rs.close();
 			v_ps.close();
 
-			v_job = v_printService.createPrintJob();
+			//v_job = v_printService.createPrintJob();
 
-			String filename = System.getProperty("java.io.tmpdir") + UUID.randomUUID().toString() + ".cmd4j";
+			String filename = UUID.randomUUID().toString() + ".cmd4j";
 
 			if (suppressUnicode == false){
 				all_labels = escapeUnicode(all_labels);
@@ -334,41 +333,83 @@ public class JLabelPrint
 			v_bytes = all_labels.getBytes();
 
 			logger.debug("Writing print job to : " + filename);
-			FileOutputStream fos = new FileOutputStream(filename);
+			FileOutputStream fos = new FileOutputStream(PrintManager.spoolFolder+File.separator +filename);
 			fos.write(v_bytes);
 			fos.close();
 
-			DocAttributeSet das = new HashDocAttributeSet();
-
-			try
+			if (printdevice.getType().equals("printer"))
 			{
-				PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
-				pras.add(new Copies(1));
-
-				FileInputStream fis = new FileInputStream(filename);
-				v_doc = new SimpleDoc(fis, v_flavor, das);
-				v_job.print(v_doc, pras);
-				logger.debug("Submitting file to spooler : " + filename);
-				fis.close();
-
-				JFileIO deleteFile = new JFileIO();
-				logger.debug("Deleting file : " + filename);
-				deleteFile.deleteFile(filename);
-			} catch (Exception ex)
+			
+				PrintJob pj = new PrintJob(printdevice.getPrinter().getIPAddress(),printdevice.getPrinter().getPortInt(),filename);
+				Common.printManager.submitJob(pj);
+			
+			}
+			
+			if (printdevice.getType().equals("queue"))
 			{
+				
+				v_printService = printdevice.getQueue();
+				v_job = v_printService.createPrintJob();
+				
+				DocAttributeSet das = new HashDocAttributeSet();
 
-				if (Common.applicationMode.equals("SwingClient"))
+				try
 				{
-					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(null, "Unable to print to selected printer : " + ex.getMessage(),
-							"Printing Error", JOptionPane.ERROR_MESSAGE);
+					PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
+					pras.add(new Copies(1));
+
+					FileInputStream fis = new FileInputStream(PrintManager.spoolFolder +File.separator+filename);
+					v_doc = new SimpleDoc(fis, v_flavor, das);
+					v_job.print(v_doc, pras);
+					logger.debug("Submitting file to spooler : " + PrintManager.spoolFolder +File.separator+filename);
+					fis.close();
+
+					archiveJob(filename);
+
+				} catch (Exception ex)
+				{
+
+					if (Common.applicationMode.equals("SwingClient"))
+					{
+						JUtility.errorBeep();
+						JOptionPane.showMessageDialog(null, "Unable to print to selected printer : " + ex.getMessage(),
+								"Printing Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
+
+
 
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void archiveJob(String filename)
+	{
+		File inputFile = new File(PrintManager.spoolFolder +File.separator+ filename);
+		File archivePath = new File(PrintManager.archiveFolder);
+		File archiveFile = new File(PrintManager.archiveFolder + File.separator + filename);
+
+		logger.info(filename);
+
+		FileUtils.deleteQuietly(archiveFile);
+
+		try
+		{
+			FileUtils.moveToDirectory(inputFile, archivePath, true);
+		}
+		catch (IOException e)
+		{
+
+			logger.error("Error moving spool file to archive folder");
+			logger.error(e.getMessage());
+
+			FileUtils.deleteQuietly(inputFile);
+
+		}
+
 	}
 
 	public HashMap<String, String> expandVariables(ResultSet rs, HashMap<String, String> hm)

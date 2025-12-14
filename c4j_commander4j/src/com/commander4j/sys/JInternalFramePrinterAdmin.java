@@ -82,6 +82,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 	private JRadioButton4j rdbtnAll = new JRadioButton4j("All");
 	private JRadioButton4j rdbtnPack = new JRadioButton4j("Pack");
 	private JRadioButton4j rdbtnPallet = new JRadioButton4j("Pallet");
+	private JRadioButton4j rdbtnGeneral = new JRadioButton4j("General");
 	private JComboBox4j<String> comboBoxPrinterTypes = new JComboBox4j<String>();
 	
 	public JInternalFramePrinterAdmin()
@@ -110,7 +111,12 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 		if (rdbtnPallet.isSelected())
 		{
 			result = "Pallet";
-		}		
+		}	
+		
+		if (rdbtnGeneral.isSelected())
+		{
+			result = "General";
+		}	
 		
 		return result;
 	}
@@ -184,8 +190,8 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 
 		jTable1.setFont(Common.font_list);
 
-		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterID_Col).setPreferredWidth(210);
-		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Group_Col).setPreferredWidth(50);
+		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterID_Col).setPreferredWidth(200);
+		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Group_Col).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterType_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.IPAddress_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Port_Col).setPreferredWidth(40);
@@ -453,8 +459,18 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				}
 			});
 			rdbtnPallet.setBackground(Common.color_app_window);;
-			rdbtnPallet.setBounds(268, 9, 67, 22);
+			rdbtnPallet.setBounds(266, 9, 67, 22);
 			getContentPane().add(rdbtnPallet);
+			
+			buttonGroup.add(rdbtnGeneral);
+			rdbtnGeneral.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					refresh();
+				}
+			});
+			rdbtnGeneral.setBackground(Common.color_app_window);;
+			rdbtnGeneral.setBounds(339, 9, 67, 22);
+			getContentPane().add(rdbtnGeneral);
 
 			jStatusText.setForeground(Color.BLACK);
 			jStatusText.setBackground(Color.GRAY);
@@ -468,13 +484,13 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 			});
 
 			comboBoxPrinterTypes.setModel(new DefaultComboBoxModel<String>(Common.printerTypesAll));
-			comboBoxPrinterTypes.setBounds(473, 9, 155, 22);
+			comboBoxPrinterTypes.setBounds(567, 9, 155, 22);
 			getContentPane().add(comboBoxPrinterTypes);
 			
 			JLabel4j_std label4j_Type = new JLabel4j_std();
 			label4j_Type.setText("Type");
 			label4j_Type.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_Type.setBounds(387, 9, 75, 22);
+			label4j_Type.setBounds(481, 9, 75, 22);
 			getContentPane().add(label4j_Type);
 			
 			JLabel4j_std label4j_Group = new JLabel4j_std();

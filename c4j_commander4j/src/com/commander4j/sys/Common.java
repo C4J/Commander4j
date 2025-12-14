@@ -53,6 +53,7 @@ import com.commander4j.renderer.TableCellRenderer_Default;
 import com.commander4j.renderer.TableCellRenderer_PanelResults;
 import com.commander4j.renderer.TableHeaderRenderer;
 import com.commander4j.renderer.WeightSampleDetailCellRenderer;
+import com.commander4j.spool.PrintManager;
 import com.commander4j.util.JImageIconLoader;
 import com.commander4j.util.JSessionData;
 
@@ -62,6 +63,8 @@ import com.commander4j.util.JSessionData;
  */
 public class Common
 {
+	
+	public static PrintManager printManager = new PrintManager();
 	public static int sessionCount = 0;
 	public static SendEmail sendmail;
 	
@@ -122,12 +125,12 @@ public class Common
 	public static JSessionData sd = new JSessionData();
 
 	public static String[] dataTypes = new String[] { "string", "numeric","boolean", "date", "time", "timestamp","integer" ,"list"};
-	public static String[] printerTypes = new String[] { "Logopak","Videojet","Zebra"};
-	public static String[] printerTypesAll = new String[] { "","Logopak","Videojet","Zebra"};
+	public static String[] printerTypes = new String[] { "Logopak","Printronix","Videojet","Zebra"};
+	public static String[] printerTypesAll = new String[] { "","Logopak","Printronix","Videojet","Zebra"};
 	public static String[] printerDPI = new String[] { "200","300"};
-	public static String[] printerGroup = new String[] { "Pack","Pallet"};
+	public static String[] printerGroup = new String[] { "Pack","Pallet","General"};
 	public static String[] linePrinterType = new String[] {"Both", "Pack","Pallet"};
-	public static String[] printerLanguage = new String[] { "LEAP","ZPL","Zipher"};
+	public static String[] printerLanguage = new String[] { "IGP/PGL","LEAP","ZPL","Zipher"};
 	public static String[] printerExportFormat = new String[] { "CSV","LQF","XML"};
 	public static String[] languages = new String[] {"EN", "ES", "DE", "FR", "HU", "IT", "NL", "PL"};
 	public static String[] customerDataTypes = new String[] {"PART_NO"};
@@ -241,6 +244,13 @@ public class Common
 	public final static String auto_label_command = System.getProperty("user.dir")+File.separator+"autolabeller"+File.separator+"commands"+File.separator;
 	public final static String auto_label_labels = System.getProperty("user.dir")+File.separator+"autolabeller"+File.separator+"labels"+File.separator;
 	
+	public final static Icon icon_printer_queue_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_printer_queue);
+	public final static Icon icon_printer_queue_24x24 = Common.imageIconloader.getImageIcon24x24(Common.image_printer_queue);
+	public final static Icon icon_printer_queue_32x23 = Common.imageIconloader.getImageIcon32x32(Common.image_printer_queue);
+	public final static Icon icon_printer_direct_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_printer_direct);
+	public final static Icon icon_printer_direct_24x24 = Common.imageIconloader.getImageIcon24x24(Common.image_printer_direct);
+	public final static Icon icon_printer_direct_32x23 = Common.imageIconloader.getImageIcon32x32(Common.image_printer_direct);
+	
 	public final static Icon icon_file_save_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_file_save);
 	public final static Icon icon_export_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_export);	
 	public final static Icon icon_resend_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_resend);
@@ -342,6 +352,8 @@ public class Common
 	public final static String image_lock = "lock.gif";
 	public final static String image_notifyEmail = "mail.gif";
 	public final static String image_file_save = "file_save.gif";
+	public final static String image_printer_queue = "printer_queue.png";
+	public final static String image_printer_direct = "printer_direct.png";
 	public final static String image_default = "default.png";
 	public final static String image_export = "export.gif";
 	public final static String image_alternative = "alternative.gif";

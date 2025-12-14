@@ -35,15 +35,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
-import java.util.LinkedList;
+import java.text.ParseException;
 
 import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -58,7 +55,7 @@ import com.commander4j.db.JDBPallet;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
-import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JComboBoxPODevices4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JSpinner4j;
@@ -66,8 +63,8 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
+import com.commander4j.print.JPrintDevice;
 
 /**
  * JInternalFramePalletSplit allows a user to split a pallet into 2 pallets. You
@@ -99,7 +96,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JLabelPrint lab = new JLabelPrint(Common.selectedHostID, Common.sessionID);
-	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
+	private JComboBoxPODevices4j comboBoxPrintQueue;
 	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
 	private JCheckBox4j checkBoxIncHeaderText = new JCheckBox4j();
 	private JCheckBox4j jCheckBoxAutoPreview;
@@ -187,12 +184,13 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 
 		if (sscc.length() == 18)
 		{
-			if (pal.getPalletProperties(jTextFieldSSCC.getText()))
+			if (pal.getPalletProperties(sscc))
 			{
 				jFormattedTextFieldQuantity.setValue(pal.getQuantity());
 				jButtonSplit.setEnabled(true);
-				jStatusBar.setText(jTextFieldSSCC.getText() + " retrieved.");
+				jStatusBar.setText(sscc + " retrieved.");
 				order = pal.getProcessOrder();
+				comboBoxPrintQueue.refreshData("RPT_PALLET_LABEL", pal.getProcessOrder());
 			} else
 			{
 				jStatusBar.setText(pal.getErrorMessage());
@@ -224,33 +222,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				labelCopies.setVisible(false);
 			}
 		}
-		;
 
-	}
-
-	private void populatePrinterList(String defaultitem)
-	{
-		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
-
-		LinkedList<String> tempPrinterList = JPrint.getPrinterNames();
-
-		for (int j = 0; j < tempPrinterList.size(); j++)
-		{
-			defComboBoxMod.addElement(tempPrinterList.get(j));
-		}
-
-		int sel = defComboBoxMod.getIndexOf(defaultitem);
-		ComboBoxModel<String> jList1Model = defComboBoxMod;
-		comboBoxPrintQueue.setModel(jList1Model);
-		comboBoxPrintQueue.setSelectedIndex(sel);
-
-		if (JPrint.getNumberofPrinters() == 0)
-		{
-			comboBoxPrintQueue.setEnabled(false);
-		} else
-		{
-			comboBoxPrintQueue.setEnabled(true);
-		}
 	}
 
 	private void buildSQL1Record(String lsscc)
@@ -357,13 +329,31 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
+						try
+						{
+							jFormattedTextFieldSplitQuantity.commitEdit();
+							System.out.println(jFormattedTextFieldSplitQuantity.getText());
+						}
+						catch (ParseException e1)
+						{
+
+						}
 						String splitSSCC = pal.splitPallet(jTextFieldSSCC.getText(), new BigDecimal(jFormattedTextFieldSplitQuantity.getValue().toString()));
 						if (splitSSCC.equals("") == false)
 						{
 							jStatusBar.setText("SSCC " + jTextFieldSSCC.getText() + " updated, SSCC " + splitSSCC + " created.");
 							jTextFieldNewSSCC.setText(splitSSCC);
+							try
+							{
+								jFormattedTextFieldSplitQuantity.commitEdit();
+							}
+							catch (ParseException e1)
+							{
+	
+							}
 							jFormattedTextFieldNewQuantity.setValue(jFormattedTextFieldSplitQuantity.getValue());
-							String pq = comboBoxPrintQueue.getSelectedItem().toString();
+							JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
+							
 							if (checkBoxPrintOldSSCC.isSelected())
 							{
 								buildSQL1Record(jTextFieldSSCC.getText());
@@ -459,7 +449,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				label_3.setBounds(18, 170, 91, 22);
 				jDesktopPane1.add(label_3);
 
-				comboBoxPrintQueue.setSelectedIndex(-1);
+				comboBoxPrintQueue =  new JComboBoxPODevices4j(Common.selectedHostID,Common.sessionID,"RPT_PALLET_LABEL","");
 				comboBoxPrintQueue.setBounds(121, 170, 499, 22);
 				jDesktopPane1.add(comboBoxPrintQueue);
 
@@ -499,8 +489,6 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				checkBoxPrintNewSSCC.setSelected(true);
 				checkBoxPrintNewSSCC.setBounds(32, 46, 28, 22);
 				panel.add(checkBoxPrintNewSSCC);
-
-				populatePrinterList(JPrint.getDefaultPrinterQueueName());
 
 			}
 

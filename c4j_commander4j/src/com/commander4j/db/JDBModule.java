@@ -76,6 +76,12 @@ public class JDBModule
 	private String dbExecDir;
 	private String dbPrintPreview;
 	private String dbPrintDialog;
+	private String dbGroupID;
+	private String dbPrinterDPI;
+	private String dbPrinterType;
+	private String dbEnableDirectPrint = "N";
+	private String dbLanguage;
+	
 	private int dbPrintCopies;
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBModule.class);
 	public static int field_module_id = 35;
@@ -99,6 +105,94 @@ public class JDBModule
 	private String hostID;
 
 	private String sessionID;
+	
+	public String getPrinterType()
+	{
+		dbPrinterType = JUtility.replaceNullStringwithBlank(dbPrinterType);
+		if (dbPrinterType.equals(""))
+		{
+			dbPrinterType = Common.printerTypes[0];
+		}
+		return dbPrinterType;
+	}
+	
+	public void setPrinterType(String type)
+	{
+		dbPrinterType = type;
+	}
+	
+	public String getGroupID()
+	{
+
+		dbGroupID = JUtility.replaceNullStringwithBlank(dbGroupID);
+		if (dbGroupID.equals(""))
+		{
+			dbGroupID = Common.printerGroup[0];
+		}
+		return dbGroupID;
+
+	}
+	
+	public void setGroupID(String grp)
+	{
+		dbGroupID = grp;
+	}
+	
+	public void setDPI(String dpi)
+	{
+		dbPrinterDPI = JUtility.replaceNullStringwithBlank(dpi);
+	}
+	
+	public String getDPI()
+	{
+		return JUtility.replaceNullStringwithBlank(dbPrinterDPI);
+	}
+	
+	public String getLanguage()
+	{
+		dbLanguage = JUtility.replaceNullStringwithBlank(dbLanguage);
+		if (dbLanguage.equals(""))
+		{
+			dbLanguage = "";
+		}
+		return dbLanguage;
+	}
+	
+	public void setLanguage(String lang)
+	{
+		dbLanguage = lang;
+	}
+	
+	public void setEnableDirectPrint(String enabled)
+	{
+		dbEnableDirectPrint = enabled;
+	}
+
+	public String getEnableDirectPrint()
+	{
+		return dbEnableDirectPrint;
+	}
+
+	public void setEnableDirectPrint(boolean enabled)
+	{
+		if (enabled)
+		{
+			dbEnableDirectPrint = "Y";
+		} else
+		{
+			dbEnableDirectPrint = "N";
+		}
+	}
+	
+	public boolean isDirectPrintEnabled()
+	{
+		boolean result = false;
+		if (dbEnableDirectPrint.equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
 
 	public static Icon getModuleIcon16x16(String filename, String moduleType)
 	{
@@ -821,6 +915,12 @@ public class JDBModule
 				setPrintPreview(rs.getString("print_preview"));
 				setPrintDialog(rs.getString("print_dialog"));
 				setPrintCopies(rs.getInt("print_copies"));
+				setGroupID(rs.getString("group_id"));
+				setPrinterType(rs.getString("printer_type"));
+				setLanguage(rs.getString("language"));
+				setDPI(rs.getString("printer_dpi"));
+				setEnableDirectPrint(rs.getString("enable_direct_print"));
+				
 				result = true;
 			} else
 			{
@@ -1432,7 +1532,14 @@ public class JDBModule
 				stmtupdate.setString(14, getReportType());
 				stmtupdate.setString(15, getLabelCommandFilename());
 				stmtupdate.setString(16, getAutoLabelLabelFilename());
-				stmtupdate.setString(17, getModuleId());
+				
+				stmtupdate.setString(17,getPrinterType());
+				stmtupdate.setString(18,getGroupID());
+				stmtupdate.setString(19,getDPI());
+				stmtupdate.setString(20,getLanguage());
+				stmtupdate.setString(21,getEnableDirectPrint());
+						
+				stmtupdate.setString(22, getModuleId());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -1443,6 +1550,7 @@ public class JDBModule
 		{
 			setErrorMessage(e.getMessage());
 		}
+		
 
 		return result;
 	}

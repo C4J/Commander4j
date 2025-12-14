@@ -358,6 +358,16 @@ public class JDBPrinters
 		}
 		return dbPort;
 	}
+	
+	public int getPortInt()
+	{
+		dbPort = JUtility.replaceNullStringwithBlank(dbPort);
+		if (dbPort.equals(""))
+		{
+			dbPort = "9100";
+		}
+		return Integer.valueOf(dbPort);
+	}
 
 	public String getEnabled()
 	{

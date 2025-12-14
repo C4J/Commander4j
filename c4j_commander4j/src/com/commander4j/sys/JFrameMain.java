@@ -130,22 +130,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 
 	public void componentResized(ComponentEvent e) {
 		setTreeSize();
-/*		JInternalFrame[] jifs = desktopPane.getAllFrames();
-		for (int i = 0; i < jifs.length; i++)
-		{
-			if (jifs[i].isIcon())
-			{
-				try
-				{
-					jifs[i].setIcon(true);
-				} catch (PropertyVetoException e1)
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		}
-*/	}
+	}
 
 	public void componentShown(ComponentEvent e) {
 	}
@@ -159,12 +144,36 @@ public class JFrameMain extends JFrame implements ComponentListener
 	}
 
 	private static void ConfirmExit() {
-		int question = JOptionPane.showConfirmDialog(Common.mainForm, "Exit application ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
-		if (question == 0)
+		
+		int printJobs = Common.printManager.activePrintJobs();
+		
+		boolean confirmExit = true;
+		
+		if (printJobs > 0)
 		{
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, String.valueOf(printJobs) + " Print Jobs in progress - cancel printing ?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			
+			if (question == 0)
+			{
+				Common.printManager.abort();
+				confirmExit = true;
+			}
+			else
+			{
+				confirmExit = false;
+			}
+		}
+		
+		if (confirmExit)
+		{
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Exit application ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+			
+			if (question == 0)
+			{
+				Common.hostList.getHost(Common.selectedHostID).disconnect(Common.sessionID);
 
-			Common.hostList.getHost(Common.selectedHostID).disconnect(Common.sessionID);
-			System.exit(0);
+				System.exit(0);
+			}
 		}
 	}
 

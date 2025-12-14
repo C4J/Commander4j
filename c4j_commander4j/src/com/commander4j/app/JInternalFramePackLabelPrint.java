@@ -42,11 +42,8 @@ import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -80,18 +77,18 @@ import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
-import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JComboBoxPODevices4j;
 import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.print.JPrintDevice;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
 /**
@@ -187,7 +184,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 	private ClockListener clocklistener = new ClockListener();
 	private Timer timer = new Timer(1000, clocklistener);
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JComboBox4j<String> comboBoxPrintQueue;
+	private JComboBoxPODevices4j comboBoxPrintQueue;
 	private JLabel4j_std lblPrintQueueFor;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private String batchFormat = "";
@@ -269,38 +266,12 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			}
 		});
 
-		populatePrinterList(JPrint.getDefaultPrinterQueueName());
 
 		procOrder = JUtility.replaceNullStringwithBlank(procOrder);
 
 		processOrderChanged(procOrder);
 	}
 
-	private void populatePrinterList(String defaultitem)
-	{
-		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
-
-		LinkedList<String> tempPrinterList = JPrint.getPrinterNames();
-
-		for (int j = 0; j < tempPrinterList.size(); j++)
-		{
-			defComboBoxMod.addElement(tempPrinterList.get(j));
-		}
-
-		int sel = defComboBoxMod.getIndexOf(defaultitem);
-		ComboBoxModel<String> jList1Model = defComboBoxMod;
-		comboBoxPrintQueue.setModel(jList1Model);
-		comboBoxPrintQueue.setSelectedIndex(sel);
-
-		if (JPrint.getNumberofPrinters() == 0)
-		{
-			comboBoxPrintQueue.setEnabled(false);
-		}
-		else
-		{
-			comboBoxPrintQueue.setEnabled(true);
-		}
-	}
 
 	public void processOrderChanged(String po)
 	{
@@ -380,6 +351,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			batchValidate = materialbatch.getBatchValidationString(processorder);
 
 			calcBBEBatch();
+			
+			comboBoxPrintQueue.refreshData("RPT_PACK_LABEL", po);
 
 		}
 		else
@@ -643,7 +616,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				if (mode.equals("Print"))
 				{
 
-					String pq = JUtility.replaceNullStringwithBlank(comboBoxPrintQueue.getSelectedItem().toString());
+					JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
 					buildSQL(key);
 
 					JLaunchReport.runReport(labelPrint.getPackLabelReportName(processOrder), listStatement, jCheckBoxAutoPreview.isSelected(), pq, noOfLabels, checkBoxIncHeaderText.isSelected());
@@ -908,9 +881,11 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jPanelLabel.setLayout(null);
 			jPanelLabel.setFont(Common.font_std);
 			jPanelLabel.setBackground(Common.color_app_window);
-			comboBoxPrintQueue = new JComboBox4j<String>();
+	
+			comboBoxPrintQueue =  new JComboBoxPODevices4j(Common.selectedHostID,Common.sessionID,"RPT_PACK_LABEL","");
 			comboBoxPrintQueue.setBounds(115, 436, 621, 22);
 			jDesktopPane1.add(comboBoxPrintQueue);
+			
 			jSpinnerProductionDate = new JDateControl();
 			jPanelLabel.add(jSpinnerProductionDate);
 			jSpinnerProductionDate.setFont(new java.awt.Font("Dialog", 0, 12));

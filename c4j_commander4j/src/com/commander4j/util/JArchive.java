@@ -35,9 +35,11 @@ import java.util.Date;
 import org.apache.commons.io.filefilter.AgeFileFilter;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 
+import com.commander4j.spool.PrintManager;
 import com.commander4j.sys.Common;
 
-public class JArchive {
+public class JArchive
+{
 
 	public static int archiveBackupFiles(String path, int daysToKeep)
 	{
@@ -61,10 +63,10 @@ public class JArchive {
 		{
 			path = Common.interface_backup_path;
 		}
-		
-		if (daysToKeep<=0)
+
+		if (daysToKeep <= 0)
 		{
-			daysToKeep=1;
+			daysToKeep = 1;
 		}
 
 		// Get a list of sub-directories within target path
@@ -79,6 +81,70 @@ public class JArchive {
 		return result;
 	}
 
+	public static int archiveSpoolFiles(String path, int daysToKeep)
+	{
+		int result = 0;
+
+		// Calculate cut-off date
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, -1 * daysToKeep);
+		Date cutoffDate = cal.getTime();
+
+		// Check and fix silly/missing values
+
+		if (JUtility.replaceNullStringwithBlank(path).equals(""))
+		{
+			path = PrintManager.spoolFolder;
+		}
+
+		if (JUtility.replaceNullStringwithBlank(path).equals("."))
+		{
+			path = PrintManager.spoolFolder;
+		}
+
+		if (daysToKeep <= 0)
+		{
+			daysToKeep = 1;
+		}
+
+		// Get a list of sub-directories within target path
+
+		File directory = new File(path);
+		File[] subdirs = directory.listFiles((FileFilter) new AgeFileFilter(cutoffDate));
+		for (File file : subdirs)
+		{
+			if (file.isFile())
+			{
+				result = result + deleteFile(file, ".cmd4j");
+			}
+		}
+
+		return result;
+	}
+
+	public static int deleteFile(File file, String mask)
+	{
+		int count = 0;
+
+		try
+		{
+			if (file.getName().endsWith(mask))
+			{
+				System.out.println("Removing file [" + file.getName());
+				file.delete();
+				count++;
+			}
+		}
+		catch (Exception ex)
+		{
+
+		}
+
+		return count;
+	}
+
 	public static int deleteFiles(File directory, FileFilter fileFilter)
 	{
 		int count = 0;
@@ -90,10 +156,11 @@ public class JArchive {
 			try
 			{
 				Date lastMod = new Date(file.lastModified());
-				System.out.println("Removing old interface file [" + file.getName() + ", Date: " + lastMod + "] from ["+directory.getName()+"]");
+				System.out.println("Removing old interface file [" + file.getName() + ", Date: " + lastMod + "] from [" + directory.getName() + "]");
 				file.delete();
 				count++;
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 
 			}

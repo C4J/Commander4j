@@ -43,8 +43,6 @@ import java.util.Date;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -77,18 +75,18 @@ import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
-import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JComboBoxPODevices4j;
 import com.commander4j.gui.JDateControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.print.JPrintDevice;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
 /**
@@ -196,7 +194,6 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private String ssccList = "";
 	private LinkedList<String> ssccItems = new LinkedList<String>();
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JComboBox4j<String> comboBoxPrintQueue;
 	private JLabel4j_std lblPrintQueueFor;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private String batchFormat = "";
@@ -220,7 +217,8 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private JTextField4j textField4jResource = new JTextField4j();
 	private JTextField4j textField4jCustomer = new JTextField4j();
 	private boolean confirmStatus = false;
-	private BigDecimal maxOverMakePercentage = new BigDecimal("0");;
+	private BigDecimal maxOverMakePercentage = new BigDecimal("0");
+	private JComboBoxPODevices4j comboBoxPrintQueue;
 
 	public JInternalFrameProductionDeclaration(String procOrder)
 	{
@@ -267,46 +265,13 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			{
 				jTextFieldProcessOrder.requestFocus();
 				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
-				
-				JLabel4j_std jLabelRecipeVersion = new JLabel4j_std();
-				jLabelRecipeVersion.setText("/");
-				jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
-				jLabelRecipeVersion.setBounds(280, 77, 21, 21);
-				jPanelProcessOrder.add(jLabelRecipeVersion);
 
 			}
 		});
 
-		populatePrinterList(JPrint.getDefaultPrinterQueueName());
-
 		procOrder = JUtility.replaceNullStringwithBlank(procOrder);
 
 		processOrderChanged(procOrder);
-	}
-
-	private void populatePrinterList(String defaultitem)
-	{
-		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
-
-		LinkedList<String> tempPrinterList = JPrint.getPrinterNames();
-
-		for (int j = 0; j < tempPrinterList.size(); j++)
-		{
-			defComboBoxMod.addElement(tempPrinterList.get(j));
-		}
-
-		int sel = defComboBoxMod.getIndexOf(defaultitem);
-		ComboBoxModel<String> jList1Model = defComboBoxMod;
-		comboBoxPrintQueue.setModel( jList1Model);
-		comboBoxPrintQueue.setSelectedIndex(sel);
-
-		if (JPrint.getNumberofPrinters() == 0)
-		{
-			comboBoxPrintQueue.setEnabled(false);
-		} else
-		{
-			comboBoxPrintQueue.setEnabled(true);
-		}
 	}
 
 	private void buildSQL(String mList, LinkedList<String> mItems)
@@ -430,6 +395,8 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_visible);
 
 			calcBBEBatch();
+			
+			comboBoxPrintQueue.refreshData("RPT_PALLET_LABEL", po);
 		} else
 		{
 			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_not_visible);
@@ -698,7 +665,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 				if (mode.equals("Print"))
 				{
 
-					String pq = comboBoxPrintQueue.getSelectedItem().toString();
+					JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
 					buildSQL(key);
 
 					JLaunchReport.runReport(labelPrint.getPackLabelReportName(processOrder), listStatement, jCheckBoxAutoPreview.isSelected(), pq, noOfLabels, checkBoxIncHeaderText.isSelected());
@@ -723,7 +690,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(674, 474));
-			this.setBounds(0, 0, 793, 587);
+			this.setBounds(0, 0, 793, 582);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -744,7 +711,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jButtonAssign.setText(lang.get("btn_Assign_to_Labeller"));
 			jButtonAssign.setMnemonic('0');
 			jButtonAssign.setEnabled(false);
-			jButtonAssign.setBounds(157, 492, 155, 32);
+			jButtonAssign.setBounds(152, 490, 150, 32);
 			jButtonAssign.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB"));
 			jDesktopPane1.add(jButtonAssign);
 			
@@ -754,7 +721,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jButtonSave.setEnabled(false);
 			jButtonSave.setText(lang.get("btn_Label"));
 			jButtonSave.setMnemonic(lang.getMnemonicChar());
-			jButtonSave.setBounds(1, 492, 155, 32);
+			jButtonSave.setBounds(1, 490, 150, 32);
 			jButtonSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt)
 				{
@@ -909,7 +876,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 
 							if (jCheckBoxAutoPrint.isSelected())
 							{
-								String pq = JUtility.replaceNullStringwithBlank(comboBoxPrintQueue.getSelectedItem().toString());
+								JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
 								buildSQL(ssccList, ssccItems);
 								JLaunchReport.runReport(labelPrint.getPalletLabelReportName(pallet.getProcessOrder()), listStatement, jCheckBoxAutoPreview.isSelected(), pq,
 										Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());
@@ -924,7 +891,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
-			jButtonClose.setBounds(625, 492, 155, 32);
+			jButtonClose.setBounds(605, 490, 150, 32);
 			jButtonClose.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt)
 				{
@@ -942,7 +909,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
-			jButtonHelp.setBounds(469, 492, 155, 32);
+			jButtonHelp.setBounds(454, 490, 150, 32);
 			jPanelProcessOrder = new JPanel();
 			jPanelProcessOrder.setBackground(Common.color_app_window);
 			jPanelProcessOrder.setFont(Common.font_title);
@@ -1147,9 +1114,6 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
 			jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 			jLabelQuantity.setBounds(323, 18, 119, 22);
-			comboBoxPrintQueue = new JComboBox4j<String>();
-			comboBoxPrintQueue.setBounds(116, 455, 632, 22);
-			jDesktopPane1.add(comboBoxPrintQueue);
 
 			{
 				jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
@@ -1337,14 +1301,14 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jStatusText = new JLabel4j_std();
 			jDesktopPane1.add(jStatusText);
 			jStatusText.setForeground(new java.awt.Color(255, 0, 0));
-			jStatusText.setBounds(0, 532, 783, 21);
+			jStatusText.setBounds(1, 526, 783, 21);
 			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			jButtonReprint = new JButton4j(Common.icon_report_16x16);
 			jButtonReprint.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e)
 				{
 					buildSQL(ssccList, ssccItems);
-					String pq = comboBoxPrintQueue.getSelectedItem().toString();
+					JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
 					
 				   JLaunchReport.runReport(labelPrint.getPalletLabelReportName(pallet.getProcessOrder()), listStatement, jCheckBoxAutoPreview.isSelected(), pq,
 							Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());
@@ -1353,7 +1317,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			});
 			jButtonReprint.setMnemonic(KeyEvent.VK_C);
 			jButtonReprint.setText(lang.get("btn_Re_Print"));
-			jButtonReprint.setBounds(313, 492, 155, 32);
+			jButtonReprint.setBounds(303, 490, 150, 32);
 			jButtonReprint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRODDEC_REPRINT"));
 			jDesktopPane1.add(jButtonReprint);
 
@@ -1474,7 +1438,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 
 			lblPrintQueueFor = new JLabel4j_std(lang.get("lbl_Print_Queue"));
 			lblPrintQueueFor.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblPrintQueueFor.setBounds(7, 455, 102, 22);
+			lblPrintQueueFor.setBounds(7, 455, 91, 22);
 			jDesktopPane1.add(lblPrintQueueFor);
 			
 
@@ -1490,6 +1454,16 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			textField4jCustomer.setEditable(false);
 			textField4jCustomer.setBounds(587, 77, 148, 22);
 			jPanelProcessOrder.add(textField4jCustomer);
+			
+			JLabel4j_std jLabelRecipeVersion = new JLabel4j_std();
+			jLabelRecipeVersion.setText("/");
+			jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabelRecipeVersion.setBounds(280, 77, 21, 21);
+			jPanelProcessOrder.add(jLabelRecipeVersion);
+
+			comboBoxPrintQueue =  new JComboBoxPODevices4j(Common.selectedHostID,Common.sessionID,"RPT_PALLET_LABEL","");
+			comboBoxPrintQueue.setBounds(131, 455, 617, 22);
+			jDesktopPane1.add(comboBoxPrintQueue);
 
 		} catch (Exception e)
 		{

@@ -32,10 +32,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
-import java.util.LinkedList;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.SpinnerNumberModel;
@@ -49,14 +46,14 @@ import com.commander4j.db.JDBPallet;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
-import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JComboBoxPODevices4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.print.JPrintDevice;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
 /**
@@ -84,7 +81,7 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
 	private JLabelPrint lab = new JLabelPrint(Common.selectedHostID, Common.sessionID);
-	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
+	private JComboBoxPODevices4j comboBoxPrintQueue;
 	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
 	private JCheckBox4j checkBoxIncHeaderText = new JCheckBox4j();
 	private JCheckBox4j jCheckBoxAutoPreview;
@@ -130,30 +127,6 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 
 	}
 
-	private void populatePrinterList(String defaultitem)
-	{
-		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
-
-		LinkedList<String> tempPrinterList = JPrint.getPrinterNames();
-
-		for (int j = 0; j < tempPrinterList.size(); j++)
-		{
-			defComboBoxMod.addElement(tempPrinterList.get(j));
-		}
-
-		int sel = defComboBoxMod.getIndexOf(defaultitem);
-		ComboBoxModel<String> jList1Model = defComboBoxMod;
-		comboBoxPrintQueue.setModel(jList1Model);
-		comboBoxPrintQueue.setSelectedIndex(sel);
-
-		if (JPrint.getNumberofPrinters() == 0)
-		{
-			comboBoxPrintQueue.setEnabled(false);
-		} else
-		{
-			comboBoxPrintQueue.setEnabled(true);
-		}
-	}
 
 	private void buildSQL1Record(String lsscc)
 	{
@@ -196,8 +169,7 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-
-						String pq = comboBoxPrintQueue.getSelectedItem().toString();
+						JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
 						buildSQL1Record(jTextFieldSSCC.getText());
 						JLaunchReport.runReport(defaultlabel, listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());
 						dispose();
@@ -270,9 +242,10 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				label_3.setBounds(6, 99, 125, 22);
 				jDesktopPane1.add(label_3);
 
-				comboBoxPrintQueue.setSelectedIndex(-1);
+				comboBoxPrintQueue =  new JComboBoxPODevices4j(Common.selectedHostID,Common.sessionID,"RPT_PALLET_LABEL","");
 				comboBoxPrintQueue.setBounds(139, 99, 610, 22);
 				jDesktopPane1.add(comboBoxPrintQueue);
+				comboBoxPrintQueue.refreshData("RPT_PALLET_LABEL", pal.getProcessOrder());
 
 				jCheckBoxAutoPreview = new JCheckBox4j();
 				jCheckBoxAutoPreview.setToolTipText("Auto SSCC");
@@ -302,7 +275,7 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 					jCheckBoxAutoPreview.setSelected(true);
 					jCheckBoxAutoPreview.setEnabled(true);
 				}
-				populatePrinterList(JPrint.getDefaultPrinterQueueName());
+
 			}
 		} catch (Exception e)
 		{

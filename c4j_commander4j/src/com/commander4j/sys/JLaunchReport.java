@@ -61,15 +61,19 @@ import com.commander4j.bar.JLabelPrint;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBModuleAlternative;
+import com.commander4j.db.JDBWorkstationPreferences;
+import com.commander4j.print.JPrintDevice;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.OSValidator;
 
-public class JLaunchReport {
+public class JLaunchReport
+{
 
 	public static boolean silentExceptions = false;
 	public static JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	public static JDBModuleAlternative modalt = new JDBModuleAlternative(Common.selectedHostID, Common.sessionID);
+	public static JDBWorkstationPreferences workstationPrefs = new JDBWorkstationPreferences(Common.selectedHostID, Common.sessionID);
 	public static Map<String, String> stdparams = new HashMap<String, String>();
 
 	public static void runReportToPDF(String moduleId, HashMap<String, Object> parameterValues, String sql, PreparedStatement preparedstatement, String filename)
@@ -84,7 +88,7 @@ public class JLaunchReport {
 		init();
 
 		moduleId = modalt.substituteAlternative(moduleId);
-		
+
 		mod.setModuleId(moduleId);
 
 		if (mod.getModuleProperties() == true)
@@ -111,7 +115,8 @@ public class JLaunchReport {
 					{
 						parameterValues.put(JRParameter.REPORT_CONNECTION, connection);
 						jasperPrint = JasperFillManager.fillReport(reportFilename, parameterValues, connection);
-					} else
+					}
+					else
 					{
 						resultset = preparedstatement.executeQuery();
 						jasperresultset = new JRResultSetDataSource(resultset);
@@ -119,7 +124,8 @@ public class JLaunchReport {
 						parameterValues.put(JRParameter.REPORT_CONNECTION, connection);
 						jasperPrint = JasperFillManager.fillReport(reportFilename, parameterValues, jasperresultset);
 					}
-				} else
+				}
+				else
 				{
 					statement = Common.hostList.getHost(Common.selectedHostID).getConnection(Common.sessionID).createStatement();
 					statement.setFetchSize(1);
@@ -133,7 +139,8 @@ public class JLaunchReport {
 				System.out.println(filename);
 				JasperExportManager.exportReportToPdfFile(jasperPrint, filename);
 
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				reportError(e.getMessage());
 			}
@@ -146,11 +153,13 @@ public class JLaunchReport {
 				connection = null;
 				jasperPrint = null;
 
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 			}
 
-		} else
+		}
+		else
 		{
 			reportError("Cannot find module [" + moduleId + "]");
 		}
@@ -166,22 +175,22 @@ public class JLaunchReport {
 		stdparams.put("SUBREPORT_DIR", System.getProperty("user.dir") + File.separator + "reports" + File.separator);
 
 		String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
-		
+
 		if (driver.equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
 		{
-			stdparams.put("p_database","sqlserver");
+			stdparams.put("p_database", "sqlserver");
 		}
 
 		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
 		{
-			stdparams.put("p_database","oracle");
+			stdparams.put("p_database", "oracle");
 		}
 
 		if (driver.equals("com.mysql.cj.jdbc.Driver"))
 		{
-			stdparams.put("p_database","mysql");
+			stdparams.put("p_database", "mysql");
 		}
-		
+
 		System.getProperty("user.dir");
 		ctrl.getProperties("LABEL_HEADER_COMMENT");
 
@@ -203,7 +212,7 @@ public class JLaunchReport {
 		JRPrintServiceExporter exporter;
 		// PrintServiceAttributeSet serviceAttributeSet;
 		String reportFilename = "";
-		
+
 		moduleId = modalt.substituteAlternative(moduleId);
 
 		mod.setModuleId(moduleId);
@@ -223,7 +232,8 @@ public class JLaunchReport {
 			if (printQueue.equals(""))
 			{
 				printQueue = JPrint.getDefaultPrinterQueueName();
-			} else
+			}
+			else
 			{
 				if (JPrint.getDefaultPrinterQueueName().equals(printQueue) == false)
 				{
@@ -244,7 +254,8 @@ public class JLaunchReport {
 					{
 						parameterValues.put(JRParameter.REPORT_CONNECTION, connection);
 						jasperPrint = JasperFillManager.fillReport(reportFilename, parameterValues, connection);
-					} else
+					}
+					else
 					{
 						resultset = preparedstatement.executeQuery();
 						jasperresultset = new JRResultSetDataSource(resultset);
@@ -252,7 +263,8 @@ public class JLaunchReport {
 						parameterValues.put(JRParameter.REPORT_CONNECTION, connection);
 						jasperPrint = JasperFillManager.fillReport(reportFilename, parameterValues, jasperresultset);
 					}
-				} else
+				}
+				else
 				{
 					statement = Common.hostList.getHost(Common.selectedHostID).getConnection(Common.sessionID).createStatement();
 					statement.setFetchSize(1);
@@ -273,7 +285,8 @@ public class JLaunchReport {
 					reportviewer.setVisible(true);
 					reportviewer.setSelected(true);
 
-				} else
+				}
+				else
 				{
 
 					exporter = new JRPrintServiceExporter();
@@ -282,9 +295,8 @@ public class JLaunchReport {
 					PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
 					printRequestAttributeSet.add(new Copies(mod.getPrintCopies()));
 
-
 					PrintServiceAttributeSet printServiceAttributeSet = new HashPrintServiceAttributeSet();
-					
+
 					if (OSValidator.isWindows())
 					{
 						printServiceAttributeSet.add(new PrinterName(JPrint.getPrinterServicebyName(printQueue).getName(), Locale.getDefault()));
@@ -293,7 +305,7 @@ public class JLaunchReport {
 					{
 						printServiceAttributeSet.add(new PrinterName(JPrint.correctPrinterQueuename(JPrint.getPrinterServicebyName(printQueue).getName()), Locale.getDefault()));
 					}
-					
+
 					SimplePrintServiceExporterConfiguration configuration = new SimplePrintServiceExporterConfiguration();
 					configuration.setPrintRequestAttributeSet(printRequestAttributeSet);
 					configuration.setPrintServiceAttributeSet(printServiceAttributeSet);
@@ -305,7 +317,8 @@ public class JLaunchReport {
 
 				}
 
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				reportError(e.getMessage());
 			}
@@ -319,35 +332,41 @@ public class JLaunchReport {
 				reportviewer = null;
 				jasperPrint = null;
 
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 			}
 
-		} else
+		}
+		else
 		{
 			reportError("Cannot find module [" + moduleId + "]");
 		}
 	}
 
-	public static void runReport(String ModuleId, PreparedStatement ps, boolean preview, String printQueue, int labelCopies, boolean incHeaderText)
+	public static void runReport(String ModuleId, PreparedStatement ps, boolean preview, JPrintDevice printDevice, int labelCopies, boolean incHeaderText)
 	{
-		
+
 		ModuleId = modalt.substituteAlternative(ModuleId);
 		mod.setModuleId(ModuleId);
 		if (mod.getModuleProperties() == true)
 		{
 			if (mod.getReportType().equals("Standard"))
 			{
-
-				runReport(ModuleId, null, "", ps, printQueue);
-			} else
+				// JasperReports execute here
+				runReport(ModuleId, null, "", ps, printDevice.getQueue().getName());
+			}
+			else
 			{
+				
 				JLabelPrint lp = new JLabelPrint(Common.selectedHostID, Common.sessionID);
-				lp.initLabelStaticData(printQueue, mod.getReportFilename(), ps);
-				lp.print(labelCopies, incHeaderText);
+				lp.initLabelStaticData( mod.getReportFilename(), ps);
+
+				lp.print(labelCopies, incHeaderText,printDevice);
 			}
 
-		} else
+		}
+		else
 		{
 			reportError("Cannot find module [" + ModuleId + "]");
 

@@ -34,13 +34,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.LinkedList;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -51,14 +47,14 @@ import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
-import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JComboBoxPODevices4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.print.JPrintDevice;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
-import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
 /**
@@ -84,7 +80,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrder order = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrderResource resource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
-	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
+	private JComboBoxPODevices4j comboBoxPrintQueue;
 	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
 	private JCheckBox4j jCheckBoxAutoPreview;
 	private JLabel4j_std lbl_Preview;
@@ -128,41 +124,14 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 				
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				
-				populatePrinterList(JPrint.getDefaultPrinterQueueName());
-				
+								
 				jTextFieldBatchSuffix.requestFocus();
 				jTextFieldBatchSuffix.setCaretPosition(jTextFieldBatchSuffix.getText().length());
 			}
 		});		
 
 	}
-
-	private void populatePrinterList(String defaultitem) {
-		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
-
-		LinkedList<String> tempPrinterList = JPrint.getPrinterNames();
-
-		for (int j = 0; j < tempPrinterList.size(); j++)
-		{
-			defComboBoxMod.addElement(tempPrinterList.get(j));
-		}
-
-		int sel = defComboBoxMod.getIndexOf(defaultitem);
-		ComboBoxModel<String> jList1Model = defComboBoxMod;
-		comboBoxPrintQueue.setModel( jList1Model);
-		comboBoxPrintQueue.setSelectedIndex(sel);
-
-		if (JPrint.getNumberofPrinters() == 0)
-		{
-			comboBoxPrintQueue.setEnabled(false);
-		}
-		else
-		{
-			comboBoxPrintQueue.setEnabled(true);
-		}
-	}	
-	
+		
 	public void buildSQL1Record(String lprocessOrder,String suffix)
 	{
 
@@ -200,7 +169,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 					jButtonPrint = new JButton4j(Common.icon_print_16x16);
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							String pq = comboBoxPrintQueue.getSelectedItem().toString();
+							JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
 							buildSQL1Record(jTextFieldProcessOrder.getText(),jTextFieldBatchSuffix.getText());
 							JLaunchReport.runReport("RPT_PROCESS_ORDER_LABEL",listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerQuantity.getValue().toString()),false);
 							dispose();
@@ -271,7 +240,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 				desktopPane.add(lbl_Print_Queue);
 				
 
-				comboBoxPrintQueue.setSelectedIndex(-1);
+				comboBoxPrintQueue =  new JComboBoxPODevices4j(Common.selectedHostID,Common.sessionID,"RPT_PROCESS_ORDER_LABEL","");
 				comboBoxPrintQueue.setBounds(155, 74, 471, 22);
 				desktopPane.add(comboBoxPrintQueue);
 				

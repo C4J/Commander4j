@@ -84,6 +84,7 @@ import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.gui.JToggleButton4j;
+import com.commander4j.print.JPrintDevice;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
@@ -91,6 +92,7 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBViewPalletSampleTableModel;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
+import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
 public class JInternalFramePalletSampleAdmin extends JInternalFrame
@@ -1171,7 +1173,12 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 						{
 
 							populateList();
-							JLaunchReport.runReport("RPT_SORTING_QTY", null, true, null, 1, false);
+
+							JPrintDevice pd = new JPrintDevice();
+							pd.setType("queue");
+							pd.setQueue(JPrint.getDefaultPrinterService());
+							
+							JLaunchReport.runReport("RPT_SORTING_QTY", null, true, pd, 1, false);
 
 						}
 					});

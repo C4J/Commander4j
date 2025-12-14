@@ -234,7 +234,7 @@
 		</statement>
 		<statement>
 			<id>JDBModule.update</id>
-			<text>update {schema}SYS_MODULES set resource_key=?,dk_active=?,rf_active=?,module_type=?,hint=?,icon_filename=?,helpset_id=?,report_filename=?,exec_filename=?,exec_dir=?,print_preview=?,print_dialog=?,print_copies=?,report_type=?,auto_labeller_command_file=?,auto_labeller_label_file=? where module_id=?</text>
+			<text>update {schema}SYS_MODULES set resource_key=?,dk_active=?,rf_active=?,module_type=?,hint=?,icon_filename=?,helpset_id=?,report_filename=?,exec_filename=?,exec_dir=?,print_preview=?,print_dialog=?,print_copies=?,report_type=?,auto_labeller_command_file=?,auto_labeller_label_file=?,printer_type=?,group_id=?,printer_dpi=?,language=?,enable_direct_print=? where module_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBModule.getModulesofTypeforUser</id>
@@ -1406,6 +1406,29 @@
 		<statement>
 			<id>JDBPrinters.getPrinterIDs</id>
 			<text>select * from {schema}SYS_PRINTERS where ENABLED = ? order by PRINTER_ID</text>
+		</statement>
+		<statement>
+			<id>JDBPrinters.getPrintersForModule</id>
+			<text>SELECT
+					SYS_PRINTERS.*
+				FROM
+					SYS_MODULES
+					INNER JOIN
+					SYS_PRINTERS
+					ON 
+						SYS_PRINTERS.GROUP_ID = SYS_MODULES.GROUP_ID AND
+						SYS_PRINTERS.LANGUAGE = SYS_MODULES.LANGUAGE AND
+						SYS_PRINTERS.PRINTER_DPI = SYS_MODULES.PRINTER_DPI AND
+						SYS_PRINTERS.ENABLE_DIRECT_PRINT = SYS_MODULES.ENABLE_DIRECT_PRINT AND
+						SYS_PRINTERS.PRINTER_TYPE = SYS_MODULES.PRINTER_TYPE
+				WHERE
+					SYS_MODULES.MODULE_ID = ? AND
+					SYS_PRINTERS.ENABLED = 'Y' AND
+					SYS_MODULES.REPORT_TYPE = 'Label' AND
+					SYS_PRINTERS.ENABLE_DIRECT_PRINT = 'Y'
+				ORDER BY
+				SYS_PRINTERS.PRINTER_ID ASC
+			</text>
 		</statement>
 		<?JDBLabelData?>
 		<statement>
@@ -2973,6 +2996,23 @@
 		<statement>
 			<id>JDBBomList.getProperties</id>
 			<text>select * from APP_BOM_LISTS where list_id = ? and item = ?</text>
+		</statement>
+		<?JDBWorkstationProperties?>
+		<statement>
+			<id>JDBWorkstationPreferences.create</id>
+			<text>insert into sys_workstation_prefs (workstation,module_id,device_type,printer_id) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWorkstationPreferences.delete</id>
+			<text>delete from sys_workstation_prefs where workstation=? and module_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWorkstationPreferences.getProperties</id>
+			<text>select * from sys_workstation_prefs where workstation = ? and module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWorkstationPreferences.update</id>
+			<text>update sys_workstation_prefs set device_type = ?, printer_id=? where workstation = ? and module_id = ?</text>
 		</statement>
 	</jdbcDriver>
 </SQL>

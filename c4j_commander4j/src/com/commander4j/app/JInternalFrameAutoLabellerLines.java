@@ -99,6 +99,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 	private JRadioButton4j rdbtnAll = new JRadioButton4j("All");
 	private JRadioButton4j rdbtnPack = new JRadioButton4j("Pack");
 	private JRadioButton4j rdbtnPallet = new JRadioButton4j("Pallet");
+	private JRadioButton4j rdbtnGeneral = new JRadioButton4j("General");
 
 	public JInternalFrameAutoLabellerLines()
 	{
@@ -118,7 +119,12 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		if (rdbtnPallet.isSelected())
 		{
 			result = "Pallet";
-		}		
+		}	
+		
+		if (rdbtnGeneral.isSelected())
+		{
+			result = "General";
+		}	
 		
 		return result;
 	}
@@ -340,6 +346,16 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			});
 			rdbtnPallet.setBounds(268, 9, 67, 22);
 			jDesktopPane1.add(rdbtnPallet);
+			
+			rdbtnGeneral.setBackground(Common.color_app_window);
+			buttonGroup.add(rdbtnGeneral);
+			rdbtnGeneral.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					refresh();
+				}
+			});
+			rdbtnGeneral.setBounds(339, 9, 67, 22);
+			jDesktopPane1.add(rdbtnGeneral);
 			
 			JLabel4j_std label4j_std = new JLabel4j_std();
 			label4j_std.setText("Group");
