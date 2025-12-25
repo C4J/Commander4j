@@ -4,7 +4,7 @@
 		<?VIEWS ?>
 		<statement>
 			<id>view_group_permissions</id>
-			<text>(select p.group_id,m.* from {schema}SYS_GROUP_PERMISSIONS p, {schema}SYS_MODULES m where m.module_id = p.module_id)</text>
+			<text>(select p.group_id,m.module_id,m.icon_filename,m.module_type from {schema}SYS_GROUP_PERMISSIONS p, {schema}SYS_MODULES m where m.module_id = p.module_id)</text>
 		</statement>
 		<statement>
 			<id>view_menu_structure</id>
