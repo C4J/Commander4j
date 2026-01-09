@@ -3,12 +3,15 @@ package com.commander4j.spool;
 import java.io.File;
 import java.util.HashMap;
 
+import org.apache.logging.log4j.Logger;
+
 import com.commander4j.util.JArchive;
 
 public class PrintManager
 {
 	public static String spoolFolder = "."+File.separator+"spool";
 	public static String archiveFolder= "."+File.separator+"spool"+File.separator+"archive";
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(PrintManager.class);
 	
 	HashMap<String, Printer> printManager = new HashMap<String, Printer>();
 
@@ -20,6 +23,7 @@ public class PrintManager
 
 		if (printManager.containsKey(id) == false)
 		{
+			logger.debug("Starting Printer Thread for ip "+job.ip+" port "+job.port);
 			Printer printer = new Printer(job.ip, job.port);
 			printer.start();
 
@@ -34,7 +38,15 @@ public class PrintManager
 				printManager.get(id).submitJob(job);
 				result = true;
 			}
+			else
+			{
+				logger.debug("Thread "+id+" not running.");
+			}
 
+		}
+		else
+		{
+			logger.debug("printManager does not contain "+id);
 		}
 		
 		archive();

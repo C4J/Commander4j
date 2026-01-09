@@ -59,7 +59,7 @@ public class Printer extends Thread
 					while ((!success) && (running))
 					{
 
-						filename = Paths.get(PrintManager.spoolFolder +File.separator+ pj.filename);
+						filename = Paths.get(pj.getFileName());
 
 
 
@@ -171,14 +171,14 @@ public class Printer extends Thread
 	public void submitJob(PrintJob rqt)
 	{
 
-		if (new File(PrintManager.spoolFolder +File.separator+ rqt.filename).isFile())
+		if (new File(rqt.getFileName()).isFile())
 		{
 			logger.info("submitJob " + rqt + " to "+getName());
 			queue.add(rqt);
 		}
 		else
 		{
-			logger.error("submitJob " + rqt.filename + " not found !");
+			logger.error("submitJob " + rqt.getFileName() + " not found !");
 		}
 	}
 
@@ -192,13 +192,10 @@ public class Printer extends Thread
 
 	public void removeJob(PrintJob job)
 	{
-		File inputFile = new File(PrintManager.spoolFolder +File.separator+ job.filename);
+		File inputFile = new File(job.getFileName());
 		File archivePath = new File(PrintManager.archiveFolder);
-		File archiveFile = new File(PrintManager.archiveFolder + File.separator + job.filename);
 
 		logger.info("removeJob " + job);
-
-		FileUtils.deleteQuietly(archiveFile);
 
 		try
 		{

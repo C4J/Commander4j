@@ -332,7 +332,8 @@ public class JLabelPrint
 			
 			v_bytes = all_labels.getBytes();
 
-			logger.debug("Writing print job to : " + filename);
+			logger.debug("Writing print job to : " + PrintManager.spoolFolder+File.separator +filename);
+			
 			FileOutputStream fos = new FileOutputStream(PrintManager.spoolFolder+File.separator +filename);
 			fos.write(v_bytes);
 			fos.close();
@@ -341,6 +342,7 @@ public class JLabelPrint
 			{
 			
 				PrintJob pj = new PrintJob(printdevice.getPrinter().getIPAddress(),printdevice.getPrinter().getPortInt(),filename);
+				
 				Common.printManager.submitJob(pj);
 			
 			}
@@ -369,6 +371,8 @@ public class JLabelPrint
 				} catch (Exception ex)
 				{
 
+					logger.debug(ex.getMessage());
+					
 					if (Common.applicationMode.equals("SwingClient"))
 					{
 						JUtility.errorBeep();
@@ -378,11 +382,9 @@ public class JLabelPrint
 				}
 			}
 
-
-
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+			logger.debug(e.getMessage());
 		}
 	}
 	

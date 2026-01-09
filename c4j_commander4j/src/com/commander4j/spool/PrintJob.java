@@ -1,5 +1,7 @@
 package com.commander4j.spool;
 
+import java.io.File;
+
 public class PrintJob
 {
 	public String filename="";
@@ -14,8 +16,13 @@ public class PrintJob
 		this.filename = filename;
 	}
 	
+	public String getFileName()
+	{
+		return PrintManager.spoolFolder +File.separator+ this.filename;
+	}
+	
 	public String toString()
 	{
-		return "PrintJob Filename=["+filename+ "] IP=["+ip+"] Port =["+String.valueOf(port)+"]";
+		return "PrintJob Filename=["+getFileName()+ "] IP=["+ip+"] Port =["+String.valueOf(port)+"]";
 	}
 }

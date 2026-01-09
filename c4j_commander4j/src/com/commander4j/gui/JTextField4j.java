@@ -6,6 +6,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.AbstractDocument;
+import javax.swing.text.DocumentFilter;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFixedSizeFilter;
@@ -22,6 +23,7 @@ public class JTextField4j extends JTextField {
     private int characterLimit = -1; // -1 means "no limit"
     private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
     private boolean hasFocus = false;
+
     
 	private void init()
 	{
@@ -53,6 +55,16 @@ public class JTextField4j extends JTextField {
         updateColors();
     }
 
+    public void setDocumentFilter(DocumentFilter docfilter)
+    {
+    	((AbstractDocument) getDocument()).setDocumentFilter(docfilter);
+    }
+        
+    public void resetCaseFilter()
+    {
+    	((AbstractDocument) getDocument()).setDocumentFilter(null);
+    }
+    
     private void initFocusBehavior() {
         addFocusListener(new FocusAdapter() {
             @Override
