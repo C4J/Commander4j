@@ -50,7 +50,7 @@ import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBField;
 import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBStructure;
-import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileFilterXML;
 import com.commander4j.util.JFileIO;
@@ -113,7 +113,7 @@ public class OutgoingPalletExportXML
 		return rs;
 	}
 
-	public Boolean saveAs(String filename, PreparedStatement stmt, Component parent, JLabel4j_std jStatusText)
+	public Boolean saveAs(String filename, PreparedStatement stmt, Component parent, JLabel4j_status jStatusText)
 	{
 
 		jStatusText.setForeground(Color.BLACK);
@@ -156,7 +156,7 @@ public class OutgoingPalletExportXML
 		return result;
 	}
 
-	private void updateStatus(JLabel4j_std jStatusText, String msg)
+	private void updateStatus(JLabel4j_status jStatusText, String msg)
 	{
 		jStatusText.setText(msg);
 		Rectangle progressRect = jStatusText.getBounds();
@@ -166,7 +166,7 @@ public class OutgoingPalletExportXML
 		jStatusText.paintImmediately(progressRect);
 	}
 
-	public Boolean processMessage(String filename, PreparedStatement stmtPallet, JLabel4j_std jStatusText)
+	public Boolean processMessage(String filename, PreparedStatement stmtPallet, JLabel4j_status jStatusText)
 	{
 		Boolean result = false;
 

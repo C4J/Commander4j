@@ -1,33 +1,5 @@
 package com.commander4j.app;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JInternalFrameQMInspectionAdmin.java
- * 
- * Package Name : com.commander4j.app
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -38,17 +10,11 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -59,10 +25,14 @@ import com.commander4j.db.JDBQMTest;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JTitledBorder4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
@@ -75,10 +45,10 @@ import com.commander4j.util.JUtility;
  * and APP_QM_TEST are arranged in a 3 layer hierarchy. For each Inspection
  * there can be one or more Activities. For each Activity there will typically
  * be more than one Test.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameQMInspectionAdmin.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBQMInspection JDBQMInspection
  * @see com.commander4j.db.JDBQMActivity JDBQMActivity
  * @see com.commander4j.db.JDBQMTest JDBQMTest
@@ -95,20 +65,20 @@ import com.commander4j.util.JUtility;
 public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 {
 
-	private static final long serialVersionUID = 1L;
-	private JTextField4j textFieldInspectionID;
-	private JTextField4j textFieldDescription;
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBQMInspection inspect = new JDBQMInspection(Common.selectedHostID, Common.sessionID);
-	private JDBQMActivity activity = new JDBQMActivity(Common.selectedHostID, Common.sessionID);
-	private JDBQMTest test = new JDBQMTest(Common.selectedHostID, Common.sessionID);
-	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-	private PreparedStatement listStatement;
-	private JSpinner4j spinnerLimit;
 	private JCheckBox4j chckbxLimit;
-	private JList4j<JDBQMInspection> listInspection;
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBQMActivity activity = new JDBQMActivity(Common.selectedHostID, Common.sessionID);
+	private JDBQMInspection inspect = new JDBQMInspection(Common.selectedHostID, Common.sessionID);
+	private JDBQMTest test = new JDBQMTest(Common.selectedHostID, Common.sessionID);
 	private JList4j<JDBQMActivity> listActivity;
+	private JList4j<JDBQMInspection> listInspection;
 	private JList4j<JDBQMTest> listTest;
+	private JSpinner4j spinnerLimit;
+	private JTextField4j textFieldDescription;
+	private JTextField4j textFieldInspectionID;
+	private PreparedStatement listStatement;
+	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Create the frame.
@@ -119,25 +89,64 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		setClosable(true);
 		setTitle("Inspection Admin");
 		setIconifiable(true);
-		setBounds(100, 100, 845, 706);
+		setBounds(100, 100, 803, 660);
 		getContentPane().setLayout(null);
 
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBackground(Common.color_app_window);
+		JDesktopPane4j desktopPane = new JDesktopPane4j();
+
 		desktopPane.setBounds(0, 0, 833, 713);
 		getContentPane().add(desktopPane);
 
-		JPanel panelInspection = new JPanel();
-		panelInspection.setBackground(Common.color_app_window);
-		panelInspection.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), lang.get("lbl_Inspection"), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelInspection.setBounds(6, 72, 810, 173);
-		panelInspection.setFont(Common.font_title);
+		JPanel4j panelSelection = new JPanel4j();
+		panelSelection.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("lbl_Inspection")));
+		panelSelection.setBounds(6, 12, 786, 121);
+		desktopPane.add(panelSelection);
+		panelSelection.setLayout(null);
+
+		JButton4j btnSearch1 = new JButton4j(lang.get("btn_Search"));
+		btnSearch1.setBounds(663, 13, 117, 32);
+		panelSelection.add(btnSearch1);
+		btnSearch1.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				buildSQL();
+				populateInspectList("");
+			}
+		});
+		btnSearch1.setIcon(Common.icon_search_16x16);
+
+		JButton4j btnClose1 = new JButton4j(lang.get("btn_Close"));
+		btnClose1.setBounds(663, 46, 117, 32);
+		panelSelection.add(btnClose1);
+		btnClose1.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		});
+		btnClose1.setIcon(Common.icon_close_16x16);
+
+		JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
+		lblInspectionID.setBounds(12, 13, 146, 22);
+		panelSelection.add(lblInspectionID);
+		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
+
+		textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
+		textFieldInspectionID.setBounds(166, 13, 117, 22);
+		panelSelection.add(textFieldInspectionID);
+		textFieldInspectionID.setColumns(10);
+
+		JPanel4j panelInspection = new JPanel4j();
+		panelInspection.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("lbl_Inspection")));
+		panelInspection.setBounds(6, 130, 786, 160);
 
 		desktopPane.add(panelInspection);
 		panelInspection.setLayout(null);
 
-		JScrollPane scrollPaneInspection = new JScrollPane();
-		scrollPaneInspection.setBounds(16, 24, 655, 132);
+		JScrollPane4j scrollPaneInspection = new JScrollPane4j(JScrollPane4j.List);
+		scrollPaneInspection.setBounds(8, 18, 650, 133);
 		panelInspection.add(scrollPaneInspection);
 
 		listInspection = new JList4j<JDBQMInspection>();
@@ -176,7 +185,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			}
 		});
 		btnAdd1.setIcon(Common.icon_add_16x16);
-		btnAdd1.setBounds(683, 24, 117, 32);
+		btnAdd1.setBounds(663, 18, 117, 32);
 		btnAdd1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_INSPECTION"));
 		panelInspection.add(btnAdd1);
 
@@ -188,7 +197,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				deleteInspectionRecord();
 			}
 		});
-		btnDelete1.setBounds(683, 80, 117, 32);
+		btnDelete1.setBounds(663, 84, 117, 32);
 		btnDelete1.setIcon(Common.icon_delete_16x16);
 		btnDelete1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_INSPECTION"));
 		panelInspection.add(btnDelete1);
@@ -202,20 +211,18 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			}
 		});
 		btnEdit1.setIcon(Common.icon_edit_16x16);
-		btnEdit1.setBounds(683, 52, 117, 32);
+		btnEdit1.setBounds(663, 51, 117, 32);
 		btnEdit1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_INSPECTION"));
 		panelInspection.add(btnEdit1);
 
-		JPanel panelActivity = new JPanel();
-		panelActivity.setBackground(Common.color_app_window);
-		panelActivity.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), lang.get("lbl_Activity"), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelActivity.setBounds(6, 245, 810, 184);
-		panelActivity.setFont(Common.font_title);
+		JPanel4j panelActivity = new JPanel4j();
+		panelActivity.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("lbl_Activity")));
+		panelActivity.setBounds(6, 295, 786, 160);
 		desktopPane.add(panelActivity);
 		panelActivity.setLayout(null);
 
-		JScrollPane scrollPaneActivity = new JScrollPane();
-		scrollPaneActivity.setBounds(16, 24, 655, 143);
+		JScrollPane4j scrollPaneActivity = new JScrollPane4j(JScrollPane4j.List);
+		scrollPaneActivity.setBounds(8, 18, 650, 133);
 		panelActivity.add(scrollPaneActivity);
 
 		listActivity = new JList4j<JDBQMActivity>();
@@ -254,7 +261,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				deleteActivityRecord();
 			}
 		});
-		btnDelete2.setBounds(683, 80, 117, 32);
+		btnDelete2.setBounds(663, 84, 117, 32);
 		btnDelete2.setIcon(Common.icon_delete_16x16);
 		btnDelete2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_ACTIVITY"));
 		panelActivity.add(btnDelete2);
@@ -268,7 +275,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			}
 		});
 		btnEdit2.setIcon(Common.icon_edit_16x16);
-		btnEdit2.setBounds(683, 52, 117, 32);
+		btnEdit2.setBounds(663, 51, 117, 32);
 		btnEdit2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_ACTIVITY"));
 		panelActivity.add(btnEdit2);
 
@@ -281,20 +288,19 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			}
 		});
 		btnAdd2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_ACTIVITY"));
-		btnAdd2.setBounds(683, 24, 117, 32);
+		btnAdd2.setBounds(663, 18, 117, 32);
 		btnAdd2.setIcon(Common.icon_add_16x16);
 		panelActivity.add(btnAdd2);
 
-		JPanel panelTests = new JPanel();
-		panelTests.setBackground(Common.color_app_window);
-		panelTests.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), lang.get("lbl_Test"), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelTests.setBounds(6, 426, 810, 238);
-		panelTests.setFont(Common.font_title);
+		JPanel4j panelTests = new JPanel4j();
+
+		panelTests.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("lbl_Test")));
+		panelTests.setBounds(6, 460, 786, 160);
 		desktopPane.add(panelTests);
 		panelTests.setLayout(null);
 
-		JScrollPane scrollPaneTests = new JScrollPane();
-		scrollPaneTests.setBounds(16, 23, 659, 197);
+		JScrollPane4j scrollPaneTests = new JScrollPane4j(JScrollPane4j.List);
+		scrollPaneTests.setBounds(8, 18, 650, 133);
 		panelTests.add(scrollPaneTests);
 
 		listTest = new JList4j<JDBQMTest>();
@@ -321,7 +327,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		});
 		btnDelete3.setIcon(Common.icon_delete_16x16);
 		btnDelete3.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_TEST"));
-		btnDelete3.setBounds(687, 80, 117, 32);
+		btnDelete3.setBounds(663, 84, 117, 32);
 		panelTests.add(btnDelete3);
 
 		JButton4j btnEdit3 = new JButton4j(lang.get("btn_Edit"));
@@ -334,7 +340,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		});
 		btnEdit3.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_TEST"));
 		btnEdit3.setIcon(Common.icon_edit_16x16);
-		btnEdit3.setBounds(687, 52, 117, 32);
+		btnEdit3.setBounds(663, 51, 117, 32);
 		panelTests.add(btnEdit3);
 
 		JButton4j btnAdd3 = new JButton4j(lang.get("btn_Add"));
@@ -347,7 +353,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		});
 		btnAdd3.setIcon(Common.icon_add_16x16);
 		btnAdd3.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_TEST"));
-		btnAdd3.setBounds(687, 24, 117, 32);
+		btnAdd3.setBounds(663, 18, 117, 32);
 		panelTests.add(btnAdd3);
 
 		JButton4j btnDictionary = new JButton4j(lang.get("btn_Dictionary"));
@@ -360,73 +366,40 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		});
 		btnDictionary.setIcon(Common.icon_dictionary_16x16);
 		btnDictionary.setEnabled(true);
-		btnDictionary.setBounds(687, 108, 117, 32);
+		btnDictionary.setBounds(663, 117, 117, 32);
 		panelTests.add(btnDictionary);
 
-		JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
-		lblInspectionID.setBounds(6, 9, 83, 22);
-		desktopPane.add(lblInspectionID);
-		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
-
-		textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
-		textFieldInspectionID.setBounds(101, 9, 117, 22);
-		desktopPane.add(textFieldInspectionID);
-		textFieldInspectionID.setColumns(10);
+		JButton4j btnLookupInspection = new JButton4j("");
+		btnLookupInspection.setBounds(284, 13, 21, 22);
+		panelSelection.add(btnLookupInspection);
+		btnLookupInspection.setIcon(Common.icon_lookup_16x16);
 
 		JLabel4j_std lblDescription = new JLabel4j_std(lang.get("lbl_Description"));
-		lblDescription.setBounds(252, 9, 110, 22);
-		desktopPane.add(lblDescription);
+		lblDescription.setBounds(12, 46, 146, 22);
+		panelSelection.add(lblDescription);
 		lblDescription.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		textFieldDescription = new JTextField4j(JDBQMInspection.field_description);
-		textFieldDescription.setBounds(371, 9, 445, 22);
-		desktopPane.add(textFieldDescription);
+		textFieldDescription.setBounds(166, 47, 467, 22);
+		panelSelection.add(textFieldDescription);
 		textFieldDescription.setColumns(10);
 
-		JButton4j btnSearch1 = new JButton4j(lang.get("btn_Search"));
-		btnSearch1.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				buildSQL();
-				populateInspectList("");
-			}
-		});
-		btnSearch1.setBounds(262, 40, 117, 32);
-		desktopPane.add(btnSearch1);
-		btnSearch1.setIcon(Common.icon_search_16x16);
-
-		JButton4j btnClose1 = new JButton4j(lang.get("btn_Close"));
-		btnClose1.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				dispose();
-			}
-		});
-		btnClose1.setBounds(395, 40, 117, 32);
-		desktopPane.add(btnClose1);
-		btnClose1.setIcon(Common.icon_close_16x16);
+		JLabel4j_std lbl_Limit = new JLabel4j_std(lang.get("lbl_Limit"));
+		lbl_Limit.setBounds(12, 81, 146, 22);
+		panelSelection.add(lbl_Limit);
+		lbl_Limit.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		chckbxLimit = new JCheckBox4j("");
-		chckbxLimit.setBounds(711, 43, 28, 22);
-		desktopPane.add(chckbxLimit);
+		chckbxLimit.setBounds(166, 81, 28, 22);
+		panelSelection.add(chckbxLimit);
 		chckbxLimit.setSelected(true);
 
 		spinnerLimit = new JSpinner4j();
-		spinnerLimit.setBounds(740, 43, 76, 22);
-		desktopPane.add(spinnerLimit);
+		spinnerLimit.setBounds(191, 81, 76, 22);
+		panelSelection.add(spinnerLimit);
 		spinnerLimit.setValue(100);
 		JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(spinnerLimit);
 		spinnerLimit.setEditor(ne);
-
-		JLabel4j_std lbl_Limit = new JLabel4j_std(lang.get("lbl_Limit"));
-		lbl_Limit.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_Limit.setBounds(589, 43, 110, 22);
-		desktopPane.add(lbl_Limit);
-
-		JButton4j btnLookupInspection = new JButton4j("");
-		btnLookupInspection.setIcon(Common.icon_lookup_16x16);
 		btnLookupInspection.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -441,8 +414,6 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				}
 			}
 		});
-		btnLookupInspection.setBounds(216, 9, 21, 22);
-		desktopPane.add(btnLookupInspection);
 
 		SwingUtilities.invokeLater(new Runnable()
 		{
@@ -625,7 +596,8 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			rs.close();
 			if (sel == -1)
 				sel = 0;
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			System.out.print(e.getMessage());
 		}

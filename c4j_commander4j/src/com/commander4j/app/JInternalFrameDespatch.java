@@ -1,33 +1,5 @@
 package com.commander4j.app;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JInternalFrameDespatch.java
- * 
- * Package Name : com.commander4j.app
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -40,22 +12,17 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-
-import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -71,10 +38,13 @@ import com.commander4j.db.JDBUser;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JRadioButton4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
@@ -92,10 +62,10 @@ import com.commander4j.util.JUtility;
  * message to interface with an ERP system. There is also a web page for use on
  * mobile had scanners which allows you to build a despatch by scanning the SSCC
  * barcode.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameDespatch.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBDespatch JDBDespatch
  * @see com.commander4j.db.JDBJourney JDBJourney
  * @see com.commander4j.app.JInternalFrameJourneyAdmin
@@ -107,64 +77,67 @@ import com.commander4j.util.JUtility;
 public class JInternalFrameDespatch extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
-	private JButton4j jButtonLookupHaulier;
-	private JButton4j jButtonLookupTrailer;
-	private JTextField4j textFieldHaulier;
-	private JTextField4j textFieldTrailer;
 	private ButtonGroup buttonGroup_1 = new ButtonGroup();
-	private JButton4j jButtonLookupBatch;
-	private JButton4j jButtonLookupMaterial;
-	private JButton4j jButtonLookupLocationTo;
-	private JButton4j jButtonLookupLocationFrom;
-	private JButton4j jButtonLookupLoadNo;
-	private JButton4j jButtonEquipment;
-	private JTextField4j jTextFieldDespatchDate;
-	private JTextField4j textFieldNoOfPallets;
-	private JTextField4j textFieldQtyOfEquipment;
-	private JTextField4j textFieldDespatchLocationTo;
-	private JTextField4j textFieldDespatchStatus;
-	private JTextField4j textFieldDespatchLocationFrom;
-	private JLabel4j_std jLabel10_1;
-	private JSpinner4j spinnerUnassignedLimit;
-	private JCheckBox4j jCheckBoxLimit;
-	private JLabel4j_std jLabel10;
-	private JTextField4j textFieldBatch;
-	private JTextField4j textFieldMaterial;
-	private JTextField4j textFieldSSCC;
-	private JComboBox4j<String> comboBoxPalletStatus;
-	private JList4j<String> list_assigned;
-	private JList4j<String> list_unassigned;
-	private JList4j<JDBDespatch> list_despatch;
-	private JSpinner4j spinnerDespatchLimit = new JSpinner4j();
-	private JDBDespatch despatch = new JDBDespatch(Common.selectedHostID, Common.sessionID);
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBJourney journey = new JDBJourney(Common.selectedHostID, Common.sessionID);
+	private JButton4j btn_Picklist = new JButton4j(Common.icon_open_16x16);
+	private JButton4j buttonAssign = new JButton4j(Common.icon_arrow_left_16x16);
+	private JButton4j buttonSetUserID;
+	private JButton4j buttonUnAssign = new JButton4j(Common.icon_arrow_right_16x16);
 	private JButton4j confirmButton = new JButton4j(Common.icon_ok_16x16);
 	private JButton4j deleteButton = new JButton4j(Common.icon_delete_16x16);
-	private JButton4j buttonUnAssign = new JButton4j(Common.icon_arrow_right_16x16);
-	private JButton4j buttonAssign = new JButton4j(Common.icon_arrow_left_16x16);
-	private JButton4j btn_Picklist = new JButton4j(Common.icon_open_16x16);
-	private String currentdespatchno = "";
-	private String previousdespatchno = "";
-	private LinkedList<JDBDespatch> despList = new LinkedList<JDBDespatch>();
-	private LinkedList<String> unassignedList = new LinkedList<String>();
-	private LinkedList<String> assignedList = new LinkedList<String>();
+	private JButton4j findButton = new JButton4j(Common.icon_find_16x16);
+	private JButton4j jButtonAddJourneyRef = new JButton4j(Common.icon_despatch_add_16x16);
+	private JButton4j jButtonEquipment;
+	private JButton4j jButtonHelp = new JButton4j(Common.icon_help_16x16);
+	private JButton4j jButtonLookupBatch;
+	private JButton4j jButtonLookupHaulier;
+	private JButton4j jButtonLookupJourneyRef;
+	private JButton4j jButtonLookupLoadNo;
+	private JButton4j jButtonLookupLocationFrom;
+	private JButton4j jButtonLookupLocationTo;
+	private JButton4j jButtonLookupMaterial;
+	private JButton4j jButtonLookupTrailer;
+	private JButton4j jButtonRemoveJourneyRef = new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j newButton = new JButton4j(Common.icon_add_16x16);
+	private JCheckBox4j jCheckBoxLimit;
+	private JComboBox4j<String> comboBoxPalletStatus;
+	private JDBDespatch despatch = new JDBDespatch(Common.selectedHostID, Common.sessionID);
+	private JDBJourney journey = new JDBJourney(Common.selectedHostID, Common.sessionID);
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JLabel4j_status jStatusText;
+	private JLabel4j_std jLabel_Limit2;
+	private JLabel4j_std jLabel_Limit;
+	private JList4j<JDBDespatch> list_despatch;
+	private JList4j<String> list_assigned;
+	private JList4j<String> list_unassigned;
 	private JRadioButton4j confirmedRadioButton = new JRadioButton4j();
 	private JRadioButton4j unconfirmedRadioButton = new JRadioButton4j();
-	private JButton4j findButton = new JButton4j(Common.icon_find_16x16);
-	private JButton4j jButtonHelp = new JButton4j(Common.icon_help_16x16);
-	private JButton4j newButton = new JButton4j(Common.icon_add_16x16);
-	private JLabel4j_std jStatusText;
-	private JTextField4j textFieldLoadNo;
-	private JTextField4j textFieldUserID;
-	private JButton4j buttonSetUserID;
+	private JSpinner4j spinnerDespatchLimit = new JSpinner4j();
+	private JSpinner4j spinnerUnassignedLimit;
+	private JTextField4j jTextFieldDespatchDate;
+	private JTextField4j textFieldBatch;
+	private JTextField4j textFieldDespatchLocationFrom;
+	private JTextField4j textFieldDespatchLocationTo;
 	private JTextField4j textFieldDespatchNo;
-	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-	private PreparedStatement listStatement;
-	private JButton4j jButtonLookupJourneyRef;
+	private JTextField4j textFieldDespatchStatus;
+	private JTextField4j textFieldHaulier;
 	private JTextField4j textFieldJourneyRef;
-	private JButton4j jButtonRemoveJourneyRef = new JButton4j(Common.icon_despatch_remove_16x16);
-	private JButton4j jButtonAddJourneyRef = new JButton4j(Common.icon_despatch_add_16x16);
+	private JTextField4j textFieldLoadNo;
+	private JTextField4j textFieldMaterial;
+	private JTextField4j textFieldNoOfPallets;
+	private JTextField4j textFieldQtyOfEquipment;
+	private JTextField4j textFieldSSCC;
+	private JTextField4j textFieldTrailer;
+	private JTextField4j textFieldUserID;
+	private LinkedList<JDBDespatch> despList = new LinkedList<JDBDespatch>();
+	private LinkedList<String> assignedList = new LinkedList<String>();
+	private LinkedList<String> unassignedList = new LinkedList<String>();
+	private PreparedStatement listStatement;
+	private String currentdespatchno = "";
+	private String previousdespatchno = "";
+	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+	private JScrollPane4j scrollPaneDespatches = new JScrollPane4j(JScrollPane4j.List);
+	private JScrollPane4j scrollPaneUnAssigned = new JScrollPane4j(JScrollPane4j.UnAssigned);
+	private JScrollPane4j scrollPaneAssigned = new JScrollPane4j(JScrollPane4j.Assigned);
 
 	public JInternalFrameDespatch()
 	{
@@ -174,17 +147,15 @@ public class JInternalFrameDespatch extends JInternalFrame
 		setTitle("Despatch");
 		setVisible(true);
 		getContentPane().setLayout(null);
-		setBounds(100, 100, 856, 538);
+		setBounds(100, 100, 846, 546);
 
-		final JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBackground(Common.color_app_window);
-		desktopPane.setBounds(0, 0, 846, 480);
+		JDesktopPane4j desktopPane = new JDesktopPane4j();
+		desktopPane.setBounds(0, 0, 846, 516);
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
 
-		final JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 30, 150, 290);
-		desktopPane.add(scrollPane);
+		scrollPaneDespatches.setBounds(10, 30, 150, 290);
+		desktopPane.add(scrollPaneDespatches);
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
@@ -303,26 +274,25 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		list_despatch.setCellRenderer(Common.renderer_list);
 		list_despatch.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.setViewportView(list_despatch);
+		scrollPaneDespatches.setViewportView(list_despatch);
 
-		final JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(520, 30, 150, 402);
-		desktopPane.add(scrollPane_1);
+		scrollPaneUnAssigned.setBounds(520, 30, 150, 402);
+		desktopPane.add(scrollPaneUnAssigned);
 
 		list_unassigned = new JList4j<String>();
+		list_unassigned.setMode(JList4j.UnAssigned);
+
 		list_unassigned.setLocation(0, -3);
 		list_unassigned.setCellRenderer(Common.renderer_list_unassigned);
-		list_unassigned.setBackground(Common.color_list_unassigned);
-		scrollPane_1.setViewportView(list_unassigned);
+		scrollPaneUnAssigned.setViewportView(list_unassigned);
 
-		final JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(325, 30, 150, 402);
-		desktopPane.add(scrollPane_2);
+		scrollPaneAssigned.setBounds(325, 30, 150, 402);
+		desktopPane.add(scrollPaneAssigned);
 
 		list_assigned = new JList4j<String>();
+		list_assigned.setMode(JList4j.Assigned);
 		list_assigned.setCellRenderer(Common.renderer_list_assigned);
-		list_assigned.setBackground(Common.color_list_assigned);
-		scrollPane_2.setViewportView(list_assigned);
+		scrollPaneAssigned.setViewportView(list_assigned);
 
 		comboBoxPalletStatus = new JComboBox4j<String>();
 
@@ -337,33 +307,33 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldSSCC.setBounds(686, 52, 143, 22);
 		desktopPane.add(textFieldSSCC);
 
-		final JLabel4j_std palletStatusLabel = new JLabel4j_std();
-		palletStatusLabel.setText(lang.get("lbl_Pallet_Status"));
-		palletStatusLabel.setBounds(686, 117, 143, 22);
-		desktopPane.add(palletStatusLabel);
+		final JLabel4j_std jLabel_PalletStatus = new JLabel4j_std();
+		jLabel_PalletStatus.setText(lang.get("lbl_Pallet_Status"));
+		jLabel_PalletStatus.setBounds(686, 117, 143, 22);
+		desktopPane.add(jLabel_PalletStatus);
 
-		final JLabel4j_std ssccLabel = new JLabel4j_std();
-		ssccLabel.setText(lang.get("lbl_Pallet_SSCC"));
-		ssccLabel.setBounds(686, 37, 143, 16);
-		desktopPane.add(ssccLabel);
+		final JLabel4j_std jLabel_SSCC = new JLabel4j_std();
+		jLabel_SSCC.setText(lang.get("lbl_Pallet_SSCC"));
+		jLabel_SSCC.setBounds(686, 37, 143, 16);
+		desktopPane.add(jLabel_SSCC);
 
 		textFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 		textFieldMaterial.setBounds(686, 92, 124, 22);
 		desktopPane.add(textFieldMaterial);
 
-		final JLabel4j_std materialLabel = new JLabel4j_std();
-		materialLabel.setText(lang.get("lbl_Material"));
-		materialLabel.setBounds(686, 77, 143, 16);
-		desktopPane.add(materialLabel);
+		final JLabel4j_std jLabel_Material = new JLabel4j_std();
+		jLabel_Material.setText(lang.get("lbl_Material"));
+		jLabel_Material.setBounds(686, 77, 143, 16);
+		desktopPane.add(jLabel_Material);
 
 		textFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
 		textFieldBatch.setBounds(686, 177, 124, 22);
 		desktopPane.add(textFieldBatch);
 
-		final JLabel4j_std batchLabel = new JLabel4j_std();
-		batchLabel.setText(lang.get("lbl_Batch"));
-		batchLabel.setBounds(686, 162, 143, 16);
-		desktopPane.add(batchLabel);
+		final JLabel4j_std jLabel_Batch = new JLabel4j_std();
+		jLabel_Batch.setText(lang.get("lbl_Batch"));
+		jLabel_Batch.setBounds(686, 162, 143, 16);
+		desktopPane.add(jLabel_Batch);
 		buttonAssign.setEnabled(false);
 
 		buttonAssign.setBounds(485, 150, 25, 25);
@@ -403,6 +373,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 						}
 
 						list_assigned.setModel(addListtoModel(assignedList));
+						list_assigned.setMode(JList4j.Assigned);
+
 						list_unassigned.setModel(addListtoModel(unassignedList));
 						textFieldNoOfPallets.setText(String.valueOf(assignedList.size()));
 
@@ -556,16 +528,15 @@ public class JInternalFrameDespatch extends JInternalFrame
 		printButton.setBounds(478, 444, 116, 32);
 		desktopPane.add(printButton);
 
-		jLabel10 = new JLabel4j_std();
-		jLabel10.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-		jLabel10.setText(lang.get("lbl_Limit"));
-		jLabel10.setBounds(686, 246, 143, 22);
-		desktopPane.add(jLabel10);
+		jLabel_Limit2 = new JLabel4j_std();
+		jLabel_Limit2.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		jLabel_Limit2.setHorizontalAlignment(SwingConstants.TRAILING);
+		jLabel_Limit2.setText(lang.get("lbl_Limit"));
+		jLabel_Limit2.setBounds(686, 246, 143, 22);
+		desktopPane.add(jLabel_Limit2);
 
 		jCheckBoxLimit = new JCheckBox4j();
 		jCheckBoxLimit.setSelected(true);
-		jCheckBoxLimit.setBackground(new Color(255, 255, 255));
 		jCheckBoxLimit.setBounds(686, 266, 21, 22);
 		desktopPane.add(jCheckBoxLimit);
 
@@ -686,10 +657,10 @@ public class JInternalFrameDespatch extends JInternalFrame
 		spinnerDespatchLimit.setValue(50);
 		desktopPane.add(spinnerDespatchLimit);
 
-		jLabel10_1 = new JLabel4j_std();
-		jLabel10_1.setText(lang.get("lbl_Limit"));
-		jLabel10_1.setBounds(85, 336, 75, 21);
-		desktopPane.add(jLabel10_1);
+		jLabel_Limit = new JLabel4j_std();
+		jLabel_Limit.setText(lang.get("lbl_Limit"));
+		jLabel_Limit.setBounds(85, 336, 75, 21);
+		desktopPane.add(jLabel_Limit);
 
 		textFieldDespatchLocationFrom = new JTextField4j(JDBLocation.field_location_id);
 		textFieldDespatchLocationFrom.addActionListener(new ActionListener()
@@ -710,15 +681,15 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldDespatchLocationFrom.setBounds(172, 30, 122, 22);
 		desktopPane.add(textFieldDespatchLocationFrom);
 
-		final JLabel4j_std locationLabel_1 = new JLabel4j_std();
-		locationLabel_1.setText(lang.get("lbl_From_Location"));
-		locationLabel_1.setBounds(172, 10, 141, 22);
-		desktopPane.add(locationLabel_1);
+		final JLabel4j_std jLabel_From = new JLabel4j_std();
+		jLabel_From.setText(lang.get("lbl_From_Location"));
+		jLabel_From.setBounds(172, 10, 141, 22);
+		desktopPane.add(jLabel_From);
 
-		final JLabel4j_std palletStatusLabel_1 = new JLabel4j_std();
-		palletStatusLabel_1.setText(lang.get("lbl_Despatch_Status"));
-		palletStatusLabel_1.setBounds(172, 272, 141, 22);
-		desktopPane.add(palletStatusLabel_1);
+		final JLabel4j_std jLabel_Despatch = new JLabel4j_std();
+		jLabel_Despatch.setText(lang.get("lbl_Despatch_Status"));
+		jLabel_Despatch.setBounds(172, 272, 141, 22);
+		desktopPane.add(jLabel_Despatch);
 
 		textFieldDespatchStatus = new JTextField4j(JDBDespatch.field_status);
 		textFieldDespatchStatus.setEditable(false);
@@ -730,34 +701,34 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldDespatchLocationTo.setBounds(172, 73, 122, 22);
 		desktopPane.add(textFieldDespatchLocationTo);
 
-		final JLabel4j_std locationLabel_1_1 = new JLabel4j_std();
-		locationLabel_1_1.setText(lang.get("lbl_To_Location"));
-		locationLabel_1_1.setBounds(172, 54, 141, 16);
-		desktopPane.add(locationLabel_1_1);
+		final JLabel4j_std jLabel_To = new JLabel4j_std();
+		jLabel_To.setText(lang.get("lbl_To_Location"));
+		jLabel_To.setBounds(172, 54, 141, 16);
+		desktopPane.add(jLabel_To);
 
-		final JLabel4j_std palletStatusLabel_1_1 = new JLabel4j_std();
-		palletStatusLabel_1_1.setText(lang.get("lbl_Despatch_Date"));
-		palletStatusLabel_1_1.setBounds(172, 317, 141, 22);
-		desktopPane.add(palletStatusLabel_1_1);
+		final JLabel4j_std jLabel_DespatchDate = new JLabel4j_std();
+		jLabel_DespatchDate.setText(lang.get("lbl_Despatch_Date"));
+		jLabel_DespatchDate.setBounds(172, 317, 141, 22);
+		desktopPane.add(jLabel_DespatchDate);
 
 		final JLabel4j_std lbl_NoOfPallets = new JLabel4j_std();
 		lbl_NoOfPallets.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_NoOfPallets.setText(lang.get("lbl_No_Of_Pallets"));
 		lbl_NoOfPallets.setBounds(120, 365, 120, 22);
 		desktopPane.add(lbl_NoOfPallets);
-		
-		final JLabel4j_std lbl_QtyOfEquipment = new JLabel4j_std();
-		lbl_QtyOfEquipment.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_QtyOfEquipment.setText(lang.get("lbl_Quantity_Of_Equipment"));
-		lbl_QtyOfEquipment.setBounds(120, 396, 120, 22);
-		desktopPane.add(lbl_QtyOfEquipment);
+
+		final JLabel4j_std jLabel_Equipment = new JLabel4j_std();
+		jLabel_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
+		jLabel_Equipment.setText(lang.get("lbl_Quantity_Of_Equipment"));
+		jLabel_Equipment.setBounds(120, 396, 120, 22);
+		desktopPane.add(jLabel_Equipment);
 
 		textFieldNoOfPallets = new JTextField4j();
 		textFieldNoOfPallets.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldNoOfPallets.setEditable(false);
 		textFieldNoOfPallets.setBounds(251, 365, 41, 22);
 		desktopPane.add(textFieldNoOfPallets);
-		
+
 		textFieldQtyOfEquipment = new JTextField4j();
 		textFieldQtyOfEquipment.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldQtyOfEquipment.setEditable(false);
@@ -862,7 +833,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		desktopPane.add(jButtonLookupBatch);
 
-		confirmedRadioButton.setBackground(Common.color_app_window);
 		confirmedRadioButton.setText(lang.get("lbl_Confirmed"));
 		confirmedRadioButton.setBounds(10, 367, 129, 20);
 		confirmedRadioButton.addActionListener(new ActionListener()
@@ -877,7 +847,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		desktopPane.add(confirmedRadioButton);
 
-		unconfirmedRadioButton.setBackground(Common.color_app_window);
 		unconfirmedRadioButton.setText(lang.get("lbl_Unconfirmed"));
 		unconfirmedRadioButton.setBounds(10, 398, 129, 20);
 		unconfirmedRadioButton.setSelected(true);
@@ -896,10 +865,10 @@ public class JInternalFrameDespatch extends JInternalFrame
 		buttonGroup_1.add(unconfirmedRadioButton);
 		buttonGroup_1.add(confirmedRadioButton);
 
-		final JLabel4j_std palletStatusLabel_1_2 = new JLabel4j_std();
-		palletStatusLabel_1_2.setText(lang.get("lbl_Trailer"));
-		palletStatusLabel_1_2.setBounds(172, 98, 141, 22);
-		desktopPane.add(palletStatusLabel_1_2);
+		final JLabel4j_std jLabel_Trailer = new JLabel4j_std();
+		jLabel_Trailer.setText(lang.get("lbl_Trailer"));
+		jLabel_Trailer.setBounds(172, 98, 141, 22);
+		desktopPane.add(jLabel_Trailer);
 
 		textFieldTrailer = new JTextField4j(JDBDespatch.field_trailer);
 		textFieldTrailer.setEditable(false);
@@ -907,10 +876,10 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		desktopPane.add(textFieldTrailer);
 
-		final JLabel4j_std palletStatusLabel_1_2_1 = new JLabel4j_std();
-		palletStatusLabel_1_2_1.setText(lang.get("lbl_Haulier"));
-		palletStatusLabel_1_2_1.setBounds(172, 140, 141, 22);
-		desktopPane.add(palletStatusLabel_1_2_1);
+		final JLabel4j_std jLabel_Haulier = new JLabel4j_std();
+		jLabel_Haulier.setText(lang.get("lbl_Haulier"));
+		jLabel_Haulier.setBounds(172, 140, 141, 22);
+		desktopPane.add(jLabel_Haulier);
 
 		textFieldHaulier = new JTextField4j(JDBDespatch.field_haulier);
 		textFieldHaulier.setEditable(false);
@@ -961,10 +930,10 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jButtonLookupHaulier.setBounds(293, 160, 22, 22);
 		desktopPane.add(jButtonLookupHaulier);
 
-		JLabel4j_std lblLoadNo = new JLabel4j_std();
-		lblLoadNo.setText(lang.get("lbl_Load_No"));
-		lblLoadNo.setBounds(172, 180, 141, 22);
-		desktopPane.add(lblLoadNo);
+		JLabel4j_std jLabel_Load = new JLabel4j_std();
+		jLabel_Load.setText(lang.get("lbl_Load_No"));
+		jLabel_Load.setBounds(172, 180, 141, 22);
+		desktopPane.add(jLabel_Load);
 
 		textFieldLoadNo = new JTextField4j(JDBDespatch.field_load_no);
 		textFieldLoadNo.setText("");
@@ -995,10 +964,12 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jButtonLookupLoadNo.setEnabled(false);
 		jButtonLookupLoadNo.setBounds(293, 203, 22, 22);
 		desktopPane.add(jButtonLookupLoadNo);
-		
+
 		jButtonEquipment = new JButton4j();
-		jButtonEquipment.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		jButtonEquipment.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				if (list_despatch.getModel().getSize() > 0)
 				{
 					if (list_despatch.getSelectedIndex() >= 0)
@@ -1009,7 +980,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 					}
 				}
 
-
 			}
 		});
 		jButtonEquipment.setText("...");
@@ -1017,10 +987,10 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jButtonEquipment.setBounds(293, 396, 22, 22);
 		desktopPane.add(jButtonEquipment);
 
-		JLabel4j_std label = new JLabel4j_std();
-		label.setText(lang.get("lbl_User_ID"));
-		label.setBounds(686, 340, 143, 16);
-		desktopPane.add(label);
+		JLabel4j_std jLabel_UserID = new JLabel4j_std();
+		jLabel_UserID.setText(lang.get("lbl_User_ID"));
+		jLabel_UserID.setBounds(686, 340, 143, 16);
+		desktopPane.add(jLabel_UserID);
 
 		textFieldUserID = new JTextField4j(JDBUser.field_user_id);
 		textFieldUserID.setText("");
@@ -1054,15 +1024,15 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldDespatchNo.setBounds(686, 217, 143, 22);
 		desktopPane.add(textFieldDespatchNo);
 
-		JLabel4j_std despatchNolabel = new JLabel4j_std();
-		despatchNolabel.setText(lang.get("lbl_Despatch_No"));
-		despatchNolabel.setBounds(686, 202, 143, 16);
-		desktopPane.add(despatchNolabel);
+		JLabel4j_std jLabel_DespatchNo = new JLabel4j_std();
+		jLabel_DespatchNo.setText(lang.get("lbl_Despatch_No"));
+		jLabel_DespatchNo.setBounds(686, 202, 143, 16);
+		desktopPane.add(jLabel_DespatchNo);
 
-		JLabel4j_std label4j_std = new JLabel4j_std();
-		label4j_std.setText(lang.get("lbl_Journey_Ref"));
-		label4j_std.setBounds(172, 225, 141, 20);
-		desktopPane.add(label4j_std);
+		JLabel4j_std jLabel_Journey = new JLabel4j_std();
+		jLabel_Journey.setText(lang.get("lbl_Journey_Ref"));
+		jLabel_Journey.setBounds(172, 225, 141, 20);
+		desktopPane.add(jLabel_Journey);
 
 		textFieldJourneyRef = new JTextField4j(20);
 		textFieldJourneyRef.setText("");
@@ -1171,7 +1141,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 								textFieldNoOfPallets.setText(String.valueOf(assignedList.size()));
 								d.setTotalPallets(assignedList.size());
 								updateDespatch(d);
-								JDialogPicklistReport picklisterrs = new JDialogPicklistReport(Common.mainForm,d.getPicklistImportReport());
+								JDialogPicklistReport picklisterrs = new JDialogPicklistReport(Common.mainForm, d.getPicklistImportReport());
 								picklisterrs.setModal(true);
 							}
 						}
@@ -1180,11 +1150,9 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 
-		jStatusText = new JLabel4j_std("");
-		jStatusText.setBounds(1, 485, 845, 21);
-		getContentPane().add(jStatusText);
-		jStatusText.setForeground(new java.awt.Color(255, 0, 0));
-		jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		jStatusText = new JLabel4j_status("");
+		jStatusText.setBounds(6, 485, 823, 21);
+		desktopPane.add(jStatusText);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -1212,19 +1180,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 	{
 		List.add(newValue);
 		Collections.sort(List);
-	}
-
-	private void refresh()
-	{
-		if (list_despatch.getModel().getSize() > 0)
-		{
-			if (list_despatch.getSelectedIndex() >= 0)
-			{
-				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
-				previousdespatchno = "";
-				populateDespatchList(d.getDespatchNo());
-			}
-		}
 	}
 
 	private void blankDespatchFields()
@@ -1327,7 +1282,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		list_unassigned.setModel(jList1Model);
 
-		list_unassigned.setCellRenderer(Common.renderer_list);
+		list_unassigned.setCellRenderer(Common.renderer_list_unassigned);
 		unassignedList.clear();
 	}
 
@@ -1360,8 +1315,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 		ListModel<String> jList1Model = DefComboBoxMod;
 
 		list_assigned.setModel(jList1Model);
-
-		list_assigned.setCellRenderer(Common.renderer_list);
+		list_assigned.setMode(JList4j.Assigned);
+		list_assigned.setCellRenderer(Common.renderer_list_assigned);
 		list_assigned.setSelectedIndex(sel);
 		list_assigned.ensureIndexIsVisible(sel);
 		textFieldNoOfPallets.setText(String.valueOf(counter));
@@ -1435,9 +1390,21 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		list_unassigned.setModel(jList1Model);
 
-		list_unassigned.setCellRenderer(Common.renderer_list);
-		// list_unassigned.setSelectedIndex(sel);
-		// list_unassigned.ensureIndexIsVisible(sel);
+		list_unassigned.setCellRenderer(Common.renderer_list_unassigned);
+
+	}
+
+	private void refresh()
+	{
+		if (list_despatch.getModel().getSize() > 0)
+		{
+			if (list_despatch.getSelectedIndex() >= 0)
+			{
+				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
+				previousdespatchno = "";
+				populateDespatchList(d.getDespatchNo());
+			}
+		}
 	}
 
 	public void removefromList(LinkedList<String> List, String oldValue)

@@ -2,29 +2,29 @@ package com.commander4j.interfaces;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameInterfaceProperties.java
- * 
+ *
  * Package Name : com.commander4j.interfaces
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -40,7 +40,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.SwingConstants;
@@ -51,6 +51,7 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
@@ -58,12 +59,14 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
 /**
- * JInternalFrameInterfaceProperties is used to modify an interface. Changes are stored in a table SYS_INTERFACE
+ * JInternalFrameInterfaceProperties is used to modify an interface. Changes are
+ * stored in a table SYS_INTERFACE
  *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameInterfaceAdmin.jpg" >
- * 
- * @see com.commander4j.interfaces.JInternalFrameInterfaceAdmin JInternalFrameInterfaceAdmin
+ *
+ * @see com.commander4j.interfaces.JInternalFrameInterfaceAdmin
+ *      JInternalFrameInterfaceAdmin
  * @see com.commander4j.db.JDBInterface JDBInterface
  * @see com.commander4j.db.JDBInterfaceLog JDBInterfaceLog
  */
@@ -76,7 +79,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 	private JLabel4j_std jLabel2_1;
 	private JButton4j jButtonExecDirChooser;
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private JDesktopPane4j jDesktopPane1;
 	private JButton4j jButtonCancel;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonUpdate;
@@ -104,116 +107,117 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
-		{
-			checkBox_success.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					jButtonUpdate.setEnabled(true);
-				}
-			});
 
-			checkBox_success.setBounds(234, 222, 21, 22);
-			checkBox_success.setEnabled(true);
-			checkBox_success.setBackground(Color.WHITE);
-			jDesktopPane1.add(checkBox_success);
-		}
+		checkBox_success.addActionListener(new ActionListener()
 		{
-			checkBox_warning.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					jButtonUpdate.setEnabled(true);
-				}
-			});
+			public void actionPerformed(ActionEvent e)
+			{
+				jButtonUpdate.setEnabled(true);
+			}
+		});
 
-			checkBox_warning.setBounds(399, 222, 21, 22);
-			checkBox_warning.setEnabled(true);
-			checkBox_warning.setBackground(Color.WHITE);
-			jDesktopPane1.add(checkBox_warning);
-		}
-		{
-			checkBox_error.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					jButtonUpdate.setEnabled(true);
-				}
-			});
+		checkBox_success.setBounds(234, 232, 21, 22);
+		checkBox_success.setEnabled(true);
+		checkBox_success.setBackground(Color.WHITE);
+		jDesktopPane1.add(checkBox_success);
 
-			checkBox_error.setBounds(566, 222, 21, 22);
-			checkBox_error.setEnabled(true);
-			checkBox_error.setBackground(Color.WHITE);
-			jDesktopPane1.add(checkBox_error);
-		}
+		checkBox_warning.addActionListener(new ActionListener()
 		{
-			JLabel4j_std lblEmailSuccess = new JLabel4j_std();
-			lblEmailSuccess.setBounds(136, 222, 96, 22);
-			lblEmailSuccess.setText(lang.get("lbl_Email_Success"));
-			lblEmailSuccess.setHorizontalAlignment(SwingConstants.TRAILING);
-			jDesktopPane1.add(lblEmailSuccess);
-		}
-		{
-			JLabel4j_std lblEmailWarning = new JLabel4j_std();
-			lblEmailWarning.setBounds(290, 222, 102, 22);
-			lblEmailWarning.setText(lang.get("lbl_Email_Warning"));
-			lblEmailWarning.setHorizontalAlignment(SwingConstants.TRAILING);
-			jDesktopPane1.add(lblEmailWarning);
-		}
-		{
-			JLabel4j_std lblEmailError = new JLabel4j_std();
-			lblEmailError.setBounds(451, 222, 112, 22);
-			lblEmailError.setText(lang.get("lbl_Email_Error"));
-			lblEmailError.setHorizontalAlignment(SwingConstants.TRAILING);
-			jDesktopPane1.add(lblEmailError);
-		}
-		{
-			JLabel4j_std lblEmailNotifications = new JLabel4j_std();
-			lblEmailNotifications.setBounds(12, 222, 102, 22);
-			lblEmailNotifications.setText(lang.get("lbl_Email_Notifications"));
+			public void actionPerformed(ActionEvent e)
+			{
+				jButtonUpdate.setEnabled(true);
+			}
+		});
 
-			lblEmailNotifications.setHorizontalAlignment(SwingConstants.TRAILING);
-			jDesktopPane1.add(lblEmailNotifications);
-		}
-		{
-			textField_addresses = new JTextField4j(JDBInterface.field_email_addresses);
-			textField_addresses.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyTyped(KeyEvent e) {
-					jButtonUpdate.setEnabled(true);
-				}
-			});
-			textField_addresses.setText((String) null);
-			textField_addresses.setEnabled(true);
-			textField_addresses.setDisabledTextColor(Color.BLACK);
-			textField_addresses.setBounds(126, 255, 557, 22);
-			jDesktopPane1.add(textField_addresses);
-		}
-		{
-			JLabel4j_std lblEmailAddresses = new JLabel4j_std();
-			lblEmailAddresses.setText(lang.get("lbl_Email_Addresses"));
-			lblEmailAddresses.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblEmailAddresses.setBounds(12, 255, 102, 22);
-			jDesktopPane1.add(lblEmailAddresses);
-		}
-		{
-			comboBoxUOMConversion.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					jButtonUpdate.setEnabled(true);
-				}
-			});
+		checkBox_warning.setBounds(399, 232, 21, 22);
+		checkBox_warning.setEnabled(true);
+		checkBox_warning.setBackground(Color.WHITE);
+		jDesktopPane1.add(checkBox_warning);
 
-			comboBoxUOMConversion.setBounds(126, 162, 159, 22);
-			jDesktopPane1.add(comboBoxUOMConversion);
-		}
+		checkBox_error.addActionListener(new ActionListener()
 		{
-			JLabel4j_std lblUomConversion = new JLabel4j_std();
-			lblUomConversion.setText(lang.get("lbl_UOM_Conversion"));
-			lblUomConversion.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblUomConversion.setBounds(12, 162, 102, 22);
-			jDesktopPane1.add(lblUomConversion);
-		}
+			public void actionPerformed(ActionEvent e)
+			{
+				jButtonUpdate.setEnabled(true);
+			}
+		});
+
+		checkBox_error.setBounds(566, 232, 21, 22);
+		checkBox_error.setEnabled(true);
+		checkBox_error.setBackground(Color.WHITE);
+		jDesktopPane1.add(checkBox_error);
+
+		JLabel4j_std lblEmailSuccess = new JLabel4j_std();
+		lblEmailSuccess.setBounds(136, 232, 96, 22);
+		lblEmailSuccess.setText(lang.get("lbl_Email_Success"));
+		lblEmailSuccess.setHorizontalAlignment(SwingConstants.TRAILING);
+		jDesktopPane1.add(lblEmailSuccess);
+
+		JLabel4j_std lblEmailWarning = new JLabel4j_std();
+		lblEmailWarning.setBounds(290, 232, 102, 22);
+		lblEmailWarning.setText(lang.get("lbl_Email_Warning"));
+		lblEmailWarning.setHorizontalAlignment(SwingConstants.TRAILING);
+		jDesktopPane1.add(lblEmailWarning);
+
+		JLabel4j_std lblEmailError = new JLabel4j_std();
+		lblEmailError.setBounds(451, 232, 112, 22);
+		lblEmailError.setText(lang.get("lbl_Email_Error"));
+		lblEmailError.setHorizontalAlignment(SwingConstants.TRAILING);
+		jDesktopPane1.add(lblEmailError);
+
+		JLabel4j_std lblEmailNotifications = new JLabel4j_std();
+		lblEmailNotifications.setBounds(12, 232, 102, 22);
+		lblEmailNotifications.setText(lang.get("lbl_Email_Notifications"));
+
+		lblEmailNotifications.setHorizontalAlignment(SwingConstants.TRAILING);
+		jDesktopPane1.add(lblEmailNotifications);
+
+		textField_addresses = new JTextField4j(JDBInterface.field_email_addresses);
+		textField_addresses.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyTyped(KeyEvent e)
+			{
+				jButtonUpdate.setEnabled(true);
+			}
+		});
+		textField_addresses.setText((String) null);
+		textField_addresses.setEnabled(true);
+		textField_addresses.setDisabledTextColor(Color.BLACK);
+		textField_addresses.setBounds(126, 264, 557, 22);
+		jDesktopPane1.add(textField_addresses);
+
+		JLabel4j_std lblEmailAddresses = new JLabel4j_std();
+		lblEmailAddresses.setText(lang.get("lbl_Email_Addresses"));
+		lblEmailAddresses.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblEmailAddresses.setBounds(12, 264, 102, 22);
+		jDesktopPane1.add(lblEmailAddresses);
+
+		comboBoxUOMConversion.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				jButtonUpdate.setEnabled(true);
+			}
+		});
+
+		comboBoxUOMConversion.setBounds(126, 168, 159, 22);
+		jDesktopPane1.add(comboBoxUOMConversion);
+
+		JLabel4j_std lblUomConversion = new JLabel4j_std();
+		lblUomConversion.setText(lang.get("lbl_UOM_Conversion"));
+		lblUomConversion.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblUomConversion.setBounds(12, 168, 102, 22);
+		jDesktopPane1.add(lblUomConversion);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jTextFieldPath.requestFocus();
 			}
 		});
@@ -230,12 +234,14 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 		interfaceConfig.setInterfaceDirection(ldirection);
 		jTextFieldInterfaceType.setText(interfacetype);
 		jComboBoxInterfaceDirection.setText(interfacedirection);
-		comboBoxDevice.setModel(new DefaultComboBoxModel<String>(new String[] { "Disk", "Email", "FTP", "ActiveMQ" }));
+		comboBoxDevice.setModel(new DefaultComboBoxModel<String>(new String[]
+		{ "Disk", "Email", "FTP", "ActiveMQ" }));
 
-		comboBoxFormat.setModel(new DefaultComboBoxModel<String>(new String[] { "XML", "EANCOM", "IDOC", "MPS", "CSV","PDF" }));
+		comboBoxFormat.setModel(new DefaultComboBoxModel<String>(new String[]
+		{ "XML", "EANCOM", "IDOC", "MPS", "CSV", "PDF" }));
 
-		comboBoxUOMConversion.setModel(new DefaultComboBoxModel<String>(new String[] { Common.UOM_Convert_Internal_to_ISO, Common.UOM_Convert_Internal_to_Local, Common.UOM_Convert_None, Common.UOM_Convert_ISO_to_INTERNAL, Common.UOM_Convert_ISO_to_Local,
-				Common.UOM_Convert_Local_to_ISO, Common.UOM_Convert_Local_to_Internal }));
+		comboBoxUOMConversion.setModel(new DefaultComboBoxModel<String>(new String[]
+		{ Common.UOM_Convert_Internal_to_ISO, Common.UOM_Convert_Internal_to_Local, Common.UOM_Convert_None, Common.UOM_Convert_ISO_to_INTERNAL, Common.UOM_Convert_ISO_to_Local, Common.UOM_Convert_Local_to_ISO, Common.UOM_Convert_Local_to_Internal }));
 
 		if (interfaceConfig.getInterfaceProperties())
 		{
@@ -257,29 +263,32 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(358, 207));
-			this.setBounds(0, 0, 720+Common.LFAdjustWidth, 373+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 720, 370);
 			setVisible(true);
 			this.setTitle("Interface Properties");
 			this.setClosable(true);
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
+				jDesktopPane1 = new JDesktopPane4j();
+
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 182));
 				jDesktopPane1.setLayout(null);
 				{
 					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
-					jButtonUpdate.setBounds(159, 288, 112, 32);
+					jButtonUpdate.setBounds(160, 296, 112, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
-					jButtonUpdate.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUpdate.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 
 							interfaceConfig.setPath(jTextFieldPath.getText());
 							interfaceConfig.setEnabled(checkBox.isSelected());
@@ -306,33 +315,35 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.setBounds(273, 288, 112, 32);
+					jButtonHelp.setBounds(274, 296, 112, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
-					jButtonCancel.setBounds(387, 288, 112, 32);
+					jButtonCancel.setBounds(388, 296, 112, 32);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonCancel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
 				}
 				{
 					jLabel1 = new JLabel4j_std();
-					jLabel1.setBounds(12, 9, 102, 22);
+					jLabel1.setBounds(12, 8, 102, 22);
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Interface_Type"));
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldInterfaceType = new JTextField4j(JDBInterface.field_interface_type);
-					jTextFieldInterfaceType.setBounds(126, 9, 299, 22);
+					jTextFieldInterfaceType.setBounds(126, 8, 299, 22);
 					jDesktopPane1.add(jTextFieldInterfaceType);
 					jTextFieldInterfaceType.setText(ltype);
 					jTextFieldInterfaceType.setEnabled(false);
@@ -341,16 +352,18 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 				{
 					jLabel3 = new JLabel4j_std();
-					jLabel3.setBounds(12, 192, 102, 22);
+					jLabel3.setBounds(12, 200, 102, 22);
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Interface_Path"));
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldPath = new JTextField4j(JDBInterface.field_path);
-					jTextFieldPath.setBounds(126, 192, 544, 22);
-					jTextFieldPath.addKeyListener(new KeyAdapter() {
-						public void keyTyped(final KeyEvent e) {
+					jTextFieldPath.setBounds(126, 200, 544, 22);
+					jTextFieldPath.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(final KeyEvent e)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -361,7 +374,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 				{
 					jComboBoxInterfaceDirection = new JTextField4j(JDBInterface.field_interface_direction);
-					jComboBoxInterfaceDirection.setBounds(126, 39, 126, 22);
+					jComboBoxInterfaceDirection.setBounds(126, 40, 126, 22);
 					jDesktopPane1.add(jComboBoxInterfaceDirection);
 					jComboBoxInterfaceDirection.setEnabled(false);
 					jComboBoxInterfaceDirection.setEditable(false);
@@ -369,15 +382,17 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 				{
 					jLabel2 = new JLabel4j_std();
-					jLabel2.setBounds(12, 39, 102, 22);
+					jLabel2.setBounds(12, 40, 102, 22);
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Interface_Direction"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					comboBoxFormat.setBounds(126, 132, 126, 22);
-					comboBoxFormat.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					comboBoxFormat.setBounds(126, 136, 126, 22);
+					comboBoxFormat.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -386,16 +401,18 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 				{
 					JLabel4j_std lblFormat = new JLabel4j_std();
-					lblFormat.setBounds(12, 132, 102, 22);
+					lblFormat.setBounds(12, 136, 102, 22);
 					lblFormat.setText(lang.get("lbl_Interface_Format"));
 					lblFormat.setHorizontalAlignment(SwingConstants.TRAILING);
 					jDesktopPane1.add(lblFormat);
 				}
 				{
 					jButtonExecDirChooser = new JButton4j();
-					jButtonExecDirChooser.setBounds(670, 192, 14, 21);
-					jButtonExecDirChooser.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonExecDirChooser.setBounds(670, 201, 14, 21);
+					jButtonExecDirChooser.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							JFileChooser loadDir = new JFileChooser();
 
 							try
@@ -432,11 +449,13 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				}
 
 				{
-					checkBox.setBounds(126, 69, 21, 22);
+					checkBox.setBounds(126, 72, 21, 22);
 
 					checkBox.setBackground(Color.WHITE);
-					checkBox.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					checkBox.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -446,17 +465,19 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 
 				{
 					jLabel2_1 = new JLabel4j_std();
-					jLabel2_1.setBounds(12, 69, 102, 22);
+					jLabel2_1.setBounds(12, 72, 102, 22);
 					jLabel2_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel2_1.setText(lang.get("lbl_Interface_Enabled"));
 					jDesktopPane1.add(jLabel2_1);
 				}
 
 				{
-					comboBoxDevice.setBounds(126, 102, 126, 22);
+					comboBoxDevice.setBounds(126, 104, 126, 22);
 
-					comboBoxDevice.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					comboBoxDevice.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -465,7 +486,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 
 				{
 					jLabel2_2 = new JLabel4j_std();
-					jLabel2_2.setBounds(12, 102, 102, 22);
+					jLabel2_2.setBounds(12, 104, 102, 22);
 					jLabel2_2.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel2_2.setText(lang.get("lbl_Interface_Device"));
 					jDesktopPane1.add(jLabel2_2);

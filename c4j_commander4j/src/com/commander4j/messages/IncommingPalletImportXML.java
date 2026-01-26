@@ -1,6 +1,6 @@
 package com.commander4j.messages;
 
-import java.awt.Color;
+
 import java.awt.Component;
 import java.awt.Rectangle;
 import java.io.File;
@@ -41,7 +41,7 @@ import javax.swing.JFileChooser;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBControl;
-import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileFilterXML;
 import com.commander4j.util.JUtility;
@@ -91,7 +91,7 @@ public class IncommingPalletImportXML
 		setHostID(host);
 	}
 
-	private void updateStatus(JLabel4j_std jStatusText, String msg)
+	private void updateStatus(JLabel4j_status jStatusText, String msg)
 	{
 		jStatusText.setText(msg);
 		Rectangle progressRect = jStatusText.getBounds();
@@ -101,10 +101,9 @@ public class IncommingPalletImportXML
 		jStatusText.paintImmediately(progressRect);
 	}
 
-	public Boolean loadFrom(String filename, Component parent, JLabel4j_std jStatusText)
+	public Boolean loadFrom(String filename, Component parent, JLabel4j_status jStatusText)
 	{
 
-		jStatusText.setForeground(Color.BLACK);
 		updateStatus(jStatusText, "Choose input filename");
 		Boolean result = false;
 		JFileChooser loadXML = new JFileChooser();
@@ -144,7 +143,7 @@ public class IncommingPalletImportXML
 		return result;
 	}
 
-	public Boolean processMessage(String filename, JLabel4j_std jStatusText)
+	public Boolean processMessage(String filename, JLabel4j_status jStatusText)
 	{
 		Boolean result = false;
 

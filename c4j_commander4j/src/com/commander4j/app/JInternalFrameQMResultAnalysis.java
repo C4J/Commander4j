@@ -2,32 +2,32 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameQMResultEnquiry.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
-import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -39,19 +39,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -65,9 +60,14 @@ import com.commander4j.db.JDBQuery;
 import com.commander4j.db.JDBShifts;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JTitledBorder4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
@@ -77,40 +77,40 @@ import com.commander4j.util.JUtility;
 /**
  * The JInternalFrameQMResultAnalysis is used for querying a user selectable
  * view.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameQMResultAnalysis.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBQMAnalysis JDBQMAnalysis
  */
 public class JInternalFrameQMResultAnalysis extends JInternalFrame
 {
 
-	private static final long serialVersionUID = 1L;
-	private JTextField4j textFieldProcessOrder;
 	private JButton4j btnClose;
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBQMAnalysis analdb = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
-	private JList4j<JDBShifts> jListShifts = new JList4j<JDBShifts>();
-	private JTextField4j textFieldMaterial;
-	private JDateControl dateSampleFrom = new JDateControl();
-	private JDateControl dateSampleTo = new JDateControl();
-	private JPanel panelDateParams = new JPanel();
-	private JList4j<JDBQMAnalysis> listDictionary;
-	private JTextField4j textFieldUserData1;
-	private JTextField4j textFieldUserData2;
-	private JTextField4j textFieldUserData3;
-	private JTextField4j textFieldUserData4;
+	private JButton4j btnMaterialLookup = new JButton4j();
+	private JButton4j btnProcessOrderResourceLookup = new JButton4j();
 	private JButton4j button4j_Backwards = new JButton4j(Common.icon_arrow_left_16x16);
 	private JButton4j button4j_Forwards = new JButton4j(Common.icon_arrow_right_16x16);
 	private JCalendarButton button_CalendardomDateFrom;
 	private JCalendarButton button_CalendardomDateTo;
-	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBQMAnalysis analdb = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
+	private JDateControl dateSampleFrom = new JDateControl();
+	private JDateControl dateSampleTo = new JDateControl();
+	private JLabel4j_status label4j_statusBar = new JLabel4j_status();
+	private JList4j<JDBQMAnalysis> listDictionary;
+	private JList4j<JDBShifts> jListShifts = new JList4j<JDBShifts>();
+	private JPanel4j panelDateParams = new JPanel4j();
 	private JTextField4j textFieldBatchSuffix = new JTextField4j();
+	private JTextField4j textFieldMaterial;
+	private JTextField4j textFieldProcessOrder;
 	private JTextField4j textFieldResource = new JTextField4j();
-	private JButton4j btnMaterialLookup = new JButton4j();
-	private JButton4j btnProcessOrderResourceLookup = new JButton4j();
-	private JLabel4j_std label4j_statusBar = new JLabel4j_std();
+	private JTextField4j textFieldUserData1;
+	private JTextField4j textFieldUserData2;
+	private JTextField4j textFieldUserData3;
+	private JTextField4j textFieldUserData4;
+	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+	private static final long serialVersionUID = 1L;
 
 	public JInternalFrameQMResultAnalysis()
 	{
@@ -127,20 +127,20 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		setBounds(100, 100, 590, 597);
 		getContentPane().setLayout(null);
 
-		JDesktopPane desktopPane = new JDesktopPane();
+		JDesktopPane4j desktopPane = new JDesktopPane4j();
 		desktopPane.setBounds(0, 0, 589, 671);
-		desktopPane.setBackground(Common.color_app_window);
+
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
 
 		JLabel4j_std lblProcessOrder = new JLabel4j_std(lang.get("lbl_Process_Order"));
-		lblProcessOrder.setBounds(288, 12, 119, 22);
+		lblProcessOrder.setBounds(288, 8, 119, 22);
 		lblProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 		desktopPane.add(lblProcessOrder);
 
 		textFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
 		textFieldProcessOrder.setEnabled(false);
-		textFieldProcessOrder.setBounds(413, 12, 119, 22);
+		textFieldProcessOrder.setBounds(413, 8, 120, 22);
 
 		desktopPane.add(textFieldProcessOrder);
 		textFieldProcessOrder.setColumns(10);
@@ -160,7 +160,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		JButton4j btnProcessOrderLookup = new JButton4j();
 		btnProcessOrderLookup.setEnabled(false);
 		btnProcessOrderLookup.setIcon(Common.icon_lookup_16x16);
-		btnProcessOrderLookup.setBounds(533, 12, 21, 22);
+		btnProcessOrderLookup.setBounds(533, 8, 21, 22);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -179,12 +179,12 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		textFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 		textFieldMaterial.setEnabled(false);
 		textFieldMaterial.setColumns(10);
-		textFieldMaterial.setBounds(413, 46, 119, 22);
+		textFieldMaterial.setBounds(413, 40, 120, 22);
 		desktopPane.add(textFieldMaterial);
 
 		JLabel4j_std lbl_material = new JLabel4j_std(lang.get("lbl_Material"));
 		lbl_material.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_material.setBounds(288, 46, 119, 22);
+		lbl_material.setBounds(288, 40, 119, 22);
 		desktopPane.add(lbl_material);
 
 		JButton4j btnReport = new JButton4j(lang.get("btn_Print"));
@@ -225,46 +225,46 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JLabel4j_std lbl_UserData1 = new JLabel4j_std(lang.get("lbl_User_Data1"));
 		lbl_UserData1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData1.setBounds(0, 78, 142, 22);
+		lbl_UserData1.setBounds(0, 72, 142, 22);
 		desktopPane.add(lbl_UserData1);
 
 		JLabel4j_std lbl_UserData2 = new JLabel4j_std(lang.get("lbl_User_Data2"));
 		lbl_UserData2.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData2.setBounds(288, 78, 119, 22);
+		lbl_UserData2.setBounds(288, 72, 119, 22);
 		desktopPane.add(lbl_UserData2);
 
 		JLabel4j_std lbl_UserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
 		lbl_UserData3.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData3.setBounds(0, 110, 142, 22);
+		lbl_UserData3.setBounds(0, 104, 142, 22);
 		desktopPane.add(lbl_UserData3);
 
 		textFieldUserData3 = new JTextField4j(20);
 		textFieldUserData3.setEnabled(false);
 		textFieldUserData3.setColumns(20);
-		textFieldUserData3.setBounds(150, 110, 138, 22);
+		textFieldUserData3.setBounds(150, 104, 138, 22);
 		desktopPane.add(textFieldUserData3);
 
 		JLabel4j_std lbl_UserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
 		lbl_UserData4.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData4.setBounds(288, 110, 119, 22);
+		lbl_UserData4.setBounds(288, 104, 119, 22);
 		desktopPane.add(lbl_UserData4);
 
 		textFieldUserData4 = new JTextField4j(20);
 		textFieldUserData4.setEnabled(false);
 		textFieldUserData4.setColumns(20);
-		textFieldUserData4.setBounds(413, 110, 138, 22);
+		textFieldUserData4.setBounds(413, 104, 138, 22);
 		desktopPane.add(textFieldUserData4);
 
 		textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
 		textFieldUserData1.setEnabled(false);
 		textFieldUserData1.setColumns(20);
-		textFieldUserData1.setBounds(150, 78, 138, 22);
+		textFieldUserData1.setBounds(150, 72, 138, 22);
 		desktopPane.add(textFieldUserData1);
 
 		textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
 		textFieldUserData2.setEnabled(false);
 		textFieldUserData2.setColumns(20);
-		textFieldUserData2.setBounds(413, 78, 138, 22);
+		textFieldUserData2.setBounds(413, 72, 138, 22);
 		desktopPane.add(textFieldUserData2);
 
 
@@ -287,13 +287,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		btnMaterialLookup.setIcon(Common.icon_lookup_16x16);
-		btnMaterialLookup.setBounds(533, 46, 21, 22);
+		btnMaterialLookup.setBounds(533, 40, 21, 22);
 		desktopPane.add(btnMaterialLookup);
 
-		JPanel panel = new JPanel();
+		JPanel4j panel = new JPanel4j();
 		panel.setLayout(null);
-		panel.setBackground(new Color(241, 241, 241));
-		panel.setBounds(16, 484, 116, 32);
+
+		panel.setBounds(16, 486, 116, 32);
 		desktopPane.add(panel);
 
 		JButton4j button4jAdd = new JButton4j(Common.icon_add_16x16);
@@ -357,22 +357,22 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Batch_Suffix"));
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(0, 12, 142, 22);
+		label4j_std_1.setBounds(0, 8, 142, 22);
 		desktopPane.add(label4j_std_1);
 		textFieldBatchSuffix.setEnabled(false);
 
-		textFieldBatchSuffix.setBounds(150, 12, 138, 22);
+		textFieldBatchSuffix.setBounds(150, 8, 138, 22);
 		desktopPane.add(textFieldBatchSuffix);
 
 		JLabel4j_std label4j_std_2 = new JLabel4j_std(lang.get("lbl_Process_Order_Required_Resource"));
 		label4j_std_2.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_2.setBounds(0, 46, 142, 22);
+		label4j_std_2.setBounds(0, 40, 142, 22);
 		desktopPane.add(label4j_std_2);
 		textFieldResource.setEnabled(false);
 
 		textFieldResource.setColumns(10);
 		textFieldResource.setCaretPosition(0);
-		textFieldResource.setBounds(150, 46, 119, 22);
+		textFieldResource.setBounds(150, 40, 119, 22);
 		desktopPane.add(textFieldResource);
 		btnProcessOrderResourceLookup.setEnabled(false);
 
@@ -389,14 +389,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		btnProcessOrderResourceLookup.setIcon(Common.icon_lookup_16x16);
-		btnProcessOrderResourceLookup.setBounds(269, 46, 21, 22);
+		btnProcessOrderResourceLookup.setBounds(269, 40, 21, 22);
 		desktopPane.add(btnProcessOrderResourceLookup);
-		
-		
+
+
 		/*=========*/
-		JScrollPane scrollPaneShifts = new JScrollPane();
-		scrollPaneShifts.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
-		scrollPaneShifts.setBounds(16, 162, 375, 133);
+		JScrollPane4j scrollPaneShifts = new JScrollPane4j(JScrollPane4j.List);
+		scrollPaneShifts.setBounds(16, 160, 375, 133);
 		desktopPane.add(scrollPaneShifts);
 		jListShifts.addMouseListener(new MouseAdapter()
 		{
@@ -462,43 +461,42 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JLabel4j_std lblCriteria = new JLabel4j_std("Criteria - Quick Set");
 		lblCriteria.setText(lang.get("mod_FRM_ADMIN_SHIFT"));
-		lblCriteria.setBounds(20, 144, 226, 22);
+		lblCriteria.setBounds(20, 136, 226, 22);
 		desktopPane.add(lblCriteria);
-		
-		panelDateParams.setBackground(Common.color_app_window);
+		panelDateParams.setBorder(JTitledBorder4j.getPanelLineBorder());
 
-		panelDateParams.setBounds(399, 162, 165, 133);
-		panelDateParams.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		panelDateParams.setBounds(399, 160, 165, 133);
+
 		desktopPane.add(panelDateParams);
 		panelDateParams.setLayout(null);
 
 		JLabel4j_std lblStart = new JLabel4j_std(lang.get("web_From"));
-		lblStart.setBounds(6, 6, 142, 22);
+		lblStart.setBounds(12, 0, 142, 22);
 		panelDateParams.add(lblStart);
 
-		dateSampleFrom.setBounds(6, 27, 128, 22);
+		dateSampleFrom.setBounds(12, 21, 120, 22);
 		panelDateParams.add(dateSampleFrom);
 
 		button_CalendardomDateFrom = new JCalendarButton(dateSampleFrom);
 		button_CalendardomDateFrom.setSize(21, 21);
 		button_CalendardomDateFrom.setLocation(510, 314);
-		button_CalendardomDateFrom.setBounds(138, 27, 21, 21);
+		button_CalendardomDateFrom.setBounds(136, 21, 21, 21);
 		panelDateParams.add(button_CalendardomDateFrom);
 
 		JLabel4j_std label4jEnd = new JLabel4j_std(lang.get("web_To"));
-		label4jEnd.setBounds(6, 50, 149, 22);
+		label4jEnd.setBounds(12, 44, 149, 22);
 		panelDateParams.add(label4jEnd);
 
-		dateSampleTo.setBounds(6, 71, 128, 22);
+		dateSampleTo.setBounds(12, 65, 120, 22);
 		panelDateParams.add(dateSampleTo);
 
 		button_CalendardomDateTo = new JCalendarButton(dateSampleTo);
 		button_CalendardomDateTo.setSize(21, 21);
 		button_CalendardomDateTo.setLocation(510, 369);
-		button_CalendardomDateTo.setBounds(138, 72, 21, 21);
+		button_CalendardomDateTo.setBounds(136, 66, 21, 21);
 		panelDateParams.add(button_CalendardomDateTo);
 
-		button4j_Backwards.setBounds(50, 100, 25, 25);
+		button4j_Backwards.setBounds(56, 94, 25, 25);
 		panelDateParams.add(button4j_Backwards);
 		button4j_Backwards.addActionListener(new ActionListener()
 		{
@@ -510,7 +508,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		});
 		button4j_Backwards.setEnabled(true);
 
-		button4j_Forwards.setBounds(87, 100, 25, 25);
+		button4j_Forwards.setBounds(93, 94, 25, 25);
 		panelDateParams.add(button4j_Forwards);
 		button4j_Forwards.addActionListener(new ActionListener()
 		{
@@ -521,19 +519,17 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		button4j_Forwards.setEnabled(true);
-		
-		label4j_statusBar.setForeground(Color.RED);
-		label4j_statusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+
 		label4j_statusBar.setBounds(0, 539, 589, 25);
 		desktopPane.add(label4j_statusBar);
-		
+
 		populateListUserShifts("");
-		
-		/*===========	*/	
-		
-		JPanel panelShiftButtons = new JPanel();
-		panelShiftButtons.setBackground(Common.color_app_window);
-		panelShiftButtons.setBounds(16, 296, 120, 32);
+
+		/*===========	*/
+
+		JPanel4j panelShiftButtons = new JPanel4j();
+
+		panelShiftButtons.setBounds(16, 294, 120, 32);
 		desktopPane.add(panelShiftButtons);
 		panelShiftButtons.setLayout(null);
 
@@ -587,9 +583,9 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		button4jShiftRefresh.setMnemonic('0');
-		
-		JScrollPane scrollPaneDictionary = new JScrollPane();
-		scrollPaneDictionary.setBounds(16, 350, 552, 133);
+
+		JScrollPane4j scrollPaneDictionary = new JScrollPane4j(JScrollPane4j.List);
+		scrollPaneDictionary.setBounds(16, 352, 552, 133);
 
 		listDictionary = new JList4j<JDBQMAnalysis>();
 		listDictionary.addMouseListener(new MouseAdapter()
@@ -612,7 +608,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			{
 				if (e.getValueIsAdjusting() == false)
 				{
-				
+
 				if (listDictionary.isSelectionEmpty() == false)
 				{
 
@@ -620,26 +616,25 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 					if (selectedReport.getBatchSuffixReqd().equals("Y"))
 					{
-						textFieldBatchSuffix.setBackground(Color.WHITE);
 						textFieldBatchSuffix.setEnabled(true);
 						textFieldBatchSuffix.requestFocus();
 						textFieldBatchSuffix.setCaretPosition(textFieldBatchSuffix.getText().length());
 					} else
 					{
-						textFieldBatchSuffix.setBackground(Common.color_edit_properties);
+
 						textFieldBatchSuffix.setEnabled(false);
 					}
 
 					if (selectedReport.getProcessOrderReqd().equals("Y"))
 					{
 						btnProcessOrderLookup.setEnabled(true);
-						textFieldProcessOrder.setBackground(Color.WHITE);
+
 						textFieldProcessOrder.setEnabled(true);
 						btnProcessOrderResourceLookup.setEnabled(true);
 					} else
 					{
 						btnProcessOrderLookup.setEnabled(false);
-						textFieldProcessOrder.setBackground(Common.color_edit_properties);
+
 						textFieldProcessOrder.setEnabled(false);
 						btnProcessOrderResourceLookup.setEnabled(false);
 					}
@@ -647,66 +642,66 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					if (selectedReport.getMaterialReqd().equals("Y"))
 					{
 						btnMaterialLookup.setEnabled(true);
-						textFieldMaterial.setBackground(Color.WHITE);
+
 						textFieldMaterial.setEnabled(true);
 						btnMaterialLookup.setEnabled(true);
 					} else
 					{
 						btnMaterialLookup.setEnabled(false);
-						textFieldMaterial.setBackground(Common.color_edit_properties);
+
 						textFieldMaterial.setEnabled(false);
 						btnMaterialLookup.setEnabled(false);
 					}
 
 					if (selectedReport.getUserData1Reqd().equals("Y"))
 					{
-						textFieldUserData1.setBackground(Color.WHITE);
+
 						textFieldUserData1.setEnabled(true);
 					} else
 					{
-						textFieldUserData1.setBackground(Common.color_edit_properties);
+
 						textFieldUserData1.setEnabled(false);
 					}
 
 					if (selectedReport.getUserData2Reqd().equals("Y"))
 					{
-						textFieldUserData2.setBackground(Color.WHITE);
+
 						textFieldUserData2.setEnabled(true);
 					} else
 					{
-						textFieldUserData2.setBackground(Common.color_edit_properties);
+
 						textFieldUserData2.setEnabled(false);
 					}
 					if (selectedReport.getUserData3Reqd().equals("Y"))
 					{
-						textFieldUserData3.setBackground(Color.WHITE);
+
 						textFieldUserData3.setEnabled(true);
 					} else
 					{
-						textFieldUserData3.setBackground(Common.color_edit_properties);
+
 						textFieldUserData3.setEnabled(false);
 					}
 
 					if (selectedReport.getUserData4Reqd().equals("Y"))
 					{
-						textFieldUserData4.setBackground(Color.WHITE);
+
 						textFieldUserData4.setEnabled(true);
 					} else
 					{
-						textFieldUserData4.setBackground(Common.color_edit_properties);
+
 						textFieldUserData4.setEnabled(false);
 					}
 
 					if (selectedReport.getSampleDateStartReqd().equals("Y"))
 					{
 						button_CalendardomDateFrom.setEnabled(true);
-						dateSampleFrom.getEditor().getComponent(0).setBackground(Color.WHITE);
+
 						dateSampleFrom.setEnabled(true);
 						button_CalendardomDateFrom.setEnabled(true);
 					} else
 					{
 						button_CalendardomDateFrom.setEnabled(false);
-						dateSampleFrom.getEditor().getComponent(0).setBackground(Common.color_edit_properties);
+
 						dateSampleFrom.setEnabled(false);
 						button_CalendardomDateFrom.setEnabled(false);
 					}
@@ -714,13 +709,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					if (selectedReport.getSampleDateEndReqd().equals("Y"))
 					{
 						button_CalendardomDateTo.setEnabled(true);
-						dateSampleTo.getEditor().getComponent(0).setBackground(Color.WHITE);
+
 						dateSampleTo.setEnabled(true);
 						button_CalendardomDateTo.setEnabled(true);
 					} else
 					{
 						button_CalendardomDateTo.setEnabled(false);
-						dateSampleTo.getEditor().getComponent(0).setBackground(Common.color_edit_properties);
+
 						dateSampleTo.setEnabled(false);
 						button_CalendardomDateTo.setEnabled(false);
 					}
@@ -728,13 +723,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					if (selectedReport.getResourceReqd().equals("Y"))
 					{
 						btnProcessOrderResourceLookup.setEnabled(true);
-						textFieldResource.setBackground(Color.WHITE);
+
 						textFieldResource.setEnabled(true);
 						btnProcessOrderResourceLookup.setEnabled(true);
 					} else
 					{
 						btnProcessOrderResourceLookup.setEnabled(false);
-						textFieldResource.setBackground(Common.color_edit_properties);
+
 						textFieldResource.setEnabled(false);
 						btnProcessOrderResourceLookup.setEnabled(false);
 					}
@@ -780,7 +775,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		datecontrol.setDate(calendarNow.getTime());
 
 	}
-	
+
 	private void editShift()
 	{
 		if (jListShifts.isSelectionEmpty() == false)
@@ -793,7 +788,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		}
 	}
-	
+
 	private void populateListUserShifts(String defaultitem)
 	{
 		DefaultComboBoxModel<JDBShifts> defComboBoxMod = new DefaultComboBoxModel<JDBShifts>();
@@ -826,8 +821,8 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			if (jListShifts.getModel().getSize() > 0)
 				jListShifts.setSelectedIndex(0);
 		}
-	}	
-	
+	}
+
 	private void populateList(String defaultitem)
 	{
 		Vector<JDBQMAnalysis> vect = analdb.getAnalysisData();
@@ -905,7 +900,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			JLaunchMenu.runForm("FRM_QM_RESULT_ANALYSIS_EDIT", analid);
 		}
 	}
-	
+
 	private void deleteShift()
 	{
 		if (jListShifts.isSelectionEmpty() == false)
@@ -925,7 +920,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		}
 	}
-	
+
 	private void addShift()
 	{
 
@@ -951,5 +946,5 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		}
 
-	}	
+	}
 }

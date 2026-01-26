@@ -2,29 +2,29 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JDialogWTError.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -34,22 +34,21 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.sys.Common;
-
 
 public class JDialogWTError extends javax.swing.JDialog
 {
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonClose;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDesktopPane4j jDesktopPane1;
 	private String warningMessage = "";
 
 	public JDialogWTError(JFrame frame, String warningMessage)
@@ -74,11 +73,11 @@ public class JDialogWTError extends javax.swing.JDialog
 
 		setLocation(leftmargin, topmargin);
 
-		jDesktopPane1 = new JDesktopPane();
+		jDesktopPane1 = new JDesktopPane4j();
 		jDesktopPane1.setBackground(Color.RED);
 		this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 		jDesktopPane1.setLayout(null);
-		
+
 		this.warningMessage = warningMessage;
 
 		initGUI();
@@ -95,19 +94,19 @@ public class JDialogWTError extends javax.swing.JDialog
 			jButtonClose.setText(lang.get("btn_Ok"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
 			jButtonClose.setBounds(222, 205, 125, 32);
-			
+
 			JTextPane textArea = new JTextPane();
 			textArea.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 			textArea.setEditable(false);
 			textArea.setBackground(new Color(255, 255, 255));
 			textArea.setContentType("text/html");
-			
+
 			textArea.setText(warningMessage);
-		
+
 			textArea.setBounds(16, 16, 531, 185);
-			
+
 			jDesktopPane1.add(textArea);
-			
+
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -116,8 +115,7 @@ public class JDialogWTError extends javax.swing.JDialog
 				}
 			});
 
-			
-			//JUtility.errorBeep();
+			// JUtility.errorBeep();
 		}
 		catch (Exception e)
 		{

@@ -2,40 +2,38 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameProcessOrderLabel.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -48,6 +46,7 @@ import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBoxPODevices4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
@@ -58,45 +57,48 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
 /**
- * The JInternalFrameProcessOrderLabel is used for printing a label with a barcode representation of the Process Order Number. 
- * 
+ * The JInternalFrameProcessOrderLabel is used for printing a label with a
+ * barcode representation of the Process Order Number.
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameProcessOrderLabel.jpg" >
- * 
- * @see com.commander4j.db.JDBProcessOrder JDBProcesOrder 
- * @see com.commander4j.app.JInternalFrameProcessOrderAdmin JInternalFrameProcessOrderAdmin
- * @see com.commander4j.app.JInternalFrameProcessOrderProperties JInternalFrameProcessOrderProperties
+ *
+ * @see com.commander4j.db.JDBProcessOrder JDBProcesOrder
+ * @see com.commander4j.app.JInternalFrameProcessOrderAdmin
+ *      JInternalFrameProcessOrderAdmin
+ * @see com.commander4j.app.JInternalFrameProcessOrderProperties
+ *      JInternalFrameProcessOrderProperties
  */
 public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 {
-	private static final long serialVersionUID = 1;
 	private JButton4j jButtonCancel;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonPrint;
-	private JTextField4j jTextFieldProcessOrder;
-	private JLabel4j_std lbl_Process_Order;
-	private String lprocessOrder;
+	private JCheckBox4j jCheckBoxAutoPreview;
+	private JComboBoxPODevices4j comboBoxPrintQueue;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrder order = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrderResource resource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
-	private JComboBoxPODevices4j comboBoxPrintQueue;
-	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
-	private JCheckBox4j jCheckBoxAutoPreview;
+	private JDesktopPane4j desktopPane = new JDesktopPane4j();
 	private JLabel4j_std lbl_Preview;
-	private PreparedStatement listStatement;
+	private JLabel4j_std lbl_Process_Order;
+	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
 	private JTextField4j jTextFieldBatchSuffix = new JTextField4j();
-	private JDesktopPane desktopPane = new JDesktopPane();
+	private JTextField4j jTextFieldProcessOrder;
+	private PreparedStatement listStatement;
+	private String lprocessOrder;
+	private static final long serialVersionUID = 1;
 
-	public JInternalFrameProcessOrderLabel(JFrame frame,String processOrder)
+	public JInternalFrameProcessOrderLabel(JFrame frame, String processOrder)
 	{
-		
+
 		super(frame, "Process Order Label", ModalityType.APPLICATION_MODAL);
 
 		mod.setModuleId("RPT_PROCESS_ORDER_LABEL");
 		mod.getModuleProperties();
 		lprocessOrder = processOrder;
-		
+
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setTitle(mod.getDescription());
 		this.setResizable(false);
@@ -110,29 +112,29 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 
 		setLocation(leftmargin, topmargin);
 
-		getContentPane().setBackground(Color.LIGHT_GRAY);
 		getContentPane().setLayout(null);
 
-		desktopPane.setBackground(Common.color_edit_properties);
-		desktopPane.setBounds(0,0,650, 168);
+		desktopPane.setBounds(0, 0, 650, 168);
 		getContentPane().add(desktopPane);
 
 		initGUI();
-		
+
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_PROCESS_ORDER_LABEL"));
-				
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-								
+
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+
 				jTextFieldBatchSuffix.requestFocus();
 				jTextFieldBatchSuffix.setCaretPosition(jTextFieldBatchSuffix.getText().length());
 			}
-		});		
+		});
 
 	}
-		
-	public void buildSQL1Record(String lprocessOrder,String suffix)
+
+	public void buildSQL1Record(String lprocessOrder, String suffix)
 	{
 
 		try
@@ -141,154 +143,143 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JDialog
 			listStatement.setString(1, JUtility.replaceNullStringwithBlank(suffix));
 			listStatement.setString(2, lprocessOrder);
 			listStatement.setFetchSize(1);
-	
-		} catch (SQLException e)
+
+		}
+		catch (SQLException e)
 		{
-			
+
 		}
 
 	}
-	
-	private void initGUI() {
+
+	private void initGUI()
+	{
 		try
 		{
 
+			this.getContentPane().add(desktopPane, BorderLayout.CENTER);
 
+			jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
+			desktopPane.add(jTextFieldProcessOrder);
+			jTextFieldProcessOrder.setEditable(false);
+			jTextFieldProcessOrder.setEnabled(false);
+			jTextFieldProcessOrder.setBounds(155, 10, 147, 22);
+
+			jButtonPrint = new JButton4j(Common.icon_print_16x16);
+			jButtonPrint.addActionListener(new ActionListener()
 			{
-				desktopPane.setBackground(Common.color_edit_properties);
-				this.getContentPane().add(desktopPane, BorderLayout.CENTER);
+				public void actionPerformed(ActionEvent e)
+				{
+					JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
+					buildSQL1Record(jTextFieldProcessOrder.getText(), jTextFieldBatchSuffix.getText());
+					JLaunchReport.runReport("RPT_PROCESS_ORDER_LABEL", listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerQuantity.getValue().toString()), false);
+					dispose();
+				}
+			});
+			desktopPane.add(jButtonPrint);
+			jButtonPrint.setText(lang.get("btn_Print"));
+			jButtonPrint.setMnemonic(lang.getMnemonicChar());
+			jButtonPrint.setBounds(181, 111, 111, 32);
 
-				{
-					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-					desktopPane.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setEditable(false);
-					jTextFieldProcessOrder.setEnabled(false);
-					jTextFieldProcessOrder.setBounds(155, 10, 147, 22);
-				}
-				{
-					jButtonPrint = new JButton4j(Common.icon_print_16x16);
-					jButtonPrint.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
-							buildSQL1Record(jTextFieldProcessOrder.getText(),jTextFieldBatchSuffix.getText());
-							JLaunchReport.runReport("RPT_PROCESS_ORDER_LABEL",listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerQuantity.getValue().toString()),false);
-							dispose();
-						}
-					});
-					desktopPane.add(jButtonPrint);
-					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(181, 111, 111, 32);
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			desktopPane.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setMnemonic(lang.getMnemonicChar());
+			jButtonHelp.setBounds(294, 111, 111, 32);
 
-				}
+			jButtonCancel = new JButton4j(Common.icon_close_16x16);
+			desktopPane.add(jButtonCancel);
+			jButtonCancel.setText(lang.get("btn_Close"));
+			jButtonCancel.setMnemonic(lang.getMnemonicChar());
+			jButtonCancel.setBounds(407, 111, 111, 32);
+			jButtonCancel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					desktopPane.add(jButtonHelp);
-					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(294, 111, 111, 32);
-				}
-				{
-					jButtonCancel = new JButton4j(Common.icon_close_16x16);
-					desktopPane.add(jButtonCancel);
-					jButtonCancel.setText(lang.get("btn_Close"));
-					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(407, 111, 111, 32);
-					jButtonCancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
 
-							dispose();
-						}
-					});
+					dispose();
 				}
+			});
 
-				{
-					lbl_Process_Order = new JLabel4j_std();
-					desktopPane.add(lbl_Process_Order);
-					lbl_Process_Order.setText(lang.get("lbl_Process_Order"));
-					lbl_Process_Order.setBounds(12, 10, 125, 22);
-					lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jTextFieldBatchSuffix.setText("");
-					jTextFieldBatchSuffix.setBounds(454, 10, 39, 22);
-					desktopPane.add(jTextFieldBatchSuffix);
-					
-					JLabel4j_std lbl_Batch_Suffix = new JLabel4j_std();
-					lbl_Batch_Suffix.setText(lang.get("lbl_Batch_Suffix"));
-					lbl_Batch_Suffix.setHorizontalAlignment(SwingConstants.TRAILING);
-					lbl_Batch_Suffix.setBounds(323, 9, 125, 22);
-					desktopPane.add(lbl_Batch_Suffix);
-				}
-				
-				JLabel4j_std lbl_Number_Of_Labels = new JLabel4j_std();
-				lbl_Number_Of_Labels.setBounds(240, 41, 182, 22);
-				lbl_Number_Of_Labels.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Number_Of_Labels.setText(lang.get("lbl_Number_Of_Labels"));
-				desktopPane.add(lbl_Number_Of_Labels);
-			
-		     	jSpinnerQuantity.setEnabled(true);
-				jSpinnerQuantity.setValue(1);
-				
-				jSpinnerQuantity.setBounds(427, 41, 66, 22);
-				jSpinnerQuantity.setValue(1);
-				desktopPane.add(jSpinnerQuantity);
-				
-				JLabel4j_std lbl_Print_Queue = new JLabel4j_std(lang.get("lbl_Print_Queue"));
-				lbl_Print_Queue.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Print_Queue.setBounds(12, 74, 125, 22);
-				desktopPane.add(lbl_Print_Queue);
-				
+			lbl_Process_Order = new JLabel4j_std();
+			desktopPane.add(lbl_Process_Order);
+			lbl_Process_Order.setText(lang.get("lbl_Process_Order"));
+			lbl_Process_Order.setBounds(12, 10, 125, 22);
+			lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
 
-				comboBoxPrintQueue =  new JComboBoxPODevices4j(Common.selectedHostID,Common.sessionID,"RPT_PROCESS_ORDER_LABEL","");
-				comboBoxPrintQueue.setBounds(155, 74, 471, 22);
-				desktopPane.add(comboBoxPrintQueue);
-				
-				jCheckBoxAutoPreview = new JCheckBox4j();
-				
-				
-				if (mod.getReportType().equals("Label"))
-				{
-					jCheckBoxAutoPreview.setSelected(false);
-					jCheckBoxAutoPreview.setEnabled(false);
-				}
-				else
-				{
-					jCheckBoxAutoPreview.setSelected(true);
-					jCheckBoxAutoPreview.setEnabled(true);
-				}
+			jTextFieldBatchSuffix.setText("");
+			jTextFieldBatchSuffix.setBounds(454, 10, 39, 22);
+			desktopPane.add(jTextFieldBatchSuffix);
 
-				
-				jCheckBoxAutoPreview.setBackground(Color.WHITE);
-				jCheckBoxAutoPreview.setBounds(155, 41, 21, 22);
-				desktopPane.add(jCheckBoxAutoPreview);
-				
-				lbl_Preview = new JLabel4j_std();
-				lbl_Preview.setBounds(12, 41, 125, 22);
-				lbl_Preview.setHorizontalTextPosition(SwingConstants.CENTER);
-				lbl_Preview.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Preview.setText(lang.get("lbl_Preview"));
-				desktopPane.add(lbl_Preview);		
-				
-				jTextFieldProcessOrder.setText(lprocessOrder);
+			JLabel4j_std lbl_Batch_Suffix = new JLabel4j_std();
+			lbl_Batch_Suffix.setText(lang.get("lbl_Batch_Suffix"));
+			lbl_Batch_Suffix.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Batch_Suffix.setBounds(323, 9, 125, 22);
+			desktopPane.add(lbl_Batch_Suffix);
 
-				if (order.getProcessOrderProperties(lprocessOrder))
-				{
-					if (resource.getResourceProperties(order.getRequiredResource()))
-					{
-						jTextFieldBatchSuffix.setText(resource.getBatchSuffix());
-					}
-					else
-					{
-						jTextFieldBatchSuffix.setText("");
-					}
-				}
-				else
-				{
-					jTextFieldBatchSuffix.setText("");
-				}
+			JLabel4j_std lbl_Number_Of_Labels = new JLabel4j_std();
+			lbl_Number_Of_Labels.setBounds(240, 41, 182, 22);
+			lbl_Number_Of_Labels.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_Number_Of_Labels.setText(lang.get("lbl_Number_Of_Labels"));
+			desktopPane.add(lbl_Number_Of_Labels);
 
+			jSpinnerQuantity.setEnabled(true);
+			jSpinnerQuantity.setValue(1);
+
+			jSpinnerQuantity.setBounds(427, 41, 66, 22);
+			jSpinnerQuantity.setValue(1);
+			desktopPane.add(jSpinnerQuantity);
+
+			JLabel4j_std lbl_Print_Queue = new JLabel4j_std(lang.get("lbl_Print_Queue"));
+			lbl_Print_Queue.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Print_Queue.setBounds(12, 74, 125, 22);
+			desktopPane.add(lbl_Print_Queue);
+
+			comboBoxPrintQueue = new JComboBoxPODevices4j(Common.selectedHostID, Common.sessionID, "RPT_PROCESS_ORDER_LABEL", "");
+			comboBoxPrintQueue.setBounds(155, 74, 471, 22);
+			desktopPane.add(comboBoxPrintQueue);
+
+			jCheckBoxAutoPreview = new JCheckBox4j();
+
+			if (mod.getReportType().equals("Label"))
+			{
+				jCheckBoxAutoPreview.setSelected(false);
+				jCheckBoxAutoPreview.setEnabled(false);
 			}
+			else
+			{
+				jCheckBoxAutoPreview.setSelected(true);
+				jCheckBoxAutoPreview.setEnabled(true);
+			}
+
+			jCheckBoxAutoPreview.setBounds(155, 41, 21, 22);
+			desktopPane.add(jCheckBoxAutoPreview);
+
+			lbl_Preview = new JLabel4j_std();
+			lbl_Preview.setBounds(12, 41, 125, 22);
+			lbl_Preview.setHorizontalTextPosition(SwingConstants.CENTER);
+			lbl_Preview.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Preview.setText(lang.get("lbl_Preview"));
+			desktopPane.add(lbl_Preview);
+
+			jTextFieldProcessOrder.setText(lprocessOrder);
+
+			if (order.getProcessOrderProperties(lprocessOrder))
+			{
+				if (resource.getResourceProperties(order.getRequiredResource()))
+				{
+					jTextFieldBatchSuffix.setText(resource.getBatchSuffix());
+				}
+				else
+				{
+					jTextFieldBatchSuffix.setText("");
+				}
+			}
+			else
+			{
+				jTextFieldBatchSuffix.setText("");
+			}
+
 		}
 		catch (Exception e)
 		{

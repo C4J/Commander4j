@@ -1,34 +1,5 @@
 package com.commander4j.cfg;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JFrameHostAdmin.java
- * 
- * Package Name : com.commander4j.cfg
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.Rectangle;
@@ -44,27 +15,19 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.TimeZone;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
@@ -82,13 +45,19 @@ import com.commander4j.db.JDBUser;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JPanel4j;
 import com.commander4j.gui.JPasswordField4j;
+import com.commander4j.gui.JProgressBar4j;
 import com.commander4j.gui.JRadioButton4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextArea4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JTitledBorder4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
 import com.commander4j.util.JFileFilterXML;
@@ -107,10 +76,10 @@ import com.commander4j.xml.JXMLSchema;
  * using a dialog box called JDialogSetupPassword. When installing or upgrading
  * a database any errors which occur as displayed using the dialog box
  * JDialogDMLErrors
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JFrameHostAdmin.jpg" >
- * 
+ *
  * @see com.commander4j.cfg.JDialogDMLErrors JDialogDMLErrors
  * @see com.commander4j.cfg.JDialogSetupPassword JDialogSetupPassword
  * @see com.commander4j.cfg.Setup Setup
@@ -118,173 +87,128 @@ import com.commander4j.xml.JXMLSchema;
 public class JFrameHostAdmin extends JFrame
 {
 
-	private static final long serialVersionUID = 1;
-
-	private JDesktopPane desktopPane = new JDesktopPane();
-
-	private JButton4j jButtonApply = new JButton4j(Common.icon_ok_16x16);
-	private JButton4j jButtonDelete = new JButton4j(Common.icon_delete_16x16);
-	private JButton4j jButtonUp = new JButton4j(Common.icon_arrow_up_16x16);
-	private JButton4j jButtonClose = new JButton4j(Common.icon_close_16x16);
-	private JButton4j jButtonSave = new JButton4j(Common.icon_update_16x16);;
-	private JButton4j jButtonUndo = new JButton4j(Common.icon_undo_16x16);;
-	private JButton4j jButtonDown = new JButton4j(Common.icon_arrow_down_16x16);;
-	private JButton4j jButtonAdd = new JButton4j(Common.icon_add_16x16);;
-	private JButton4j jButtonSchema = new JButton4j(Common.icon_report_16x16);
-	private JButton4j jButtonUpdate = new JButton4j(Common.icon_update_16x16);
-	private JButton4j jButtonTest = new JButton4j(Common.icon_connect_16x16);
-	private JButton4j jButtonCancel = new JButton4j(Common.icon_cancel_16x16);
-	private JButton4j jButtonDefaultTimeZone = new JButton4j("");
-	private JButton4j jButtonDefaultCollation = new JButton4j("");
-	private JButton4j jButtonDefaultCharSet = new JButton4j("");
-	private JButton4j jButtonHelp = new JButton4j(Common.icon_help_16x16);
-	private JButton4j jButtonAmendSchemaVersion = new JButton4j(Common.icon_edit_16x16);
-	private JButton4j jButtonAmendProgramVersion = new JButton4j(Common.icon_edit_16x16);
+	final JHelp help = new JHelp();
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JFrameHostAdmin.class);
+	private ComboBoxModel<String> jComboBoxjdbcDriverModel = new DefaultComboBoxModel<String>(new String[]	{ "", "mySQL", "Oracle", "SQL Server", "Web URL" });
+	private DefaultComboBoxModel<String> CharSetModel = new DefaultComboBoxModel<String>();
+	private DefaultComboBoxModel<String> collationModel = new DefaultComboBoxModel<String>();
 	private JButton4j btnService = new JButton4j(Common.icon_interface_16x16);
-	private JButton4j jButtonOpen = new JButton4j(Common.icon_open_16x16);
 	private JButton4j button4jValidateHostPath = new JButton4j(Common.icon_search_16x16);
 	private JButton4j button4jValidateUpdatePath = new JButton4j(Common.icon_search_16x16);
-
+	private JButton4j jButtonAdd = new JButton4j(Common.icon_add_16x16);;
+	private JButton4j jButtonAmendProgramVersion = new JButton4j(Common.icon_edit_16x16);
+	private JButton4j jButtonAmendSchemaVersion = new JButton4j(Common.icon_edit_16x16);
+	private JButton4j jButtonApply = new JButton4j(Common.icon_ok_16x16);
+	private JButton4j jButtonCancel = new JButton4j(Common.icon_cancel_16x16);
+	private JButton4j jButtonClose = new JButton4j(Common.icon_close_16x16);
+	private JButton4j jButtonDefaultCharSet = new JButton4j("");
+	private JButton4j jButtonDefaultCollation = new JButton4j("");
+	private JButton4j jButtonDefaultTimeZone = new JButton4j("");
+	private JButton4j jButtonDelete = new JButton4j(Common.icon_delete_16x16);
+	private JButton4j jButtonDown = new JButton4j(Common.icon_arrow_down_16x16);;
+	private JButton4j jButtonHelp = new JButton4j(Common.icon_help_16x16);
+	private JButton4j jButtonOpen = new JButton4j(Common.icon_open_16x16);
+	private JButton4j jButtonSave = new JButton4j(Common.icon_update_16x16);;
+	private JButton4j jButtonSchema = new JButton4j(Common.icon_report_16x16);
+	private JButton4j jButtonTest = new JButton4j(Common.icon_connect_16x16);
+	private JButton4j jButtonUndo = new JButton4j(Common.icon_undo_16x16);;
+	private JButton4j jButtonUp = new JButton4j(Common.icon_arrow_up_16x16);
+	private JButton4j jButtonUpdate = new JButton4j(Common.icon_update_16x16);
+	private JCheckBox4j jCheckBoxEnabled = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxEncrypt = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxIntegrated = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxLoginTimeout = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxSingleInstance = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxSocketTimeout = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxSplash = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxTrust = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxUseTimeZoneInConnect = new JCheckBox4j("Use Timezone in Connection");
+	private JComboBox4j<String> jComboBoxCharSet = new JComboBox4j<String>();
+	private JComboBox4j<String> jComboBoxCollation = new JComboBox4j<String>();
+	private JComboBox4j<String> jComboBoxjdbcDriver = new JComboBox4j<String>();
+	private JComboBox4j<String> jComboBoxjdbcTimeZone = new JComboBox4j<String>();
+	private JDesktopPane4j desktopPane = new JDesktopPane4j();
+	private JLabel4j_status jLabel_Status = new JLabel4j_status("");
+	private JLabel4j_std jLabel4jActualProgVersion = new JLabel4j_std("Actual Program Version");
+	private JLabel4j_std jLabel4jActualSchemaVersion = new JLabel4j_std("Actual Schema Version");
+	private JLabel4j_std jLabel4jCharset = new JLabel4j_std("CharSet");
+	private JLabel4j_std jLabel4jCollation = new JLabel4j_std("Collation");
+	private JLabel4j_std jLabel4jConnections = new JLabel4j_std("Connections");
+	private JLabel4j_std jLabel4jHostsFileVersion = new JLabel4j_std("Hosts File Version");
+	private JLabel4j_std jLabel4jInstallTo = new JLabel4j_std("Install To");
+	private JLabel4j_std jLabel4jReqdProgVersion = new JLabel4j_std("Required Progam Version");
+	private JLabel4j_std jLabel4jReqdSchemaVersion = new JLabel4j_std("Required Schema Version");
 	private JLabel4j_std jLabel4jSetupPassword = new JLabel4j_std("Setup Password");
+	private JLabel4j_std jLabel4jURLHostsUpdate = new JLabel4j_std("URL Hosts Update");
+	private JLabel4j_std jLabel4jUpdateMode = new JLabel4j_std("Update Mode");
 	private JLabel4j_std jLabel4jVerifyPassword = new JLabel4j_std("Verify Password");
+	private JLabel4j_std jLabel4j_Protect = new JLabel4j_std("Protect Configuration with Password");
 	private JLabel4j_std jLabelActualProgramVersion = new JLabel4j_std("");
 	private JLabel4j_std jLabelActualSchemaVersion = new JLabel4j_std("");
+	private JLabel4j_std jLabelConnectionString = new JLabel4j_std("JDBC URL");
+	private JLabel4j_std jLabelDBDateTime = new JLabel4j_std("DB Date Time");
+	private JLabel4j_std jLabelDatabase = new JLabel4j_std("Database");
+	private JLabel4j_std jLabelDatabaseType = new JLabel4j_std("Database Type");
+	private JLabel4j_std jLabelDescription = new JLabel4j_std("Description");
+	private JLabel4j_std jLabelDriver = new JLabel4j_std("Driver");
+	private JLabel4j_std jLabelLoginTimeout = new JLabel4j_std("Connect Timeout");
+	private JLabel4j_std jLabelMenuURL = new JLabel4j_std("URL");
+	private JLabel4j_std jLabelPassword = new JLabel4j_std("Password");
+	private JLabel4j_std jLabelPort = new JLabel4j_std("Port");
+	private JLabel4j_std jLabelSID = new JLabel4j_std("SID");
 	private JLabel4j_std jLabelSchema = new JLabel4j_std("DB Schema");
 	private JLabel4j_std jLabelSelectTime = new JLabel4j_std("DB Select Limit");
 	private JLabel4j_std jLabelServer = new JLabel4j_std("Server");
-	private JLabel4j_std jLabelPort = new JLabel4j_std("Port");
-	private JLabel4j_std jLabelUsername = new JLabel4j_std("Username");
-	private JLabel4j_std jLabelSiteNo = new JLabel4j_std("Connection No");
-	private JLabel4j_std jLabelDescription = new JLabel4j_std("Description");
-	private JLabel4j_std jLabelPassword = new JLabel4j_std("Password");
-	private JLabel4j_std jLabelTimeZone = new JLabel4j_std("DB Timezone");
-	private JLabel4j_std jLabelDBDateTime = new JLabel4j_std("DB Date Time");
-	private JLabel4j_std jLabelConnectionString = new JLabel4j_std("JDBC URL");
-	private JLabel4j_std jLabelSID = new JLabel4j_std("SID");
-	private JLabel4j_std jLabelDatabase = new JLabel4j_std("Database");
-	private JLabel4j_std jLabelDriver = new JLabel4j_std("Driver");
-	private JLabel4j_std jLabelDatabaseType = new JLabel4j_std("Database Type");
-	private JLabel4j_std jLabelUniqueID = new JLabel4j_std("Unique ID");
-	private JLabel4j_std jLabelMenuURL = new JLabel4j_std("URL");
-	private JLabel4j_std jLabelCommand = new JLabel4j_std("");
-	private JLabel4j_std jLabelLoginTimeout = new JLabel4j_std("Connect Timeout");
-	private JLabel4j_std jLabelSocketTimeout = new JLabel4j_std("Socket Timeout");
-	private JLabel4j_std jLabel4jConnections = new JLabel4j_std("Connections");
-	private JLabel4j_std jLabelUpdateHostURL = new JLabel4j_std("URL App Update");
-	private JLabel4j_std jLabel4jUpdateMode = new JLabel4j_std("Update Mode");
-	private JLabel4j_std jLabel4jInstallTo = new JLabel4j_std("Install To");
-	private JLabel4j_std jLabel4jURLHostsUpdate = new JLabel4j_std("URL Hosts Update");
-	private JLabel4j_std jLabel4jHostsFileVersion = new JLabel4j_std("Hosts File Version");
-	private JLabel4j_std jLabel4jActualSchemaVersion = new JLabel4j_std("Actual Schema Version");
-	private JLabel4j_std jLabel4jReqdSchemaVersion = new JLabel4j_std("Required Schema Version");
-	private JLabel4j_std jLabel4jReqdProgVersion = new JLabel4j_std("Required Progam Version");
-	private JLabel4j_std jLabel4jActualProgVersion = new JLabel4j_std("Actual Program Version");
-	private JLabel4j_std jLabel4jCollation = new JLabel4j_std("Collation");
-	private JLabel4j_std jLabel4jCharset = new JLabel4j_std("CharSet");
-	private JLabel4j_std jLabel4j_Protect = new JLabel4j_std("Protect Configuration with Password");
 	private JLabel4j_std jLabelSingleInstancePort = new JLabel4j_std("Watchdog Port");
-
-	private JTextField4j jTextFieldSchema = new JTextField4j();
-	private JTextField4j jTextFieldSelectLimit = new JTextField4j();
-	private JTextField4j jTextFieldDatabase = new JTextField4j();
-	private JTextField4j jTextFieldSID = new JTextField4j();
-	private JTextField4j jTextFieldDriver = new JTextField4j();
-	private JTextField4j jTextFieldSiteNo = new JTextField4j();
-	private JTextField4j jTextFieldPort = new JTextField4j();
-	private JTextField4j jTextFieldUsername = new JTextField4j();
-	private JTextField4j jTextFieldDateTime = new JTextField4j();
-	private JTextField4j jTextFieldUniqueID = new JTextField4j();
-	private JTextField4j jTextFieldDescription = new JTextField4j();
-	private JTextField4j jTextFieldServer = new JTextField4j();
-	private JTextField4j jTextFieldUpdateURL = new JTextField4j();
-	private JTextField4j jTextField4jInstallDir = new JTextField4j();
-	private JTextField4j jTextField4jHostVersion = new JTextField4j();
-	private JTextField4j jTextField4jHostUpdatePath = new JTextField4j();
-	private JTextField4j jTextField4jActualSchema = new JTextField4j();
-	private JTextField4j jTextField4jActualProgram = new JTextField4j();
-	private JTextField4j jTextField4jReqdSchema = new JTextField4j();
-	private JTextField4j jTextField4jReqdProgram = new JTextField4j();
-	private JTextField4j jTextFieldSingleInstancePort = new JTextField4j();
-	private JTextField4j jTextFieldURL = new JTextField4j();
-
-	private JCheckBox4j jCheckBoxEnabled = new JCheckBox4j();
-	private JCheckBox4j jCheckBoxSplash = new JCheckBox4j();
-	private JCheckBox4j jCheckBoxUseTimeZoneInConnect = new JCheckBox4j("Use Timezone in Connection");
-	private JCheckBox4j jCheckBoxLoginTimeout = new JCheckBox4j();
-	private JCheckBox4j jCheckBoxSocketTimeout = new JCheckBox4j();
-	private JCheckBox4j jCheckBoxSingleInstance = new JCheckBox4j();
-	private JCheckBox4j jCheckBoxEncrypt = new JCheckBox4j();
-	private JCheckBox4j jCheckBoxIntegrated = new JCheckBox4j();
-	private JCheckBox4j jCheckBoxTrust = new JCheckBox4j();
-
+	private JLabel4j_std jLabelSiteNo = new JLabel4j_std("Connection No");
+	private JLabel4j_std jLabelSocketTimeout = new JLabel4j_std("Socket Timeout");
+	private JLabel4j_std jLabelTimeZone = new JLabel4j_std("DB Timezone");
+	private JLabel4j_std jLabelUniqueID = new JLabel4j_std("Unique ID");
+	private JLabel4j_std jLabelUpdateHostURL = new JLabel4j_std("URL App Update");
+	private JLabel4j_std jLabelUsername = new JLabel4j_std("Username");
+	private JList4j<JHost> jListHosts = new JList4j<JHost>();
 	private JPasswordField4j jTextFieldPassword = new JPasswordField4j(JDBUser.field_password);
 	private JPasswordField4j setupPasswordField = new JPasswordField4j(JDBUser.field_password);
 	private JPasswordField4j verifyPasswordField = new JPasswordField4j(JDBUser.field_password);
-
-	private JTextArea4j jTextFieldConnect = new JTextArea4j();
-
-	private JComboBox4j<String> jComboBoxjdbcDriver = new JComboBox4j<String>();
-	private JComboBox4j<String> jComboBoxjdbcTimeZone = new JComboBox4j<String>();
-	private JComboBox4j<String> jComboBoxCollation = new JComboBox4j<String>();
-	private JComboBox4j<String> jComboBoxCharSet = new JComboBox4j<String>();
-
-	private JList4j<JHost> jListHosts = new JList4j<JHost>();
-
-	private JScrollPane jScrollPane1 = new JScrollPane();
-
-	private LinkedList<JHost> hostList = new LinkedList<JHost>();
-
-	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JFrameHostAdmin.class);
-
-	private JPanel contentPane = new JPanel();
-
-	private JProgressBar progressBar = new JProgressBar();
-
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-
-	private JRadioButton4j rdbtnManual = new JRadioButton4j("MANUAL");
+	private JProgressBar4j progressBar = new JProgressBar4j();
 	private JRadioButton4j rdbtnAutomatic = new JRadioButton4j("AUTOMATIC");
-
-	private String hostsFilename = "";
-
-	private DefaultComboBoxModel<String> collationModel = new DefaultComboBoxModel<String>();
-	private DefaultComboBoxModel<String> CharSetModel = new DefaultComboBoxModel<String>();
-
-	private static int widthadjustment = 0;
-	private static int heightadjustment = 0;
-
-	private SpinnerNumberModel jSpinnerIntModelSocket = new SpinnerNumberModel();
-	private SpinnerNumberModel jSpinnerIntModelLogin = new SpinnerNumberModel();
-	
+	private JRadioButton4j rdbtnManual = new JRadioButton4j("MANUAL");
+	private JScrollPane4j jScrollPane1 = new JScrollPane4j(JScrollPane4j.List);
 	private JSpinner4j jSpinnerLoginTimeout = new JSpinner4j();
 	private JSpinner4j jSpinnerSocketTimeout = new JSpinner4j();
-	
 	private JSpinner4j.NumberEditor nelogin = new JSpinner4j.NumberEditor(jSpinnerLoginTimeout);
 	private JSpinner4j.NumberEditor nesocket = new JSpinner4j.NumberEditor(jSpinnerSocketTimeout);
-
-	private ComboBoxModel<String> jComboBoxjdbcDriverModel = new DefaultComboBoxModel<String>(new String[]
-	{ "", "mySQL", "Oracle", "SQL Server", "Web URL" });
-
-	final JHelp help = new JHelp();
-
-	public static void main(String[] args)
-	{
-		EventQueue.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				try
-				{
-					JFrameHostAdmin frame = new JFrameHostAdmin();
-					frame.setVisible(true);
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JTextArea4j jTextFieldConnect = new JTextArea4j();
+	private JTextField4j jTextField4jActualProgram = new JTextField4j();
+	private JTextField4j jTextField4jActualSchema = new JTextField4j();
+	private JTextField4j jTextField4jHostUpdatePath = new JTextField4j();
+	private JTextField4j jTextField4jHostVersion = new JTextField4j();
+	private JTextField4j jTextField4jInstallDir = new JTextField4j();
+	private JTextField4j jTextField4jReqdProgram = new JTextField4j();
+	private JTextField4j jTextField4jReqdSchema = new JTextField4j();
+	private JTextField4j jTextFieldDatabase = new JTextField4j();
+	private JTextField4j jTextFieldDateTime = new JTextField4j();
+	private JTextField4j jTextFieldDescription = new JTextField4j();
+	private JTextField4j jTextFieldDriver = new JTextField4j();
+	private JTextField4j jTextFieldPort = new JTextField4j();
+	private JTextField4j jTextFieldSID = new JTextField4j();
+	private JTextField4j jTextFieldSchema = new JTextField4j();
+	private JTextField4j jTextFieldSelectLimit = new JTextField4j();
+	private JTextField4j jTextFieldServer = new JTextField4j();
+	private JTextField4j jTextFieldSingleInstancePort = new JTextField4j();
+	private JTextField4j jTextFieldSiteNo = new JTextField4j();
+	private JTextField4j jTextFieldURL = new JTextField4j();
+	private JTextField4j jTextFieldUniqueID = new JTextField4j();
+	private JTextField4j jTextFieldUpdateURL = new JTextField4j();
+	private JTextField4j jTextFieldUsername = new JTextField4j();
+	private LinkedList<JHost> hostList = new LinkedList<JHost>();
+	private SpinnerNumberModel jSpinnerIntModelLogin = new SpinnerNumberModel();
+	private SpinnerNumberModel jSpinnerIntModelSocket = new SpinnerNumberModel();
+	private String hostsFilename = "";
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private static final long serialVersionUID = 1;
+	private static int heightadjustment = 0;
+	private static int widthadjustment = 0;
 
 	private void buildCollationList()
 	{
@@ -456,6 +380,7 @@ public class JFrameHostAdmin extends JFrame
 			{
 				jTextFieldDescription.requestFocus();
 				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
+
 			}
 		});
 
@@ -878,7 +803,7 @@ public class JFrameHostAdmin extends JFrame
 			}
 		});
 
-		jLabelCommand.setText(result);
+		jLabel_Status.setText(result);
 	}
 
 	private void initGUI()
@@ -888,19 +813,18 @@ public class JFrameHostAdmin extends JFrame
 			setResizable(false);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 1202, 702);
+			getContentPane().setLayout(null);
+			getContentPane().setBackground(Common.color_app_window);
 
-			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-			setContentPane(contentPane);
-			contentPane.setLayout(null);
+			desktopPane.setLayout(null);
 			desktopPane.setBounds(0, 0, 1190, 680);
-			desktopPane.setBackground(Common.color_app_window);
-			progressBar.setBackground(Common.color_app_window);
-			contentPane.setBackground(Common.color_app_window);
-			contentPane.add(desktopPane);
+
+			getContentPane().add(desktopPane);
 
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
 			this.setTitle("Host Administration " + JVersion.getProgramVersion());
-			desktopPane.setLayout(null);
+
 
 			desktopPane.add(jButtonAdd);
 			jButtonAdd.setText("Add DB Connection");
@@ -1146,7 +1070,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 
-			jTextFieldDescription.setBackground(Common.color_listBackground);
+			jTextFieldDescription.setBackground(Common.color_list_background);
 			desktopPane.add(jTextFieldDescription);
 			jTextFieldDescription.setFocusCycleRoot(true);
 			jTextFieldDescription.setBounds(390, 40, 590, 22);
@@ -1158,7 +1082,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 
-			jTextFieldURL.setBackground(Common.color_listBackground);
+			jTextFieldURL.setBackground(Common.color_list_background);
 			desktopPane.add(jTextFieldURL);
 			jTextFieldURL.setFocusCycleRoot(true);
 			jTextFieldURL.setBounds(390, 65, 590, 22);
@@ -1482,7 +1406,7 @@ public class JFrameHostAdmin extends JFrame
 			jTextFieldConnect.setLineWrap(true);
 			jTextFieldConnect.setFocusable(false);
 			jTextFieldConnect.setToolTipText("jdbc Connection URL");
-			jTextFieldConnect.setBackground(Common.color_app_window);
+
 			jTextFieldConnect.setBounds(390, 120, 590, 37);
 			desktopPane.add(jTextFieldConnect);
 
@@ -1541,7 +1465,6 @@ public class JFrameHostAdmin extends JFrame
 			jLabelPort.setBounds(285, 240, 98, 22);
 			desktopPane.add(jLabelPort);
 
-			jTextFieldDateTime.setBackground(Common.color_listBackground);
 			jTextFieldDateTime.setFocusCycleRoot(true);
 			jTextFieldDateTime.setBounds(390, 498, 282, 22);
 			jTextFieldDateTime.addKeyListener(new KeyAdapter()
@@ -1575,7 +1498,7 @@ public class JFrameHostAdmin extends JFrame
 			});
 			desktopPane.add(jTextFieldPassword);
 
-			jTextFieldPort.setBackground(Common.color_listBackground);
+			jTextFieldPort.setBackground(Common.color_list_background);
 			jTextFieldPort.setFocusCycleRoot(true);
 			jTextFieldPort.setBounds(390, 240, 282, 22);
 			jTextFieldPort.addKeyListener(new KeyAdapter()
@@ -1587,7 +1510,7 @@ public class JFrameHostAdmin extends JFrame
 			});
 			desktopPane.add(jTextFieldPort);
 
-			jTextFieldSID.setBackground(Common.color_listBackground);
+
 			jTextFieldSID.setFocusCycleRoot(true);
 			jTextFieldSID.setBounds(390, 265, 282, 22);
 			jTextFieldSID.addKeyListener(new KeyAdapter()
@@ -1604,7 +1527,7 @@ public class JFrameHostAdmin extends JFrame
 			jTextFieldSiteNo.setFocusCycleRoot(true);
 			jTextFieldSiteNo.setBounds(390, 15, 28, 22);
 			jTextFieldSiteNo.setHorizontalAlignment(SwingConstants.CENTER);
-			jTextFieldSiteNo.setBackground(Common.color_app_window);
+
 			jTextFieldSiteNo.addKeyListener(new KeyAdapter()
 			{
 				public void keyTyped(KeyEvent evt)
@@ -1615,9 +1538,8 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(jTextFieldSiteNo);
 
 			jTextFieldDriver.setEnabled(false);
-			jTextFieldDriver.setBackground(Common.color_listBackground);
+
 			jTextFieldDriver.setBounds(390, 164, 282, 22);
-			jTextFieldDriver.setDisabledTextColor(Common.color_text_disabled);
 			jTextFieldDriver.addKeyListener(new KeyAdapter()
 			{
 				public void keyTyped(KeyEvent evt)
@@ -1630,7 +1552,7 @@ public class JFrameHostAdmin extends JFrame
 			jCheckBoxEnabled.setToolTipText("If disabled the site will not appear in the list seen by the user.");
 			jCheckBoxEnabled.setText("Enabled");
 			jCheckBoxEnabled.setBounds(467, 14, 91, 22);
-			jCheckBoxEnabled.setBackground(new java.awt.Color(255, 255, 255));
+
 			jCheckBoxEnabled.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -1644,7 +1566,7 @@ public class JFrameHostAdmin extends JFrame
 			jCheckBoxSplash.setSelected(true);
 			jCheckBoxSplash.setText("Enable Splash Screen");
 			jCheckBoxSplash.setBounds(708, 397, 150, 22);
-			jCheckBoxSplash.setBackground(new java.awt.Color(255, 255, 255));
+
 			jCheckBoxSplash.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -1671,7 +1593,7 @@ public class JFrameHostAdmin extends JFrame
 			});
 			desktopPane.add(jButtonCancel);
 
-			jTextFieldServer.setBackground(Common.color_listBackground);
+
 			desktopPane.add(jTextFieldServer);
 			jTextFieldServer.setFocusCycleRoot(true);
 			jTextFieldServer.setBounds(390, 190, 282, 22);
@@ -1689,7 +1611,6 @@ public class JFrameHostAdmin extends JFrame
 			jLabelConnectionString.setBounds(285, 120, 98, 22);
 			desktopPane.add(jLabelConnectionString);
 
-			jTextFieldDatabase.setBackground(Common.color_listBackground);
 			jTextFieldDatabase.setEnabled(false);
 			jTextFieldDatabase.setFocusCycleRoot(true);
 			jTextFieldDatabase.setBounds(390, 215, 282, 22);
@@ -1780,14 +1701,14 @@ public class JFrameHostAdmin extends JFrame
 							if (continueUpdate == 0)
 							{
 
-								jLabelCommand.setText("Loading SQL commands, please wait....");
+								jLabel_Status.setText("Loading SQL commands, please wait....");
 								LinkedList<JDBDDL> cmds = new LinkedList<JDBDDL>();
 								cmds.clear();
-								cmds = JXMLSchema.loadDDLStatements(jTextFieldDriver.getText(), "xml/schema/" + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver() + "/", jLabelCommand);
+								cmds = JXMLSchema.loadDDLStatements(jTextFieldDriver.getText(), "xml/schema/" + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver() + "/", jLabel_Status);
 								boolean updateCtrl = false;
 								if (cmds.size() > 0)
 								{
-									if (schema.executeDDL(cmds, progressBar, jLabelCommand) == true)
+									if (schema.executeDDL(cmds, progressBar, jLabel_Status) == true)
 									{
 										updateCtrl = true;
 
@@ -1863,7 +1784,6 @@ public class JFrameHostAdmin extends JFrame
 			});
 			desktopPane.add(jButtonUpdate);
 
-			jTextFieldSelectLimit.setBackground(Common.color_listBackground);
 			jTextFieldSelectLimit.setBounds(390, 523, 282, 22);
 			jTextFieldSelectLimit.addKeyListener(new KeyAdapter()
 			{
@@ -1886,7 +1806,6 @@ public class JFrameHostAdmin extends JFrame
 			jLabelSchema.setBounds(285, 548, 98, 22);
 			desktopPane.add(jLabelSchema);
 
-			jTextFieldSchema.setBackground(Common.color_listBackground);
 			jTextFieldSchema.setEnabled(false);
 			jTextFieldSchema.setBounds(390, 548, 282, 22);
 			jTextFieldSchema.setFocusCycleRoot(true);
@@ -1905,7 +1824,7 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(jLabelMenuURL);
 
 			jTextFieldUniqueID.setEnabled(false);
-			jTextFieldUniqueID.setBackground(Common.color_listBackground);
+
 			jTextFieldUniqueID.addKeyListener(new KeyAdapter()
 			{
 				@Override
@@ -1977,15 +1896,15 @@ public class JFrameHostAdmin extends JFrame
 			});
 			desktopPane.add(jComboBoxCharSet);
 
-			progressBar.setBounds(0, 607, 1200 + widthadjustment, 28);
-			progressBar.setBackground(Common.color_app_window);
-			progressBar.setForeground(Color.BLUE);
-			desktopPane.add(progressBar);
-			jLabelCommand.setForeground(Color.RED);
+			progressBar.setBounds(5, 607, 1166, 28);
 
-			jLabelCommand.setBounds(0, 635, 1200 + widthadjustment, 23);
-			jLabelCommand.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-			desktopPane.add(jLabelCommand);
+
+			desktopPane.add(progressBar);
+
+
+			jLabel_Status.setBounds(5, 635, 1166, 23);
+
+			desktopPane.add(jLabel_Status);
 
 			btnService.addActionListener(new ActionListener()
 			{
@@ -2050,7 +1969,7 @@ public class JFrameHostAdmin extends JFrame
 					"<html>\nYou can determine if a install can be updated automatically via the checkbox’s<br>\nMANUAL v AUTOMATIC. Normally end user workstations would have a hosts<br>\nfile which would be set to Automatic. A server install which includes the interface<br>\nservice would be more appropriatly set to manual updates.<br>\n</html>");
 
 			rdbtnManual.setSelected(true);
-			rdbtnManual.setBackground(Common.color_app_window);
+
 			rdbtnManual.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -2060,7 +1979,7 @@ public class JFrameHostAdmin extends JFrame
 			});
 			buttonGroup.add(rdbtnManual);
 			rdbtnManual.setBounds(815, 461, 93, 22);
-			rdbtnManual.setBackground(Common.color_app_window);
+
 			desktopPane.add(rdbtnManual);
 			rdbtnAutomatic.setToolTipText(
 					"<html>\nYou can determine if a install can be updated automatically via the checkbox’s<br>\nMANUAL v AUTOMATIC. Normally end user workstations would have a hosts<br>\nfile which would be set to Automatic. A server install which includes the interface<br>\nservice would be more appropriatly set to manual updates.<br>\n</html>");
@@ -2074,7 +1993,7 @@ public class JFrameHostAdmin extends JFrame
 			});
 			buttonGroup.add(rdbtnAutomatic);
 			rdbtnAutomatic.setBounds(900, 461, 109, 22);
-			rdbtnAutomatic.setBackground(Common.color_app_window);
+
 			desktopPane.add(rdbtnAutomatic);
 
 			jLabel4jUpdateMode.setHorizontalTextPosition(SwingConstants.RIGHT);
@@ -2251,9 +2170,9 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 
-			JPanel panel = new JPanel();
-			panel.setBackground(Common.color_app_window);
-			panel.setBorder(new TitledBorder(null, "Version Information", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+			JPanel4j panel = new JPanel4j();
+
+			panel.setBorder(JTitledBorder4j.getPanelTitledBorder("Version Information"));
 			panel.setBounds(708, 169, 272, 214);
 			desktopPane.add(panel);
 			panel.setLayout(null);

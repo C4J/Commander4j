@@ -13,8 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.JTextPane;
 import javax.swing.JViewport;
 import javax.swing.WindowConstants;
@@ -22,15 +21,17 @@ import javax.swing.border.EmptyBorder;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 
 public class JDialogDisplayLicense extends JDialog
 {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPanel = new JPanel();
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JPanel4j contentPanel = new JPanel4j();
+	private JScrollPane4j scrollPane = new JScrollPane4j(JScrollPane4j.List);
 	private JTextPane textPane = new JTextPane();
-	private JScrollPane scrollPane = new JScrollPane();
+	private static final long serialVersionUID = 1L;
 
 	public JDialogDisplayLicense(JDialogLicenses lll, JLicenseInfo license)
 	{
@@ -39,7 +40,7 @@ public class JDialogDisplayLicense extends JDialog
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setTitle(license.getDescription()+ " ("+license.type+")");
 		setBounds(100, 100, 767, 587);
-		
+
 		Dimension screensize = Common.mainForm.getSize();
 		Point parentPos = Common.mainForm.getLocation();
 
@@ -48,7 +49,7 @@ public class JDialogDisplayLicense extends JDialog
 		int topmargin = ((screensize.height - formsize.height) / 2);
 
 		setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
-		
+
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -61,12 +62,13 @@ public class JDialogDisplayLicense extends JDialog
 		loadLicense(license.licenceFilename);
 		textPane.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		textPane.setBackground(new Color(250, 250, 210));
+		textPane.setForeground(Color.BLACK);
 
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 
 
-		JPanel buttonPane = new JPanel();
+		JPanel4j buttonPane = new JPanel4j();
 		buttonPane.setBounds(6, 510, 755, 39);
 		contentPanel.add(buttonPane);
 		buttonPane.setLayout(null);
@@ -91,7 +93,7 @@ public class JDialogDisplayLicense extends JDialog
 		setModal(true);
 
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		
+
 	}
 
 	private boolean loadLicense(String filename)
@@ -103,6 +105,7 @@ public class JDialogDisplayLicense extends JDialog
 		try
 		{
             String content = new String ( Files.readAllBytes( Paths.get(getfilename) ) );
+
 			textPane.setText(content);
 			textPane.setCaretPosition(0);
 			JViewport jv = scrollPane.getViewport();

@@ -91,7 +91,7 @@ public class JTextArea4j extends JTextArea {
         } else
         {
             setBackground(Common.color_textfield_background_nofocus_color);
-            setForeground(Common.color_textfield_forground_nofocus_color);	
+            setForeground(Common.color_textfield_foreground_nofocus_color);	
         }
         
     }

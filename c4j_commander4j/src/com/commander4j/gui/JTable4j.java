@@ -15,11 +15,18 @@ public class JTable4j extends JTable
 	public JTable4j()
 	{
 		setDefaultRenderer(Object.class, Common.renderer_table);
-		getTableHeader().setDefaultRenderer(Common.renderer_tableheader);
+		setDefaultRenderer(Object.class, Common.renderer_table);
+		setDefaultRenderer(Integer.class, Common.renderer_table);
+		setDefaultRenderer(Boolean.class, Common.renderer_table);
+
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		getTableHeader().setReorderingAllowed(false);
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		getTableHeader().setDefaultRenderer(Common.renderer_tableheader);
 		getTableHeader().setPreferredSize(new Dimension(10000, 25));
+		getTableHeader().setForeground(Common.color_table_header_foreground);
+		getTableHeader().setFont(Common.font_table_header);
+		getTableHeader().setReorderingAllowed(false);
 	}
-	
+
 }

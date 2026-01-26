@@ -70,17 +70,17 @@ public class CheckBoxCellEditor extends AbstractCellEditor implements TableCellE
 
 		if (isSelected)
 		{
-			checkBox.setBackground(Common.color_listHighlighted);
+			checkBox.setBackground(Common.color_list_background_selected);
 		}
 		else
 		{
 			if (row % 2 == 0)
 			{
-				checkBox.setBackground(Common.color_tablerow1);
+				checkBox.setBackground(Common.color_table_standard_row1);
 			}
 			else
 			{
-				checkBox.setBackground(Common.color_tablerow2);
+				checkBox.setBackground(Common.color_table_standard_row2);
 			}
 		}
           

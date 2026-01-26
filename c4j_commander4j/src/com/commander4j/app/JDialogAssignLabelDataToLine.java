@@ -2,29 +2,29 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JDialogAssignLabelDataToLine.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.Dimension;
@@ -36,10 +36,10 @@ import java.math.BigDecimal;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -56,9 +56,11 @@ import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JQuantityInput;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
@@ -68,30 +70,30 @@ import com.commander4j.util.JUtility;
  * Called from the Case Labelling screen once the user has selected the required
  * process order this dialog box will allow the user to send the data to a
  * nominated Production Line.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JDialogAssignLabelDataToLine.jpg" >
- * 
+ *
  * @see com.commander4j.app.JInternalFramePackLabelPrint JInternalFramePackLabelPrint
  *
  */
 public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private JButton4j jButtonAssign;
 	private JButton4j jButtonCancel;
 	private JButton4j jButtonHelp;
-	private JButton4j jButtonAssign;
-	private JLabel4j_std lbl_ProcessOrder;
-	private String unique_id;
+	private JDBAutoLabeller autolab = new JDBAutoLabeller(Common.selectedHostID, Common.sessionID);
+	private JDBLabelData labdat = new JDBLabelData(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial mat = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-	private JDBProcessOrder po = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
-	private JDBLabelData labdat = new JDBLabelData(Common.selectedHostID, Common.sessionID);
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	private JDBProcessOrder po = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
+	private JDesktopPane4j jDesktopPane1;
 	private JLabel4j_std lbl_BatchNumber;
-	private JDBAutoLabeller autolab = new JDBAutoLabeller(Common.selectedHostID, Common.sessionID);
+	private JLabel4j_std lbl_ProcessOrder;
 	private JList4j<JDBListData> list;
 	private String selectedGroup;
+	private String unique_id;
 
 	/**
 	 * @param frame Parent Frame
@@ -118,9 +120,9 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 
 		setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
 
-		jDesktopPane1 = new JDesktopPane();
+		jDesktopPane1 = new JDesktopPane4j();
 		jDesktopPane1.setBounds(0, 200, 671, -200);
-		jDesktopPane1.setBackground(Common.color_edit_properties);
+
 		this.getContentPane().add(jDesktopPane1);
 		jDesktopPane1.setPreferredSize(new java.awt.Dimension(462, 497));
 		jDesktopPane1.setLayout(null);
@@ -131,30 +133,16 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		mod.getModuleProperties("FRM_LABEL_DATA_ASSIGN");
 
 		setTitle(mod.getDescription() + " (" + labdat.getLabelType() + ")");
-		
+
 		selectedGroup = labdat.getLabelType();
 
 		initGUI();
-		
+
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_LABEL_DATA_ASSIGN"));
 
 		populateList(selectedGroup);
 
-	}
-
-	/**
-	 *  Used to enable all buttons
-	 */
-	private void enableButtons()
-	{
-		if (list.getValueIsAdjusting() == false)
-		{
-			if (list.getSelectedIndex() > -1)
-			{
-				jButtonAssign.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB"));
-			}
-		}
 	}
 
 	/**
@@ -200,34 +188,17 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 	}
 
 	/**
-	 * @param group populates the list of labelers on screen for the specified group
+	 *  Used to enable all buttons
 	 */
-	private void populateList(String group)
+	private void enableButtons()
 	{
-		jButtonAssign.setEnabled(false);
-
-		DefaultComboBoxModel<JDBListData> DefComboBoxMod = new DefaultComboBoxModel<JDBListData>();
-
-		LinkedList<JDBListData> tempLabList = autolab.getLabellerIDsforGroup(group);
-
-		int sel = -1;
-		for (int j = 0; j < tempLabList.size(); j++)
+		if (list.getValueIsAdjusting() == false)
 		{
-			if (((JDBAutoLabeller) tempLabList.get(j).getmData()).isEnabled())
+			if (list.getSelectedIndex() > -1)
 			{
-				DefComboBoxMod.addElement(tempLabList.get(j));
+				jButtonAssign.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB"));
 			}
-
 		}
-
-		ListModel<JDBListData> jList1Model = DefComboBoxMod;
-
-		list.setModel(jList1Model);
-		list.setSelectedIndex(sel);
-		list.setCellRenderer(Common.renderer_list);
-		list.ensureIndexIsVisible(sel);
-
-		enableButtons();
 	}
 
 	/**
@@ -402,7 +373,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			}
 			jDesktopPane1.add(textField4j_Status);
 
-			JScrollPane scrollPane = new JScrollPane();
+			JScrollPane4j scrollPane = new JScrollPane4j(JScrollPane4j.List);
 			scrollPane.setBounds(22, 262, 634, 113);
 			jDesktopPane1.add(scrollPane);
 
@@ -557,5 +528,36 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		{
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @param group populates the list of labelers on screen for the specified group
+	 */
+	private void populateList(String group)
+	{
+		jButtonAssign.setEnabled(false);
+
+		DefaultComboBoxModel<JDBListData> DefComboBoxMod = new DefaultComboBoxModel<JDBListData>();
+
+		LinkedList<JDBListData> tempLabList = autolab.getLabellerIDsforGroup(group);
+
+		int sel = -1;
+		for (int j = 0; j < tempLabList.size(); j++)
+		{
+			if (((JDBAutoLabeller) tempLabList.get(j).getmData()).isEnabled())
+			{
+				DefComboBoxMod.addElement(tempLabList.get(j));
+			}
+
+		}
+
+		ListModel<JDBListData> jList1Model = DefComboBoxMod;
+
+		list.setModel(jList1Model);
+		list.setSelectedIndex(sel);
+		list.setCellRenderer(Common.renderer_list);
+		list.ensureIndexIsVisible(sel);
+
+		enableButtons();
 	}
 }

@@ -2,48 +2,44 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameAutoLabellerLines.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 import javax.swing.table.TableRowSorter;
 
 import com.commander4j.db.JDBAutoLabeller;
@@ -54,8 +50,11 @@ import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBPrinterLineMembership;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JRadioButton4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
@@ -69,10 +68,10 @@ import com.commander4j.util.JUtility;
  * consist of one or more physical labelling machines. The actual labellers
  * which are assigned to the Production line are defined using the form
  * JDialogAutoLabellerProperties
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameAutoLabellerLines.jpg" >
- * 
+ *
  * @see com.commander4j.app.JDialogAutoLabellerProperties
  *      JDialogAutoLabellerProperties
  * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
@@ -83,50 +82,70 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 
 	private static final long serialVersionUID = 1;
 	private JButton4j jButtonClose;
-	private JDesktopPane jDesktopPane1;
 	private JDBAutoLabeller autolab = new JDBAutoLabeller(Common.selectedHostID, Common.sessionID);
-	private JDBPrinterLineMembership plm = new JDBPrinterLineMembership(Common.selectedHostID, Common.sessionID);
 	private JDBAutoLabellerResources lres = new JDBAutoLabellerResources(Common.selectedHostID, Common.sessionID);
-	private JDBLabelData ldat = new JDBLabelData(Common.selectedHostID, Common.sessionID);
-	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JTable4j jTable1;
-	private JScrollPane scrollPane = new JScrollPane();
-	private PreparedStatement listStatement;
 	private JDBAutoLabellerTableModel autolabeltable = new JDBAutoLabellerTableModel(Common.selectedHostID, Common.sessionID);
-	private JLabel4j_std jStatusText;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JDBLabelData ldat = new JDBLabelData(Common.selectedHostID, Common.sessionID);
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	private JDBPrinterLineMembership plm = new JDBPrinterLineMembership(Common.selectedHostID, Common.sessionID);
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusText;
 	private JRadioButton4j rdbtnAll = new JRadioButton4j("All");
+	private JRadioButton4j rdbtnGeneral = new JRadioButton4j("General");
 	private JRadioButton4j rdbtnPack = new JRadioButton4j("Pack");
 	private JRadioButton4j rdbtnPallet = new JRadioButton4j("Pallet");
-	private JRadioButton4j rdbtnGeneral = new JRadioButton4j("General");
+	private JScrollPane4j scrollPane = new JScrollPane4j(JScrollPane4j.Table);
+	private JTable4j jTable1;
+	private PreparedStatement listStatement;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	public JInternalFrameAutoLabellerLines()
 	{
 		initGUI();
 		refresh();
 	}
-	
-	private String getFilterString()
+
+	private void addRecord()
 	{
-		String result = "%";
-		
-		if (rdbtnPack.isSelected())
+		String lineId = "";
+		lineId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Line_Create"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null);
+		if (lineId != null)
 		{
-			result = "Pack";
+			if (lineId.equals("") == false)
+			{
+
+				int len = lineId.length();
+
+				if (len > JDBAutoLabeller.field_line)
+				{
+					lineId = lineId.substring(1, JDBAutoLabeller.field_line);
+				}
+
+				Object[] printerGroups = Common.printerGroup;
+				String groupId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Group_ID"), lang.get("lbl_Group_ID"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm_16x16, printerGroups, "Pack");
+
+				// If a string was returned, say so.
+				if ((groupId != null) && (groupId.length() > 0))
+				{
+					lineId = lineId.toUpperCase();
+					autolab.setLine(lineId);
+					autolab.setGroup(groupId);
+					if (autolab.isValidLineGroup() == false)
+					{
+						JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", lineId, groupId);
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(Common.mainForm, "Line ID [" + lineId + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+					}
+					buildSQL();
+					populateList(lineId, groupId);
+				}
+
+			}
 		}
-		
-		if (rdbtnPallet.isSelected())
-		{
-			result = "Pallet";
-		}	
-		
-		if (rdbtnGeneral.isSelected())
-		{
-			result = "General";
-		}	
-		
-		return result;
+
 	}
 
 	private void buildSQL()
@@ -145,6 +164,73 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		listStatement = query.getPreparedStatement();
 	}
 
+	private void deleteRecord()
+	{
+		String deleteLine = "";
+		String deleteGroup = "";
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			deleteLine = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
+			deleteGroup = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Line_Delete") + " " + deleteLine + " - " + deleteGroup + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+			if (n == 0)
+			{
+				autolab.setLine(deleteLine);
+				autolab.setGroup(deleteGroup);
+				boolean result = autolab.delete();
+				if (result == false)
+				{
+					JUtility.errorBeep();
+					JOptionPane.showMessageDialog(Common.mainForm, autolab.getErrorMessage(), "Delete error (" + deleteLine + " - " + deleteGroup + ")", JOptionPane.WARNING_MESSAGE, Common.icon_confirm_16x16);
+				}
+				else
+				{
+					JDBPrinterLineMembership plm = new JDBPrinterLineMembership(Common.selectedHostID, Common.sessionID);
+					plm.removeAllPrintersfromLine(deleteLine, deleteGroup);
+					buildSQL();
+					populateList(deleteLine, deleteGroup);
+				}
+			}
+		}
+	}
+
+	private void editRecord()
+	{
+		String editLabeller = "";
+		String editGroup = "";
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			editLabeller = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
+			editGroup = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
+			JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", editLabeller, editGroup);
+			refresh();
+		}
+	}
+
+	private String getFilterString()
+	{
+		String result = "%";
+
+		if (rdbtnPack.isSelected())
+		{
+			result = "Pack";
+		}
+
+		if (rdbtnPallet.isSelected())
+		{
+			result = "Pallet";
+		}
+
+		if (rdbtnGeneral.isSelected())
+		{
+			result = "General";
+		}
+
+		return result;
+	}
+
 	private void initGUI()
 	{
 		try
@@ -154,10 +240,9 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
-			jDesktopPane1 = new JDesktopPane();
+			jDesktopPane1 = new JDesktopPane4j();
 			getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 			jDesktopPane1.setPreferredSize(new java.awt.Dimension(665, 490));
-			jDesktopPane1.setBackground(Common.color_app_window);
 			jDesktopPane1.setLayout(null);
 
 			jButtonClose = new JButton4j(Common.icon_close_16x16);
@@ -244,7 +329,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonRename.setBounds(379, 440, 125, 32);
 			jDesktopPane1.add(jButtonRename);
 
-			scrollPane.setBounds(0, 34, 1003, 399);
+			scrollPane.setBounds(0, 34, 1007, 399);
 
 			jTable1 = new JTable4j();
 			jTable1.addMouseListener(new MouseAdapter()
@@ -308,86 +393,72 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			button4jHistory.setBounds(757, 440, 125, 32);
 			jDesktopPane1.add(button4jHistory);
 
-			jStatusText = new JLabel4j_std();
-			jStatusText.setForeground(Color.RED);
-			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(1, 475, 1010, 21);
-			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+			jStatusText = new JLabel4j_status();
+			jStatusText.setBounds(1, 475, 1007, 21);
 			jDesktopPane1.add(jStatusText);
-			rdbtnAll.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			rdbtnAll.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					refresh();
 				}
 			});
-			
 
 			rdbtnAll.setSelected(true);
-			rdbtnAll.setBackground(Common.color_app_window);
 			buttonGroup.add(rdbtnAll);
-			rdbtnAll.setBounds(120, 9, 54, 22);
+			rdbtnAll.setBounds(120, 7, 54, 22);
 			jDesktopPane1.add(rdbtnAll);
-			
-			rdbtnPack.setBackground(Common.color_app_window);
+
 			buttonGroup.add(rdbtnPack);
-			rdbtnPack.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			rdbtnPack.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					refresh();
 				}
 			});
-			rdbtnPack.setBounds(193, 9, 62, 22);
+			rdbtnPack.setBounds(193, 7, 62, 22);
 			jDesktopPane1.add(rdbtnPack);
-			
-			rdbtnPallet.setBackground(Common.color_app_window);
+
 			buttonGroup.add(rdbtnPallet);
-			rdbtnPallet.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			rdbtnPallet.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					refresh();
 				}
 			});
-			rdbtnPallet.setBounds(268, 9, 67, 22);
+			rdbtnPallet.setBounds(268, 7, 67, 22);
 			jDesktopPane1.add(rdbtnPallet);
-			
-			rdbtnGeneral.setBackground(Common.color_app_window);
+
 			buttonGroup.add(rdbtnGeneral);
-			rdbtnGeneral.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			rdbtnGeneral.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					refresh();
 				}
 			});
-			rdbtnGeneral.setBounds(339, 9, 67, 22);
+			rdbtnGeneral.setBounds(339, 7, 67, 22);
 			jDesktopPane1.add(rdbtnGeneral);
-			
+
 			JLabel4j_std label4j_std = new JLabel4j_std();
 			label4j_std.setText("Group");
 			label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std.setBounds(12, 9, 75, 22);
+			label4j_std.setBounds(12, 7, 75, 22);
 			jDesktopPane1.add(label4j_std);
 
 			mod.setModuleId("FRM_ADMIN_PRINTERS");
 			mod.getModuleProperties();
 
-			//populateList("","");
+			// populateList("","");
 			refresh();
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-	}
-
-	private void refresh()
-	{
-		String currentLINE = "";
-		String currentGroupID = "";
-		int row = jTable1.getSelectedRow();
-		if (row > -1)
-		{
-			currentLINE = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
-			currentGroupID = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
-
-		}
-		populateList(currentLINE, currentGroupID);
-
 	}
 
 	private void populateList(String defaultLine, String defaultGroup)
@@ -400,7 +471,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 
 		jTable1.setRowSorter(sorter);
 		jTable1.setModel(autolabeltable);
-		scrollPane.getViewport().setBackground(Common.color_tablebackground);
+		scrollPane.getViewport().setBackground(Common.color_table_background1);
 		scrollPane.setViewportView(jTable1);
 
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -420,7 +491,6 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.SSCC_Range_Col).setWidth(150);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Expiry_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Modified_Col).setPreferredWidth(50);
-
 
 		scrollPane.repaint();
 
@@ -455,59 +525,19 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		JUtility.setResultRecordCountColour(jStatusText, false, 1000, jTable1.getRowCount());
 	}
 
-	private void addRecord()
+	private void refresh()
 	{
-		String lineId = "";
-		lineId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Line_Create"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null);
-		if (lineId != null)
-		{
-			if (lineId.equals("") == false)
-			{
-
-				int len = lineId.length();
-				
-				if (len > JDBAutoLabeller.field_line)
-				{
-					lineId = lineId.substring(1, JDBAutoLabeller.field_line);
-				}
-				
-				Object[] printerGroups = Common.printerGroup;
-				String groupId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Group_ID"), lang.get("lbl_Group_ID"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm_16x16, printerGroups, "Pack");
-
-				// If a string was returned, say so.
-				if ((groupId != null) && (groupId.length() > 0))
-				{
-					lineId = lineId.toUpperCase();
-					autolab.setLine(lineId);
-					autolab.setGroup(groupId);
-					if (autolab.isValidLineGroup() == false)
-					{
-						JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", lineId, groupId);
-					} else
-					{
-						JOptionPane.showMessageDialog(Common.mainForm, "Line ID [" + lineId + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-					}
-					buildSQL();
-					populateList(lineId,groupId);
-				}
-
-			}
-		}
-
-	}
-
-	private void editRecord()
-	{
-		String editLabeller = "";
-		String editGroup = "";
+		String currentLINE = "";
+		String currentGroupID = "";
 		int row = jTable1.getSelectedRow();
-		if (row >= 0)
+		if (row > -1)
 		{
-			editLabeller = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
-			editGroup = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
-			JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", editLabeller, editGroup);
-			refresh();
+			currentLINE = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
+			currentGroupID = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
+
 		}
+		populateList(currentLINE, currentGroupID);
+
 	}
 
 	private void renameRecord()
@@ -536,7 +566,8 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 								ldat.renameLine(oldLabeller, newLabeller);
 							}
 						}
-					} else
+					}
+					else
 					{
 						JUtility.errorBeep();
 						JOptionPane.showMessageDialog(Common.mainForm, autolab.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
@@ -545,36 +576,6 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				}
 			}
 			refresh();
-		}
-	}
-
-	private void deleteRecord()
-	{
-		String deleteLine = "";
-		String deleteGroup = "";
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			deleteLine = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
-			deleteGroup = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Line_Delete") + " " + deleteLine + " - " + deleteGroup + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
-			if (n == 0)
-			{
-				autolab.setLine(deleteLine);
-				autolab.setGroup(deleteGroup);
-				boolean result = autolab.delete();
-				if (result == false)
-				{
-					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, autolab.getErrorMessage(), "Delete error (" + deleteLine + " - " + deleteGroup + ")", JOptionPane.WARNING_MESSAGE, Common.icon_confirm_16x16);
-				} else
-				{
-					JDBPrinterLineMembership plm = new JDBPrinterLineMembership(Common.selectedHostID, Common.sessionID);
-					plm.removeAllPrintersfromLine(deleteLine, deleteGroup);
-					buildSQL();
-					populateList(deleteLine,deleteGroup);
-				}
-			}
 		}
 	}
 }

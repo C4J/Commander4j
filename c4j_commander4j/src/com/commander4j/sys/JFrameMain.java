@@ -2,33 +2,32 @@ package com.commander4j.sys;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JFrameMain.java
- * 
+ *
  * Package Name : com.commander4j.sys
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -54,7 +53,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 
 import com.commander4j.app.JVersion;
@@ -63,6 +61,7 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBListData;
 import com.commander4j.db.JDBModule;
 import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JToolBar4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
@@ -74,41 +73,41 @@ import com.commander4j.util.JUtility;
  */
 public class JFrameMain extends JFrame implements ComponentListener
 {
-	private static final long serialVersionUID = 1;
-	protected JDesktopPane4j desktopPane = new JDesktopPane4j("");
+	private DefaultComboBoxModel<Object> defComboBoxMod = new DefaultComboBoxModel<Object>();
+	private ComboBoxModel<Object> comboModel = defComboBoxMod;
 	private Container contentPane = getContentPane();
-	private JMenuToolbarMenuItem btnHome;
-	private JMenuToolbarMenuItem btnExit;
-	private JMenuToolbarMenuItem btnHelp;
-	private JMenuToolbarMenuItem btnCascade;
-	private JMenuToolbarMenuItem btnMinimize;
-	private JMenuToolbarMenuItem btnRestore;
-	private JMenuToolbarMenuItem btnExecute;
-	private JMenuBar menuBar = new JMenuBar();
-	private JToolBar jtb = new JToolBar();
-	private JMenuToolbarMenu tbm = new JMenuToolbarMenu(Common.selectedHostID, Common.sessionID);
-	private JStatusBar jsb = new JStatusBar();
 	private JComboBox<Object> jcb = new JComboBox<Object>();
+	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBModule tempModule = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private JMenu mFile = new JMenu("File");
-	private JMenu mWindow = new JMenu("Window");
-	private JMenu mView = new JMenu("View");
 	private JMenu mHelp = new JMenu("Help");
-	private JMenuItem mExit = new JMenuItem("Exit");
+	private JMenu mView = new JMenu("View");
+	private JMenu mWindow = new JMenu("Window");
+	private JMenuBar menuBar = new JMenuBar();
 	private JMenuItem mCascade = new JMenuItem("Cascade");
+	private JMenuItem mExit = new JMenuItem("Exit");
+	private JMenuItem mHelpAbout = new JMenuItem("About");
+	private JMenuItem mHelpContents = new JMenuItem("Contents");
+	private JMenuItem mHelpLicences = new JMenuItem("Licences");
+	private JMenuItem mHelpSystemProperties = new JMenuItem("System Info");
+	private JMenuItem mMenu = new JMenuItem("Menu");
 	private JMenuItem mMinimize = new JMenuItem("Minimize");
 	private JMenuItem mRestore = new JMenuItem("Restore");
-	private JMenuItem mMenu = new JMenuItem("Menu");
-	private JMenuItem mHelpContents = new JMenuItem("Contents");
-	private JMenuItem mHelpAbout = new JMenuItem("About");
-	private JMenuItem mHelpSystemProperties = new JMenuItem("System Info");
-	private JMenuItem mHelpLicences = new JMenuItem("Licences");
-	protected JInternalFrameMenuTree treeMenu;
-	private DefaultComboBoxModel<Object> defComboBoxMod = new DefaultComboBoxModel<Object>();
-	private JDBModule tempModule = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JMenuOption mo = new JMenuOption(Common.selectedHostID, Common.sessionID);
-	private ComboBoxModel<Object> comboModel = defComboBoxMod;
-	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JMenuToolbarMenu tbm = new JMenuToolbarMenu(Common.selectedHostID, Common.sessionID);
+	private JMenuToolbarMenuItem btnCascade;
+	private JMenuToolbarMenuItem btnExecute;
+	private JMenuToolbarMenuItem btnExit;
+	private JMenuToolbarMenuItem btnHelp;
+	private JMenuToolbarMenuItem btnHome;
+	private JMenuToolbarMenuItem btnMinimize;
+	private JMenuToolbarMenuItem btnRestore;
+	private JStatusBar jsb = new JStatusBar();
+	private JToolBar4j jtb = new JToolBar4j();
+	private static final long serialVersionUID = 1;
+	protected JDesktopPane4j desktopPane = new JDesktopPane4j(Common.color_app_window_main);
+	protected JInternalFrameMenuTree treeMenu;
 
 	class AppDesktopManager extends DefaultDesktopManager
 	{
@@ -144,15 +143,15 @@ public class JFrameMain extends JFrame implements ComponentListener
 	}
 
 	private static void ConfirmExit() {
-		
+
 		int printJobs = Common.printManager.activePrintJobs();
-		
+
 		boolean confirmExit = true;
-		
+
 		if (printJobs > 0)
 		{
 			int question = JOptionPane.showConfirmDialog(Common.mainForm, String.valueOf(printJobs) + " Print Jobs in progress - cancel printing ?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-			
+
 			if (question == 0)
 			{
 				Common.printManager.abort();
@@ -163,11 +162,11 @@ public class JFrameMain extends JFrame implements ComponentListener
 				confirmExit = false;
 			}
 		}
-		
+
 		if (confirmExit)
 		{
 			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Exit application ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
-			
+
 			if (question == 0)
 			{
 				Common.hostList.getHost(Common.selectedHostID).disconnect(Common.sessionID);
@@ -188,9 +187,9 @@ public class JFrameMain extends JFrame implements ComponentListener
 	{
 
 		super(Common.appDisplayName+" " + JVersion.getProgramVersion() + " (" + Common.hostList.getHost(Common.selectedHostID).getSiteDescription() + ")");
-		
+
 		GraphicsDevice gd = JUtility.getGraphicsDevice();
-		
+
 		GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
 		Rectangle screenBounds = gc.getBounds();
@@ -198,13 +197,11 @@ public class JFrameMain extends JFrame implements ComponentListener
 		setBounds(screenBounds.x, screenBounds.y , screenBounds.width, screenBounds.height-50);
 
 		setResizable(true);
-		
+
 		setExtendedState(Frame.MAXIMIZED_HORIZ);
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowListener());
 
-		//desktopPane.setDesktopManager(new AppDesktopManager());
-		desktopPane.setBackground(Color.WHITE);
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 		ButtonHandler buttonhandler = new ButtonHandler();
 
@@ -251,7 +248,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 		mHelpSystemProperties.setFont(Common.font_menu);
 		mHelpSystemProperties.setMnemonic(java.awt.event.KeyEvent.VK_S);
 		mHelpSystemProperties.addActionListener(buttonhandler);
-		
+
 		mHelpLicences.setFont(Common.font_menu);
 		mHelpLicences.setMnemonic(java.awt.event.KeyEvent.VK_L);
 		mHelpLicences.addActionListener(buttonhandler);
@@ -311,16 +308,16 @@ public class JFrameMain extends JFrame implements ComponentListener
 		menuBar.add(mHelp);
 
 		boolean quickMenu = Boolean.valueOf(ctrl.getKeyValue("QUICK_MENU_ENABLE"));
-		
+
 		jtb.add(btnHome);
-		jtb.add(new JToolBar.Separator());
+		jtb.add(new JToolBar4j.Separator());
 		tbm.buildMenu(this.jtb,quickMenu);
-		jtb.add(new JToolBar.Separator());
+		jtb.add(new JToolBar4j.Separator());
 		jtb.add(btnMinimize);
 		jtb.add(btnCascade);
 		jtb.add(btnRestore);
 		jtb.add(btnHelp);
-		jtb.add(new JToolBar.Separator());
+		jtb.add(new JToolBar4j.Separator());
 
 		LinkedList<JDBListData> tempModuleList = tempModule.getModulesofTypeforUser(Common.selectedHostID, Common.sessionID, "FORM");
 
@@ -353,12 +350,12 @@ public class JFrameMain extends JFrame implements ComponentListener
 			btnExecute =  new JMenuToolbarMenuItem("","Execute Quick Menu Option.",Common.icon_execute_16x16);
 			btnExecute.addActionListener(buttonhandler);
 			jtb.add(btnExecute);
-			jtb.add(new JToolBar.Separator());
+			jtb.add(new JToolBar4j.Separator());
 		}
 		jtb.add(btnExit);
 
 		desktopPane.add(treeMenu);
-		
+
 		treeMenu.setVisible(false);
 		try
 		{
@@ -374,7 +371,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 
 		final JHelp help2 = new JHelp();
 		help2.enableHelpOnMenuItem(mHelpContents, Common.helpURL);
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				minmaxTree();
@@ -383,7 +380,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 		});
 
 	}
-	
+
 	private void minmaxTree()
 	{
 		if (treeMenu.isIcon())
@@ -418,7 +415,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 			{
 				System.out.println("Cannot setIcon on treeMenu");
 			}
-		}	
+		}
 	}
 
 	public class ButtonHandler implements ActionListener
@@ -438,7 +435,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 			{
 				JLaunchMenu.runDialog("FRM_SYSTEM_PROPERTIES");
 			}
-			
+
 			if (event.getSource() == mHelpLicences)
 			{
 				JLaunchMenu.runDialog("FRM_LICENCES");

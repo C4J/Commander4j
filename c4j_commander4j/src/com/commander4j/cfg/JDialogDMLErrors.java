@@ -2,29 +2,29 @@ package com.commander4j.cfg;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JDialogDMLErrors.java
- * 
+ *
  * Package Name : com.commander4j.cfg
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -40,24 +40,26 @@ import java.io.FileWriter;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 import javax.swing.WindowConstants;
 
 import com.commander4j.db.JDBDDL;
 import com.commander4j.db.JDBUpdateRequest;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileFilterXML;
 
 /**
  * The JDialogDMLErrors is used to display any SQL errors which are encountered
  * when a database is being created or updated by the Setup4j application.
- * 
+ *
  * @see com.commander4j.cfg.JFrameHostAdmin JFrameHostAdmin
  * @see com.commander4j.cfg.JDialogSetupPassword JDialogSetupPassword
  * @see com.commander4j.cfg.Setup Setup
@@ -65,16 +67,15 @@ import com.commander4j.util.JFileFilterXML;
 public class JDialogDMLErrors extends javax.swing.JDialog
 {
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private JDesktopPane4j jDesktopPane1;
 	private JList4j<String> jListErrors;
 	private JButton4j jButtonClose;
-	private JScrollPane jScrollPane1;
+	private JScrollPane4j jScrollPane1;
 	private LinkedList<JDBDDL> ddlLocal;
 	private JDialogDMLErrors me = this;
 	JDBUpdateRequest updateRequest;
 
-
-	public JDialogDMLErrors(JFrame frame, LinkedList<JDBDDL> ddl,JDBUpdateRequest updrst)
+	public JDialogDMLErrors(JFrame frame, LinkedList<JDBDDL> ddl, JDBUpdateRequest updrst)
 	{
 		super(frame);
 		initGUI();
@@ -107,7 +108,8 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					// + ddl.get(i).getDescription());
 					// defComboBoxMod
 					// .addElement("-----------------------------------------------------------------------------------------------------------------");
-				} else
+				}
+				else
 				{
 					defComboBoxMod.addElement("Schema Version : " + String.valueOf(ddl.get(i).getVersion()));
 					defComboBoxMod.addElement("Sequence       : " + String.valueOf(ddl.get(i).getSequence()));
@@ -130,57 +132,57 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 	{
 		try
 		{
+
+			this.setTitle("DML Errors");
+
+			jDesktopPane1 = new JDesktopPane4j();
+			getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.List);
+			jDesktopPane1.add(jScrollPane1);
+			jScrollPane1.setBounds(0, 0, 956, 441);
 			{
-				this.setTitle("DML Errors");
+				ListModel<String> jListErrorsModel = new DefaultComboBoxModel<String>(new String[]
+				{ "Item One", "Item Two" });
+				jListErrors = new JList4j<String>();
+				jScrollPane1.setViewportView(jListErrors);
+				jListErrors.setModel(jListErrorsModel);
 			}
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText("Close");
+			jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
+			jButtonClose.setBounds(473, 453, 112, 32);
+
+			JButton4j jButtonSave = new JButton4j(Common.icon_file_save_16x16);
+			jButtonSave.addActionListener(new ActionListener()
 			{
-				jDesktopPane1 = new JDesktopPane();
-				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+				public void actionPerformed(ActionEvent e)
 				{
-					jScrollPane1 = new JScrollPane();
-					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 0, 956, 441);
-					{
-						ListModel<String> jListErrorsModel = new DefaultComboBoxModel<String>(new String[]
-						{ "Item One", "Item Two" });
-						jListErrors = new JList4j<String>();
-						jScrollPane1.setViewportView(jListErrors);
-						jListErrors.setModel(jListErrorsModel);
-					}
+					saveAs("Errors.txt", me);
 				}
+			});
+			jButtonSave.setText("Save to File");
+			jButtonSave.setMnemonic(KeyEvent.VK_S);
+			jButtonSave.setBounds(359, 453, 112, 32);
+			jDesktopPane1.add(jButtonSave);
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonClose);
-					jButtonClose.setText("Close");
-					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(473, 453, 112, 32);
-					
-					JButton4j jButtonSave = new JButton4j(Common.icon_file_save_16x16);
-					jButtonSave.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							saveAs("Errors.txt",me);
-						}
-					});
-					jButtonSave.setText("Save to File");
-					jButtonSave.setMnemonic(KeyEvent.VK_S);
-					jButtonSave.setBounds(359, 453, 112, 32);
-					jDesktopPane1.add(jButtonSave);
-					jButtonClose.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							dispose();
-						}
-					});
+					dispose();
 				}
-			}
+			});
+
 			this.setSize(962, 521);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Boolean saveAs(String filename, Component parent)
 	{
 
@@ -207,40 +209,40 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					{
 						FileWriter fw = new FileWriter(exportFilename);
 						fw.write("*********************************************************************************************************************************************************\n");
-						fw.write("Host ID        : "+Common.hostList.getHost(Common.selectedHostID).getSiteNumber()+"\n");
-						fw.write("Description    : "+Common.hostList.getHost(Common.selectedHostID).getSiteDescription()+"\n");
-						fw.write("Database       : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabase()+"\n");
-						fw.write("jdbc Driver    : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver()+"\n");
-						fw.write("Server         : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcServer()+"\n");
-						fw.write("Port           : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcPort()+"\n");
-						fw.write("Connection     : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcConnectString()+"\n");
-						fw.write("Updating from Schema Version "+String.valueOf(updateRequest.schema_CURVersion+" to "+String.valueOf(updateRequest.schema_NEWVersion))+"\n");
+						fw.write("Host ID        : " + Common.hostList.getHost(Common.selectedHostID).getSiteNumber() + "\n");
+						fw.write("Description    : " + Common.hostList.getHost(Common.selectedHostID).getSiteDescription() + "\n");
+						fw.write("Database       : " + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabase() + "\n");
+						fw.write("jdbc Driver    : " + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver() + "\n");
+						fw.write("Server         : " + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcServer() + "\n");
+						fw.write("Port           : " + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcPort() + "\n");
+						fw.write("Connection     : " + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcConnectString() + "\n");
+						fw.write("Updating from Schema Version " + String.valueOf(updateRequest.schema_CURVersion + " to " + String.valueOf(updateRequest.schema_NEWVersion)) + "\n");
 						fw.write("*********************************************************************************************************************************************************\n\n\n");
 						fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 						int errCount = 0;
-						for (int x = 0; x < ddlLocal.size();x++)
-						{            
-							if (ddlLocal.get(x).getError().equals("Success")==false)
+						for (int x = 0; x < ddlLocal.size(); x++)
+						{
+							if (ddlLocal.get(x).getError().equals("Success") == false)
 							{
-								fw.write("Schema Version : " + ddlLocal.get(x).getVersion()+"\n");
-								fw.write("Sequence       : " + String.valueOf(ddlLocal.get(x).getSequence())+"\n");
-								fw.write("DDL            : " + ddlLocal.get(x).getText()+"\n");
-								fw.write("Error Message  : " + ddlLocal.get(x).getError()+"\n");
+								fw.write("Schema Version : " + ddlLocal.get(x).getVersion() + "\n");
+								fw.write("Sequence       : " + String.valueOf(ddlLocal.get(x).getSequence()) + "\n");
+								fw.write("DDL            : " + ddlLocal.get(x).getText() + "\n");
+								fw.write("Error Message  : " + ddlLocal.get(x).getError() + "\n");
 								fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 								fw.flush();
-								errCount ++;
+								errCount++;
 							}
 						}
-						fw.write("\nNo of Commands   : " +String.valueOf(ddlLocal.size())+"\n");
-						fw.write("\nNo of Errors     : " +String.valueOf(errCount)+"\n");
+						fw.write("\nNo of Commands   : " + String.valueOf(ddlLocal.size()) + "\n");
+						fw.write("\nNo of Errors     : " + String.valueOf(errCount) + "\n");
 						fw.flush();
 						fw.close();
-						
-						result=true;
 
-					} catch (Exception ex)
+						result = true;
+
+					}
+					catch (Exception ex)
 					{
-
 
 					}
 					result = true;

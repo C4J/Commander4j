@@ -3,29 +3,29 @@ package com.commander4j.sys;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameMenuTree.java
- * 
+ *
  * Package Name : com.commander4j.sys
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -46,8 +46,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
+
 import javax.swing.JTree;
 import javax.swing.ToolTipManager;
 import javax.swing.event.InternalFrameAdapter;
@@ -58,10 +57,13 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBModule;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JScrollPane4j;
+import com.commander4j.gui.JToolBar4j;
 
 
 /**
@@ -69,23 +71,23 @@ import com.commander4j.gui.JButton4j;
  *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameMenuTree.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBMenus JDBMenus
  * @see com.commander4j.sys.JInternalFrameMenuStructure JInternalFrameMenuStructure
  */
 public class JInternalFrameMenuTree extends JInternalFrame
 
 {
+	final Logger logger = LogManager.getLogger(JInternalFrameMenuTree.class);
+	final int screenHeight = 600;
+	final int screenWidth = 300;
 	private static final long serialVersionUID = 1;
-	protected JToolBar jtreeToolbar;
-	protected JButton4j btnExpandAll;
-	protected JButton4j btnExpandNode;
 	protected JButton4j btnCollapseAll;
 	protected JButton4j btnCollapseNode;
+	protected JButton4j btnExpandAll;
+	protected JButton4j btnExpandNode;
+	protected JToolBar4j jtreeToolbar;
 	protected JTree tree;
-	final int screenWidth = 300;
-	final int screenHeight = 600;
-	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JInternalFrameMenuTree.class);
 
 	public class MenuTreeRenderer extends DefaultTreeCellRenderer
 	{
@@ -97,12 +99,26 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		}
 
 		public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-			super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
+			Component component = super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+
+			if (sel)
+			{
+				component.setForeground(Common.color_tree_selected_foreground);
+				component.setBackground(Common.color_tree_selected_background);
+			}
+			else
+			{
+				component.setForeground(Common.color_text_label_std);
+				component.setBackground(Common.color_tree_background);
+			}
+
+
+			setOpaque(true);
 			setIcon(JDBModule.getModuleIcon24x24(getMenuIconFilename(value), getMenuItemType(value)));
 			setToolTipText(getMenuHint(value));
 
-			return this;
+			return component;
 		}
 
 		protected String getMenuItemType(Object value) {
@@ -167,8 +183,10 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		buildMenuTree(menuID, top, menubar, 0, menu);
 
 		tree = new JTree(top);
+		tree.setOpaque(true);
 		tree.setCellRenderer(new MenuTreeRenderer());
 		tree.setRowHeight(27);
+		tree.setBackground(Common.color_tree_background);
 		ToolTipManager.sharedInstance().registerComponent(tree);
 
 		tree.setFont(Common.font_tree);
@@ -212,15 +230,17 @@ public class JInternalFrameMenuTree extends JInternalFrame
 			}
 		});
 
-		JScrollPane treeview = new JScrollPane(tree);
-		treeview.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		treeview.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane4j treeview = new JScrollPane4j(tree);
+		treeview.setVerticalScrollBarPolicy(JScrollPane4j.VERTICAL_SCROLLBAR_AS_NEEDED);
+		treeview.setHorizontalScrollBarPolicy(JScrollPane4j.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		treeview.getViewport().setOpaque(true);
+		treeview.getViewport().setBackground(Common.color_app_window);
 
 		container.add(treeview);
 
 		ButtonHandler buttonhandler = new ButtonHandler();
 
-		jtreeToolbar = new JToolBar();
+		jtreeToolbar = new JToolBar4j();
 		jtreeToolbar.setOrientation(0);
 		jtreeToolbar.setFloatable(false);
 

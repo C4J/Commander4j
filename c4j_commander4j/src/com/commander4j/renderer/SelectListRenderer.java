@@ -68,20 +68,20 @@ public class SelectListRenderer implements TableCellRenderer
 
 		if (isSelected)
 		{
-			foreground = Common.color_listFontSelected;
-			background = Common.color_listHighlighted;
+			foreground = Common.color_list_foreground_selected;
+			background = Common.color_list_background_selected;
 		}
 		else
 		{
 			if (row % 2 == 0)
 			{
-				foreground = Common.color_listFontStandard;
-				background = Common.color_tablerow1;
+				foreground = Common.color_list_foreground;
+				background = Common.color_table_standard_row1;
 			}
 			else
 			{
-				foreground = Common.color_listFontStandard;
-				background = Common.color_tablerow2;
+				foreground = Common.color_list_foreground;
+				background = Common.color_table_standard_row2;
 			}
 		}
 		

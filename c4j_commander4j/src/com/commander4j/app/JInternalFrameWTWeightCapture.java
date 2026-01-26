@@ -2,29 +2,29 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFramMaterialBatchAdmin.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -49,15 +49,11 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
+
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
@@ -66,7 +62,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -108,9 +103,14 @@ import com.commander4j.db.JDBWTScale;
 import com.commander4j.db.JDBWTTNE;
 import com.commander4j.db.JDBWTWorkstation;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JQuantityInput;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.scales.Scale;
 import com.commander4j.scales.ScaleCallbackInteface;
@@ -118,118 +118,107 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JTextInputDialog;
-import com.commander4j.gui.JDateControl;
 import com.commander4j.util.JHelp;
-import com.commander4j.gui.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
  * The JInternalFrameWTDataCapture is for capturing/recording weight checks
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameWTDataCapture.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBWTSampleHeader JDBWTSampleHeader
  * @see com.commander4j.db.JDBWTSampleDetail JDBWTSampleDetail
  */
 public class JInternalFrameWTWeightCapture extends JInternalFrame
 {
 
-	private static final long serialVersionUID = 1;
+	private BigDecimal batch_mean = new BigDecimal("0.000");
+	private BigDecimal lowerLimit = new BigDecimal("0.000");
+	private BigDecimal mean = new BigDecimal("0.000");
+	private BigDecimal std_dev = new BigDecimal("0.000");
+	private BigDecimal upperLimit = new BigDecimal("0.000");
+	private BigDecimal zero = new BigDecimal("0.000");
+	private BlockContainer container;
+	private ChartPanel chartPanel;
+	private ClockListener clocklistener = new ClockListener();
+	private CompositeTitle legends;
+	private DateAxis axis;
+	private Integer lGraphMaxPlots = 40;
+	private Integer t1_count = 0;
+	private Integer t2_count = 0;
+	private JButton4j btnComment = new JButton4j(Common.icon_edit_16x16);
+	private JButton4j btnDebug = new JButton4j();
+	private JButton4j btnManualInput = new JButton4j(Common.icon_add_16x16);
 	private JButton4j btn_Begin = new JButton4j(Common.icon_weight_capture_16x16);
 	private JButton4j btn_Close;
 	private JButton4j btn_Help;
 	private JButton4j btn_Process_Order_Lookup;
 	private JButton4j btn_SamplePoint_Lookup;
 	private JButton4j btnj_Cancel = new JButton4j(Common.icon_cancel_16x16);
-	private ClockListener clocklistener = new ClockListener();
-
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
-	private JTextField4j fld_Container_Code = new JTextField4j(JDBQMSample.field_data_2);
-	private JDateControl fld_currentDateTime;
-	private JTextField4j fld_Description = new JTextField4j(JDBMaterial.field_description);
-
-	private JTextField4j fld_Material;
-	private JTextField4j fld_Material_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
-
-	private JQuantityInput fld_Nominal_Weight = new JQuantityInput(new BigDecimal("0.000"));
-	private JTextField4j fld_Nominal_Weight_UOM = new JTextField4j(JDBUom.field_uom);
-	private JTextField4j fld_Process_Order = new JTextField4j(JDBProcessOrder.field_process_order);
-	private JTextField4j fld_Process_Order_Status = new JTextField4j(JDBProcessOrder.field_status);
-	private JQuantityInput fld_SampleFrequency = new JQuantityInput(new BigDecimal("0.000"));
-	private JTextField4j fld_SamplePoint = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
-	private JQuantityInput fld_SampleSize = new JQuantityInput(new BigDecimal("0.000"));
-	private JTextField4j fld_Scale_ID = new JTextField4j(JDBWTScale.field_ScaleID);
-	private JTextField4j fld_ScalePort = new JTextField4j(JDBWTWorkstation.field_ScalePort);
-	private JQuantityInput fld_T1_Lower_Limit = new JQuantityInput(new BigDecimal("0.000"));
-	private JQuantityInput fld_T2_Lower_Limit = new JQuantityInput(new BigDecimal("0.000"));
-	private JQuantityInput fld_Mean = new JQuantityInput(new BigDecimal("0.000"));
-	private JQuantityInput fld_Batch_Mean = new JQuantityInput(new BigDecimal("0.000"));
-	private JQuantityInput fld_Standard_Deviation = new JQuantityInput(new BigDecimal("0.000"));
-	private JQuantityInput fld_Tare_Weight = new JQuantityInput(new BigDecimal("0.000"));
-	private JTextField4j fld_Tare_Weight_UOM = new JTextField4j(JDBUom.field_uom);
-	private JQuantityInput fld_TNE = new JQuantityInput(new BigDecimal("0.000"));
-	private JTextField4j fld_Workstation = new JTextField4j(JDBWTWorkstation.field_WorkstationID);
-
-	private JScrollPane scrollPane_Weights = new JScrollPane();
-	private JLabel4j_std jStatusText;
 	private JDBLanguage lang;
-	private JLabel4j_std lbl_Material;
-	private JLabel4j_std lbl_Process_Order;
-	private JList4j<JDBWTSampleDetail> list_Weights = new JList4j<JDBWTSampleDetail>();
-	private static PreparedStatement listStatement;
-	private boolean logEnabled = false;
-	private int lSampleFrequency = 15;
-	private int lSampleSize = 5;
-
-	private JDBMaterialCustomerData matcustdb = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial materialdb = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-	private JDBWTProductGroups matgroupdb = new JDBWTProductGroups(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialCustomerData matcustdb = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrder orderdb = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
-	private LinkedList<JDBWTSampleDetail> sampleDetailList = new LinkedList<JDBWTSampleDetail>();
+	private JDBWTProductGroups matgroupdb = new JDBWTProductGroups(Common.selectedHostID, Common.sessionID);
 	private JDBWTSampleHeader sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
 	private JDBWTSamplePoint samplePointdb = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private JDBWTTNE tnedb = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
 	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
+	private JDateControl fld_currentDateTime;
+	private JDesktopPane4j jDesktopPane1;
+	private JFreeChart chart;
+	private JLabel4j_status jStatusText;
+	private JLabel4j_std lbl_Material;
+	private JLabel4j_std lbl_Process_Order;
+	private JLabel4j_title qty_Count = new JLabel4j_title();
+	private JList4j<JDBWTSampleDetail> list_Weights = new JList4j<JDBWTSampleDetail>();
+	private JQuantityInput fld_Batch_Mean = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_Mean = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_Nominal_Weight = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_SampleFrequency = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_SampleSize = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_Standard_Deviation = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_T1_Lower_Limit = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_T2_Lower_Limit = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_TNE = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput fld_Tare_Weight = new JQuantityInput(new BigDecimal("0.000"));
+	private JScrollPane4j scrollPane_Weights = new JScrollPane4j(JScrollPane4j.List);
+	private JTextField4j fld_Container_Code = new JTextField4j(JDBQMSample.field_data_2);
+	private JTextField4j fld_Description = new JTextField4j(JDBMaterial.field_description);
+	private JTextField4j fld_Material;
+	private JTextField4j fld_Material_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
+	private JTextField4j fld_Nominal_Weight_UOM = new JTextField4j(JDBUom.field_uom);
+	private JTextField4j fld_Process_Order = new JTextField4j(JDBProcessOrder.field_process_order);
+	private JTextField4j fld_Process_Order_Status = new JTextField4j(JDBProcessOrder.field_status);
+	private JTextField4j fld_SamplePoint = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
+	private JTextField4j fld_ScalePort = new JTextField4j(JDBWTWorkstation.field_ScalePort);
+	private JTextField4j fld_Scale_ID = new JTextField4j(JDBWTScale.field_ScaleID);
+	private JTextField4j fld_Tare_Weight_UOM = new JTextField4j(JDBUom.field_uom);
+	private JTextField4j fld_Workstation = new JTextField4j(JDBWTWorkstation.field_WorkstationID);
+	private LegendTitle legend1;
+	private LegendTitle legend2;
+	private LinkedList<JDBWTSampleDetail> sampleDetailList = new LinkedList<JDBWTSampleDetail>();
+	private NumberAxis axis2 = new NumberAxis("Standard Deviation");
 	private Scale scale;
-
-	private Integer lGraphMaxPlots = 40;
-	private static String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-	private Timer timer = new Timer(1000, clocklistener);
-	private BigDecimal mean = new BigDecimal("0.000");
-	private BigDecimal batch_mean = new BigDecimal("0.000");
-	private BigDecimal std_dev = new BigDecimal("0.000");
-	private BigDecimal zero = new BigDecimal("0.000");
-
-	private BigDecimal lowerLimit = new BigDecimal("0.000");
-	private BigDecimal upperLimit = new BigDecimal("0.000");
-
-	private Integer t1_count = 0;
-	private Integer t2_count = 0;
-	private String materialGroup = "";
 	private String containerCode = "";
-	private boolean validToScan = false;
-	private JButton4j btnManualInput = new JButton4j(Common.icon_add_16x16);
-	private JButton4j btnComment = new JButton4j(Common.icon_edit_16x16);
-	private JButton4j btnDebug = new JButton4j();
-
+	private String materialGroup = "";
 	private TimeSeries s1 = new TimeSeries("Mean Weight");
 	private TimeSeries s2 = new TimeSeries("Standard Deviation");
 	private TimeSeriesCollection dataset1 = new TimeSeriesCollection();
 	private TimeSeriesCollection dataset2 = new TimeSeriesCollection();
-	private JFreeChart chart;
-	private XYPlot plot;
-	private NumberAxis axis2 = new NumberAxis("Standard Deviation");
+	private Timer timer = new Timer(1000, clocklistener);
 	private XYItemRenderer renderer;
 	private XYLineAndShapeRenderer renderer2;
-	private DateAxis axis;
-	private LegendTitle legend1;
-	private LegendTitle legend2;
-	private BlockContainer container;
-	private CompositeTitle legends;
-	private ChartPanel chartPanel;
-	private JDesktopPane jDesktopPane1;
-	private JLabel4j_title qty_Count = new JLabel4j_title();
+	private XYPlot plot;
+	private boolean logEnabled = false;
+	private boolean validToScan = false;
+	private int lSampleFrequency = 15;
+	private int lSampleSize = 5;
+	private static PreparedStatement listStatement;
+	private static String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+	private static final long serialVersionUID = 1;
 
 	public JInternalFrameWTWeightCapture()
 	{
@@ -239,7 +228,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
 		lSampleSize = Integer.valueOf(temp);
-
 
 		temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE FREQUENCY", "15", "WEIGHT CHECK FREQUENCY MINS");
 		lSampleFrequency = Integer.valueOf(temp);
@@ -261,7 +249,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		updateWorkstationInfo(workstation, true);
 		fld_SampleSize.setEnabled(false);
 		fld_SampleSize.setText(String.valueOf(lSampleSize));
-		
+
 		updateSamplePoint("", true);
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
@@ -571,509 +559,488 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Weight Checks");
+
+			jDesktopPane1 = new JDesktopPane4j();
+
+			getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
+
+			btn_Help = new JButton4j(Common.icon_help_16x16);
+			jDesktopPane1.add(btn_Help);
+			btn_Help.setText(lang.get("btn_Help"));
+			btn_Help.setMnemonic(java.awt.event.KeyEvent.VK_H);
+			btn_Help.setBounds(402, 585, 193, 32);
+
+			btn_Close = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(btn_Close);
+			btn_Close.setText(lang.get("btn_Close"));
+			btn_Close.setMnemonic(java.awt.event.KeyEvent.VK_C);
+			btn_Close.setBounds(596, 585, 193, 32);
+			btn_Close.addActionListener(new ActionListener()
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
-				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
-
+				public void actionPerformed(ActionEvent evt)
 				{
-					btn_Help = new JButton4j(Common.icon_help_16x16);
-					jDesktopPane1.add(btn_Help);
-					btn_Help.setText(lang.get("btn_Help"));
-					btn_Help.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					btn_Help.setBounds(402, 585, 193, 32);
+					shutdown();
+					JDBQuery.closeStatement(listStatement);
+					dispose();
 				}
+			});
+
+			lbl_Process_Order = new JLabel4j_std();
+			jDesktopPane1.add(lbl_Process_Order);
+			lbl_Process_Order.setText(lang.get("lbl_Process_Order"));
+			lbl_Process_Order.setBounds(0, 37, 96, 22);
+			lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			fld_Process_Order.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyReleased(KeyEvent e)
 				{
-					btn_Close = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(btn_Close);
-					btn_Close.setText(lang.get("btn_Close"));
-					btn_Close.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					btn_Close.setBounds(596, 585, 193, 32);
-					btn_Close.addActionListener(new ActionListener()
+					updateProcessOrderInfo(fld_Process_Order.getText(), true);
+					updateGraph();
+				}
+			});
+			jDesktopPane1.add(fld_Process_Order);
+			fld_Process_Order.setBounds(104, 37, 93, 22);
+
+			lbl_Material = new JLabel4j_std();
+			jDesktopPane1.add(lbl_Material);
+			lbl_Material.setText(lang.get("lbl_Material"));
+			lbl_Material.setBounds(438, 37, 94, 22);
+			lbl_Material.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			fld_Material = new JTextField4j(JDBMaterialBatch.field_batch_number);
+			fld_Material.setEnabled(false);
+			fld_Material.setEditable(false);
+			jDesktopPane1.add(fld_Material);
+			fld_Material.setBounds(538, 37, 93, 22);
+
+			btn_Process_Order_Lookup = new JButton4j(Common.icon_lookup_16x16);
+			btn_Process_Order_Lookup.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = false;
+					JLaunchLookup.dlgCriteriaDefault = samplePointdb.getRequiredResource();
+					if (JLaunchLookup.processOrdersResources())
 					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							shutdown();
-							JDBQuery.closeStatement(listStatement);
-							dispose();
-						}
-					});
-				}
-				{
-					lbl_Process_Order = new JLabel4j_std();
-					jDesktopPane1.add(lbl_Process_Order);
-					lbl_Process_Order.setText(lang.get("lbl_Process_Order"));
-					lbl_Process_Order.setBounds(0, 37, 96, 22);
-					lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					fld_Process_Order.addKeyListener(new KeyAdapter()
-					{
-						@Override
-						public void keyReleased(KeyEvent e)
-						{
-							updateProcessOrderInfo(fld_Process_Order.getText(), true);
-							updateGraph();
-						}
-					});
-					jDesktopPane1.add(fld_Process_Order);
-					fld_Process_Order.setBounds(104, 37, 93, 22);
-				}
-				{
-					lbl_Material = new JLabel4j_std();
-					jDesktopPane1.add(lbl_Material);
-					lbl_Material.setText(lang.get("lbl_Material"));
-					lbl_Material.setBounds(438, 37, 94, 22);
-					lbl_Material.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					fld_Material = new JTextField4j(JDBMaterialBatch.field_batch_number);
-					fld_Material.setEnabled(false);
-					fld_Material.setEditable(false);
-					jDesktopPane1.add(fld_Material);
-					fld_Material.setBounds(538, 37, 93, 22);
-				}
-
-				{
-					btn_Process_Order_Lookup = new JButton4j(Common.icon_lookup_16x16);
-					btn_Process_Order_Lookup.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = samplePointdb.getRequiredResource();
-							if (JLaunchLookup.processOrdersResources())
-							{
-								fld_Process_Order.setText(JLaunchLookup.dlgResult);
-								updateProcessOrderInfo(JLaunchLookup.dlgResult, true);
-								updateGraph();
-							}
-						}
-					});
-					btn_Process_Order_Lookup.setBounds(196, 37, 21, 22);
-					jDesktopPane1.add(btn_Process_Order_Lookup);
-				}
-
-				{
-					btn_SamplePoint_Lookup = new JButton4j(Common.icon_lookup_16x16);
-					btn_SamplePoint_Lookup.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.weightSamplePoint())
-							{
-								fld_SamplePoint.setText(JLaunchLookup.dlgResult);
-								updateSamplePoint(JLaunchLookup.dlgResult, true);
-								fld_Process_Order.setText("");
-								updateProcessOrderInfo("", true);
-							}
-						}
-					});
-					btn_SamplePoint_Lookup.setBounds(438, 5, 21, 22);
-					jDesktopPane1.add(btn_SamplePoint_Lookup);
-				}
-
-				{
-					jStatusText = new JLabel4j_std();
-					jStatusText.setFont(new Font("Arial", Font.PLAIN, 16));
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 620, 1006, 41);
-					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jDesktopPane1.add(jStatusText);
-				}
-				fld_Description.setEnabled(false);
-				fld_Description.setEditable(false);
-
-				fld_Description.setBounds(643, 37, 351, 22);
-				jDesktopPane1.add(fld_Description);
-
-				JLabel4j_std lbl_Workstation = new JLabel4j_std();
-				lbl_Workstation.setText(lang.get("lbl_Workstation"));
-				lbl_Workstation.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Workstation.setBounds(0, 5, 96, 22);
-				jDesktopPane1.add(lbl_Workstation);
-				fld_Workstation.setEditable(false);
-				fld_Workstation.setEnabled(false);
-				fld_Workstation.setDisabledTextColor(Color.BLACK);
-				fld_Workstation.setBounds(104, 5, 134, 22);
-
-				jDesktopPane1.add(fld_Workstation);
-
-				JLabel4j_std lbl_SamplePoint = new JLabel4j_std();
-				lbl_SamplePoint.setText(lang.get("lbl_SamplePoint"));
-				lbl_SamplePoint.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_SamplePoint.setBounds(224, 5, 108, 22);
-				jDesktopPane1.add(lbl_SamplePoint);
-				fld_SamplePoint.setEnabled(false);
-				fld_SamplePoint.setEditable(false);
-				fld_SamplePoint.setBounds(344, 5, 93, 22);
-				jDesktopPane1.add(fld_SamplePoint);
-				fld_Scale_ID.setEnabled(false);
-				fld_Scale_ID.setEditable(false);
-				fld_Scale_ID.setBounds(538, 5, 93, 22);
-				jDesktopPane1.add(fld_Scale_ID);
-
-				JLabel4j_std lbl_Scale_ID = new JLabel4j_std();
-				lbl_Scale_ID.setText(lang.get("lbl_Scale_ID"));
-				lbl_Scale_ID.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Scale_ID.setBounds(438, 5, 94, 22);
-				jDesktopPane1.add(lbl_Scale_ID);
-				fld_ScalePort.setEnabled(false);
-				fld_ScalePort.setEditable(false);
-				fld_ScalePort.setBounds(752, 5, 242, 22);
-				jDesktopPane1.add(fld_ScalePort);
-
-				JLabel4j_std lbl_Scale_Port = new JLabel4j_std();
-				lbl_Scale_Port.setText(lang.get("lbl_Scale_Port"));
-				lbl_Scale_Port.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Scale_Port.setBounds(636, 5, 94, 22);
-				jDesktopPane1.add(lbl_Scale_Port);
-
-				JLabel4j_std lbl_Material_Group = new JLabel4j_std();
-				lbl_Material_Group.setText(lang.get("lbl_Material_Group"));
-				lbl_Material_Group.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Material_Group.setBounds(0, 69, 96, 22);
-				jDesktopPane1.add(lbl_Material_Group);
-				fld_Material_Group.setEnabled(false);
-				fld_Material_Group.setEditable(false);
-
-				fld_Material_Group.setBounds(104, 69, 113, 22);
-				jDesktopPane1.add(fld_Material_Group);
-
-				JLabel4j_std lbl_Container_Code = new JLabel4j_std();
-				lbl_Container_Code.setText(lang.get("lbl_Container_Code"));
-				lbl_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Container_Code.setBounds(224, 69, 108, 22);
-				jDesktopPane1.add(lbl_Container_Code);
-				fld_Container_Code.setEnabled(false);
-				fld_Container_Code.setEditable(false);
-
-				fld_Container_Code.setBounds(346, 69, 93, 22);
-				jDesktopPane1.add(fld_Container_Code);
-
-				btn_Begin.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						fld_currentDateTime.setDate(JUtility.getSQLDateTime());
-						if (readyToLog())
-						{
-							btn_Begin.setEnabled(false);
-							btnj_Cancel.setEnabled(true);
-							btnManualInput.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_MANUAL_ADD"));
-							btnComment.setEnabled(false);
-							fld_Mean.setText("0.000");
-							fld_Batch_Mean.setText("0.000");
-							fld_Batch_Mean.setBackground(Common.color_app_window);
-							fld_Standard_Deviation.setText("0.000");
-							logEnabled = true;
-							jStatusText.setText("Start weighing " + lSampleSize + " samples");
-							sampleDetailList.clear();
-							populateList();
-						}
+						fld_Process_Order.setText(JLaunchLookup.dlgResult);
+						updateProcessOrderInfo(JLaunchLookup.dlgResult, true);
+						updateGraph();
 					}
-				});
-
-				btn_Begin.setText(lang.get("lbl_Begin_Weight_Check"));
-				btn_Begin.setMnemonic('0');
-				btn_Begin.setBounds(14, 585, 193, 32);
-				jDesktopPane1.add(btn_Begin);
-
-				JLabel4j_std lbl_Process_Order_Status = new JLabel4j_std();
-				lbl_Process_Order_Status.setText(lang.get("lbl_Process_Order_Status"));
-				lbl_Process_Order_Status.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Process_Order_Status.setBounds(224, 37, 108, 22);
-				jDesktopPane1.add(lbl_Process_Order_Status);
-				fld_Process_Order_Status.setEnabled(false);
-				fld_Process_Order_Status.setEditable(false);
-
-				fld_Process_Order_Status.setText("");
-				fld_Process_Order_Status.setBounds(344, 37, 93, 22);
-				jDesktopPane1.add(fld_Process_Order_Status);
-				fld_Nominal_Weight.setEnabled(false);
-				fld_Nominal_Weight.setEditable(false);
-
-				fld_Nominal_Weight.setVerifyInputWhenFocusTarget(false);
-				fld_Nominal_Weight.setBounds(583, 69, 73, 22);
-				jDesktopPane1.add(fld_Nominal_Weight);
-				fld_Nominal_Weight_UOM.setEnabled(false);
-				fld_Nominal_Weight_UOM.setEditable(false);
-
-				fld_Nominal_Weight_UOM.setText("");
-				fld_Nominal_Weight_UOM.setPreferredSize(new Dimension(40, 20));
-				fld_Nominal_Weight_UOM.setFocusCycleRoot(true);
-				fld_Nominal_Weight_UOM.setCaretPosition(0);
-				fld_Nominal_Weight_UOM.setBounds(668, 69, 50, 22);
-				jDesktopPane1.add(fld_Nominal_Weight_UOM);
-				fld_Tare_Weight.setEnabled(false);
-				fld_Tare_Weight.setEditable(false);
-
-				fld_Tare_Weight.setVerifyInputWhenFocusTarget(false);
-				fld_Tare_Weight.setBounds(839, 69, 73, 22);
-				jDesktopPane1.add(fld_Tare_Weight);
-				fld_Tare_Weight_UOM.setEnabled(false);
-				fld_Tare_Weight_UOM.setEditable(false);
-
-				fld_Tare_Weight_UOM.setText("");
-				fld_Tare_Weight_UOM.setPreferredSize(new Dimension(40, 20));
-				fld_Tare_Weight_UOM.setFocusCycleRoot(true);
-				fld_Tare_Weight_UOM.setCaretPosition(0);
-				fld_Tare_Weight_UOM.setBounds(924, 69, 50, 22);
-				jDesktopPane1.add(fld_Tare_Weight_UOM);
-
-				JLabel4j_std lbl_Nominal_Weight = new JLabel4j_std();
-				lbl_Nominal_Weight.setText(lang.get("lbl_Nominal_Weight"));
-				lbl_Nominal_Weight.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_Nominal_Weight.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Nominal_Weight.setBounds(448, 69, 126, 22);
-				jDesktopPane1.add(lbl_Nominal_Weight);
-
-				JLabel4j_std lbl_Tare_Weight = new JLabel4j_std();
-				lbl_Tare_Weight.setText(lang.get("lbl_Tare_Weight"));
-				lbl_Tare_Weight.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_Tare_Weight.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Tare_Weight.setBounds(722, 69, 108, 22);
-				jDesktopPane1.add(lbl_Tare_Weight);
-
-				JLabel4j_std lbl_T1_Lower_Limit = new JLabel4j_std();
-				lbl_T1_Lower_Limit.setText(lang.get("lbl_T1_Lower_Limit"));
-				lbl_T1_Lower_Limit.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_T1_Lower_Limit.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_T1_Lower_Limit.setBounds(448, 101, 126, 22);
-				jDesktopPane1.add(lbl_T1_Lower_Limit);
-
-				JLabel4j_std lbl_Mean = new JLabel4j_std();
-				lbl_Mean.setText(lang.get("lbl_Average_Mean"));
-				lbl_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Mean.setBounds(786, 510, 126, 22);
-				jDesktopPane1.add(lbl_Mean);
-				
-				JLabel4j_title lbl_Count = new JLabel4j_title();
-				lbl_Count.setForeground(UIManager.getColor("OptionPane.background"));
-				lbl_Count.setOpaque(true);
-				lbl_Count.setBackground(UIManager.getColor("OptionPane.questionDialog.border.background"));
-				lbl_Count.setFont(new Font("Arial", Font.BOLD, 12));
-				lbl_Count.setText(lang.get("web_Count")+"  ");
-				lbl_Count.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_Count.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Count.setBounds(798, 453, 102, 25);
-				jDesktopPane1.add(lbl_Count);
-				qty_Count.setForeground(UIManager.getColor("OptionPane.background"));
-				qty_Count.setBackground(UIManager.getColor("OptionPane.questionDialog.border.background"));
-				qty_Count.setOpaque(true);
-				qty_Count.setFont(new Font("Arial", Font.BOLD, 12));
-				
-				qty_Count.setText("");
-				qty_Count.setHorizontalTextPosition(SwingConstants.RIGHT);
-				qty_Count.setHorizontalAlignment(SwingConstants.LEFT);
-				qty_Count.setBounds(900, 453, 94, 25);
-				jDesktopPane1.add(qty_Count);
-
-
-				JLabel4j_std lbl_Batch_Mean = new JLabel4j_std();
-				lbl_Batch_Mean.setText(lang.get("lbl_Average_Order_Mean"));
-				lbl_Batch_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_Batch_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Batch_Mean.setBounds(786, 564, 126, 22);
-				jDesktopPane1.add(lbl_Batch_Mean);
-
-				JLabel4j_std lbl_Standard_Deviation = new JLabel4j_std();
-				lbl_Standard_Deviation.setText(lang.get("lbl_Standard_Deviation"));
-				lbl_Standard_Deviation.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_Standard_Deviation.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Standard_Deviation.setBounds(786, 537, 126, 22);
-				jDesktopPane1.add(lbl_Standard_Deviation);
-				fld_T1_Lower_Limit.setEnabled(false);
-
-				fld_T1_Lower_Limit.setVerifyInputWhenFocusTarget(false);
-				fld_T1_Lower_Limit.setEditable(false);
-				fld_T1_Lower_Limit.setBounds(583, 101, 73, 22);
-				jDesktopPane1.add(fld_T1_Lower_Limit);
-				fld_Mean.setEnabled(false);
-
-				fld_Mean.setVerifyInputWhenFocusTarget(false);
-				fld_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
-				fld_Mean.setEditable(false);
-				fld_Mean.setBounds(921, 510, 73, 22);
-				jDesktopPane1.add(fld_Mean);
-				fld_Batch_Mean.setEnabled(false);
-
-				fld_Batch_Mean.setVerifyInputWhenFocusTarget(false);
-				fld_Batch_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
-				fld_Batch_Mean.setEditable(false);
-				fld_Batch_Mean.setBounds(921, 564, 73, 22);
-				jDesktopPane1.add(fld_Batch_Mean);
-				fld_Standard_Deviation.setEnabled(false);
-
-				fld_Standard_Deviation.setVerifyInputWhenFocusTarget(false);
-				fld_Standard_Deviation.setFont(new Font("Arial", Font.PLAIN, 14));
-				fld_Standard_Deviation.setEditable(false);
-				fld_Standard_Deviation.setBounds(921, 537, 73, 22);
-				jDesktopPane1.add(fld_Standard_Deviation);
-
-				JLabel4j_std lbl_T2_Lower_Limit = new JLabel4j_std();
-				lbl_T2_Lower_Limit.setText(lang.get("lbl_T2_Lower_Limit"));
-				lbl_T2_Lower_Limit.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_T2_Lower_Limit.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_T2_Lower_Limit.setBounds(722, 101, 108, 22);
-				jDesktopPane1.add(lbl_T2_Lower_Limit);
-				fld_T2_Lower_Limit.setEnabled(false);
-
-				fld_T2_Lower_Limit.setVerifyInputWhenFocusTarget(false);
-				fld_T2_Lower_Limit.setEditable(false);
-				fld_T2_Lower_Limit.setBounds(839, 101, 73, 22);
-				jDesktopPane1.add(fld_T2_Lower_Limit);
-
-				JLabel4j_std lbl_SampleSize = new JLabel4j_std();
-				lbl_SampleSize.setText(lang.get("lbl_SampleSize"));
-				lbl_SampleSize.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_SampleSize.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_SampleSize.setBounds(0, 101, 96, 22);
-				jDesktopPane1.add(lbl_SampleSize);
-
-				JLabel4j_std lbl_SampleFrequency = new JLabel4j_std();
-				lbl_SampleFrequency.setText(lang.get("lbl_SampleFrequency"));
-				lbl_SampleFrequency.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_SampleFrequency.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_SampleFrequency.setBounds(142, 101, 96, 22);
-				jDesktopPane1.add(lbl_SampleFrequency);
-
-				fld_SampleSize.setVerifyInputWhenFocusTarget(false);
-				fld_SampleSize.setEditable(false);
-				fld_SampleSize.setBounds(104, 101, 38, 22);
-				jDesktopPane1.add(fld_SampleSize);
-
-				fld_SampleFrequency.setVerifyInputWhenFocusTarget(false);
-				fld_SampleFrequency.setEditable(false);
-				fld_SampleFrequency.setBounds(246, 101, 38, 22);
-				jDesktopPane1.add(fld_SampleFrequency);
-
-				JLabel4j_std lbl_TNE = new JLabel4j_std();
-				lbl_TNE.setText(lang.get("lbl_TNE"));
-				lbl_TNE.setHorizontalTextPosition(SwingConstants.RIGHT);
-				lbl_TNE.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_TNE.setBounds(224, 101, 108, 22);
-				jDesktopPane1.add(lbl_TNE);
-				fld_TNE.setEnabled(false);
-
-				fld_TNE.setVerifyInputWhenFocusTarget(false);
-				fld_TNE.setHorizontalAlignment(SwingConstants.TRAILING);
-				fld_TNE.setEditable(false);
-				fld_TNE.setBounds(364, 101, 73, 22);
-				jDesktopPane1.add(fld_TNE);
-
-				scrollPane_Weights.setBounds(798, 150, 196, 303);
-				jDesktopPane1.add(scrollPane_Weights);
-				list_Weights.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				scrollPane_Weights.setViewportView(list_Weights);
-
-				JLabel4j_std lbl_Legend = new JLabel4j_std(" Gross Wt     Net Wt");
-				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
-				lbl_Legend.setBounds(798, 133, 184, 15);
-				jDesktopPane1.add(lbl_Legend);
-
-				{
-					fld_currentDateTime = new JDateControl();
-					fld_currentDateTime.setDisplayMode(JDateControl.mode_disable_visible);
-					jDesktopPane1.add(fld_currentDateTime);
-					fld_currentDateTime.setEnabled(false);
-					fld_currentDateTime.setVisible(false);
-					fld_currentDateTime.setBounds(830, 33, 120, 25);
-					JTextField tf = ((JSpinner.DefaultEditor) fld_currentDateTime.getEditor()).getTextField();
-					tf.setEnabled(false);
-					tf.setDisabledTextColor(UIManager.getColor("TextField.foreground"));
-
 				}
+			});
+			btn_Process_Order_Lookup.setBounds(196, 37, 21, 22);
+			jDesktopPane1.add(btn_Process_Order_Lookup);
 
-				btnj_Cancel.addActionListener(new ActionListener()
+			btn_SamplePoint_Lookup = new JButton4j(Common.icon_lookup_16x16);
+			btn_SamplePoint_Lookup.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
 				{
-					public void actionPerformed(ActionEvent e)
+					JLaunchLookup.dlgAutoExec = false;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.weightSamplePoint())
 					{
-						btn_Begin.setEnabled(true);
-						btnj_Cancel.setEnabled(false);
-						btnManualInput.setEnabled(false);
+						fld_SamplePoint.setText(JLaunchLookup.dlgResult);
+						updateSamplePoint(JLaunchLookup.dlgResult, true);
+						fld_Process_Order.setText("");
+						updateProcessOrderInfo("", true);
+					}
+				}
+			});
+			btn_SamplePoint_Lookup.setBounds(438, 5, 21, 22);
+			jDesktopPane1.add(btn_SamplePoint_Lookup);
+
+			jStatusText = new JLabel4j_status();
+			jStatusText.setBounds(0, 620, 1006, 41);
+			jDesktopPane1.add(jStatusText);
+
+			fld_Description.setEnabled(false);
+			fld_Description.setEditable(false);
+
+			fld_Description.setBounds(643, 37, 351, 22);
+			jDesktopPane1.add(fld_Description);
+
+			JLabel4j_std lbl_Workstation = new JLabel4j_std();
+			lbl_Workstation.setText(lang.get("lbl_Workstation"));
+			lbl_Workstation.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Workstation.setBounds(0, 5, 96, 22);
+			jDesktopPane1.add(lbl_Workstation);
+			fld_Workstation.setEditable(false);
+			fld_Workstation.setEnabled(false);
+			fld_Workstation.setDisabledTextColor(Color.BLACK);
+			fld_Workstation.setBounds(104, 5, 134, 22);
+
+			jDesktopPane1.add(fld_Workstation);
+
+			JLabel4j_std lbl_SamplePoint = new JLabel4j_std();
+			lbl_SamplePoint.setText(lang.get("lbl_SamplePoint"));
+			lbl_SamplePoint.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_SamplePoint.setBounds(224, 5, 108, 22);
+			jDesktopPane1.add(lbl_SamplePoint);
+			fld_SamplePoint.setEnabled(false);
+			fld_SamplePoint.setEditable(false);
+			fld_SamplePoint.setBounds(344, 5, 93, 22);
+			jDesktopPane1.add(fld_SamplePoint);
+			fld_Scale_ID.setEnabled(false);
+			fld_Scale_ID.setEditable(false);
+			fld_Scale_ID.setBounds(538, 5, 93, 22);
+			jDesktopPane1.add(fld_Scale_ID);
+
+			JLabel4j_std lbl_Scale_ID = new JLabel4j_std();
+			lbl_Scale_ID.setText(lang.get("lbl_Scale_ID"));
+			lbl_Scale_ID.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Scale_ID.setBounds(438, 5, 94, 22);
+			jDesktopPane1.add(lbl_Scale_ID);
+			fld_ScalePort.setEnabled(false);
+			fld_ScalePort.setEditable(false);
+			fld_ScalePort.setBounds(752, 5, 242, 22);
+			jDesktopPane1.add(fld_ScalePort);
+
+			JLabel4j_std lbl_Scale_Port = new JLabel4j_std();
+			lbl_Scale_Port.setText(lang.get("lbl_Scale_Port"));
+			lbl_Scale_Port.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Scale_Port.setBounds(636, 5, 94, 22);
+			jDesktopPane1.add(lbl_Scale_Port);
+
+			JLabel4j_std lbl_Material_Group = new JLabel4j_std();
+			lbl_Material_Group.setText(lang.get("lbl_Material_Group"));
+			lbl_Material_Group.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Material_Group.setBounds(0, 69, 96, 22);
+			jDesktopPane1.add(lbl_Material_Group);
+			fld_Material_Group.setEnabled(false);
+			fld_Material_Group.setEditable(false);
+
+			fld_Material_Group.setBounds(104, 69, 113, 22);
+			jDesktopPane1.add(fld_Material_Group);
+
+			JLabel4j_std lbl_Container_Code = new JLabel4j_std();
+			lbl_Container_Code.setText(lang.get("lbl_Container_Code"));
+			lbl_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Container_Code.setBounds(224, 69, 108, 22);
+			jDesktopPane1.add(lbl_Container_Code);
+			fld_Container_Code.setEnabled(false);
+			fld_Container_Code.setEditable(false);
+
+			fld_Container_Code.setBounds(346, 69, 93, 22);
+			jDesktopPane1.add(fld_Container_Code);
+
+			btn_Begin.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					fld_currentDateTime.setDate(JUtility.getSQLDateTime());
+					if (readyToLog())
+					{
+						btn_Begin.setEnabled(false);
+						btnj_Cancel.setEnabled(true);
+						btnManualInput.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_MANUAL_ADD"));
 						btnComment.setEnabled(false);
 						fld_Mean.setText("0.000");
 						fld_Batch_Mean.setText("0.000");
 						fld_Batch_Mean.setBackground(Common.color_app_window);
 						fld_Standard_Deviation.setText("0.000");
-						logEnabled = false;
+						logEnabled = true;
+						jStatusText.setText("Start weighing " + lSampleSize + " samples");
 						sampleDetailList.clear();
 						populateList();
-						jStatusText.setText("Cancelled");
-
 					}
-				});
-				btnj_Cancel.setEnabled(false);
+				}
+			});
 
-				btnj_Cancel.setText(lang.get("lbl_Cancel_Weight_Check"));
-				btnj_Cancel.setMnemonic('0');
-				btnj_Cancel.setBounds(208, 585, 193, 32);
-				jDesktopPane1.add(btnj_Cancel);
+			btn_Begin.setText(lang.get("lbl_Begin_Weight_Check"));
+			btn_Begin.setMnemonic('0');
+			btn_Begin.setBounds(14, 585, 193, 32);
+			jDesktopPane1.add(btn_Begin);
 
-				btnManualInput.setText(lang.get("btn_Add"));
+			JLabel4j_std lbl_Process_Order_Status = new JLabel4j_std();
+			lbl_Process_Order_Status.setText(lang.get("lbl_Process_Order_Status"));
+			lbl_Process_Order_Status.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbl_Process_Order_Status.setBounds(224, 37, 108, 22);
+			jDesktopPane1.add(lbl_Process_Order_Status);
+			fld_Process_Order_Status.setEnabled(false);
+			fld_Process_Order_Status.setEditable(false);
 
-				btnManualInput.addActionListener(new ActionListener()
+			fld_Process_Order_Status.setText("");
+			fld_Process_Order_Status.setBounds(344, 37, 93, 22);
+			jDesktopPane1.add(fld_Process_Order_Status);
+			fld_Nominal_Weight.setEnabled(false);
+			fld_Nominal_Weight.setEditable(false);
+
+			fld_Nominal_Weight.setVerifyInputWhenFocusTarget(false);
+			fld_Nominal_Weight.setBounds(583, 69, 73, 22);
+			jDesktopPane1.add(fld_Nominal_Weight);
+			fld_Nominal_Weight_UOM.setEnabled(false);
+			fld_Nominal_Weight_UOM.setEditable(false);
+
+			fld_Nominal_Weight_UOM.setText("");
+			fld_Nominal_Weight_UOM.setPreferredSize(new Dimension(40, 20));
+			fld_Nominal_Weight_UOM.setFocusCycleRoot(true);
+			fld_Nominal_Weight_UOM.setCaretPosition(0);
+			fld_Nominal_Weight_UOM.setBounds(668, 69, 50, 22);
+			jDesktopPane1.add(fld_Nominal_Weight_UOM);
+			fld_Tare_Weight.setEnabled(false);
+			fld_Tare_Weight.setEditable(false);
+
+			fld_Tare_Weight.setVerifyInputWhenFocusTarget(false);
+			fld_Tare_Weight.setBounds(839, 69, 73, 22);
+			jDesktopPane1.add(fld_Tare_Weight);
+			fld_Tare_Weight_UOM.setEnabled(false);
+			fld_Tare_Weight_UOM.setEditable(false);
+
+			fld_Tare_Weight_UOM.setText("");
+			fld_Tare_Weight_UOM.setPreferredSize(new Dimension(40, 20));
+			fld_Tare_Weight_UOM.setFocusCycleRoot(true);
+			fld_Tare_Weight_UOM.setCaretPosition(0);
+			fld_Tare_Weight_UOM.setBounds(924, 69, 50, 22);
+			jDesktopPane1.add(fld_Tare_Weight_UOM);
+
+			JLabel4j_std lbl_Nominal_Weight = new JLabel4j_std();
+			lbl_Nominal_Weight.setText(lang.get("lbl_Nominal_Weight"));
+			lbl_Nominal_Weight.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_Nominal_Weight.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_Nominal_Weight.setBounds(448, 69, 126, 22);
+			jDesktopPane1.add(lbl_Nominal_Weight);
+
+			JLabel4j_std lbl_Tare_Weight = new JLabel4j_std();
+			lbl_Tare_Weight.setText(lang.get("lbl_Tare_Weight"));
+			lbl_Tare_Weight.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_Tare_Weight.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_Tare_Weight.setBounds(722, 69, 108, 22);
+			jDesktopPane1.add(lbl_Tare_Weight);
+
+			JLabel4j_std lbl_T1_Lower_Limit = new JLabel4j_std();
+			lbl_T1_Lower_Limit.setText(lang.get("lbl_T1_Lower_Limit"));
+			lbl_T1_Lower_Limit.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_T1_Lower_Limit.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_T1_Lower_Limit.setBounds(448, 101, 126, 22);
+			jDesktopPane1.add(lbl_T1_Lower_Limit);
+
+			JLabel4j_std lbl_Mean = new JLabel4j_std();
+			lbl_Mean.setText(lang.get("lbl_Average_Mean"));
+			lbl_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_Mean.setBounds(786, 510, 126, 22);
+			jDesktopPane1.add(lbl_Mean);
+
+			JLabel4j_title lbl_Count = new JLabel4j_title();
+			lbl_Count.setForeground(UIManager.getColor("OptionPane.background"));
+			lbl_Count.setOpaque(true);
+			lbl_Count.setBackground(UIManager.getColor("OptionPane.questionDialog.border.background"));
+			lbl_Count.setFont(new Font("Arial", Font.BOLD, 12));
+			lbl_Count.setText(lang.get("web_Count") + "  ");
+			lbl_Count.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_Count.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_Count.setBounds(798, 453, 102, 25);
+			jDesktopPane1.add(lbl_Count);
+			qty_Count.setForeground(UIManager.getColor("OptionPane.background"));
+			qty_Count.setBackground(UIManager.getColor("OptionPane.questionDialog.border.background"));
+			qty_Count.setOpaque(true);
+			qty_Count.setFont(new Font("Arial", Font.BOLD, 12));
+
+			qty_Count.setText("");
+			qty_Count.setHorizontalTextPosition(SwingConstants.RIGHT);
+			qty_Count.setHorizontalAlignment(SwingConstants.LEFT);
+			qty_Count.setBounds(900, 453, 94, 25);
+			jDesktopPane1.add(qty_Count);
+
+			JLabel4j_std lbl_Batch_Mean = new JLabel4j_std();
+			lbl_Batch_Mean.setText(lang.get("lbl_Average_Order_Mean"));
+			lbl_Batch_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_Batch_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_Batch_Mean.setBounds(786, 564, 126, 22);
+			jDesktopPane1.add(lbl_Batch_Mean);
+
+			JLabel4j_std lbl_Standard_Deviation = new JLabel4j_std();
+			lbl_Standard_Deviation.setText(lang.get("lbl_Standard_Deviation"));
+			lbl_Standard_Deviation.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_Standard_Deviation.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_Standard_Deviation.setBounds(786, 537, 126, 22);
+			jDesktopPane1.add(lbl_Standard_Deviation);
+			fld_T1_Lower_Limit.setEnabled(false);
+
+			fld_T1_Lower_Limit.setVerifyInputWhenFocusTarget(false);
+			fld_T1_Lower_Limit.setEditable(false);
+			fld_T1_Lower_Limit.setBounds(583, 101, 73, 22);
+			jDesktopPane1.add(fld_T1_Lower_Limit);
+			fld_Mean.setEnabled(false);
+
+			fld_Mean.setVerifyInputWhenFocusTarget(false);
+			fld_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
+			fld_Mean.setEditable(false);
+			fld_Mean.setBounds(921, 510, 73, 22);
+			jDesktopPane1.add(fld_Mean);
+			fld_Batch_Mean.setEnabled(false);
+
+			fld_Batch_Mean.setVerifyInputWhenFocusTarget(false);
+			fld_Batch_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
+			fld_Batch_Mean.setEditable(false);
+			fld_Batch_Mean.setBounds(921, 564, 73, 22);
+			jDesktopPane1.add(fld_Batch_Mean);
+			fld_Standard_Deviation.setEnabled(false);
+
+			fld_Standard_Deviation.setVerifyInputWhenFocusTarget(false);
+			fld_Standard_Deviation.setFont(new Font("Arial", Font.PLAIN, 14));
+			fld_Standard_Deviation.setEditable(false);
+			fld_Standard_Deviation.setBounds(921, 537, 73, 22);
+			jDesktopPane1.add(fld_Standard_Deviation);
+
+			JLabel4j_std lbl_T2_Lower_Limit = new JLabel4j_std();
+			lbl_T2_Lower_Limit.setText(lang.get("lbl_T2_Lower_Limit"));
+			lbl_T2_Lower_Limit.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_T2_Lower_Limit.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_T2_Lower_Limit.setBounds(722, 101, 108, 22);
+			jDesktopPane1.add(lbl_T2_Lower_Limit);
+			fld_T2_Lower_Limit.setEnabled(false);
+
+			fld_T2_Lower_Limit.setVerifyInputWhenFocusTarget(false);
+			fld_T2_Lower_Limit.setEditable(false);
+			fld_T2_Lower_Limit.setBounds(839, 101, 73, 22);
+			jDesktopPane1.add(fld_T2_Lower_Limit);
+
+			JLabel4j_std lbl_SampleSize = new JLabel4j_std();
+			lbl_SampleSize.setText(lang.get("lbl_SampleSize"));
+			lbl_SampleSize.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_SampleSize.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_SampleSize.setBounds(0, 101, 96, 22);
+			jDesktopPane1.add(lbl_SampleSize);
+
+			JLabel4j_std lbl_SampleFrequency = new JLabel4j_std();
+			lbl_SampleFrequency.setText(lang.get("lbl_SampleFrequency"));
+			lbl_SampleFrequency.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_SampleFrequency.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_SampleFrequency.setBounds(142, 101, 96, 22);
+			jDesktopPane1.add(lbl_SampleFrequency);
+
+			fld_SampleSize.setVerifyInputWhenFocusTarget(false);
+			fld_SampleSize.setEditable(false);
+			fld_SampleSize.setBounds(104, 101, 38, 22);
+			jDesktopPane1.add(fld_SampleSize);
+
+			fld_SampleFrequency.setVerifyInputWhenFocusTarget(false);
+			fld_SampleFrequency.setEditable(false);
+			fld_SampleFrequency.setBounds(246, 101, 38, 22);
+			jDesktopPane1.add(fld_SampleFrequency);
+
+			JLabel4j_std lbl_TNE = new JLabel4j_std();
+			lbl_TNE.setText(lang.get("lbl_TNE"));
+			lbl_TNE.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl_TNE.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl_TNE.setBounds(224, 101, 108, 22);
+			jDesktopPane1.add(lbl_TNE);
+			fld_TNE.setEnabled(false);
+
+			fld_TNE.setVerifyInputWhenFocusTarget(false);
+			fld_TNE.setHorizontalAlignment(SwingConstants.TRAILING);
+			fld_TNE.setEditable(false);
+			fld_TNE.setBounds(364, 101, 73, 22);
+			jDesktopPane1.add(fld_TNE);
+
+			scrollPane_Weights.setBounds(798, 150, 196, 303);
+			jDesktopPane1.add(scrollPane_Weights);
+			list_Weights.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			scrollPane_Weights.setViewportView(list_Weights);
+
+			JLabel4j_std lbl_Legend = new JLabel4j_std(" Gross Wt     Net Wt");
+			lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
+			lbl_Legend.setBounds(798, 133, 184, 15);
+			jDesktopPane1.add(lbl_Legend);
+
+			fld_currentDateTime = new JDateControl();
+			fld_currentDateTime.setDisplayMode(JDateControl.mode_disable_visible);
+			jDesktopPane1.add(fld_currentDateTime);
+			fld_currentDateTime.setEnabled(false);
+			fld_currentDateTime.setVisible(false);
+			fld_currentDateTime.setBounds(830, 33, 120, 25);
+			JTextField tf = ((JSpinner.DefaultEditor) fld_currentDateTime.getEditor()).getTextField();
+			tf.setEnabled(false);
+			tf.setDisabledTextColor(UIManager.getColor("TextField.foreground"));
+
+			btnj_Cancel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
 				{
-					public void actionPerformed(ActionEvent e)
-					{
-						addManualWeight();
+					btn_Begin.setEnabled(true);
+					btnj_Cancel.setEnabled(false);
+					btnManualInput.setEnabled(false);
+					btnComment.setEnabled(false);
+					fld_Mean.setText("0.000");
+					fld_Batch_Mean.setText("0.000");
+					fld_Batch_Mean.setBackground(Common.color_app_window);
+					fld_Standard_Deviation.setText("0.000");
+					logEnabled = false;
+					sampleDetailList.clear();
+					populateList();
+					jStatusText.setText("Cancelled");
 
-					}
-				});
-				btnDebug.setVisible(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_DEBUG"));
-				btnDebug.addActionListener(new ActionListener()
+				}
+			});
+			btnj_Cancel.setEnabled(false);
+
+			btnj_Cancel.setText(lang.get("lbl_Cancel_Weight_Check"));
+			btnj_Cancel.setMnemonic('0');
+			btnj_Cancel.setBounds(208, 585, 193, 32);
+			jDesktopPane1.add(btnj_Cancel);
+
+			btnManualInput.setText(lang.get("btn_Add"));
+
+			btnManualInput.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
 				{
-					public void actionPerformed(ActionEvent e)
-					{
-						double target = Double.valueOf(fld_Nominal_Weight.getText());
-						double tne = Double.valueOf(fld_TNE.getText());
-						int rand1 = ThreadLocalRandom.current().nextInt(0, 2);
-						int rand2 = ThreadLocalRandom.current().nextInt(0, 1);
-						int rand3 = ThreadLocalRandom.current().nextInt(0, 2);
-						double random = ThreadLocalRandom.current().nextDouble(target-(tne*rand1)-rand2, target+(tne*2)+rand3);
-						BigDecimal rnd = BigDecimal.valueOf(random);
-						rnd = rnd.divide(new BigDecimal(1), 3, RoundingMode.HALF_UP);
-						String result = validateWeight(rnd.toString());
-						if ((result.equals("error") == false) && (result.equals("") == false))
-						{
-							logSampleWeight(rnd.toString(), "G");
-						}
-					}
-				});
-				btnDebug.setText("Debug");
+					addManualWeight();
 
-				btnDebug.setBounds(643, 32, 196, 25);
-				jDesktopPane1.add(btnDebug);
-
-				btnManualInput.setBounds(798, 483, 196, 25);
-				jDesktopPane1.add(btnManualInput);
-				btnManualInput.setEnabled(false);
-				btnComment.addActionListener(new ActionListener()
+				}
+			});
+			btnDebug.setVisible(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_DEBUG"));
+			btnDebug.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
 				{
-					public void actionPerformed(ActionEvent e)
+					double target = Double.valueOf(fld_Nominal_Weight.getText());
+					double tne = Double.valueOf(fld_TNE.getText());
+					int rand1 = ThreadLocalRandom.current().nextInt(0, 2);
+					int rand2 = ThreadLocalRandom.current().nextInt(0, 1);
+					int rand3 = ThreadLocalRandom.current().nextInt(0, 2);
+					double random = ThreadLocalRandom.current().nextDouble(target - (tne * rand1) - rand2, target + (tne * 2) + rand3);
+					BigDecimal rnd = BigDecimal.valueOf(random);
+					rnd = rnd.divide(new BigDecimal(1), 3, RoundingMode.HALF_UP);
+					String result = validateWeight(rnd.toString());
+					if ((result.equals("error") == false) && (result.equals("") == false))
 					{
-						displayCommentInputPanel();
+						logSampleWeight(rnd.toString(), "G");
 					}
-				});
+				}
+			});
+			btnDebug.setText("Debug");
 
-				btnComment.setText(lang.get("lbl_Add_Comment"));
-				btnComment.setEnabled(false);
-				btnComment.setBounds(798, 592, 196, 25);
-				jDesktopPane1.add(btnComment);
-				btnComment.setEnabled(false);
+			btnDebug.setBounds(643, 32, 196, 25);
+			jDesktopPane1.add(btnDebug);
 
-				createDemoPanel();
-				chartPanel.setBounds(14, 133, 772, 445);
+			btnManualInput.setBounds(798, 483, 196, 25);
+			jDesktopPane1.add(btnManualInput);
+			btnManualInput.setEnabled(false);
+			btnComment.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					displayCommentInputPanel();
+				}
+			});
 
-				jDesktopPane1.add(chartPanel);
+			btnComment.setText(lang.get("lbl_Add_Comment"));
+			btnComment.setEnabled(false);
+			btnComment.setBounds(798, 592, 196, 25);
+			jDesktopPane1.add(btnComment);
+			btnComment.setEnabled(false);
 
-			}
+			createDemoPanel();
+			chartPanel.setBounds(14, 133, 772, 445);
+
+			jDesktopPane1.add(chartPanel);
+
 		}
 		catch (Exception e)
 		{
@@ -1306,13 +1273,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		list_Weights.setModel(jList1Model);
 
 		scrollPane_Weights.repaint();
-		
+
 		qty_Count.setText(String.valueOf(sampleDetailList.size()));
-		
+
 		SwingUtilities.invokeLater(() -> {
-	        JScrollBar bar = scrollPane_Weights.getVerticalScrollBar();
-	        bar.setValue(bar.getMaximum());
-	});
+			JScrollBar bar = scrollPane_Weights.getVerticalScrollBar();
+			bar.setValue(bar.getMaximum());
+		});
 
 	}
 
@@ -1553,7 +1520,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				customerID = orderdb.getCustomerID();
 				status = orderdb.getStatus();
 
-				//fld_Process_Order.setBackground(Color.WHITE);
+				// fld_Process_Order.setBackground(Color.WHITE);
 				fld_Process_Order_Status.setText(status);
 				fld_Material.setText(material);
 
@@ -1623,7 +1590,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				{
 					lSampleSize = matgroupdb.getSamplesRequired();
 				}
-				
+
 				fld_SampleSize.setText(String.valueOf(lSampleSize));
 
 				fld_Nominal_Weight.setText(nominal.toString());

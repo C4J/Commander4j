@@ -1,33 +1,5 @@
 package com.commander4j.app;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JInternalFrameUserReportAdmin.java
- * 
- * Package Name : com.commander4j.app
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -39,11 +11,8 @@ import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
@@ -57,52 +26,54 @@ import com.commander4j.db.JDBShifts;
 import com.commander4j.db.JDBUserReport;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
+import javax.swing.SwingConstants;
 
 /**
  * The JInternalFrameUserReportAdmin class allows a user manage a table called
  * SYS_USER_REPORTS which contains user defined reports.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameUserReportAdmin.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBUserReport JDBUserReport
  * @see com.commander4j.app.JInternalFrameUserReportProperties
  *      JInternalFrameUserReportProperties
- * @see com.commander4j.app.JDialogShiftProperties
- *      JDialogShiftProperties
+ * @see com.commander4j.app.JDialogShiftProperties JDialogShiftProperties
  */
 public class JInternalFrameUserReportAdmin extends JInternalFrame
 {
 
 	/**
-	 * 
+	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	private JList4j<JDBListData> jListUserReports = new JList4j<JDBListData>();
-	private JList4j<JDBShifts> jListShifts = new JList4j<JDBShifts>();
+	private JButton4j btn4jAdd = new JButton4j(Common.icon_add_16x16);
+	private JButton4j btn4jClose = new JButton4j(Common.icon_close_16x16);
+	private JButton4j btn4jCopy = new JButton4j(Common.icon_copy_16x16);
+	private JButton4j btn4jDelete = new JButton4j(Common.icon_delete_16x16);
+	private JButton4j btn4jEdit = new JButton4j(Common.icon_edit_16x16);
+	private JButton4j btn4jHelp = new JButton4j(Common.icon_help_16x16);
+	private JButton4j btn4jRefresh = new JButton4j(Common.icon_refresh_16x16);
+	private JButton4j btn4jRun = new JButton4j(Common.icon_execute_16x16);
+	private JButton4j button4j_Backwards = new JButton4j(Common.icon_arrow_left_16x16);
+	private JButton4j button4j_Forwards = new JButton4j(Common.icon_arrow_right_16x16);
+	private JCalendarButton button_CalendardomDateFrom;
+	private JCalendarButton button_CalendardomDateTo;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDateControl domDateFrom;
 	private JDateControl domDateTo;
-	private JCalendarButton button_CalendardomDateFrom;
-	private JCalendarButton button_CalendardomDateTo;
-	private JPanel panelDateParams = new JPanel();
-	private JButton4j button4j_Backwards = new JButton4j(Common.icon_arrow_left_16x16);
-	private JButton4j button4j_Forwards = new JButton4j(Common.icon_arrow_right_16x16);
 	private JLabel4j_std label4j_statusBar = new JLabel4j_std();
-	private JButton4j btn4jAdd = new JButton4j(Common.icon_add_16x16);
-	private JButton4j btn4jEdit = new JButton4j(Common.icon_edit_16x16);
-	private JButton4j btn4jDelete = new JButton4j(Common.icon_delete_16x16);
-	private JButton4j btn4jCopy = new JButton4j(Common.icon_copy_16x16);
-	private JButton4j btn4jRefresh = new JButton4j(Common.icon_refresh_16x16);
-	private JButton4j btn4jRun = new JButton4j(Common.icon_execute_16x16);
-	private JButton4j btn4jHelp = new JButton4j(Common.icon_help_16x16);
-	private JButton4j btn4jClose = new JButton4j(Common.icon_close_16x16);
+	private JList4j<JDBListData> jListUserReports = new JList4j<JDBListData>();
+	private JList4j<JDBShifts> jListShifts = new JList4j<JDBShifts>();
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Create the frame.
@@ -110,19 +81,22 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 	public JInternalFrameUserReportAdmin()
 	{
 		setVisible(true);
-		this.setClosable(true);
-		this.setIconifiable(true);
-		setBounds(100, 100, 795, 639);
+
+		setClosable(true);
+		setIconifiable(true);
+
+		setBounds(100, 100, 707, 637);
+
 		getContentPane().setLayout(null);
 
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 806, 609);
-		desktopPane.setBackground(Common.color_app_window);
+		JDesktopPane4j desktopPane = new JDesktopPane4j();
+		desktopPane.setBounds(0, 0, 699, 607);
+
 		getContentPane().add(desktopPane);
 
-		JScrollPane scrollPaneReports = new JScrollPane();
+		JScrollPane4j scrollPaneReports = new JScrollPane4j(JScrollPane4j.List);
 		scrollPaneReports.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
-		scrollPaneReports.setBounds(12, 30, 569, 305);
+		scrollPaneReports.setBounds(0, 23, 569, 305);
 		desktopPane.add(scrollPaneReports);
 		jListUserReports.addListSelectionListener(new ListSelectionListener()
 		{
@@ -149,9 +123,9 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 
 		scrollPaneReports.setViewportView(jListUserReports);
 
-		JScrollPane scrollPaneShifts = new JScrollPane();
+		JScrollPane4j scrollPaneShifts = new JScrollPane4j(JScrollPane4j.List);
 		scrollPaneShifts.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
-		scrollPaneShifts.setBounds(12, 371, 569, 161);
+		scrollPaneShifts.setBounds(0, 400, 569, 161);
 		desktopPane.add(scrollPaneShifts);
 		jListShifts.addMouseListener(new MouseAdapter()
 		{
@@ -217,215 +191,19 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 
 		JLabel4j_std lblCriteria = new JLabel4j_std("Criteria - Quick Set");
 		lblCriteria.setText(lang.get("mod_FRM_ADMIN_SHIFT"));
-		lblCriteria.setBounds(12, 347, 194, 22);
+		lblCriteria.setBounds(0, 380, 194, 22);
 		desktopPane.add(lblCriteria);
 
 		JLabel4j_std lblReport = new JLabel4j_std(lang.get("mod_FRM_ADMIN_USER_REPORT"));
-		lblReport.setBounds(12, 10, 231, 22);
+		lblReport.setBounds(0, 0, 231, 22);
 		desktopPane.add(lblReport);
 
-		label4j_statusBar.setForeground(Color.RED);
-		label4j_statusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-		label4j_statusBar.setBounds(0, 588, 782, 21);
+		label4j_statusBar.setBounds(0, 554, 775, 21);
 		desktopPane.add(label4j_statusBar);
-		panelDateParams.setBackground(Common.color_app_window);
 
-		panelDateParams.setBounds(604, 371, 165, 161);
-		panelDateParams.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		desktopPane.add(panelDateParams);
-		panelDateParams.setLayout(null);
-
-		JLabel4j_std lblStart = new JLabel4j_std(lang.get("web_From"));
-		lblStart.setBounds(11, 10, 145, 22);
-		panelDateParams.add(lblStart);
-
-		domDateFrom = new JDateControl();
-		domDateFrom.setBounds(11, 30, 128, 22);
-		panelDateParams.add(domDateFrom);
-
-		button_CalendardomDateFrom = new JCalendarButton(domDateFrom);
-		button_CalendardomDateFrom.setSize(21, 21);
-		button_CalendardomDateFrom.setLocation(510, 314);
-		button_CalendardomDateFrom.setBounds(135, 31, 21, 21);
-		panelDateParams.add(button_CalendardomDateFrom);
-
-		JLabel4j_std label4jEnd = new JLabel4j_std(lang.get("web_To"));
-		label4jEnd.setBounds(11, 62, 149, 22);
-		panelDateParams.add(label4jEnd);
-
-		domDateTo = new JDateControl();
-		domDateTo.setBounds(11, 86, 128, 22);
-		panelDateParams.add(domDateTo);
-
-		button_CalendardomDateTo = new JCalendarButton(domDateTo);
-		button_CalendardomDateTo.setSize(21, 21);
-		button_CalendardomDateTo.setLocation(510, 369);
-		button_CalendardomDateTo.setBounds(135, 86, 21, 21);
-		panelDateParams.add(button_CalendardomDateTo);
-
-		button4j_Backwards.setBounds(41, 119, 25, 25);
-		panelDateParams.add(button4j_Backwards);
-		button4j_Backwards.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				dateAdjust(domDateFrom, -1);
-				dateAdjust(domDateTo, -1);
-			}
-		});
-		button4j_Backwards.setEnabled(true);
-
-		button4j_Forwards.setBounds(78, 119, 25, 25);
-		panelDateParams.add(button4j_Forwards);
-		button4j_Forwards.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				dateAdjust(domDateFrom, 1);
-				dateAdjust(domDateTo, 1);
-			}
-		});
-		button4j_Forwards.setEnabled(true);
-
-		JPanel panelButtons = new JPanel();
-		panelButtons.setBackground(Common.color_app_window);
-		panelButtons.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		panelButtons.setBounds(604, 30, 165, 305);
-		desktopPane.add(panelButtons);
-		panelButtons.setLayout(null);
-
-		btn4jAdd.setBounds(18, 12, 126, 32);
-		panelButtons.add(btn4jAdd);
-		btn4jAdd.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				addReport();
-			}
-		});
-		btn4jAdd.setText(lang.get("btn_Add"));
-		btn4jAdd.setMnemonic('0');
-		btn4jEdit.setEnabled(false);
-
-		btn4jEdit.setBounds(18, 44, 126, 32);
-		panelButtons.add(btn4jEdit);
-		btn4jEdit.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				editReport();
-			}
-		});
-		btn4jEdit.setText(lang.get("btn_Edit"));
-		btn4jEdit.setMnemonic('0');
-		btn4jEdit.setFocusTraversalKeysEnabled(false);
-
-		btn4jDelete.setBounds(18, 76, 126, 32);
-		panelButtons.add(btn4jDelete);
-		btn4jDelete.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				deleteReport();
-			}
-		});
-		btn4jDelete.setText(lang.get("btn_Delete"));
-		btn4jDelete.setMnemonic('0');
-
-		btn4jCopy.setBounds(18, 108, 126, 32);
-		panelButtons.add(btn4jCopy);
-		btn4jCopy.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				copyReport();
-			}
-		});
-		btn4jCopy.setText(lang.get("btn_Copy"));
-		btn4jCopy.setMnemonic('0');
-
-		btn4jRefresh.setBounds(18, 140, 126, 32);
-		panelButtons.add(btn4jRefresh);
-		btn4jRefresh.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				if (jListUserReports.isSelectionEmpty() == false)
-				{
-					JDBUserReport reportid = (JDBUserReport) ((JDBListData) jListUserReports.getSelectedValue()).getObject();
-					populateListUserReports(reportid.getReportID());
-				} else
-				{
-					populateListUserReports("");
-				}
-
-			}
-		});
-		btn4jRefresh.setText(lang.get("btn_Refresh"));
-		btn4jRefresh.setMnemonic('0');
-
-		btn4jRun.setBounds(18, 172, 126, 32);
-		panelButtons.add(btn4jRun);
-		btn4jRun.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				if (jListUserReports.isSelectionEmpty() == false)
-				{
-					JDBUserReport reportid = (JDBUserReport) ((JDBListData) jListUserReports.getSelectedValue()).getObject();
-					reportid.getUserReportProperties();
-					
-					if (reportid.getDestination().equals("SYSTEM")==false)
-					{
-					if (reportid.isParamDateRequired())
-					{
-						reportid.setParamFromDate(JUtility.getTimestampFromDate(domDateFrom.getDate()));
-						reportid.setParamToDate(JUtility.getTimestampFromDate(domDateTo.getDate()));
-					}
-					label4j_statusBar.setText("Please wait....");
-					if (reportid.runReport() == false)
-					{
-						JUtility.errorBeep();
-						label4j_statusBar.setText(reportid.getErrorMessage());
-						JOptionPane.showMessageDialog(Common.mainForm, reportid.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-					} else
-					{
-						label4j_statusBar.setText("Created : " + reportid.getExportFilename());
-					}
-					}
-					else
-					{
-						JUtility.errorBeep();
-						label4j_statusBar.setText("");
-						JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-
-					}
-				}
-			}
-		});
-		btn4jRun.setText(lang.get("btn_Run"));
-		btn4jRun.setMnemonic('0');
-
-		btn4jHelp.setBounds(18, 204, 126, 32);
-		panelButtons.add(btn4jHelp);
-		btn4jHelp.setText(lang.get("btn_Help"));
-		btn4jHelp.setMnemonic('0');
-
-		btn4jClose.setBounds(18, 236, 126, 32);
-		panelButtons.add(btn4jClose);
-		btn4jClose.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				dispose();
-			}
-		});
-		btn4jClose.setText(lang.get("btn_Close"));
-		btn4jClose.setMnemonic('0');
-
-		JPanel panelShiftButtons = new JPanel();
+		JPanel4j panelShiftButtons = new JPanel4j();
 		panelShiftButtons.setBackground(Common.color_app_window);
-		panelShiftButtons.setBounds(12, 544, 120, 32);
+		panelShiftButtons.setBounds(0, 570, 120, 32);
 		desktopPane.add(panelShiftButtons);
 		panelShiftButtons.setLayout(null);
 
@@ -480,12 +258,194 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		});
 		button4jShiftRefresh.setMnemonic('0');
 
+
+		final JHelp help = new JHelp();
+		btn4jAdd.setBounds(570, 23, 126, 32);
+		desktopPane.add(btn4jAdd);
+		btn4jAdd.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				addReport();
+			}
+		});
+		btn4jAdd.setText(lang.get("btn_Add"));
+		btn4jAdd.setMnemonic('0');
+		btn4jEdit.setBounds(570, 55, 126, 32);
+		desktopPane.add(btn4jEdit);
+		btn4jEdit.setEnabled(false);
+		btn4jEdit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				editReport();
+			}
+		});
+		btn4jEdit.setText(lang.get("btn_Edit"));
+		btn4jEdit.setMnemonic('0');
+		btn4jEdit.setFocusTraversalKeysEnabled(false);
+		btn4jDelete.setBounds(570, 87, 126, 32);
+		desktopPane.add(btn4jDelete);
+		btn4jDelete.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				deleteReport();
+			}
+		});
+		btn4jDelete.setText(lang.get("btn_Delete"));
+		btn4jDelete.setMnemonic('0');
+		btn4jCopy.setBounds(570, 119, 126, 32);
+		desktopPane.add(btn4jCopy);
+		btn4jCopy.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				copyReport();
+			}
+		});
+		btn4jCopy.setText(lang.get("btn_Copy"));
+		btn4jCopy.setMnemonic('0');
+		btn4jRefresh.setBounds(570, 151, 126, 32);
+		desktopPane.add(btn4jRefresh);
+		btn4jRefresh.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				if (jListUserReports.isSelectionEmpty() == false)
+				{
+					JDBUserReport reportid = (JDBUserReport) ((JDBListData) jListUserReports.getSelectedValue()).getObject();
+					populateListUserReports(reportid.getReportID());
+				}
+				else
+				{
+					populateListUserReports("");
+				}
+
+			}
+		});
+		btn4jRefresh.setText(lang.get("btn_Refresh"));
+		btn4jRefresh.setMnemonic('0');
+
+		btn4jRun.setMnemonic('0');
+		btn4jHelp.setBounds(570, 215, 126, 32);
+		desktopPane.add(btn4jHelp);
+		btn4jHelp.setText(lang.get("btn_Help"));
+		btn4jHelp.setMnemonic('0');
+		help.enableHelpOnButton(btn4jHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_USER_REPORT"));
+		btn4jClose.setBounds(570, 247, 126, 32);
+		desktopPane.add(btn4jClose);
+		btn4jClose.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				dispose();
+			}
+		});
+		btn4jClose.setText(lang.get("btn_Close"));
+		btn4jClose.setMnemonic('0');
+
+		JLabel4j_std lblStart = new JLabel4j_std(lang.get("web_From"));
+		lblStart.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblStart.setBounds(131, 340, 87, 22);
+		desktopPane.add(lblStart);
+
+		domDateFrom = new JDateControl();
+		domDateFrom.setBounds(236, 340, 120, 22);
+		desktopPane.add(domDateFrom);
+
+		button_CalendardomDateFrom = new JCalendarButton(domDateFrom);
+		button_CalendardomDateFrom.setSize(21, 21);
+		button_CalendardomDateFrom.setLocation(510, 354);
+		button_CalendardomDateFrom.setBounds(359, 341, 21, 21);
+
+
+		desktopPane.add(button_CalendardomDateFrom);
+
+		JLabel4j_std label4jEnd = new JLabel4j_std(lang.get("web_To"));
+		label4jEnd.setHorizontalAlignment(SwingConstants.TRAILING);
+		label4jEnd.setBounds(139, 366, 79, 22);
+		desktopPane.add(label4jEnd);
+
+		domDateTo = new JDateControl();
+		domDateTo.setBounds(236, 366, 120, 22);
+		desktopPane.add(domDateTo);
+		button_CalendardomDateTo = new JCalendarButton(domDateTo);
+		button_CalendardomDateTo.setSize(21, 21);
+		button_CalendardomDateTo.setLocation(510, 369);
+
+
+
+		button_CalendardomDateTo.setBounds(359, 367, 21, 21);
+		desktopPane.add(button_CalendardomDateTo);
+		button4j_Backwards.setBounds(387, 350, 25, 25);
+		desktopPane.add(button4j_Backwards);
+		button4j_Backwards.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				dateAdjust(domDateFrom, -1);
+				dateAdjust(domDateTo, -1);
+			}
+		});
+		button4j_Backwards.setEnabled(true);
+		button4j_Forwards.setBounds(424, 350, 25, 25);
+		desktopPane.add(button4j_Forwards);
+		button4j_Forwards.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				dateAdjust(domDateFrom, 1);
+				dateAdjust(domDateTo, 1);
+			}
+		});
+		button4j_Forwards.setEnabled(true);
+
+		btn4jRun.setBounds(570, 183, 126, 32);
+		desktopPane.add(btn4jRun);
+		btn4jRun.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				if (jListUserReports.isSelectionEmpty() == false)
+				{
+					JDBUserReport reportid = (JDBUserReport) ((JDBListData) jListUserReports.getSelectedValue()).getObject();
+					reportid.getUserReportProperties();
+
+					if (reportid.getDestination().equals("SYSTEM") == false)
+					{
+						if (reportid.isParamDateRequired())
+						{
+							reportid.setParamFromDate(JUtility.getTimestampFromDate(domDateFrom.getDate()));
+							reportid.setParamToDate(JUtility.getTimestampFromDate(domDateTo.getDate()));
+						}
+						label4j_statusBar.setText("Please wait....");
+						if (reportid.runReport() == false)
+						{
+							JUtility.errorBeep();
+							label4j_statusBar.setText(reportid.getErrorMessage());
+							JOptionPane.showMessageDialog(Common.mainForm, reportid.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+						}
+						else
+						{
+							label4j_statusBar.setText("Created : " + reportid.getExportFilename());
+						}
+					}
+					else
+					{
+						JUtility.errorBeep();
+						label4j_statusBar.setText("");
+						JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+
+					}
+				}
+			}
+		});
+		btn4jRun.setText(lang.get("btn_Run"));
+
 		populateListUserReports("");
 		populateListUserShifts("");
 		setButtonState();
-
-		final JHelp help = new JHelp();
-		help.enableHelpOnButton(btn4jHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_USER_REPORT"));
 	}
 
 	private void dateAdjust(JDateControl datecontrol, Integer adjustment)
@@ -598,7 +558,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 				{
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(Common.mainForm, rpt.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-				} else
+				}
+				else
 				{
 
 					JLaunchMenu.runForm("FRM_ADMIN_USER_REPORT_PROP", reportId);
@@ -625,7 +586,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 				{
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(Common.mainForm, shift.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-				} else
+				}
+				else
 				{
 
 					JLaunchMenu.runDialog("FRM_ADMIN_SHIFT", shiftId);
@@ -655,7 +617,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 			btn4jDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_REPORT_DELETE"));
 			btn4jRun.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_REPORT_RUN"));
 			btn4jCopy.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_REPORT_COPY"));
-		} else
+		}
+		else
 		{
 			btn4jAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_REPORT_ADD"));
 			btn4jEdit.setEnabled(false);

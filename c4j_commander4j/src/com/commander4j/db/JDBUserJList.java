@@ -63,8 +63,7 @@ public class JDBUserJList extends JList<JDBListData>
 	public JDBUserJList()
 	{
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
-		
+		setBackground(Common.color_list_background);		
 	}
 
 	public JDBUserJList(String host, String session)
@@ -82,7 +81,7 @@ public class JDBUserJList extends JList<JDBListData>
 
 		}
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(Common.color_list_background);
 	}
 
 	public String getToolTipText(MouseEvent e) {

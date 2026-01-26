@@ -19,12 +19,12 @@ public class JLicenseInfo implements Comparable<JLicenseInfo>
 	public String version;
 	public String type;
 	private static JXMLDocument xmlMessage;
-	
+
 	public JLicenseInfo()
 	{
-		
+
 	}
-	
+
 	public JLicenseInfo(String desc,String filename,String version,String type)
 	{
 		this.description = desc;
@@ -32,7 +32,7 @@ public class JLicenseInfo implements Comparable<JLicenseInfo>
 		this.version=version;
 		this.type=type;
 	}
-	
+
 	public String getDescription()
 	{
 		return description;
@@ -59,36 +59,37 @@ public class JLicenseInfo implements Comparable<JLicenseInfo>
 		return JUtility.padString(description, true, width_description, " ") +JUtility.padString(version, true, width_version, " ")+type;
 		//return JUtility.replaceNullStringwithBlank(description);
 	}
-	
+
 	public LinkedList<JLicenseInfo> getLicences()
 	{
 		HashMap<String,String> licenceTypes = new HashMap<String,String>();
-		
+
 		licenceTypes.clear();
-		
-		String filename = "." + File.separator + "lib" + File.separator + "license" + File.separator + "LicenceInfo.xml";
+
+		String filename = "." + File.separator + "lib" + File.separator + "license" + File.separator + "LicenseInfo.xml";
 		xmlMessage = new JXMLDocument(filename);
-		
+
 		LinkedList<JLicenseInfo> typeList = new LinkedList<JLicenseInfo>();
-		
+
 		//Get Licence Info
 		int position = 1;
-		
+		// //info/licenses/license[17]/type[1]
 		while (xmlMessage.findXPath("//info/licenses/license["+String.valueOf(position)+"]/type").trim().equals("")==false)
 		{
 			String type = xmlMessage.findXPath("//info/licenses/license["+String.valueOf(position)+"]/type").trim();
 			String file = xmlMessage.findXPath("//info/licenses/license["+String.valueOf(position)+"]/filename").trim();
-			
+			System.out.println(type + " = " + " ["+file+"]");
+
 			licenceTypes.put(type, file);
-			
+
 			position++;
 		}
-		
+
 		if (licenceTypes.containsKey("GNU General Public License V2")==false)
 		{
 			licenceTypes.put("GNU General Public License V2", "GNU General Public License V2.txt");
 		}
-		
+
 		//Get Library Info
 		position = 1;
 		while (xmlMessage.findXPath("//info/libraries/library["+String.valueOf(position)+"]/description").trim().equals("")==false)
@@ -97,19 +98,19 @@ public class JLicenseInfo implements Comparable<JLicenseInfo>
 			String type = xmlMessage.findXPath("//info/libraries/library["+String.valueOf(position)+"]/type").trim();
 			String version = xmlMessage.findXPath("//info/libraries/library["+String.valueOf(position)+"]/version").trim();
 			String lfilename = JUtility.replaceNullStringwithBlank(licenceTypes.get(type));
-			
+
 			JLicenseInfo test = new JLicenseInfo(description,lfilename,version,type);
 
 			typeList.add(test);
 			position++;
-		}	
-		
+		}
+
 		JLicenseInfo test = new JLicenseInfo("Commander4j","GNU General Public License V2.txt",JVersion.getProgramVersion(),"GNU General Public License V2");
 
 		typeList.add(test);
-	
+
 		Collections.sort(typeList);
-		
+
 		return typeList;
 	}
 
@@ -117,10 +118,10 @@ public class JLicenseInfo implements Comparable<JLicenseInfo>
 	public int compareTo(JLicenseInfo o)
 	{
 		String comparedDesc = o.description;
-		
+
 		return this.description.toUpperCase().compareTo(comparedDesc.toUpperCase());
 
 	}
-	
+
 
 }

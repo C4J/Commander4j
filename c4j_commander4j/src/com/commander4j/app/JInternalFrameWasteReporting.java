@@ -2,33 +2,33 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFramMaterialBatchAdmin.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -46,19 +46,15 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -77,9 +73,12 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
@@ -95,88 +94,85 @@ import com.commander4j.util.JUtility;
 /**
  * The JInternalFrameWasteLogAdmin allows the user to view/edit the table
  * APP_WASTE_LOG table.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameWasteLogAdmin.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBWasteLog JDBWasteLog
  */
 public class JInternalFrameWasteReporting extends JInternalFrame
 {
-	private JButton4j jButtonClear;
-	private JButton4j jButtonPrint;
-	private JButton4j jButtonExcel;
-	private JLabel4j_std jStatusText;
-	private JLabel4j_std jLabelProcessOrder;
-	private JCheckBox4j jCheckBoxTo;
-	private JCheckBox4j jCheckBoxFrom;
-	private JLabel4j_std jLabel5_1;
-	private JLabel4j_std jLabelRecycle;
-	private JButton4j jButtonLookupWasteLocation;
-	private JButton4j jButtonLookupWasteContainer;
-	private JButton4j jButtonLookupWasteReportingID;
-	private JButton4j jButtonLookupWasteMaterial;
-	private JButton4j jButtonLookupWasteReason;
-	private JButton4j jButtonLookupUserID;
-	private JTextField4j jTextFieldProcessOrder;
-	private JTextField4j jTextFieldUserID;
-	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
-	private JButton4j jButtonClose;
-	private JToggleButton4j jToggleButtonSequence;
-	private JButton4j jButtonLookupProcessOrder;
-	private JTextField4j jTextFieldWasteLocation;
-	private JTextField4j jTextFieldWasteContainer;
-	private JTextField4j jTextFieldWasteReportingID;
-	private JComboBox4j<JDBWasteTransactionType> jComboBoxTransactionType;
-	private JComboBox4j<String> jComboBoxRecycle;
-	private JComboBox4j<String> jComboBoxHazard;
-	private JComboBox4j<JDBWasteReportingGroup> jComboBoxReportingGroup;
-	private JLabel4j_std jLabelTransaction_Type;
-	private JComboBox4j<String> jComboBoxSortBy;
-	private JLabel4j_std jLabel10;
-	private JLabel4j_std jLabel3;
-	private JLabel4j_std jLabel3a;
-	private JLabel4j_std jLabel4;
-	private JTextField4j jTextFieldWasteMaterial;
-	private JTextField4j jTextFieldWasteReason;
-	private JLabel4j_std jLabelWasteMaterial;
-	private JLabel4j_std jLabelWasteReason;
-	private JLabel4j_std jLabelUser;
-	private JLabel4j_std jLabelHazard;
-	private JTable4j jTable1;
-	private JButton4j jButtonHelp;
-	private JButton4j jButtonSearch;
-	private JScrollPane jScrollPane1;
-	private static boolean dlg_sort_ascending = false;
-	private JDateControl expiryFrom = new JDateControl();
-	private JDateControl expiryTo = new JDateControl();
-	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-	private JDBLanguage lang;
-	private JCalendarButton calendarButtonDateFrom;
-	private JCalendarButton calendarButtonDateTo;
-	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
-	private JSpinner4j jSpinnerLimit = new JSpinner4j();
-	private JDBWasteTransactionType blank = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
-	private JDBWasteReportingGroup blankGroup = new JDBWasteReportingGroup(Common.selectedHostID, Common.sessionID);
-	private Vector<JDBWasteTransactionType> transTypeList = new Vector<JDBWasteTransactionType>();
-	private JDBWasteTransactionType transactionTypes = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
-	private JComboBox4j<JDBWasteTypes> jComboBoxMaterialType = new JComboBox4j<JDBWasteTypes>();
-
-	private JDBWasteTypes wasteTypes = new JDBWasteTypes(Common.selectedHostID, Common.sessionID);
-	private JDBWasteReportingGroup reportingGroups = new JDBWasteReportingGroup(Common.selectedHostID, Common.sessionID);
-
-	private Vector<JDBWasteTypes> typeList = new Vector<JDBWasteTypes>();
-	private Vector<JDBWasteReportingGroup> groupList = new Vector<JDBWasteReportingGroup>();
 
 	private ComboBoxModel<JDBWasteTypes> jComboBoxTypeModel;
-
 	private DefaultComboBoxModel<String> sortFieldsFriendly;
-	private LinkedList<String> sortFieldsSQL;
-	private boolean emptyresult = true;
-	private JDBQuery2 qSearch = new JDBQuery2(Common.selectedHostID, Common.sessionID);
-	private JDBQuery2 qPrint = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	private JButton4j jButtonClear;
+	private JButton4j jButtonClose;
+	private JButton4j jButtonExcel;
+	private JButton4j jButtonHelp;
+	private JButton4j jButtonLookupProcessOrder;
+	private JButton4j jButtonLookupUserID;
+	private JButton4j jButtonLookupWasteContainer;
+	private JButton4j jButtonLookupWasteLocation;
+	private JButton4j jButtonLookupWasteMaterial;
+	private JButton4j jButtonLookupWasteReason;
+	private JButton4j jButtonLookupWasteReportingID;
+	private JButton4j jButtonPrint;
+	private JButton4j jButtonSearch;
+	private JCalendarButton calendarButtonDateFrom;
+	private JCalendarButton calendarButtonDateTo;
+	private JCheckBox4j jCheckBoxFrom;
+	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxTo;
+	private JComboBox4j<JDBWasteReportingGroup> jComboBoxReportingGroup;
+	private JComboBox4j<JDBWasteTransactionType> jComboBoxTransactionType;
+	private JComboBox4j<JDBWasteTypes> jComboBoxMaterialType = new JComboBox4j<JDBWasteTypes>();
+	private JComboBox4j<String> jComboBoxHazard;
+	private JComboBox4j<String> jComboBoxRecycle;
+	private JComboBox4j<String> jComboBoxSortBy;
+	private JDBLanguage lang;
 	private JDBQuery2 qExcel = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	private JDBQuery2 qPrint = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	private JDBQuery2 qSearch = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	private JDBWasteReportingGroup blankGroup = new JDBWasteReportingGroup(Common.selectedHostID, Common.sessionID);
+	private JDBWasteReportingGroup reportingGroups = new JDBWasteReportingGroup(Common.selectedHostID, Common.sessionID);
+	private JDBWasteTransactionType blank = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
+	private JDBWasteTransactionType transactionTypes = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
+	private JDBWasteTypes wasteTypes = new JDBWasteTypes(Common.selectedHostID, Common.sessionID);
+	private JDateControl expiryFrom = new JDateControl();
+	private JDateControl expiryTo = new JDateControl();
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusText;
+	private JLabel4j_std jLabelHazard;
+	private JLabel4j_std jLabelProcessOrder;
+	private JLabel4j_std jLabelRecycle;
+	private JLabel4j_std jLabelTransaction_Type;
+	private JLabel4j_std jLabelUserID;
+	private JLabel4j_std jLabelWasteMaterial;
+	private JLabel4j_std jLabelWasteReason;
+	private JLabel4j_std jLabel_Container;
+	private JLabel4j_std jLabel_Location;
+	private JLabel4j_std jLabel_ReportID;
+	private JLabel4j_std jLabel_SortBy;
+	private JLabel4j_std jLabel_TransactionDate;
+	private JScrollPane4j jScrollPane1;
+	private JSpinner4j jSpinnerLimit = new JSpinner4j();
+	private JTable4j jTable1;
+	private JTextField4j jTextFieldProcessOrder;
+	private JTextField4j jTextFieldUserID;
+	private JTextField4j jTextFieldWasteContainer;
+	private JTextField4j jTextFieldWasteLocation;
+	private JTextField4j jTextFieldWasteMaterial;
+	private JTextField4j jTextFieldWasteReason;
+	private JTextField4j jTextFieldWasteReportingID;
+	private JToggleButton4j jToggleButtonSequence;
+	private LinkedList<String> sortFieldsSQL;
+	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+	private Vector<JDBWasteReportingGroup> groupList = new Vector<JDBWasteReportingGroup>();
+	private Vector<JDBWasteTransactionType> transTypeList = new Vector<JDBWasteTransactionType>();
+	private Vector<JDBWasteTypes> typeList = new Vector<JDBWasteTypes>();
+	private boolean emptyresult = true;
+	private static boolean dlg_sort_ascending = false;
+	private static final long serialVersionUID = 1;
 
 	private void buildSortList()
 	{
@@ -291,7 +287,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				jTextFieldWasteLocation.setText(jTable1.getValueAt(row, JDBViewWasteReportingTableModel.Location_Col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Container_ID")) == true)
 			{
 				jTextFieldWasteContainer.setText(jTable1.getValueAt(row, JDBViewWasteReportingTableModel.Container_Col).toString());
@@ -357,11 +353,10 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		export.saveAs("waste_reporting.xls", materialBatch.getWasteLogResultSet(buildSQL(qExcel)), Common.mainForm);
 	}
 
-	
 	private void copyToClipboard(String fieldname)
 	{
 		StringSelection stringSelection = new StringSelection("");
-		
+
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -375,12 +370,12 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
 			}
-			
+
 			if (fieldname.equals("Material") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 6).toString());
 			}
-			
+
 			if (fieldname.equals("Reason") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 8).toString());
@@ -395,12 +390,12 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 11).toString());
 			}
-						
+
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
 		}
 	}
-	
+
 	private void sortBy(String fieldname)
 	{
 		jComboBoxSortBy.setSelectedItem(fieldname);
@@ -550,832 +545,750 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			blank.setDisplayMode(JDBWasteTransactionType.displayModeShort);
 
 			transTypeList.add(blank);
-			transTypeList.addAll(transactionTypes.getWasteTransactionTypesList(true,JDBWasteTransactionType.displayModeShort));
+			transTypeList.addAll(transactionTypes.getWasteTransactionTypesList(true, JDBWasteTransactionType.displayModeShort));
 
 			blankGroup.setWasteReportingGroup(-1);
 			blankGroup.setDescription("None");
 			groupList.add(blankGroup);
 			groupList.addAll(reportingGroups.getWasteGroupList());
 
+			jDesktopPane1 = new JDesktopPane4j();
+
+			getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
+
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.Table);
+
+			jDesktopPane1.setLayout(null);
+			jDesktopPane1.add(jScrollPane1);
+			jScrollPane1.setBounds(0, 215, 988, 386);
+
+			TableModel jTable1Model = new DefaultTableModel(new String[][]
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
-				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
+					{ "One", "Two" },
+					{ "Three", "Four" } }, new String[]
+			{ "Column 1", "Column 2" });
+			jTable1 = new JTable4j();
+			jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
+			jScrollPane1.setViewportView(jTable1);
+			jTable1.setModel(jTable1Model);
+
+			final JPopupMenu popupMenu = new JPopupMenu();
+			addPopup(jTable1, popupMenu);
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
 				{
-					jScrollPane1 = new JScrollPane();
-					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
-					jDesktopPane1.setLayout(null);
-					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 229, 988, 386);
+					public void actionPerformed(final ActionEvent e)
 					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][]
-						{
-								{ "One", "Two" },
-								{ "Three", "Four" } }, new String[]
-						{ "Column 1", "Column 2" });
-						jTable1 = new JTable4j();
-						jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
-						jScrollPane1.setViewportView(jTable1);
-						jTable1.setModel(jTable1Model);
-
-						{
-							final JPopupMenu popupMenu = new JPopupMenu();
-							addPopup(jTable1, popupMenu);
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										search();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Search"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										excel();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Excel"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenu4j sortByMenu = new JMenu4j();
-								sortByMenu.setText(lang.get("lbl_Sort_By"));
-								popupMenu.add(sortByMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Material ID");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Location ID");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
-									sortByMenu.add(newItemMenuItem);
-								}
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Container ID");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Container_ID"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Transaction Type");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Transaction_Type"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Date & Time");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Transaction_Date"));
-									sortByMenu.add(newItemMenuItem);
-								}
-							}
-
-							{
-								final JMenu4j filterByMenu = new JMenu4j();
-								filterByMenu.setText(lang.get("lbl_Filter_By"));
-								popupMenu.add(filterByMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
-									filterByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Container_ID"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Transaction_Type"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Transaction_Date"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									filterByMenu.addSeparator();
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											clearFilter();
-										}
-									});
-									newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
-									filterByMenu.add(newItemMenuItem);
-								}
-							}
-							
-							{
-								final JMenu4j clipboardByMenu = new JMenu4j();
-								clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
-								popupMenu.add(clipboardByMenu);
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Location");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Container");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Container_ID"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Material");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Reason");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Reason"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Process Order");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Process_Order"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Net Weight");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material_Net_Weight"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-
-							}
-
-							
-						}
+						search();
 					}
-				}
+				});
+				newItemMenuItem.setText(lang.get("btn_Search"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
 				{
-					jButtonSearch = new JButton4j(Common.icon_search_16x16);
-					jDesktopPane1.add(jButtonSearch);
-					jButtonSearch.setText(lang.get("btn_Search"));
-					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(56, 188, 140, 32);
-					jButtonSearch.addActionListener(new ActionListener()
+					public void actionPerformed(final ActionEvent e)
 					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							search();
+						excel();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Excel"));
+				popupMenu.add(newItemMenuItem);
+			}
 
-						}
-					});
-				}
-
-				{
-					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jDesktopPane1.add(jButtonHelp);
-					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(616, 188, 140, 32);
-				}
-				{
-					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonClose);
-					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(756, 188, 140, 32);
-					jButtonClose.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							qSearch = null;
-							qPrint = null;
-							qExcel = null;
-							dispose();
-						}
-					});
-				}
-				{
-					jLabelWasteMaterial = new JLabel4j_std();
-					jDesktopPane1.add(jLabelWasteMaterial);
-					jLabelWasteMaterial.setText(lang.get("lbl_Material"));
-					jLabelWasteMaterial.setBounds(5, 48, 113, 22);
-					jLabelWasteMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelWasteReason = new JLabel4j_std();
-					jDesktopPane1.add(jLabelWasteReason);
-					jLabelWasteReason.setText(lang.get("lbl_Reason"));
-					jLabelWasteReason.setBounds(5, 118, 113, 22);
-					jLabelWasteReason.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jTextFieldWasteMaterial = new JTextField4j(JDBViewWasteReporting.field_MaterialID);
-					jDesktopPane1.add(jTextFieldWasteMaterial);
-					jTextFieldWasteMaterial.setBounds(134, 48, 125, 22);
-				}
-				{
-					jTextFieldWasteReason = new JTextField4j(JDBViewWasteReporting.field_ReasonID);
-					jDesktopPane1.add(jTextFieldWasteReason);
-					jTextFieldWasteReason.setBounds(134, 118, 125, 22);
-				}
-				{
-					jLabel3 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel3);
-					jLabel3.setText(lang.get("lbl_Location_ID"));
-					jLabel3.setBounds(285, 48, 108, 22);
-					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabel3a = new JLabel4j_std();
-					jDesktopPane1.add(jLabel3a);
-					jLabel3a.setText(lang.get("lbl_Container_ID"));
-					jLabel3a.setBounds(285, 83, 108, 22);
-					jLabel3a.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabel4 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel4);
-					jLabel4.setText(lang.get("lbl_Report_ID"));
-					jLabel4.setBounds(285, 118, 108, 22);
-					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jTextFieldWasteLocation = new JTextField4j(JDBViewWasteReporting.field_LocationID);
-					jDesktopPane1.add(jTextFieldWasteLocation);
-					jTextFieldWasteLocation.setBounds(401, 48, 125, 22);
-				}
-				{
-					jTextFieldWasteContainer = new JTextField4j(JDBWasteLog.field_ContainerID);
-					jDesktopPane1.add(jTextFieldWasteContainer);
-					jTextFieldWasteContainer.setBounds(401, 83, 125, 22);
-				}
-				{
-					jTextFieldWasteReportingID = new JTextField4j(JDBWasteReportingIDS.field_WasteReportingID);
-					jDesktopPane1.add(jTextFieldWasteReportingID);
-					jTextFieldWasteReportingID.setBounds(401, 118, 125, 22);
-				}
-				{
-					jLabel10 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel10);
-					jLabel10.setText(lang.get("lbl_Sort_By"));
-					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(280, 152, 113, 22);
-				}
-				{
-
-					jComboBoxSortBy = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setBounds(401, 152, 255, 22);
-
-				}
-				{
-					jLabelTransaction_Type = new JLabel4j_std();
-					jDesktopPane1.add(jLabelTransaction_Type);
-					jLabelTransaction_Type.setText(lang.get("lbl_Transaction_Type"));
-					jLabelTransaction_Type.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelTransaction_Type.setBounds(674, 83, 146, 22);
-				}
-				{
-					ComboBoxModel<JDBWasteTransactionType> jComboBoxTransTypeModel = new DefaultComboBoxModel<JDBWasteTransactionType>(transTypeList);
-					jComboBoxTransactionType = new JComboBox4j<JDBWasteTransactionType>();
-					jDesktopPane1.add(jComboBoxTransactionType);
-					jComboBoxTransactionType.setModel(jComboBoxTransTypeModel);
-					jComboBoxTransactionType.setBounds(826, 83, 146, 22);
-					jComboBoxTransactionType.setMaximumRowCount(transTypeList.size());
-				}
-				{
-					ComboBoxModel<JDBWasteReportingGroup> jComboBoxReportingGroupModel = new DefaultComboBoxModel<JDBWasteReportingGroup>(groupList);
-					jComboBoxReportingGroup = new JComboBox4j<JDBWasteReportingGroup>();
-					jDesktopPane1.add(jComboBoxReportingGroup);
-					jComboBoxReportingGroup.setModel(jComboBoxReportingGroupModel);
-					jComboBoxReportingGroup.setBounds(687, 118, 285, 22);
-					jComboBoxReportingGroup.setMaximumRowCount(groupList.size());
-				}
+			{
+				final JMenu4j sortByMenu = new JMenu4j();
+				sortByMenu.setText(lang.get("lbl_Sort_By"));
+				popupMenu.add(sortByMenu);
 
 				{
-					jToggleButtonSequence = new JToggleButton4j();
-					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(654, 152, 21, 22);
-					jToggleButtonSequence.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							setSequence(jToggleButtonSequence.isSelected());
-						}
-					});
-				}
-
-				{
-					jButtonLookupWasteMaterial = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupWasteMaterial.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.waste_materials_for_location())
-							{
-								jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-					jButtonLookupWasteMaterial.setBounds(259, 48, 21, 22);
-					jDesktopPane1.add(jButtonLookupWasteMaterial);
-				}
-
-				{
-					jButtonLookupWasteReason = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupWasteReason.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.waste_reasons())
-							{
-								jTextFieldWasteReason.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-					jButtonLookupWasteReason.setBounds(259, 118, 21, 22);
-					jDesktopPane1.add(jButtonLookupWasteReason);
-				}
-
-				{
-					jButtonLookupWasteLocation = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupWasteLocation.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgCriteriaDefault = "";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.waste_locations())
-							{
-								jTextFieldWasteLocation.setText(JLaunchLookup.dlgResult);
-							}
-
-						}
-					});
-					jButtonLookupWasteLocation.setBounds(526, 48, 21, 22);
-					jDesktopPane1.add(jButtonLookupWasteLocation);
-				}
-				
-				{
-					jButtonLookupWasteContainer = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupWasteContainer.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgCriteriaDefault = "";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.waste_containers())
-							{
-								jTextFieldWasteContainer.setText(JLaunchLookup.dlgResult);
-							}
-
-						}
-					});
-					jButtonLookupWasteContainer.setBounds(526, 83, 21, 22);
-					jDesktopPane1.add(jButtonLookupWasteContainer);
-				}
-
-				{
-					jButtonLookupWasteReportingID = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupWasteReportingID.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgCriteriaDefault = "";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.waste_report_ids())
-							{
-								jTextFieldWasteReportingID.setText(JLaunchLookup.dlgResult);
-							}
-
-						}
-					});
-					jButtonLookupWasteReportingID.setBounds(526, 118, 21, 22);
-					jDesktopPane1.add(jButtonLookupWasteReportingID);
-				}
-
-				{
-					expiryFrom.setBounds(157, 13, 125, 22);
-					expiryFrom.setEnabled(false);
-					jDesktopPane1.add(expiryFrom);
-				}
-
-				{
-					expiryTo.setBounds(346, 13, 128, 22);
-					expiryTo.setEnabled(false);
-					jDesktopPane1.add(expiryTo);
-				}
-
-				{
-					jLabel5_1 = new JLabel4j_std();
-					jLabel5_1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5_1.setText(lang.get("lbl_Transaction_Date"));
-					jLabel5_1.setBounds(0, 13, 126, 22);
-					jDesktopPane1.add(jLabel5_1);
-				}
-
-				{
-					jCheckBoxFrom = new JCheckBox4j();
-					jCheckBoxFrom.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							if (jCheckBoxFrom.isSelected())
-							{
-								expiryFrom.setEnabled(true);
-								calendarButtonDateFrom.setEnabled(true);
-							}
-							else
-							{
-								expiryFrom.setEnabled(false);
-								calendarButtonDateFrom.setEnabled(false);
-							}
-						}
-					});
-					jCheckBoxFrom.setBackground(new Color(255, 255, 255));
-					jCheckBoxFrom.setBounds(134, 13, 21, 22);
-					jDesktopPane1.add(jCheckBoxFrom);
-				}
-
-				{
-					jCheckBoxTo = new JCheckBox4j();
-					jCheckBoxTo.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							if (jCheckBoxTo.isSelected())
-							{
-								expiryTo.setEnabled(true);
-								calendarButtonDateTo.setEnabled(true);
-							}
-							else
-							{
-								expiryTo.setEnabled(false);
-								calendarButtonDateTo.setEnabled(false);
-							}
-						}
-					});
-					jCheckBoxTo.setBackground(new Color(255, 255, 255));
-					jCheckBoxTo.setBounds(319, 13, 21, 22);
-					jDesktopPane1.add(jCheckBoxTo);
-				}
-
-				{
-					jStatusText = new JLabel4j_std();
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 615, 988, 21);
-					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jDesktopPane1.add(jStatusText);
-				}
-
-				{
-					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
-							excel();
+							sortBy("Material ID");
 						}
 					});
-
-					jButtonExcel.setText(lang.get("btn_Excel"));
-					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(336, 188, 140, 32);
-					jDesktopPane1.add(jButtonExcel);
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					sortByMenu.add(newItemMenuItem);
 				}
 
 				{
-					calendarButtonDateFrom = new JCalendarButton(expiryFrom);
-					calendarButtonDateFrom.setEnabled(false);
-					calendarButtonDateFrom.setBounds(290, 10, 21, 25);
-					jDesktopPane1.add(calendarButtonDateFrom);
-				}
-				{
-					calendarButtonDateTo = new JCalendarButton(expiryTo);
-					calendarButtonDateTo.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
-						public void actionPerformed(ActionEvent e)
+						public void actionPerformed(final ActionEvent e)
 						{
+							sortBy("Location ID");
 						}
 					});
-					calendarButtonDateTo.setEnabled(false);
-					calendarButtonDateTo.setBounds(477, 10, 21, 25);
-					jDesktopPane1.add(calendarButtonDateTo);
+					newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+					sortByMenu.add(newItemMenuItem);
+				}
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("Container ID");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Container_ID"));
+					sortByMenu.add(newItemMenuItem);
 				}
 
-				JLabel4j_std label4j_std = new JLabel4j_std();
-				label4j_std.setText(lang.get("lbl_Limit"));
-				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(721, 152, 147, 22);
-				jDesktopPane1.add(label4j_std);
-
-				jCheckBoxLimit = new JCheckBox4j();
-				jCheckBoxLimit.setSelected(true);
-				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(872, 152, 21, 22);
-				jDesktopPane1.add(jCheckBoxLimit);
-
-				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
-				jSpinnerLimit.setEditor(ne);
-				jSpinnerLimit.setBounds(901, 152, 68, 22);
-				jSpinnerLimit.setValue(1000);
-				jDesktopPane1.add(jSpinnerLimit);
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("Transaction Type");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Transaction_Type"));
+					sortByMenu.add(newItemMenuItem);
+				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear_16x16);
-					jButtonClear.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("Date & Time");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Transaction_Date"));
+					sortByMenu.add(newItemMenuItem);
+				}
+			}
+
+			{
+				final JMenu4j filterByMenu = new JMenu4j();
+				filterByMenu.setText(lang.get("lbl_Filter_By"));
+				popupMenu.add(filterByMenu);
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Container_ID"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Transaction_Type"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Transaction_Date"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					filterByMenu.addSeparator();
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
 							clearFilter();
-
 						}
 					});
-					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(196, 188, 140, 32);
-					jDesktopPane1.add(jButtonClear);
+					newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
+					filterByMenu.add(newItemMenuItem);
 				}
-
-				{
-					jButtonPrint = new JButton4j(Common.icon_report_16x16);
-					jDesktopPane1.add(jButtonPrint);
-					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(476, 188, 140, 32);
-					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							print();
-
-						}
-					});
-				}
-				{
-					jTextFieldProcessOrder = new JTextField4j(JDBViewWasteReporting.field_ProcessOrder);
-					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(134, 83, 125, 22);
-				}
-				{
-					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupProcessOrder);
-					jButtonLookupProcessOrder.setBounds(259, 83, 21, 22);
-					jButtonLookupProcessOrder.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchLookup.dlgCriteriaDefault = "Ready";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.processOrders())
-							{
-								jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-				}
-				{
-					jLabelProcessOrder = new JLabel4j_std();
-					jDesktopPane1.add(jLabelProcessOrder);
-					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
-					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(-27, 83, 146, 22);
-				}
-
-				{
-					jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
-					jDesktopPane1.add(jTextFieldUserID);
-					jTextFieldUserID.setBounds(134, 152, 125, 22);
-				}
-				{
-					jButtonLookupUserID = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupUserID);
-					jButtonLookupUserID.setBounds(259, 152, 21, 22);
-					jButtonLookupUserID.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchLookup.dlgCriteriaDefault = "";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.users())
-							{
-								jTextFieldUserID.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-				}
-				{
-					jLabelUser = new JLabel4j_std();
-					jDesktopPane1.add(jLabelUser);
-					jLabelUser.setText(lang.get("lbl_User_ID"));
-					jLabelUser.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelUser.setBounds(16, 152, 108, 22);
-				}
-
-				{
-
-					jComboBoxTypeModel = new DefaultComboBoxModel<JDBWasteTypes>(typeList);
-					jComboBoxMaterialType.setModel(jComboBoxTypeModel);
-					jComboBoxMaterialType.setBounds(687, 48, 285, 22);
-					jDesktopPane1.add(jComboBoxMaterialType);
-				}
-				{
-					jLabelRecycle = new JLabel4j_std();
-					jDesktopPane1.add(jLabelRecycle);
-					jLabelRecycle.setText(lang.get("lbl_Recycle"));
-					jLabelRecycle.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelRecycle.setBounds(504, 13, 96, 22);
-				}
-				{
-					String[] test =
-					{ "", lang.get("web_Yes"), lang.get("web_No") };
-					ComboBoxModel<String> jComboBoxRecycleModel = new DefaultComboBoxModel<String>(test);
-					jComboBoxRecycle = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxRecycle);
-					jComboBoxRecycle.setModel(jComboBoxRecycleModel);
-					jComboBoxRecycle.setBounds(609, 13, 108, 22);
-					jComboBoxRecycle.setMaximumRowCount(test.length);
-				}
-
-				{
-					String[] test =
-					{ "", lang.get("web_Yes"), lang.get("web_No") };
-					ComboBoxModel<String> jComboBoxRecycleModel = new DefaultComboBoxModel<String>(test);
-					jComboBoxHazard = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxHazard);
-					jComboBoxHazard.setModel(jComboBoxRecycleModel);
-					jComboBoxHazard.setBounds(864, 13, 108, 22);
-					jComboBoxHazard.setMaximumRowCount(test.length);
-				}
-
-				{
-					jLabelHazard = new JLabel4j_std();
-					jDesktopPane1.add(jLabelHazard);
-					jLabelHazard.setText(lang.get("lbl_Hazard"));
-					jLabelHazard.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelHazard.setBounds(735, 13, 122, 22);
-				}
-
-				JLabel4j_std jLabel_WasteType = new JLabel4j_std();
-				jLabel_WasteType.setText(lang.get("lbl_Material_Type"));
-				jLabel_WasteType.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_WasteType.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_WasteType.setBounds(545, 48, 130, 22);
-				jDesktopPane1.add(jLabel_WasteType);
-
-				JLabel4j_std jLabel_WastereportingGroup = new JLabel4j_std();
-				jLabel_WastereportingGroup.setText(lang.get("lbl_Reporting_Group"));
-				jLabel_WastereportingGroup.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_WastereportingGroup.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_WastereportingGroup.setBounds(548, 118, 130, 22);
-				jDesktopPane1.add(jLabel_WastereportingGroup);
 			}
+
+			{
+				final JMenu4j clipboardByMenu = new JMenu4j();
+				clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
+				popupMenu.add(clipboardByMenu);
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Location");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Container");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Container_ID"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Material");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Reason");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Reason"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Process Order");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Process_Order"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Net Weight");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material_Net_Weight"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+			}
+
+			jButtonSearch = new JButton4j(Common.icon_search_16x16);
+			jDesktopPane1.add(jButtonSearch);
+			jButtonSearch.setText(lang.get("btn_Search"));
+			jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
+			jButtonSearch.setBounds(56, 168, 140, 32);
+			jButtonSearch.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					search();
+
+				}
+			});
+
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
+			jButtonHelp.setBounds(616, 168, 140, 32);
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText(lang.get("btn_Close"));
+			jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
+			jButtonClose.setBounds(756, 168, 140, 32);
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					qSearch = null;
+					qPrint = null;
+					qExcel = null;
+					dispose();
+				}
+			});
+
+			jLabelWasteMaterial = new JLabel4j_std();
+			jDesktopPane1.add(jLabelWasteMaterial);
+			jLabelWasteMaterial.setText(lang.get("lbl_Material"));
+			jLabelWasteMaterial.setBounds(5, 40, 113, 22);
+			jLabelWasteMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelWasteReason = new JLabel4j_std();
+			jDesktopPane1.add(jLabelWasteReason);
+			jLabelWasteReason.setText(lang.get("lbl_Reason"));
+			jLabelWasteReason.setBounds(5, 104, 113, 22);
+			jLabelWasteReason.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jTextFieldWasteMaterial = new JTextField4j(JDBViewWasteReporting.field_MaterialID);
+			jDesktopPane1.add(jTextFieldWasteMaterial);
+			jTextFieldWasteMaterial.setBounds(134, 40, 125, 22);
+
+			jTextFieldWasteReason = new JTextField4j(JDBViewWasteReporting.field_ReasonID);
+			jDesktopPane1.add(jTextFieldWasteReason);
+			jTextFieldWasteReason.setBounds(134, 104, 125, 22);
+
+			jLabel_Location = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_Location);
+			jLabel_Location.setText(lang.get("lbl_Location_ID"));
+			jLabel_Location.setBounds(285, 40, 108, 22);
+			jLabel_Location.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabel_Container = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_Container);
+			jLabel_Container.setText(lang.get("lbl_Container_ID"));
+			jLabel_Container.setBounds(285, 72, 108, 22);
+			jLabel_Container.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabel_ReportID = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_ReportID);
+			jLabel_ReportID.setText(lang.get("lbl_Report_ID"));
+			jLabel_ReportID.setBounds(285, 104, 108, 22);
+			jLabel_ReportID.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jTextFieldWasteLocation = new JTextField4j(JDBViewWasteReporting.field_LocationID);
+			jDesktopPane1.add(jTextFieldWasteLocation);
+			jTextFieldWasteLocation.setBounds(401, 40, 125, 22);
+
+			jTextFieldWasteContainer = new JTextField4j(JDBWasteLog.field_ContainerID);
+			jDesktopPane1.add(jTextFieldWasteContainer);
+			jTextFieldWasteContainer.setBounds(401, 72, 125, 22);
+
+			jTextFieldWasteReportingID = new JTextField4j(JDBWasteReportingIDS.field_WasteReportingID);
+			jDesktopPane1.add(jTextFieldWasteReportingID);
+			jTextFieldWasteReportingID.setBounds(401, 104, 125, 22);
+
+			jLabel_SortBy = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_SortBy);
+			jLabel_SortBy.setText(lang.get("lbl_Sort_By"));
+			jLabel_SortBy.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_SortBy.setBounds(280, 136, 113, 22);
+
+			jComboBoxSortBy = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxSortBy);
+			jComboBoxSortBy.setBounds(401, 136, 255, 22);
+
+			jLabelTransaction_Type = new JLabel4j_std();
+			jDesktopPane1.add(jLabelTransaction_Type);
+			jLabelTransaction_Type.setText(lang.get("lbl_Transaction_Type"));
+			jLabelTransaction_Type.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelTransaction_Type.setBounds(674, 72, 146, 22);
+
+			ComboBoxModel<JDBWasteTransactionType> jComboBoxTransTypeModel = new DefaultComboBoxModel<JDBWasteTransactionType>(transTypeList);
+			jComboBoxTransactionType = new JComboBox4j<JDBWasteTransactionType>();
+			jDesktopPane1.add(jComboBoxTransactionType);
+			jComboBoxTransactionType.setModel(jComboBoxTransTypeModel);
+			jComboBoxTransactionType.setBounds(826, 72, 146, 22);
+			jComboBoxTransactionType.setMaximumRowCount(transTypeList.size());
+
+			ComboBoxModel<JDBWasteReportingGroup> jComboBoxReportingGroupModel = new DefaultComboBoxModel<JDBWasteReportingGroup>(groupList);
+			jComboBoxReportingGroup = new JComboBox4j<JDBWasteReportingGroup>();
+			jDesktopPane1.add(jComboBoxReportingGroup);
+			jComboBoxReportingGroup.setModel(jComboBoxReportingGroupModel);
+			jComboBoxReportingGroup.setBounds(687, 104, 285, 22);
+			jComboBoxReportingGroup.setMaximumRowCount(groupList.size());
+
+			jToggleButtonSequence = new JToggleButton4j();
+			jDesktopPane1.add(jToggleButtonSequence);
+			jToggleButtonSequence.setBounds(654, 136, 21, 22);
+			jToggleButtonSequence.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					setSequence(jToggleButtonSequence.isSelected());
+				}
+			});
+
+			jButtonLookupWasteMaterial = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupWasteMaterial.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = false;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.waste_materials_for_location())
+					{
+						jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+			jButtonLookupWasteMaterial.setBounds(259, 40, 21, 22);
+			jDesktopPane1.add(jButtonLookupWasteMaterial);
+
+			jButtonLookupWasteReason = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupWasteReason.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = false;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.waste_reasons())
+					{
+						jTextFieldWasteReason.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+			jButtonLookupWasteReason.setBounds(259, 104, 21, 22);
+			jDesktopPane1.add(jButtonLookupWasteReason);
+
+			jButtonLookupWasteLocation = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupWasteLocation.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.waste_locations())
+					{
+						jTextFieldWasteLocation.setText(JLaunchLookup.dlgResult);
+					}
+
+				}
+			});
+			jButtonLookupWasteLocation.setBounds(526, 40, 21, 22);
+			jDesktopPane1.add(jButtonLookupWasteLocation);
+
+			jButtonLookupWasteContainer = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupWasteContainer.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.waste_containers())
+					{
+						jTextFieldWasteContainer.setText(JLaunchLookup.dlgResult);
+					}
+
+				}
+			});
+			jButtonLookupWasteContainer.setBounds(526, 72, 21, 22);
+			jDesktopPane1.add(jButtonLookupWasteContainer);
+
+			jButtonLookupWasteReportingID = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupWasteReportingID.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.waste_report_ids())
+					{
+						jTextFieldWasteReportingID.setText(JLaunchLookup.dlgResult);
+					}
+
+				}
+			});
+			jButtonLookupWasteReportingID.setBounds(526, 104, 21, 22);
+			jDesktopPane1.add(jButtonLookupWasteReportingID);
+
+			expiryFrom.setBounds(157, 8, 120, 22);
+			expiryFrom.setEnabled(false);
+			jDesktopPane1.add(expiryFrom);
+
+			expiryTo.setBounds(346, 8, 120, 22);
+			expiryTo.setEnabled(false);
+			jDesktopPane1.add(expiryTo);
+
+			jLabel_TransactionDate = new JLabel4j_std();
+			jLabel_TransactionDate.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_TransactionDate.setText(lang.get("lbl_Transaction_Date"));
+			jLabel_TransactionDate.setBounds(0, 8, 126, 22);
+			jDesktopPane1.add(jLabel_TransactionDate);
+
+			jCheckBoxFrom = new JCheckBox4j();
+			jCheckBoxFrom.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jCheckBoxFrom.isSelected())
+					{
+						expiryFrom.setEnabled(true);
+						calendarButtonDateFrom.setEnabled(true);
+					}
+					else
+					{
+						expiryFrom.setEnabled(false);
+						calendarButtonDateFrom.setEnabled(false);
+					}
+				}
+			});
+			jCheckBoxFrom.setBounds(134, 8, 21, 22);
+			jDesktopPane1.add(jCheckBoxFrom);
+
+			jCheckBoxTo = new JCheckBox4j();
+			jCheckBoxTo.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jCheckBoxTo.isSelected())
+					{
+						expiryTo.setEnabled(true);
+						calendarButtonDateTo.setEnabled(true);
+					}
+					else
+					{
+						expiryTo.setEnabled(false);
+						calendarButtonDateTo.setEnabled(false);
+					}
+				}
+			});
+			jCheckBoxTo.setBounds(319, 8, 21, 22);
+			jDesktopPane1.add(jCheckBoxTo);
+
+			jStatusText = new JLabel4j_status();
+			jStatusText.setBounds(5, 610, 969, 21);
+			jDesktopPane1.add(jStatusText);
+
+			jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
+			jButtonExcel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					excel();
+				}
+			});
+
+			jButtonExcel.setText(lang.get("btn_Excel"));
+			jButtonExcel.setMnemonic(lang.getMnemonicChar());
+			jButtonExcel.setBounds(336, 168, 140, 32);
+			jDesktopPane1.add(jButtonExcel);
+
+			calendarButtonDateFrom = new JCalendarButton(expiryFrom);
+			calendarButtonDateFrom.setEnabled(false);
+			calendarButtonDateFrom.setBounds(282, 5, 21, 25);
+			jDesktopPane1.add(calendarButtonDateFrom);
+
+			calendarButtonDateTo = new JCalendarButton(expiryTo);
+			calendarButtonDateTo.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				}
+			});
+			calendarButtonDateTo.setEnabled(false);
+			calendarButtonDateTo.setBounds(469, 5, 21, 25);
+			jDesktopPane1.add(calendarButtonDateTo);
+
+			JLabel4j_std jLabel_Limit = new JLabel4j_std();
+			jLabel_Limit.setText(lang.get("lbl_Limit"));
+			jLabel_Limit.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_Limit.setBounds(721, 136, 147, 22);
+			jDesktopPane1.add(jLabel_Limit);
+
+			jCheckBoxLimit = new JCheckBox4j();
+			jCheckBoxLimit.setSelected(true);
+
+			jCheckBoxLimit.setBounds(872, 136, 21, 22);
+			jDesktopPane1.add(jCheckBoxLimit);
+
+			JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
+			jSpinnerLimit.setEditor(ne);
+			jSpinnerLimit.setBounds(901, 136, 68, 22);
+			jSpinnerLimit.setValue(1000);
+			jDesktopPane1.add(jSpinnerLimit);
+
+			jButtonClear = new JButton4j(Common.icon_clear_16x16);
+			jButtonClear.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					clearFilter();
+
+				}
+			});
+			jButtonClear.setText(lang.get("btn_Clear_Filter"));
+			jButtonClear.setBounds(196, 168, 140, 32);
+			jDesktopPane1.add(jButtonClear);
+
+			jButtonPrint = new JButton4j(Common.icon_report_16x16);
+			jDesktopPane1.add(jButtonPrint);
+			jButtonPrint.setText(lang.get("btn_Print"));
+			jButtonPrint.setBounds(476, 168, 140, 32);
+			jButtonPrint.setMnemonic(lang.getMnemonicChar());
+			jButtonPrint.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					print();
+
+				}
+			});
+
+			jTextFieldProcessOrder = new JTextField4j(JDBViewWasteReporting.field_ProcessOrder);
+			jDesktopPane1.add(jTextFieldProcessOrder);
+			jTextFieldProcessOrder.setBounds(134, 72, 125, 22);
+
+			jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupProcessOrder);
+			jButtonLookupProcessOrder.setBounds(259, 72, 21, 22);
+			jButtonLookupProcessOrder.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "Ready";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.processOrders())
+					{
+						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jLabelProcessOrder = new JLabel4j_std();
+			jDesktopPane1.add(jLabelProcessOrder);
+			jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
+			jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelProcessOrder.setBounds(-27, 72, 146, 22);
+
+			jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
+			jDesktopPane1.add(jTextFieldUserID);
+			jTextFieldUserID.setBounds(134, 136, 125, 22);
+
+			jButtonLookupUserID = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupUserID);
+			jButtonLookupUserID.setBounds(259, 136, 21, 22);
+			jButtonLookupUserID.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.users())
+					{
+						jTextFieldUserID.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jLabelUserID = new JLabel4j_std();
+			jDesktopPane1.add(jLabelUserID);
+			jLabelUserID.setText(lang.get("lbl_User_ID"));
+			jLabelUserID.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelUserID.setBounds(16, 136, 108, 22);
+
+			jComboBoxTypeModel = new DefaultComboBoxModel<JDBWasteTypes>(typeList);
+			jComboBoxMaterialType.setModel(jComboBoxTypeModel);
+			jComboBoxMaterialType.setBounds(687, 40, 285, 22);
+			jDesktopPane1.add(jComboBoxMaterialType);
+
+			jLabelRecycle = new JLabel4j_std();
+			jDesktopPane1.add(jLabelRecycle);
+			jLabelRecycle.setText(lang.get("lbl_Recycle"));
+			jLabelRecycle.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelRecycle.setBounds(504, 8, 96, 22);
+
+			String[] test1 =
+			{ "", lang.get("web_Yes"), lang.get("web_No") };
+			ComboBoxModel<String> jComboBoxRecycleModel1 = new DefaultComboBoxModel<String>(test1);
+			jComboBoxRecycle = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxRecycle);
+			jComboBoxRecycle.setModel(jComboBoxRecycleModel1);
+			jComboBoxRecycle.setBounds(609, 8, 108, 22);
+			jComboBoxRecycle.setMaximumRowCount(test1.length);
+
+			String[] test2 =
+			{ "", lang.get("web_Yes"), lang.get("web_No") };
+			ComboBoxModel<String> jComboBoxRecycleModel2 = new DefaultComboBoxModel<String>(test2);
+			jComboBoxHazard = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxHazard);
+			jComboBoxHazard.setModel(jComboBoxRecycleModel2);
+			jComboBoxHazard.setBounds(864, 8, 108, 22);
+			jComboBoxHazard.setMaximumRowCount(test2.length);
+
+			jLabelHazard = new JLabel4j_std();
+			jDesktopPane1.add(jLabelHazard);
+			jLabelHazard.setText(lang.get("lbl_Hazard"));
+			jLabelHazard.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelHazard.setBounds(735, 8, 122, 22);
+
+			JLabel4j_std jLabel_WasteType = new JLabel4j_std();
+			jLabel_WasteType.setText(lang.get("lbl_Material_Type"));
+			jLabel_WasteType.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_WasteType.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabel_WasteType.setBounds(545, 40, 130, 22);
+			jDesktopPane1.add(jLabel_WasteType);
+
+			JLabel4j_std jLabel_WastereportingGroup = new JLabel4j_std();
+			jLabel_WastereportingGroup.setText(lang.get("lbl_Reporting_Group"));
+			jLabel_WastereportingGroup.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_WastereportingGroup.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabel_WastereportingGroup.setBounds(548, 104, 130, 22);
+			jDesktopPane1.add(jLabel_WastereportingGroup);
+
 		}
 		catch (Exception e)
 		{
@@ -1411,14 +1324,14 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			}
 		});
 		item2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING2"));
-		
+
 		JMenuItem item3 = new JMenuItem("Summary Report 3 (By Reason)");
 		item3.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(final ActionEvent e)
 			{
 				jComboBoxSortBy.setSelectedIndex(7);
-				
+
 				JLaunchReport.runReport("RPT_WASTE_REPORTING3", null, "", buildSQL(qPrint), "");
 			}
 		});

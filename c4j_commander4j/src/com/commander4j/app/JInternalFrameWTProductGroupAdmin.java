@@ -2,29 +2,29 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameTNEAdmin.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -37,18 +37,20 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBWTProductGroups;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
@@ -59,10 +61,10 @@ import com.commander4j.util.JUtility;
 /**
  * The JInternalFrameWTMaterialGroups class allows a user to maintain the table
  * APP_WEIGHT_PRODUCT_GROUPS.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameWTTNEAdmin.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBWTProductGroups JDBWTMaterialGroups
  * @see com.commander4j.app.JInternalFrameWTProductGroupAdmin
  *      JInternalFrameWTMaterialGroups
@@ -70,20 +72,20 @@ import com.commander4j.util.JUtility;
  */
 public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFrame
 {
-	private JButton4j jButtonExcel;
-	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
-	private JList4j<JDBWTProductGroups> jListGroups;
+	private JButton4j jButtonAdd;
 	private JButton4j jButtonClose;
-	private JButton4j jButtonRefresh;
+	private JButton4j jButtonDelete;
+	private JButton4j jButtonEdit;
+	private JButton4j jButtonExcel;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonPrint;
-	private JButton4j jButtonEdit;
-	private JButton4j jButtonDelete;
-	private JButton4j jButtonAdd;
-	private JScrollPane jScrollPane1;
-	private String lGroupString;
+	private JButton4j jButtonRefresh;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDesktopPane4j jDesktopPane1;
+	private JList4j<JDBWTProductGroups> jListGroups;
+	private JScrollPane4j jScrollPane1;
+	private String lGroupString;
+	private static final long serialVersionUID = 1;
 
 	private void addrecord()
 	{
@@ -195,252 +197,239 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
-			this.setBounds(0, 0, 826, 322);
+			this.setBounds(0, 0, 808, 297);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
 			this.setTitle("Product Groups");
+
+			jDesktopPane1 = new JDesktopPane4j();
+
+			this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+			jDesktopPane1.setLayout(null);
+
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.List);
+			jDesktopPane1.add(jScrollPane1);
+			jScrollPane1.setBounds(0, 16, 671, 249);
+
+			ListModel<JDBWTProductGroups> jList1Model = new DefaultComboBoxModel<JDBWTProductGroups>();
+			jListGroups = new JList4j<JDBWTProductGroups>();
+			jScrollPane1.setViewportView(jListGroups);
+			jListGroups.addMouseListener(new MouseAdapter()
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
-				this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
-				jDesktopPane1.setLayout(null);
+				public void mouseClicked(MouseEvent evt)
 				{
-					jScrollPane1 = new JScrollPane();
-					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(6, 29, 671, 249);
+					if (evt.getClickCount() == 2)
 					{
-						ListModel<JDBWTProductGroups> jList1Model = new DefaultComboBoxModel<JDBWTProductGroups>();
-						jListGroups = new JList4j<JDBWTProductGroups>();
-						jScrollPane1.setViewportView(jListGroups);
-						jListGroups.addMouseListener(new MouseAdapter()
-						{
-							public void mouseClicked(MouseEvent evt)
-							{
-								if (evt.getClickCount() == 2)
-								{
-									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_EDIT") == true)
-									{
-										editRecord();
-									}
-								}
-							}
-						});
-						jListGroups.setModel(jList1Model);
-
-						{
-							final JPopupMenu popupMenu = new JPopupMenu();
-							addPopup(jListGroups, popupMenu);
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										addrecord();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Add"));
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_ADD"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										delete();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Delete"));
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_DELETE"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										editRecord();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Edit"));
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_EDIT"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										print();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Print"));
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PRODUCT_GROUPS"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										excel();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Excel"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										populateList("");
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Refresh"));
-								popupMenu.add(newItemMenuItem);
-							}
-						}
-					}
-				}
-				{
-					jButtonAdd = new JButton4j(Common.icon_add_16x16);
-					jDesktopPane1.add(jButtonAdd);
-					jButtonAdd.setText(lang.get("btn_Add"));
-					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(689, 0, 125, 32);
-					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_ADD"));
-					jButtonAdd.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							addrecord();
-
-						}
-					});
-				}
-				{
-					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
-					jDesktopPane1.add(jButtonDelete);
-					jButtonDelete.setText(lang.get("btn_Delete"));
-					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(689, 31, 125, 32);
-					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_DELETE"));
-					jButtonDelete.setFocusTraversalKeysEnabled(false);
-					jButtonDelete.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							delete();
-
-						}
-					});
-				}
-				{
-					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
-					jDesktopPane1.add(jButtonEdit);
-					jButtonEdit.setText(lang.get("btn_Edit"));
-					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(689, 62, 125, 32);
-					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
+						if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_EDIT") == true)
 						{
 							editRecord();
 						}
-					});
+					}
 				}
-				{
-					jButtonPrint = new JButton4j(Common.icon_print_16x16);
-					jDesktopPane1.add(jButtonPrint);
-					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(689, 93, 125, 32);
-					jButtonPrint.setEnabled(true);
-					jButtonPrint.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							print();
-						}
-					});
-				}
-				{
-					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-						}
-					});
-					jDesktopPane1.add(jButtonHelp);
-					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(689, 186, 125, 32);
-				}
-				{
-					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
-					jDesktopPane1.add(jButtonRefresh);
-					jButtonRefresh.setText(lang.get("btn_Refresh"));
-					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(689, 155, 125, 32);
-					jButtonRefresh.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							populateList("");
-						}
-					});
-				}
-				{
-					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonClose);
-					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(689, 217, 125, 32);
-					jButtonClose.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							dispose();
-						}
-					});
-				}
+			});
+			jListGroups.setModel(jList1Model);
 
-				{
-					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.setText(lang.get("btn_Excel"));
-					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(689, 124, 125, 32);
-					jButtonExcel.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							excel();
-						}
-					});
-					jDesktopPane1.add(jButtonExcel);
-				}
+			final JPopupMenu popupMenu = new JPopupMenu();
+			addPopup(jListGroups, popupMenu);
 
-				JLabel4j_std lbl_Legend = new JLabel4j_std("Product Group           Nominal Weight    Tare Weight   Lower Limit   Upper Limit   Samples");
-				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
-				lbl_Legend.setBounds(6, 12, 671, 15);
-				jDesktopPane1.add(lbl_Legend);
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						addrecord();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Add"));
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_ADD"));
+				popupMenu.add(newItemMenuItem);
 			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						delete();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Delete"));
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_DELETE"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						editRecord();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Edit"));
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_EDIT"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						print();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Print"));
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PRODUCT_GROUPS"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						excel();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Excel"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						populateList("");
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Refresh"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			jButtonAdd = new JButton4j(Common.icon_add_16x16);
+			jDesktopPane1.add(jButtonAdd);
+			jButtonAdd.setText(lang.get("btn_Add"));
+			jButtonAdd.setMnemonic(lang.getMnemonicChar());
+			jButtonAdd.setBounds(672, 16, 125, 32);
+			jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_ADD"));
+			jButtonAdd.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					addrecord();
+
+				}
+			});
+
+			jButtonDelete = new JButton4j(Common.icon_delete_16x16);
+			jDesktopPane1.add(jButtonDelete);
+			jButtonDelete.setText(lang.get("btn_Delete"));
+			jButtonDelete.setMnemonic(lang.getMnemonicChar());
+			jButtonDelete.setBounds(672, 47, 125, 32);
+			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_DELETE"));
+			jButtonDelete.setFocusTraversalKeysEnabled(false);
+			jButtonDelete.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					delete();
+
+				}
+			});
+
+			jButtonEdit = new JButton4j(Common.icon_edit_16x16);
+			jDesktopPane1.add(jButtonEdit);
+			jButtonEdit.setText(lang.get("btn_Edit"));
+			jButtonEdit.setMnemonic(lang.getMnemonicChar());
+			jButtonEdit.setBounds(672, 78, 125, 32);
+			jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_EDIT"));
+			jButtonEdit.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					editRecord();
+				}
+			});
+
+			jButtonPrint = new JButton4j(Common.icon_print_16x16);
+			jDesktopPane1.add(jButtonPrint);
+			jButtonPrint.setText(lang.get("btn_Print"));
+			jButtonPrint.setMnemonic(lang.getMnemonicChar());
+			jButtonPrint.setBounds(672, 109, 125, 32);
+			jButtonPrint.setEnabled(true);
+			jButtonPrint.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					print();
+				}
+			});
+
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jButtonHelp.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+				}
+			});
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setMnemonic(lang.getMnemonicChar());
+			jButtonHelp.setBounds(672, 202, 125, 32);
+
+			jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
+			jDesktopPane1.add(jButtonRefresh);
+			jButtonRefresh.setText(lang.get("btn_Refresh"));
+			jButtonRefresh.setMnemonic(lang.getMnemonicChar());
+			jButtonRefresh.setBounds(672, 171, 125, 32);
+			jButtonRefresh.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					populateList("");
+				}
+			});
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText(lang.get("btn_Close"));
+			jButtonClose.setMnemonic(lang.getMnemonicChar());
+			jButtonClose.setBounds(672, 233, 125, 32);
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					dispose();
+				}
+			});
+
+			jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
+			jButtonExcel.setText(lang.get("btn_Excel"));
+			jButtonExcel.setMnemonic(lang.getMnemonicChar());
+			jButtonExcel.setBounds(672, 140, 125, 32);
+			jButtonExcel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					excel();
+				}
+			});
+			jDesktopPane1.add(jButtonExcel);
+
+			JLabel4j_std lbl_Legend = new JLabel4j_std("Product Group           Nominal Weight    Tare Weight   Lower Limit   Upper Limit   Samples");
+			lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
+			lbl_Legend.setBounds(0, 0, 671, 15);
+			jDesktopPane1.add(lbl_Legend);
+
 		}
 		catch (Exception e)
 		{

@@ -30,9 +30,9 @@ package com.commander4j.bar;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import javax.swing.JPanel;
+import com.commander4j.gui.JPanel4j;
 
-public class JBarcodePanel extends JPanel
+public class JBarcodePanel extends JPanel4j
 {
 
 	private static final long serialVersionUID = 1L;

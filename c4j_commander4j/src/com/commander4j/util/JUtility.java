@@ -6,34 +6,6 @@
  */
 package com.commander4j.util;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JUtility.java
- * 
- * Package Name : com.commander4j.util
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
@@ -77,7 +49,6 @@ import java.util.regex.Pattern;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.DefaultMetalTheme;
@@ -92,7 +63,8 @@ import org.apache.logging.log4j.core.LoggerContext;
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBModule;
 import com.commander4j.gui.JButton4j;
-import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JLabel4j_status;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
 
@@ -102,7 +74,7 @@ public class JUtility
 	public static int field_timestamp = 20;
 
 	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
-	
+
 	public static GraphicsDevice getGraphicsDevice()
 	{
 		GraphicsDevice result;
@@ -153,12 +125,12 @@ public class JUtility
 
 		return result;
 	}
-	
+
 	public static String getLoggedInUser()
 	{
 
 		return RequestCurrentUser.getAuthoritativeUsername().toUpperCase();
-		
+
 	}
 
 	public static Vector<String> getMonthNames()
@@ -278,7 +250,7 @@ public class JUtility
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 		return sdf.format(cal.getTime());
 	}
-	
+
 	public static void dumpVMParams()
 	{
 		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JUtility.class);
@@ -649,7 +621,7 @@ public class JUtility
 
 	}
 
-	public static void scrolltoHomePosition(JScrollPane jScrollPane1)
+	public static void scrolltoHomePosition(JScrollPane4j jScrollPane1)
 	{
 		JScrollBar verticalScrollBar = jScrollPane1.getVerticalScrollBar();
 		JScrollBar horizontalScrollBar = jScrollPane1.getHorizontalScrollBar();
@@ -737,7 +709,7 @@ public class JUtility
 
 	/**
 	 * Method capitaliseAll.
-	 * 
+	 *
 	 * @param str
 	 *            String
 	 * @return String
@@ -804,7 +776,7 @@ public class JUtility
 
 	/**
 	 * Method differenceInDays.
-	 * 
+	 *
 	 * @param date1
 	 *            Calendar
 	 * @param date2
@@ -834,7 +806,7 @@ public class JUtility
 
 	/**
 	 * Method exec.
-	 * 
+	 *
 	 * @param command
 	 *            String
 	 * @param dir
@@ -846,7 +818,7 @@ public class JUtility
 		{
 			String[] exec = {command};
 			String[] param = {""};
-			
+
 			if (dir != null)
 			{
 				final File working = new File(dir);
@@ -927,7 +899,7 @@ public class JUtility
 
 	/**
 	 * Method getClientName.
-	 * 
+	 *
 	 * @return String
 	 */
 	public static String getClientName()
@@ -1014,7 +986,7 @@ public class JUtility
 
 	/**
 	 * Method getFormattedEAN.
-	 * 
+	 *
 	 * @param ean
 	 *            String
 	 * @return String
@@ -1039,7 +1011,7 @@ public class JUtility
 
 	/**
 	 * Method getFormattedQuantity.
-	 * 
+	 *
 	 * @param qty
 	 *            String
 	 * @param len
@@ -1096,7 +1068,7 @@ public class JUtility
 
 	/**
 	 * Method getFormattedSSCC.
-	 * 
+	 *
 	 * @param sscc
 	 *            String
 	 * @return String
@@ -1115,7 +1087,7 @@ public class JUtility
 
 	/**
 	 * Method getHelpSetIDforModule.
-	 * 
+	 *
 	 * @param moduleid
 	 *            String
 	 * @return String
@@ -1208,7 +1180,7 @@ public class JUtility
 
 	/**
 	 * Method getJulianDay.
-	 * 
+	 *
 	 * @param currentDate
 	 *            Calendar
 	 * @return long
@@ -1224,7 +1196,7 @@ public class JUtility
 
 	/**
 	 * Method getWeekOfYear.
-	 * 
+	 *
 	 * @param currentDate
 	 *            Calendar
 	 * @return int
@@ -1340,7 +1312,7 @@ public class JUtility
 
 	/**
 	 * Method getDayOfWeek.
-	 * 
+	 *
 	 * @param currentDate
 	 *            Calendar
 	 * @return int
@@ -1356,7 +1328,7 @@ public class JUtility
 
 	/**
 	 * Method getDayOfWeekString1.
-	 * 
+	 *
 	 * @param currentDate
 	 *            Calendar
 	 * @return int
@@ -1396,7 +1368,7 @@ public class JUtility
 
 	/**
 	 * Method getSQLDate.
-	 * 
+	 *
 	 * @return java.sql.Date
 	 */
 	public static java.sql.Date getSQLDate()
@@ -1412,7 +1384,7 @@ public class JUtility
 
 	/**
 	 * Method getSQLDate.
-	 * 
+	 *
 	 * @param caldate
 	 *            Calendar
 	 * @return java.sql.Date
@@ -1426,7 +1398,7 @@ public class JUtility
 
 	/**
 	 * Method getSQLDate.
-	 * 
+	 *
 	 * @param yyyy
 	 *            int
 	 * @param mm
@@ -1447,7 +1419,7 @@ public class JUtility
 
 	/**
 	 * Method getSQLDateTime.
-	 * 
+	 *
 	 * @return Timestamp
 	 */
 	public static Timestamp getSQLDateTime()
@@ -1461,7 +1433,7 @@ public class JUtility
 
 	/**
 	 * Method getTimestampFromDate.
-	 * 
+	 *
 	 * @param d
 	 *            Date
 	 * @return Timestamp
@@ -1614,7 +1586,7 @@ public class JUtility
 
 	/**
 	 * Method initLogging.
-	 * 
+	 *
 	 * @param filename
 	 *            String
 	 */
@@ -1636,7 +1608,7 @@ public class JUtility
 
 	/**
 	 * Method isNullORBlank.
-	 * 
+	 *
 	 * @param value
 	 *            String
 	 * @return boolean
@@ -1662,7 +1634,7 @@ public class JUtility
 
 	/**
 	 * Method isValidJavaVersion.
-	 * 
+	 *
 	 * @param minVersion
 	 *            String
 	 * @return boolean
@@ -1689,7 +1661,7 @@ public class JUtility
 
 	/**
 	 * Method loadListFromTextFile.
-	 * 
+	 *
 	 * @param filename
 	 *            String
 	 * @param defaultitem
@@ -1742,7 +1714,7 @@ public class JUtility
 
 	/**
 	 * Method padSpace.
-	 * 
+	 *
 	 * @param size
 	 *            int
 	 * @return String
@@ -1761,7 +1733,7 @@ public class JUtility
 
 	/**
 	 * Method padString.
-	 * 
+	 *
 	 * @param size
 	 *            int
 	 * @param character
@@ -1782,7 +1754,7 @@ public class JUtility
 
 	/**
 	 * Method padString.
-	 * 
+	 *
 	 * @param input
 	 *            String
 	 * @param right
@@ -1825,7 +1797,7 @@ public class JUtility
 
 	/**
 	 * Method previewIcon.
-	 * 
+	 *
 	 * @param btn
 	 *            JButton
 	 * @param filename
@@ -1869,7 +1841,7 @@ public class JUtility
 
 	/**
 	 * Method removeExtensionFromFilename.
-	 * 
+	 *
 	 * @param filename
 	 *            String
 	 * @param extension
@@ -1910,7 +1882,7 @@ public class JUtility
 
 	/**
 	 * Method removeTimefromDate.
-	 * 
+	 *
 	 * @param inputDate
 	 *            Date
 	 * @return java.sql.Date
@@ -1930,7 +1902,7 @@ public class JUtility
 
 	/**
 	 * Method replaceNullObjectwithBlank.
-	 * 
+	 *
 	 * @param value
 	 *            Object
 	 * @return String
@@ -1978,7 +1950,7 @@ public class JUtility
 		}
 		return result;
 	}
-	
+
 	public static int getOSHeightAdjustment()
 	{
 		int result = 0;
@@ -2000,7 +1972,7 @@ public class JUtility
 		}
 		return result;
 	}
-	
+
 	public static void adjustForLookandFeel()
 	{
 		LookAndFeel lf = UIManager.getLookAndFeel();
@@ -2030,6 +2002,7 @@ public class JUtility
 		try
 		{
 			SetLookAndFeel("Metal", "Ocean");
+			//SetLookAndFeel("Metal", "DefaultMetal");
 		}
 		catch (Exception e)
 		{
@@ -2058,7 +2031,7 @@ public class JUtility
 		}
 	}
 
-	public static void setResultRecordCountColour(JLabel4j_std label, boolean limitSet, Integer limitRecords, Integer ActualRecords)
+	public static void setResultRecordCountColour(JLabel4j_status label, boolean limitSet, Integer limitRecords, Integer ActualRecords)
 	{
 		String warning = "";
 
@@ -2068,31 +2041,31 @@ public class JUtility
 			{
 				if (ActualRecords >= limitRecords)
 				{
-					label.setForeground(Color.RED);
+					label.setForeground(Common.color_text_label_status);
 					warning = " Number of records returned constrained by user defined limit.";
 				}
 				else
 				{
-					label.setForeground(Color.BLACK);
+					label.setForeground(Common.color_text_label_std);
 				}
 			}
 			else
 			{
-				label.setForeground(Color.BLACK);
+				label.setForeground(Common.color_text_label_std);
 			}
 
 			label.setText(String.valueOf(ActualRecords) + " record(s) retrieved." + warning);
 		}
 		else
 		{
-			label.setForeground(Color.BLACK);
+			label.setForeground(Common.color_text_label_std);
 			label.setText("0 records shown.");
 		}
 	}
 
 	/**
 	 * Method sqlSelectNull.
-	 * 
+	 *
 	 * @param value
 	 *            String
 	 * @return String

@@ -2,29 +2,29 @@ package com.commander4j.sys;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JDialogHosts.java
- * 
+ *
  * Package Name : com.commander4j.sys
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -43,7 +43,7 @@ import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
@@ -54,6 +54,7 @@ import com.commander4j.app.JVersion;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JImagePanel4j;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.util.JUtility;
 
 public class JDialogHosts2 extends JDialog
@@ -63,7 +64,7 @@ public class JDialogHosts2 extends JDialog
 	private JButton4j jButtonClose;
 	private JList4j<JHost> jListHosts;
 	private JButton4j jButtonConnect;
-	private JScrollPane jScrollPane1;
+	private JScrollPane4j jScrollPane1;
 	private LinkedList<JHost> temp = new LinkedList<JHost>();
 	DefaultComboBoxModel<JHost> defComboBoxMod = new DefaultComboBoxModel<JHost>();
 	ListModel<JHost> jList1Model = defComboBoxMod;
@@ -77,7 +78,7 @@ public class JDialogHosts2 extends JDialog
 		populateList("");
 
 		GraphicsDevice gd = JUtility.getGraphicsDevice();
-		
+
 		GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
 		Rectangle screenBounds = gc.getBounds();
@@ -161,7 +162,7 @@ public class JDialogHosts2 extends JDialog
 			this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 			jDesktopPane1.setPreferredSize(new java.awt.Dimension(232, 189));
 			{
-				jScrollPane1 = new JScrollPane();
+				jScrollPane1 = new JScrollPane4j(JScrollPane4j.List);
 				jScrollPane1.setOpaque(false);
 				jScrollPane1.getViewport().setOpaque(false);
 				jScrollPane1.setBounds(0, 0, 318, 270);

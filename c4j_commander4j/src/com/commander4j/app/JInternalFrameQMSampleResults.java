@@ -1,33 +1,5 @@
 package com.commander4j.app;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JInternalFrameQMSampleResults.java
- * 
- * Package Name : com.commander4j.app
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,17 +7,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
@@ -55,11 +22,13 @@ import com.commander4j.db.JDBQMDictionary;
 import com.commander4j.db.JDBQMInspection;
 import com.commander4j.db.JDBQMResult;
 import com.commander4j.db.JDBQMSample;
-
 import com.commander4j.db.JDBQMTest;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
@@ -72,44 +41,40 @@ import com.commander4j.util.JUtility;
 public class JInternalFrameQMSampleResults extends JInternalFrame
 {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JTextField4j textFieldProcessOrder;
+
+	private Dimension indexSize;
 	private JButton4j btnClose;
-	private JButton4j btnEdit;
 	private JButton4j btnDefaults;
+	private JButton4j btnEdit;
+	private JComboBox4j<JDBQMActivity> comboboxActivities;
+	private JDBControl controlDB = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrder po = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 	private JDBQMActivity activity = new JDBQMActivity(Common.selectedHostID, Common.sessionID);
+	private JDBQMDictionary dictionaryDB = new JDBQMDictionary(Common.selectedHostID, Common.sessionID);
 	private JDBQMInspection insp = new JDBQMInspection(Common.selectedHostID, Common.sessionID);
-	private JComboBox4j<JDBQMActivity> comboboxActivities;
-	private JLabel4j_std jStatusBar;
-	private JDBQMResultTable jTableIndex;
+	private JDBQMResult resultDB = new JDBQMResult(Common.selectedHostID, Common.sessionID);
 	private JDBQMResultTable jTableData;
-	private JViewport viewport;
-	private JDBQMResultTableModelIndex indexTableModel;
+	private JDBQMResultTable jTableIndex;
 	private JDBQMResultTableModelData dataTableModel;
-	private ListSelectionModel model;
-	private Dimension indexSize;
-	private JTextField4j textFieldDescription;
-	private JTextField4j textField4Material;
-	private JLabel4j_std lbl_inspection;
-	private JTextField4j textField4InspectionID;
-	private JTextField4j textField4jInspectionDescription;
-
-	private JScrollPane jScrollPane1;
-	private boolean tableclear = true;
-
-	private LinkedList<JDBQMSample> sampleDBList = new LinkedList<JDBQMSample>();
+	private JDBQMResultTableModelIndex indexTableModel;
 	private JDBQMSample sampleDB = new JDBQMSample(Common.selectedHostID, Common.sessionID);
 	private JDBQMTest testDB = new JDBQMTest(Common.selectedHostID, Common.sessionID);
+	private JLabel4j_status jStatusBar;
+	private JLabel4j_std lbl_inspection;
+	private JScrollPane4j jScrollPane1;
+	private JTextField4j textField4InspectionID;
+	private JTextField4j textField4Material;
+	private JTextField4j textField4jInspectionDescription;
+	private JTextField4j textFieldDescription;
+	private JTextField4j textFieldProcessOrder;
+	private JViewport viewport;
 	private LinkedList<JDBQMDictionary> dictionaryDBList = new LinkedList<JDBQMDictionary>();
-	private JDBQMDictionary dictionaryDB = new JDBQMDictionary(Common.selectedHostID, Common.sessionID);
-	private JDBQMResult resultDB = new JDBQMResult(Common.selectedHostID, Common.sessionID);
-	private JDBControl controlDB = new JDBControl(Common.selectedHostID, Common.sessionID);
-	
+	private LinkedList<JDBQMSample> sampleDBList = new LinkedList<JDBQMSample>();
+	private ListSelectionModel model;
+	private boolean tableclear = true;
+	private static final long serialVersionUID = 1L;
+
 
 	private void processOrderChanged(String processOrder)
 	{
@@ -177,11 +142,11 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 
 		indexSize = jTableIndex.getPreferredSize();
 		viewport = new JViewport();
-		viewport.setBackground(Common.color_tablebackground);
+		viewport.setBackground(Common.color_table_background1);
 		viewport.setView(jTableIndex);
 		viewport.setPreferredSize(indexSize);
 		viewport.setMaximumSize(indexSize);
-		jScrollPane1.setCorner(JScrollPane.UPPER_LEFT_CORNER, jTableIndex.getTableHeader());
+		jScrollPane1.setCorner(JScrollPane4j.UPPER_LEFT_CORNER, jTableIndex.getTableHeader());
 		jScrollPane1.setRowHeaderView(viewport);
 
 		jScrollPane1.setViewportView(jTableData);
@@ -197,14 +162,9 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 	private void defaults()
 	{
 
-		// Get a list of all tests for given Inspection
-
 		dictionaryDBList = testDB.getTestsPropertiesList(po.getInspectionID(), ((JDBQMActivity) comboboxActivities.getSelectedItem()).getActivityID());
 
-		// Get a list of all Sample ID's for given Order
 		sampleDBList = sampleDB.getSamples(po.getProcessOrder(), po.getInspectionID(), ((JDBQMActivity) comboboxActivities.getSelectedItem()).getActivityID());
-
-		// Check for the presence of any results for each sample.
 
 		for (int x = 0; x < sampleDBList.size(); x++)
 		{
@@ -213,11 +173,11 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 			if (resultDB.getResultsProperties(sampID, controlDB.getKeyValueWithDefault("QM_RESULTS_TEST_DEFAULTS", "PANEL PH", "Test ID to determine if row defaults to be applied.")))
 			{
 				if (JUtility.replaceNullStringwithBlank(resultDB.getValue()).trim().equals("") == false)
-				{					
+				{
 					for (int z = 0; z < dictionaryDBList.size(); z++)
 					{
 						dictionaryDB = ((JDBQMDictionary) dictionaryDBList.get(z));
-						
+
 						if (dictionaryDB.getDefaultValue().trim().equals("")==false)
 						{
 							if (resultDB.getResultsProperties(sampID,dictionaryDB.getTestID()))
@@ -239,7 +199,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 								{
 									resultDB.create(sampID, dictionaryDB.getTestID(), dictionaryDB.getDefaultValue(), "Created", Common.userList.getUser(Common.sessionID).getUserId());
 								}
-							}	
+							}
 						}
 					}
 				}
@@ -278,9 +238,9 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		setBounds(100, 100, 1010, 731);
 		getContentPane().setLayout(null);
 
-		JDesktopPane desktopPane = new JDesktopPane();
+		JDesktopPane4j desktopPane = new JDesktopPane4j();
 		desktopPane.setBounds(0, 0, 1241, 711);
-		desktopPane.setBackground(Common.color_app_window);
+
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
 
@@ -384,16 +344,13 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		});
 		desktopPane.add(comboboxActivities);
 
-		jStatusBar = new JLabel4j_std();
-		jStatusBar.setBounds(0, 680, 1000, 21);
-		jStatusBar.setForeground(Color.RED);
-		jStatusBar.setBackground(Color.GRAY);
-		jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		jStatusBar = new JLabel4j_status();
+		jStatusBar.setBounds(0, 680, 993, 21);
 		desktopPane.add(jStatusBar);
 
-		jScrollPane1 = new JScrollPane();
+		jScrollPane1 = new JScrollPane4j(JScrollPane4j.Table);
 		jScrollPane1.setBounds(0, 139, 993, 535);
-		jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
+
 		desktopPane.setLayout(null);
 		desktopPane.add(jScrollPane1);
 

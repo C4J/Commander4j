@@ -42,7 +42,7 @@ public class WeightSampleDetailCellRenderer extends JLabel implements ListCellRe
             }
             else
             {
-            	setBackground(Common.color_listBackground);
+            	setBackground(Common.color_list_background);
             }
         }
 

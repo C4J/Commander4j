@@ -2,29 +2,29 @@ package com.commander4j.bom;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameBomStructureAdmin.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -40,20 +40,20 @@ import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
 
-import javax.swing.JDesktopPane;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBListData;
 
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
@@ -65,7 +65,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 {
 	private JButton4j jButtonExcel;
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private JDesktopPane4j jDesktopPane1;
 	private JList4j<JDBListData> jListBomStructure;
 
 	private JButton4j jButtonClose;
@@ -75,7 +75,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 	private JButton4j jButtonEdit;
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonAdd;
-	private JScrollPane jScrollPane1;
+	private JScrollPane4j jScrollPane1;
 
 	private JLabel4j_std lbl_Description;
 
@@ -177,18 +177,18 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 
 			rs = stmt.executeQuery();
 			JExcel export = new JExcel();
-			
+
 			export.saveAs("bom_structure.xls", rs, Common.mainForm);
-			
+
 			stmt.clearParameters();
 			rs.close();
 			stmt.close();
 		}
 		catch (Exception ex)
 		{
-			
+
 		}
-	
+
 	}
 
 	public JInternalFrameBomStructureAdmin()
@@ -205,20 +205,20 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
-			this.setBounds(0, 0, 493, 541);
+			this.setBounds(0, 0, 463, 523);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
 			this.setTitle("Bom Structure");
 
-			jDesktopPane1 = new JDesktopPane();
-			jDesktopPane1.setBackground(Common.color_app_window);
+			jDesktopPane1 = new JDesktopPane4j();
+
 			this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 			jDesktopPane1.setLayout(null);
 
-			jScrollPane1 = new JScrollPane();
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.List);
 			jDesktopPane1.add(jScrollPane1);
-			jScrollPane1.setBounds(5, 20, 326, 479);
+			jScrollPane1.setBounds(0, 16, 326, 479);
 
 			ListModel<JDBListData> jList1Model = new DefaultComboBoxModel<JDBListData>();
 			jListBomStructure = new JList4j<JDBListData>();
@@ -315,7 +315,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonAdd);
 			jButtonAdd.setText(lang.get("btn_Add"));
 			jButtonAdd.setMnemonic(lang.getMnemonicChar());
-			jButtonAdd.setBounds(343, 20, 125, 32);
+			jButtonAdd.setBounds(327, 16, 125, 32);
 			jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_STRUCTURE_ADD"));
 			jButtonAdd.addActionListener(new ActionListener()
 			{
@@ -329,7 +329,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonDelete);
 			jButtonDelete.setText(lang.get("btn_Delete"));
 			jButtonDelete.setMnemonic(lang.getMnemonicChar());
-			jButtonDelete.setBounds(343, 51, 125, 32);
+			jButtonDelete.setBounds(327, 47, 125, 32);
 			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_STRUCTURE_DELETE"));
 			jButtonDelete.setFocusTraversalKeysEnabled(false);
 			jButtonDelete.addActionListener(new ActionListener()
@@ -344,7 +344,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonEdit);
 			jButtonEdit.setText(lang.get("btn_Edit"));
 			jButtonEdit.setMnemonic(lang.getMnemonicChar());
-			jButtonEdit.setBounds(343, 82, 125, 32);
+			jButtonEdit.setBounds(327, 78, 125, 32);
 			jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_STRUCTURE_EDIT"));
 			jButtonEdit.addActionListener(new ActionListener()
 			{
@@ -358,7 +358,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonPrint);
 			jButtonPrint.setText(lang.get("btn_Print"));
 			jButtonPrint.setMnemonic(lang.getMnemonicChar());
-			jButtonPrint.setBounds(343, 114, 125, 32);
+			jButtonPrint.setBounds(327, 110, 125, 32);
 			jButtonPrint.setEnabled(true);
 			jButtonPrint.addActionListener(new ActionListener()
 			{
@@ -372,13 +372,13 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
-			jButtonHelp.setBounds(343, 207, 125, 32);
+			jButtonHelp.setBounds(327, 203, 125, 32);
 
 			jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 			jDesktopPane1.add(jButtonRefresh);
 			jButtonRefresh.setText(lang.get("btn_Refresh"));
 			jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-			jButtonRefresh.setBounds(343, 176, 125, 32);
+			jButtonRefresh.setBounds(327, 172, 125, 32);
 			jButtonRefresh.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -391,7 +391,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
-			jButtonClose.setBounds(343, 238, 125, 32);
+			jButtonClose.setBounds(327, 234, 125, 32);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -403,7 +403,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 			jButtonExcel.setText(lang.get("btn_Excel"));
 			jButtonExcel.setMnemonic(lang.getMnemonicChar());
-			jButtonExcel.setBounds(343, 145, 125, 32);
+			jButtonExcel.setBounds(327, 141, 125, 32);
 			jButtonExcel.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -415,7 +415,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 
 			lbl_Description = new JLabel4j_std("Parent ID               Data ID");
 			lbl_Description.setFont(new Font("Monospaced", Font.BOLD, 11));
-			lbl_Description.setBounds(5, 4, 326, 15);
+			lbl_Description.setBounds(0, 0, 326, 15);
 			jDesktopPane1.add(lbl_Description);
 
 		}

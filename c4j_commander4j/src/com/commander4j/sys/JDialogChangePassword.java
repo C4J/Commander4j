@@ -24,47 +24,46 @@ import com.commander4j.util.JUtility;
 
 public class JDialogChangePassword extends JDialog
 {
-	private static final long serialVersionUID = 1;
-	public boolean passwordChanged = false;
-	public String password;
-	public String username;
 
-	private JButton4j btn_change;
-	private JButton4j btn_cancel;
-
-	private JTextField4j fld_userName;
-	private JPasswordField4j fld_password;
-	private JPasswordField4j fld_new_password;
-	private JPasswordField4j fld_verify_new_password;
-
-	final int screenWidth = 260;
 	final int screenHeight = 190;
+	final int screenWidth = 260;
+	private JButton4j btn_cancel;
+	private JButton4j btn_change;
 	private JLabel4j_std label;
 	private JLabel4j_std label_1;
 	private JLabel4j_std lblNewPassword;
 	private JLabel4j_std lblVerifyPassword;
+	private JPasswordField4j fld_new_password;
+	private JPasswordField4j fld_password;
+	private JPasswordField4j fld_verify_new_password;
+	private JTextField4j fld_userName;
+	private static final long serialVersionUID = 1;
+	public String password;
+	public String username;
+	public boolean passwordChanged = false;
 
 	public JDialogChangePassword(Frame parent, String DefaultUserName, String DefaultPassword)
 	{
 		super(parent, "Change Password", true);
+		getContentPane().setBackground(Common.color_app_window);
 		setTitle("Change Password (" + Common.hostList.getHost(Common.selectedHostID).getSiteDescription() + ")");
 
 		fld_userName = new JTextField4j(20);
 		fld_userName.setEnabled(false);
 		fld_userName.setSize(149, 22);
-		fld_userName.setLocation(137, 12);
+		fld_userName.setLocation(137, 8);
 		fld_userName.setDisabledTextColor(Common.color_text_disabled);
 		fld_password = new JPasswordField4j(JDBUser.field_password);
 		fld_password.setEnabled(false);
 		fld_password.setSize(149, 22);
-		fld_password.setLocation(137, 46);
+		fld_password.setLocation(137, 40);
 		fld_password.setDisabledTextColor(Common.color_text_disabled);
 		fld_new_password =  new JPasswordField4j(JDBUser.field_password);
-		fld_new_password.setBounds(137, 80, 149, 22);
-		
+		fld_new_password.setBounds(137, 72, 149, 22);
+
 		fld_verify_new_password = new JPasswordField4j(JDBUser.field_password);
 		fld_verify_new_password.setSize(149, 22);
-		fld_verify_new_password.setLocation(137, 114);
+		fld_verify_new_password.setLocation(137, 104);
 
 		if (DefaultUserName.equals("") == false)
 		{
@@ -81,11 +80,11 @@ public class JDialogChangePassword extends JDialog
 		/* Create button objects */
 		btn_change = new JButton4j("Change", Common.icon_ok_16x16);
 		btn_change.setSize(111, 32);
-		btn_change.setLocation(27, 148);
+		btn_change.setLocation(37, 143);
 		btn_change.setMnemonic('L');
 		btn_change.setToolTipText("Confirm password change.");
 		btn_cancel = new JButton4j("Cancel", Common.icon_cancel_16x16);
-		btn_cancel.setLocation(165, 148);
+		btn_cancel.setLocation(154, 143);
 		btn_cancel.setSize(111, 32);
 		btn_cancel.setMnemonic('C');
 		btn_cancel.setToolTipText("Cancel password change.");
@@ -111,48 +110,48 @@ public class JDialogChangePassword extends JDialog
 
 		getRootPane().setDefaultButton(btn_change);
 
-		this.setSize(304, 224);
-		
+		this.setSize(304, 222);
+
 		GraphicsDevice gd = JUtility.getGraphicsDevice();
-		
+
 		GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
 		Rectangle screenBounds = gc.getBounds();
 
 		setBounds(screenBounds.x + ((screenBounds.width - JDialogChangePassword.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JDialogChangePassword.this.getHeight()) / 2), JDialogChangePassword.this.getWidth(), JDialogChangePassword.this.getHeight());
-		
+
 		setResizable(false);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
-		
+
 		getContentPane().add(fld_userName);
 		getContentPane().add(fld_password);
 		getContentPane().add(fld_new_password);
 		getContentPane().add(fld_verify_new_password);
 		getContentPane().add(btn_change);
 		getContentPane().add(btn_cancel);
-		
+
 		label = new JLabel4j_std("Username :");
 		label.setHorizontalAlignment(SwingConstants.TRAILING);
-		label.setBounds(12, 12, 111, 22);
+		label.setBounds(12, 8, 111, 22);
 		getContentPane().add(label);
-		
+
 		label_1 = new JLabel4j_std("Password :");
 		label_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label_1.setBounds(12, 46, 111, 22);
+		label_1.setBounds(12, 40, 111, 22);
 		getContentPane().add(label_1);
-		
+
 		lblNewPassword = new JLabel4j_std("New Password :");
 		lblNewPassword.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewPassword.setBounds(12, 80, 111, 22);
+		lblNewPassword.setBounds(12, 72, 111, 22);
 		getContentPane().add(lblNewPassword);
-		
+
 		lblVerifyPassword = new JLabel4j_std("Verify Password :");
 		lblVerifyPassword.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblVerifyPassword.setBounds(12, 114, 111, 22);
+		lblVerifyPassword.setBounds(12, 104, 111, 22);
 		getContentPane().add(lblVerifyPassword);
 		setVisible(true);
-		
+
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			@SuppressWarnings("deprecation")
@@ -201,7 +200,7 @@ public class JDialogChangePassword extends JDialog
 				user.setLoginPassword(password);
 				user.setPasswordNew(pass1);
 				user.setPasswordVerify(pass2);
-				
+
 				if (user.changePassword())
 				{
 					passwordChanged = true;

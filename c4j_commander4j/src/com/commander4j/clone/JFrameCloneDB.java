@@ -1,33 +1,5 @@
 package com.commander4j.clone;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JFrameCloneDB.java
- * 
- * Package Name : com.commander4j.app
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
@@ -42,18 +14,12 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -65,8 +31,13 @@ import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBField;
 import com.commander4j.db.JDBStructure;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JProgressBar4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
 import com.commander4j.util.JUnique;
@@ -79,38 +50,38 @@ import com.commander4j.util.JWait;
  * The commander4j schema version number needs to be the same revision in the
  * source and destination database. The database schema and program version are
  * updated using the Setup4j program.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JFrameCloneDB.jpg" >
  *
  */
 public class JFrameCloneDB extends JFrame
 {
-	private static final long serialVersionUID = 1;
-	private JDesktopPane desktopPane = new JDesktopPane();
-	private JButton4j jButtonClose;
-	private JButton4j jButtonClone;
-	private JList4j<JHost> jListHostFrom;
-	private JList4j<JHost> jListHostTo;
-	private JScrollPane jScrollPaneFrom;
-	private JScrollPane jScrollPaneTo;
 
-	private LinkedList<JHost> hostListFrom = new LinkedList<JHost>();
-	private LinkedList<JHost> hostListTo = new LinkedList<JHost>();
 	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JFrameCloneDB.class);
-	private JPanel contentPane;
-	private JProgressBar progressBar = new JProgressBar();
-	private JLabel4j_std labelCommand = new JLabel4j_std("");
+	private JButton4j jButtonClone;
+	private JButton4j jButtonClose;
+	private JDesktopPane4j desktopPane = new JDesktopPane4j();
 	private JHost hstFrom = new JHost();
 	private JHost hstTo = new JHost();
-	private String sessionFrom = JUnique.getUniqueID();
-	private String sessionTo = JUnique.getUniqueID();
+	private JLabel4j_status labelCommand = new JLabel4j_status("");
+	private JList4j<JHost> jListHostFrom;
+	private JList4j<JHost> jListHostTo;
+	private JPanel4j contentPane;
+	private JProgressBar4j progressBar = new JProgressBar4j();
+	private JScrollPane4j jScrollPaneFrom;
+	private JScrollPane4j jScrollPaneTo;
+	private LinkedList<JHost> hostListFrom = new LinkedList<JHost>();
+	private LinkedList<JHost> hostListTo = new LinkedList<JHost>();
+	private String currentError = "";
 	private String hostIDFrom = "";
 	private String hostIDTo = "";
-	String lastError = "";
-	String currentError = "";
-	private static int widthadjustment = 0;
+	private String lastError = "";
+	private String sessionFrom = JUnique.getUniqueID();
+	private String sessionTo = JUnique.getUniqueID();
+	private static final long serialVersionUID = 1;
 	private static int heightadjustment = 0;
+	private static int widthadjustment = 0;
 
 	public static void main(String[] args)
 	{
@@ -135,12 +106,11 @@ public class JFrameCloneDB extends JFrame
 	{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 574+widthadjustment, 588+heightadjustment);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(0, 0, 564, 582);
+		contentPane = new JPanel4j();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		desktopPane.setBounds(0, 0, 574, 549);
+		desktopPane.setBounds(0, 0, 564, 582);
 		desktopPane.setBackground(Common.color_app_window);
 		contentPane.add(desktopPane);
 
@@ -148,16 +118,16 @@ public class JFrameCloneDB extends JFrame
 		Common.sd.setData(Common.sessionID, "silentExceptions", "No", true);
 		JUtility.initLogging("");
 		logger.debug("JFrameCloneDB starting...");
-		
+
 		widthadjustment = JUtility.getOSWidthAdjustment();
 		heightadjustment = JUtility.getOSHeightAdjustment();
 
 		initGUI();
 
 		setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_clone4j).getImage());
-		
+
 		GraphicsDevice gd = JUtility.getGraphicsDevice();
-		
+
 		GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
 		Rectangle screenBounds = gc.getBounds();
@@ -183,14 +153,14 @@ public class JFrameCloneDB extends JFrame
 	{
 
 		hostListFrom.clear();
-		
+
 		hostListTo.clear();
-		
+
 		Common.hostList.clear();
-		
+
 		Common.hostList.loadHosts();
-		
-	
+
+
 		hostListFrom = Common.hostList.getHosts();
 
 		hostListTo = Common.hostList.getHosts();
@@ -309,9 +279,9 @@ public class JFrameCloneDB extends JFrame
 			this.setTitle("Database Clone " + JVersion.getProgramVersion());
 			desktopPane.setLayout(null);
 
-			jScrollPaneFrom = new JScrollPane();
+			jScrollPaneFrom = new JScrollPane4j(JScrollPane4j.List);
 			desktopPane.add(jScrollPaneFrom);
-			jScrollPaneFrom.setBounds(20, 20, 258, 410);
+			jScrollPaneFrom.setBounds(5, 20, 258, 410);
 
 			ListModel<JHost> jListHostsModelFrom = new DefaultComboBoxModel<JHost>();
 			jListHostFrom = new JList4j<JHost>();
@@ -326,9 +296,9 @@ public class JFrameCloneDB extends JFrame
 				}
 			});
 
-			jScrollPaneTo = new JScrollPane();
+			jScrollPaneTo = new JScrollPane4j(JScrollPane4j.List);
 			desktopPane.add(jScrollPaneTo);
-			jScrollPaneTo.setBounds(295, 20, 258, 410);
+			jScrollPaneTo.setBounds(280, 20, 258, 410);
 
 			ListModel<JHost> jListHostsModelTo = new DefaultComboBoxModel<JHost>();
 			jListHostTo = new JList4j<JHost>();
@@ -346,7 +316,7 @@ public class JFrameCloneDB extends JFrame
 			jButtonClone = new JButton4j(Common.icon_clone_16x16);
 			desktopPane.add(jButtonClone);
 			jButtonClone.setText("Clone Database");
-			jButtonClone.setBounds(118, 444, 160, 32);
+			jButtonClone.setBounds(102, 435, 160, 32);
 			jButtonClone.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -606,7 +576,7 @@ public class JFrameCloneDB extends JFrame
 			jButtonClose = new JButton4j(Common.icon_close_16x16);
 			desktopPane.add(jButtonClose);
 			jButtonClose.setText("Close");
-			jButtonClose.setBounds(295, 444, 160, 32);
+			jButtonClose.setBounds(279, 435, 160, 32);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -616,27 +586,24 @@ public class JFrameCloneDB extends JFrame
 				}
 			});
 
-			progressBar.setBounds(0, 490, 558, 25);
-			progressBar.setBackground(Common.color_app_window);
-			progressBar.setForeground(Color.BLUE);
+			progressBar.setBounds(5, 475, 530, 25);
 			desktopPane.add(progressBar);
 
-			labelCommand.setBounds(0, 518, 558, 25);
-			labelCommand.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			labelCommand.setBounds(5, 505, 530, 25);
 			desktopPane.add(labelCommand);
 
 			JLabel4j_std label4j_std = new JLabel4j_std();
 			label4j_std.setText("Source");
 			label4j_std.setHorizontalTextPosition(SwingConstants.LEFT);
 			label4j_std.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std.setBounds(20, 0, 258, 21);
+			label4j_std.setBounds(5, 0, 258, 21);
 			desktopPane.add(label4j_std);
 
 			JLabel4j_std label4j_std_1 = new JLabel4j_std();
 			label4j_std_1.setText("Destination");
 			label4j_std_1.setHorizontalTextPosition(SwingConstants.LEFT);
 			label4j_std_1.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std_1.setBounds(295, 0, 248, 21);
+			label4j_std_1.setBounds(280, 0, 248, 21);
 			desktopPane.add(label4j_std_1);
 
 		}

@@ -1,33 +1,5 @@
 package com.commander4j.app;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JInternalFramePalletAdmin.java
- * 
- * Package Name : com.commander4j.app
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -41,22 +13,18 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JScrollPane;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -84,10 +52,13 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
 import com.commander4j.gui.JQuantityInput;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
@@ -109,7 +80,7 @@ import com.commander4j.util.JUtility;
  *
  * <p>
  * <img alt="" src="./doc-files/JInternalFramePalletAdmin.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBPallet JDBPallet
  * @see com.commander4j.app.JInternalFramePalletHistoryAdmin
  *      JInternalFramePalletHistoryAdmin
@@ -117,135 +88,207 @@ import com.commander4j.util.JUtility;
  */
 public class JInternalFramePalletAdmin extends JInternalFrame
 {
-	private JButton4j jButtonClear;
-	private JCheckBox4j jCheckBoxConfirmed;
-	private JLabel4j_std jLabel5_1;
-	private JLabel4j_std jStatusText;
-	private JTextField4j jTextFieldDespatch_No;
-	private JLabel4j_std jLabel8_1;
+	private static boolean dlg_sort_descending = false;
 	private static final long serialVersionUID = 1;
 	private ButtonGroup buttonGroup = new ButtonGroup();
-	private JRadioButtonMenuItem rbascending = new JRadioButtonMenuItem();
-	private JRadioButtonMenuItem rbdescending = new JRadioButtonMenuItem();
-	private static boolean dlg_sort_descending = false;
-	private JDesktopPane jDesktopPane1;
-	private JButton4j jButtonSearch1;
-	private JButton4j jButtonExport;
-	private JButton4j jButtonImport;
-	private JTextField4j jTextFieldLocation;
-	private JLabel4j_std jLabel4;
-	private JLabel4j_std jLabel23;
-	private JButton4j jButtonLookupProcessOrder;
-	private JCheckBox4j jCheckBoxLimit;
-	private JSpinner4j jSpinnerLimit;
-	private JLabel4j_std jLabel7;
-	private JDateControl domDateTo;
-	private JCheckBox4j jCheckBoxDOMTo;
-	private JDateControl domDateFrom;
-	private JCheckBox4j jCheckBoxQuantity;
-	private JTextField4j jTextFieldVariant;
-	private JLabel4j_std jLabel6;
-	private JLabel4j_std jLabel5;
-	private JTextField4j jTextFieldEAN;
-	private JLabel4j_std jLabelProductionDate;
-	private JTextField4j jTextFieldProcessOrder;
-	private JLabel4j_std jLabelProcessOrder;
-	private JTextField4j jTextFieldBatch;
-	private JLabel4j_std jLabel2;
+	private JButton4j jButtonAdd;
+	private JButton4j jButtonClear;
 	private JButton4j jButtonClose;
-	private JButton4j jButtonLabel;
-	private JButton4j jButtonLookupCustomer;
-	private JCheckBox4j jCheckBoxExpiryTo;
-	private JCheckBox4j jCheckBoxExpiryFrom;
-	private JLabel4j_std jLabel8;
-	private JDateControl expiryDateTo;
-	private JDateControl expiryDateFrom;
-	private JLabel4j_std jLabelSCC;
-	private JTextField4j jTextFieldSSCC;
-	private JTextField4j jTextFieldCustomer;
-	private JButton4j jButtonLookupBatch;
-	private JCheckBox4j jCheckBoxDOMFrom;
-	private JButton4j jButtonLookupLocation;
-	private JButton4j jButtonLookupMaterial;
-	private JQuantityInput jFormattedTextFieldQuantity;
-	private JLabel4j_std jLabelQuantity;
-	private JToggleButton4j jToggleButtonSequence;
-	private JLabel4j_std jLabel15;
-	private JComboBox4j<String> jComboBoxPalletStatus;
-	private JComboBox4j<String> jComboBoxSortBy;
-	private JLabel4j_std jLabel10;
-	private JButton4j jButtonPrint;
-	private JButton4j jButtonSummary;
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonEdit;
-	private JButton4j jButtonAdd;
-	private JComboBox4j<JDBUom> jComboBoxUOM;
-	private JLabel4j_std jLabel3;
-	private JLabel4j_std jLabel1;
-	private JTextField4j jTextFieldMaterial;
-	private JTable4j jTable1;
-	private JScrollPane jScrollPane1;
-	private JDBUom u = new JDBUom(Common.selectedHostID, Common.sessionID);
-	private JDBMHNDecisions d = new JDBMHNDecisions(Common.selectedHostID, Common.sessionID);
-	private JDBMaterialType t = new JDBMaterialType(Common.selectedHostID, Common.sessionID);
-	private Vector<JDBUom> uomList = new Vector<JDBUom>();
-	private Vector<JDBMHNDecisions> decisionList = new Vector<JDBMHNDecisions>();
-	private Vector<JDBMaterialType> typeList = new Vector<JDBMaterialType>();
-	private String lsscc;
-	private JMenuItem4j mntmEditProcessOrder;
-	private JMenuItem4j mntmEditMHN;
-	private JMenuItem4j mntmEditMaterial;
-	private JMenuItem4j mntmEditBatch;
-	private JMenuItem4j mntmEditLocation;
-	private JMenu4j mnReferenceData;
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JMenuItem4j menuItemSummary;
+	private JButton4j jButtonExport;
+	private JButton4j jButtonImport;
+	private JButton4j jButtonLabel;
+	private JButton4j jButtonLookupBatch;
+	private JButton4j jButtonLookupCustomer;
+	private JButton4j jButtonLookupLocation;
+	private JButton4j jButtonLookupMaterial;
+	private JButton4j jButtonLookupProcessOrder;
+	private JButton4j jButtonPrint;
+	private JButton4j jButtonSearch1;
+	private JButton4j jButtonSummary;
+	private JCalendarButton button_CalendarCreatedDateFrom;
+	private JCalendarButton button_CalendarCreatedDateTo;
+	private JCalendarButton button_CalendarUpdatedDateFrom;
+	private JCalendarButton button_CalendarUpdatedDateTo;
 	private JCalendarButton button_CalendardomDateFrom;
 	private JCalendarButton button_CalendardomDateTo;
 	private JCalendarButton calendarButtonexpiryDateFrom;
 	private JCalendarButton calendarButtonexpiryDateTo;
-	private JTextField4j textFieldMHN;
+	private JCheckBox4j jCheckBoxConfirmed;
+	private JCheckBox4j jCheckBoxCreatedFrom;
+	private JCheckBox4j jCheckBoxCreatedTo;
+	private JCheckBox4j jCheckBoxDOMFrom;
+	private JCheckBox4j jCheckBoxDOMTo;
+	private JCheckBox4j jCheckBoxExpiryFrom;
+	private JCheckBox4j jCheckBoxExpiryTo;
+	private JCheckBox4j jCheckBoxLimit;
+	private JCheckBox4j jCheckBoxQuantity;
+	private JCheckBox4j jCheckBoxUpdatedFrom;
+	private JCheckBox4j jCheckBoxUpdatedTo;
 	private JComboBox4j<JDBMHNDecisions> comboBoxDecisions = new JComboBox4j<JDBMHNDecisions>();
+	private JComboBox4j<JDBUom> jComboBoxUOM;
+	private JComboBox4j<String> jComboBoxPalletStatus;
+	private JComboBox4j<String> jComboBoxSortBy;
+	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBMHNDecisions d = new JDBMHNDecisions(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialType t = new JDBMaterialType(Common.selectedHostID, Common.sessionID);
+	private JDBPallet clone = new JDBPallet(Common.selectedHostID, Common.sessionID);
+	private JDBUom u = new JDBUom(Common.selectedHostID, Common.sessionID);
+	private JDateControl createdDateFrom;
+	private JDateControl createdDateTo;
+	private JDateControl domDateFrom;
+	private JDateControl domDateTo;
+	private JDateControl expiryDateFrom;
+	private JDateControl expiryDateTo;
+	private JDateControl updatedDateFrom;
+	private JDateControl updatedDateTo;
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusText;
+	private JLabel4j_std jLabel1_PalletStatus;
+	private JLabel4j_std jLabel6;
+	private JLabel4j_std jLabelProcessOrder;
+	private JLabel4j_std jLabelProductionDate;
+	private JLabel4j_std jLabelQuantity;
+	private JLabel4j_std jLabelSSCC;
+	private JLabel4j_std jLabel_Batch;
+	private JLabel4j_std jLabel_Confirmed;
+	private JLabel4j_std jLabel_Customer;
+	private JLabel4j_std jLabel_DespatchNO;
+	private JLabel4j_std jLabel_EAN;
+	private JLabel4j_std jLabel_Limit;
+	private JLabel4j_std jLabel_Location;
+	private JLabel4j_std jLabel_Material;
+	private JLabel4j_std jLabel_MaterialBatch;
+	private JLabel4j_std jLabel_SortBy;
+	private JLabel4j_std jLabel_UOM;
+	private JMenu4j mnReferenceData;
+	private JMenuItem4j menuItemEdit;
+	private JMenuItem4j menuItemSummary;
+	private JMenuItem4j mntmEditBatch;
+	private JMenuItem4j mntmEditLocation;
+	private JMenuItem4j mntmEditMHN;
+	private JMenuItem4j mntmEditMaterial;
+	private JMenuItem4j mntmEditProcessOrder;
+	private JQuantityInput jFormattedTextFieldQuantity;
+	private JRadioButtonMenuItem rbascending = new JRadioButtonMenuItem();
+	private JRadioButtonMenuItem rbdescending = new JRadioButtonMenuItem();
+	private JScrollPane4j jScrollPane1;
+	private JSpinner4j jSpinnerLimit;
+	private JTable4j jTable1;
+	private JTextField4j jTextFieldBatch;
+	private JTextField4j jTextFieldCustomer;
+	private JTextField4j jTextFieldDespatch_No;
+	private JTextField4j jTextFieldEAN;
+	private JTextField4j jTextFieldLocation;
+	private JTextField4j jTextFieldMaterial;
+	private JTextField4j jTextFieldProcessOrder;
+	private JTextField4j jTextFieldRequiredResource;
+	private JTextField4j jTextFieldSSCC;
+	private JTextField4j jTextFieldVariant;
+	private JTextField4j textFieldEquipmentType;
+	private JTextField4j textFieldMHN;
+	private JTextField4j textFieldUserCreated;
+	private JTextField4j textFieldUserUpdated;
+	private JToggleButton4j jToggleButtonSequence;
 	private PreparedStatement listStatement;
+	private String cloneErrorMesage = "";
+	private String lsscc;
 	private TableModel jTable1Model = new DefaultTableModel(new String[][]
 	{
 			{ "One", "Two" },
 			{ "Three", "Four" } }, new String[]
 	{ "Column 1", "Column 2" });
-	private JCheckBox4j jCheckBoxCreatedFrom;
-	private JDateControl createdDateFrom;
-	private JCalendarButton button_CalendarCreatedDateFrom;
-	private JCalendarButton button_CalendarCreatedDateTo;
-	private JCalendarButton button_CalendarUpdatedDateFrom;
-	private JCalendarButton button_CalendarUpdatedDateTo;
-	private JCheckBox4j jCheckBoxUpdatedFrom;
-	private JDateControl updatedDateFrom;
-	private JDateControl createdDateTo;
-	private JCheckBox4j jCheckBoxCreatedTo;
-	private JDateControl updatedDateTo;
-	private JCheckBox4j jCheckBoxUpdatedTo;
-	private JTextField4j textFieldUserCreated;
-	private JTextField4j textFieldUserUpdated;
-	private JTextField4j textFieldEquipmentType;
-	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
-	private JMenuItem4j menuItemEdit;
-	private JTextField4j jTextFieldRequiredResource;
-	private JDBPallet clone = new JDBPallet(Common.selectedHostID, Common.sessionID);
-	private String cloneErrorMesage = "";
+	private Vector<JDBMHNDecisions> decisionList = new Vector<JDBMHNDecisions>();
+	private Vector<JDBMaterialType> typeList = new Vector<JDBMaterialType>();
+	private Vector<JDBUom> uomList = new Vector<JDBUom>();
 
-	private void setCloneErrorMessage(String err)
+	/**
+	 * WindowBuilder generated method.<br>
+	 * Please don't remove this method or its invocations.<br>
+	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
+	 * with parent.
+	 */
+	private static void addPopup(Component component, final JPopupMenu popup)
 	{
-		cloneErrorMesage = err;
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
+				if (e.isPopupTrigger())
+					showMenu(e);
+			}
+
+			public void mouseReleased(MouseEvent e)
+			{
+				if (e.isPopupTrigger())
+					showMenu(e);
+			}
+
+			private void showMenu(MouseEvent e)
+			{
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 
-	private String getCloneErrorMesage()
+	public JInternalFramePalletAdmin()
 	{
-		return cloneErrorMesage;
+		super();
+		app_Init();
+	}
+
+	public JInternalFramePalletAdmin(String keyField, String keyValue)
+	{
+		super();
+		app_Init();
+
+		clearFilter();
+
+		updateSearch(keyField, keyValue);
+
+	}
+
+	public JInternalFramePalletAdmin(String keyField, String keyValue1, String keyValue2)
+	{
+		super();
+		app_Init();
+
+		clearFilter();
+
+		updateSearch(keyField, keyValue1, keyValue2);
+
+	}
+
+	private void addRecord()
+	{
+		String addSSCC = JUtility.replaceNullStringwithBlank((String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_SSCC_Add"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null));
+		if (addSSCC.equals("") == false)
+		{
+			JEANBarcode bc = new JEANBarcode(Common.selectedHostID, Common.sessionID);
+			if (addSSCC.toUpperCase().equals("AUTO"))
+			{
+				do
+				{
+					addSSCC = bc.generateNewSSCC();
+				}
+				while (addSSCC.equals(""));
+			}
+
+			if (bc.isValidSSCCformat(addSSCC))
+			{
+				JLaunchMenu.runForm("FRM_ADMIN_PALLET_EDIT", addSSCC);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(Common.mainForm, bc.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+			}
+		}
 	}
 
 	private void app_Init()
 	{
-		getContentPane().setBackground(Color.WHITE);
 
 		uomList.add(new JDBUom(Common.selectedHostID, Common.sessionID));
 		uomList.addAll(u.getInternalUoms());
@@ -277,69 +320,41 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		setSequence(dlg_sort_descending);
 	}
 
-	public JInternalFramePalletAdmin()
+	private void buildSQL()
 	{
-		super();
-		app_Init();
+
+		JDBQuery2.closeStatement(listStatement);
+
+		listStatement = buildSQLr();
 	}
 
-	public JInternalFramePalletAdmin(String keyField, String keyValue)
+	private PreparedStatement buildSQL1Record()
 	{
-		super();
-		app_Init();
+		PreparedStatement result;
 
-		clearFilter();
+		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+		q2.applyWhat("*");
+		q2.applyFrom("view_pallet_expiry");
 
-		updateSearch(keyField, keyValue);
-
-	}
-
-	public JInternalFramePalletAdmin(String keyField, String keyValue1, String keyValue2)
-	{
-		super();
-		app_Init();
-
-		clearFilter();
-
-		updateSearch(keyField, keyValue1, keyValue2);
-
-	}
-
-	public void updateSearch(String keyField, String keyValue)
-	{
-		clearFilter();
-
-		if (keyField.equals("PROCESS_ORDER"))
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
 		{
-			jTextFieldProcessOrder.setText(keyValue);
+			lsscc = jTable1.getValueAt(row, 0).toString();
+		}
+		else
+		{
+			lsscc = "";
 		}
 
-		if (keyField.equals("MATERIAL"))
+		if (lsscc.equals("") == false)
 		{
-			jTextFieldMaterial.setText(keyValue);
+			q2.applyWhere("sscc = ", lsscc);
 		}
 
-		if (keyField.equals("LOCATION"))
-		{
-			jTextFieldLocation.setText(keyValue);
-		}
-
-		buildSQL();
-		populateList();
-	}
-
-	public void updateSearch(String keyField, String keyValue1, String keyValue2)
-	{
-		clearFilter();
-
-		if (keyField.equals("MATERIAL-BATCH"))
-		{
-			jTextFieldMaterial.setText(keyValue1);
-			jTextFieldBatch.setText(keyValue2);
-		}
-
-		buildSQL();
-		populateList();
+		q2.applyRestriction(false, 0);
+		q2.applySQL();
+		result = q2.getPreparedStatement();
+		return result;
 	}
 
 	private PreparedStatement buildSQLr()
@@ -361,13 +376,13 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 		if (jTextFieldSSCC.getText().equals("") == false)
 		{
-			if (jTextFieldSSCC.getText().toString().length()==18)
+			if (jTextFieldSSCC.getText().toString().length() == 18)
 			{
 				q2.applyWhere("sscc = ", jTextFieldSSCC.getText());
 			}
 			else
 			{
-				q2.applyWhere("sscc like ", "%"+jTextFieldSSCC.getText()+"%");
+				q2.applyWhere("sscc like ", "%" + jTextFieldSSCC.getText() + "%");
 			}
 		}
 
@@ -512,88 +527,118 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		return result;
 	}
 
-	private void buildSQL()
+	private void clearFilter()
 	{
-
-		JDBQuery2.closeStatement(listStatement);
-
-		listStatement = buildSQLr();
+		jTextFieldMaterial.setText("");
+		jTextFieldBatch.setText("");
+		jTextFieldSSCC.setText("");
+		jTextFieldLocation.setText("");
+		jTextFieldProcessOrder.setText("");
+		jTextFieldDespatch_No.setText("");
+		jTextFieldEAN.setText("");
+		jTextFieldVariant.setText("");
+		jComboBoxPalletStatus.setSelectedItem("");
+		jTextFieldCustomer.setText("");
+		jComboBoxUOM.setSelectedItem("");
+		jCheckBoxDOMFrom.setSelected(false);
+		jCheckBoxDOMTo.setSelected(false);
+		jCheckBoxExpiryFrom.setSelected(false);
+		jCheckBoxExpiryTo.setSelected(false);
+		comboBoxDecisions.setSelectedIndex(0);
+		jCheckBoxCreatedFrom.setSelected(false);
+		jCheckBoxCreatedTo.setSelected(false);
+		jCheckBoxUpdatedFrom.setSelected(false);
+		jCheckBoxUpdatedTo.setSelected(false);
+		textFieldUserCreated.setText("");
+		textFieldUserUpdated.setText("");
+		textFieldMHN.setText("");
+		jComboBoxUOM.setSelectedIndex(0);
+		jTextFieldRequiredResource.setText("");
+		textFieldEquipmentType.setText("");
 	}
 
-	private PreparedStatement buildSQL1Record()
+	private boolean cloneSSCC()
 	{
-		PreparedStatement result;
+		boolean result = true;
+		long txnRef = 0;
+		String fromSSCC = "";
+		String toSSCC = "";
 
-		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
-		q2.applyWhat("*");
-		q2.applyFrom("view_pallet_expiry");
+		setCloneErrorMessage("");
 
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			lsscc = jTable1.getValueAt(row, 0).toString();
-		}
-		else
-		{
-			lsscc = "";
+			fromSSCC = jTable1.getValueAt(row, 0).toString();
+
+			toSSCC = JUtility.replaceNullStringwithBlank((String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_SSCC_Add"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null));
+
+			if (toSSCC.equals("") == false)
+			{
+				JEANBarcode bc = new JEANBarcode(Common.selectedHostID, Common.sessionID);
+				if (toSSCC.toUpperCase().equals("AUTO"))
+				{
+					do
+					{
+						toSSCC = bc.generateNewSSCC();
+					}
+					while (toSSCC.equals(""));
+				}
+
+				clone.setSSCC(toSSCC);
+
+				if (clone.isValidSSCCFormat())
+				{
+					if (clone.isValidPallet(toSSCC) == false)
+					{
+
+						if (clone.getPalletProperties(fromSSCC))
+						{
+							txnRef = clone.writePalletHistory(txnRef, "CLONE", "FROM");
+
+							clone.setSSCC(toSSCC);
+
+							if (clone.create(txnRef, "CLONE", "TO"))
+							{
+								setCloneErrorMessage(toSSCC + " created.");
+							}
+							else
+							{
+								result = false;
+								setCloneErrorMessage(clone.getErrorMessage());
+							}
+
+						}
+						else
+						{
+							result = false;
+							setCloneErrorMessage(clone.getErrorMessage());
+						}
+					}
+					else
+					{
+						result = false;
+						setCloneErrorMessage(toSSCC + " already exists.");
+					}
+				}
+				else
+				{
+					result = false;
+					setCloneErrorMessage(clone.getErrorMessage());
+				}
+
+				jStatusText.setText(getCloneErrorMesage());
+				if (result == false)
+				{
+					JUtility.errorBeep();
+				}
+				JOptionPane.showMessageDialog(Common.mainForm, getCloneErrorMesage(), lang.get("mod_FRM_PAL_CLONE_SSCC"), JOptionPane.INFORMATION_MESSAGE, Common.icon_confirm_16x16);
+
+			}
+
 		}
 
-		if (lsscc.equals("") == false)
-		{
-			q2.applyWhere("sscc = ", lsscc);
-		}
-
-		q2.applyRestriction(false, 0);
-		q2.applySQL();
-		result = q2.getPreparedStatement();
 		return result;
-	}
-
-	private void sortBy(String orderField)
-	{
-		jComboBoxSortBy.setSelectedItem(orderField);
-		buildSQL();
-		populateList();
-	}
-
-	private void splitRecord()
-	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			lsscc = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_PAL_SPLIT", lsscc);
-		}
-	}
-
-	private void palletHistory()
-	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			lsscc = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY", "SSCC", lsscc);
-		}
-	}
-
-	private void interfaceLog()
-	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			lsscc = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_INTERFACE_LOG", "SSCC", lsscc);
-		}
-	}
-
-	private void editRecord()
-	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			lsscc = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLET_EDIT", lsscc);
-		}
 	}
 
 	private void confirmRecord()
@@ -606,29 +651,51 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		}
 	}
 
-	private void addRecord()
+	private void copyToClipboard(String fieldname)
 	{
-		String addSSCC = JUtility.replaceNullStringwithBlank((String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_SSCC_Add"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null));
-		if (addSSCC.equals("") == false)
+		StringSelection stringSelection = new StringSelection("");
+
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
 		{
-			JEANBarcode bc = new JEANBarcode(Common.selectedHostID, Common.sessionID);
-			if (addSSCC.toUpperCase().equals("AUTO"))
+
+			if (fieldname.equals("SSCC") == true)
 			{
-				do
-				{
-					addSSCC = bc.generateNewSSCC();
-				}
-				while (addSSCC.equals(""));
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
 			}
 
-			if (bc.isValidSSCCformat(addSSCC))
+			if (fieldname.equals("Material") == true)
 			{
-				JLaunchMenu.runForm("FRM_ADMIN_PALLET_EDIT", addSSCC);
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
 			}
-			else
+
+			if (fieldname.equals("Batch") == true)
 			{
-				JOptionPane.showMessageDialog(Common.mainForm, bc.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
 			}
+
+			if (fieldname.equals("Process Order") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
+			}
+
+			if (fieldname.equals("Pallet Status") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 7).toString());
+			}
+
+			if (fieldname.equals("Location") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 8).toString());
+			}
+
+			if (fieldname.equals("Despatch") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 11).toString());
+			}
+
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
 		}
 	}
 
@@ -661,72 +728,14 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 	}
 
-	private void printRecords(String mode)
+	private void editRecord()
 	{
-		if (mode.equals("multi") == true)
-		{
-			PreparedStatement temp = buildSQLr();
-			JLaunchReport.runReport("RPT_PALLETS", null, "", temp, "");
-		}
-		else
-		{
-			int row = jTable1.getSelectedRow();
-			if (row >= 0)
-			{
-				PreparedStatement temp = buildSQL1Record();
-				JLaunchReport.runReport("RPT_PALLETS", null, "", temp, "");
-			}
-		}
-	}
-
-	private void print_summary()
-	{
-		jComboBoxSortBy.setSelectedItem("MATERIAL,PROCESS_ORDER");
-		PreparedStatement temp = buildSQLr();
-		JLaunchReport.runReport("RPT_PAL_SUMMARY", null, "", temp, "");
-	}
-
-	private void printLabels()
-	{
-
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
 			lsscc = jTable1.getValueAt(row, 0).toString();
-			// JLaunchMenu.runForm("FRM_PAL_LABEL_COPIES", lsscc);
-			JLaunchMenu.runDialog("FRM_PAL_LABEL_COPIES", lsscc);
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_EDIT", lsscc);
 		}
-
-	}
-
-	private void clearFilter()
-	{
-		jTextFieldMaterial.setText("");
-		jTextFieldBatch.setText("");
-		jTextFieldSSCC.setText("");
-		jTextFieldLocation.setText("");
-		jTextFieldProcessOrder.setText("");
-		jTextFieldDespatch_No.setText("");
-		jTextFieldEAN.setText("");
-		jTextFieldVariant.setText("");
-		jComboBoxPalletStatus.setSelectedItem("");
-		jTextFieldCustomer.setText("");
-		jComboBoxUOM.setSelectedItem("");
-		jCheckBoxDOMFrom.setSelected(false);
-		jCheckBoxDOMTo.setSelected(false);
-		jCheckBoxExpiryFrom.setSelected(false);
-		jCheckBoxExpiryTo.setSelected(false);
-		comboBoxDecisions.setSelectedIndex(0);
-		jCheckBoxCreatedFrom.setSelected(false);
-		jCheckBoxCreatedTo.setSelected(false);
-		jCheckBoxUpdatedFrom.setSelected(false);
-		jCheckBoxUpdatedTo.setSelected(false);
-		textFieldUserCreated.setText("");
-		textFieldUserUpdated.setText("");
-		textFieldMHN.setText("");
-		jComboBoxUOM.setSelectedIndex(0);
-		jTextFieldRequiredResource.setText("");
-		textFieldEquipmentType.setText("");
 	}
 
 	private void exportExcel(String mode)
@@ -797,52 +806,9 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		}
 	}
 
-	private void copyToClipboard(String fieldname)
+	private String getCloneErrorMesage()
 	{
-		StringSelection stringSelection = new StringSelection("");
-
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-
-			if (fieldname.equals("SSCC") == true)
-			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
-			}
-
-			if (fieldname.equals("Material") == true)
-			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
-			}
-
-			if (fieldname.equals("Batch") == true)
-			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
-			}
-
-			if (fieldname.equals("Process Order") == true)
-			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
-			}
-
-			if (fieldname.equals("Pallet Status") == true)
-			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 7).toString());
-			}
-
-			if (fieldname.equals("Location") == true)
-			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 8).toString());
-			}
-
-			if (fieldname.equals("Despatch") == true)
-			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 11).toString());
-			}
-
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-
-		}
+		return cloneErrorMesage;
 	}
 
 	private void initGUI()
@@ -850,747 +816,674 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 994, 646);
+			this.setBounds(0, 0, 994, 655);
 			setVisible(true);
 			this.setClosable(true);
 			getContentPane().setLayout(null);
+
+			jDesktopPane1 = new JDesktopPane4j();
+			jDesktopPane1.setBounds(0, 0, 990, 625);
+
+			this.getContentPane().add(jDesktopPane1);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(917, 504));
+			jDesktopPane1.setLayout(null);
+
+			jButtonExport = new JButton4j(Common.icon_export_16x16);
+			jDesktopPane1.add(jButtonExport);
+			jButtonExport.setText(lang.get("btn_Export"));
+			jButtonExport.setBounds(166, 248, 162, 32);
+			jButtonExport.setMnemonic(lang.getMnemonicChar());
+			jButtonExport.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EXPORT"));
+			jButtonExport.addActionListener(new ActionListener()
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 990, 614);
-				jDesktopPane1.setBackground(Common.color_app_window);
-				this.getContentPane().add(jDesktopPane1);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(917, 504));
-				jDesktopPane1.setLayout(null);
+				public void actionPerformed(ActionEvent evt)
 				{
-					jButtonExport = new JButton4j(Common.icon_export_16x16);
-					jDesktopPane1.add(jButtonExport);
-					jButtonExport.setText(lang.get("btn_Export"));
-					jButtonExport.setBounds(166, 248, 162, 32);
-					jButtonExport.setMnemonic(lang.getMnemonicChar());
-					jButtonExport.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EXPORT"));
-					jButtonExport.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							int maxrows = Integer.valueOf(ctrl.getKeyValueWithDefault("PALLET EXPORT MAX ROWS", "100", "Max rows which can be exported to XML"));
-							jCheckBoxLimit.setSelected(true);
-							jSpinnerLimit.setValue(maxrows);
-							buildSQL();
-							OutgoingPalletExportXML export = new OutgoingPalletExportXML(Common.selectedHostID, Common.sessionID);
-							export.saveAs(ctrl.getKeyValue("DEFAULT_LOCATION") + "_Pallet_Export.xml", listStatement, Common.mainForm, jStatusText);
-						}
-					});
-				}
-				{
-					jButtonImport = new JButton4j(Common.icon_open_16x16);
-					jDesktopPane1.add(jButtonImport);
-					jButtonImport.setText(lang.get("btn_Import"));
-					jButtonImport.setBounds(2, 248, 162, 32);
-					jButtonImport.setMnemonic(lang.getMnemonicChar());
-					jButtonImport.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_IMPORT"));
-					jButtonImport.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							IncommingPalletImportXML import1 = new IncommingPalletImportXML(Common.selectedHostID, Common.sessionID);
-							import1.loadFrom("Pallet_Export.xml", Common.mainForm, jStatusText);
-						}
-					});
-				}
-				{
-					jButtonSearch1 = new JButton4j(Common.icon_search_16x16);
-					jDesktopPane1.add(jButtonSearch1);
-					jButtonSearch1.setText(lang.get("btn_Search"));
-					jButtonSearch1.setBounds(2, 214, 162, 32);
-					jButtonSearch1.setMnemonic(lang.getMnemonicChar());
-					jButtonSearch1.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							buildSQL();
-							populateList();
-						}
-					});
-				}
-				{
-					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(122, 11, 121, 22);
-				}
-				{
-					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
-					jDesktopPane1.add(jTextFieldLocation);
-					jTextFieldLocation.setBounds(340, 11, 107, 22);
-				}
-				{
-					jTextFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
-					jDesktopPane1.add(jTextFieldCustomer);
-					jTextFieldCustomer.setBounds(340, 98, 107, 22);
-				}
-				{
-					jLabel1 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel1);
-					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(2, 11, 114, 22);
-					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabel3 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel3);
-					jLabel3.setText(lang.get("lbl_Location_ID"));
-					jLabel3.setBounds(260, 11, 74, 22);
-				}
-				{
-					jLabel23 = new JLabel4j_std();
-					jLabel23.setHorizontalAlignment(SwingConstants.TRAILING);
-					jDesktopPane1.add(jLabel23);
-					jLabel23.setText(lang.get("lbl_Customer_ID"));
-					jLabel23.setBounds(243, 98, 91, 21);
-				}
-				{
-					ComboBoxModel<JDBUom> jComboBox2Model = new DefaultComboBoxModel<JDBUom>(uomList);
-					jComboBoxUOM = new JComboBox4j<JDBUom>();
-					jDesktopPane1.add(jComboBoxUOM);
-					jComboBoxUOM.setModel(jComboBox2Model);
-					jComboBoxUOM.setBounds(582, 69, 135, 22);
-					jComboBoxUOM.setMaximumRowCount(12);
-				}
-				{
-					jLabel4 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel4);
-					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel4.setText(lang.get("lbl_Material_UOM"));
-					jLabel4.setBounds(470, 69, 108, 22);
-					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jButtonAdd = new JButton4j(Common.icon_add_16x16);
-					jDesktopPane1.add(jButtonAdd);
-					jButtonAdd.setText(lang.get("btn_Add"));
-					jButtonAdd.setBounds(330, 214, 162, 32);
-					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_ADD"));
-					jButtonAdd.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							addRecord();
-						}
-					});
-				}
-				{
-					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
-					jDesktopPane1.add(jButtonEdit);
-					jButtonEdit.setText(lang.get("btn_Edit"));
-					jButtonEdit.setBounds(494, 214, 162, 32);
-					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							editRecord();
-						}
-					});
-				}
-				{
-					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
-					jDesktopPane1.add(jButtonDelete);
-					jButtonDelete.setText(lang.get("btn_Delete"));
-					jButtonDelete.setBounds(658, 214, 162, 32);
-					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_DELETE"));
-					jButtonDelete.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							deleteRecord();
-						}
-					});
-				}
-				{
-					jButtonSummary = new JButton4j(Common.icon_report_16x16);
-					jButtonSummary.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							print_summary();
-						}
-					});
-					jDesktopPane1.add(jButtonSummary);
-					jButtonSummary.setText(lang.get("btn_Print_Summary"));
-					jButtonSummary.setBounds(494, 248, 162, 32);
-					jButtonSummary.setMnemonic(lang.getMnemonicChar());
-					jButtonSummary.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PAL_SUMMARY"));
-				}
-				{
-					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonClose);
-					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(822, 248, 162, 32);
-					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JDBQuery2.closeStatement(listStatement);
-							dispose();
-						}
-					});
-				}
-				{
-					jButtonPrint = new JButton4j(Common.icon_report_16x16);
-					jDesktopPane1.add(jButtonPrint);
-					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(658, 248, 162, 32);
-					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PALLETS"));
-					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							printRecords("multi");
-
-						}
-					});
-				}
-				{
-					jLabel10 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel10);
-					jLabel10.setText(lang.get("lbl_Limit"));
-					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(777, 185, 97, 22);
-				}
-				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-					{ "DATE_OF_MANUFACTURE", "DATE_CREATED", "DATE_UPDATED", "SSCC", "MATERIAL,BATCH_NUMBER", "MATERIAL,PROCESS_ORDER", "BATCH_NUMBER,MATERIAL", "PROCESS_ORDER,DATE_OF_MANUFACTURE", "QUANTITY", "STATUS", "LOCATION_ID", "UOM", "EAN",
-							"VARIANT", "EQUIPMENT_TYPE" });
-					jComboBoxSortBy = new JComboBox4j<String>();
-					jComboBoxSortBy.setMaximumRowCount(15);
-					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(340, 185, 355, 22);
-				}
-				{
-					ComboBoxModel<String> jComboBoxDefaultPalletStatusModel = new DefaultComboBoxModel<String>(Common.palletStatusIncBlank);
-					jComboBoxPalletStatus = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxPalletStatus);
-					jComboBoxPalletStatus.setModel(jComboBoxDefaultPalletStatusModel);
-					jComboBoxPalletStatus.setBounds(805, 11, 169, 22);
-				}
-				{
-					jLabel15 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel15);
-					jLabel15.setText(lang.get("lbl_Pallet_Status"));
-					jLabel15.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel15.setBounds(702, 11, 97, 22);
-				}
-				{
-					jToggleButtonSequence = new JToggleButton4j();
-					jToggleButtonSequence.setSelected(true);
-					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(696, 185, 22, 22);
-					jToggleButtonSequence.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							setSequence(jToggleButtonSequence.isSelected());
-						}
-					});
-				}
-				{
-					jLabelQuantity = new JLabel4j_std();
-					jDesktopPane1.add(jLabelQuantity);
-					jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
-					jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelQuantity.setBounds(470, 98, 108, 21);
-				}
-				{
-
-					jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
-					jDesktopPane1.add(jFormattedTextFieldQuantity);
-					jFormattedTextFieldQuantity.setBounds(604, 98, 108, 22);
-					jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
-					jFormattedTextFieldQuantity.setEnabled(false);
-				}
-				{
-					jLabel2 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel2);
-					jLabel2.setText(lang.get("lbl_Material_Batch"));
-					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(470, 11, 108, 22);
-				}
-				{
-					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
-					jDesktopPane1.add(jTextFieldBatch);
-					jTextFieldBatch.setBounds(582, 11, 115, 22);
-				}
-				{
-					jLabelProcessOrder = new JLabel4j_std();
-					jDesktopPane1.add(jLabelProcessOrder);
-					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
-					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(470, 40, 108, 22);
-				}
-				{
-					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(582, 40, 115, 22);
-				}
-				{
-					jLabelProductionDate = new JLabel4j_std();
-					jDesktopPane1.add(jLabelProductionDate);
-					jLabelProductionDate.setText(lang.get("lbl_Pallet_DOM"));
-					jLabelProductionDate.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProductionDate.setBounds(2, 42, 114, 22);
-				}
-				{
-					jTextFieldEAN = new JTextField4j(JDBMaterialUom.field_ean);
-					jDesktopPane1.add(jTextFieldEAN);
-					jTextFieldEAN.setBounds(805, 69, 117, 22);
-					jTextFieldEAN.setFocusCycleRoot(true);
-				}
-				{
-					jLabel5 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel5);
-					jLabel5.setText(lang.get("lbl_Material_UOM_EAN"));
-					jLabel5.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel5.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel5.setBounds(702, 69, 97, 22);
-				}
-				{
-					jLabel6 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel6);
-					jLabel6.setText("/");
-					jLabel6.setHorizontalAlignment(SwingConstants.CENTER);
-					jLabel6.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel6.setBounds(922, 69, 15, 22);
-				}
-				{
-					jTextFieldVariant = new JTextField4j(JDBMaterialUom.field_variant);
-					jTextFieldVariant.setHorizontalAlignment(SwingConstants.CENTER);
-					jDesktopPane1.add(jTextFieldVariant);
-					jTextFieldVariant.setBounds(937, 69, 25, 22);
-					jTextFieldVariant.setFocusCycleRoot(true);
-				}
-				{
-					jCheckBoxQuantity = new JCheckBox4j();
-					jDesktopPane1.add(jCheckBoxQuantity);
-					jCheckBoxQuantity.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxQuantity.setBounds(582, 98, 22, 22);
-					jCheckBoxQuantity.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							if (jCheckBoxQuantity.isSelected())
-							{
-								jFormattedTextFieldQuantity.setValue(0);
-								jFormattedTextFieldQuantity.setEnabled(true);
-							}
-							else
-							{
-								jFormattedTextFieldQuantity.setValue(0);
-								jFormattedTextFieldQuantity.setEnabled(false);
-							}
-						}
-					});
-				}
-				{
-					domDateFrom = new JDateControl();
-					jDesktopPane1.add(domDateFrom);
-					domDateFrom.setEnabled(false);
-					domDateFrom.setBounds(146, 40, 120, 25);
-
-				}
-				{
-					jCheckBoxDOMTo = new JCheckBox4j();
-					jDesktopPane1.add(jCheckBoxDOMTo);
-					jCheckBoxDOMTo.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxDOMTo.setBounds(313, 40, 22, 22);
-					jCheckBoxDOMTo.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							if (jCheckBoxDOMTo.isSelected())
-							{
-								button_CalendardomDateTo.setEnabled(true);
-								domDateTo.setEnabled(true);
-							}
-							else
-							{
-								domDateTo.setEnabled(false);
-								button_CalendardomDateTo.setEnabled(false);
-							}
-						}
-					});
-				}
-				{
-					domDateTo = new JDateControl();
-					jDesktopPane1.add(domDateTo);
-					domDateTo.setEnabled(false);
-					domDateTo.setBounds(340, 40, 120, 25);
-				}
-				{
-					jLabel7 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel7);
-					jLabel7.setText(lang.get("lbl_Sort_By"));
-					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel7.setBounds(265, 185, 69, 22);
-				}
-				{
-					SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
-					jSpinnerIntModel.setMinimum(1);
-					jSpinnerIntModel.setMaximum(5000);
-					jSpinnerIntModel.setStepSize(1);
-					jSpinnerLimit = new JSpinner4j();
-					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
-					jSpinnerLimit.setEditor(ne);
-					jSpinnerLimit.setModel(jSpinnerIntModel);
-					jSpinnerLimit.setBounds(906, 185, 68, 22);
-					jSpinnerLimit.setValue(1000);
-					jSpinnerLimit.getEditor().setSize(45, 21);
-					jDesktopPane1.add(jSpinnerLimit);
-				}
-				{
-					jCheckBoxLimit = new JCheckBox4j();
-					jDesktopPane1.add(jCheckBoxLimit);
-					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxLimit.setBounds(876, 185, 22, 22);
+					int maxrows = Integer.valueOf(ctrl.getKeyValueWithDefault("PALLET EXPORT MAX ROWS", "100", "Max rows which can be exported to XML"));
 					jCheckBoxLimit.setSelected(true);
-					jCheckBoxLimit.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							if (jCheckBoxLimit.isSelected())
-							{
-								jSpinnerLimit.setEnabled(true);
-							}
-							else
-							{
-								jSpinnerLimit.setEnabled(false);
-							}
-						}
-					});
+					jSpinnerLimit.setValue(maxrows);
+					buildSQL();
+					OutgoingPalletExportXML export = new OutgoingPalletExportXML(Common.selectedHostID, Common.sessionID);
+					export.saveAs(ctrl.getKeyValue("DEFAULT_LOCATION") + "_Pallet_Export.xml", listStatement, Common.mainForm, jStatusText);
 				}
-				{
-					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupProcessOrder);
-					jButtonLookupProcessOrder.setBounds(696, 40, 22, 22);
-					jButtonLookupProcessOrder.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchLookup.dlgCriteriaDefault = "Ready";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.processOrders())
-							{
-								jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-				}
-				{
-					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupBatch);
+			});
 
-					jButtonLookupBatch.setBounds(696, 11, 22, 22);
-					jButtonLookupBatch.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.materialBatches())
-							{
-								jTextFieldBatch.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-				}
-				{
-					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupMaterial);
-					jButtonLookupMaterial.setBounds(242, 11, 22, 22);
-					jButtonLookupMaterial.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.materials())
-							{
-								jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-				}
-				{
-					jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupLocation);
-					jButtonLookupLocation.setBounds(446, 11, 22, 22);
-					jButtonLookupLocation.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchLookup.dlgAutoExec = true;
-							JLaunchLookup.dlgCriteriaDefault = "Y";
-							if (JLaunchLookup.locations())
-							{
-								jTextFieldLocation.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-				}
-				{
-					jButtonLookupCustomer = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupCustomer);
-					jButtonLookupCustomer.setBounds(446, 98, 22, 22);
-					jButtonLookupCustomer.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchLookup.dlgAutoExec = true;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.customers())
-							{
-								jTextFieldCustomer.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-				}
-				{
-					jCheckBoxDOMFrom = new JCheckBox4j();
-					jDesktopPane1.add(jCheckBoxDOMFrom);
-					jCheckBoxDOMFrom.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxDOMFrom.setBounds(122, 40, 22, 22);
-					jCheckBoxDOMFrom.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							if (jCheckBoxDOMFrom.isSelected())
-							{
-								domDateFrom.setEnabled(true);
-								button_CalendardomDateFrom.setEnabled(true);
-							}
-							else
-							{
-								domDateFrom.setEnabled(false);
-								button_CalendardomDateFrom.setEnabled(false);
-							}
-						}
-					});
-				}
-				{
-					jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
-					jDesktopPane1.add(jTextFieldSSCC);
-					jTextFieldSSCC.setBounds(122, 98, 120, 22);
-				}
-				{
-					jLabelSCC = new JLabel4j_std();
-					jDesktopPane1.add(jLabelSCC);
-					jLabelSCC.setText(lang.get("lbl_Pallet_SSCC"));
-					jLabelSCC.setBounds(2, 98, 114, 21);
-					jLabelSCC.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					expiryDateFrom = new JDateControl();
-					jDesktopPane1.add(expiryDateFrom);
-					expiryDateFrom.setEnabled(false);
-					expiryDateFrom.setBounds(146, 69, 120, 25);
-				}
-				{
-					expiryDateTo = new JDateControl();
-					jDesktopPane1.add(expiryDateTo);
-					expiryDateTo.setEnabled(false);
-					expiryDateTo.setBounds(340, 69, 120, 25);
-				}
-				{
-					jLabel8 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel8);
-					jLabel8.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
-					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8.setBounds(2, 69, 114, 22);
-				}
-				{
-					jCheckBoxExpiryFrom = new JCheckBox4j();
-					jDesktopPane1.add(jCheckBoxExpiryFrom);
-					jCheckBoxExpiryFrom.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxExpiryFrom.setBounds(122, 69, 22, 22);
-					jCheckBoxExpiryFrom.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							if (jCheckBoxExpiryFrom.isSelected())
-							{
-								expiryDateFrom.setEnabled(true);
-								calendarButtonexpiryDateFrom.setEnabled(true);
-							}
-							else
-							{
-								expiryDateFrom.setEnabled(false);
-								calendarButtonexpiryDateFrom.setEnabled(false);
-							}
-						}
-					});
-				}
-				{
-					jCheckBoxExpiryTo = new JCheckBox4j();
-					jDesktopPane1.add(jCheckBoxExpiryTo);
-					jCheckBoxExpiryTo.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxExpiryTo.setBounds(313, 69, 22, 22);
-					jCheckBoxExpiryTo.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							if (jCheckBoxExpiryTo.isSelected())
-							{
-								expiryDateTo.setEnabled(true);
-								calendarButtonexpiryDateTo.setEnabled(true);
-							}
-							else
-							{
-								expiryDateTo.setEnabled(false);
-								calendarButtonexpiryDateTo.setEnabled(false);
-							}
-						}
-					});
-				}
-				{
-					jButtonLabel = new JButton4j(Common.icon_label_16x16);
-					jButtonLabel.setToolTipText("Print labels for all returned rows below");
-					jDesktopPane1.add(jButtonLabel);
-					jButtonLabel.setText(lang.get("btn_Label"));
-					jButtonLabel.setMnemonic(java.awt.event.KeyEvent.VK_L);
-					jButtonLabel.setBounds(330, 248, 162, 32);
-					jButtonLabel.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							printLabels();
-						}
-					});
-				}
-
-				{
-					jLabel8_1 = new JLabel4j_std();
-					jLabel8_1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8_1.setText(lang.get("lbl_Despatch_No"));
-					jLabel8_1.setBounds(702, 40, 97, 22);
-					jDesktopPane1.add(jLabel8_1);
-				}
-
-				{
-					jTextFieldDespatch_No = new JTextField4j(JDBDespatch.field_despatch_no);
-					jTextFieldDespatch_No.setFocusCycleRoot(true);
-					jTextFieldDespatch_No.setBounds(805, 40, 117, 22);
-					jDesktopPane1.add(jTextFieldDespatch_No);
-				}
-
-				{
-					final JButton4j exportXlsButton = new JButton4j(Common.icon_XLS_16x16);
-					exportXlsButton.setToolTipText("Export all rows below to spreadsheet.");
-					exportXlsButton.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(final ActionEvent e)
-						{
-							exportExcel("multi");
-						}
-					});
-					exportXlsButton.setText(lang.get("btn_Excel"));
-					exportXlsButton.setBounds(822, 214, 162, 32);
-					jDesktopPane1.add(exportXlsButton);
-				}
-
-				{
-					jLabel5_1 = new JLabel4j_std();
-					jLabel5_1.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel5_1.setText(lang.get("lbl_Confirmed"));
-					jLabel5_1.setBounds(702, 185, 97, 22);
-					jDesktopPane1.add(jLabel5_1);
-				}
-
-				{
-					jCheckBoxConfirmed = new JCheckBox4j();
-					jCheckBoxConfirmed.setSelected(true);
-					jCheckBoxConfirmed.setBackground(Color.WHITE);
-					jCheckBoxConfirmed.setBounds(801, 188, 21, 21);
-					jDesktopPane1.add(jCheckBoxConfirmed);
-				}
-
-				{
-					jButtonClear = new JButton4j(Common.icon_clear_16x16);
-					jButtonClear.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(final ActionEvent e)
-						{
-							clearFilter();
-
-						}
-					});
-					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(166, 214, 162, 32);
-					jDesktopPane1.add(jButtonClear);
-				}
-
-				button_CalendardomDateFrom = new JCalendarButton(domDateFrom);
-				button_CalendardomDateFrom.setSize(22, 22);
-				button_CalendardomDateFrom.setEnabled(false);
-				button_CalendardomDateFrom.setLocation(274, 40);
-				jDesktopPane1.add(button_CalendardomDateFrom);
-
-				button_CalendardomDateTo = new JCalendarButton(domDateTo);
-				button_CalendardomDateTo.setSize(22, 22);
-				button_CalendardomDateTo.setEnabled(false);
-				button_CalendardomDateTo.setLocation(468, 40);
-				jDesktopPane1.add(button_CalendardomDateTo);
-
-				calendarButtonexpiryDateFrom = new JCalendarButton(expiryDateFrom);
-				calendarButtonexpiryDateFrom.setSize(22, 22);
-				calendarButtonexpiryDateFrom.setEnabled(false);
-				calendarButtonexpiryDateFrom.setLocation(274, 69);
-				jDesktopPane1.add(calendarButtonexpiryDateFrom);
-
-				calendarButtonexpiryDateTo = new JCalendarButton(expiryDateTo);
-				calendarButtonexpiryDateTo.setSize(22, 22);
-				calendarButtonexpiryDateTo.setEnabled(false);
-				calendarButtonexpiryDateTo.setLocation(468, 69);
-				jDesktopPane1.add(calendarButtonexpiryDateTo);
-
-				JLabel4j_std label = new JLabel4j_std();
-				label.setText(lang.get("lbl_MHN_Number"));
-				label.setHorizontalAlignment(SwingConstants.TRAILING);
-				label.setBounds(702, 98, 97, 21);
-				jDesktopPane1.add(label);
-
-				textFieldMHN = new JTextField4j(JDBMHN.field_mhn_number);
-				textFieldMHN.setBounds(805, 98, 117, 22);
-				jDesktopPane1.add(textFieldMHN);
-
-				JLabel4j_std label_1 = new JLabel4j_std();
-				label_1.setText(lang.get("lbl_Decision"));
-				label_1.setHorizontalAlignment(SwingConstants.TRAILING);
-				label_1.setBounds(702, 127, 97, 21);
-				jDesktopPane1.add(label_1);
-
-				ComboBoxModel<JDBMHNDecisions> jComboBox3Model = new DefaultComboBoxModel<JDBMHNDecisions>(decisionList);
-				comboBoxDecisions.setModel(jComboBox3Model);
-				comboBoxDecisions.setMaximumRowCount(12);
-				comboBoxDecisions.setBounds(805, 127, 169, 23);
-				jDesktopPane1.add(comboBoxDecisions);
-			}
-
+			jButtonImport = new JButton4j(Common.icon_open_16x16);
+			jDesktopPane1.add(jButtonImport);
+			jButtonImport.setText(lang.get("btn_Import"));
+			jButtonImport.setBounds(2, 248, 162, 32);
+			jButtonImport.setMnemonic(lang.getMnemonicChar());
+			jButtonImport.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_IMPORT"));
+			jButtonImport.addActionListener(new ActionListener()
 			{
-				jStatusText = new JLabel4j_std();
-				jStatusText.setBounds(0, 593, 983, 21);
-				jDesktopPane1.add(jStatusText);
-				jStatusText.setBackground(Color.GRAY);
-				jStatusText.setForeground(new Color(255, 0, 0));
-				jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-			}
-			jScrollPane1 = new JScrollPane();
+				public void actionPerformed(ActionEvent evt)
+				{
+					IncommingPalletImportXML import1 = new IncommingPalletImportXML(Common.selectedHostID, Common.sessionID);
+					import1.loadFrom("Pallet_Export.xml", Common.mainForm, jStatusText);
+				}
+			});
+
+			jButtonSearch1 = new JButton4j(Common.icon_search_16x16);
+			jDesktopPane1.add(jButtonSearch1);
+			jButtonSearch1.setText(lang.get("btn_Search"));
+			jButtonSearch1.setBounds(2, 214, 162, 32);
+			jButtonSearch1.setMnemonic(lang.getMnemonicChar());
+			jButtonSearch1.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					buildSQL();
+					populateList();
+				}
+			});
+
+			jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
+			jDesktopPane1.add(jTextFieldMaterial);
+			jTextFieldMaterial.setBounds(146, 8, 99, 22);
+
+			jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
+			jDesktopPane1.add(jTextFieldLocation);
+			jTextFieldLocation.setBounds(340, 8, 107, 22);
+
+			jTextFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
+			jDesktopPane1.add(jTextFieldCustomer);
+			jTextFieldCustomer.setBounds(340, 99, 107, 22);
+
+			jLabel_Material = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_Material);
+			jLabel_Material.setText(lang.get("lbl_Material"));
+			jLabel_Material.setBounds(2, 8, 114, 22);
+			jLabel_Material.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabel_Location = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_Location);
+			jLabel_Location.setText(lang.get("lbl_Location_ID"));
+			jLabel_Location.setBounds(260, 8, 74, 22);
+
+			jLabel_Customer = new JLabel4j_std();
+			jLabel_Customer.setHorizontalAlignment(SwingConstants.TRAILING);
+			jDesktopPane1.add(jLabel_Customer);
+			jLabel_Customer.setText(lang.get("lbl_Customer_ID"));
+			jLabel_Customer.setBounds(243, 100, 91, 21);
+
+			ComboBoxModel<JDBUom> jComboBox2Model = new DefaultComboBoxModel<JDBUom>(uomList);
+			jComboBoxUOM = new JComboBox4j<JDBUom>();
+			jDesktopPane1.add(jComboBoxUOM);
+			jComboBoxUOM.setModel(jComboBox2Model);
+			jComboBoxUOM.setBounds(582, 71, 135, 22);
+			jComboBoxUOM.setMaximumRowCount(12);
+
+			jLabel_UOM = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_UOM);
+			jLabel_Location.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_UOM.setText(lang.get("lbl_Material_UOM"));
+			jLabel_UOM.setBounds(480, 71, 98, 22);
+			jLabel_UOM.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jButtonAdd = new JButton4j(Common.icon_add_16x16);
+			jDesktopPane1.add(jButtonAdd);
+			jButtonAdd.setText(lang.get("btn_Add"));
+			jButtonAdd.setBounds(330, 214, 162, 32);
+			jButtonAdd.setMnemonic(lang.getMnemonicChar());
+			jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_ADD"));
+			jButtonAdd.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					addRecord();
+				}
+			});
+
+			jButtonEdit = new JButton4j(Common.icon_edit_16x16);
+			jDesktopPane1.add(jButtonEdit);
+			jButtonEdit.setText(lang.get("btn_Edit"));
+			jButtonEdit.setBounds(494, 214, 162, 32);
+			jButtonEdit.setMnemonic(lang.getMnemonicChar());
+			jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
+			jButtonEdit.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					editRecord();
+				}
+			});
+
+			jButtonDelete = new JButton4j(Common.icon_delete_16x16);
+			jDesktopPane1.add(jButtonDelete);
+			jButtonDelete.setText(lang.get("btn_Delete"));
+			jButtonDelete.setBounds(658, 214, 162, 32);
+			jButtonDelete.setMnemonic(lang.getMnemonicChar());
+			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_DELETE"));
+			jButtonDelete.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					deleteRecord();
+				}
+			});
+
+			jButtonSummary = new JButton4j(Common.icon_report_16x16);
+			jButtonSummary.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					print_summary();
+				}
+			});
+			jDesktopPane1.add(jButtonSummary);
+			jButtonSummary.setText(lang.get("btn_Print_Summary"));
+			jButtonSummary.setBounds(494, 248, 162, 32);
+			jButtonSummary.setMnemonic(lang.getMnemonicChar());
+			jButtonSummary.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PAL_SUMMARY"));
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText(lang.get("btn_Close"));
+			jButtonClose.setBounds(822, 248, 162, 32);
+			jButtonClose.setMnemonic(lang.getMnemonicChar());
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JDBQuery2.closeStatement(listStatement);
+					dispose();
+				}
+			});
+
+			jButtonPrint = new JButton4j(Common.icon_report_16x16);
+			jDesktopPane1.add(jButtonPrint);
+			jButtonPrint.setText(lang.get("btn_Print"));
+			jButtonPrint.setBounds(658, 248, 162, 32);
+			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PALLETS"));
+			jButtonPrint.setMnemonic(lang.getMnemonicChar());
+			jButtonPrint.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					printRecords("multi");
+
+				}
+			});
+
+			jLabel_Limit = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_Limit);
+			jLabel_Limit.setText(lang.get("lbl_Limit"));
+			jLabel_Limit.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_Limit.setBounds(822, 185, 52, 22);
+
+			ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
+			{ "DATE_OF_MANUFACTURE", "DATE_CREATED", "DATE_UPDATED", "SSCC", "MATERIAL,BATCH_NUMBER", "MATERIAL,PROCESS_ORDER", "BATCH_NUMBER,MATERIAL", "PROCESS_ORDER,DATE_OF_MANUFACTURE", "QUANTITY", "STATUS", "LOCATION_ID", "UOM", "EAN", "VARIANT",
+					"EQUIPMENT_TYPE" });
+			jComboBoxSortBy = new JComboBox4j<String>();
+			jComboBoxSortBy.setMaximumRowCount(15);
+			jDesktopPane1.add(jComboBoxSortBy);
+			jComboBoxSortBy.setModel(jComboBoxSortByModel);
+			jComboBoxSortBy.setBounds(340, 185, 355, 22);
+
+			ComboBoxModel<String> jComboBoxDefaultPalletStatusModel = new DefaultComboBoxModel<String>(Common.palletStatusIncBlank);
+			jComboBoxPalletStatus = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxPalletStatus);
+			jComboBoxPalletStatus.setModel(jComboBoxDefaultPalletStatusModel);
+			jComboBoxPalletStatus.setBounds(805, 8, 169, 22);
+
+			jLabel1_PalletStatus = new JLabel4j_std();
+			jDesktopPane1.add(jLabel1_PalletStatus);
+			jLabel1_PalletStatus.setText(lang.get("lbl_Pallet_Status"));
+			jLabel1_PalletStatus.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel1_PalletStatus.setBounds(715, 8, 84, 22);
+
+			jToggleButtonSequence = new JToggleButton4j();
+			jToggleButtonSequence.setSelected(true);
+			jDesktopPane1.add(jToggleButtonSequence);
+			jToggleButtonSequence.setBounds(696, 185, 22, 22);
+			jToggleButtonSequence.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					setSequence(jToggleButtonSequence.isSelected());
+				}
+			});
+
+			jLabelQuantity = new JLabel4j_std();
+			jDesktopPane1.add(jLabelQuantity);
+			jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
+			jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelQuantity.setBounds(470, 100, 108, 21);
+
+			jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
+			jDesktopPane1.add(jFormattedTextFieldQuantity);
+			jFormattedTextFieldQuantity.setBounds(609, 99, 108, 22);
+			jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
+			jFormattedTextFieldQuantity.setEnabled(false);
+
+			jLabel_MaterialBatch = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_MaterialBatch);
+			jLabel_MaterialBatch.setText(lang.get("lbl_Material_Batch"));
+			jLabel_MaterialBatch.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_MaterialBatch.setBounds(470, 8, 108, 22);
+
+			jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
+			jDesktopPane1.add(jTextFieldBatch);
+			jTextFieldBatch.setBounds(582, 8, 115, 22);
+
+			jLabelProcessOrder = new JLabel4j_std();
+			jDesktopPane1.add(jLabelProcessOrder);
+			jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
+			jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelProcessOrder.setBounds(470, 40, 108, 22);
+
+			jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
+			jDesktopPane1.add(jTextFieldProcessOrder);
+			jTextFieldProcessOrder.setBounds(582, 40, 115, 22);
+
+			jLabelProductionDate = new JLabel4j_std();
+			jDesktopPane1.add(jLabelProductionDate);
+			jLabelProductionDate.setText(lang.get("lbl_Pallet_DOM"));
+			jLabelProductionDate.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelProductionDate.setBounds(2, 40, 114, 22);
+
+			jTextFieldEAN = new JTextField4j(JDBMaterialUom.field_ean);
+			jDesktopPane1.add(jTextFieldEAN);
+			jTextFieldEAN.setBounds(805, 71, 117, 22);
+			jTextFieldEAN.setFocusCycleRoot(true);
+
+			jLabel_EAN = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_EAN);
+			jLabel_EAN.setText(lang.get("lbl_Material_UOM_EAN"));
+			jLabel_EAN.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabel_EAN.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_EAN.setBounds(702, 71, 97, 22);
+
+			jLabel6 = new JLabel4j_std();
+			jDesktopPane1.add(jLabel6);
+			jLabel6.setText("/");
+			jLabel6.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabel6.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel6.setBounds(922, 71, 15, 22);
+
+			jTextFieldVariant = new JTextField4j(JDBMaterialUom.field_variant);
+			jTextFieldVariant.setHorizontalAlignment(SwingConstants.CENTER);
+			jDesktopPane1.add(jTextFieldVariant);
+			jTextFieldVariant.setBounds(937, 71, 25, 22);
+			jTextFieldVariant.setFocusCycleRoot(true);
+
+			jCheckBoxQuantity = new JCheckBox4j();
+			jDesktopPane1.add(jCheckBoxQuantity);
+
+			jCheckBoxQuantity.setBounds(582, 99, 22, 22);
+			jCheckBoxQuantity.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					if (jCheckBoxQuantity.isSelected())
+					{
+						jFormattedTextFieldQuantity.setValue(0);
+						jFormattedTextFieldQuantity.setEnabled(true);
+					}
+					else
+					{
+						jFormattedTextFieldQuantity.setValue(0);
+						jFormattedTextFieldQuantity.setEnabled(false);
+					}
+				}
+			});
+
+			domDateFrom = new JDateControl();
+			jDesktopPane1.add(domDateFrom);
+			domDateFrom.setEnabled(false);
+			domDateFrom.setBounds(146, 37, 120, 25);
+
+			jCheckBoxDOMTo = new JCheckBox4j();
+			jDesktopPane1.add(jCheckBoxDOMTo);
+
+			jCheckBoxDOMTo.setBounds(313, 40, 22, 22);
+			jCheckBoxDOMTo.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					if (jCheckBoxDOMTo.isSelected())
+					{
+						button_CalendardomDateTo.setEnabled(true);
+						domDateTo.setEnabled(true);
+					}
+					else
+					{
+						domDateTo.setEnabled(false);
+						button_CalendardomDateTo.setEnabled(false);
+					}
+				}
+			});
+
+			domDateTo = new JDateControl();
+			jDesktopPane1.add(domDateTo);
+			domDateTo.setEnabled(false);
+			domDateTo.setBounds(340, 37, 120, 25);
+
+			jLabel_SortBy = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_SortBy);
+			jLabel_SortBy.setText(lang.get("lbl_Sort_By"));
+			jLabel_SortBy.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_SortBy.setBounds(265, 185, 69, 22);
+
+			SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
+			jSpinnerIntModel.setMinimum(1);
+			jSpinnerIntModel.setMaximum(5000);
+			jSpinnerIntModel.setStepSize(1);
+			jSpinnerLimit = new JSpinner4j();
+			JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
+			jSpinnerLimit.setEditor(ne);
+			jSpinnerLimit.setModel(jSpinnerIntModel);
+			jSpinnerLimit.setBounds(906, 185, 68, 22);
+			jSpinnerLimit.setValue(1000);
+			jSpinnerLimit.getEditor().setSize(45, 21);
+			jDesktopPane1.add(jSpinnerLimit);
+
+			jCheckBoxLimit = new JCheckBox4j();
+			jDesktopPane1.add(jCheckBoxLimit);
+
+			jCheckBoxLimit.setBounds(876, 185, 22, 22);
+			jCheckBoxLimit.setSelected(true);
+			jCheckBoxLimit.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					if (jCheckBoxLimit.isSelected())
+					{
+						jSpinnerLimit.setEnabled(true);
+					}
+					else
+					{
+						jSpinnerLimit.setEnabled(false);
+					}
+				}
+			});
+
+			jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupProcessOrder);
+			jButtonLookupProcessOrder.setBounds(696, 40, 22, 22);
+			jButtonLookupProcessOrder.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "Ready";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.processOrders())
+					{
+						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupBatch);
+
+			jButtonLookupBatch.setBounds(696, 8, 22, 22);
+			jButtonLookupBatch.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.materialBatches())
+					{
+						jTextFieldBatch.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupMaterial);
+			jButtonLookupMaterial.setBounds(244, 8, 22, 22);
+			jButtonLookupMaterial.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgAutoExec = false;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.materials())
+					{
+						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupLocation);
+			jButtonLookupLocation.setBounds(446, 8, 22, 22);
+			jButtonLookupLocation.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "Y";
+					if (JLaunchLookup.locations())
+					{
+						jTextFieldLocation.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jButtonLookupCustomer = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupCustomer);
+			jButtonLookupCustomer.setBounds(446, 99, 22, 22);
+			jButtonLookupCustomer.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.customers())
+					{
+						jTextFieldCustomer.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jCheckBoxDOMFrom = new JCheckBox4j();
+			jDesktopPane1.add(jCheckBoxDOMFrom);
+
+			jCheckBoxDOMFrom.setBounds(122, 40, 22, 22);
+			jCheckBoxDOMFrom.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					if (jCheckBoxDOMFrom.isSelected())
+					{
+						domDateFrom.setEnabled(true);
+						button_CalendardomDateFrom.setEnabled(true);
+					}
+					else
+					{
+						domDateFrom.setEnabled(false);
+						button_CalendardomDateFrom.setEnabled(false);
+					}
+				}
+			});
+
+			jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
+			jDesktopPane1.add(jTextFieldSSCC);
+			jTextFieldSSCC.setBounds(146, 99, 120, 22);
+
+			jLabelSSCC = new JLabel4j_std();
+			jDesktopPane1.add(jLabelSSCC);
+			jLabelSSCC.setText(lang.get("lbl_Pallet_SSCC"));
+			jLabelSSCC.setBounds(2, 100, 114, 21);
+			jLabelSSCC.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			expiryDateFrom = new JDateControl();
+			jDesktopPane1.add(expiryDateFrom);
+			expiryDateFrom.setEnabled(false);
+			expiryDateFrom.setBounds(146, 68, 120, 25);
+
+			expiryDateTo = new JDateControl();
+			jDesktopPane1.add(expiryDateTo);
+			expiryDateTo.setEnabled(false);
+			expiryDateTo.setBounds(340, 68, 120, 25);
+
+			jLabel_Batch = new JLabel4j_std();
+			jDesktopPane1.add(jLabel_Batch);
+			jLabel_Batch.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
+			jLabel_Batch.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_Batch.setBounds(2, 71, 114, 22);
+
+			jCheckBoxExpiryFrom = new JCheckBox4j();
+			jDesktopPane1.add(jCheckBoxExpiryFrom);
+
+			jCheckBoxExpiryFrom.setBounds(122, 71, 22, 22);
+			jCheckBoxExpiryFrom.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					if (jCheckBoxExpiryFrom.isSelected())
+					{
+						expiryDateFrom.setEnabled(true);
+						calendarButtonexpiryDateFrom.setEnabled(true);
+					}
+					else
+					{
+						expiryDateFrom.setEnabled(false);
+						calendarButtonexpiryDateFrom.setEnabled(false);
+					}
+				}
+			});
+
+			jCheckBoxExpiryTo = new JCheckBox4j();
+			jDesktopPane1.add(jCheckBoxExpiryTo);
+
+			jCheckBoxExpiryTo.setBounds(313, 71, 22, 22);
+			jCheckBoxExpiryTo.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					if (jCheckBoxExpiryTo.isSelected())
+					{
+						expiryDateTo.setEnabled(true);
+						calendarButtonexpiryDateTo.setEnabled(true);
+					}
+					else
+					{
+						expiryDateTo.setEnabled(false);
+						calendarButtonexpiryDateTo.setEnabled(false);
+					}
+				}
+			});
+
+			jButtonLabel = new JButton4j(Common.icon_label_16x16);
+			jButtonLabel.setToolTipText("Print labels for all returned rows below");
+			jDesktopPane1.add(jButtonLabel);
+			jButtonLabel.setText(lang.get("btn_Label"));
+			jButtonLabel.setMnemonic(java.awt.event.KeyEvent.VK_L);
+			jButtonLabel.setBounds(330, 248, 162, 32);
+			jButtonLabel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					printLabels();
+				}
+			});
+
+			jLabel_DespatchNO = new JLabel4j_std();
+			jLabel_DespatchNO.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_DespatchNO.setText(lang.get("lbl_Despatch_No"));
+			jLabel_DespatchNO.setBounds(702, 40, 97, 22);
+			jDesktopPane1.add(jLabel_DespatchNO);
+
+			jTextFieldDespatch_No = new JTextField4j(JDBDespatch.field_despatch_no);
+			jTextFieldDespatch_No.setFocusCycleRoot(true);
+			jTextFieldDespatch_No.setBounds(805, 40, 117, 22);
+			jDesktopPane1.add(jTextFieldDespatch_No);
+
+			final JButton4j exportXlsButton = new JButton4j(Common.icon_XLS_16x16);
+			exportXlsButton.setToolTipText("Export all rows below to spreadsheet.");
+			exportXlsButton.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					exportExcel("multi");
+				}
+			});
+			exportXlsButton.setText(lang.get("btn_Excel"));
+			exportXlsButton.setBounds(822, 214, 162, 32);
+			jDesktopPane1.add(exportXlsButton);
+
+			jLabel_Confirmed = new JLabel4j_std();
+			jLabel_Confirmed.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabel_Confirmed.setText(lang.get("lbl_Confirmed"));
+			jLabel_Confirmed.setBounds(702, 185, 97, 22);
+			jDesktopPane1.add(jLabel_Confirmed);
+
+			jCheckBoxConfirmed = new JCheckBox4j();
+			jCheckBoxConfirmed.setSelected(true);
+
+			jCheckBoxConfirmed.setBounds(801, 186, 21, 21);
+			jDesktopPane1.add(jCheckBoxConfirmed);
+
+			jButtonClear = new JButton4j(Common.icon_clear_16x16);
+			jButtonClear.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					clearFilter();
+
+				}
+			});
+			jButtonClear.setText(lang.get("btn_Clear_Filter"));
+			jButtonClear.setBounds(166, 214, 162, 32);
+			jDesktopPane1.add(jButtonClear);
+
+			button_CalendardomDateFrom = new JCalendarButton(domDateFrom);
+			button_CalendardomDateFrom.setSize(22, 22);
+			button_CalendardomDateFrom.setEnabled(false);
+			button_CalendardomDateFrom.setLocation(268, 40);
+			jDesktopPane1.add(button_CalendardomDateFrom);
+
+			button_CalendardomDateTo = new JCalendarButton(domDateTo);
+			button_CalendardomDateTo.setSize(22, 22);
+			button_CalendardomDateTo.setEnabled(false);
+			button_CalendardomDateTo.setLocation(463, 40);
+			jDesktopPane1.add(button_CalendardomDateTo);
+
+			calendarButtonexpiryDateFrom = new JCalendarButton(expiryDateFrom);
+			calendarButtonexpiryDateFrom.setSize(22, 22);
+			calendarButtonexpiryDateFrom.setEnabled(false);
+			calendarButtonexpiryDateFrom.setLocation(268, 71);
+			jDesktopPane1.add(calendarButtonexpiryDateFrom);
+
+			calendarButtonexpiryDateTo = new JCalendarButton(expiryDateTo);
+			calendarButtonexpiryDateTo.setSize(22, 22);
+			calendarButtonexpiryDateTo.setEnabled(false);
+			calendarButtonexpiryDateTo.setLocation(463, 71);
+			jDesktopPane1.add(calendarButtonexpiryDateTo);
+
+			JLabel4j_std jLabel_MHN = new JLabel4j_std();
+			jLabel_MHN.setText(lang.get("lbl_MHN_Number"));
+			jLabel_MHN.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_MHN.setBounds(702, 100, 97, 21);
+			jDesktopPane1.add(jLabel_MHN);
+
+			textFieldMHN = new JTextField4j(JDBMHN.field_mhn_number);
+			textFieldMHN.setBounds(805, 99, 117, 22);
+			jDesktopPane1.add(textFieldMHN);
+
+			JLabel4j_std jLabel_Descion = new JLabel4j_std();
+			jLabel_Descion.setText(lang.get("lbl_Decision"));
+			jLabel_Descion.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_Descion.setBounds(702, 127, 97, 21);
+			jDesktopPane1.add(jLabel_Descion);
+
+			ComboBoxModel<JDBMHNDecisions> jComboBox3Model = new DefaultComboBoxModel<JDBMHNDecisions>(decisionList);
+			comboBoxDecisions.setModel(jComboBox3Model);
+			comboBoxDecisions.setMaximumRowCount(12);
+			comboBoxDecisions.setBounds(805, 127, 169, 23);
+			jDesktopPane1.add(comboBoxDecisions);
+
+			jStatusText = new JLabel4j_status();
+			jStatusText.setBounds(5, 598, 975, 21);
+			jDesktopPane1.add(jStatusText);
+
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.Table);
 			jScrollPane1.setBounds(0, 286, 984, 304);
 			jDesktopPane1.add(jScrollPane1);
-			jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
+
 			jTable1 = new JTable4j();
 
 			jScrollPane1.setViewportView(jTable1);
@@ -1925,113 +1818,96 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					filterByMenu.setText(lang.get("lbl_Filter_By"));
 					popupMenu.add(filterByMenu);
 
+					final JMenuItem4j menuItemFilterBySSCC = new JMenuItem4j();
+					menuItemFilterBySSCC.addActionListener(new ActionListener()
 					{
-						final JMenuItem4j menuItemFilterBySSCC = new JMenuItem4j();
-						menuItemFilterBySSCC.addActionListener(new ActionListener()
+						public void actionPerformed(final ActionEvent e)
 						{
-							public void actionPerformed(final ActionEvent e)
-							{
-								filterBy("SSCC");
-							}
-						});
-						menuItemFilterBySSCC.setText(lang.get("lbl_Pallet_SSCC"));
-						filterByMenu.add(menuItemFilterBySSCC);
-					}
+							filterBy("SSCC");
+						}
+					});
+					menuItemFilterBySSCC.setText(lang.get("lbl_Pallet_SSCC"));
+					filterByMenu.add(menuItemFilterBySSCC);
 
+					final JMenuItem4j menuItemFilterByMaterial = new JMenuItem4j();
+					menuItemFilterByMaterial.addActionListener(new ActionListener()
 					{
-						final JMenuItem4j menuItemFilterByMaterial = new JMenuItem4j();
-						menuItemFilterByMaterial.addActionListener(new ActionListener()
+						public void actionPerformed(final ActionEvent e)
 						{
-							public void actionPerformed(final ActionEvent e)
-							{
-								filterBy("Material");
-							}
-						});
-						menuItemFilterByMaterial.setText(lang.get("lbl_Material"));
-						filterByMenu.add(menuItemFilterByMaterial);
-					}
+							filterBy("Material");
+						}
+					});
+					menuItemFilterByMaterial.setText(lang.get("lbl_Material"));
+					filterByMenu.add(menuItemFilterByMaterial);
 
+					final JMenuItem4j menuItemFilterByBatch = new JMenuItem4j();
+					menuItemFilterByBatch.addActionListener(new ActionListener()
 					{
-						final JMenuItem4j menuItemFilterByBatch = new JMenuItem4j();
-						menuItemFilterByBatch.addActionListener(new ActionListener()
+						public void actionPerformed(final ActionEvent e)
 						{
-							public void actionPerformed(final ActionEvent e)
-							{
-								filterBy("Batch");
-							}
-						});
-						menuItemFilterByBatch.setText(lang.get("lbl_Material_Batch"));
-						filterByMenu.add(menuItemFilterByBatch);
-					}
+							filterBy("Batch");
+						}
+					});
+					menuItemFilterByBatch.setText(lang.get("lbl_Material_Batch"));
+					filterByMenu.add(menuItemFilterByBatch);
 
+					final JMenuItem4j menuItemFilterByLocation = new JMenuItem4j();
+					menuItemFilterByLocation.addActionListener(new ActionListener()
 					{
-						final JMenuItem4j menuItemFilterByLocation = new JMenuItem4j();
-						menuItemFilterByLocation.addActionListener(new ActionListener()
+						public void actionPerformed(final ActionEvent e)
 						{
-							public void actionPerformed(final ActionEvent e)
-							{
-								filterBy("Location");
-							}
-						});
-						menuItemFilterByLocation.setText(lang.get("lbl_Location_ID"));
-						filterByMenu.add(menuItemFilterByLocation);
-					}
+							filterBy("Location");
+						}
+					});
+					menuItemFilterByLocation.setText(lang.get("lbl_Location_ID"));
+					filterByMenu.add(menuItemFilterByLocation);
 
+					final JMenuItem4j menuItemFilterByDespatch = new JMenuItem4j();
+					menuItemFilterByDespatch.addActionListener(new ActionListener()
 					{
-						final JMenuItem4j menuItemFilterByDespatch = new JMenuItem4j();
-						menuItemFilterByDespatch.addActionListener(new ActionListener()
+						public void actionPerformed(final ActionEvent e)
 						{
-							public void actionPerformed(final ActionEvent e)
-							{
-								filterBy("Despatch");
-							}
-						});
-						menuItemFilterByDespatch.setText(lang.get("lbl_Despatch_No"));
-						filterByMenu.add(menuItemFilterByDespatch);
-					}
+							filterBy("Despatch");
+						}
+					});
+					menuItemFilterByDespatch.setText(lang.get("lbl_Despatch_No"));
+					filterByMenu.add(menuItemFilterByDespatch);
 
+					final JMenuItem4j menuItemFilterByPalletStatus = new JMenuItem4j();
+					menuItemFilterByPalletStatus.addActionListener(new ActionListener()
 					{
-						final JMenuItem4j menuItemFilterByPalletStatus = new JMenuItem4j();
-						menuItemFilterByPalletStatus.addActionListener(new ActionListener()
+						public void actionPerformed(final ActionEvent e)
 						{
-							public void actionPerformed(final ActionEvent e)
-							{
-								filterBy("Pallet Status");
-							}
-						});
-						menuItemFilterByPalletStatus.setText(lang.get("lbl_Pallet_Status"));
-						filterByMenu.add(menuItemFilterByPalletStatus);
-					}
+							filterBy("Pallet Status");
+						}
+					});
+					menuItemFilterByPalletStatus.setText(lang.get("lbl_Pallet_Status"));
+					filterByMenu.add(menuItemFilterByPalletStatus);
 
+					final JMenuItem4j menuItemFilterByProcessOrder = new JMenuItem4j();
+					menuItemFilterByProcessOrder.addActionListener(new ActionListener()
 					{
-						final JMenuItem4j menuItemFilterByProcessOrder = new JMenuItem4j();
-						menuItemFilterByProcessOrder.addActionListener(new ActionListener()
+						public void actionPerformed(final ActionEvent e)
 						{
-							public void actionPerformed(final ActionEvent e)
-							{
-								filterBy("Process Order");
-							}
-						});
-						menuItemFilterByProcessOrder.setText(lang.get("lbl_Process_Order"));
-						filterByMenu.add(menuItemFilterByProcessOrder);
-					}
+							filterBy("Process Order");
+						}
+					});
+					menuItemFilterByProcessOrder.setText(lang.get("lbl_Process_Order"));
+					filterByMenu.add(menuItemFilterByProcessOrder);
 
-					{
-						filterByMenu.addSeparator();
-					}
+					filterByMenu.addSeparator();
 
+					final JMenuItem4j menuItemResetFilter = new JMenuItem4j();
+					menuItemResetFilter.addActionListener(new ActionListener()
 					{
-						final JMenuItem4j menuItemResetFilter = new JMenuItem4j();
-						menuItemResetFilter.addActionListener(new ActionListener()
+						public void actionPerformed(final ActionEvent e)
 						{
-							public void actionPerformed(final ActionEvent e)
-							{
-								clearFilter();
-							}
-						});
-						menuItemResetFilter.setText(lang.get("btn_Clear_Filter"));
-						filterByMenu.add(menuItemResetFilter);
-					}
+							clearFilter();
+						}
+					});
+					menuItemResetFilter.setText(lang.get("btn_Clear_Filter"));
+					filterByMenu.add(menuItemResetFilter);
+
 				}
 
 				{
@@ -2174,36 +2050,31 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 						orderMenu.setText(lang.get("lbl_Sort_By"));
 						sortByMenu.add(orderMenu);
 
+						rbascending.addActionListener(new ActionListener()
 						{
-
-							rbascending.addActionListener(new ActionListener()
+							public void actionPerformed(final ActionEvent e)
 							{
-								public void actionPerformed(final ActionEvent e)
-								{
-									setSequence(false);
-								}
-							});
-							buttonGroup.add(rbascending);
-							rbascending.setSelected(true);
-							rbascending.setText("Ascending");
-							rbascending.setFont(Common.font_popup);
-							orderMenu.add(rbascending);
-						}
+								setSequence(false);
+							}
+						});
+						buttonGroup.add(rbascending);
+						rbascending.setSelected(true);
+						rbascending.setText("Ascending");
+						rbascending.setFont(Common.font_popup);
+						orderMenu.add(rbascending);
 
+						rbdescending.addActionListener(new ActionListener()
 						{
-
-							rbdescending.addActionListener(new ActionListener()
+							public void actionPerformed(final ActionEvent e)
 							{
-								public void actionPerformed(final ActionEvent e)
-								{
-									setSequence(true);
-								}
-							});
-							buttonGroup.add(rbdescending);
-							rbdescending.setText("Descending");
-							rbdescending.setFont(Common.font_popup);
-							orderMenu.add(rbdescending);
-						}
+								setSequence(true);
+							}
+						});
+						buttonGroup.add(rbdescending);
+						rbdescending.setText("Descending");
+						rbdescending.setFont(Common.font_popup);
+						orderMenu.add(rbdescending);
+
 					}
 
 					{
@@ -2319,7 +2190,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			jDesktopPane1.add(jLabelUpdatedDate);
 
 			jCheckBoxCreatedFrom = new JCheckBox4j();
-			jCheckBoxCreatedFrom.setBackground(Color.WHITE);
+
 			jCheckBoxCreatedFrom.setBounds(122, 127, 22, 22);
 			jDesktopPane1.add(jCheckBoxCreatedFrom);
 			jCheckBoxCreatedFrom.addActionListener(new ActionListener()
@@ -2340,7 +2211,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			});
 
 			jCheckBoxUpdatedFrom = new JCheckBox4j();
-			jCheckBoxUpdatedFrom.setBackground(Color.WHITE);
+
 			jCheckBoxUpdatedFrom.setBounds(122, 156, 22, 22);
 			jDesktopPane1.add(jCheckBoxUpdatedFrom);
 			jCheckBoxUpdatedFrom.addActionListener(new ActionListener()
@@ -2362,16 +2233,16 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 			createdDateFrom = new JDateControl();
 			createdDateFrom.setEnabled(false);
-			createdDateFrom.setBounds(146, 127, 128, 22);
+			createdDateFrom.setBounds(146, 127, 120, 22);
 			jDesktopPane1.add(createdDateFrom);
 
 			updatedDateFrom = new JDateControl();
 			updatedDateFrom.setEnabled(false);
-			updatedDateFrom.setBounds(146, 156, 128, 22);
+			updatedDateFrom.setBounds(146, 156, 120, 22);
 			jDesktopPane1.add(updatedDateFrom);
 
 			jCheckBoxCreatedTo = new JCheckBox4j();
-			jCheckBoxCreatedTo.setBackground(Color.WHITE);
+
 			jCheckBoxCreatedTo.setBounds(313, 127, 22, 22);
 			jDesktopPane1.add(jCheckBoxCreatedTo);
 			jCheckBoxCreatedTo.addActionListener(new ActionListener()
@@ -2392,7 +2263,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			});
 
 			jCheckBoxUpdatedTo = new JCheckBox4j();
-			jCheckBoxUpdatedTo.setBackground(Color.WHITE);
+
 			jCheckBoxUpdatedTo.setBounds(313, 156, 22, 22);
 			jDesktopPane1.add(jCheckBoxUpdatedTo);
 			jCheckBoxUpdatedTo.addActionListener(new ActionListener()
@@ -2414,12 +2285,12 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 			createdDateTo = new JDateControl();
 			createdDateTo.setEnabled(false);
-			createdDateTo.setBounds(340, 127, 128, 22);
+			createdDateTo.setBounds(340, 127, 120, 22);
 			jDesktopPane1.add(createdDateTo);
 
 			updatedDateTo = new JDateControl();
 			updatedDateTo.setEnabled(false);
-			updatedDateTo.setBounds(340, 156, 128, 22);
+			updatedDateTo.setBounds(340, 156, 120, 22);
 			jDesktopPane1.add(updatedDateTo);
 
 			JLabel4j_std label4j_std_2 = new JLabel4j_std();
@@ -2437,7 +2308,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			JLabel4j_std jLabelCreatedUser = new JLabel4j_std();
 			jLabelCreatedUser.setText(lang.get("lbl_Created_By"));
 			jLabelCreatedUser.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelCreatedUser.setBounds(470, 127, 108, 21);
+			jLabelCreatedUser.setBounds(480, 127, 98, 21);
 			jDesktopPane1.add(jLabelCreatedUser);
 
 			textFieldUserCreated = new JTextField4j(JDBUser.field_user_id);
@@ -2464,7 +2335,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			JLabel4j_std jLabelUpdatedUser = new JLabel4j_std();
 			jLabelUpdatedUser.setText(lang.get("lbl_Updated_By"));
 			jLabelUpdatedUser.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelUpdatedUser.setBounds(470, 156, 108, 21);
+			jLabelUpdatedUser.setBounds(490, 156, 88, 21);
 			jDesktopPane1.add(jLabelUpdatedUser);
 
 			textFieldUserUpdated = new JTextField4j(JDBUser.field_user_id);
@@ -2516,32 +2387,32 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 			button_CalendarCreatedDateFrom = new JCalendarButton(createdDateFrom);
 			button_CalendarCreatedDateFrom.setEnabled(false);
-			button_CalendarCreatedDateFrom.setBounds(274, 127, 22, 22);
+			button_CalendarCreatedDateFrom.setBounds(268, 127, 22, 22);
 			jDesktopPane1.add(button_CalendarCreatedDateFrom);
 
 			button_CalendarUpdatedDateFrom = new JCalendarButton(updatedDateFrom);
 			button_CalendarUpdatedDateFrom.setEnabled(false);
-			button_CalendarUpdatedDateFrom.setBounds(274, 157, 21, 21);
+			button_CalendarUpdatedDateFrom.setBounds(268, 157, 21, 21);
 			jDesktopPane1.add(button_CalendarUpdatedDateFrom);
 
 			button_CalendarCreatedDateTo = new JCalendarButton(createdDateTo);
 			button_CalendarCreatedDateTo.setEnabled(false);
-			button_CalendarCreatedDateTo.setBounds(468, 127, 22, 22);
+			button_CalendarCreatedDateTo.setBounds(463, 127, 22, 22);
 			jDesktopPane1.add(button_CalendarCreatedDateTo);
 
 			button_CalendarUpdatedDateTo = new JCalendarButton(updatedDateTo);
 			button_CalendarUpdatedDateTo.setEnabled(false);
-			button_CalendarUpdatedDateTo.setBounds(468, 156, 22, 22);
+			button_CalendarUpdatedDateTo.setBounds(463, 156, 22, 22);
 			jDesktopPane1.add(button_CalendarUpdatedDateTo);
 
-			JLabel4j_std label = new JLabel4j_std();
-			label.setText(lang.get("lbl_Process_Order_Required_Resource"));
-			label.setHorizontalAlignment(SwingConstants.TRAILING);
-			label.setBounds(2, 185, 114, 22);
-			jDesktopPane1.add(label);
+			JLabel4j_std jLabel_ProcessOrder = new JLabel4j_std();
+			jLabel_ProcessOrder.setText(lang.get("lbl_Process_Order_Required_Resource"));
+			jLabel_ProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_ProcessOrder.setBounds(2, 185, 114, 22);
+			jDesktopPane1.add(jLabel_ProcessOrder);
 
 			jTextFieldRequiredResource = new JTextField4j(JDBProcessOrder.field_required_resource);
-			jTextFieldRequiredResource.setBounds(122, 185, 121, 22);
+			jTextFieldRequiredResource.setBounds(146, 185, 96, 22);
 			jDesktopPane1.add(jTextFieldRequiredResource);
 
 			JButton4j btnLookupResource = new JButton4j(Common.icon_lookup_16x16);
@@ -2559,7 +2430,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			});
 			btnLookupResource.setBounds(242, 185, 22, 22);
 			jDesktopPane1.add(btnLookupResource);
-			
+
 			SwingUtilities.invokeLater(new Runnable()
 			{
 				public void run()
@@ -2573,6 +2444,59 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		catch (Exception e)
 		{
 			e.printStackTrace();
+		}
+	}
+
+	private void interfaceLog()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lsscc = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_INTERFACE_LOG", "SSCC", lsscc);
+		}
+	}
+
+	private void palletHistory()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lsscc = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY", "SSCC", lsscc);
+		}
+	}
+
+	private void palletMove()
+	{
+		int row = jTable1.getSelectedRow();
+
+		if (row >= 0)
+		{
+			String lsscc = jTable1.getValueAt(row, 0).toString();
+			String source = jTable1.getValueAt(row, 8).toString();
+
+			JDBLocation locn = new JDBLocation(Common.selectedHostID, Common.sessionID);
+			String[] locnList = locn.getLocationListArray();
+
+			JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
+
+			if (pal.getPalletProperties(lsscc))
+			{
+				String dest = (String) JOptionPane.showInputDialog(Common.mainForm, "Move To", lsscc, JOptionPane.PLAIN_MESSAGE, Common.icon_interface_16x16, locnList, "Pallet Move");
+
+				if (dest != null)
+				{
+					if (dest.equals("") == false)
+
+					{
+						Long txn = (long) 0;
+
+						txn = pal.updateLocationID(txn, source, dest);
+
+					}
+				}
+			}
 		}
 	}
 
@@ -2615,37 +2539,47 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 	}
 
-	private void palletMove()
+	private void print_summary()
 	{
-		int row = jTable1.getSelectedRow();
+		jComboBoxSortBy.setSelectedItem("MATERIAL,PROCESS_ORDER");
+		PreparedStatement temp = buildSQLr();
+		JLaunchReport.runReport("RPT_PAL_SUMMARY", null, "", temp, "");
+	}
 
+	private void printLabels()
+	{
+
+		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			String lsscc = jTable1.getValueAt(row, 0).toString();
-			String source = jTable1.getValueAt(row, 8).toString();
+			lsscc = jTable1.getValueAt(row, 0).toString();
+			// JLaunchMenu.runForm("FRM_PAL_LABEL_COPIES", lsscc);
+			JLaunchMenu.runDialog("FRM_PAL_LABEL_COPIES", lsscc);
+		}
 
-			JDBLocation locn = new JDBLocation(Common.selectedHostID, Common.sessionID);
-			String[] locnList = locn.getLocationListArray();
+	}
 
-			JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
-
-			if (pal.getPalletProperties(lsscc))
+	private void printRecords(String mode)
+	{
+		if (mode.equals("multi") == true)
+		{
+			PreparedStatement temp = buildSQLr();
+			JLaunchReport.runReport("RPT_PALLETS", null, "", temp, "");
+		}
+		else
+		{
+			int row = jTable1.getSelectedRow();
+			if (row >= 0)
 			{
-				String dest = (String) JOptionPane.showInputDialog(Common.mainForm, "Move To", lsscc, JOptionPane.PLAIN_MESSAGE, Common.icon_interface_16x16, locnList, "Pallet Move");
-
-				if (dest != null)
-				{
-					if (dest.equals("") == false)
-
-					{
-						Long txn = (long) 0;
-
-						txn = pal.updateLocationID(txn, source, dest);
-
-					}
-				}
+				PreparedStatement temp = buildSQL1Record();
+				JLaunchReport.runReport("RPT_PALLETS", null, "", temp, "");
 			}
 		}
+	}
+
+	private void setCloneErrorMessage(String err)
+	{
+		cloneErrorMesage = err;
 	}
 
 	private void setSequence(boolean descending)
@@ -2664,116 +2598,57 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		}
 	}
 
-	/**
-	 * WindowBuilder generated method.<br>
-	 * Please don't remove this method or its invocations.<br>
-	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
-	 * with parent.
-	 */
-	private static void addPopup(Component component, final JPopupMenu popup)
+	private void sortBy(String orderField)
 	{
-		component.addMouseListener(new MouseAdapter()
-		{
-			public void mousePressed(MouseEvent e)
-			{
-				if (e.isPopupTrigger())
-					showMenu(e);
-			}
-
-			public void mouseReleased(MouseEvent e)
-			{
-				if (e.isPopupTrigger())
-					showMenu(e);
-			}
-
-			private void showMenu(MouseEvent e)
-			{
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
+		jComboBoxSortBy.setSelectedItem(orderField);
+		buildSQL();
+		populateList();
 	}
 
-	private boolean cloneSSCC()
+	private void splitRecord()
 	{
-		boolean result = true;
-		long txnRef = 0;
-		String fromSSCC = "";
-		String toSSCC = "";
-		
-		setCloneErrorMessage("");
-
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			fromSSCC = jTable1.getValueAt(row, 0).toString();
+			lsscc = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_PAL_SPLIT", lsscc);
+		}
+	}
 
-			toSSCC = JUtility.replaceNullStringwithBlank((String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_SSCC_Add"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null));
-			
-			if (toSSCC.equals("") == false)
-			{
-				JEANBarcode bc = new JEANBarcode(Common.selectedHostID, Common.sessionID);
-				if (toSSCC.toUpperCase().equals("AUTO"))
-				{
-					do
-					{
-						toSSCC = bc.generateNewSSCC();
-					}
-					while (toSSCC.equals(""));
-				}
+	public void updateSearch(String keyField, String keyValue)
+	{
+		clearFilter();
 
-				clone.setSSCC(toSSCC);
-
-				if (clone.isValidSSCCFormat())
-				{
-					if (clone.isValidPallet(toSSCC) == false)
-					{
-
-						if (clone.getPalletProperties(fromSSCC))
-						{
-							txnRef = clone.writePalletHistory(txnRef, "CLONE", "FROM");
-
-							clone.setSSCC(toSSCC);
-
-							if (clone.create(txnRef, "CLONE", "TO"))
-							{
-								setCloneErrorMessage(toSSCC + " created.");
-							}
-							else
-							{
-								result = false;
-								setCloneErrorMessage(clone.getErrorMessage());
-							}
-
-						}
-						else
-						{
-							result = false;
-							setCloneErrorMessage(clone.getErrorMessage());
-						}
-					}
-					else
-					{
-						result = false;
-						setCloneErrorMessage(toSSCC + " already exists.");
-					}
-				}
-				else
-				{
-					result = false;
-					setCloneErrorMessage(clone.getErrorMessage());
-				}
-				
-				jStatusText.setText(getCloneErrorMesage());
-				if (result==false)
-				{
-					JUtility.errorBeep();
-				}
-				JOptionPane.showMessageDialog(Common.mainForm, getCloneErrorMesage(), lang.get("mod_FRM_PAL_CLONE_SSCC"), JOptionPane.INFORMATION_MESSAGE, Common.icon_confirm_16x16);
-
-			}
-
+		if (keyField.equals("PROCESS_ORDER"))
+		{
+			jTextFieldProcessOrder.setText(keyValue);
 		}
 
-		return result;
+		if (keyField.equals("MATERIAL"))
+		{
+			jTextFieldMaterial.setText(keyValue);
+		}
+
+		if (keyField.equals("LOCATION"))
+		{
+			jTextFieldLocation.setText(keyValue);
+		}
+
+		buildSQL();
+		populateList();
+	}
+
+	public void updateSearch(String keyField, String keyValue1, String keyValue2)
+	{
+		clearFilter();
+
+		if (keyField.equals("MATERIAL-BATCH"))
+		{
+			jTextFieldMaterial.setText(keyValue1);
+			jTextFieldBatch.setText(keyValue2);
+		}
+
+		buildSQL();
+		populateList();
 	}
 }

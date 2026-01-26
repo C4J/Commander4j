@@ -64,7 +64,7 @@ public class JDBWasteLocationJList extends JList<JDBListData>
 	public JDBWasteLocationJList()
 	{
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(Common.color_list_background);
 	}
 
 	public JDBWasteLocationJList(String host, String session)
@@ -73,7 +73,7 @@ public class JDBWasteLocationJList extends JList<JDBListData>
 		setSessionID(session);
 		mod = new JDBWasteLocation(getHostID(), getSessionID());
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(Common.color_list_background);
 	}
 
 	public String getToolTipText(MouseEvent e) {

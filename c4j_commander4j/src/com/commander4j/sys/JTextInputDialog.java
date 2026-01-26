@@ -12,14 +12,15 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.util.JUtility;
 
 public class JTextInputDialog extends JDialog
@@ -29,7 +30,7 @@ public class JTextInputDialog extends JDialog
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	private final JPanel4j contentPanel = new JPanel4j();
 	private static boolean isTextEntered = false;
 	private static JTextArea textArea;
 	private int maxCharacters = 0;
@@ -109,7 +110,7 @@ public class JTextInputDialog extends JDialog
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane4j scrollPane = new JScrollPane4j();
 		scrollPane.setBounds(6, 6, 557, 136);
 		contentPanel.add(scrollPane);
 
@@ -128,7 +129,7 @@ public class JTextInputDialog extends JDialog
 		scrollPane.setViewportView(textArea);
 
 
-		JPanel buttonPane = new JPanel();
+		JPanel4j buttonPane = new JPanel4j();
 		buttonPane.setBounds(0, 144, 569, 46);
 		contentPanel.add(buttonPane);
 		{

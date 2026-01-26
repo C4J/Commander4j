@@ -29,15 +29,16 @@ package com.commander4j.renderer;
 
 import java.awt.Component;
 
+import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JCheckListItem;
 import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 
-import javax.swing.JCheckBox;
+
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-public class MultiItemCheckListRenderer extends JCheckBox implements ListCellRenderer<Object>
+public class MultiItemCheckListRenderer extends JCheckBox4j implements ListCellRenderer<Object>
 {
 
 	private static final long serialVersionUID = 1L;

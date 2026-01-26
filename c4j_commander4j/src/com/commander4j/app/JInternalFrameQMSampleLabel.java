@@ -2,29 +2,29 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameQMSampleLabel.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.Color;
@@ -40,9 +40,9 @@ import java.util.LinkedList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JInternalFrame;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -70,9 +70,12 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBoxPODevices4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JRadioButton4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.print.JPrintDevice;
@@ -84,58 +87,58 @@ import com.commander4j.util.JUtility;
 /**
  * The JInternalFrameQMSampleLabel is used printing sample labels and populating
  * the APP_QM_SAMPLE table
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameQMSampleLabel.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBQMSample JDBQMSample
  */
 public class JInternalFrameQMSampleLabel extends JInternalFrame
 {
 
-	private static final long serialVersionUID = 1L;
-	private JTextField4j textFieldProcessOrder;
-	private JTextField4j textFieldDescription;
-	private JTextField4j textFieldInspectionID;
-	private JTextField4j textFieldMaterial;
-	private JTextField4j textFieldStatus;
-	private JButton4j btnPrint;
-	private JButton4j btnClose;
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBProcessOrder po = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
-	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
-	private JDBQMActivity activity = new JDBQMActivity(Common.selectedHostID, Common.sessionID);
-	private JDBQMSample sample = new JDBQMSample(Common.selectedHostID, Common.sessionID);
-	private JDBUserReport userReport = new JDBUserReport(Common.selectedHostID, Common.sessionID);
-	private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
-	private JComboBoxPODevices4j comboBoxPrintQueue;
-	private JSpinner4j spinnerCopies;
-	private JList4j<JDBQMActivity> listActivities;
-	private JTextField4j textFieldResource;
-	private JDateControl dueDate;
-	private PreparedStatement listStatement;
-	private JLabel4j_std lblUserData1;
-	private JLabel4j_std lblUserData2;
-	private JTextField4j textFieldUserData1;
-	private JTextField4j textFieldUserData2;
-	private ClockListener clocklistener = new ClockListener();
-	private Timer timer = new Timer(1000, clocklistener);
-	private JLabel4j_std lblStatusBar;
+	private Boolean processOrderValid = false;
 	private Boolean qmud1 = false;
 	private Boolean qmud2 = false;
 	private Boolean qmud3 = false;
 	private Boolean qmud4 = false;
-	private Boolean processOrderValid = false;
-	private JDateControl sampleDateTime;
+	private ClockListener clocklistener = new ClockListener();
+	private JButton4j btnClose;
+	private JButton4j btnPrint;
+	private JButton4j jButtonLookup_Packing_Line;
+	private JButton4j jButtonLookup_Shift_Names;
 	private JCheckBox4j chckbxAutoTime;
+	private JComboBoxPODevices4j comboBoxPrintQueue;
+	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
+	private JDBProcessOrder po = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
+	private JDBQMActivity activity = new JDBQMActivity(Common.selectedHostID, Common.sessionID);
+	private JDBQMSample sample = new JDBQMSample(Common.selectedHostID, Common.sessionID);
+	private JDBUserReport userReport = new JDBUserReport(Common.selectedHostID, Common.sessionID);
+	private JDateControl dueDate;
+	private JDateControl sampleDateTime;
+	private JLabel4j_std lblStatusBar;
+	private JLabel4j_std lblUserData1;
+	private JLabel4j_std lblUserData2;
+	private JList4j<JDBQMActivity> listActivities;
 	private JRadioButton4j resolution_200dpi = new JRadioButton4j("200 dpi");
 	private JRadioButton4j resolution_300dpi = new JRadioButton4j("300 dpi");
 	private JRadioButton4j resolution_default = new JRadioButton4j("Default Resolution");
+	private JSpinner4j spinnerCopies;
+	private JTextField4j textFieldDescription;
+	private JTextField4j textFieldInspectionID;
+	private JTextField4j textFieldMaterial;
+	private JTextField4j textFieldProcessOrder;
+	private JTextField4j textFieldResource;
+	private JTextField4j textFieldStatus;
+	private JTextField4j textFieldUserData1;
+	private JTextField4j textFieldUserData2;
 	private JTextField4j textFieldUserData3;
 	private JTextField4j textFieldUserData4;
-	private JButton4j jButtonLookup_Shift_Names;
-	private JButton4j jButtonLookup_Packing_Line;
+	private PreparedStatement listStatement;
 	private String selectedModuleId = "RPT_SAMPLE_LABEL";
+	private Timer timer = new Timer(1000, clocklistener);
+	private static final long serialVersionUID = 1L;
 
 	public class ClockListener implements ActionListener
 	{
@@ -515,18 +518,18 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 581, 618);
+		setBounds(100, 100, 565, 618);
 		getContentPane().setLayout(null);
 
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBackground(Common.color_app_window);
-		desktopPane.setBounds(0, 0, 587, 631);
+		JDesktopPane4j desktopPane = new JDesktopPane4j();
+
+		desktopPane.setBounds(0, 0, 557, 588);
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
 
 		JLabel4j_std lblProcessOrder = new JLabel4j_std(lang.get("lbl_Process_Order"));
 		lblProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblProcessOrder.setBounds(6, 10, 111, 22);
+		lblProcessOrder.setBounds(6, 8, 111, 22);
 		desktopPane.add(lblProcessOrder);
 
 		JLabel4j_std lblDescription = new JLabel4j_std(lang.get("lbl_Description"));
@@ -542,29 +545,29 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				processOrderChanged(textFieldProcessOrder.getText());
 			}
 		});
-		textFieldProcessOrder.setBounds(125, 10, 115, 22);
+		textFieldProcessOrder.setBounds(125, 8, 115, 22);
 		desktopPane.add(textFieldProcessOrder);
 		textFieldProcessOrder.setColumns(10);
 
 		textFieldDescription = new JTextField4j(JDBProcessOrder.field_description);
 		textFieldDescription.setEditable(false);
-		textFieldDescription.setBounds(125, 40, 420, 22);
+		textFieldDescription.setBounds(125, 40, 407, 22);
 		desktopPane.add(textFieldDescription);
 		textFieldDescription.setColumns(10);
 
 		textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
 		textFieldInspectionID.setEditable(false);
-		textFieldInspectionID.setBounds(125, 70, 134, 22);
+		textFieldInspectionID.setBounds(125, 72, 134, 22);
 		desktopPane.add(textFieldInspectionID);
 		textFieldInspectionID.setColumns(10);
 
 		JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
 		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblInspectionID.setBounds(6, 70, 111, 22);
+		lblInspectionID.setBounds(6, 72, 111, 22);
 		desktopPane.add(lblInspectionID);
 
-		JLabel4j_std lblNewLabel_3 = new JLabel4j_std(lang.get("lbl_Activity_ID"));
-		lblNewLabel_3.setBounds(30, 226, 111, 22);
+		JLabel4j_title lblNewLabel_3 = new JLabel4j_title(lang.get("lbl_Activity_ID"));
+		lblNewLabel_3.setBounds(32, 232, 111, 22);
 		desktopPane.add(lblNewLabel_3);
 
 		btnPrint = new JButton4j(lang.get("btn_Print"));
@@ -586,7 +589,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 
 		btnPrint.setIcon(Common.icon_print_16x16);
-		btnPrint.setBounds(165, 534, 117, 32);
+		btnPrint.setBounds(165, 536, 117, 32);
 		desktopPane.add(btnPrint);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
@@ -598,7 +601,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				dispose();
 			}
 		});
-		btnClose.setBounds(294, 534, 117, 32);
+		btnClose.setBounds(294, 536, 117, 32);
 		desktopPane.add(btnClose);
 
 		comboBoxPrintQueue = new JComboBoxPODevices4j(Common.selectedHostID, Common.sessionID, selectedModuleId + getDefaultDPI(), "");
@@ -607,22 +610,22 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				setSelectedDPIRadioButton();
 			}
 		});
-		comboBoxPrintQueue.setBounds(149, 468, 388, 22);
+		comboBoxPrintQueue.setBounds(149, 472, 388, 22);
 		desktopPane.add(comboBoxPrintQueue);
 		setSelectedDPIRadioButton();
 
 		JLabel4j_std lblNewLabel_4 = new JLabel4j_std(lang.get("lbl_Print_Queue"));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_4.setBounds(6, 468, 138, 22);
+		lblNewLabel_4.setBounds(6, 472, 138, 22);
 		desktopPane.add(lblNewLabel_4);
 
 		JLabel4j_std lblNewLabel_5 = new JLabel4j_std(lang.get("lbl_Number_Of_Labels"));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewLabel_5.setBounds(6, 432, 138, 22);
+		lblNewLabel_5.setBounds(6, 440, 138, 22);
 		desktopPane.add(lblNewLabel_5);
 
 		spinnerCopies = new JSpinner4j();
-		spinnerCopies.setBounds(149, 432, 37, 22);
+		spinnerCopies.setBounds(149, 440, 37, 22);
 		JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(spinnerCopies);
 		spinnerCopies.setEditor(ne);
 		desktopPane.add(spinnerCopies);
@@ -642,7 +645,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				}
 			}
 		});
-		btnProcessOrderLookup.setBounds(238, 10, 21, 22);
+		btnProcessOrderLookup.setBounds(238, 8, 21, 22);
 		desktopPane.add(btnProcessOrderLookup);
 
 		String numberOfLabels = ctrl.getKeyValueWithDefault("QM SAMPLE LABELS", "4", "Number of Labels per Sample");
@@ -650,28 +653,28 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 
 		JLabel4j_std lblMaterial = new JLabel4j_std(lang.get("lbl_Material"));
 		lblMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblMaterial.setBounds(6, 100, 111, 22);
+		lblMaterial.setBounds(6, 104, 111, 22);
 		desktopPane.add(lblMaterial);
 
 		textFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 		textFieldMaterial.setEditable(false);
 		textFieldMaterial.setColumns(10);
-		textFieldMaterial.setBounds(125, 100, 134, 22);
+		textFieldMaterial.setBounds(125, 104, 134, 22);
 		desktopPane.add(textFieldMaterial);
 
 		JLabel4j_std lblStatus = new JLabel4j_std(lang.get("lbl_Process_Order_Status"));
 		lblStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblStatus.setBounds(6, 130, 111, 22);
+		lblStatus.setBounds(6, 136, 111, 22);
 		desktopPane.add(lblStatus);
 
 		textFieldStatus = new JTextField4j(JDBProcessOrder.field_status);
 		textFieldStatus.setEditable(false);
 		textFieldStatus.setColumns(10);
-		textFieldStatus.setBounds(125, 130, 134, 22);
+		textFieldStatus.setBounds(125, 136, 134, 22);
 		desktopPane.add(textFieldStatus);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(30, 248, 515, 173);
+		JScrollPane4j scrollPane = new JScrollPane4j(JScrollPane4j.List);
+		scrollPane.setBounds(30, 255, 515, 173);
 		desktopPane.add(scrollPane);
 
 		listActivities = new JList4j<JDBQMActivity>();
@@ -688,36 +691,36 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 
 		JLabel4j_std lblResource = new JLabel4j_std(lang.get("lbl_Process_Order_Required_Resource"));
 		lblResource.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblResource.setBounds(261, 70, 138, 22);
+		lblResource.setBounds(261, 72, 138, 22);
 		desktopPane.add(lblResource);
 
 		textFieldResource = new JTextField4j(JDBProcessOrder.field_required_resource);
 		textFieldResource.setEditable(false);
 		textFieldResource.setColumns(10);
-		textFieldResource.setBounds(411, 70, 134, 22);
+		textFieldResource.setBounds(411, 72, 120, 22);
 		desktopPane.add(textFieldResource);
 
 		dueDate = new JDateControl();
 		dueDate.setDisplayMode(JDateControl.mode_disable_visible);
 		dueDate.setEnabled(false);
-		dueDate.setBounds(411, 100, 134, 22);
+		dueDate.setBounds(411, 104, 120, 22);
 		dueDate.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
 		dueDate.getEditor().setSize(87, 21);
 		desktopPane.add(dueDate);
 
 		JLabel4j_std lblDueDate = new JLabel4j_std(lang.get("lbl_Process_Order_Due_Date"));
 		lblDueDate.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDueDate.setBounds(261, 100, 138, 22);
+		lblDueDate.setBounds(261, 104, 138, 22);
 		desktopPane.add(lblDueDate);
 
 		lblUserData1 = new JLabel4j_std(lang.get("lbl_User_Data1"));
 		lblUserData1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblUserData1.setBounds(6, 160, 111, 22);
+		lblUserData1.setBounds(6, 168, 111, 22);
 		desktopPane.add(lblUserData1);
 
 		lblUserData2 = new JLabel4j_std(lang.get("lbl_User_Data2"));
 		lblUserData2.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblUserData2.setBounds(288, 160, 111, 22);
+		lblUserData2.setBounds(261, 168, 138, 22);
 		desktopPane.add(lblUserData2);
 
 		textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
@@ -733,7 +736,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 
 		textFieldUserData1.setColumns(20);
-		textFieldUserData1.setBounds(125, 160, 134, 22);
+		textFieldUserData1.setBounds(125, 168, 134, 22);
 		textFieldUserData1.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_1_EDITABLE", "true", "QM USER DATA 1 EDITABLE")));
 		desktopPane.add(textFieldUserData1);
 
@@ -749,7 +752,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 
 		textFieldUserData2.setColumns(20);
-		textFieldUserData2.setBounds(411, 160, 115, 22);
+		textFieldUserData2.setBounds(411, 168, 115, 22);
 		textFieldUserData2.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_2_EDITABLE", "true", "QM USER DATA 2 EDITABLE")));
 		desktopPane.add(textFieldUserData2);
 
@@ -780,7 +783,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 
 		sampleDateTime.setEnabled(false);
-		sampleDateTime.setBounds(417, 10, 128, 22);
+		sampleDateTime.setBounds(411, 8, 120, 22);
 		desktopPane.add(sampleDateTime);
 
 		chckbxAutoTime = new JCheckBox4j("");
@@ -798,7 +801,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				}
 			}
 		});
-		chckbxAutoTime.setBounds(390, 10, 22, 22);
+		chckbxAutoTime.setBounds(384, 8, 22, 22);
 		desktopPane.add(chckbxAutoTime);
 
 		textFieldProcessOrder.requestFocus();
@@ -811,7 +814,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			}
 		});
 
-		resolution_200dpi.setBounds(294, 502, 85, 22);
+		resolution_200dpi.setBounds(294, 504, 85, 22);
 		desktopPane.add(resolution_200dpi);
 		resolution_300dpi.addActionListener(new ActionListener()
 		{
@@ -821,7 +824,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			}
 		});
 
-		resolution_300dpi.setBounds(411, 502, 85, 22);
+		resolution_300dpi.setBounds(411, 504, 85, 22);
 		desktopPane.add(resolution_300dpi);
 		resolution_default.addActionListener(new ActionListener()
 		{
@@ -832,7 +835,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 
 		resolution_default.setSelected(true);
-		resolution_default.setBounds(145, 502, 156, 22);
+		resolution_default.setBounds(145, 504, 156, 22);
 		desktopPane.add(resolution_default);
 
 		ButtonGroup group = new ButtonGroup();
@@ -842,7 +845,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 
 		JLabel4j_std lblUserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
 		lblUserData3.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblUserData3.setBounds(6, 190, 111, 22);
+		lblUserData3.setBounds(6, 200, 111, 22);
 		desktopPane.add(lblUserData3);
 
 		textFieldUserData3 = new JTextField4j(20);
@@ -857,13 +860,13 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 		textFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
 		textFieldUserData3.setColumns(20);
-		textFieldUserData3.setBounds(125, 190, 115, 22);
+		textFieldUserData3.setBounds(125, 200, 115, 22);
 		textFieldUserData3.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_3_EDITABLE", "true", "QM USER DATA 3 EDITABLE")));
 		desktopPane.add(textFieldUserData3);
 
 		JLabel4j_std lblUserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
 		lblUserData4.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblUserData4.setBounds(288, 190, 111, 22);
+		lblUserData4.setBounds(261, 200, 138, 22);
 		desktopPane.add(lblUserData4);
 
 		textFieldUserData4 = new JTextField4j(20);
@@ -877,14 +880,14 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 		textFieldUserData4.setToolTipText("Custom Field USER_DATA_4");
 		textFieldUserData4.setColumns(20);
-		textFieldUserData4.setBounds(411, 190, 134, 22);
+		textFieldUserData4.setBounds(411, 200, 134, 22);
 		textFieldUserData4.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_4_EDITABLE", "true", "QM USER DATA 4 EDITABLE")));
 		desktopPane.add(textFieldUserData4);
 
 		{
 			jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
 			desktopPane.add(jButtonLookup_Shift_Names);
-			jButtonLookup_Shift_Names.setBounds(238, 190, 21, 22);
+			jButtonLookup_Shift_Names.setBounds(238, 200, 21, 22);
 			jButtonLookup_Shift_Names.setEnabled(true);
 			jButtonLookup_Shift_Names.addActionListener(new ActionListener()
 			{
@@ -906,7 +909,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		{
 			jButtonLookup_Packing_Line = new JButton4j(Common.icon_lookup_16x16);
 			desktopPane.add(jButtonLookup_Packing_Line);
-			jButtonLookup_Packing_Line.setBounds(524, 160, 21, 22);
+			jButtonLookup_Packing_Line.setBounds(524, 168, 21, 22);
 			jButtonLookup_Packing_Line.setEnabled(true);
 			jButtonLookup_Packing_Line.addActionListener(new ActionListener()
 			{

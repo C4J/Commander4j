@@ -2,33 +2,32 @@ package com.commander4j.sys;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
- * Filename     : JDialogUserProperties.java
- * 
+ *
+ * Filename     : JDialogeGroupProperties.java
+ *
  * Package Name : com.commander4j.sys
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -40,15 +39,12 @@ import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.util.Date;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -59,61 +55,106 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JPasswordField4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDialogeGroupProperties class is a form which allows a user edit a record
+ * within the table SYS_GROUPS.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JDialogeGroupProperties.jpg" >
+ *
+ * @see com.commander4j.sys.JInternalFrameGroupAdmin JInternalFrameGroupAdmin
+ * @see com.commander4j.sys.JInternalFrameGroupPermissions
+ *      JInternalFrameGroupPermissions
+ * @see com.commander4j.db.JDBGroup JDBGroup
+ * @see com.commander4j.db.JDBGroupPermissions JDBGroupPermissions
+ */
 public class JDialogUserProperties extends JDialog
 {
-	private JLabel4j_std jLabel2_1;
-	private JTextField4j lbl_EmailAddress;
-	private static final long serialVersionUID = 1;
+
 	private JButton4j jButtonCancel;
-	private JButton4j jButtonSave;
-	private JCheckBox4j jCheckBoxPasswordChangeAllowed;
-	private JCheckBox4j jCheckBoxPasswordExpires;
-	private JCheckBox4j jCheckBoxAccountLocked;
-	private JCheckBox4j jCheckBoxAccountEnabled;
-	private JLabel4j_std lbl_ChangeAllowed;
-	private JTextField4j jTextFieldBadPasswords;
-	private JLabel4j_std lbl_BadPasswords;
-	private JLabel4j_std lbl_PasswordExpires;
-	private JLabel4j_std lbl_AccountLocked;
-	private JLabel4j_std lbl_PasswordChanged;
-	private JLabel4j_std lbl_LastLogon;
-	private JLabel4j_std lbl_Language;
-	private JTextField4j jTextFieldLastPasswordChange;
-	private JTextField4j jTextFieldLastLogon;
-	private JComboBox4j<String> jComboBoxLanguage;
-	private JPasswordField4j jPasswordField2;
-	private JPasswordField4j jPasswordField1;
-	private JTextField4j jTextFieldComment;
-	private JTextField4j jTextFieldUserID;
-	private JLabel4j_std lbl_Password2;
-	private JLabel4j_std jLabelAccountExpiryDate;
-	private JLabel4j_std lbl_AccountExpires;
-	private JCheckBox4j jCheckBoxAccountExpires;
 	private JButton4j jButtonHelp;
-	private JLabel4j_std lbl_Password1;
-	private JLabel4j_std lbl_Comment;
-	private JLabel4j_std lbl_UserID;
-	private JDesktopPane jDesktopPane1;
-	private String luserid;
+	private JButton4j jButtonSave;
+	private JCalendarButton calendarButton;
+	private JCheckBox4j jCheckBoxAccountEnabled;
+	private JCheckBox4j jCheckBoxAccountExpires;
+	private JCheckBox4j jCheckBoxAccountLocked;
+	private JCheckBox4j jCheckBoxPasswordChangeAllowed;
+	private JCheckBox4j jCheckBoxPasswordChangeRequired;
+	private JCheckBox4j jCheckBoxPasswordExpires;
+	private JComboBox4j<String> jComboBoxLanguage;
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBUser user = new JDBUser(Common.selectedHostID, Common.sessionID);
-	private boolean userUpdated;
-	private boolean userPasswordUpdated;
+	private JDateControl lbl_accountExpiryDate = new JDateControl();
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusText = new JLabel4j_status();
+	private JLabel4j_std jLabelAccountExpiryDate;
+	private JLabel4j_std jLabel_Email;
+	private JLabel4j_std lbl_AccountExpires;
+	private JLabel4j_std lbl_AccountLocked;
+	private JLabel4j_std lbl_BadPasswords;
+	private JLabel4j_std lbl_ChangeAllowed;
+	private JLabel4j_std lbl_Comment;
+	private JLabel4j_std lbl_Language;
+	private JLabel4j_std lbl_LastLogon;
+	private JLabel4j_std lbl_Password1;
+	private JLabel4j_std lbl_Password2;
+	private JLabel4j_std lbl_PasswordChanged;
+	private JLabel4j_std lbl_PasswordExpires;
+	private JLabel4j_std lbl_UserID;
+	private JPasswordField4j jPasswordField1;
+	private JPasswordField4j jPasswordField2;
+	private JTextField4j jTextFieldBadPasswords;
+	private JTextField4j jTextFieldComment;
+	private JTextField4j jTextFieldLastLogon;
+	private JTextField4j jTextFieldLastPasswordChange;
+	private JTextField4j jTextFieldUserID;
+	private JTextField4j lbl_EmailAddress;
 	private Object currentLanguage = new Object();
 	private Object newLanguage = new Object();
-	private JDateControl lbl_accountExpiryDate = new JDateControl();
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JCalendarButton calendarButton;
-	private boolean modified_Locked = false;
+	private String luserid;
 	private boolean modified_Enabled = false;
+	private boolean modified_Locked = false;
 	private boolean newUser = false;
-	private JCheckBox4j jCheckBoxPasswordChangeRequired;
-	private JLabel4j_std jStatusText = new JLabel4j_std();
+	private boolean userPasswordUpdated;
+	private boolean userUpdated;
+	private static final long serialVersionUID = 1;
+
+	public JDialogUserProperties(JFrame parent, String userid)
+	{
+
+		super(parent);
+		initGUI();
+
+		final JHelp help = new JHelp();
+		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_USER_EDIT"));
+
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				jTextFieldComment.requestFocus();
+				jTextFieldComment.setCaretPosition(jTextFieldComment.getText().length());
+
+			}
+		});
+
+		jTextFieldUserID.setText(userid);
+
+		setTitle(getTitle() + " - " + userid);
+		luserid = userid;
+
+		user.setUserId(luserid);
+		displayUserProperties();
+
+	}
 
 	private void displayUserProperties()
 	{
@@ -193,7 +234,7 @@ public class JDialogUserProperties extends JDialog
 
 		try
 		{
-			lbl_accountExpiryDate.setBounds(201, 337, 128, 22);
+			lbl_accountExpiryDate.setBounds(201, 392, 120, 22);
 			lbl_accountExpiryDate.setDate(user.getAccountExpiryDate());
 		}
 		catch (Exception e)
@@ -205,145 +246,76 @@ public class JDialogUserProperties extends JDialog
 
 	}
 
-	public JDialogUserProperties(JFrame parent, String userid)
+	private void initGUI()
 	{
-
-		super(parent);
-		setResizable(false);
-
-		initGUI();
-
-		final JHelp help = new JHelp();
-		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_USER_EDIT"));
-
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				jTextFieldComment.requestFocus();
-				jTextFieldComment.setCaretPosition(jTextFieldComment.getText().length());
-
-			}
-		});
-
-		jTextFieldUserID.setText(userid);
-
-		setTitle(getTitle() + " - " + userid);
-		luserid = userid;
-
-		user.setUserId(luserid);
-		displayUserProperties();
-
-		// this.setVisible(true);
-	}
-
-	private void resetChanges()
-	{
-		userUpdated = false;
-
-		currentLanguage = jComboBoxLanguage.getSelectedItem();
-		jButtonSave.setEnabled(false);
-	}
-
-	private void setExpiryDateVisibility()
-	{
-		if (jCheckBoxAccountExpires.isSelected())
-		{
-			calendarButton.setEnabled(true);
-			lbl_accountExpiryDate.setEnabled(true);
-			lbl_accountExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
-		}
-		else
-		{
-			lbl_accountExpiryDate.setEnabled(false);
-			calendarButton.setEnabled(false);
-			lbl_accountExpiryDate.setDisplayMode(JDateControl.mode_disable_not_visible);
-		}
-	}
-
-	private String randomPassword()
-	{
-		String result = "";
-		String genPass = user.generateRandomPassword();
-		user.setPasswordNew(genPass);
-		user.setPasswordVerify(genPass);
-		jPasswordField1.setText(genPass);
-		jPasswordField2.setText(genPass);
-		userPasswordUpdated = true;
-		userUpdated = true;
-		jButtonSave.setEnabled(true);
-		StringSelection stringSelection = new StringSelection(genPass);
-		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-		jStatusText.setText("New password copied to clipboard.");
-		result = genPass;
-		return result;
-	}
-
-	public void initGUI()
-	{
-
-		this.setPreferredSize(new java.awt.Dimension(417, 432));
-		this.setBounds(0, 0, 418, 526);
-		setModal(true);
-		this.setTitle("User Properties");
-		getContentPane().setLayout(null);
-
 		try
 		{
+			setPreferredSize(new java.awt.Dimension(366, 145));
+			setBounds(0, 0, 428, 586);
+			setModal(true);
+			setTitle("User Properties");
+			setResizable(false);
+
+			jDesktopPane1 = new JDesktopPane4j();
+
+			this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(361, 104));
+			jDesktopPane1.setLayout(null);
+
 			preInitGUI();
 
-			jDesktopPane1 = new JDesktopPane();
-			jDesktopPane1.setBackground(Common.color_app_window);
+			jDesktopPane1 = new JDesktopPane4j();
+
 			lbl_Comment = new JLabel4j_std();
-			lbl_Comment.setBounds(0, 34, 163, 22);
+			lbl_Comment.setBounds(0, 40, 163, 22);
 			lbl_Password1 = new JLabel4j_std();
-			lbl_Password1.setBounds(0, 62, 163, 22);
+			lbl_Password1.setBounds(0, 72, 163, 22);
 			lbl_UserID = new JLabel4j_std();
 			lbl_UserID.setBounds(0, 7, 163, 22);
 			lbl_Password2 = new JLabel4j_std();
-			lbl_Password2.setBounds(0, 89, 163, 22);
+			lbl_Password2.setBounds(0, 104, 163, 22);
 			jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
-			jTextFieldUserID.setBounds(172, 7, 150, 22);
+			jTextFieldUserID.setBounds(172, 8, 150, 22);
 			jTextFieldComment = new JTextField4j(JDBUser.field_comment);
-			jTextFieldComment.setBounds(172, 34, 217, 22);
+			jTextFieldComment.setBounds(172, 40, 217, 22);
 			jPasswordField1 = new JPasswordField4j(JDBUser.field_password);
-			jPasswordField1.setBounds(172, 62, 150, 22);
+			jPasswordField1.setBounds(172, 72, 150, 22);
 			jPasswordField2 = new JPasswordField4j(JDBUser.field_password);
-			jPasswordField2.setBounds(172, 89, 150, 22);
+			jPasswordField2.setBounds(172, 104, 150, 22);
 			jComboBoxLanguage = new JComboBox4j<String>();
-			jComboBoxLanguage.setBounds(172, 116, 69, 22);
+			jComboBoxLanguage.setBounds(172, 136, 69, 22);
 			jComboBoxLanguage.setModel(new DefaultComboBoxModel<String>(Common.languages));
 			jTextFieldLastLogon = new JTextField4j();
-			jTextFieldLastLogon.setBounds(172, 144, 150, 22);
+			jTextFieldLastLogon.setBounds(172, 168, 150, 22);
 			jTextFieldLastPasswordChange = new JTextField4j();
-			jTextFieldLastPasswordChange.setBounds(172, 171, 150, 22);
+			jTextFieldLastPasswordChange.setBounds(172, 200, 150, 22);
 			lbl_Language = new JLabel4j_std();
-			lbl_Language.setBounds(0, 116, 163, 22);
+			lbl_Language.setBounds(0, 136, 163, 22);
 			lbl_LastLogon = new JLabel4j_std();
-			lbl_LastLogon.setBounds(0, 144, 163, 22);
+			lbl_LastLogon.setBounds(0, 168, 163, 22);
 			lbl_PasswordChanged = new JLabel4j_std();
-			lbl_PasswordChanged.setBounds(0, 171, 163, 22);
+			lbl_PasswordChanged.setBounds(0, 200, 163, 22);
 			lbl_AccountLocked = new JLabel4j_std();
-			lbl_AccountLocked.setBounds(0, 225, 163, 22);
+			lbl_AccountLocked.setBounds(0, 264, 163, 22);
 			lbl_PasswordExpires = new JLabel4j_std();
-			lbl_PasswordExpires.setBounds(0, 253, 163, 22);
+			lbl_PasswordExpires.setBounds(0, 296, 163, 22);
 			lbl_BadPasswords = new JLabel4j_std();
-			lbl_BadPasswords.setBounds(0, 308, 163, 22);
+			lbl_BadPasswords.setBounds(0, 360, 163, 22);
 			jTextFieldBadPasswords = new JTextField4j();
 			jTextFieldBadPasswords.setHorizontalAlignment(SwingConstants.CENTER);
-			jTextFieldBadPasswords.setBounds(172, 308, 30, 22);
+			jTextFieldBadPasswords.setBounds(172, 360, 30, 22);
 			lbl_ChangeAllowed = new JLabel4j_std();
-			lbl_ChangeAllowed.setBounds(0, 280, 163, 22);
+			lbl_ChangeAllowed.setBounds(0, 328, 163, 22);
 			jCheckBoxAccountLocked = new JCheckBox4j();
-			jCheckBoxAccountLocked.setBounds(170, 224, 22, 22);
+			jCheckBoxAccountLocked.setBounds(170, 264, 22, 22);
 			jCheckBoxPasswordExpires = new JCheckBox4j();
-			jCheckBoxPasswordExpires.setBounds(169, 252, 22, 22);
+			jCheckBoxPasswordExpires.setBounds(169, 296, 22, 22);
 			jCheckBoxPasswordChangeAllowed = new JCheckBox4j();
-			jCheckBoxPasswordChangeAllowed.setBounds(169, 280, 22, 22);
+			jCheckBoxPasswordChangeAllowed.setBounds(169, 328, 22, 22);
 
 			jCheckBoxAccountEnabled = new JCheckBox4j();
-			jCheckBoxAccountEnabled.setBackground(Color.WHITE);
-			jCheckBoxAccountEnabled.setBounds(170, 197, 22, 22);
+
+			jCheckBoxAccountEnabled.setBounds(170, 232, 22, 22);
 			jCheckBoxAccountEnabled.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -354,9 +326,9 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1.add(jCheckBoxAccountEnabled);
 
 			jButtonSave = new JButton4j(Common.icon_update_16x16);
-			jButtonSave.setBounds(20, 425, 112, 32);
+			jButtonSave.setBounds(20, 488, 112, 32);
 			jButtonCancel = new JButton4j(Common.icon_close_16x16);
-			jButtonCancel.setBounds(284, 425, 112, 32);
+			jButtonCancel.setBounds(284, 488, 112, 32);
 
 			BorderLayout thisLayout = new BorderLayout();
 			this.getContentPane().setLayout(thisLayout);
@@ -387,8 +359,8 @@ public class JDialogUserProperties extends JDialog
 			lbl_Password2.setHorizontalAlignment(SwingConstants.TRAILING);
 
 			jCheckBoxPasswordChangeRequired = new JCheckBox4j();
-			jCheckBoxPasswordChangeRequired.setBackground(Color.WHITE);
-			jCheckBoxPasswordChangeRequired.setBounds(169, 363, 22, 22);
+
+			jCheckBoxPasswordChangeRequired.setBounds(169, 424, 22, 22);
 			jDesktopPane1.add(jCheckBoxPasswordChangeRequired);
 			jCheckBoxPasswordChangeRequired.addActionListener(new ActionListener()
 			{
@@ -495,7 +467,7 @@ public class JDialogUserProperties extends JDialog
 			lbl_ChangeAllowed.setHorizontalAlignment(SwingConstants.TRAILING);
 
 			jDesktopPane1.add(jCheckBoxAccountLocked);
-			jCheckBoxAccountLocked.setBackground(new java.awt.Color(255, 255, 255));
+
 			jCheckBoxAccountLocked.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -505,7 +477,7 @@ public class JDialogUserProperties extends JDialog
 			});
 
 			jDesktopPane1.add(jCheckBoxPasswordExpires);
-			jCheckBoxPasswordExpires.setBackground(new java.awt.Color(255, 255, 255));
+
 			jCheckBoxPasswordExpires.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -515,7 +487,7 @@ public class JDialogUserProperties extends JDialog
 			});
 
 			jDesktopPane1.add(jCheckBoxPasswordChangeAllowed);
-			jCheckBoxPasswordChangeAllowed.setBackground(new java.awt.Color(255, 255, 255));
+
 			jCheckBoxPasswordChangeAllowed.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -541,16 +513,16 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1.add(jButtonCancel);
 			{
 				jButtonHelp = new JButton4j(Common.icon_help_16x16);
-				jButtonHelp.setBounds(152, 425, 112, 32);
+				jButtonHelp.setBounds(152, 488, 112, 32);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 			}
 			{
 				jCheckBoxAccountExpires = new JCheckBox4j();
-				jCheckBoxAccountExpires.setBounds(169, 335, 22, 22);
+				jCheckBoxAccountExpires.setBounds(169, 392, 22, 22);
 				jDesktopPane1.add(jCheckBoxAccountExpires);
-				jCheckBoxAccountExpires.setBackground(new java.awt.Color(255, 255, 255));
+
 				jCheckBoxAccountExpires.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt)
@@ -561,14 +533,14 @@ public class JDialogUserProperties extends JDialog
 			}
 			{
 				lbl_AccountExpires = new JLabel4j_std();
-				lbl_AccountExpires.setBounds(0, 335, 163, 22);
+				lbl_AccountExpires.setBounds(0, 392, 163, 22);
 				jDesktopPane1.add(lbl_AccountExpires);
 				lbl_AccountExpires.setText(lang.get("lbl_User_Account_Expires"));
 				lbl_AccountExpires.setHorizontalAlignment(SwingConstants.TRAILING);
 			}
 			{
 				jLabelAccountExpiryDate = new JLabel4j_std();
-				jLabelAccountExpiryDate.setBounds(0, 363, 163, 22);
+				jLabelAccountExpiryDate.setBounds(0, 424, 163, 22);
 				jDesktopPane1.add(jLabelAccountExpiryDate);
 				jLabelAccountExpiryDate.setText(lang.get("lbl_Password_Change_Required"));
 				jLabelAccountExpiryDate.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -601,7 +573,7 @@ public class JDialogUserProperties extends JDialog
 			jDesktopPane1.add(lbl_accountExpiryDate);
 
 			lbl_EmailAddress = new JTextField4j();
-			lbl_EmailAddress.setBounds(172, 393, 217, 22);
+			lbl_EmailAddress.setBounds(172, 456, 217, 22);
 			lbl_EmailAddress.addKeyListener(new KeyAdapter()
 			{
 				public void keyTyped(final KeyEvent e)
@@ -612,21 +584,21 @@ public class JDialogUserProperties extends JDialog
 			});
 			jDesktopPane1.add(lbl_EmailAddress);
 
-			jLabel2_1 = new JLabel4j_std();
-			jLabel2_1.setBounds(0, 393, 163, 22);
-			jLabel2_1.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabel2_1.setText(lang.get("lbl_User_Account_Email"));
-			jDesktopPane1.add(jLabel2_1);
+			jLabel_Email = new JLabel4j_std();
+			jLabel_Email.setBounds(0, 456, 163, 22);
+			jLabel_Email.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_Email.setText(lang.get("lbl_User_Account_Email"));
+			jDesktopPane1.add(jLabel_Email);
 
 			calendarButton = new JCalendarButton(lbl_accountExpiryDate);
-			calendarButton.setBounds(329, 337, 22, 22);
+			calendarButton.setBounds(320, 392, 22, 22);
 			calendarButton.setEnabled(false);
 			jDesktopPane1.add(calendarButton);
 
 			JLabel4j_std lbl_AccountEnabled = new JLabel4j_std();
 			lbl_AccountEnabled.setText(lang.get("lbl_User_Account_Enabled"));
 			lbl_AccountEnabled.setHorizontalAlignment(SwingConstants.TRAILING);
-			lbl_AccountEnabled.setBounds(0, 198, 163, 22);
+			lbl_AccountEnabled.setBounds(0, 232, 163, 22);
 			jDesktopPane1.add(lbl_AccountEnabled);
 
 			JButton4j jButtonLock = new JButton4j(Common.icon_lock_16x16);
@@ -638,13 +610,11 @@ public class JDialogUserProperties extends JDialog
 					randomPassword();
 				}
 			});
-			jButtonLock.setBounds(322, 62, 22, 22);
+			jButtonLock.setBounds(322, 72, 22, 22);
 			jDesktopPane1.add(jButtonLock);
 
-			jStatusText.setForeground(Color.RED);
-			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(0, 469, 418, 21);
-			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+			jStatusText.setBounds(5, 532, 418, 21);
+
 			jDesktopPane1.add(jStatusText);
 
 			postInitGUI();
@@ -874,4 +844,47 @@ public class JDialogUserProperties extends JDialog
 		jButtonSave.setEnabled(true);
 		setExpiryDateVisibility();
 	}
+
+	private void resetChanges()
+	{
+		userUpdated = false;
+
+		currentLanguage = jComboBoxLanguage.getSelectedItem();
+		jButtonSave.setEnabled(false);
+	}
+
+	private void setExpiryDateVisibility()
+	{
+		if (jCheckBoxAccountExpires.isSelected())
+		{
+			calendarButton.setEnabled(true);
+			lbl_accountExpiryDate.setEnabled(true);
+			lbl_accountExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
+		}
+		else
+		{
+			lbl_accountExpiryDate.setEnabled(false);
+			calendarButton.setEnabled(false);
+			lbl_accountExpiryDate.setDisplayMode(JDateControl.mode_disable_not_visible);
+		}
+	}
+
+	private String randomPassword()
+	{
+		String result = "";
+		String genPass = user.generateRandomPassword();
+		user.setPasswordNew(genPass);
+		user.setPasswordVerify(genPass);
+		jPasswordField1.setText(genPass);
+		jPasswordField2.setText(genPass);
+		userPasswordUpdated = true;
+		userUpdated = true;
+		jButtonSave.setEnabled(true);
+		StringSelection stringSelection = new StringSelection(genPass);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+		jStatusText.setText("New password copied to clipboard.");
+		result = genPass;
+		return result;
+	}
+
 }

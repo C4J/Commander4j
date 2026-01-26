@@ -25,6 +25,7 @@ public class JRadioButton4j extends JRadioButton {
     private void init() {
         setFont(Common.font_std);
         setBackground(Common.color_app_window);
+		setForeground(Common.color_text_label_std);
         setOpaque(true);  // Important to allow proper background clearing
         setFocusPainted(false);
         setContentAreaFilled(false);
@@ -78,7 +79,7 @@ public class JRadioButton4j extends JRadioButton {
 
             if (isSelected()) {
                 g2.setStroke(new BasicStroke(2f));
-                g2.setColor(new Color(60, 120, 200));
+                g2.setColor(Common.color_checkbox_tick);
 
                 int x1 = boxX + 3;
                 int y1 = boxY + boxSize / 2;

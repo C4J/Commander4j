@@ -37,31 +37,37 @@ public class JLabel4j_std extends JLabel {
 	private static final long serialVersionUID = 1L;
 
 	public JLabel4j_std() {
-		setFont(Common.font_std);
+		applyTheme();
 	}
 
 	public JLabel4j_std(String arg0) {
 		super(arg0);
-		setFont(Common.font_std);
+		applyTheme();
 	}
 
 	public JLabel4j_std(Icon arg0) {
 		super(arg0);
-		setFont(Common.font_std);
+		applyTheme();
 	}
 
 	public JLabel4j_std(String arg0, int arg1) {
 		super(arg0, arg1);
-		setFont(Common.font_std);
+		applyTheme();
 	}
 
 	public JLabel4j_std(Icon arg0, int arg1) {
 		super(arg0, arg1);
-		setFont(Common.font_std);
+		applyTheme();
 	}
 
 	public JLabel4j_std(String arg0, Icon arg1, int arg2) {
 		super(arg0, arg1, arg2);
+		applyTheme();
+	}
+	
+	private void applyTheme()
+	{
+		setForeground(Common.color_text_label_std);
 		setFont(Common.font_std);
 	}
 

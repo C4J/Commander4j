@@ -2,33 +2,32 @@ package com.commander4j.interfaces;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameInterfaceRequestAdmin.java
- * 
+ *
  * Package Name : com.commander4j.interfaces
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -39,21 +38,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
-import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -63,7 +57,10 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JToggleButton4j;
 import com.commander4j.sys.Common;
@@ -76,10 +73,10 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 {
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonExcel;
-	private JLabel4j_std jStatusBar;
+	private JLabel4j_status jStatusBar;
 
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private JDesktopPane4j jDesktopPane1;
 	private JButton4j jButtonClose;
 	private JToggleButton4j jToggleButtonSequence;
 	private JComboBox4j<String> comboStatus;
@@ -91,7 +88,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 	private JTable4j jTable1;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSearch;
-	private JScrollPane jScrollPane1;
+	private JScrollPane4j jScrollPane1;
 	private Long interfaceRequestID;
 	private static boolean dlg_sort_descending = false;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
@@ -121,7 +118,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 			}
 		});
 		btnReSubmit.setText(lang.get("btn_Resubmit"));
-		btnReSubmit.setBounds(125, 43, 122, 32);
+		btnReSubmit.setBounds(125, 40, 122, 32);
 		jDesktopPane1.add(btnReSubmit);
 
 		JButton4j buttonHold = new JButton4j(Common.icon_hold_16x16);
@@ -132,7 +129,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 			}
 		});
 		buttonHold.setText(lang.get("btn_Hold"));
-		buttonHold.setBounds(248, 43, 122, 32);
+		buttonHold.setBounds(248, 40, 122, 32);
 		jDesktopPane1.add(buttonHold);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -222,7 +219,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 	}
 
 	private void buildSQL() {
-		
+
 		JDBQuery.closeStatement(listStatement);
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
@@ -292,16 +289,16 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 			this.setClosable(true);
 			this.setTitle("Interface Requests");
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
+				jDesktopPane1 = new JDesktopPane4j();
+
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
 				{
-					jScrollPane1 = new JScrollPane();
-					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
+					jScrollPane1 = new JScrollPane4j(JScrollPane4j.Table);
+
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 87, 858, 373);
+					jScrollPane1.setBounds(0, 82, 858, 373);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
 						jTable1 = new JTable4j();
@@ -458,7 +455,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					jButtonSearch = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
-					jButtonSearch.setBounds(2, 43, 122, 32);
+					jButtonSearch.setBounds(2, 40, 122, 32);
 					jButtonSearch.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							search();
@@ -469,13 +466,13 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(617, 43, 122, 32);
+					jButtonHelp.setBounds(617, 40, 122, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(740, 43, 122, 32);
+					jButtonClose.setBounds(740, 40, 122, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							JDBQuery.closeStatement(listStatement);
@@ -536,11 +533,8 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 				}
 
 				{
-					jStatusBar = new JLabel4j_std();
-					jStatusBar.setForeground(new Color(255, 0, 0));
-					jStatusBar.setBackground(Color.GRAY);
-					jStatusBar.setBounds(0, 468, 865, 21);
-					jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+					jStatusBar = new JLabel4j_status();
+					jStatusBar.setBounds(5, 462, 850, 21);
 					jDesktopPane1.add(jStatusBar);
 				}
 
@@ -552,7 +546,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 						}
 					});
 					jButtonExcel.setText(lang.get("btn_Excel"));
-					jButtonExcel.setBounds(494, 43, 122, 32);
+					jButtonExcel.setBounds(494, 40, 122, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 
@@ -565,7 +559,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 						}
 					});
 					jButtonDelete.setText(lang.get("btn_Delete"));
-					jButtonDelete.setBounds(371, 43, 122, 32);
+					jButtonDelete.setBounds(371, 40, 122, 32);
 					jDesktopPane1.add(jButtonDelete);
 				}
 			}

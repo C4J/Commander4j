@@ -61,7 +61,7 @@ public class NumberCellEditor extends DefaultCellEditor
 
 		editor.setHorizontalAlignment(SwingConstants.LEFT);
 
-		foreground = Common.color_listFontSelected;
+		foreground = Common.color_list_foreground_selected;
 		background = Color.white;
 
 		editor.setForeground(foreground);

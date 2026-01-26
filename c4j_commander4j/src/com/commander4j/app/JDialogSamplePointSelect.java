@@ -13,8 +13,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
@@ -23,6 +22,8 @@ import com.commander4j.db.JDBWTSamplePoint;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckListItem;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.renderer.MultiItemCheckListRenderer;
 import com.commander4j.sys.Common;
 
@@ -30,12 +31,12 @@ public class JDialogSamplePointSelect extends JDialog
 {
 
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	private ComboBoxModel<JCheckListItem> model;
 	private JDBWTSamplePoint samp = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private JList4j<JCheckListItem> list;
-	private ComboBoxModel<JCheckListItem> model;
 	private LinkedList<String> selected = new LinkedList<String>();
 	private LinkedList<String> selectedOriginal = new LinkedList<String>();
+	private final JPanel4j contentPanel = new JPanel4j();
 
 	/**
 	 * Create the dialog.
@@ -50,9 +51,9 @@ public class JDialogSamplePointSelect extends JDialog
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setTitle("Sample Point Selection");
-		
+
 		setSize(271, 303);
-		
+
 		Dimension screensize = Common.mainForm.getSize();
 		Point parentPos = Common.mainForm.getLocation();
 
@@ -60,80 +61,80 @@ public class JDialogSamplePointSelect extends JDialog
 		int leftmargin = ((screensize.width - formsize.width) / 2);
 		int topmargin = ((screensize.height - formsize.height) / 2);
 
-		setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
-		
+		setLocation(parentPos.x + leftmargin, parentPos.y + topmargin);
 
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPanel.setBackground(Common.color_edit_properties);
+		contentPanel.setBackground(Common.color_app_window);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
+
+		JScrollPane4j scrollPane = new JScrollPane4j(JScrollPane4j.List);
 		scrollPane.setBounds(0, 0, 270, 230);
 		contentPanel.add(scrollPane);
-		
+
 		scrollPane.setRowHeaderView(list);
+
+		JPanel4j buttonPane = new JPanel4j();
+		buttonPane.setBounds(0, 237, 271, 32);
+		contentPanel.add(buttonPane);
+		buttonPane.setLayout(null);
+
+		JButton4j okButton = new JButton4j("Select");
+		okButton.addActionListener(new ActionListener()
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(0, 237, 271, 32);
-			contentPanel.add(buttonPane);
-			buttonPane.setLayout(null);
+			public void actionPerformed(ActionEvent e)
 			{
-				JButton4j okButton = new JButton4j("Select");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						int s = list.getModel().getSize();
-						JCheckListItem item;
-						JDBWTSamplePoint sp;
-						selected.clear();
-						
-						if (s > 0)
+				int s = list.getModel().getSize();
+				JCheckListItem item;
+				JDBWTSamplePoint sp;
+				selected.clear();
+
+				if (s > 0)
+				{
+					for (int x = 0; x < s; x++)
+					{
+						item = list.getModel().getElementAt(x);
+						if (item.isSelected())
 						{
-							for (int x=0;x<s;x++)
-							{
-								item = list.getModel().getElementAt(x);
-								if (item.isSelected())
-								{
-									sp = (JDBWTSamplePoint) item.getValue();
-									String id = sp.getSamplePoint();
-									selected.addLast(id);
-								}
-							}
+							sp = (JDBWTSamplePoint) item.getValue();
+							String id = sp.getSamplePoint();
+							selected.addLast(id);
 						}
-						dispose();
 					}
-				});
-				okButton.setBounds(53, 0, 75, 32);
-				okButton.setActionCommand("Select");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				}
+				dispose();
 			}
+		});
+		okButton.setBounds(53, 0, 75, 32);
+		okButton.setActionCommand("Select");
+		buttonPane.add(okButton);
+		getRootPane().setDefaultButton(okButton);
+
+		JButton4j cancelButton = new JButton4j("Cancel");
+		cancelButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
 			{
-				JButton4j cancelButton = new JButton4j("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						selected = selectedOriginal;
-						dispose();
-					}
-				});
-				cancelButton.setBounds(133, 0, 75, 32);
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				selected = selectedOriginal;
+				dispose();
 			}
-		}
-		
+		});
+		cancelButton.setBounds(133, 0, 75, 32);
+		cancelButton.setActionCommand("Cancel");
+		buttonPane.add(cancelButton);
+
 		model = new DefaultComboBoxModel<JCheckListItem>(samp.getSamplePointCheckList(selected));
-		
+
 		list = new JList4j<JCheckListItem>();
 		list.setCellRenderer(new MultiItemCheckListRenderer());
-		
 
 		list.setModel(model);
-		list.setSelectedIndices(new int[] {0});
+		list.setSelectedIndices(new int[]
+		{ 0 });
 		list.setBorder(new EmptyBorder(0, 0, 0, 0));
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);	
-		
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 		list.addMouseListener(new MouseAdapter()
 		{
 			public void mouseClicked(MouseEvent event)
@@ -152,22 +153,23 @@ public class JDialogSamplePointSelect extends JDialog
 				// Repaint cell
 
 				list.repaint(list.getCellBounds(index, index));
-				
-				//jButtonSave.setEnabled(true);
+
+				// jButtonSave.setEnabled(true);
 			}
 		});
-		
+
 		scrollPane.setViewportView(list);
-		
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				list.requestFocus();
 				list.setSelectedIndex(0);
 			}
 		});
 	}
-	
+
 	public LinkedList<String> getSelected()
 	{
 		return selected;

@@ -2,29 +2,29 @@ package com.commander4j.sys;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JDialogLogin.java
- * 
+ *
  * Package Name : com.commander4j.sys
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.Cursor;
@@ -54,23 +54,17 @@ import com.commander4j.util.RequestCurrentUser;
 
 public class JDialogLogin extends JDialog {
 
+	final int screenHeight = 150;
+	final int screenWidth = 250;
+	private JButton4j btn_close;
+	private JButton4j btn_login;
+	private JCheckBox4j jCheckbox_chgPassword;
+	private JDBUser user;
+	private JPasswordField4j fld_password;
+	private JTextField4j fld_userName;
 	private static final long serialVersionUID = 1;
-
 	public String password;
 	public String username;
-
-	private JButton4j btn_login;
-	private JButton4j btn_close;
-	private JTextField4j fld_userName;
-
-	private JPasswordField4j fld_password;
-
-	private JDBUser user;
-	private JCheckBox4j jCheckbox_chgPassword;
-
-	final int screenWidth = 250;
-
-	final int screenHeight = 150;
 
 	public JDialogLogin(Frame parent)
 	{
@@ -86,6 +80,8 @@ public class JDialogLogin extends JDialog {
 
 		KeyboardHandler keyboardhandler = new KeyboardHandler();
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(Common.color_app_window);
+		setBackground(Common.color_app_window);
 		fld_userName = new JTextField4j(JDBUser.field_user_id);
 		fld_userName.setBounds(103, 12, 146, 22);
 		fld_userName.setText(RequestCurrentUser.getAuthoritativeUsername().toUpperCase());
@@ -130,19 +126,19 @@ public class JDialogLogin extends JDialog {
 		btn_close.addActionListener(buttonhandler);
 		btn_close.addKeyListener(keyboardhandler);
 		fld_userName.addKeyListener(keyboardhandler);
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				fld_password.requestFocus();
 				fld_password.setCaretPosition(fld_password.getPassword().length);
 			}
 		});
-		
 
-		this.setSize(277, 192);		
-		
+
+		this.setSize(277, 192);
+
 		GraphicsDevice gd = JUtility.getGraphicsDevice();
-		
+
 		GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
 		Rectangle screenBounds = gc.getBounds();
@@ -164,7 +160,7 @@ public class JDialogLogin extends JDialog {
 
 		}
 	}
-	
+
 	private class ButtonHandler implements ActionListener {
 		public void actionPerformed(ActionEvent event)
 		{
@@ -182,7 +178,7 @@ public class JDialogLogin extends JDialog {
 					Common.userList.addUser(Common.sessionID, user);
 					Common.logonValidated = true;
 					Common.validatedUsername = username;
-					Common.validatedPassword = password; 
+					Common.validatedPassword = password;
 					Common.passwordChangeRequired = user.isPasswordChangeRequired();
 					Common.passwordChangeRequested = jCheckbox_chgPassword.isSelected();
 					Common.passwordExpired = user.isPasswordExpired();
@@ -192,12 +188,12 @@ public class JDialogLogin extends JDialog {
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(fld_password, user.getErrorMessage(), "Login Error", JOptionPane.ERROR_MESSAGE);
 					fld_password.setText("");
-			           SwingUtilities.invokeLater( new Runnable() 
-		                 { 
-		                 public void run() 
-		                     { 
-		                	 fld_password.requestFocus(); 
-		                 } 
+			           SwingUtilities.invokeLater( new Runnable()
+		                 {
+		                 public void run()
+		                     {
+		                	 fld_password.requestFocus();
+		                 }
 		             });
 			           fld_password.setCaretPosition(0);
 				}
@@ -214,8 +210,8 @@ public class JDialogLogin extends JDialog {
 				dispose();
 			}
 		}
-	}	
-	
+	}
+
 	private class KeyboardHandler implements KeyListener {
 		public void keyPressed(KeyEvent event)
 		{

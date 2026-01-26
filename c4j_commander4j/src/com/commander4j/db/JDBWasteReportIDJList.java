@@ -64,7 +64,7 @@ public class JDBWasteReportIDJList extends JList<JDBListData>
 	public JDBWasteReportIDJList()
 	{
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(Common.color_list_background);
 	}
 
 	public JDBWasteReportIDJList(String host, String session)
@@ -73,7 +73,7 @@ public class JDBWasteReportIDJList extends JList<JDBListData>
 		setSessionID(session);
 		mod = new JDBWasteReportingIDS(getHostID(), getSessionID());
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(Common.color_list_background);
 	}
 
 	public String getToolTipText(MouseEvent e) {

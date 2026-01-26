@@ -2,33 +2,33 @@ package com.commander4j.bom;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameMaterialAdmin.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -43,18 +43,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -64,9 +60,12 @@ import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
@@ -81,7 +80,7 @@ import com.commander4j.util.JUtility;
 public class JInternalFrameViewBomEnquiry extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private JDesktopPane4j jDesktopPane1;
 
 	private JButton4j jButtonViewEdit;
 	private JButton4j jButtonClear;
@@ -91,7 +90,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 	private JButton4j jButtonClose;
 	private JButton4j jButtonSearch;
 
-	private JLabel4j_std jStatusText;
+	private JLabel4j_status jStatusText;
 	private JLabel4j_std jLabel_UOM;
 	private JLabel4j_std jLabel_BOM_ID;
 	private JLabel4j_std jLabel_BOM_Version;
@@ -117,7 +116,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 
 	private JTable4j jTable1;
 
-	private JScrollPane jScrollPane1;
+	private JScrollPane4j jScrollPane1;
 
 	private JDBBomList dbList = new JDBBomList(Common.selectedHostID, Common.sessionID);
 
@@ -433,628 +432,579 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(757, 535));
-			this.setBounds(0, 0, 984, 617);
+			this.setBounds(0, 0, 984, 613);
 			setVisible(true);
 			this.setTitle("BOM Enquiry");
 			this.setClosable(true);
+
+			jDesktopPane1 = new JDesktopPane4j();
+
+			this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(645, 460));
+
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.Table);
+
+			jDesktopPane1.setLayout(null);
+			jDesktopPane1.add(jScrollPane1);
+			jScrollPane1.setBounds(0, 145, 968, 405);
+
+			TableModel jTable1Model = new DefaultTableModel(new String[][]
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
-				this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(645, 460));
+					{ "One", "Two" },
+					{ "Three", "Four" } }, new String[]
+			{ "Column 1", "Column 2" });
+			jTable1 = new JTable4j();
+			jTable1.addMouseListener(new MouseAdapter()
+			{
+				public void mouseClicked(MouseEvent evt)
 				{
-					jScrollPane1 = new JScrollPane();
-					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
-					jDesktopPane1.setLayout(null);
-					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 156, 968, 405);
+					if (evt.getClickCount() == 2)
 					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][]
-						{
-								{ "One", "Two" },
-								{ "Three", "Four" } }, new String[]
-						{ "Column 1", "Column 2" });
-						jTable1 = new JTable4j();
-						jTable1.addMouseListener(new MouseAdapter()
-						{
-							public void mouseClicked(MouseEvent evt)
-							{
-								if (evt.getClickCount() == 2)
-								{
-									viewEditBOM();
+						viewEditBOM();
 
-								}
-							}
-						});
-						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
-						jScrollPane1.setViewportView(jTable1);
-						jTable1.setModel(jTable1Model);
-						jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
-
-						{
-							final JPopupMenu popupMenu = new JPopupMenu();
-							addPopup(jTable1, popupMenu);
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_bom_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										viewEditBOM();
-									}
-								});
-								newItemMenuItem.setText(lang.get("mod_MENU_BOM"));
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_ADMIN"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										search();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Search"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										print();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Print"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										export();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Excel"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenu4j sortByMenu = new JMenu4j();
-								sortByMenu.setText(lang.get("lbl_Sort_By"));
-								popupMenu.add(sortByMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("MATERIAL");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("TYPE");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material_Type"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("DESCRIPTION");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Description"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("UOM");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material_UOM"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-							}
-
-							{
-								final JMenu4j filterByMenu = new JMenu4j();
-								filterByMenu.setText(lang.get("lbl_Filter_By"));
-								popupMenu.add(filterByMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Process_Order_Recipe"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Version"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Description"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material_Type"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material_UOM"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									filterByMenu.addSeparator();
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											clearFilter();
-										}
-									});
-									newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
-									filterByMenu.add(newItemMenuItem);
-								}
-							}
-
-							{
-								final JMenu4j clipboardMenu = new JMenu4j();
-								clipboardMenu.setText(lang.get("lbl_Clipboard_Copy"));
-								popupMenu.add(clipboardMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard(lang.get("lbl_Material"));
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									clipboardMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard(lang.get("lbl_Location_ID"));
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
-									clipboardMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard(lang.get("lbl_Description"));
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Description"));
-									clipboardMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard(lang.get("lbl_Process_Order_Recipe"));
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Process_Order_Recipe"));
-									clipboardMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard(lang.get("lbl_Pallet_Quantity"));
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Pallet_Quantity"));
-									clipboardMenu.add(newItemMenuItem);
-								}
-
-							}
-						}
 					}
 				}
+			});
+			jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
+			jScrollPane1.setViewportView(jTable1);
+			jTable1.setModel(jTable1Model);
+			jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
+
+			final JPopupMenu popupMenu = new JPopupMenu();
+			addPopup(jTable1, popupMenu);
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_bom_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
 				{
-					jButtonSearch = new JButton4j(Common.icon_search_16x16);
-					jDesktopPane1.add(jButtonSearch);
-					jButtonSearch.setText(lang.get("btn_Search"));
-					jButtonSearch.setBounds(3, 112, 139, 32);
-					jButtonSearch.setMnemonic(lang.getMnemonicChar());
-					jButtonSearch.addActionListener(new ActionListener()
+					public void actionPerformed(final ActionEvent e)
 					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							search();
+						viewEditBOM();
+					}
+				});
+				newItemMenuItem.setText(lang.get("mod_MENU_BOM"));
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_ADMIN"));
+				popupMenu.add(newItemMenuItem);
+			}
 
-						}
-					});
-				}
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
 				{
-					jTextFieldBomID = new JTextField4j();
-					jDesktopPane1.add(jTextFieldBomID);
-					jTextFieldBomID.setBounds(114, 11, 120, 22);
-				}
-				{
-					jTextFieldBomVersion = new JTextField4j();
-					jDesktopPane1.add(jTextFieldBomVersion);
-					jTextFieldBomVersion.setBounds(311, 11, 94, 22);
-				}
-				{
-					jTextFieldMaterial = new JTextField4j();
-					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(475, 11, 146, 22);
-				}
-
-				{
-					jTextFieldDescription = new JTextField4j();
-					jDesktopPane1.add(jTextFieldDescription);
-					jTextFieldDescription.setBounds(704, 11, 258, 22);
-				}
-				{
-					jLabel1 = new JLabel4j_std();
-					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
-					jDesktopPane1.add(jLabel1);
-					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(387, 10, 84, 22);
-				}
-				{
-					jLabel_Description = new JLabel4j_std();
-					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
-					jDesktopPane1.add(jLabel_Description);
-					jLabel_Description.setText(lang.get("lbl_Description"));
-					jLabel_Description.setBounds(609, 11, 84, 22);
-				}
-				{
-					jLabel_BOM_ID = new JLabel4j_std();
-					jLabel_BOM_ID.setHorizontalAlignment(SwingConstants.RIGHT);
-					jDesktopPane1.add(jLabel_BOM_ID);
-					jLabel_BOM_ID.setText(lang.get("lbl_Process_Order_Recipe"));
-					jLabel_BOM_ID.setBounds(0, 11, 105, 22);
-				}
-				{
-					jLabel_BOM_Version = new JLabel4j_std();
-					jLabel_BOM_Version.setHorizontalAlignment(SwingConstants.RIGHT);
-					jDesktopPane1.add(jLabel_BOM_Version);
-					jLabel_BOM_Version.setText(lang.get("lbl_Version"));
-					jLabel_BOM_Version.setBounds(199, 11, 105, 22);
-				}
-				{
-					ComboBoxModel<String> jComboBox2Model = new DefaultComboBoxModel<String>(uomList);
-					jComboBoxUOM = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxUOM);
-					jComboBoxUOM.setModel(jComboBox2Model);
-					jComboBoxUOM.setBounds(706, 45, 174, 22);
-					jComboBoxUOM.setMaximumRowCount(12);
-				}
-
-				{
-					ComboBoxModel<String> jComboBox2Model = new DefaultComboBoxModel<String>(typeList);
-					jComboBoxType = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxType);
-					jComboBoxType.setModel(jComboBox2Model);
-					jComboBoxType.setBounds(518, 45, 103, 22);
-					jComboBoxType.setMaximumRowCount(12);
-				}
-
-				{
-					ComboBoxModel<String> jComboBox2Model = new DefaultComboBoxModel<String>(locationList);
-					jComboBoxLocation = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxLocation);
-					jComboBoxLocation.setModel(jComboBox2Model);
-					jComboBoxLocation.setBounds(311, 45, 94, 22);
-					jComboBoxLocation.setMaximumRowCount(12);
-				}
-
-				{
-					ComboBoxModel<String> jComboBox2Model = new DefaultComboBoxModel<String>(stageList);
-					jComboBoxStage = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxStage);
-					jComboBoxStage.setModel(jComboBox2Model);
-					jComboBoxStage.setBounds(114, 45, 94, 22);
-					jComboBoxStage.setMaximumRowCount(12);
-				}
-
-				{
-					jLabel_UOM = new JLabel4j_std();
-					jLabel_UOM.setHorizontalAlignment(SwingConstants.RIGHT);
-					jDesktopPane1.add(jLabel_UOM);
-					jLabel_UOM.setText(lang.get("lbl_Material_UOM"));
-					jLabel_UOM.setBounds(588, 45, 105, 22);
-				}
-
-				{
-					jLabel_Type = new JLabel4j_std();
-					jLabel_Type.setHorizontalAlignment(SwingConstants.RIGHT);
-					jDesktopPane1.add(jLabel_Type);
-					jLabel_Type.setText(lang.get("lbl_Material_Type"));
-					jLabel_Type.setBounds(407, 45, 105, 22);
-				}
-
-				{
-					jLabel_Location = new JLabel4j_std();
-					jLabel_Location.setHorizontalAlignment(SwingConstants.RIGHT);
-					jDesktopPane1.add(jLabel_Location);
-					jLabel_Location.setText(lang.get("lbl_Location_ID"));
-					jLabel_Location.setBounds(199, 45, 105, 22);
-				}
-				{
-					jLabel_Stage = new JLabel4j_std();
-					jLabel_Stage.setHorizontalAlignment(SwingConstants.RIGHT);
-					jDesktopPane1.add(jLabel_Stage);
-					jLabel_Stage.setText(lang.get("lbl_Stage_Phase"));
-					jLabel_Stage.setBounds(0, 45, 105, 22);
-				}
-				{
-					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jDesktopPane1.add(jButtonHelp);
-					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(693, 112, 139, 32);
-					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-				}
-
-				{
-					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonClose);
-					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(831, 112, 139, 32);
-					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.addActionListener(new ActionListener()
+					public void actionPerformed(final ActionEvent e)
 					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JDBQuery.closeStatement(listStatement);
-							dispose();
-						}
-					});
-				}
+						search();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Search"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
 				{
-					jButtonPrint = new JButton4j(Common.icon_report_16x16);
-					jDesktopPane1.add(jButtonPrint);
-					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(417, 112, 139, 32);
-					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.addActionListener(new ActionListener()
+					public void actionPerformed(final ActionEvent e)
 					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							print();
-						}
-					});
-				}
+						print();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Print"));
+				popupMenu.add(newItemMenuItem);
+			}
 
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
 				{
-					jLabel10 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel10);
-					jLabel10.setText(lang.get("lbl_Sort_By"));
-					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(78, 78, 146, 22);
-				}
-				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.viewBOMSortBy);
-					jComboBoxSortBy = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(230, 78, 350, 22);
-					jComboBoxSortBy.setMaximumRowCount(Common.materialSortBy.length);
-				}
-
-				{
-					jToggleButtonSequence = new JToggleButton4j();
-					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(581, 78, 21, 22);
-					jToggleButtonSequence.addActionListener(new ActionListener()
+					public void actionPerformed(final ActionEvent e)
 					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							setSequence(jToggleButtonSequence.isSelected());
-						}
-					});
-				}
+						export();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Excel"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenu4j sortByMenu = new JMenu4j();
+				sortByMenu.setText(lang.get("lbl_Sort_By"));
+				popupMenu.add(sortByMenu);
 
 				{
-					jStatusText = new JLabel4j_std();
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 563, 970, 20);
-					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jDesktopPane1.add(jStatusText);
-				}
-
-				{
-					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
-							export();
+							sortBy("MATERIAL");
 						}
 					});
-
-					jButtonExcel.setText(lang.get("btn_Excel"));
-					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(555, 112, 139, 32);
-					jDesktopPane1.add(jButtonExcel);
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					sortByMenu.add(newItemMenuItem);
 				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear_16x16);
-					jButtonClear.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("TYPE");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material_Type"));
+					sortByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("DESCRIPTION");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Description"));
+					sortByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("UOM");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material_UOM"));
+					sortByMenu.add(newItemMenuItem);
+				}
+
+			}
+
+			{
+				final JMenu4j filterByMenu = new JMenu4j();
+				filterByMenu.setText(lang.get("lbl_Filter_By"));
+				popupMenu.add(filterByMenu);
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Process_Order_Recipe"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Version"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Description"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material_Type"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material_UOM"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					filterByMenu.addSeparator();
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
 							clearFilter();
 						}
 					});
-					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setMnemonic(lang.getMnemonicChar());
-					jButtonClear.setBounds(141, 112, 139, 32);
-					jDesktopPane1.add(jButtonClear);
+					newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
+					filterByMenu.add(newItemMenuItem);
 				}
+			}
+
+			{
+				final JMenu4j clipboardMenu = new JMenu4j();
+				clipboardMenu.setText(lang.get("lbl_Clipboard_Copy"));
+				popupMenu.add(clipboardMenu);
 
 				{
-					jButtonViewEdit = new JButton4j(Common.icon_bom_16x16);
-					jButtonViewEdit.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
-							viewEditBOM();
+							copyToClipboard(lang.get("lbl_Material"));
 						}
 					});
-					jButtonViewEdit.setText(lang.get("mod_FRM_BOM_ADMIN"));
-					jButtonViewEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonViewEdit.setBounds(279, 112, 139, 32);
-					jDesktopPane1.add(jButtonViewEdit);
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					clipboardMenu.add(newItemMenuItem);
 				}
 
-				JLabel4j_std label4j_std = new JLabel4j_std();
-				label4j_std.setText(lang.get("lbl_Limit"));
-				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(574, 78, 84, 22);
-				jDesktopPane1.add(label4j_std);
-
-				jCheckBoxLimit.setSelected(true);
-				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(662, 78, 21, 22);
-				jDesktopPane1.add(jCheckBoxLimit);
-
-				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
-
-				jSpinnerLimit.setEditor(ne);
-				jSpinnerLimit.setValue(1000);
-				jSpinnerLimit.setBounds(691, 78, 68, 22);
-				jDesktopPane1.add(jSpinnerLimit);
-				
-				SwingUtilities.invokeLater(new Runnable()
 				{
-					public void run()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
-						jTextFieldBomID.requestFocus();
-						jTextFieldBomID.setCaretPosition(jTextFieldBomID.getText().length());
-					}
-				});
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard(lang.get("lbl_Location_ID"));
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+					clipboardMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard(lang.get("lbl_Description"));
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Description"));
+					clipboardMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard(lang.get("lbl_Process_Order_Recipe"));
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Process_Order_Recipe"));
+					clipboardMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard(lang.get("lbl_Pallet_Quantity"));
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Pallet_Quantity"));
+					clipboardMenu.add(newItemMenuItem);
+				}
 
 			}
+
+			jButtonSearch = new JButton4j(Common.icon_search_16x16);
+			jDesktopPane1.add(jButtonSearch);
+			jButtonSearch.setText(lang.get("btn_Search"));
+			jButtonSearch.setBounds(3, 104, 139, 32);
+			jButtonSearch.setMnemonic(lang.getMnemonicChar());
+			jButtonSearch.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					search();
+
+				}
+			});
+
+			jTextFieldBomID = new JTextField4j();
+			jDesktopPane1.add(jTextFieldBomID);
+			jTextFieldBomID.setBounds(114, 8, 120, 22);
+
+			jTextFieldBomVersion = new JTextField4j();
+			jDesktopPane1.add(jTextFieldBomVersion);
+			jTextFieldBomVersion.setBounds(311, 8, 94, 22);
+
+			jTextFieldMaterial = new JTextField4j();
+			jDesktopPane1.add(jTextFieldMaterial);
+			jTextFieldMaterial.setBounds(475, 8, 146, 22);
+
+			jTextFieldDescription = new JTextField4j();
+			jDesktopPane1.add(jTextFieldDescription);
+			jTextFieldDescription.setBounds(704, 8, 258, 22);
+
+			jLabel1 = new JLabel4j_std();
+			jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel1);
+			jLabel1.setText(lang.get("lbl_Material"));
+			jLabel1.setBounds(387, 8, 84, 22);
+
+			jLabel_Description = new JLabel4j_std();
+			jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_Description);
+			jLabel_Description.setText(lang.get("lbl_Description"));
+			jLabel_Description.setBounds(609, 8, 84, 22);
+
+			jLabel_BOM_ID = new JLabel4j_std();
+			jLabel_BOM_ID.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_BOM_ID);
+			jLabel_BOM_ID.setText(lang.get("lbl_Process_Order_Recipe"));
+			jLabel_BOM_ID.setBounds(0, 8, 105, 22);
+
+			jLabel_BOM_Version = new JLabel4j_std();
+			jLabel_BOM_Version.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_BOM_Version);
+			jLabel_BOM_Version.setText(lang.get("lbl_Version"));
+			jLabel_BOM_Version.setBounds(199, 8, 105, 22);
+
+			ComboBoxModel<String> jComboBox2Model1 = new DefaultComboBoxModel<String>(uomList);
+			jComboBoxUOM = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxUOM);
+			jComboBoxUOM.setModel(jComboBox2Model1);
+			jComboBoxUOM.setBounds(706, 40, 174, 22);
+			jComboBoxUOM.setMaximumRowCount(12);
+
+			ComboBoxModel<String> jComboBox2Model2 = new DefaultComboBoxModel<String>(typeList);
+			jComboBoxType = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxType);
+			jComboBoxType.setModel(jComboBox2Model2);
+			jComboBoxType.setBounds(518, 40, 103, 22);
+			jComboBoxType.setMaximumRowCount(12);
+
+			ComboBoxModel<String> jComboBox2Model3 = new DefaultComboBoxModel<String>(locationList);
+			jComboBoxLocation = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxLocation);
+			jComboBoxLocation.setModel(jComboBox2Model3);
+			jComboBoxLocation.setBounds(311, 40, 94, 22);
+			jComboBoxLocation.setMaximumRowCount(12);
+
+			ComboBoxModel<String> jComboBox2Model4 = new DefaultComboBoxModel<String>(stageList);
+			jComboBoxStage = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxStage);
+			jComboBoxStage.setModel(jComboBox2Model4);
+			jComboBoxStage.setBounds(114, 40, 94, 22);
+			jComboBoxStage.setMaximumRowCount(12);
+
+			jLabel_UOM = new JLabel4j_std();
+			jLabel_UOM.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_UOM);
+			jLabel_UOM.setText(lang.get("lbl_Material_UOM"));
+			jLabel_UOM.setBounds(588, 40, 105, 22);
+
+			jLabel_Type = new JLabel4j_std();
+			jLabel_Type.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_Type);
+			jLabel_Type.setText(lang.get("lbl_Material_Type"));
+			jLabel_Type.setBounds(407, 40, 105, 22);
+
+			jLabel_Location = new JLabel4j_std();
+			jLabel_Location.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_Location);
+			jLabel_Location.setText(lang.get("lbl_Location_ID"));
+			jLabel_Location.setBounds(199, 40, 105, 22);
+
+			jLabel_Stage = new JLabel4j_std();
+			jLabel_Stage.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_Stage);
+			jLabel_Stage.setText(lang.get("lbl_Stage_Phase"));
+			jLabel_Stage.setBounds(0, 40, 105, 22);
+
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setBounds(693, 104, 139, 32);
+			jButtonHelp.setMnemonic(lang.getMnemonicChar());
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText(lang.get("btn_Close"));
+			jButtonClose.setBounds(831, 104, 139, 32);
+			jButtonClose.setMnemonic(lang.getMnemonicChar());
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JDBQuery.closeStatement(listStatement);
+					dispose();
+				}
+			});
+
+			jButtonPrint = new JButton4j(Common.icon_report_16x16);
+			jDesktopPane1.add(jButtonPrint);
+			jButtonPrint.setText(lang.get("btn_Print"));
+			jButtonPrint.setBounds(417, 104, 139, 32);
+			jButtonPrint.setMnemonic(lang.getMnemonicChar());
+			jButtonPrint.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					print();
+				}
+			});
+
+			jLabel10 = new JLabel4j_std();
+			jDesktopPane1.add(jLabel10);
+			jLabel10.setText(lang.get("lbl_Sort_By"));
+			jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel10.setBounds(78, 72, 146, 22);
+
+			ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.viewBOMSortBy);
+			jComboBoxSortBy = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxSortBy);
+			jComboBoxSortBy.setModel(jComboBoxSortByModel);
+			jComboBoxSortBy.setBounds(230, 72, 369, 22);
+			jComboBoxSortBy.setMaximumRowCount(Common.materialSortBy.length);
+
+			jToggleButtonSequence = new JToggleButton4j();
+			jDesktopPane1.add(jToggleButtonSequence);
+			jToggleButtonSequence.setBounds(600, 72, 21, 22);
+			jToggleButtonSequence.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					setSequence(jToggleButtonSequence.isSelected());
+				}
+			});
+
+			jStatusText = new JLabel4j_status();
+			jStatusText.setBounds(5, 555, 960, 20);
+			jDesktopPane1.add(jStatusText);
+
+			jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
+			jButtonExcel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					export();
+				}
+			});
+
+			jButtonExcel.setText(lang.get("btn_Excel"));
+			jButtonExcel.setMnemonic(lang.getMnemonicChar());
+			jButtonExcel.setBounds(555, 104, 139, 32);
+			jDesktopPane1.add(jButtonExcel);
+
+			jButtonClear = new JButton4j(Common.icon_clear_16x16);
+			jButtonClear.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					clearFilter();
+				}
+			});
+			jButtonClear.setText(lang.get("btn_Clear_Filter"));
+			jButtonClear.setMnemonic(lang.getMnemonicChar());
+			jButtonClear.setBounds(141, 104, 139, 32);
+			jDesktopPane1.add(jButtonClear);
+
+			jButtonViewEdit = new JButton4j(Common.icon_bom_16x16);
+			jButtonViewEdit.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					viewEditBOM();
+				}
+			});
+			jButtonViewEdit.setText(lang.get("mod_FRM_BOM_ADMIN"));
+			jButtonViewEdit.setMnemonic(lang.getMnemonicChar());
+			jButtonViewEdit.setBounds(279, 104, 139, 32);
+			jDesktopPane1.add(jButtonViewEdit);
+
+			JLabel4j_std label4j_std = new JLabel4j_std();
+			label4j_std.setText(lang.get("lbl_Limit"));
+			label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_std.setBounds(613, 72, 80, 22);
+			jDesktopPane1.add(label4j_std);
+
+			jCheckBoxLimit.setSelected(true);
+
+			jCheckBoxLimit.setBounds(706, 72, 21, 22);
+			jDesktopPane1.add(jCheckBoxLimit);
+
+			JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
+
+			jSpinnerLimit.setEditor(ne);
+			jSpinnerLimit.setValue(1000);
+			jSpinnerLimit.setBounds(740, 72, 68, 22);
+			jDesktopPane1.add(jSpinnerLimit);
+
+			SwingUtilities.invokeLater(new Runnable()
+			{
+				public void run()
+				{
+					jTextFieldBomID.requestFocus();
+					jTextFieldBomID.setCaretPosition(jTextFieldBomID.getText().length());
+				}
+			});
+
 		}
 		catch (Exception e)
 		{

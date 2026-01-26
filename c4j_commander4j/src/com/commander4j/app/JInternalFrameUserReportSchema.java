@@ -2,29 +2,29 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameUserReportSchema.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.event.ActionEvent;
@@ -33,9 +33,9 @@ import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JInternalFrame;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
@@ -46,20 +46,22 @@ import com.commander4j.db.JDBField;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBStructure;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.sys.Common;
 
 public class JInternalFrameUserReportSchema extends JInternalFrame {
 
 	/**
-	 * 
+	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	private JList4j<String> jListTables = new JList4j<String>();
-	private JList4j<String> jListFields = new JList4j<String>();
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBStructure structure = new JDBStructure(Common.selectedHostID, Common.sessionID);
+	private JList4j<String> jListFields = new JList4j<String>();
+	private JList4j<String> jListTables = new JList4j<String>();
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Create the frame.
@@ -72,12 +74,12 @@ public class JInternalFrameUserReportSchema extends JInternalFrame {
 		setBounds(100, 100, 560, 583);
 		getContentPane().setLayout(null);
 
-		JDesktopPane desktopPane = new JDesktopPane();
+		JDesktopPane4j desktopPane = new JDesktopPane4j();
 		desktopPane.setBounds(0, 0, 536, 537);
-		desktopPane.setBackground(Common.color_edit_properties);
+
 		getContentPane().add(desktopPane);
 
-		JScrollPane scrollPaneTables = new JScrollPane();
+		JScrollPane4j scrollPaneTables = new JScrollPane4j(JScrollPane4j.List);
 		scrollPaneTables.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 		scrollPaneTables.setBounds(12, 30, 254, 453);
 		desktopPane.add(scrollPaneTables);
@@ -95,7 +97,7 @@ public class JInternalFrameUserReportSchema extends JInternalFrame {
 
 		scrollPaneTables.setViewportView(jListTables);
 
-		JScrollPane scrollPaneFields = new JScrollPane();
+		JScrollPane4j scrollPaneFields = new JScrollPane4j(JScrollPane4j.List);
 		scrollPaneFields.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 		scrollPaneFields.setBounds(289, 30, 220, 453);
 		desktopPane.add(scrollPaneFields);
@@ -126,7 +128,7 @@ public class JInternalFrameUserReportSchema extends JInternalFrame {
 		JLabel4j_std lblReport = new JLabel4j_std(lang.get("lbl_Database_Tables"));
 		lblReport.setBounds(12, 6, 126, 22);
 		desktopPane.add(lblReport);
-		
+
 		JButton4j button4jClose = new JButton4j(Common.icon_close_16x16);
 		button4jClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -155,7 +157,7 @@ public class JInternalFrameUserReportSchema extends JInternalFrame {
 		{
 			defComboBoxMod.addElement(tempTableList.get(x).toString());
 		}
-		
+
 		jListTables.setModel(jList1Model);
 		jListTables.setSelectedIndex(0);
 
@@ -167,7 +169,7 @@ public class JInternalFrameUserReportSchema extends JInternalFrame {
 				jListTables.setSelectedIndex(0);
 		}
 	}
-	
+
 	private void populateListFields(String defaultitem)
 	{
 		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
@@ -175,12 +177,12 @@ public class JInternalFrameUserReportSchema extends JInternalFrame {
 		LinkedList<JDBField> tempFieldList = structure.getFieldNames(defaultitem);
 
 		ListModel<String> jList1Model = defComboBoxMod;
-		
+
 		for (int x = 0;x<tempFieldList.size();x++)
 		{
 			defComboBoxMod.addElement(tempFieldList.get(x).toString());
 		}
-		
+
 		jListFields.setModel(jList1Model);
 		jListFields.setSelectedIndex(0);
 

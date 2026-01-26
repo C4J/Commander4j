@@ -2,29 +2,29 @@ package com.commander4j.sys;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JHost.java
- * 
+ *
  * Package Name : com.commander4j.sys
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.sql.Connection;
@@ -48,20 +48,20 @@ import com.commander4j.util.JUtility;
 public class JHost
 {
 
-	public static int instanceCount = 0;
-	private Hashtable<String, Connection> connections = new Hashtable<String, Connection>();
 	private Hashtable<String, Boolean> connected2 = new Hashtable<String, Boolean>();
-	private JDatabaseParameters databaseParameters = new JDatabaseParameters();
+	private Hashtable<String, Connection> connections = new Hashtable<String, Connection>();
 	private JDBSQLStatement sqlstatements = new JDBSQLStatement();
 	private JDBSQLStatement viewstatements = new JDBSQLStatement();
-	private String siteNumber = "";
-	private String siteDescription = "";
-	private String siteURL = "http://";
+	private JDatabaseParameters databaseParameters = new JDatabaseParameters();
 	private String enabled = "Y";
+	private String siteDescription = "";
+	private String siteNumber = "";
+	private String siteURL = "http://";
 	private String uniqueid = JUnique.getUniqueID();
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JHost.class);
 	private int schemaVersion = -1;
 	private int schemaVersionRequired = -1;
-	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JHost.class);
+	public static int instanceCount = 0;
 
 	public int getConnectionCount()
 	{
@@ -115,25 +115,25 @@ public class JHost
 
 		if (connections.containsKey(sessionID) == false)
 		{
-			
+
 			 try
 			{
 				if (getDatabaseParameters().getjdbcDriver().equals("com.mysql.cj.jdbc.Driver"))
 				{
 					DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 				}
-				
+
 				if (getDatabaseParameters().getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
 				{
 					DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
 				}
-				
+
 				if (getDatabaseParameters().getjdbcDriver().equals("oracle.jdbc.driver.OracleDriver"))
 				{
 					DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
 				}
-				
-				
+
+
 				try
 				{
 
@@ -182,10 +182,10 @@ public class JHost
 						JOptionPane.showMessageDialog(null, "Invalid jdbc driver [" + ex.getMessage() + "]", "Login Error (" + getSiteDescription() + ")", JOptionPane.ERROR_MESSAGE);
 					}
 					result = false;
-				}				
-				
-				
-				
+				}
+
+
+
 			}
 			catch (SQLException e)
 			{
@@ -281,7 +281,7 @@ public class JHost
 
 	/**
 	 * Method getDatabaseParameters.
-	 * 
+	 *
 	 * @return DatabaseParameters
 	 */
 	public JDatabaseParameters getDatabaseParameters()
@@ -291,7 +291,7 @@ public class JHost
 
 	/**
 	 * Method getEnabled.
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getEnabled()
@@ -306,7 +306,7 @@ public class JHost
 
 	/**
 	 * Method getSchemaVersion.
-	 * 
+	 *
 	 * @return int
 	 */
 	public int getSchemaVersion()
@@ -316,7 +316,7 @@ public class JHost
 
 	/**
 	 * Method getSchemaVersionRequired.
-	 * 
+	 *
 	 * @return int
 	 */
 	public int getSchemaVersionRequired()
@@ -326,7 +326,7 @@ public class JHost
 
 	/**
 	 * Method getSiteDescription.
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getSiteDescription()
@@ -336,7 +336,7 @@ public class JHost
 
 	/**
 	 * Method getSiteNumber.
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getSiteNumber()
@@ -346,7 +346,7 @@ public class JHost
 
 	/**
 	 * Method getSiteURL.
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getSiteURL()
@@ -356,7 +356,7 @@ public class JHost
 
 	/**
 	 * Method getSqlstatements.
-	 * 
+	 *
 	 * @return JDBSQLStatement
 	 */
 	public JDBSQLStatement getSqlstatements()
@@ -366,7 +366,7 @@ public class JHost
 
 	/**
 	 * Method getViewstatements.
-	 * 
+	 *
 	 * @return JDBSQLStatement
 	 */
 	public JDBSQLStatement getViewstatements()
@@ -405,7 +405,7 @@ public class JHost
 
 	/**
 	 * Method setDatabaseParameters.
-	 * 
+	 *
 	 * @param value
 	 *            DatabaseParameters
 	 */
@@ -416,7 +416,7 @@ public class JHost
 
 	/**
 	 * Method setEnabled.
-	 * 
+	 *
 	 * @param value
 	 *            String
 	 */
@@ -432,7 +432,7 @@ public class JHost
 
 	/**
 	 * Method setSchemaVersion.
-	 * 
+	 *
 	 * @param value
 	 *            int
 	 */
@@ -443,7 +443,7 @@ public class JHost
 
 	/**
 	 * Method setSchemaVersionRequired.
-	 * 
+	 *
 	 * @param value
 	 *            int
 	 */
@@ -454,7 +454,7 @@ public class JHost
 
 	/**
 	 * Method setSiteDescription.
-	 * 
+	 *
 	 * @param value
 	 *            String
 	 */
@@ -465,7 +465,7 @@ public class JHost
 
 	/**
 	 * Method setSiteNumber.
-	 * 
+	 *
 	 * @param value
 	 *            String
 	 */
@@ -476,7 +476,7 @@ public class JHost
 
 	/**
 	 * Method setSiteURL.
-	 * 
+	 *
 	 * @param value
 	 *            String
 	 */
@@ -487,7 +487,7 @@ public class JHost
 
 	/**
 	 * Method setSqlstatements.
-	 * 
+	 *
 	 * @param value
 	 *            JDBSQLStatement
 	 */
@@ -498,7 +498,7 @@ public class JHost
 
 	/**
 	 * Method setViewstatements.
-	 * 
+	 *
 	 * @param value
 	 *            JDBSQLStatement
 	 */

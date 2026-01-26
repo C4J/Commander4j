@@ -48,20 +48,64 @@ public class JDBListRenderer extends JLabel implements ListCellRenderer<Object>
 
 	private static final long serialVersionUID = 1;
 	private DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
-	private Color background = Common.color_listBackground;
+	
+	public static final int Normal = 0;
+	public static final int Assigned = 1;
+	public static final int UnAssigned = 2;
+	
+	private Color foreground = Common.color_list_foreground;
+	private Color background = Common.color_list_background;
+	
+	private Color foregroundSelected = Common.color_list_foreground_selected;
+	private Color backgroundSelected = Common.color_list_background_selected;
+	
 	private JSeparator separator;
 
-	public JDBListRenderer()
+	public JDBListRenderer(int mode)
 	{
+		
+		if (mode == Normal)
+		{
+			foreground = Common.color_list_foreground;
+			background = Common.color_list_background;
+			
+			foregroundSelected = Common.color_list_foreground_selected;
+			backgroundSelected = Common.color_list_background_selected;
+		}
+		
+		if (mode == Assigned)
+		{
+			
+			foreground = Common.color_list_foreground_assigned;
+			background = Common.color_list_background_assigned;
+			
+			foregroundSelected = Common.color_list_foreground_selected;
+			backgroundSelected = Common.color_list_background_selected;
+		}
+		
+		if (mode == UnAssigned)
+		{
+			foreground = Common.color_list_foreground_unassigned;
+			background = Common.color_list_background_unassigned;
+			
+			foregroundSelected = Common.color_list_foreground_selected;
+			backgroundSelected = Common.color_list_background_selected;
+		}
 		separator = new JSeparator(JSeparator.HORIZONTAL);
+		
 		setFont(Common.font_list);
 	}
 
 
-	public JDBListRenderer(Color newBackgroundColor)
+	public JDBListRenderer(Color defaultBackgroundColor,Color defaultFontColor,Color selectedBackgroundColor,Color selectedFontColor)
 	{
 		separator = new JSeparator(JSeparator.HORIZONTAL);
-		background = newBackgroundColor;
+		
+		background = defaultBackgroundColor;
+		foreground = defaultFontColor;
+		
+		backgroundSelected = selectedBackgroundColor;
+		foregroundSelected = selectedFontColor;
 	}
 
 
@@ -96,14 +140,15 @@ public class JDBListRenderer extends JLabel implements ListCellRenderer<Object>
 				}
 			}
 
-			if (!isSelected)
+			if (isSelected)
 			{
-				renderer.setBackground(background);
-				renderer.setForeground(Common.color_listFontSelected);
+
+				renderer.setBackground(backgroundSelected);
+				renderer.setForeground(foregroundSelected);
 			} else
 			{
-				renderer.setBackground(Common.color_listHighlighted);
-				renderer.setForeground(Common.color_listFontStandard);
+				renderer.setBackground(background);
+				renderer.setForeground(foreground);
 			}
 
 			if (theIcon != null)
@@ -150,14 +195,14 @@ public class JDBListRenderer extends JLabel implements ListCellRenderer<Object>
 				}
 			}
 
-			if (!isSelected)
+			if (isSelected)
 			{
-				renderer.setBackground(background);
-				renderer.setForeground(Common.color_listFontSelected);
+				renderer.setBackground(backgroundSelected);
+				renderer.setForeground(foregroundSelected);
 			} else
 			{
-				renderer.setBackground(Common.color_listHighlighted);
-				renderer.setForeground(Common.color_listFontStandard);
+				renderer.setBackground(background);
+				renderer.setForeground(foreground);
 			}
 
 			if (theIcon != null)

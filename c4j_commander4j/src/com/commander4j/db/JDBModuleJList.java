@@ -1,5 +1,7 @@
 package com.commander4j.db;
 
+import java.awt.Color;
+
 /**
  * @author David Garratt
  * 
@@ -44,6 +46,7 @@ public class JDBModuleJList extends JList<JDBListData>
 	private JDBModule mod;
 	private String hostID;
 	private String sessionID;
+	private Color backgroundColor = Common.color_list_background;
 
 	private void setSessionID(String session) {
 		sessionID = session;
@@ -61,10 +64,15 @@ public class JDBModuleJList extends JList<JDBListData>
 		return hostID;
 	}
 
+	public void setBackground(Color c)
+	{
+		backgroundColor = c;
+	}
+	
 	public JDBModuleJList()
 	{
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(backgroundColor);
 	}
 
 	public JDBModuleJList(String host, String session)
@@ -73,7 +81,7 @@ public class JDBModuleJList extends JList<JDBListData>
 		setSessionID(session);
 		mod = new JDBModule(getHostID(), getSessionID());
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(backgroundColor);
 	}
 
 	public String getToolTipText(MouseEvent e) {

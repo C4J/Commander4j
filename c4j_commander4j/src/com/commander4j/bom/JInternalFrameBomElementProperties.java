@@ -1,6 +1,5 @@
 package com.commander4j.bom;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -9,10 +8,9 @@ import java.io.File;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
-import javax.swing.JScrollPane;
 
 import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
@@ -25,7 +23,9 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
@@ -38,7 +38,7 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
 
-	private JDesktopPane jDesktopPane1;
+	private JDesktopPane4j jDesktopPane1;
 
 	private JButton4j jButtonClose;
 	private JButton4j jButtonHelp;
@@ -74,13 +74,14 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 
 	private JButton4j jButtonIconFileChooser;
 
-	JScrollPane scrollPane = new JScrollPane();
+	JScrollPane4j scrollPane = new JScrollPane4j(JScrollPane4j.List);
 	JTextArea textArea_LookupSQL = new JTextArea();
 
 	private JSpinner4j jSpinnerLimit_MaxOccurences;
 
 	private JComboBox4j<String> comboBoxDataType = new JComboBox4j<String>();
-	ComboBoxModel<String> jComboBox1Model = new DefaultComboBoxModel<String>(new String[] { "", "decimal", "string", "timestamp" });
+	ComboBoxModel<String> jComboBox1Model = new DefaultComboBoxModel<String>(new String[]
+	{ "", "decimal", "string", "timestamp" });
 
 	private String ldata_id = "";
 
@@ -154,328 +155,327 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(389, 143));
-			this.setBounds(0, 0, 552, 442);
+			this.setBounds(0, 0, 539, 457);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
 			getContentPane().setLayout(null);
+
+			jDesktopPane1 = new JDesktopPane4j();
+			jDesktopPane1.setBounds(0, 0, 542, 437);
+
+			getContentPane().add(jDesktopPane1);
+			jDesktopPane1.setLayout(null);
+
+			jLabel_Data_ID.setBounds(22, 8, 112, 22);
+			jDesktopPane1.add(jLabel_Data_ID);
+			jLabel_Data_ID.setText(lang.get("lbl_Data_ID"));
+			jLabel_Data_ID.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabel_Data_ID.setHorizontalTextPosition(SwingConstants.RIGHT);
+
+			jLabel_Description.setBounds(22, 40, 112, 22);
+			jDesktopPane1.add(jLabel_Description);
+			jLabel_Description.setText(lang.get("lbl_Description"));
+			jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
+
+			jLabel_DataType.setBounds(22, 72, 112, 22);
+			jLabel_DataType.setText((String) null);
+			jLabel_DataType.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_DataType.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabel_DataType.setText(lang.get("lbl_Data_Type"));
+			jDesktopPane1.add(jLabel_DataType);
+
+			jLabel_IconFilename.setBounds(22, 104, 112, 22);
+			jLabel_IconFilename.setText(lang.get("lbl_Module_Icon_Filename"));
+			jLabel_IconFilename.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_IconFilename.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_IconFilename);
+
+			jLabel_MaxOccurs.setBounds(22, 136, 112, 22);
+			jLabel_MaxOccurs.setText(lang.get("lbl_Max_Occurrences"));
+			jLabel_MaxOccurs.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_MaxOccurs.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_MaxOccurs);
+
+			jLabel_EnableCreate.setBounds(22, 180, 112, 22);
+			jLabel_EnableCreate.setText(lang.get("lbl_Create"));
+			jLabel_EnableCreate.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_EnableCreate.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_EnableCreate);
+
+			jLabel_EnableEdit.setBounds(22, 207, 112, 22);
+			jLabel_EnableEdit.setText(lang.get("lbl_Edit"));
+			jLabel_EnableEdit.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_EnableEdit.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_EnableEdit);
+
+			jLabel_Enable_Clipboard.setBounds(22, 288, 112, 22);
+			jLabel_Enable_Clipboard.setText(lang.get("lbl_Clipboard"));
+			jLabel_Enable_Clipboard.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_Enable_Clipboard.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_Enable_Clipboard);
+
+			jLabel_Enable_Lookup.setBounds(22, 315, 112, 22);
+			jLabel_Enable_Lookup.setText(lang.get("lbl_Lookup"));
+			jLabel_Enable_Lookup.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_Enable_Lookup.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_Enable_Lookup);
+
+			jLabel_LookupSQL.setBounds(180, 170, 175, 22);
+			jLabel_LookupSQL.setText(lang.get("lbl_Lookup_SQL"));
+			jLabel_LookupSQL.setHorizontalTextPosition(SwingConstants.LEFT);
+			jLabel_LookupSQL.setHorizontalAlignment(SwingConstants.LEFT);
+			jDesktopPane1.add(jLabel_LookupSQL);
+
+			jLabel_LookupField.setBounds(52, 349, 112, 22);
+			jLabel_LookupField.setText(lang.get("lbl_Lookup_Field"));
+			jLabel_LookupField.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_LookupField.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_LookupField);
+
+			jLabel_EnableDelete.setBounds(22, 234, 112, 22);
+			jLabel_EnableDelete.setText(lang.get("lbl_Delete"));
+			jLabel_EnableDelete.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_EnableDelete.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_EnableDelete);
+
+			jLabel_EnableDuplicate.setBounds(22, 261, 112, 22);
+			jLabel_EnableDuplicate.setText(lang.get("lbl_Duplicate"));
+			jLabel_EnableDuplicate.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabel_EnableDuplicate.setHorizontalAlignment(SwingConstants.RIGHT);
+			jDesktopPane1.add(jLabel_EnableDuplicate);
+
+			jTextField_DataID.setBounds(143, 8, 141, 22);
+			jDesktopPane1.add(jTextField_DataID);
+			jTextField_DataID.setHorizontalAlignment(SwingConstants.LEFT);
+			jTextField_DataID.setEditable(false);
+			jTextField_DataID.setEnabled(false);
+
+			jTextField_Description.setBounds(143, 40, 332, 22);
+			jDesktopPane1.add(jTextField_Description);
+			jTextField_Description.setFocusCycleRoot(true);
+			jTextField_Description.addKeyListener(new KeyAdapter()
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 542, 410);
-				jDesktopPane1.setBackground(Common.color_edit_properties);
-				getContentPane().add(jDesktopPane1);
-				jDesktopPane1.setLayout(null);
-
-				jLabel_Data_ID.setBounds(22, 8, 112, 22);
-				jDesktopPane1.add(jLabel_Data_ID);
-				jLabel_Data_ID.setText(lang.get("lbl_Data_ID"));
-				jLabel_Data_ID.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_Data_ID.setHorizontalTextPosition(SwingConstants.RIGHT);
-
-				jLabel_Description.setBounds(22, 37, 112, 22);
-				jDesktopPane1.add(jLabel_Description);
-				jLabel_Description.setText(lang.get("lbl_Description"));
-				jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
-
-				jLabel_DataType.setBounds(22, 66, 112, 22);
-				jLabel_DataType.setText((String) null);
-				jLabel_DataType.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_DataType.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_DataType.setText(lang.get("lbl_Data_Type"));
-				jDesktopPane1.add(jLabel_DataType);
-
-				jLabel_IconFilename.setBounds(22, 95, 112, 22);
-				jLabel_IconFilename.setText(lang.get("lbl_Module_Icon_Filename"));
-				jLabel_IconFilename.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_IconFilename.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_IconFilename);
-
-				jLabel_MaxOccurs.setBounds(22, 123, 112, 22);
-				jLabel_MaxOccurs.setText(lang.get("lbl_Max_Occurrences"));
-				jLabel_MaxOccurs.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_MaxOccurs.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_MaxOccurs);
-
-				jLabel_EnableCreate.setBounds(22, 164, 112, 22);
-				jLabel_EnableCreate.setText(lang.get("lbl_Create"));
-				jLabel_EnableCreate.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_EnableCreate.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_EnableCreate);
-
-				jLabel_EnableEdit.setBounds(22, 191, 112, 22);
-				jLabel_EnableEdit.setText(lang.get("lbl_Edit"));
-				jLabel_EnableEdit.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_EnableEdit.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_EnableEdit);
-
-				jLabel_Enable_Clipboard.setBounds(22, 272, 112, 22);
-				jLabel_Enable_Clipboard.setText(lang.get("lbl_Clipboard"));
-				jLabel_Enable_Clipboard.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_Enable_Clipboard.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_Enable_Clipboard);
-
-				jLabel_Enable_Lookup.setBounds(22, 299, 112, 22);
-				jLabel_Enable_Lookup.setText(lang.get("lbl_Lookup"));
-				jLabel_Enable_Lookup.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_Enable_Lookup.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_Enable_Lookup);
-
-				jLabel_LookupSQL.setBounds(178, 150, 175, 22);
-				jLabel_LookupSQL.setText(lang.get("lbl_Lookup_SQL"));
-				jLabel_LookupSQL.setHorizontalTextPosition(SwingConstants.LEFT);
-				jLabel_LookupSQL.setHorizontalAlignment(SwingConstants.LEFT);
-				jDesktopPane1.add(jLabel_LookupSQL);
-
-				jLabel_LookupField.setBounds(52, 325, 112, 22);
-				jLabel_LookupField.setText(lang.get("lbl_Lookup_Field"));
-				jLabel_LookupField.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_LookupField.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_LookupField);
-
-				jLabel_EnableDelete.setBounds(22, 218, 112, 22);
-				jLabel_EnableDelete.setText(lang.get("lbl_Delete"));
-				jLabel_EnableDelete.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_EnableDelete.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_EnableDelete);
-
-				jLabel_EnableDuplicate.setBounds(22, 245, 112, 22);
-				jLabel_EnableDuplicate.setText(lang.get("lbl_Duplicate"));
-				jLabel_EnableDuplicate.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jLabel_EnableDuplicate.setHorizontalAlignment(SwingConstants.RIGHT);
-				jDesktopPane1.add(jLabel_EnableDuplicate);
-
-				jTextField_DataID.setBounds(143, 8, 141, 22);
-				jDesktopPane1.add(jTextField_DataID);
-				jTextField_DataID.setHorizontalAlignment(SwingConstants.LEFT);
-				jTextField_DataID.setEditable(false);
-				jTextField_DataID.setEnabled(false);
-
-				jTextField_Description.setBounds(143, 37, 332, 22);
-				jDesktopPane1.add(jTextField_Description);
-				jTextField_Description.setFocusCycleRoot(true);
-				jTextField_Description.addKeyListener(new KeyAdapter()
+				public void keyTyped(KeyEvent evt)
 				{
-					public void keyTyped(KeyEvent evt)
+					jButtonUpdate.setEnabled(true);
+				}
+			});
+
+			comboBoxDataType.setBounds(143, 72, 141, 22);
+			comboBoxDataType.setEnabled(true);
+			comboBoxDataType.setModel(jComboBox1Model);
+			jDesktopPane1.add(comboBoxDataType);
+			comboBoxDataType.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					jButtonUpdate.setEnabled(true);
+				}
+			});
+
+			jTextField_IconFilename.setBounds(143, 104, 184, 22);
+			jDesktopPane1.add(jTextField_IconFilename);
+			jTextField_IconFilename.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+
+			SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
+			jSpinnerIntModel.setMinimum(0);
+			jSpinnerIntModel.setMaximum(99);
+			jSpinnerIntModel.setStepSize(1);
+
+			jSpinnerLimit_MaxOccurences = new JSpinner4j();
+			jSpinnerLimit_MaxOccurences.addChangeListener(new ChangeListener()
+			{
+				public void stateChanged(ChangeEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+			jDesktopPane1.add(jSpinnerLimit_MaxOccurences);
+
+			jSpinnerLimit_MaxOccurences.setModel(jSpinnerIntModel);
+			JSpinner4j.NumberEditor ne_jSpinnerLimit_MaxOccurences = new JSpinner4j.NumberEditor(jSpinnerLimit_MaxOccurences);
+			jSpinnerLimit_MaxOccurences.setEditor(ne_jSpinnerLimit_MaxOccurences);
+			jSpinnerLimit_MaxOccurences.setBounds(143, 136, 46, 22);
+			jSpinnerLimit_MaxOccurences.getEditor().setSize(45, 21);
+
+			checkBox_EnableCreate = new JCheckBox4j();
+			checkBox_EnableCreate.setBounds(143, 180, 21, 22);
+
+			jDesktopPane1.add(checkBox_EnableCreate);
+			checkBox_EnableCreate.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+
+			checkBox_EnableEdit.setBounds(143, 207, 21, 22);
+
+			jDesktopPane1.add(checkBox_EnableEdit);
+			checkBox_EnableEdit.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+
+			checkBox_EnableDelete.setBounds(143, 234, 21, 22);
+
+			jDesktopPane1.add(checkBox_EnableDelete);
+			checkBox_EnableDelete.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent arg0)
+				{
+					setButtonState(true);
+				}
+			});
+
+			checkBox_EnableDuplicate.setBounds(143, 261, 21, 22);
+
+			jDesktopPane1.add(checkBox_EnableDuplicate);
+			checkBox_EnableDuplicate.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+
+			checkBox_EnableClipboard.setBounds(143, 288, 21, 22);
+
+			jDesktopPane1.add(checkBox_EnableClipboard);
+			checkBox_EnableClipboard.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+
+			checkBox_EnableLookup.setBounds(143, 315, 21, 22);
+
+			jDesktopPane1.add(checkBox_EnableLookup);
+			checkBox_EnableLookup.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+			jTextField_LookupField.setBounds(180, 349, 119, 22);
+
+			scrollPane.setBounds(180, 190, 332, 149);
+			jDesktopPane1.add(scrollPane);
+			textArea_LookupSQL.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+			textArea_LookupSQL.setLineWrap(true);
+			scrollPane.setViewportView(textArea_LookupSQL);
+
+			jTextField_LookupField.setColumns(80);
+			jTextField_LookupField.setFocusCycleRoot(true);
+			jTextField_LookupField.setCaretPosition(0);
+			jDesktopPane1.add(jTextField_LookupField);
+			jTextField_LookupField.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					setButtonState(true);
+				}
+			});
+
+			jButtonUpdate = new JButton4j(Common.icon_update_16x16);
+			jButtonUpdate.setBounds(97, 382, 112, 32);
+			jButtonUpdate.setEnabled(false);
+			jButtonUpdate.setText(lang.get("btn_Save"));
+			jButtonUpdate.setMnemonic(lang.getMnemonicChar());
+			jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jDesktopPane1.add(jButtonUpdate);
+			jButtonUpdate.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+
+					setButtonState(false);
+					createUpdate(ldata_id);
+				}
+			});
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jButtonClose.setBounds(361, 382, 112, 32);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText(lang.get("btn_Close"));
+			jButtonClose.setMnemonic(lang.getMnemonicChar());
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					dispose();
+				}
+			});
+
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jButtonHelp.setBounds(230, 382, 112, 32);
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setMnemonic(lang.getMnemonicChar());
+
+			jButtonIconFileChooser = new JButton4j();
+			jDesktopPane1.add(jButtonIconFileChooser);
+			jButtonIconFileChooser.setText("..");
+			jButtonIconFileChooser.setBounds(327, 104, 22, 22);
+			jButtonIconFileChooser.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+
+					JFileChooser loadIco = new JFileChooser();
+
+					try
 					{
-						jButtonUpdate.setEnabled(true);
+						File f = new File(new File("./images/16x16").getCanonicalPath());
+						loadIco.setCurrentDirectory(f);
+						loadIco.addChoosableFileFilter(new JFileFilterImages());
+						loadIco.setAcceptAllFileFilterUsed(false);
+						loadIco.setSelectedFile(new File(jTextField_IconFilename.getText()));
 					}
-				});
-
-				comboBoxDataType.setBounds(143, 66, 141, 22);
-				comboBoxDataType.setEnabled(true);
-				comboBoxDataType.setModel(jComboBox1Model);
-				jDesktopPane1.add(comboBoxDataType);
-				comboBoxDataType.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent evt)
+					catch (Exception e)
 					{
-						jButtonUpdate.setEnabled(true);
 					}
-				});
 
-				jTextField_IconFilename.setBounds(143, 95, 184, 22);
-				jDesktopPane1.add(jTextField_IconFilename);
-				jTextField_IconFilename.addKeyListener(new KeyAdapter()
-				{
-					@Override
-					public void keyTyped(KeyEvent e)
+					if (loadIco.showOpenDialog(jButtonIconFileChooser) == JFileChooser.APPROVE_OPTION)
 					{
-						setButtonState(true);
-					}
-				});
+						File selectedFile;
+						selectedFile = loadIco.getSelectedFile();
 
-				SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
-				jSpinnerIntModel.setMinimum(0);
-				jSpinnerIntModel.setMaximum(99);
-				jSpinnerIntModel.setStepSize(1);
-
-				jSpinnerLimit_MaxOccurences = new JSpinner4j();
-				jSpinnerLimit_MaxOccurences.addChangeListener(new ChangeListener()
-				{
-					public void stateChanged(ChangeEvent e)
-					{
-						setButtonState(true);
-					}
-				});
-				jDesktopPane1.add(jSpinnerLimit_MaxOccurences);
-
-				jSpinnerLimit_MaxOccurences.setModel(jSpinnerIntModel);
-				JSpinner4j.NumberEditor ne_jSpinnerLimit_MaxOccurences = new JSpinner4j.NumberEditor(jSpinnerLimit_MaxOccurences);
-				jSpinnerLimit_MaxOccurences.setEditor(ne_jSpinnerLimit_MaxOccurences);
-				jSpinnerLimit_MaxOccurences.setBounds(143, 123, 46, 22);
-				jSpinnerLimit_MaxOccurences.getEditor().setSize(45, 21);
-
-				checkBox_EnableCreate = new JCheckBox4j();
-				checkBox_EnableCreate.setBounds(143, 164, 21, 22);
-				checkBox_EnableCreate.setBackground(Color.WHITE);
-				jDesktopPane1.add(checkBox_EnableCreate);
-				checkBox_EnableCreate.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						setButtonState(true);
-					}
-				});
-
-				checkBox_EnableEdit.setBounds(143, 191, 21, 22);
-				checkBox_EnableEdit.setBackground(Color.WHITE);
-				jDesktopPane1.add(checkBox_EnableEdit);
-				checkBox_EnableEdit.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						setButtonState(true);
-					}
-				});
-
-				checkBox_EnableDelete.setBounds(143, 218, 21, 22);
-				checkBox_EnableDelete.setBackground(Color.WHITE);
-				jDesktopPane1.add(checkBox_EnableDelete);
-				checkBox_EnableDelete.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent arg0)
-					{
-						setButtonState(true);
-					}
-				});
-
-				checkBox_EnableDuplicate.setBounds(143, 245, 21, 22);
-				checkBox_EnableDuplicate.setBackground(Color.WHITE);
-				jDesktopPane1.add(checkBox_EnableDuplicate);
-				checkBox_EnableDuplicate.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						setButtonState(true);
-					}
-				});
-
-				checkBox_EnableClipboard.setBounds(143, 272, 21, 22);
-				checkBox_EnableClipboard.setBackground(Color.WHITE);
-				jDesktopPane1.add(checkBox_EnableClipboard);
-				checkBox_EnableClipboard.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						setButtonState(true);
-					}
-				});
-
-				checkBox_EnableLookup.setBounds(143, 299, 21, 22);
-				checkBox_EnableLookup.setBackground(Color.WHITE);
-				jDesktopPane1.add(checkBox_EnableLookup);
-				checkBox_EnableLookup.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						setButtonState(true);
-					}
-				});
-				jTextField_LookupField.setBounds(178, 325, 119, 22);
-
-				scrollPane.setBounds(180, 170, 332, 149);
-				jDesktopPane1.add(scrollPane);
-				textArea_LookupSQL.addKeyListener(new KeyAdapter()
-				{
-					@Override
-					public void keyTyped(KeyEvent e)
-					{
-						setButtonState(true);
-					}
-				});
-				textArea_LookupSQL.setLineWrap(true);
-				scrollPane.setViewportView(textArea_LookupSQL);
-
-				jTextField_LookupField.setColumns(80);
-				jTextField_LookupField.setFocusCycleRoot(true);
-				jTextField_LookupField.setCaretPosition(0);
-				jDesktopPane1.add(jTextField_LookupField);
-				jTextField_LookupField.addKeyListener(new KeyAdapter()
-				{
-					@Override
-					public void keyTyped(KeyEvent e)
-					{
-						setButtonState(true);
-					}
-				});
-
-				jButtonUpdate = new JButton4j(Common.icon_update_16x16);
-				jButtonUpdate.setBounds(97, 358, 112, 32);
-				jButtonUpdate.setEnabled(false);
-				jButtonUpdate.setText(lang.get("btn_Save"));
-				jButtonUpdate.setMnemonic(lang.getMnemonicChar());
-				jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
-				jDesktopPane1.add(jButtonUpdate);
-				jButtonUpdate.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent evt)
-					{
-
-						setButtonState(false);
-						createUpdate(ldata_id);
-					}
-				});
-
-				jButtonClose = new JButton4j(Common.icon_close_16x16);
-				jButtonClose.setBounds(361, 358, 112, 32);
-				jDesktopPane1.add(jButtonClose);
-				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setMnemonic(lang.getMnemonicChar());
-				jButtonClose.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent evt)
-					{
-						dispose();
-					}
-				});
-
-				jButtonHelp = new JButton4j(Common.icon_help_16x16);
-				jButtonHelp.setBounds(230, 358, 112, 32);
-				jDesktopPane1.add(jButtonHelp);
-				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setMnemonic(lang.getMnemonicChar());
-
-				jButtonIconFileChooser = new JButton4j();
-				jDesktopPane1.add(jButtonIconFileChooser);
-				jButtonIconFileChooser.setText("..");
-				jButtonIconFileChooser.setBounds(327, 95, 22, 22);
-				jButtonIconFileChooser.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent evt)
-					{
-
-						JFileChooser loadIco = new JFileChooser();
-
-						try
+						if (selectedFile != null)
 						{
-							File f = new File(new File("./images/16x16").getCanonicalPath());
-							loadIco.setCurrentDirectory(f);
-							loadIco.addChoosableFileFilter(new JFileFilterImages());
-							loadIco.setAcceptAllFileFilterUsed(false);
-							loadIco.setSelectedFile(new File(jTextField_IconFilename.getText()));
-						}
-						catch (Exception e)
-						{
-						}
-
-						if (loadIco.showOpenDialog(jButtonIconFileChooser) == JFileChooser.APPROVE_OPTION)
-						{
-							File selectedFile;
-							selectedFile = loadIco.getSelectedFile();
-
-							if (selectedFile != null)
+							if (jTextField_IconFilename.getText().compareTo(selectedFile.getName()) != 0)
 							{
-								if (jTextField_IconFilename.getText().compareTo(selectedFile.getName()) != 0)
-								{
-									jTextField_IconFilename.setText(selectedFile.getName());
-									setButtonState(true);
-								}
+								jTextField_IconFilename.setText(selectedFile.getName());
+								setButtonState(true);
 							}
 						}
 					}
-				});
-			}
+				}
+			});
 
 		}
 		catch (Exception e)

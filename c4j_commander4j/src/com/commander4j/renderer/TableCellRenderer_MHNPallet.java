@@ -2,29 +2,29 @@ package com.commander4j.renderer;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : TableCellRenderer_MHNPallet.java
- * 
+ *
  * Package Name : com.commander4j.renderer
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.Color;
@@ -57,7 +57,7 @@ public class TableCellRenderer_MHNPallet extends DefaultTableCellRenderer
 		super();
 		lookup = db.getDecisionColors();
 	}
-	
+
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -67,20 +67,20 @@ public class TableCellRenderer_MHNPallet extends DefaultTableCellRenderer
 
 		if (isSelected)
 		{
-			foreground = Common.color_listFontSelected;
-			background = Common.color_listHighlighted;
+			foreground = Common.color_list_foreground_selected;
+			background = Common.color_list_background_selected;
 		}
 		else
 		{
 			if (row % 2 == 0)
 			{
-				foreground = Common.color_listFontStandard;
-				background = Common.color_tablerow3;
+				foreground = Common.color_table_alternate_foreground1;
+				background = Common.color_table_alternate_row1;
 			}
 			else
 			{
-				foreground = Common.color_listFontStandard;
-				background = Common.color_tablerow2;
+				foreground = Common.color_list_foreground;
+				background = Common.color_table_standard_row2;
 			}
 		}
 
@@ -97,7 +97,7 @@ public class TableCellRenderer_MHNPallet extends DefaultTableCellRenderer
 				foreground = Color.white;
 			}
 		}
-		
+
 		setForeground(foreground);
 		setBackground(background);
 

@@ -2,33 +2,32 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameJourneyAdmin.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -45,11 +44,9 @@ import java.util.Date;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
@@ -66,9 +63,12 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
@@ -93,7 +93,7 @@ import com.commander4j.util.JUtility;
  * interfacing module.
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameJourneyAdmin.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBDespatch JDBDespatch
  * @see com.commander4j.app.JInternalFrameJourneyAdmin
  *      JInternalFrameJourneyAdmin
@@ -102,46 +102,77 @@ import com.commander4j.util.JUtility;
  */
 public class JInternalFrameJourneyAdmin extends JInternalFrame
 {
-	private JButton4j jButtonExcel;
-	private JButton4j jButtonPrint;
-	private JLabel4j_std jStatusText;
-	private JButton4j jButtonAdd;
-	private JCheckBox4j jCheckBoxTo;
-	private JCheckBox4j jCheckBoxFrom;
-	private JLabel4j_std jLabel5_1;
-	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
-	private JButton4j jButtonEdit;
-	private JButton4j jButtonClose;
-	private JToggleButton4j jToggleButtonSequence;
-	private JTextField4j jTextFieldDespatchNo;
-	private JComboBox4j<String> jComboBoxStatus;
-	private JLabel4j_std jLabel5;
-	private JComboBox4j<String> jComboBoxSortBy;
-	private JLabel4j_std jLabel10;
-	private JLabel4j_std jLabel3;
-	private JTextField4j jTextFieldJourneyRef;
-	private JLabel4j_std jLabel1;
-	private JTable4j jTable1;
-	private JButton4j jButtonHelp;
-	private JButton4j jButtonSearch;
-	private JScrollPane jScrollPane1;
-	private String lref;
-	private String lbatch;
 	private static boolean dlg_sort_descending = false;
-	private JDateControl timeslotFrom = new JDateControl();
-	private JDateControl timeslotTo = new JDateControl();
-	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-	private JDBLanguage lang;
+	private static final long serialVersionUID = 1;
+
+	/**
+	 * WindowBuilder generated method.<br>
+	 * Please don't remove this method or its invocations.<br>
+	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
+	 * with parent.
+	 */
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
+				if (e.isPopupTrigger())
+					showMenu(e);
+			}
+
+			public void mouseReleased(MouseEvent e)
+			{
+				if (e.isPopupTrigger())
+					showMenu(e);
+			}
+
+			private void showMenu(MouseEvent e)
+			{
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+
+	private JButton4j jButtonAdd;
+	private JButton4j jButtonClose;
+	private JButton4j jButtonEdit;
+	private JButton4j jButtonExcel;
+	private JButton4j jButtonHelp;
+	private JButton4j jButtonPrint;
+	private JButton4j jButtonSearch;
 	private JCalendarButton calendarButtonexpiryFrom;
 	private JCalendarButton calendarButtonexpiryTo;
-	private PreparedStatement listStatement;
-	private JTextField4j jTextFieldLocationID = new JTextField4j(15);
+	private JCheckBox4j jCheckBoxFrom;
 	private JCheckBox4j jCheckBoxLimit;
+	private JCheckBox4j jCheckBoxTo;
+	private JComboBox4j<String> jComboBoxSortBy;
+	private JComboBox4j<String> jComboBoxStatus;
+	private JDBLanguage lang;
+	private JDateControl timeslotFrom = new JDateControl();
+	private JDateControl timeslotTo = new JDateControl();
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusText;
+	private JLabel4j_std jLabel10;
+	private JLabel4j_std jLabel1;
+	private JLabel4j_std jLabel3;
+	private JLabel4j_std jLabel5;
+	private JLabel4j_std jLabel5_1;
+	private JScrollPane4j jScrollPane1;
 	private JSpinner4j jSpinnerLimit;
+	private JTable4j jTable1;
+	private JTextField4j jTextFieldDespatchNo;
+	private JTextField4j jTextFieldHaulier = new JTextField4j();
+	private JTextField4j jTextFieldJourneyRef;
 	private JTextField4j jTextFieldLoadType = new JTextField4j();
 	private JTextField4j jTextFieldLoadTypeDesc = new JTextField4j();
-	private JTextField4j jTextFieldHaulier = new JTextField4j();
+	private JTextField4j jTextFieldLocationID = new JTextField4j(15);
+	private JToggleButton4j jToggleButtonSequence;
+	private PreparedStatement listStatement;
+	private String lbatch;
+
+	private String lref;
+	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 
 	public JInternalFrameJourneyAdmin()
 	{
@@ -169,6 +200,87 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		setSequence(dlg_sort_descending);
 	}
 
+	public JInternalFrameJourneyAdmin(String material)
+	{
+		this();
+		lref = material;
+		jTextFieldJourneyRef.setText(lref);
+		jTextFieldDespatchNo.setText(lbatch);
+		buildSQL();
+		populateList();
+	}
+
+	public JInternalFrameJourneyAdmin(String material, String batch)
+	{
+		this();
+		lref = material;
+		lbatch = batch;
+		jTextFieldJourneyRef.setText(lref);
+		jTextFieldDespatchNo.setText(lbatch);
+		buildSQL();
+		populateList();
+	}
+
+	private void addRecord()
+	{
+		String ljourneyref = "";
+
+		ljourneyref = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Journey_Ref_Input"));
+
+		if (ljourneyref != null)
+		{
+			if (ljourneyref.equals("") == false)
+			{
+				ljourneyref = ljourneyref.toUpperCase();
+				JDBJourney jref = new JDBJourney(Common.selectedHostID, Common.sessionID);
+				if (jref.isValidJourneyRef(ljourneyref) == false)
+				{
+					JLaunchMenu.runForm("FRM_ADMIN_JOURNEY_EDIT", ljourneyref);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(Common.mainForm, "Journey Ref [" + ljourneyref + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+				}
+
+			}
+		}
+
+	}
+
+	private void buildSQL()
+	{
+
+		JDBQuery.closeStatement(listStatement);
+		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+		query.clear();
+
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_JOURNEY"));
+		query.addParamtoSQL("journey_ref=", jTextFieldJourneyRef.getText());
+		query.addParamtoSQL("despatch_no=", jTextFieldDespatchNo.getText());
+		query.addParamtoSQL("status=", jComboBoxStatus.getSelectedItem().toString());
+		query.addParamtoSQL("location_id_to=", jTextFieldLocationID.getText());
+		query.addParamtoSQL("upper(load_type)=", jTextFieldLoadType.getText().toUpperCase());
+		query.addParamtoSQL("upper(load_type_desc)=", jTextFieldLoadTypeDesc.getText().toUpperCase());
+		query.addParamtoSQL("haulier=", jTextFieldHaulier.getText());
+
+		if (jCheckBoxFrom.isSelected())
+		{
+			query.addParamtoSQL("timeslot>=", JUtility.getTimestampFromDate(timeslotFrom.getDate()));
+
+		}
+
+		if (jCheckBoxTo.isSelected())
+		{
+			query.addParamtoSQL("timeslot<=", JUtility.getTimestampFromDate(timeslotTo.getDate()));
+		}
+
+		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
+
+		query.bindParams();
+		listStatement = query.getPreparedStatement();
+	}
+
 	private void clearFilter()
 	{
 
@@ -191,6 +303,45 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 
 		search();
 
+	}
+
+	private void deleteRecord()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lref = jTable1.getValueAt(row, 0).toString();
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Journey_Ref_Delete") + " " + lref + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+			if (question == 0)
+			{
+				JDBJourney journeyref = new JDBJourney(Common.selectedHostID, Common.sessionID);
+
+				journeyref.setJourneyRef(lref);
+				journeyref.delete();
+				populateList();
+			}
+		}
+
+	}
+
+	private void editRecord()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lref = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_JOURNEY_EDIT", lref);
+		}
+
+	}
+
+	private void excel()
+	{
+		JDBJourney jref = new JDBJourney(Common.selectedHostID, Common.sessionID);
+		JExcel export = new JExcel();
+		buildSQL();
+		export.saveAs("journeys.xls", jref.getJourneyRefDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void filterBy(String fieldname)
@@ -245,127 +396,606 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		}
 	}
 
-	public JInternalFrameJourneyAdmin(String material)
+	private void initGUI()
 	{
-		this();
-		lref = material;
-		jTextFieldJourneyRef.setText(lref);
-		jTextFieldDespatchNo.setText(lbatch);
-		buildSQL();
-		populateList();
-	}
-
-	private void print()
-	{
-		buildSQL();
-		JLaunchReport.runReport("RPT_JOURNEYS", null, "", listStatement, "");
-	}
-
-	private void search()
-	{
-		buildSQL();
-		populateList();
-	}
-
-	private void excel()
-	{
-		JDBJourney jref = new JDBJourney(Common.selectedHostID, Common.sessionID);
-		JExcel export = new JExcel();
-		buildSQL();
-		export.saveAs("journeys.xls", jref.getJourneyRefDataResultSet(listStatement), Common.mainForm);
-		populateList();
-	}
-
-	private void addRecord()
-	{
-		String ljourneyref = "";
-
-		ljourneyref = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Journey_Ref_Input"));
-
-		if (ljourneyref != null)
+		try
 		{
-			if (ljourneyref.equals("") == false)
+			this.setPreferredSize(new java.awt.Dimension(497, 522));
+			this.setBounds(0, 0, 1003, 650);
+			setVisible(true);
+			this.setClosable(true);
+			this.setTitle("Journey References");
+
+			jDesktopPane1 = new JDesktopPane4j();
+
+			getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
+
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.Table);
+
+			jDesktopPane1.setLayout(null);
+			jDesktopPane1.add(jScrollPane1);
+			jScrollPane1.setBounds(0, 175, 990, 410);
+
+			TableModel jTable1Model = new DefaultTableModel(new String[][]
 			{
-				ljourneyref = ljourneyref.toUpperCase();
-				JDBJourney jref = new JDBJourney(Common.selectedHostID, Common.sessionID);
-				if (jref.isValidJourneyRef(ljourneyref) == false)
-				{
-					JLaunchMenu.runForm("FRM_ADMIN_JOURNEY_EDIT", ljourneyref);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Journey Ref [" + ljourneyref + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-				}
+					{ "One", "Two" },
+					{ "Three", "Four" } }, new String[]
+			{ "Column 1", "Column 2" });
 
+			jTable1 = new JTable4j();
+			jScrollPane1.setViewportView(jTable1);
+			jTable1.setModel(jTable1Model);
+			jTable1.addMouseListener(new MouseAdapter()
+			{
+				public void mouseClicked(MouseEvent evt)
+				{
+					if (evt.getClickCount() == 2)
+					{
+						if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_EDIT"))
+						{
+							editRecord();
+						}
+					}
+				}
+			});
+
+			final JPopupMenu popupMenu = new JPopupMenu();
+			addPopup(jTable1, popupMenu);
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						search();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Search"));
+				popupMenu.add(newItemMenuItem);
 			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_ADD"));
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						addRecord();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Add"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_EDIT"));
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						editRecord();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Edit"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						excel();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Excel"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			final JMenu4j sortByMenu = new JMenu4j();
+			sortByMenu.setText(lang.get("lbl_Sort_By"));
+			popupMenu.add(sortByMenu);
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						sortBy("JOURNEY_REF");
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Journey_Ref"));
+				sortByMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						sortBy("DESPATCH_NO");
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Despatch_No"));
+				sortByMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						sortBy("LOCATION_ID_TO");
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+				sortByMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						sortBy("STATUS");
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Journey_Status"));
+				sortByMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						sortBy("TIMESLOT");
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Timeslot"));
+				sortByMenu.add(newItemMenuItem);
+			}
+
+			final JMenu4j filterByMenu = new JMenu4j();
+			filterByMenu.setText(lang.get("lbl_Filter_By"));
+			popupMenu.add(filterByMenu);
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						filterBy(newItemMenuItem.getText());
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Despatch_No"));
+				filterByMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						filterBy(newItemMenuItem.getText());
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+				filterByMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						filterBy(newItemMenuItem.getText());
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Journey_Status"));
+				filterByMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						filterBy(newItemMenuItem.getText());
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Timeslot"));
+				filterByMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						filterBy(newItemMenuItem.getText());
+					}
+				});
+				newItemMenuItem.setText(lang.get("lbl_Journey_Ref"));
+				filterByMenu.add(newItemMenuItem);
+			}
+
+			{
+				filterByMenu.addSeparator();
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+				newItemMenuItem.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
+						clearFilter();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
+				filterByMenu.add(newItemMenuItem);
+			}
+
+			jButtonSearch = new JButton4j(Common.icon_search_16x16);
+			jDesktopPane1.add(jButtonSearch);
+			jButtonSearch.setText(lang.get("btn_Search"));
+			jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
+			jButtonSearch.setBounds(0, 135, 110, 32);
+			jButtonSearch.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					search();
+
+				}
+			});
+
+			jButtonEdit = new JButton4j(Common.icon_edit_16x16);
+			jDesktopPane1.add(jButtonEdit);
+			jButtonEdit.setText(lang.get("btn_Edit"));
+			jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
+			jButtonEdit.setBounds(330, 135, 110, 32);
+			jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_EDIT"));
+			jButtonEdit.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					editRecord();
+				}
+			});
+
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
+			jButtonHelp.setBounds(770, 135, 110, 32);
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText(lang.get("btn_Close"));
+			jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
+			jButtonClose.setBounds(880, 135, 110, 32);
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JDBQuery.closeStatement(listStatement);
+					dispose();
+				}
+			});
+
+			jLabel1 = new JLabel4j_std();
+			jDesktopPane1.add(jLabel1);
+			jLabel1.setText(lang.get("lbl_Journey_Ref"));
+			jLabel1.setBounds(12, 8, 113, 22);
+			jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jTextFieldJourneyRef = new JTextField4j(JDBJourney.field_journey_ref);
+			jDesktopPane1.add(jTextFieldJourneyRef);
+			jTextFieldJourneyRef.setBounds(132, 8, 168, 22);
+
+			jLabel3 = new JLabel4j_std();
+			jDesktopPane1.add(jLabel3);
+			jLabel3.setText(lang.get("lbl_Despatch_No"));
+			jLabel3.setBounds(299, 8, 113, 22);
+			jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jTextFieldDespatchNo = new JTextField4j(JDBJourney.field_despatch_no);
+			jDesktopPane1.add(jTextFieldDespatchNo);
+			jTextFieldDespatchNo.setBounds(419, 8, 174, 22);
+
+			jLabel10 = new JLabel4j_std();
+			jDesktopPane1.add(jLabel10);
+			jLabel10.setText(lang.get("lbl_Sort_By"));
+			jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel10.setBounds(220, 104, 113, 22);
+
+			ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
+			{ "JOURNEY_REF", "LOCATION_ID_TO", "DESPATCH_NO", "STATUS", "TIMESLOT", "DATE_UPDATED", "LOAD_TYPE", "LOAD_TYPE_DESC", "HAULIER" });
+			jComboBoxSortBy = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxSortBy);
+			jComboBoxSortBy.setModel(jComboBoxSortByModel);
+			jComboBoxSortBy.setBounds(342, 104, 141, 22);
+			jComboBoxSortBy.setSelectedItem("TIMESLOT");
+
+			jLabel5 = new JLabel4j_std();
+			jDesktopPane1.add(jLabel5);
+			jLabel5.setText(lang.get("lbl_Journey_Status"));
+			jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel5.setBounds(12, 40, 113, 22);
+
+			ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.JourneyRefStatusIncBlank);
+			jComboBoxStatus = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxStatus);
+			jComboBoxStatus.setModel(jComboBoxStatusModel);
+			jComboBoxStatus.setBounds(132, 40, 168, 22);
+
+			jToggleButtonSequence = new JToggleButton4j();
+			jDesktopPane1.add(jToggleButtonSequence);
+			jToggleButtonSequence.setBounds(485, 104, 21, 22);
+			jToggleButtonSequence.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					setSequence(jToggleButtonSequence.isSelected());
+				}
+			});
+
+			jToggleButtonSequence.setSelected(true);
+
+			timeslotFrom.setBounds(445, 72, 120, 22);
+			timeslotFrom.setEnabled(false);
+			jDesktopPane1.add(timeslotFrom);
+
+			timeslotTo.setBounds(735, 72, 120, 22);
+			timeslotTo.setEnabled(false);
+			jDesktopPane1.add(timeslotTo);
+
+			jLabel5_1 = new JLabel4j_std();
+			jLabel5_1.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel5_1.setText(lang.get("lbl_Timeslot"));
+			jLabel5_1.setBounds(299, 72, 113, 22);
+			jDesktopPane1.add(jLabel5_1);
+
+			jCheckBoxFrom = new JCheckBox4j();
+			jCheckBoxFrom.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jCheckBoxFrom.isSelected())
+					{
+						timeslotFrom.setEnabled(true);
+						calendarButtonexpiryFrom.setEnabled(true);
+					}
+					else
+					{
+						timeslotFrom.setEnabled(false);
+						calendarButtonexpiryFrom.setEnabled(false);
+					}
+				}
+			});
+			jCheckBoxFrom.setBounds(419, 73, 21, 21);
+			jDesktopPane1.add(jCheckBoxFrom);
+
+			jCheckBoxTo = new JCheckBox4j();
+			jCheckBoxTo.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jCheckBoxTo.isSelected())
+					{
+						timeslotTo.setEnabled(true);
+						calendarButtonexpiryTo.setEnabled(true);
+					}
+					else
+					{
+						timeslotTo.setEnabled(false);
+						calendarButtonexpiryTo.setEnabled(false);
+					}
+				}
+			});
+
+			jCheckBoxTo.setBounds(709, 72, 21, 22);
+			jDesktopPane1.add(jCheckBoxTo);
+
+			jButtonAdd = new JButton4j(Common.icon_add_16x16);
+			jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_ADD"));
+			jButtonAdd.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					addRecord();
+				}
+			});
+
+			jButtonAdd.setText(lang.get("btn_Add"));
+			jButtonAdd.setMnemonic(lang.getMnemonicChar());
+			jButtonAdd.setBounds(220, 135, 110, 32);
+			jDesktopPane1.add(jButtonAdd);
+
+			jStatusText = new JLabel4j_status();
+			jStatusText.setBounds(5, 590, 978, 21);
+			jDesktopPane1.add(jStatusText);
+
+			jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
+			jButtonExcel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					excel();
+				}
+			});
+
+			jButtonExcel.setText(lang.get("btn_Excel"));
+			jButtonExcel.setMnemonic(lang.getMnemonicChar());
+			jButtonExcel.setBounds(660, 135, 110, 32);
+			jDesktopPane1.add(jButtonExcel);
+
+			jButtonPrint = new JButton4j(Common.icon_print_16x16);
+			jButtonPrint.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					print();
+				}
+			});
+
+			jButtonPrint.setText(lang.get("btn_Print"));
+			jButtonPrint.setMnemonic(lang.getMnemonicChar());
+			jButtonPrint.setBounds(550, 135, 110, 32);
+			jDesktopPane1.add(jButtonPrint);
+
+			calendarButtonexpiryFrom = new JCalendarButton(timeslotFrom);
+			calendarButtonexpiryFrom.setEnabled(false);
+			calendarButtonexpiryFrom.setBounds(569, 73, 21, 21);
+			jDesktopPane1.add(calendarButtonexpiryFrom);
+
+			calendarButtonexpiryTo = new JCalendarButton(timeslotTo);
+			calendarButtonexpiryTo.setEnabled(false);
+			calendarButtonexpiryTo.setBounds(858, 73, 21, 21);
+			jDesktopPane1.add(calendarButtonexpiryTo);
+
+			JButton4j jButtonDelete = new JButton4j(Common.icon_delete_16x16);
+			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_DELETE"));
+			jButtonDelete.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					deleteRecord();
+				}
+			});
+
+			jButtonDelete.setText(lang.get("btn_Delete"));
+			jButtonDelete.setMnemonic('0');
+			jButtonDelete.setBounds(440, 135, 110, 32);
+			jDesktopPane1.add(jButtonDelete);
+
+			JLabel4j_std label4j_std = new JLabel4j_std();
+			label4j_std.setText(lang.get("lbl_Location_ID"));
+			label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_std.setBounds(599, 8, 113, 22);
+			jDesktopPane1.add(label4j_std);
+
+			jTextFieldLocationID.setBounds(719, 8, 139, 22);
+			jDesktopPane1.add(jTextFieldLocationID);
+
+			JButton4j button4j_LocationLookup = new JButton4j(Common.icon_lookup_16x16);
+			button4j_LocationLookup.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "Y";
+					if (JLaunchLookup.locations())
+					{
+						jTextFieldLocationID.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			button4j_LocationLookup.setBounds(866, 8, 21, 22);
+			jDesktopPane1.add(button4j_LocationLookup);
+
+			JButton4j jButtonClear = new JButton4j(Common.icon_search_16x16);
+			jButtonClear.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					clearFilter();
+				}
+			});
+
+			jButtonClear.setText(lang.get("btn_Clear_Filter"));
+			jButtonClear.setMnemonic(KeyEvent.VK_S);
+			jButtonClear.setBounds(110, 135, 110, 32);
+			jDesktopPane1.add(jButtonClear);
+
+			SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
+			jSpinnerIntModel.setMinimum(1);
+			jSpinnerIntModel.setMaximum(5000);
+			jSpinnerIntModel.setStepSize(1);
+			jSpinnerLimit = new JSpinner4j();
+			JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
+			jSpinnerLimit.setEditor(ne);
+			jSpinnerLimit.setModel(jSpinnerIntModel);
+			jSpinnerLimit.setBounds(644, 104, 68, 22);
+			jSpinnerLimit.setValue(1000);
+			jSpinnerLimit.getEditor().setSize(45, 21);
+			jDesktopPane1.add(jSpinnerLimit);
+
+			jLabel10 = new JLabel4j_std();
+			jDesktopPane1.add(jLabel10);
+			jLabel10.setText(lang.get("lbl_Limit"));
+			jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel10.setBounds(522, 104, 91, 22);
+
+			jCheckBoxLimit = new JCheckBox4j();
+			jDesktopPane1.add(jCheckBoxLimit);
+			jCheckBoxLimit.setBounds(616, 105, 21, 21);
+			jCheckBoxLimit.setSelected(true);
+			jCheckBoxLimit.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					if (jCheckBoxLimit.isSelected())
+					{
+						jSpinnerLimit.setEnabled(true);
+					}
+					else
+					{
+						jSpinnerLimit.setEnabled(false);
+					}
+				}
+			});
+
+			JLabel4j_std label4j_stdLoadType = new JLabel4j_std();
+			label4j_stdLoadType.setText(lang.get("lbl_LoadType"));
+			label4j_stdLoadType.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_stdLoadType.setBounds(299, 40, 113, 22);
+			jDesktopPane1.add(label4j_stdLoadType);
+
+			jTextFieldLoadType.setBounds(419, 40, 179, 22);
+			jDesktopPane1.add(jTextFieldLoadType);
+
+			jTextFieldLoadTypeDesc.setBounds(719, 40, 262, 22);
+			jDesktopPane1.add(jTextFieldLoadTypeDesc);
+
+			JLabel4j_std label4j_stdLoadTypeDesc = new JLabel4j_std();
+			label4j_stdLoadTypeDesc.setText(lang.get("lbl_LoadTypeDesc"));
+			label4j_stdLoadTypeDesc.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_stdLoadTypeDesc.setBounds(599, 40, 113, 22);
+			jDesktopPane1.add(label4j_stdLoadTypeDesc);
+
+			jTextFieldHaulier.setBounds(132, 72, 168, 22);
+			jDesktopPane1.add(jTextFieldHaulier);
+
+			JLabel4j_std label4j_stdHaulier = new JLabel4j_std();
+			label4j_stdHaulier.setText(lang.get("lbl_Haulier"));
+			label4j_stdHaulier.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_stdHaulier.setBounds(12, 72, 113, 22);
+			jDesktopPane1.add(label4j_stdHaulier);
+
 		}
-
-	}
-
-	private void sortBy(String fieldname)
-	{
-		jComboBoxSortBy.setSelectedItem(fieldname);
-		search();
-	}
-
-	private void setSequence(boolean descending)
-	{
-		// jToggleButtonSequence.setSelected(true);
-		if (jToggleButtonSequence.isSelected() == true)
+		catch (Exception e)
 		{
-			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
+			e.printStackTrace();
 		}
-		else
-		{
-			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
-		}
-	}
-
-	public JInternalFrameJourneyAdmin(String material, String batch)
-	{
-		this();
-		lref = material;
-		lbatch = batch;
-		jTextFieldJourneyRef.setText(lref);
-		jTextFieldDespatchNo.setText(lbatch);
-		buildSQL();
-		populateList();
-	}
-
-	private void buildSQL()
-	{
-
-		JDBQuery.closeStatement(listStatement);
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.clear();
-
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_JOURNEY"));
-		query.addParamtoSQL("journey_ref=", jTextFieldJourneyRef.getText());
-		query.addParamtoSQL("despatch_no=", jTextFieldDespatchNo.getText());
-		query.addParamtoSQL("status=", jComboBoxStatus.getSelectedItem().toString());
-		query.addParamtoSQL("location_id_to=", jTextFieldLocationID.getText());
-		query.addParamtoSQL("upper(load_type)=", jTextFieldLoadType.getText().toUpperCase());
-		query.addParamtoSQL("upper(load_type_desc)=", jTextFieldLoadTypeDesc.getText().toUpperCase());
-		query.addParamtoSQL("haulier=", jTextFieldHaulier.getText());
-
-		if (jCheckBoxFrom.isSelected())
-		{
-			query.addParamtoSQL("timeslot>=", JUtility.getTimestampFromDate(timeslotFrom.getDate()));
-
-		}
-
-		if (jCheckBoxTo.isSelected())
-		{
-			query.addParamtoSQL("timeslot<=", JUtility.getTimestampFromDate(timeslotTo.getDate()));
-		}
-
-		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
-
-		query.bindParams();
-		listStatement = query.getPreparedStatement();
 	}
 
 	private void populateList()
@@ -398,716 +1028,36 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		JUtility.setResultRecordCountColour(jStatusText, false, 0, journeyTable.getRowCount());
 	}
 
-	private void editRecord()
+	private void print()
 	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			lref = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_JOURNEY_EDIT", lref);
-		}
-
+		buildSQL();
+		JLaunchReport.runReport("RPT_JOURNEYS", null, "", listStatement, "");
 	}
 
-	private void deleteRecord()
+	private void search()
 	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			lref = jTable1.getValueAt(row, 0).toString();
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Journey_Ref_Delete") + " " + lref + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
-			if (question == 0)
-			{
-				JDBJourney journeyref = new JDBJourney(Common.selectedHostID, Common.sessionID);
-
-				journeyref.setJourneyRef(lref);
-				journeyref.delete();
-				populateList();
-			}
-		}
-
+		buildSQL();
+		populateList();
 	}
 
-	private void initGUI()
+	private void setSequence(boolean descending)
 	{
-		try
+		// jToggleButtonSequence.setSelected(true);
+		if (jToggleButtonSequence.isSelected() == true)
 		{
-			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 1003, 660);
-			setVisible(true);
-			this.setClosable(true);
-			this.setTitle("Journey References");
-			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
-				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
-				{
-					jScrollPane1 = new JScrollPane();
-					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
-					jDesktopPane1.setLayout(null);
-					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 193, 990, 410);
-					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][]
-						{
-								{ "One", "Two" },
-								{ "Three", "Four" } }, new String[]
-						{ "Column 1", "Column 2" });
-						jTable1 = new JTable4j();
-						jScrollPane1.setViewportView(jTable1);
-						jTable1.setModel(jTable1Model);
-						jTable1.addMouseListener(new MouseAdapter()
-						{
-							public void mouseClicked(MouseEvent evt)
-							{
-								if (evt.getClickCount() == 2)
-								{
-									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_EDIT"))
-									{
-										editRecord();
-									}
-								}
-							}
-						});
-
-						{
-							final JPopupMenu popupMenu = new JPopupMenu();
-							addPopup(jTable1, popupMenu);
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										search();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Search"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_ADD"));
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										addRecord();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Add"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_EDIT"));
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										editRecord();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Edit"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										excel();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Excel"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenu4j sortByMenu = new JMenu4j();
-								sortByMenu.setText(lang.get("lbl_Sort_By"));
-								popupMenu.add(sortByMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("JOURNEY_REF");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Journey_Ref"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("DESPATCH_NO");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Despatch_No"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("LOCATION_ID_TO");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("STATUS");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Journey_Status"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("TIMESLOT");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Timeslot"));
-									sortByMenu.add(newItemMenuItem);
-								}
-							}
-
-							{
-								final JMenu4j filterByMenu = new JMenu4j();
-								filterByMenu.setText(lang.get("lbl_Filter_By"));
-								popupMenu.add(filterByMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Despatch_No"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Journey_Status"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Timeslot"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Journey_Ref"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									filterByMenu.addSeparator();
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											clearFilter();
-										}
-									});
-									newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-							}
-						}
-					}
-				}
-				{
-					jButtonSearch = new JButton4j(Common.icon_search_16x16);
-					jDesktopPane1.add(jButtonSearch);
-					jButtonSearch.setText(lang.get("btn_Search"));
-					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(0, 149, 110, 32);
-					jButtonSearch.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							search();
-
-						}
-					});
-				}
-				{
-					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
-					jDesktopPane1.add(jButtonEdit);
-					jButtonEdit.setText(lang.get("btn_Edit"));
-					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
-					jButtonEdit.setBounds(330, 149, 110, 32);
-					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							editRecord();
-						}
-					});
-				}
-				{
-					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jDesktopPane1.add(jButtonHelp);
-					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(770, 149, 110, 32);
-				}
-				{
-					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonClose);
-					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(880, 149, 110, 32);
-					jButtonClose.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JDBQuery.closeStatement(listStatement);
-							dispose();
-						}
-					});
-				}
-				{
-					jLabel1 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel1);
-					jLabel1.setText(lang.get("lbl_Journey_Ref"));
-					jLabel1.setBounds(12, 11, 113, 22);
-					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jTextFieldJourneyRef = new JTextField4j(JDBJourney.field_journey_ref);
-					jDesktopPane1.add(jTextFieldJourneyRef);
-					jTextFieldJourneyRef.setBounds(132, 11, 168, 22);
-				}
-				{
-					jLabel3 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel3);
-					jLabel3.setText(lang.get("lbl_Despatch_No"));
-					jLabel3.setBounds(299, 11, 113, 22);
-					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jTextFieldDespatchNo = new JTextField4j(JDBJourney.field_despatch_no);
-					jDesktopPane1.add(jTextFieldDespatchNo);
-					jTextFieldDespatchNo.setBounds(419, 11, 174, 22);
-				}
-				{
-					jLabel10 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel10);
-					jLabel10.setText(lang.get("lbl_Sort_By"));
-					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(220, 118, 113, 22);
-				}
-				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-					{ "JOURNEY_REF", "LOCATION_ID_TO", "DESPATCH_NO", "STATUS", "TIMESLOT", "DATE_UPDATED", "LOAD_TYPE", "LOAD_TYPE_DESC", "HAULIER" });
-					jComboBoxSortBy = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(342, 118, 141, 22);
-					jComboBoxSortBy.setSelectedItem("TIMESLOT");
-				}
-				{
-					jLabel5 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel5);
-					jLabel5.setText(lang.get("lbl_Journey_Status"));
-					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(12, 45, 113, 22);
-				}
-				{
-					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.JourneyRefStatusIncBlank);
-					jComboBoxStatus = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxStatus);
-					jComboBoxStatus.setModel(jComboBoxStatusModel);
-					jComboBoxStatus.setBounds(132, 45, 168, 22);
-				}
-				{
-					jToggleButtonSequence = new JToggleButton4j();
-					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(489, 118, 21, 22);
-					jToggleButtonSequence.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							setSequence(jToggleButtonSequence.isSelected());
-						}
-					});
-					jToggleButtonSequence.setSelected(true);
-				}
-
-				{
-					timeslotFrom.setBounds(440, 83, 128, 22);
-					timeslotFrom.setEnabled(false);
-					jDesktopPane1.add(timeslotFrom);
-				}
-
-				{
-					timeslotTo.setBounds(730, 83, 128, 22);
-					timeslotTo.setEnabled(false);
-					jDesktopPane1.add(timeslotTo);
-				}
-
-				{
-					jLabel5_1 = new JLabel4j_std();
-					jLabel5_1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5_1.setText(lang.get("lbl_Timeslot"));
-					jLabel5_1.setBounds(299, 83, 113, 22);
-					jDesktopPane1.add(jLabel5_1);
-				}
-
-				{
-					jCheckBoxFrom = new JCheckBox4j();
-					jCheckBoxFrom.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							if (jCheckBoxFrom.isSelected())
-							{
-								timeslotFrom.setEnabled(true);
-								calendarButtonexpiryFrom.setEnabled(true);
-							}
-							else
-							{
-								timeslotFrom.setEnabled(false);
-								calendarButtonexpiryFrom.setEnabled(false);
-							}
-						}
-					});
-					jCheckBoxFrom.setBackground(new Color(255, 255, 255));
-					jCheckBoxFrom.setBounds(419, 84, 21, 21);
-					jDesktopPane1.add(jCheckBoxFrom);
-				}
-
-				{
-					jCheckBoxTo = new JCheckBox4j();
-					jCheckBoxTo.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							if (jCheckBoxTo.isSelected())
-							{
-								timeslotTo.setEnabled(true);
-								calendarButtonexpiryTo.setEnabled(true);
-							}
-							else
-							{
-								timeslotTo.setEnabled(false);
-								calendarButtonexpiryTo.setEnabled(false);
-							}
-						}
-					});
-					jCheckBoxTo.setBackground(new Color(255, 255, 255));
-					jCheckBoxTo.setBounds(709, 83, 21, 22);
-					jDesktopPane1.add(jCheckBoxTo);
-				}
-
-				{
-					jButtonAdd = new JButton4j(Common.icon_add_16x16);
-					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_ADD"));
-					jButtonAdd.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(final ActionEvent e)
-						{
-							addRecord();
-						}
-					});
-					jButtonAdd.setText(lang.get("btn_Add"));
-					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(220, 149, 110, 32);
-					jDesktopPane1.add(jButtonAdd);
-				}
-
-				{
-					jStatusText = new JLabel4j_std();
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 607, 970, 21);
-					jDesktopPane1.add(jStatusText);
-				}
-
-				{
-					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(final ActionEvent e)
-						{
-							excel();
-						}
-					});
-
-					jButtonExcel.setText(lang.get("btn_Excel"));
-					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(660, 149, 110, 32);
-					jDesktopPane1.add(jButtonExcel);
-				}
-
-				{
-					jButtonPrint = new JButton4j(Common.icon_print_16x16);
-					jButtonPrint.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(final ActionEvent e)
-						{
-							print();
-						}
-					});
-
-					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(550, 149, 110, 32);
-					jDesktopPane1.add(jButtonPrint);
-				}
-
-				{
-					calendarButtonexpiryFrom = new JCalendarButton(timeslotFrom);
-					calendarButtonexpiryFrom.setEnabled(false);
-					calendarButtonexpiryFrom.setBounds(572, 81, 21, 21);
-					jDesktopPane1.add(calendarButtonexpiryFrom);
-				}
-				{
-					calendarButtonexpiryTo = new JCalendarButton(timeslotTo);
-					calendarButtonexpiryTo.setEnabled(false);
-					calendarButtonexpiryTo.setBounds(861, 81, 21, 21);
-					jDesktopPane1.add(calendarButtonexpiryTo);
-				}
-				{
-					JButton4j jButtonDelete = new JButton4j(Common.icon_delete_16x16);
-					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_DELETE"));
-					jButtonDelete.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							deleteRecord();
-						}
-					});
-					jButtonDelete.setText(lang.get("btn_Delete"));
-					jButtonDelete.setMnemonic('0');
-					jButtonDelete.setBounds(440, 149, 110, 32);
-					jDesktopPane1.add(jButtonDelete);
-				}
-
-				{
-					JLabel4j_std label4j_std = new JLabel4j_std();
-					label4j_std.setText(lang.get("lbl_Location_ID"));
-					label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-					label4j_std.setBounds(599, 11, 113, 22);
-					jDesktopPane1.add(label4j_std);
-
-					jTextFieldLocationID.setBounds(719, 11, 139, 22);
-					jDesktopPane1.add(jTextFieldLocationID);
-
-					JButton4j button4j_LocationLookup = new JButton4j(Common.icon_lookup_16x16);
-					button4j_LocationLookup.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = true;
-							JLaunchLookup.dlgCriteriaDefault = "Y";
-							if (JLaunchLookup.locations())
-							{
-								jTextFieldLocationID.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-					button4j_LocationLookup.setBounds(866, 11, 21, 22);
-					jDesktopPane1.add(button4j_LocationLookup);
-				}
-
-				{
-					JButton4j jButtonClear = new JButton4j(Common.icon_search_16x16);
-					jButtonClear.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							clearFilter();
-						}
-					});
-					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setMnemonic(KeyEvent.VK_S);
-					jButtonClear.setBounds(110, 149, 110, 32);
-					jDesktopPane1.add(jButtonClear);
-				}
-
-				{
-					SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
-					jSpinnerIntModel.setMinimum(1);
-					jSpinnerIntModel.setMaximum(5000);
-					jSpinnerIntModel.setStepSize(1);
-					jSpinnerLimit = new JSpinner4j();
-					JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
-					jSpinnerLimit.setEditor(ne);
-					jSpinnerLimit.setModel(jSpinnerIntModel);
-					jSpinnerLimit.setBounds(644, 118, 68, 22);
-					jSpinnerLimit.setValue(1000);
-					jSpinnerLimit.getEditor().setSize(45, 21);
-					jDesktopPane1.add(jSpinnerLimit);
-				}
-
-				{
-					jLabel10 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel10);
-					jLabel10.setText(lang.get("lbl_Limit"));
-					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(522, 118, 91, 22);
-				}
-				{
-					jCheckBoxLimit = new JCheckBox4j();
-					jDesktopPane1.add(jCheckBoxLimit);
-					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxLimit.setBounds(616, 119, 21, 21);
-					jCheckBoxLimit.setSelected(true);
-					jCheckBoxLimit.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							if (jCheckBoxLimit.isSelected())
-							{
-								jSpinnerLimit.setEnabled(true);
-							}
-							else
-							{
-								jSpinnerLimit.setEnabled(false);
-							}
-						}
-					});
-				}
-
-				JLabel4j_std label4j_stdLoadType = new JLabel4j_std();
-				label4j_stdLoadType.setText(lang.get("lbl_LoadType"));
-				label4j_stdLoadType.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_stdLoadType.setBounds(299, 45, 113, 22);
-				jDesktopPane1.add(label4j_stdLoadType);
-
-				jTextFieldLoadType.setBounds(419, 45, 179, 22);
-				jDesktopPane1.add(jTextFieldLoadType);
-
-				jTextFieldLoadTypeDesc.setBounds(719, 45, 262, 22);
-				jDesktopPane1.add(jTextFieldLoadTypeDesc);
-
-				JLabel4j_std label4j_stdLoadTypeDesc = new JLabel4j_std();
-				label4j_stdLoadTypeDesc.setText(lang.get("lbl_LoadTypeDesc"));
-				label4j_stdLoadTypeDesc.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_stdLoadTypeDesc.setBounds(599, 45, 113, 22);
-				jDesktopPane1.add(label4j_stdLoadTypeDesc);
-
-				jTextFieldHaulier.setBounds(132, 83, 168, 22);
-				jDesktopPane1.add(jTextFieldHaulier);
-
-				JLabel4j_std label4j_stdHaulier = new JLabel4j_std();
-				label4j_stdHaulier.setText(lang.get("lbl_Haulier"));
-				label4j_stdHaulier.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_stdHaulier.setBounds(12, 83, 113, 22);
-				jDesktopPane1.add(label4j_stdHaulier);
-
-			}
+			jToggleButtonSequence.setToolTipText("Descending");
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
-		catch (Exception e)
+		else
 		{
-			e.printStackTrace();
+			jToggleButtonSequence.setToolTipText("Ascending");
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
-	/**
-	 * WindowBuilder generated method.<br>
-	 * Please don't remove this method or its invocations.<br>
-	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
-	 * with parent.
-	 */
-	private static void addPopup(Component component, final JPopupMenu popup)
+	private void sortBy(String fieldname)
 	{
-		component.addMouseListener(new MouseAdapter()
-		{
-			public void mousePressed(MouseEvent e)
-			{
-				if (e.isPopupTrigger())
-					showMenu(e);
-			}
-
-			public void mouseReleased(MouseEvent e)
-			{
-				if (e.isPopupTrigger())
-					showMenu(e);
-			}
-
-			private void showMenu(MouseEvent e)
-			{
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
+		jComboBoxSortBy.setSelectedItem(fieldname);
+		search();
 	}
 }

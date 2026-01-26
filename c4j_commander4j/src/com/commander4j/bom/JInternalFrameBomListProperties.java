@@ -36,7 +36,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
@@ -49,6 +48,7 @@ import javax.swing.event.ChangeListener;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
@@ -60,7 +60,7 @@ import com.commander4j.util.JUtility;
 public class JInternalFrameBomListProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private JDesktopPane4j jDesktopPane1;
 	private JTextField4j jTextFieldListID;
 	private JLabel4j_std jLabel2;
 	private JButton4j jButtonClose;
@@ -140,12 +140,12 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 424, 224);
+			this.setBounds(25, 25, 424, 213);
 			setVisible(true);
 			this.setTitle("List Properties");
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_edit_properties);
+				jDesktopPane1 = new JDesktopPane4j();
+
 				this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setLayout(null);
 				{
@@ -154,7 +154,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jLabel1.setText(lang.get("lbl_List_ID"));
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel1.setBounds(0, 10, 110, 22);
+					jLabel1.setBounds(0, 8, 110, 22);
 				}
 				{
 					jTextFieldListID = new JTextField4j();
@@ -163,7 +163,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldListID);
 					jTextFieldListID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldListID.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldListID.setBounds(120, 10, 264, 22);
+					jTextFieldListID.setBounds(120, 8, 264, 22);
 				}
 				{
 					jLabel2 = new JLabel4j_std();
@@ -171,7 +171,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jLabel2.setText(lang.get("lbl_Item"));
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel2.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel2.setBounds(0, 43, 110, 22);
+					jLabel2.setBounds(0, 40, 110, 22);
 				}
 				{
 					jTextFieldItem = new JTextField4j();
@@ -180,7 +180,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jDesktopPane1.add(jTextFieldItem);
 					jTextFieldItem.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldItem.setFocusCycleRoot(true);
-					jTextFieldItem.setBounds(120, 43, 264, 22);
+					jTextFieldItem.setBounds(120, 40, 264, 22);
 					jTextFieldItem.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -194,7 +194,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(45, 142, 110, 32);
+					jButtonSave.setBounds(45, 136, 110, 32);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							save();
@@ -206,14 +206,14 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(157, 142, 110, 32);
+					jButtonHelp.setBounds(157, 136, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(269, 142, 110, 32);
+					jButtonClose.setBounds(269, 136, 110, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -226,7 +226,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jLabel3.setText(lang.get("lbl_Enabled"));
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel3.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel3.setBounds(0, 109, 110, 22);
+					jLabel3.setBounds(0, 104, 110, 22);
 				}
 				
 				SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
@@ -247,7 +247,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 				jSpinnerLimit_Sequence.setModel(jSpinnerIntModel);
 				JSpinner4j.NumberEditor ne_jSpinnerLimit_Sequence = new JSpinner4j.NumberEditor(jSpinnerLimit_Sequence);
 				jSpinnerLimit_Sequence.setEditor(ne_jSpinnerLimit_Sequence);
-				jSpinnerLimit_Sequence.setBounds(120, 76, 46, 22);
+				jSpinnerLimit_Sequence.setBounds(120, 72, 46, 22);
 				jSpinnerLimit_Sequence.getEditor().setSize(45, 21);
 				
 				{
@@ -255,7 +255,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					lblLocalUom.setText(lang.get("lbl_Sequence_ID"));
 					lblLocalUom.setHorizontalTextPosition(SwingConstants.RIGHT);
 					lblLocalUom.setHorizontalAlignment(SwingConstants.RIGHT);
-					lblLocalUom.setBounds(0, 76, 110, 22);
+					lblLocalUom.setBounds(0, 72, 110, 22);
 					jDesktopPane1.add(lblLocalUom);
 				}
 
@@ -269,7 +269,7 @@ public class JInternalFrameBomListProperties extends JInternalFrame
 					jDesktopPane1.add(jCheckBoxEnabled);
 					jCheckBoxEnabled.setPreferredSize(new java.awt.Dimension(40, 20));
 					jCheckBoxEnabled.setFocusCycleRoot(true);
-					jCheckBoxEnabled.setBounds(120, 109, 24, 22);
+					jCheckBoxEnabled.setBounds(120, 104, 24, 22);
 				}
 				
 				SwingUtilities.invokeLater(new Runnable() {

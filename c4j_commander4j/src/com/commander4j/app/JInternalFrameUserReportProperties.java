@@ -1,33 +1,35 @@
 package com.commander4j.app;
 
+import java.awt.Font;
+
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameUserReportProperties.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
-import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -37,18 +39,14 @@ import java.io.File;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
-import javax.swing.JDesktopPane;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBUserGroupMembership;
@@ -57,7 +55,11 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextArea4j;
 import com.commander4j.gui.JTextField4j;
@@ -67,18 +69,14 @@ import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
-import java.awt.Font;
-
-import com.commander4j.calendar.JCalendarButton;
-
 /**
  * The JInternalFrameUserReportProperties class allows a user to create simple
  * reports by entering a SQL SELECT statement which can include a date range
  * criteria.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameUserReportProperties.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBUserReport JDBUserReport
  * @see com.commander4j.app.JInternalFrameUserReportAdmin
  *      JInternalFrameUserReportAdmin
@@ -87,52 +85,52 @@ import com.commander4j.calendar.JCalendarButton;
 public class JInternalFrameUserReportProperties extends JInternalFrame
 {
 
-	private static final long serialVersionUID = 1L;
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBUserReport ur = new JDBUserReport(Common.selectedHostID, Common.sessionID);
-	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JTextField4j textField4j_ReportID = new JTextField4j();
-	private JCheckBox4j chckbxEnabled = new JCheckBox4j("Enabled");
-	private JTextField4j textField4j_Description = new JTextField4j();
-	private JSpinner4j spinner_Sequence = new JSpinner4j();
-	private JTextArea4j textArea_SQL = new JTextArea4j();
-	private JComboBox4j<String> comboBox4j_Destination = new JComboBox4j<String>();
-	private JTextField4j textField4j_ModuleID = new JTextField4j();
-	private JCheckBox4j checkBox_Private = new JCheckBox4j("");
-	private JTextField4j textField4j_UserID = new JTextField4j();
-	private JTextField4j textField4j_GroupID = new JTextField4j();
-	private JLabel4j_std jStatusBar = new JLabel4j_std();
 	private JButton4j button4j_GroupLookup = new JButton4j(Common.icon_lookup_16x16);
-	private JButton4j button4j_UserLookup = new JButton4j(Common.icon_lookup_16x16);
-	private JLabel4j_std label4j_std_UserID = new JLabel4j_std();
-	private JLabel4j_std label4j_std_GroupID = new JLabel4j_std();
-	private JLabel4j_std label4j_std_Report_Path = new JLabel4j_std();
 	private JButton4j button4j_ModuleID = new JButton4j((Icon) null);
-	private JCheckBox4j checkBoxDateParameters = new JCheckBox4j("Date Parameters Required");
-	private JCheckBox4j checkBoxSaveAs = new JCheckBox4j("Save As");
-	private JCheckBox4j checkBoxPreview = new JCheckBox4j("Preview");
-	private JTextField4j textField4j_SavePath = new JTextField4j();
+	private JButton4j button4j_UserLookup = new JButton4j(Common.icon_lookup_16x16);
 	private JDateControl domDateFrom = new JDateControl();
 	private JDateControl domDateTo = new JDateControl();
 	private JCalendarButton button_CalendardomDateFrom = new JCalendarButton(domDateFrom);
 	private JCalendarButton button_CalendardomDateTo = new JCalendarButton(domDateTo);
-	private JLabel4j_std lblStart;
-	private JLabel4j_std label4jEnd;
 	private JCheckBox4j chckbxEmailEnabled = new JCheckBox4j();
 	private JCheckBox4j chckbxEmailPrompt = new JCheckBox4j();
+	private JCheckBox4j chckbxEnabled = new JCheckBox4j("Enabled");
+	private JCheckBox4j checkBoxDateParameters = new JCheckBox4j("Date Parameters Required");
+	private JCheckBox4j checkBoxPreview = new JCheckBox4j("Preview");
+	private JCheckBox4j checkBoxSaveAs = new JCheckBox4j("Save As");
+	private JCheckBox4j checkBox_Private = new JCheckBox4j("");
+	private JComboBox4j<String> comboBox4j_Destination = new JComboBox4j<String>();
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	private JDBUserReport ur = new JDBUserReport(Common.selectedHostID, Common.sessionID);
+	private JLabel4j_status jStatusBar = new JLabel4j_status();
+	private JLabel4j_std label4jEnd;
+	private JLabel4j_std label4j_std_GroupID = new JLabel4j_std();
+	private JLabel4j_std label4j_std_Report_Path = new JLabel4j_std();
+	private JLabel4j_std label4j_std_UserID = new JLabel4j_std();
+	private JLabel4j_std lblStart;
+	private JSpinner4j spinner_Sequence = new JSpinner4j();
+	private JTextArea4j textArea_SQL = new JTextArea4j();
+	private JTextField4j textField4j_Description = new JTextField4j();
 	private JTextField4j textField4j_EmailAddresses = new JTextField4j();
+	private JTextField4j textField4j_GroupID = new JTextField4j();
+	private JTextField4j textField4j_ModuleID = new JTextField4j();
+	private JTextField4j textField4j_ReportID = new JTextField4j();
+	private JTextField4j textField4j_SavePath = new JTextField4j();
+	private JTextField4j textField4j_UserID = new JTextField4j();
+	private static final long serialVersionUID = 1L;
 
 	public JInternalFrameUserReportProperties(String id)
 	{
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 774, 676);
+		setBounds(100, 100, 752, 685);
 		getContentPane().setLayout(null);
 
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 768, 653);
-		desktopPane.setBackground(Common.color_edit_properties);
+		JDesktopPane4j desktopPane = new JDesktopPane4j();
+		desktopPane.setBounds(0, 0, 746, 663);
+
 		getContentPane().add(desktopPane);
 
 		JButton4j btn4j_Save = new JButton4j(Common.icon_update_16x16);
@@ -147,13 +145,13 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		btn4j_Save.setText(lang.get("btn_Save"));
 		btn4j_Save.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_REPORT_EDIT"));
 		btn4j_Save.setMnemonic('0');
-		btn4j_Save.setBounds(20, 576, 126, 32);
+		btn4j_Save.setBounds(20, 584, 126, 32);
 		desktopPane.add(btn4j_Save);
 
 		JButton4j btn4j_Help = new JButton4j(Common.icon_help_16x16);
 		btn4j_Help.setText(lang.get("btn_Help"));
 		btn4j_Help.setMnemonic('0');
-		btn4j_Help.setBounds(458, 576, 126, 32);
+		btn4j_Help.setBounds(458, 584, 126, 32);
 		desktopPane.add(btn4j_Help);
 
 		JButton4j btn4j_Close = new JButton4j(Common.icon_close_16x16);
@@ -166,42 +164,42 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		});
 		btn4j_Close.setText(lang.get("btn_Close"));
 		btn4j_Close.setMnemonic('0');
-		btn4j_Close.setBounds(604, 576, 126, 32);
+		btn4j_Close.setBounds(604, 584, 126, 32);
 		desktopPane.add(btn4j_Close);
 
 		JLabel4j_std label4j_std_ReportID = new JLabel4j_std();
 		label4j_std_ReportID.setHorizontalAlignment(SwingConstants.TRAILING);
 		label4j_std_ReportID.setText(lang.get("lbl_Report_ID"));
-		label4j_std_ReportID.setBounds(6, 17, 97, 22);
+		label4j_std_ReportID.setBounds(6, 8, 97, 22);
 		desktopPane.add(label4j_std_ReportID);
 
 		JLabel4j_std label4j_std_Description = new JLabel4j_std();
 		label4j_std_Description.setText(lang.get("lbl_Description"));
 		label4j_std_Description.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_Description.setBounds(6, 85, 97, 22);
+		label4j_std_Description.setBounds(6, 72, 97, 22);
 		desktopPane.add(label4j_std_Description);
 		textField4j_ReportID.setEnabled(false);
 		textField4j_ReportID.setCaretPosition(0);
-		textField4j_ReportID.setBounds(117, 17, 119, 22);
+		textField4j_ReportID.setBounds(117, 8, 119, 22);
 		desktopPane.add(textField4j_ReportID);
 		textField4j_Description.setCaretPosition(0);
-		textField4j_Description.setBounds(117, 85, 286, 22);
+		textField4j_Description.setBounds(117, 72, 286, 22);
 		desktopPane.add(textField4j_Description);
 
 		JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(spinner_Sequence);
 		spinner_Sequence.setEditor(ne);
-		spinner_Sequence.setBounds(354, 50, 49, 22);
+		spinner_Sequence.setBounds(354, 40, 49, 22);
 
 		desktopPane.add(spinner_Sequence);
 
 		JLabel4j_std label4j_std_Sequence = new JLabel4j_std();
 		label4j_std_Sequence.setText(lang.get("lbl_Sequence_ID"));
 		label4j_std_Sequence.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_Sequence.setBounds(243, 50, 97, 22);
+		label4j_std_Sequence.setBounds(243, 40, 97, 22);
 		desktopPane.add(label4j_std_Sequence);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(117, 185, 613, 170);
+		JScrollPane4j scrollPane = new JScrollPane4j();
+		scrollPane.setBounds(117, 175, 613, 170);
 		desktopPane.add(scrollPane);
 		textArea_SQL.setLocation(117, 0);
 		textArea_SQL.setFont(new Font("Monospaced", Font.PLAIN, 12));
@@ -210,12 +208,12 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		JLabel4j_std label4j_std_SQL = new JLabel4j_std();
 		label4j_std_SQL.setText(lang.get("lbl_SQL"));
 		label4j_std_SQL.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_SQL.setBounds(6, 189, 97, 22);
+		label4j_std_SQL.setBounds(6, 175, 97, 22);
 		desktopPane.add(label4j_std_SQL);
 
 		comboBox4j_Destination.setModel(new DefaultComboBoxModel<String>(new String[]
 		{ "ACCESS", "CSV", "EXCEL", "JASPER_REPORTS", "PDF", "SYSTEM" }));
-		comboBox4j_Destination.setBounds(117, 367, 198, 22);
+		comboBox4j_Destination.setBounds(117, 362, 198, 22);
 		desktopPane.add(comboBox4j_Destination);
 		comboBox4j_Destination.addItemListener(new ItemListener()
 		{
@@ -233,19 +231,19 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		JLabel4j_std label4j_std_Destination = new JLabel4j_std();
 		label4j_std_Destination.setText(lang.get("lbl_Output"));
 		label4j_std_Destination.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_Destination.setBounds(6, 367, 97, 22);
+		label4j_std_Destination.setBounds(6, 362, 97, 22);
 		desktopPane.add(label4j_std_Destination);
 
-		chckbxEnabled.setBounds(112, 50, 128, 22);
+		chckbxEnabled.setBounds(112, 40, 128, 22);
 		chckbxEnabled.setText(lang.get("lbl_Interface_Enabled"));
 		desktopPane.add(chckbxEnabled);
 
 		label4j_std_Report_Path.setText(lang.get("lbl_Module_ID"));
 		label4j_std_Report_Path.setHorizontalAlignment(SwingConstants.RIGHT);
-		label4j_std_Report_Path.setBounds(319, 367, 119, 22);
+		label4j_std_Report_Path.setBounds(319, 362, 119, 22);
 		desktopPane.add(label4j_std_Report_Path);
 		textField4j_ModuleID.setCaretPosition(0);
-		textField4j_ModuleID.setBounds(452, 367, 254, 22);
+		textField4j_ModuleID.setBounds(452, 362, 254, 22);
 		desktopPane.add(textField4j_ModuleID);
 
 		button4j_ModuleID.addActionListener(new ActionListener()
@@ -264,12 +262,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		});
 
 		button4j_ModuleID.setText("..");
-		button4j_ModuleID.setBounds(705, 367, 21, 22);
+		button4j_ModuleID.setBounds(705, 362, 21, 22);
 		desktopPane.add(button4j_ModuleID);
 
-		jStatusBar.setForeground(Color.RED);
-		jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-		jStatusBar.setBounds(0, 618, 762, 21);
+		jStatusBar.setBounds(8, 625, 721, 21);
 		desktopPane.add(jStatusBar);
 
 		JButton4j button4j_Run = new JButton4j(Common.icon_execute_16x16);
@@ -282,7 +278,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		});
 		button4j_Run.setText(lang.get("btn_Run"));
 		button4j_Run.setMnemonic('0');
-		button4j_Run.setBounds(166, 576, 126, 32);
+		button4j_Run.setBounds(166, 584, 126, 32);
 		desktopPane.add(button4j_Run);
 
 		JButton4j button4j_ViewSchema = new JButton4j(Common.icon_help_16x16);
@@ -295,37 +291,36 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		});
 		button4j_ViewSchema.setText(lang.get("btn_Schema"));
 		button4j_ViewSchema.setMnemonic('0');
-		button4j_ViewSchema.setBounds(312, 576, 126, 32);
+		button4j_ViewSchema.setBounds(312, 584, 126, 32);
 		desktopPane.add(button4j_ViewSchema);
 
-		JPanel panel = new JPanel();
+		JPanel4j panel = new JPanel4j();
 		panel.setBorder(BorderFactory.createEtchedBorder());
-		panel.setBackground(Common.color_edit_properties);
-		panel.setBounds(415, 10, 315, 116);
+		panel.setBounds(415, 10, 315, 104);
 		desktopPane.add(panel);
 		panel.setLayout(null);
 		checkBox_Private.setBounds(95, 5, 186, 22);
 		checkBox_Private.setText(lang.get("lbl_Private"));
 		panel.add(checkBox_Private);
-		label4j_std_UserID.setBounds(6, 42, 84, 22);
+		label4j_std_UserID.setBounds(6, 37, 84, 22);
 		panel.add(label4j_std_UserID);
 
 		label4j_std_UserID.setText(lang.get("lbl_User_ID"));
 		label4j_std_UserID.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_GroupID.setBounds(6, 75, 84, 22);
+		label4j_std_GroupID.setBounds(6, 69, 84, 22);
 		panel.add(label4j_std_GroupID);
 
 		label4j_std_GroupID.setText(lang.get("lbl_Group_ID"));
 		label4j_std_GroupID.setHorizontalAlignment(SwingConstants.TRAILING);
-		textField4j_GroupID.setBounds(95, 75, 186, 22);
+		textField4j_GroupID.setBounds(95, 69, 186, 22);
 		panel.add(textField4j_GroupID);
 		textField4j_GroupID.setCaretPosition(0);
-		textField4j_UserID.setBounds(95, 42, 186, 22);
+		textField4j_UserID.setBounds(95, 37, 186, 22);
 		panel.add(textField4j_UserID);
 		textField4j_UserID.setCaretPosition(0);
-		button4j_UserLookup.setBounds(279, 42, 21, 22);
+		button4j_UserLookup.setBounds(279, 37, 21, 22);
 		panel.add(button4j_UserLookup);
-		button4j_GroupLookup.setBounds(279, 75, 21, 22);
+		button4j_GroupLookup.setBounds(279, 69, 21, 22);
 		panel.add(button4j_GroupLookup);
 		checkBoxDateParameters.addActionListener(new ActionListener()
 		{
@@ -338,27 +333,27 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		checkBoxDateParameters.setSelected(true);
 		checkBoxDateParameters.setText(lang.get("lbl_Date_Params_Reqd"));
 
-		checkBoxDateParameters.setBounds(112, 118, 210, 22);
+		checkBoxDateParameters.setBounds(112, 104, 210, 22);
 		desktopPane.add(checkBoxDateParameters);
 
 		checkBoxPreview.setText(lang.get("lbl_View_Output"));
 		checkBoxPreview.setSelected(true);
-		checkBoxPreview.setBounds(117, 402, 248, 22);
+		checkBoxPreview.setBounds(117, 396, 248, 22);
 		desktopPane.add(checkBoxPreview);
 
 		checkBoxSaveAs.setText(lang.get("lbl_Save_As"));
 		checkBoxSaveAs.setSelected(true);
-		checkBoxSaveAs.setBounds(458, 402, 272, 22);
+		checkBoxSaveAs.setBounds(458, 396, 272, 22);
 		desktopPane.add(checkBoxSaveAs);
 
 		JLabel4j_std label4j_std_Save_Path = new JLabel4j_std();
 		label4j_std_Save_Path.setText(lang.get("lbl_Save_Path"));
-		label4j_std_Save_Path.setBounds(120, 438, 166, 22);
+		label4j_std_Save_Path.setBounds(120, 428, 166, 22);
 		desktopPane.add(label4j_std_Save_Path);
 
 		textField4j_SavePath.setText("");
 		textField4j_SavePath.setCaretPosition(0);
-		textField4j_SavePath.setBounds(117, 459, 589, 22);
+		textField4j_SavePath.setBounds(117, 450, 589, 22);
 		desktopPane.add(textField4j_SavePath);
 
 		final JButton4j button4j_SavePath = new JButton4j((Icon) null);
@@ -396,29 +391,29 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 			}
 		});
 		button4j_SavePath.setText("..");
-		button4j_SavePath.setBounds(705, 459, 21, 22);
+		button4j_SavePath.setBounds(705, 450, 21, 22);
 		desktopPane.add(button4j_SavePath);
 
-		domDateFrom.setBounds(117, 148, 128, 22);
+		domDateFrom.setBounds(117, 136, 120, 22);
 		desktopPane.add(domDateFrom);
 
-		button_CalendardomDateFrom.setBounds(246, 150, 21, 21);
+		button_CalendardomDateFrom.setBounds(238, 137, 21, 21);
 		desktopPane.add(button_CalendardomDateFrom);
 
-		domDateTo.setBounds(354, 148, 128, 22);
+		domDateTo.setBounds(354, 136, 120, 22);
 		desktopPane.add(domDateTo);
 
-		button_CalendardomDateTo.setBounds(483, 150, 21, 21);
+		button_CalendardomDateTo.setBounds(475, 137, 21, 21);
 		desktopPane.add(button_CalendardomDateTo);
 
 		lblStart = new JLabel4j_std(lang.get("web_From"));
 		lblStart.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblStart.setBounds(6, 148, 97, 22);
+		lblStart.setBounds(6, 136, 97, 22);
 		desktopPane.add(lblStart);
 
 		label4jEnd = new JLabel4j_std(lang.get("web_To"));
 		label4jEnd.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4jEnd.setBounds(277, 148, 63, 22);
+		label4jEnd.setBounds(277, 136, 63, 22);
 		desktopPane.add(label4jEnd);
 		chckbxEmailEnabled.addActionListener(new ActionListener()
 		{
@@ -437,22 +432,22 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 
 		chckbxEmailEnabled.setText(lang.get("lbl_Email_Output"));
 		chckbxEmailEnabled.setSelected(true);
-		chckbxEmailEnabled.setBounds(117, 492, 248, 22);
+		chckbxEmailEnabled.setBounds(117, 482, 248, 22);
 		desktopPane.add(chckbxEmailEnabled);
 
 		chckbxEmailPrompt.setText(lang.get("lbl_Email_Prompt"));
 		chckbxEmailPrompt.setSelected(true);
-		chckbxEmailPrompt.setBounds(458, 492, 248, 22);
+		chckbxEmailPrompt.setBounds(458, 482, 248, 22);
 		desktopPane.add(chckbxEmailPrompt);
 
 		textField4j_EmailAddresses.setText("");
 		textField4j_EmailAddresses.setCaretPosition(0);
-		textField4j_EmailAddresses.setBounds(117, 543, 589, 22);
+		textField4j_EmailAddresses.setBounds(117, 537, 589, 22);
 		desktopPane.add(textField4j_EmailAddresses);
 
 		JLabel4j_std label4j_std = new JLabel4j_std();
 		label4j_std.setText(lang.get("lbl_Email_Addresses"));
-		label4j_std.setBounds(120, 525, 166, 22);
+		label4j_std.setBounds(120, 514, 166, 22);
 		desktopPane.add(label4j_std);
 
 		button4j_GroupLookup.addActionListener(new ActionListener()
@@ -596,7 +591,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 				reasonInvalid = "reference to SYS_GROUP found in query";
 			}
 		}
-		
+
 		if (result)
 		{
 			if (textArea_SQL.getText().toLowerCase().contains("view_permissions"))

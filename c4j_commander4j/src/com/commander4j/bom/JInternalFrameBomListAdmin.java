@@ -2,29 +2,29 @@ package com.commander4j.bom;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameMHNDecisionAdmin.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -40,22 +40,25 @@ import java.util.LinkedList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
+
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JPanel4j;
 import com.commander4j.gui.JRadioButton4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
@@ -66,12 +69,12 @@ import com.commander4j.util.JUtility;
 public class JInternalFrameBomListAdmin extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private JDesktopPane4j jDesktopPane1;
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonEdit;
 	private JButton4j jButtonClose;
 	private JList4j<JDBBomListRecord> jBomList;
-	private JScrollPane jScrollPane1;
+	private JScrollPane4j jScrollPane1;
 	private JButton4j jButtonRefresh;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonPrint;
@@ -94,21 +97,21 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 		{
 			rdbtnDisabled.setSelected(true);
 		}
-		
+
 		populateList(id,parent_id);
 	}
-	
+
 	private void delete()
 	{
 		if (jBomList.isSelectionEmpty() == false)
 		{
 			JDBBomListRecord rec = ((JDBBomListRecord) jBomList.getSelectedValue());
-			
+
 			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Delete") + " " + rec.getList_id()+"/"+rec.getItem() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				JDBBomList u = new JDBBomList(Common.selectedHostID, Common.sessionID);
-				
+
 				u.delete(rec);
 				populateList("","");
 			}
@@ -118,7 +121,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 	private void create()
 	{
 		JDBBomList u = new JDBBomList(Common.selectedHostID, Common.sessionID);
-		
+
 		list_id = JOptionPane.showInputDialog(Common.mainForm, "List ID");
 
 		if (list_id != null)
@@ -126,23 +129,23 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			if (list_id.equals("") == false)
 			{
 				list_id = list_id.toLowerCase();
-				
+
 				item_id = JOptionPane.showInputDialog(Common.mainForm, "Item ID");
-				
+
 				if (item_id != null)
 				{
 					if (item_id.equals("") == false)
 					{
 						item_id = item_id.toLowerCase();
-				
+
 						JDBBomListRecord newrec = new JDBBomListRecord();
-						
+
 						newrec.setList_id(list_id);
 						newrec.setItem(item_id);
 						newrec.setSequence(1);
 						newrec.setEnabled("Y");
-						
-				
+
+
 						if (u.create(newrec) == false)
 						{
 							JUtility.errorBeep();
@@ -150,7 +153,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 						}
 						else
 						{
-		
+
 							JLaunchMenu.runForm("FRM_BOM_LIST_EDIT", u.getListRecord().getList_id(),u.getListRecord().getItem());
 						}
 				        populateList(list_id,item_id);
@@ -178,7 +181,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 		{
 			JDBBomListRecord t = (JDBBomListRecord) tempCustomerList.get(j);
 			DefComboBoxMod.addElement(t);
-			
+
 			if (t.getList_id().equals(defaultlist))
 			{
 				if (t.getItem().equals(defaultitem))
@@ -201,7 +204,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 		initGUI();
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_BOM_LIST_ADMIN"));
-		
+
 		populateList("","");
 	}
 
@@ -220,14 +223,14 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(375, 402));
-			this.setBounds(0, 0, 573, 617);
+			this.setBounds(0, 0, 557, 603);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
 			this.setTitle("BOM List Admin");
 
-			jDesktopPane1 = new JDesktopPane();
-			jDesktopPane1.setBackground(Common.color_app_window);
+			jDesktopPane1 = new JDesktopPane4j();
+
 			getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 			jDesktopPane1.setLayout(null);
 
@@ -235,7 +238,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			jDesktopPane1.add(jButtonAdd);
 			jButtonAdd.setText(lang.get("btn_Add"));
 			jButtonAdd.setMnemonic(lang.getMnemonicChar());
-			jButtonAdd.setBounds(431, 6, 126, 32);
+			jButtonAdd.setBounds(420, 16, 126, 32);
 			jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_LIST_ADD"));
 			jButtonAdd.addActionListener(new ActionListener()
 			{
@@ -249,7 +252,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			jDesktopPane1.add(jButtonDelete);
 			jButtonDelete.setText(lang.get("btn_Delete"));
 			jButtonDelete.setMnemonic(lang.getMnemonicChar());
-			jButtonDelete.setBounds(431, 37, 126, 32);
+			jButtonDelete.setBounds(420, 47, 126, 32);
 			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_LIST_DELETE"));
 			jButtonDelete.setFocusTraversalKeysEnabled(false);
 			jButtonDelete.addActionListener(new ActionListener()
@@ -264,7 +267,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			jDesktopPane1.add(jButtonEdit);
 			jButtonEdit.setText(lang.get("btn_Edit"));
 			jButtonEdit.setMnemonic(lang.getMnemonicChar());
-			jButtonEdit.setBounds(431, 68, 126, 32);
+			jButtonEdit.setBounds(420, 78, 126, 32);
 			jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_LIST_EDIT"));
 			jButtonEdit.addActionListener(new ActionListener()
 			{
@@ -278,7 +281,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			jDesktopPane1.add(jButtonPrint);
 			jButtonPrint.setText(lang.get("btn_Print"));
 			jButtonPrint.setMnemonic(lang.getMnemonicChar());
-			jButtonPrint.setBounds(431, 99, 126, 32);
+			jButtonPrint.setBounds(420, 109, 126, 32);
 			jButtonPrint.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -286,12 +289,12 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 					print();
 				}
 			});
-			
+
 			jButtonExcel = new JButton4j(Common.icon_export_16x16);
 			jDesktopPane1.add(jButtonExcel);
 			jButtonExcel.setText(lang.get("btn_Excel"));
 			jButtonExcel.setMnemonic(lang.getMnemonicChar());
-			jButtonExcel.setBounds(431, 130, 126, 32);
+			jButtonExcel.setBounds(420, 140, 126, 32);
 			jButtonExcel.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -304,13 +307,13 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
-			jButtonHelp.setBounds(431, 161, 126, 32);
+			jButtonHelp.setBounds(420, 171, 126, 32);
 
 			jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 			jDesktopPane1.add(jButtonRefresh);
 			jButtonRefresh.setText(lang.get("btn_Refresh"));
 			jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-			jButtonRefresh.setBounds(431, 192, 126, 32);
+			jButtonRefresh.setBounds(420, 202, 126, 32);
 			jButtonRefresh.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -323,7 +326,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
-			jButtonClose.setBounds(431, 223, 126, 32);
+			jButtonClose.setBounds(420, 233, 126, 32);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -333,9 +336,9 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			});
 
 			ButtonGroup bgroup = new ButtonGroup();
-			JPanel panel = new JPanel();
+			JPanel4j panel = new JPanel4j();
 			panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-			panel.setBounds(431, 267, 125, 68);
+			panel.setBounds(420, 277, 125, 68);
 			jDesktopPane1.add(panel);
 			panel.setLayout(null);
 
@@ -366,9 +369,9 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			rdbtnDisabled.setSelected(false);
 			bgroup.add(rdbtnDisabled);
 
-			jScrollPane1 = new JScrollPane();
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.List);
 			jDesktopPane1.add(jScrollPane1);
-			jScrollPane1.setBounds(5, 23, 419, 556);
+			jScrollPane1.setBounds(0, 16, 419, 556);
 			{
 				ListModel<JDBBomListRecord> jList1Model = new DefaultComboBoxModel<JDBBomListRecord>();
 				jBomList = new JList4j<JDBBomListRecord>();
@@ -451,10 +454,10 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			});
 			newItemMenuItem5.setText(lang.get("btn_Refresh"));
 			popupMenu.add(newItemMenuItem5);
-			
+
 			lbl_Description = new JLabel4j_std("List ID                   Item ID                 Sequence");
 			lbl_Description.setFont(new Font("Monospaced", Font.BOLD, 11));
-			lbl_Description.setBounds(6, 6, 413, 15);
+			lbl_Description.setBounds(0, 0, 413, 15);
 			jDesktopPane1.add(lbl_Description);
 
 		}
@@ -463,7 +466,7 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void excel()
 	{
 
@@ -476,18 +479,18 @@ public class JInternalFrameBomListAdmin extends JInternalFrame
 
 			rs = stmt.executeQuery();
 			JExcel export = new JExcel();
-			
+
 			export.saveAs("bom_lists.xls", rs, Common.mainForm);
-			
+
 			stmt.clearParameters();
 			rs.close();
 			stmt.close();
 		}
 		catch (Exception ex)
 		{
-			
+
 		}
-	
+
 	}
 
 	/**

@@ -1,33 +1,5 @@
 package com.commander4j.app;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JInternalFrameMaterialProperties.java
- * 
- * Package Name : com.commander4j.app
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -39,15 +11,12 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -65,6 +34,8 @@ import com.commander4j.db.JDBWTProductGroups;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
@@ -79,10 +50,10 @@ import com.commander4j.util.JUtility;
  * Material Data. From this screen you can insert/update/delete records from the
  * APP_MATERIAL and also launch additional screens for many of the related
  * detail tables.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameMaterialProperties.jpg" >
- * 
+ *
  * @see com.commander4j.app.JInternalFrameMaterialAdmin
  *      JInternalFrameMaterialProperties
  * @see com.commander4j.app.JInternalFrameMaterialUomAdmin
@@ -102,83 +73,82 @@ import com.commander4j.util.JUtility;
  */
 public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 {
-	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
-	private JComboBox4j<JShelfLifeRoundingRule> jComboBoxRoundingRule;
-	private JLabel4j_std jLabel1RoundingRule;
-	private JComboBox4j<JShelfLifeUom> jComboBoxShelfLifeUOM;
-	private JButton4j jButtonCancel;
-	private JComboBox4j<String> jComboBoxDefaultBatchStatus;
-	private JLabel4j_std jLabelLegacyCode;
-	private JButton4j jButtonBatches;
-	private JButton4j jButtonUOMs;
-	private JButton4j jButtonLocations;
-	private JSpinner4j jSpinnerNetWeight;
-	private JSpinner4j jSpinnerGrossWeight;
-	private JButton4j jButtonHelp;
-	private JButton4j jButtonSave;
-	private JTextField4j jTextFieldDescription;
-	private JTextField4j jTextFieldMaterial;
-	private JLabel4j_std jLabel1ShelfLifeUOM;
-	private JLabel4j_std jLabelBatchStatus;
-	private JLabel4j_std jLabelShelfLife;
-	private JLabel4j_std jLabelGrossWt;
-	private JSpinner4j jSpinnerShelfLife;
-	private JComboBox4j<JDBUom> jComboBoxWeightUOM;
-	private JTextField4j jTextFieldLegacyCode;
-	private JLabel4j_std jLabelWtUOM;
-	private JLabel4j_std jLabelNetWt;
-	private JLabel4j_std jLabelMatType;
-	private JLabel4j_std jLabelBaseUOM;
-	private JLabel4j_std jLabelDescription;
-	private JLabel4j_std jLabelMaterialID;
-	private JComboBox4j<JDBMaterialType> jComboBoxMaterialType;
-	private JComboBox4j<JDBUom> jComboBoxBaseUOM;
-	private JDBUom uom = new JDBUom(Common.selectedHostID, Common.sessionID);
-	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-	private JDBMaterialType materialtype = new JDBMaterialType(Common.selectedHostID, Common.sessionID);;
-	private JDBUom baseuom = new JDBUom(Common.selectedHostID, Common.sessionID);
-	private JDBUom weightuom = new JDBUom(Common.selectedHostID, Common.sessionID);
-	private JShelfLifeUom sluom = new JShelfLifeUom();
-	private JShelfLifeRoundingRule slrr = new JShelfLifeRoundingRule();
-	private Vector<JDBUom> uomList = new Vector<JDBUom>();
-	private Vector<JShelfLifeUom> shelfLifeUomList = new Vector<JShelfLifeUom>();
-	private Vector<JShelfLifeRoundingRule> shelfLifeRule = new Vector<JShelfLifeRoundingRule>();
-	private Vector<JDBMaterialType> typeList = new Vector<JDBMaterialType>();
-	private String lmaterial;
-	private SpinnerNumberModel shelflifenumbermodel = new SpinnerNumberModel();
-	private SpinnerNumberModel grossweightnumbermodel = new SpinnerNumberModel((float) 0, null, null, 1);
-	private SpinnerNumberModel netweightnumbermodel = new SpinnerNumberModel((double) 0, null, null, 1);
-	private JLabel4j_std lblEquipment;
-	private JLabel4j_std lblInspectionID;
-	private JLabel4j_std lblValidateScanPallet;
-	private JLabel4j_std lblValidateScanCase;
-	private JLabel4j_std lblValidateScanEach;
-	private JTextField4j jTextFieldEquipmentType;
-	private JTextField4j jTextFieldInspectionID;
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private Vector<JDBListData> moduleList = new Vector<JDBListData>();
-	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 
+	private static final long serialVersionUID = 1;
+	private JButton4j button4jLocationLookup = new JButton4j("");
+	private JButton4j jButtonBatches;
+	private JButton4j jButtonCancel;
+	private JButton4j jButtonCustomerData = new JButton4j();
+	private JButton4j jButtonHelp;
+	private JButton4j jButtonLocations;
+	private JButton4j jButtonRemoveContainerCode = new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonRemoveProductGroup = new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonSave;
+	private JButton4j jButtonUOMs;
+	private JCheckBox4j checkBox4jMoveAfterMake = new JCheckBox4j();
+	private JCheckBox4j checkBox4j_Enabled = new JCheckBox4j();
 	private JCheckBox4j checkBoxOverridePackLabel = new JCheckBox4j();
 	private JCheckBox4j checkBoxOverridePalletLabel = new JCheckBox4j();
-	private JComboBox4j<JDBListData> comboBoxPackModuleID = new JComboBox4j<JDBListData>();
-	private JComboBox4j<JDBListData> comboBoxPalletModuleID = new JComboBox4j<JDBListData>();
-	private JButton4j jButtonCustomerData = new JButton4j();
-
-	private JCheckBox4j checkBoxValidateScanPallet = new JCheckBox4j();
 	private JCheckBox4j checkBoxValidateScanCase = new JCheckBox4j();
 	private JCheckBox4j checkBoxValidateScanEach = new JCheckBox4j();
-	private JCheckBox4j checkBox4j_Enabled = new JCheckBox4j();
-	private JCheckBox4j checkBox4jMoveAfterMake = new JCheckBox4j();
+	private JCheckBox4j checkBoxValidateScanPallet = new JCheckBox4j();
+	private JComboBox4j<JDBListData> comboBoxPackModuleID = new JComboBox4j<JDBListData>();
+	private JComboBox4j<JDBListData> comboBoxPalletModuleID = new JComboBox4j<JDBListData>();
+	private JComboBox4j<JDBMaterialType> jComboBoxMaterialType;
+	private JComboBox4j<JDBUom> jComboBoxBaseUOM;
+	private JComboBox4j<JDBUom> jComboBoxWeightUOM;
+	private JComboBox4j<JShelfLifeRoundingRule> jComboBoxRoundingRule;
+	private JComboBox4j<JShelfLifeUom> jComboBoxShelfLifeUOM;
+	private JComboBox4j<String> jComboBoxDefaultBatchStatus;
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);;
+	private JDBMaterialType materialtype = new JDBMaterialType(Common.selectedHostID, Common.sessionID);
+	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	private JDBUom baseuom = new JDBUom(Common.selectedHostID, Common.sessionID);
+	private JDBUom uom = new JDBUom(Common.selectedHostID, Common.sessionID);
+	private JDBUom weightuom = new JDBUom(Common.selectedHostID, Common.sessionID);
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusText = new JLabel4j_status();
+	private JLabel4j_std jLabel1RoundingRule;
+	private JLabel4j_std jLabel1ShelfLifeUOM;
+	private JLabel4j_std jLabelBaseUOM;
+	private JLabel4j_std jLabelBatchStatus;
+	private JLabel4j_std jLabelDescription;
+	private JLabel4j_std jLabelGrossWt;
+	private JLabel4j_std jLabelLegacyCode;
+	private JLabel4j_std jLabelMatType;
+	private JLabel4j_std jLabelMaterialID;
+	private JLabel4j_std jLabelNetWt;
+	private JLabel4j_std jLabelShelfLife;
+	private JLabel4j_std jLabelWtUOM;
+	private JLabel4j_std lblEquipment;
+	private JLabel4j_std lblInspectionID;
+	private JLabel4j_std lblValidateScanCase;
+	private JLabel4j_std lblValidateScanEach;
+	private JLabel4j_std lblValidateScanPallet;
+	private JShelfLifeRoundingRule slrr = new JShelfLifeRoundingRule();
+	private JShelfLifeUom sluom = new JShelfLifeUom();
+	private JSpinner4j jSpinnerGrossWeight;
+	private JSpinner4j jSpinnerNetWeight;
+	private JSpinner4j jSpinnerShelfLife;
+	private JTextField4j jTextFieldDescription;
+	private JTextField4j jTextFieldEquipmentType;
+	private JTextField4j jTextFieldInspectionID;
+	private JTextField4j jTextFieldLegacyCode;
+	private JTextField4j jTextFieldMaterial;
 	private JTextField4j textField4jMoveAfterMake = new JTextField4j(20);
-	private JButton4j button4jLocationLookup = new JButton4j("");
-	private JButton4j jButtonRemoveProductGroup = new JButton4j(Common.icon_despatch_remove_16x16);
-	private JButton4j jButtonRemoveContainerCode = new JButton4j(Common.icon_despatch_remove_16x16);
-	private JTextField4j textField4j_Product_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
 	private JTextField4j textField4j_Container_Code = new JTextField4j(JDBWTContainerCode.field_ContainerCode);
-	private JLabel4j_std jStatusText = new JLabel4j_std();
+	private JTextField4j textField4j_Product_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
+	private SpinnerNumberModel grossweightnumbermodel = new SpinnerNumberModel((float) 0, null, null, 1);
+	private SpinnerNumberModel netweightnumbermodel = new SpinnerNumberModel((double) 0, null, null, 1);
+	private SpinnerNumberModel shelflifenumbermodel = new SpinnerNumberModel();
+	private String lmaterial;
+	private Vector<JDBListData> moduleList = new Vector<JDBListData>();
+	private Vector<JDBMaterialType> typeList = new Vector<JDBMaterialType>();
+	private Vector<JDBUom> uomList = new Vector<JDBUom>();
+	private Vector<JShelfLifeRoundingRule> shelfLifeRule = new Vector<JShelfLifeRoundingRule>();
+	private Vector<JShelfLifeUom> shelfLifeUomList = new Vector<JShelfLifeUom>();
 
 	public JInternalFrameMaterialProperties(String mat)
 	{
@@ -194,116 +164,6 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
-
-	}
-
-	public void setMaterialID(String mat)
-	{
-
-		if (jButtonSave.isEnabled())
-		{
-
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Material [" + lmaterial + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
-			if (question == 0)
-			{
-				save();
-			}
-		}
-
-		lmaterial = mat;
-		jTextFieldMaterial.setText(lmaterial);
-		setTitle("Material [" + lmaterial + "]");
-
-		material.setMaterial(lmaterial);
-
-		if (material.isValidMaterial())
-		{
-			material.getMaterialProperties(lmaterial);
-
-			materialtype.setType(material.getMaterialType());
-			materialtype.getMaterialTypeProperties();
-
-			baseuom.setInternalUom(material.getBaseUom());
-			baseuom.getInternalUomProperties();
-
-			weightuom.setInternalUom(material.getWeightUom());
-			weightuom.getInternalUomProperties();
-
-			sluom.getShelfLifeUomProperties(material.getShelfLifeUom());
-			slrr.getShelfLifeRuleProperties(material.getShelfLifeRule());
-
-			jTextFieldDescription.setText(material.getDescription());
-
-			jTextFieldEquipmentType.setText(material.getEquipmentType());
-
-			jTextFieldInspectionID.setText(material.getInspectionID());
-
-			jSpinnerShelfLife.setValue((Number) material.getShelfLife());
-
-			jSpinnerGrossWeight.setValue((BigDecimal) material.getGrossWeight());
-			jSpinnerNetWeight.setValue((BigDecimal) material.getNetWeight());
-
-			jTextFieldLegacyCode.setText(material.getOldMaterial());
-
-			jComboBoxDefaultBatchStatus.setSelectedItem(material.getDefaultBatchStatus());
-
-			checkBoxOverridePackLabel.setSelected(material.isOverridePackLabel());
-			checkBoxOverridePalletLabel.setSelected(material.isOverridePalletLabel());
-
-			checkBoxValidateScanPallet.setSelected(material.isValidateScanPallet());
-			checkBoxValidateScanCase.setSelected(material.isValidateScanCase());
-			checkBoxValidateScanEach.setSelected(material.isValidateScanEach());
-
-			checkBox4j_Enabled.setSelected(material.isEnabled());
-
-			checkBox4jMoveAfterMake.setSelected(material.isMoveAfterMakeEnabled());
-			textField4jMoveAfterMake.setText(material.getMoveAfterMakeLocationID());
-
-			comboBoxPackModuleID.setSelectedIndex(-1);
-			comboBoxPalletModuleID.setSelectedIndex(-1);
-			for (int x = 1; x < moduleList.size(); x++)
-			{
-				if (moduleList.get(x).getmData().equals(material.getPackLabelModuleID()))
-				{
-					comboBoxPackModuleID.setSelectedIndex(x);
-				}
-				if (moduleList.get(x).getmData().equals(material.getPalletLabelModuleID()))
-				{
-					comboBoxPalletModuleID.setSelectedIndex(x);
-				}
-			}
-
-			matCustData.setMaterial(lmaterial);
-			matCustData.setCustomerID("SELF");
-			matCustData.setDataID("PRODUCT_GROUP");
-
-
-			if (matCustData.getMaterialCustomerDataProperties())
-			{
-				textField4j_Product_Group.setText(matCustData.getData());
-			}
-
-			matCustData.setDataID("CONTAINER_CODE");
-			;
-
-			if (matCustData.getMaterialCustomerDataProperties())
-			{
-				textField4j_Container_Code.setText(matCustData.getData());
-			}
-
-			setButtonStates();
-
-		}
-
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				jTextFieldDescription.requestFocus();
-				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
-				jButtonSave.setEnabled(false);
-			}
-		});
 
 	}
 
@@ -336,802 +196,730 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			shelfLifeRule.add(slrr1);
 			shelfLifeRule.addAll(slrr1.getShelfLifeRoundingRules());
 
+			jDesktopPane1 = new JDesktopPane4j();
+			jDesktopPane1.setBounds(0, 0, 660, 627);
+
+			this.getContentPane().add(jDesktopPane1);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(447, 385));
+			jDesktopPane1.setLayout(null);
+
+			jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
+			jDesktopPane1.add(jTextFieldMaterial);
+			jTextFieldMaterial.setEditable(false);
+			jTextFieldMaterial.setEnabled(false);
+			jTextFieldMaterial.setBounds(172, 9, 146, 22);
+
+			jTextFieldDescription = new JTextField4j(JDBMaterial.field_description);
+			jDesktopPane1.add(jTextFieldDescription);
+			jTextFieldDescription.setBounds(172, 38, 459, 22);
+			jTextFieldDescription.addKeyListener(new KeyAdapter()
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 660, 627);
-				jDesktopPane1.setBackground(Common.color_edit_properties);
-				this.getContentPane().add(jDesktopPane1);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(447, 385));
-				jDesktopPane1.setLayout(null);
+				public void keyTyped(KeyEvent evt)
 				{
-					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setEditable(false);
-					jTextFieldMaterial.setEnabled(false);
-					jTextFieldMaterial.setBounds(172, 9, 146, 22);
+					jButtonSave.setEnabled(true);
 				}
-				{
-					jTextFieldDescription = new JTextField4j(JDBMaterial.field_description);
-					jDesktopPane1.add(jTextFieldDescription);
-					jTextFieldDescription.setBounds(172, 38, 459, 22);
-					jTextFieldDescription.addKeyListener(new KeyAdapter()
-					{
-						public void keyTyped(KeyEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-				}
-				{
-					jButtonSave = new JButton4j(Common.icon_update_16x16);
-					jDesktopPane1.add(jButtonSave);
-					jButtonSave.setEnabled(false);
-					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.setBounds(453, 220, 178, 32);
-					jButtonSave.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							save();
-						}
-					});
-				}
-				{
-					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jDesktopPane1.add(jButtonHelp);
-					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(453, 250, 178, 32);
-				}
-				{
-					jButtonCancel = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonCancel);
-					jButtonCancel.setText(lang.get("btn_Close"));
-					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(453, 280, 178, 32);
-					jButtonCancel.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							dispose();
-						}
-					});
-				}
-				{
-					ComboBoxModel<JDBUom> jComboBoxBaseUOMModel = new DefaultComboBoxModel<JDBUom>(uomList);
-					jComboBoxBaseUOM = new JComboBox4j<JDBUom>();
-					jDesktopPane1.add(jComboBoxBaseUOM);
-					jComboBoxBaseUOM.setModel(jComboBoxBaseUOMModel);
-					jComboBoxBaseUOM.setMaximumRowCount(12);
-					jComboBoxBaseUOM.setBounds(172, 97, 248, 22);
-					jComboBoxBaseUOM.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
+			});
 
-					jComboBoxBaseUOMModel.setSelectedItem(baseuom);
+			jButtonSave = new JButton4j(Common.icon_update_16x16);
+			jDesktopPane1.add(jButtonSave);
+			jButtonSave.setEnabled(false);
+			jButtonSave.setText(lang.get("btn_Save"));
+			jButtonSave.setMnemonic(lang.getMnemonicChar());
+			jButtonSave.setBounds(453, 220, 178, 32);
+			jButtonSave.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					save();
+				}
+			});
 
-				}
-				{
-					ComboBoxModel<JDBMaterialType> jComboBoxMaterialTypeModel = new DefaultComboBoxModel<JDBMaterialType>(typeList);
-					jComboBoxMaterialType = new JComboBox4j<JDBMaterialType>();
-					jDesktopPane1.add(jComboBoxMaterialType);
-					jComboBoxMaterialType.setModel(jComboBoxMaterialTypeModel);
-					jComboBoxMaterialType.setBounds(172, 68, 248, 22);
-					jComboBoxMaterialType.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setMnemonic(lang.getMnemonicChar());
+			jButtonHelp.setBounds(453, 250, 178, 32);
 
-					jComboBoxMaterialTypeModel.setSelectedItem(materialtype);
-				}
+			jButtonCancel = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonCancel);
+			jButtonCancel.setText(lang.get("btn_Close"));
+			jButtonCancel.setMnemonic(lang.getMnemonicChar());
+			jButtonCancel.setBounds(453, 280, 178, 32);
+			jButtonCancel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jLabelBatchStatus = new JLabel4j_std();
-					jDesktopPane1.add(jLabelBatchStatus);
-					jLabelBatchStatus.setText(lang.get("lbl_Material_Default_Batch_Status"));
-					jLabelBatchStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelBatchStatus.setBounds(6, 332, 159, 22);
+					dispose();
 				}
-				{
-					jLabel1ShelfLifeUOM = new JLabel4j_std();
-					jDesktopPane1.add(jLabel1ShelfLifeUOM);
-					jLabel1ShelfLifeUOM.setText(lang.get("lbl_Material_Shelf_Life_UOM"));
-					jLabel1ShelfLifeUOM.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel1ShelfLifeUOM.setBounds(6, 156, 159, 22);
-				}
-				{
-					ComboBoxModel<JShelfLifeUom> jComboBoxShelfLifeUOMModel = new DefaultComboBoxModel<JShelfLifeUom>(shelfLifeUomList);
-					jComboBoxShelfLifeUOM = new JComboBox4j<JShelfLifeUom>();
-					jDesktopPane1.add(jComboBoxShelfLifeUOM);
-					jComboBoxShelfLifeUOM.setModel(jComboBoxShelfLifeUOMModel);
-					jComboBoxShelfLifeUOM.setMaximumRowCount(12);
-					jComboBoxShelfLifeUOM.setBounds(172, 156, 165, 22);
-					jComboBoxShelfLifeUOM.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
+			});
 
-					jComboBoxShelfLifeUOMModel.setSelectedItem(sluom);
-				}
+			ComboBoxModel<JDBUom> jComboBoxBaseUOMModel = new DefaultComboBoxModel<JDBUom>(uomList);
+			jComboBoxBaseUOM = new JComboBox4j<JDBUom>();
+			jDesktopPane1.add(jComboBoxBaseUOM);
+			jComboBoxBaseUOM.setModel(jComboBoxBaseUOMModel);
+			jComboBoxBaseUOM.setMaximumRowCount(12);
+			jComboBoxBaseUOM.setBounds(172, 97, 248, 22);
+			jComboBoxBaseUOM.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jLabel1RoundingRule = new JLabel4j_std();
-					jDesktopPane1.add(jLabel1RoundingRule);
-					jLabel1RoundingRule.setText(lang.get("lbl_Material_Shelf_Life_Rounding_Rule"));
-					jLabel1RoundingRule.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel1RoundingRule.setBounds(6, 185, 159, 22);
+					jButtonSave.setEnabled(true);
 				}
-				{
-					ComboBoxModel<JShelfLifeRoundingRule> jComboBoxRoundingRuleModel = new DefaultComboBoxModel<JShelfLifeRoundingRule>(shelfLifeRule);
-					jComboBoxRoundingRule = new JComboBox4j<JShelfLifeRoundingRule>();
-					jDesktopPane1.add(jComboBoxRoundingRule);
-					jComboBoxRoundingRule.setModel(jComboBoxRoundingRuleModel);
-					jComboBoxRoundingRule.setBounds(172, 185, 165, 22);
-					jComboBoxRoundingRule.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
+			});
 
-					jComboBoxRoundingRuleModel.setSelectedItem(slrr);
-				}
-				{
-					jLabelMaterialID = new JLabel4j_std();
-					jDesktopPane1.add(jLabelMaterialID);
-					jLabelMaterialID.setText(lang.get("lbl_Material"));
-					jLabelMaterialID.setBounds(6, 9, 159, 22);
-					jLabelMaterialID.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelDescription = new JLabel4j_std();
-					jDesktopPane1.add(jLabelDescription);
-					jLabelDescription.setText(lang.get("lbl_Description"));
-					jLabelDescription.setBounds(6, 38, 159, 22);
-					jLabelDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelBaseUOM = new JLabel4j_std();
-					jDesktopPane1.add(jLabelBaseUOM);
-					jLabelBaseUOM.setText(lang.get("lbl_Material_Base_UOM"));
-					jLabelBaseUOM.setBounds(6, 97, 159, 22);
-					jLabelBaseUOM.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelMatType = new JLabel4j_std();
-					jDesktopPane1.add(jLabelMatType);
-					jLabelMatType.setText(lang.get("lbl_Material_Type"));
-					jLabelMatType.setBounds(6, 68, 159, 22);
-					jLabelMatType.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelShelfLife = new JLabel4j_std();
-					jDesktopPane1.add(jLabelShelfLife);
-					jLabelShelfLife.setText(lang.get("lbl_Material_Shelf_Life"));
-					jLabelShelfLife.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelShelfLife.setBounds(6, 126, 159, 22);
-				}
-				{
-					jLabelGrossWt = new JLabel4j_std();
-					jDesktopPane1.add(jLabelGrossWt);
-					jLabelGrossWt.setText(lang.get("lbl_Material_Gross_Weight"));
-					jLabelGrossWt.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelGrossWt.setBounds(6, 214, 159, 22);
-					jLabelGrossWt.setFocusTraversalPolicyProvider(true);
-				}
-				{
-					jLabelNetWt = new JLabel4j_std();
-					jDesktopPane1.add(jLabelNetWt);
-					jLabelNetWt.setText(lang.get("lbl_Material_Net_Weight"));
-					jLabelNetWt.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelNetWt.setBounds(6, 244, 159, 22);
-				}
-				{
-					jLabelWtUOM = new JLabel4j_std();
-					jDesktopPane1.add(jLabelWtUOM);
-					jLabelWtUOM.setText(lang.get("lbl_Material_Weight_UOM"));
-					jLabelWtUOM.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelWtUOM.setBounds(6, 274, 159, 22);
-				}
-				{
-					jTextFieldLegacyCode = new JTextField4j(JDBMaterial.field_old_material);
-					jDesktopPane1.add(jTextFieldLegacyCode);
-					jTextFieldLegacyCode.setBounds(172, 303, 125, 22);
-					jTextFieldLegacyCode.addKeyListener(new KeyAdapter()
-					{
-						public void keyTyped(KeyEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-				}
-				{
-					ComboBoxModel<JDBUom> jComboBox1Model = new DefaultComboBoxModel<JDBUom>(uomList);
-					jComboBoxWeightUOM = new JComboBox4j<JDBUom>();
-					jDesktopPane1.add(jComboBoxWeightUOM);
-					jComboBoxWeightUOM.setModel(jComboBox1Model);
-					jComboBoxWeightUOM.setBounds(172, 274, 248, 22);
-					jComboBoxWeightUOM.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-					jComboBox1Model.setSelectedItem(weightuom);
-				}
-				{
-					jSpinnerShelfLife = new JSpinner4j();
-					jDesktopPane1.add(jSpinnerShelfLife);
-					jSpinnerShelfLife.setModel(shelflifenumbermodel);
-					jSpinnerShelfLife.setBounds(172, 126, 95, 22);
-					JSpinner4j.NumberEditor nec2 = new JSpinner4j.NumberEditor(jSpinnerShelfLife);
-					jSpinnerShelfLife.setEditor(nec2);
-					jSpinnerShelfLife.addChangeListener(new ChangeListener()
-					{
-						public void stateChanged(ChangeEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-				}
-				{
-					jSpinnerGrossWeight = new JSpinner4j();
+			jComboBoxBaseUOMModel.setSelectedItem(baseuom);
 
-					jDesktopPane1.add(jSpinnerGrossWeight);
-					jSpinnerGrossWeight.setModel(grossweightnumbermodel);
+			ComboBoxModel<JDBMaterialType> jComboBoxMaterialTypeModel = new DefaultComboBoxModel<JDBMaterialType>(typeList);
+			jComboBoxMaterialType = new JComboBox4j<JDBMaterialType>();
+			jDesktopPane1.add(jComboBoxMaterialType);
+			jComboBoxMaterialType.setModel(jComboBoxMaterialTypeModel);
+			jComboBoxMaterialType.setBounds(172, 68, 248, 22);
+			jComboBoxMaterialType.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
 
-					jSpinnerGrossWeight.setBounds(172, 214, 95, 22);
-					JSpinner4j.NumberEditor nec2 = new JSpinner4j.NumberEditor(jSpinnerGrossWeight);
-					jSpinnerGrossWeight.setEditor(nec2);
-					jSpinnerGrossWeight.addChangeListener(new ChangeListener()
-					{
-						public void stateChanged(ChangeEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-				}
-				{
-					jSpinnerNetWeight = new JSpinner4j();
-					jDesktopPane1.add(jSpinnerNetWeight);
-					jSpinnerNetWeight.setModel(netweightnumbermodel);
-					JSpinner4j.NumberEditor nec2 = new JSpinner4j.NumberEditor(jSpinnerNetWeight);
-					jSpinnerNetWeight.setEditor(nec2);
-					jSpinnerNetWeight.setBounds(172, 244, 95, 22);
-					jSpinnerNetWeight.addChangeListener(new ChangeListener()
-					{
-						public void stateChanged(ChangeEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-				}
-				{
-					jButtonUOMs = new JButton4j();
-					jDesktopPane1.add(jButtonUOMs);
-					jButtonUOMs.setText(lang.get("btn_Material_UOM_Conversions"));
-					jButtonUOMs.setIcon(Common.icon_uom_16x16);
-					jButtonUOMs.setBounds(453, 100, 178, 32);
-					jButtonUOMs.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_UOM"));
-					jButtonUOMs.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							String base = ((JDBUom) jComboBoxBaseUOM.getSelectedItem()).getInternalUom();
-							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_UOM", lmaterial, base);
-						}
-					});
-				}
-				{
-					JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
-					String value = ctrl.getKeyValue("SSCC_LOCATION_VALIDATION");
-					Boolean enabled = Boolean.valueOf(value);
-					jButtonLocations = new JButton4j(Common.icon_location_16x16);
-					jDesktopPane1.add(jButtonLocations);
-					jButtonLocations.setText(lang.get("btn_Material_Locations"));
-					jButtonLocations.setEnabled(enabled);
-					jButtonLocations.setBounds(453, 130, 178, 32);
-					if (enabled)
-					{
-						jButtonLocations.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_LOCATION"));
-						jButtonLocations.setToolTipText("");
-					}
-					else
-					{
-						jButtonLocations.setToolTipText("System key SSCC_LOCATION_VALIDATION is set to false");
-					}
-					jButtonLocations.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
+			jComboBoxMaterialTypeModel.setSelectedItem(materialtype);
 
-							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_LOCATION", lmaterial);
-						}
-					});
+			jLabelBatchStatus = new JLabel4j_std();
+			jDesktopPane1.add(jLabelBatchStatus);
+			jLabelBatchStatus.setText(lang.get("lbl_Material_Default_Batch_Status"));
+			jLabelBatchStatus.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelBatchStatus.setBounds(6, 332, 159, 22);
 
-				}
-				{
-					jButtonBatches = new JButton4j();
-					jDesktopPane1.add(jButtonBatches);
-					jButtonBatches.setIcon(Common.icon_batch_16x16);
-					jButtonBatches.setText(lang.get("btn_Material_Batches"));
-					jButtonBatches.setBounds(453, 70, 178, 32);
-					jButtonBatches.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH"));
-					jButtonBatches.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH", lmaterial);
-						}
-					});
-				}
-				{
-					jLabelLegacyCode = new JLabel4j_std();
-					jDesktopPane1.add(jLabelLegacyCode);
-					jLabelLegacyCode.setText(lang.get("lbl_Material_Legacy_Code"));
-					jLabelLegacyCode.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelLegacyCode.setBounds(6, 303, 159, 22);
-				}
-				{
-					ComboBoxModel<String> jComboBoxDefaultBatchStatusModel = new DefaultComboBoxModel<String>(Common.batchStatusIncBlank);
-					jComboBoxDefaultBatchStatus = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxDefaultBatchStatus);
-					jComboBoxDefaultBatchStatus.setModel(jComboBoxDefaultBatchStatusModel);
-					jComboBoxDefaultBatchStatus.setBounds(173, 332, 164, 22);
-					jComboBoxDefaultBatchStatus.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-				}
+			jLabel1ShelfLifeUOM = new JLabel4j_std();
+			jDesktopPane1.add(jLabel1ShelfLifeUOM);
+			jLabel1ShelfLifeUOM.setText(lang.get("lbl_Material_Shelf_Life_UOM"));
+			jLabel1ShelfLifeUOM.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel1ShelfLifeUOM.setBounds(6, 156, 159, 22);
 
-				checkBoxOverridePackLabel.addActionListener(new ActionListener()
+			ComboBoxModel<JShelfLifeUom> jComboBoxShelfLifeUOMModel = new DefaultComboBoxModel<JShelfLifeUom>(shelfLifeUomList);
+			jComboBoxShelfLifeUOM = new JComboBox4j<JShelfLifeUom>();
+			jDesktopPane1.add(jComboBoxShelfLifeUOM);
+			jComboBoxShelfLifeUOM.setModel(jComboBoxShelfLifeUOMModel);
+			jComboBoxShelfLifeUOM.setMaximumRowCount(12);
+			jComboBoxShelfLifeUOM.setBounds(172, 156, 165, 22);
+			jComboBoxShelfLifeUOM.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					public void actionPerformed(ActionEvent arg0)
-					{
-						setButtonStates();
-					}
-				});
+					jButtonSave.setEnabled(true);
+				}
+			});
 
-				checkBoxOverridePackLabel.setBackground(Color.WHITE);
-				checkBoxOverridePackLabel.setBounds(172, 451, 21, 22);
-				jDesktopPane1.add(checkBoxOverridePackLabel);
-				checkBoxOverridePalletLabel.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						setButtonStates();
-					}
-				});
+			jComboBoxShelfLifeUOMModel.setSelectedItem(sluom);
 
-				checkBoxValidateScanPallet.setBackground(Color.WHITE);
-				checkBoxValidateScanPallet.setBounds(449, 328, 21, 22);
-				jDesktopPane1.add(checkBoxValidateScanPallet);
-				checkBoxValidateScanPallet.addActionListener(new ActionListener()
+			jLabel1RoundingRule = new JLabel4j_std();
+			jDesktopPane1.add(jLabel1RoundingRule);
+			jLabel1RoundingRule.setText(lang.get("lbl_Material_Shelf_Life_Rounding_Rule"));
+			jLabel1RoundingRule.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel1RoundingRule.setBounds(6, 185, 159, 22);
+
+			ComboBoxModel<JShelfLifeRoundingRule> jComboBoxRoundingRuleModel = new DefaultComboBoxModel<JShelfLifeRoundingRule>(shelfLifeRule);
+			jComboBoxRoundingRule = new JComboBox4j<JShelfLifeRoundingRule>();
+			jDesktopPane1.add(jComboBoxRoundingRule);
+			jComboBoxRoundingRule.setModel(jComboBoxRoundingRuleModel);
+			jComboBoxRoundingRule.setBounds(172, 185, 165, 22);
+			jComboBoxRoundingRule.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					public void actionPerformed(ActionEvent e)
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			jComboBoxRoundingRuleModel.setSelectedItem(slrr);
+
+			jLabelMaterialID = new JLabel4j_std();
+			jDesktopPane1.add(jLabelMaterialID);
+			jLabelMaterialID.setText(lang.get("lbl_Material"));
+			jLabelMaterialID.setBounds(6, 9, 159, 22);
+			jLabelMaterialID.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelDescription = new JLabel4j_std();
+			jDesktopPane1.add(jLabelDescription);
+			jLabelDescription.setText(lang.get("lbl_Description"));
+			jLabelDescription.setBounds(6, 38, 159, 22);
+			jLabelDescription.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelBaseUOM = new JLabel4j_std();
+			jDesktopPane1.add(jLabelBaseUOM);
+			jLabelBaseUOM.setText(lang.get("lbl_Material_Base_UOM"));
+			jLabelBaseUOM.setBounds(6, 97, 159, 22);
+			jLabelBaseUOM.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelMatType = new JLabel4j_std();
+			jDesktopPane1.add(jLabelMatType);
+			jLabelMatType.setText(lang.get("lbl_Material_Type"));
+			jLabelMatType.setBounds(6, 68, 159, 22);
+			jLabelMatType.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelShelfLife = new JLabel4j_std();
+			jDesktopPane1.add(jLabelShelfLife);
+			jLabelShelfLife.setText(lang.get("lbl_Material_Shelf_Life"));
+			jLabelShelfLife.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelShelfLife.setBounds(6, 126, 159, 22);
+
+			jLabelGrossWt = new JLabel4j_std();
+			jDesktopPane1.add(jLabelGrossWt);
+			jLabelGrossWt.setText(lang.get("lbl_Material_Gross_Weight"));
+			jLabelGrossWt.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelGrossWt.setBounds(6, 214, 159, 22);
+			jLabelGrossWt.setFocusTraversalPolicyProvider(true);
+
+			jLabelNetWt = new JLabel4j_std();
+			jDesktopPane1.add(jLabelNetWt);
+			jLabelNetWt.setText(lang.get("lbl_Material_Net_Weight"));
+			jLabelNetWt.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelNetWt.setBounds(6, 244, 159, 22);
+
+			jLabelWtUOM = new JLabel4j_std();
+			jDesktopPane1.add(jLabelWtUOM);
+			jLabelWtUOM.setText(lang.get("lbl_Material_Weight_UOM"));
+			jLabelWtUOM.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelWtUOM.setBounds(6, 274, 159, 22);
+
+			jTextFieldLegacyCode = new JTextField4j(JDBMaterial.field_old_material);
+			jDesktopPane1.add(jTextFieldLegacyCode);
+			jTextFieldLegacyCode.setBounds(172, 303, 125, 22);
+			jTextFieldLegacyCode.addKeyListener(new KeyAdapter()
+			{
+				public void keyTyped(KeyEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			ComboBoxModel<JDBUom> jComboBoxWeightUOMModel = new DefaultComboBoxModel<JDBUom>(uomList);
+			jComboBoxWeightUOM = new JComboBox4j<JDBUom>();
+			jDesktopPane1.add(jComboBoxWeightUOM);
+			jComboBoxWeightUOM.setModel(jComboBoxWeightUOMModel);
+			jComboBoxWeightUOM.setBounds(172, 274, 248, 22);
+			jComboBoxWeightUOM.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+			jComboBoxWeightUOMModel.setSelectedItem(weightuom);
+
+			jSpinnerShelfLife = new JSpinner4j();
+			jDesktopPane1.add(jSpinnerShelfLife);
+			jSpinnerShelfLife.setModel(shelflifenumbermodel);
+			jSpinnerShelfLife.setBounds(172, 126, 95, 22);
+			JSpinner4j.NumberEditor nec2 = new JSpinner4j.NumberEditor(jSpinnerShelfLife);
+			jSpinnerShelfLife.setEditor(nec2);
+			jSpinnerShelfLife.addChangeListener(new ChangeListener()
+			{
+				public void stateChanged(ChangeEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			jSpinnerGrossWeight = new JSpinner4j();
+
+			jDesktopPane1.add(jSpinnerGrossWeight);
+			jSpinnerGrossWeight.setModel(grossweightnumbermodel);
+
+			jSpinnerGrossWeight.setBounds(172, 214, 95, 22);
+			JSpinner4j.NumberEditor nec3 = new JSpinner4j.NumberEditor(jSpinnerGrossWeight);
+			jSpinnerGrossWeight.setEditor(nec3);
+			jSpinnerGrossWeight.addChangeListener(new ChangeListener()
+			{
+				public void stateChanged(ChangeEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			jSpinnerNetWeight = new JSpinner4j();
+			jDesktopPane1.add(jSpinnerNetWeight);
+			jSpinnerNetWeight.setModel(netweightnumbermodel);
+			JSpinner4j.NumberEditor nec4 = new JSpinner4j.NumberEditor(jSpinnerNetWeight);
+			jSpinnerNetWeight.setEditor(nec4);
+			jSpinnerNetWeight.setBounds(172, 244, 95, 22);
+			jSpinnerNetWeight.addChangeListener(new ChangeListener()
+			{
+				public void stateChanged(ChangeEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			jButtonUOMs = new JButton4j();
+			jDesktopPane1.add(jButtonUOMs);
+			jButtonUOMs.setText(lang.get("btn_Material_UOM_Conversions"));
+			jButtonUOMs.setIcon(Common.icon_uom_16x16);
+			jButtonUOMs.setBounds(453, 100, 178, 32);
+			jButtonUOMs.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_UOM"));
+			jButtonUOMs.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					String base = ((JDBUom) jComboBoxBaseUOM.getSelectedItem()).getInternalUom();
+					JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_UOM", lmaterial, base);
+				}
+			});
+
+			JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+			String value = ctrl.getKeyValue("SSCC_LOCATION_VALIDATION");
+			Boolean enabled = Boolean.valueOf(value);
+			jButtonLocations = new JButton4j(Common.icon_location_16x16);
+			jDesktopPane1.add(jButtonLocations);
+			jButtonLocations.setText(lang.get("btn_Material_Locations"));
+			jButtonLocations.setEnabled(enabled);
+			jButtonLocations.setBounds(453, 130, 178, 32);
+			if (enabled)
+			{
+				jButtonLocations.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_LOCATION"));
+				jButtonLocations.setToolTipText("");
+			}
+			else
+			{
+				jButtonLocations.setToolTipText("System key SSCC_LOCATION_VALIDATION is set to false");
+			}
+			jButtonLocations.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+
+					JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_LOCATION", lmaterial);
+				}
+			});
+
+			jButtonBatches = new JButton4j();
+			jDesktopPane1.add(jButtonBatches);
+			jButtonBatches.setIcon(Common.icon_batch_16x16);
+			jButtonBatches.setText(lang.get("btn_Material_Batches"));
+			jButtonBatches.setBounds(453, 70, 178, 32);
+			jButtonBatches.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH"));
+			jButtonBatches.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH", lmaterial);
+				}
+			});
+
+			jLabelLegacyCode = new JLabel4j_std();
+			jDesktopPane1.add(jLabelLegacyCode);
+			jLabelLegacyCode.setText(lang.get("lbl_Material_Legacy_Code"));
+			jLabelLegacyCode.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelLegacyCode.setBounds(6, 303, 159, 22);
+
+			ComboBoxModel<String> jComboBoxDefaultBatchStatusModel = new DefaultComboBoxModel<String>(Common.batchStatusIncBlank);
+			jComboBoxDefaultBatchStatus = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxDefaultBatchStatus);
+			jComboBoxDefaultBatchStatus.setModel(jComboBoxDefaultBatchStatusModel);
+			jComboBoxDefaultBatchStatus.setBounds(173, 332, 164, 22);
+			jComboBoxDefaultBatchStatus.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			checkBoxOverridePackLabel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent arg0)
+				{
+					setButtonStates();
+				}
+			});
+
+			checkBoxOverridePackLabel.setBounds(172, 451, 21, 22);
+			jDesktopPane1.add(checkBoxOverridePackLabel);
+			checkBoxOverridePalletLabel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					setButtonStates();
+				}
+			});
+
+			checkBoxValidateScanPallet.setBounds(449, 328, 21, 22);
+			jDesktopPane1.add(checkBoxValidateScanPallet);
+			checkBoxValidateScanPallet.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			checkBoxValidateScanCase.setBounds(449, 358, 21, 22);
+			jDesktopPane1.add(checkBoxValidateScanCase);
+			checkBoxValidateScanCase.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			checkBoxValidateScanEach.setBounds(449, 387, 21, 22);
+			jDesktopPane1.add(checkBoxValidateScanEach);
+			checkBoxValidateScanEach.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			checkBoxOverridePalletLabel.setBounds(172, 484, 21, 22);
+			jDesktopPane1.add(checkBoxOverridePalletLabel);
+
+			JLabel4j_std label4j_stdPackModule = new JLabel4j_std();
+			label4j_stdPackModule.setText(lang.get("lbl_Override_Pack_Label"));
+			label4j_stdPackModule.setHorizontalTextPosition(SwingConstants.RIGHT);
+			label4j_stdPackModule.setHorizontalAlignment(SwingConstants.RIGHT);
+			label4j_stdPackModule.setBounds(6, 451, 159, 22);
+			jDesktopPane1.add(label4j_stdPackModule);
+
+			JLabel4j_std label4j_stdPalletModule = new JLabel4j_std();
+			label4j_stdPalletModule.setText(lang.get("lbl_Override_Pallet_Label"));
+			label4j_stdPalletModule.setHorizontalTextPosition(SwingConstants.RIGHT);
+			label4j_stdPalletModule.setHorizontalAlignment(SwingConstants.RIGHT);
+			label4j_stdPalletModule.setBounds(7, 484, 159, 22);
+			jDesktopPane1.add(label4j_stdPalletModule);
+
+			ComboBoxModel<JDBListData> jComboBox1Model2 = new DefaultComboBoxModel<JDBListData>(moduleList);
+			comboBoxPackModuleID.setModel(jComboBox1Model2);
+			comboBoxPackModuleID.setEnabled(false);
+			comboBoxPackModuleID.setBounds(199, 451, 208, 22);
+			comboBoxPackModuleID.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			jDesktopPane1.add(comboBoxPackModuleID);
+
+			ComboBoxModel<JDBListData> jComboBoxModuleModel = new DefaultComboBoxModel<JDBListData>(moduleList);
+			comboBoxPalletModuleID.setModel(jComboBoxModuleModel);
+			comboBoxPalletModuleID.setEnabled(false);
+			comboBoxPalletModuleID.setBounds(199, 484, 208, 22);
+			comboBoxPalletModuleID.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+			jDesktopPane1.add(comboBoxPalletModuleID);
+
+			jButtonCustomerData.setText(lang.get("btn_Material_Customer_Data"));
+			jButtonCustomerData.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA"));
+			jButtonCustomerData.setBounds(453, 160, 178, 32);
+			jButtonCustomerData.setIcon(Common.icon_customer_16x16);
+			jDesktopPane1.add(jButtonCustomerData);
+			jButtonCustomerData.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_CUST_DATA", lmaterial);
+				}
+			});
+
+			JButton4j button4jDataIDs = new JButton4j(Common.icon_material_16x16);
+			button4jDataIDs.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchMenu.runForm("FRM_ADMIN_DATA_IDS");
+				}
+			});
+			button4jDataIDs.setText(lang.get("mod_FRM_ADMIN_DATA_IDS"));
+			button4jDataIDs.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DATA_IDS"));
+			button4jDataIDs.setBounds(453, 190, 178, 32);
+			jDesktopPane1.add(button4jDataIDs);
+
+			lblEquipment = new JLabel4j_std();
+			lblEquipment.setText(lang.get("lbl_Material_Equipment_Type"));
+			lblEquipment.setHorizontalAlignment(SwingConstants.TRAILING);
+			lblEquipment.setBounds(6, 362, 159, 22);
+			jDesktopPane1.add(lblEquipment);
+
+			lblInspectionID = new JLabel4j_std();
+			lblInspectionID.setText(lang.get("lbl_Inspection_ID"));
+			lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
+			lblInspectionID.setBounds(6, 391, 159, 22);
+			jDesktopPane1.add(lblInspectionID);
+
+			lblValidateScanPallet = new JLabel4j_std();
+			lblValidateScanPallet.setText(lang.get("lbl_Validate_Pallet_GTIN"));
+			lblValidateScanPallet.setBounds(472, 328, 159, 22);
+			jDesktopPane1.add(lblValidateScanPallet);
+
+			lblValidateScanCase = new JLabel4j_std();
+			lblValidateScanCase.setText(lang.get("lbl_Validate_Case_GTIN"));
+			lblValidateScanCase.setBounds(472, 358, 159, 22);
+			jDesktopPane1.add(lblValidateScanCase);
+
+			lblValidateScanEach = new JLabel4j_std();
+			lblValidateScanEach.setText(lang.get("lbl_Validate_Each_GTIN"));
+			lblValidateScanEach.setBounds(472, 387, 159, 22);
+			jDesktopPane1.add(lblValidateScanEach);
+
+			jTextFieldEquipmentType = new JTextField4j(JDBMaterial.field_equipment_type);
+			jTextFieldEquipmentType.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+			jTextFieldEquipmentType.setBounds(172, 362, 125, 22);
+			jDesktopPane1.add(jTextFieldEquipmentType);
+
+			JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupEquipment.setBounds(296, 362, 21, 22);
+			jButtonLookupEquipment.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "Y";
+					if (JLaunchLookup.equipmentType())
 					{
+						jTextFieldEquipmentType.setText(JLaunchLookup.dlgResult);
 						jButtonSave.setEnabled(true);
 					}
-				});
+				}
+			});
+			jDesktopPane1.add(jButtonLookupEquipment);
 
-				checkBoxValidateScanCase.setBackground(Color.WHITE);
-				checkBoxValidateScanCase.setBounds(449, 358, 21, 22);
-				jDesktopPane1.add(checkBoxValidateScanCase);
-				checkBoxValidateScanCase.addActionListener(new ActionListener()
+			jTextFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
+			jTextFieldInspectionID.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
 				{
-					public void actionPerformed(ActionEvent e)
+					jButtonSave.setEnabled(true);
+				}
+			});
+			jTextFieldInspectionID.setBounds(172, 391, 125, 22);
+			jDesktopPane1.add(jTextFieldInspectionID);
+
+			JLabel4j_std label4j_Enabled = new JLabel4j_std();
+			label4j_Enabled.setText(lang.get("lbl_Enabled"));
+			label4j_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_Enabled.setBounds(364, 9, 84, 22);
+			jDesktopPane1.add(label4j_Enabled);
+			checkBox4j_Enabled.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			checkBox4j_Enabled.setSelected(true);
+
+			checkBox4j_Enabled.setBounds(453, 10, 21, 21);
+			jDesktopPane1.add(checkBox4j_Enabled);
+			checkBox4jMoveAfterMake.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			checkBox4jMoveAfterMake.setBounds(172, 422, 21, 22);
+			jDesktopPane1.add(checkBox4jMoveAfterMake);
+
+			JLabel4j_std label4j_std_MoveAfterMake = new JLabel4j_std();
+			label4j_std_MoveAfterMake.setText(lang.get("lbl_Move_after_Make"));
+			label4j_std_MoveAfterMake.setHorizontalTextPosition(SwingConstants.RIGHT);
+			label4j_std_MoveAfterMake.setHorizontalAlignment(SwingConstants.RIGHT);
+			label4j_std_MoveAfterMake.setBounds(6, 422, 159, 22);
+			jDesktopPane1.add(label4j_std_MoveAfterMake);
+			textField4jMoveAfterMake.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					jButtonSave.setEnabled(true);
+				}
+			});
+
+			textField4jMoveAfterMake.setBounds(199, 422, 125, 22);
+			jDesktopPane1.add(textField4jMoveAfterMake);
+
+			button4jLocationLookup.setIcon(Common.icon_lookup_16x16);
+			button4jLocationLookup.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					jButtonSave.setEnabled(true);
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.locations())
 					{
+						textField4jMoveAfterMake.setText(JLaunchLookup.dlgResult);
 						jButtonSave.setEnabled(true);
 					}
-				});
-
-				checkBoxValidateScanEach.setBackground(Color.WHITE);
-				checkBoxValidateScanEach.setBounds(449, 387, 21, 22);
-				jDesktopPane1.add(checkBoxValidateScanEach);
-				checkBoxValidateScanEach.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						jButtonSave.setEnabled(true);
-					}
-				});
-
-				checkBoxOverridePalletLabel.setBackground(Color.WHITE);
-				checkBoxOverridePalletLabel.setBounds(172, 484, 21, 22);
-				jDesktopPane1.add(checkBoxOverridePalletLabel);
-
-				JLabel4j_std label4j_stdPackModule = new JLabel4j_std();
-				label4j_stdPackModule.setText(lang.get("lbl_Override_Pack_Label"));
-				label4j_stdPackModule.setHorizontalTextPosition(SwingConstants.RIGHT);
-				label4j_stdPackModule.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_stdPackModule.setBounds(6, 451, 159, 22);
-				jDesktopPane1.add(label4j_stdPackModule);
-
-				JLabel4j_std label4j_stdPalletModule = new JLabel4j_std();
-				label4j_stdPalletModule.setText(lang.get("lbl_Override_Pallet_Label"));
-				label4j_stdPalletModule.setHorizontalTextPosition(SwingConstants.RIGHT);
-				label4j_stdPalletModule.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_stdPalletModule.setBounds(7, 484, 159, 22);
-				jDesktopPane1.add(label4j_stdPalletModule);
-
-				ComboBoxModel<JDBListData> jComboBox1Model = new DefaultComboBoxModel<JDBListData>(moduleList);
-				comboBoxPackModuleID.setModel(jComboBox1Model);
-				comboBoxPackModuleID.setEnabled(false);
-				comboBoxPackModuleID.setBounds(199, 451, 208, 22);
-				comboBoxPackModuleID.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent evt)
-					{
-						jButtonSave.setEnabled(true);
-					}
-				});
-
-				jDesktopPane1.add(comboBoxPackModuleID);
-
-				ComboBoxModel<JDBListData> jComboBox2Model = new DefaultComboBoxModel<JDBListData>(moduleList);
-				comboBoxPalletModuleID.setModel(jComboBox2Model);
-				comboBoxPalletModuleID.setEnabled(false);
-				comboBoxPalletModuleID.setBounds(199, 484, 208, 22);
-				comboBoxPalletModuleID.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent evt)
-					{
-						jButtonSave.setEnabled(true);
-					}
-				});
-				jDesktopPane1.add(comboBoxPalletModuleID);
-
-				jButtonCustomerData.setText(lang.get("btn_Material_Customer_Data"));
-				jButtonCustomerData.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA"));
-				jButtonCustomerData.setBounds(453, 160, 178, 32);
-				jButtonCustomerData.setIcon(Common.icon_customer_16x16);
-				jDesktopPane1.add(jButtonCustomerData);
-				jButtonCustomerData.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_CUST_DATA", lmaterial);
-					}
-				});
-
-				JButton4j button4jDataIDs = new JButton4j(Common.icon_material_16x16);
-				button4jDataIDs.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						JLaunchMenu.runForm("FRM_ADMIN_DATA_IDS");
-					}
-				});
-				button4jDataIDs.setText(lang.get("mod_FRM_ADMIN_DATA_IDS"));
-				button4jDataIDs.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DATA_IDS"));
-				button4jDataIDs.setBounds(453, 190, 178, 32);
-				jDesktopPane1.add(button4jDataIDs);
-
-				{
-					lblEquipment = new JLabel4j_std();
-					lblEquipment.setText(lang.get("lbl_Material_Equipment_Type"));
-					lblEquipment.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblEquipment.setBounds(6, 362, 159, 22);
-					jDesktopPane1.add(lblEquipment);
 				}
-				{
-					lblInspectionID = new JLabel4j_std();
-					lblInspectionID.setText(lang.get("lbl_Inspection_ID"));
-					lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblInspectionID.setBounds(6, 391, 159, 22);
-					jDesktopPane1.add(lblInspectionID);
-				}
-				{
-					lblValidateScanPallet = new JLabel4j_std();
-					lblValidateScanPallet.setText(lang.get("lbl_Validate_Pallet_GTIN"));
-					lblValidateScanPallet.setBounds(472, 328, 159, 22);
-					jDesktopPane1.add(lblValidateScanPallet);
-				}
-				{
-					lblValidateScanCase = new JLabel4j_std();
-					lblValidateScanCase.setText(lang.get("lbl_Validate_Case_GTIN"));
-					lblValidateScanCase.setBounds(472, 358, 159, 22);
-					jDesktopPane1.add(lblValidateScanCase);
-				}
-				{
-					lblValidateScanEach = new JLabel4j_std();
-					lblValidateScanEach.setText(lang.get("lbl_Validate_Each_GTIN"));
-					lblValidateScanEach.setBounds(472, 387, 159, 22);
-					jDesktopPane1.add(lblValidateScanEach);
-				}
-				{
-					jTextFieldEquipmentType = new JTextField4j(JDBMaterial.field_equipment_type);
-					jTextFieldEquipmentType.addKeyListener(new KeyAdapter()
-					{
-						@Override
-						public void keyTyped(KeyEvent e)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-					jTextFieldEquipmentType.setBounds(172, 362, 125, 22);
-					jDesktopPane1.add(jTextFieldEquipmentType);
-				}
+			});
 
-				{
-					JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupEquipment.setBounds(296, 362, 21, 22);
-					jButtonLookupEquipment.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = true;
-							JLaunchLookup.dlgCriteriaDefault = "Y";
-							if (JLaunchLookup.equipmentType())
-							{
-								jTextFieldEquipmentType.setText(JLaunchLookup.dlgResult);
-								jButtonSave.setEnabled(true);
-							}
-						}
-					});
-					jDesktopPane1.add(jButtonLookupEquipment);
-				}
+			button4jLocationLookup.setBounds(323, 422, 21, 22);
+			jDesktopPane1.add(button4jLocationLookup);
 
-				{
-					jTextFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
-					jTextFieldInspectionID.addKeyListener(new KeyAdapter()
-					{
-						@Override
-						public void keyTyped(KeyEvent e)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-					jTextFieldInspectionID.setBounds(172, 391, 125, 22);
-					jDesktopPane1.add(jTextFieldInspectionID);
-				}
-
-				JLabel4j_std label4j_Enabled = new JLabel4j_std();
-				label4j_Enabled.setText(lang.get("lbl_Enabled"));
-				label4j_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_Enabled.setBounds(364, 9, 84, 22);
-				jDesktopPane1.add(label4j_Enabled);
-				checkBox4j_Enabled.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						jButtonSave.setEnabled(true);
-					}
-				});
-
-				checkBox4j_Enabled.setSelected(true);
-				checkBox4j_Enabled.setBackground(Color.WHITE);
-				checkBox4j_Enabled.setBounds(453, 10, 21, 21);
-				jDesktopPane1.add(checkBox4j_Enabled);
-				checkBox4jMoveAfterMake.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						jButtonSave.setEnabled(true);
-					}
-				});
-
-				checkBox4jMoveAfterMake.setBackground(Color.WHITE);
-				checkBox4jMoveAfterMake.setBounds(172, 422, 21, 22);
-				jDesktopPane1.add(checkBox4jMoveAfterMake);
-
-				JLabel4j_std label4j_std_MoveAfterMake = new JLabel4j_std();
-				label4j_std_MoveAfterMake.setText(lang.get("lbl_Move_after_Make"));
-				label4j_std_MoveAfterMake.setHorizontalTextPosition(SwingConstants.RIGHT);
-				label4j_std_MoveAfterMake.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std_MoveAfterMake.setBounds(6, 422, 159, 22);
-				jDesktopPane1.add(label4j_std_MoveAfterMake);
-				textField4jMoveAfterMake.addKeyListener(new KeyAdapter()
-				{
-					@Override
-					public void keyTyped(KeyEvent e)
-					{
-						jButtonSave.setEnabled(true);
-					}
-				});
-
-				textField4jMoveAfterMake.setBounds(199, 422, 125, 22);
-				jDesktopPane1.add(textField4jMoveAfterMake);
-
-				button4jLocationLookup.setIcon(Common.icon_lookup_16x16);
-				button4jLocationLookup.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						jButtonSave.setEnabled(true);
-						JLaunchLookup.dlgAutoExec = true;
-						if (JLaunchLookup.locations())
-						{
-							textField4jMoveAfterMake.setText(JLaunchLookup.dlgResult);
-						}
-					}
-				});
-
-				button4jLocationLookup.setBounds(323, 422, 21, 22);
-				jDesktopPane1.add(button4jLocationLookup);
-
-				{
-					JButton4j btnLookupInspection = new JButton4j("");
-					btnLookupInspection.setIcon(Common.icon_lookup_16x16);
-					btnLookupInspection.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.qmInspections())
-							{
-								jTextFieldInspectionID.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-					btnLookupInspection.setBounds(296, 391, 21, 22);
-					jDesktopPane1.add(btnLookupInspection);
-				}
-
-				textField4j_Product_Group.setEnabled(false);
-				textField4j_Product_Group.setEditable(false);
-				textField4j_Product_Group.setBounds(172, 513, 217, 22);
-				jDesktopPane1.add(textField4j_Product_Group);
-
-				JLabel4j_std label4j_Product_Group = new JLabel4j_std();
-				label4j_Product_Group.setText(lang.get("lbl_Product_Group"));
-				label4j_Product_Group.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_Product_Group.setBounds(7, 513, 159, 22);
-				jDesktopPane1.add(label4j_Product_Group);
-
-				textField4j_Container_Code.setEnabled(false);
-				textField4j_Container_Code.setEditable(false);
-				textField4j_Container_Code.setBounds(172, 542, 109, 22);
-				jDesktopPane1.add(textField4j_Container_Code);
-
-				JLabel4j_std label4j_Container_Code = new JLabel4j_std();
-				label4j_Container_Code.setText(lang.get("lbl_Container_Code"));
-				label4j_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_Container_Code.setBounds(7, 542, 159, 22);
-				jDesktopPane1.add(label4j_Container_Code);
-
-				JButton4j button4j_LookupProductGroup = new JButton4j(Common.icon_lookup_16x16);
-				button4j_LookupProductGroup.addActionListener(new ActionListener()
+			{
+				JButton4j btnLookupInspection = new JButton4j("");
+				btnLookupInspection.setIcon(Common.icon_lookup_16x16);
+				btnLookupInspection.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
 					{
 						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "";
-						if (JLaunchLookup.wtProductGroups())
+						if (JLaunchLookup.qmInspections())
 						{
-							if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult) == false)
-							{
-								textField4j_Product_Group.setText(JLaunchLookup.dlgResult);
-								matCustData.setMaterial(lmaterial);
-								matCustData.setCustomerID("SELF");
-								matCustData.setDataID("PRODUCT_GROUP");
-								;
-								matCustData.setData(JLaunchLookup.dlgResult);
-								if (matCustData.isValidMaterialCustomerData() == false)
-								{
-									matCustData.create();
-								}
-								matCustData.update();
-							}
+							jTextFieldInspectionID.setText(JLaunchLookup.dlgResult);
+							jButtonSave.setEnabled(true);
 						}
 					}
 				});
-				button4j_LookupProductGroup.setBounds(389, 513, 21, 22);
-				jDesktopPane1.add(button4j_LookupProductGroup);
+				btnLookupInspection.setBounds(296, 391, 21, 22);
+				jDesktopPane1.add(btnLookupInspection);
+			}
 
-				JButton4j button4j_LookupContainerCode = new JButton4j(Common.icon_lookup_16x16);
-				button4j_LookupContainerCode.addActionListener(new ActionListener()
+			textField4j_Product_Group.setEnabled(false);
+			textField4j_Product_Group.setEditable(false);
+			textField4j_Product_Group.setBounds(172, 513, 217, 22);
+			jDesktopPane1.add(textField4j_Product_Group);
+
+			JLabel4j_std label4j_Product_Group = new JLabel4j_std();
+			label4j_Product_Group.setText(lang.get("lbl_Product_Group"));
+			label4j_Product_Group.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_Product_Group.setBounds(7, 513, 159, 22);
+			jDesktopPane1.add(label4j_Product_Group);
+
+			textField4j_Container_Code.setEnabled(false);
+			textField4j_Container_Code.setEditable(false);
+			textField4j_Container_Code.setBounds(172, 542, 109, 22);
+			jDesktopPane1.add(textField4j_Container_Code);
+
+			JLabel4j_std label4j_Container_Code = new JLabel4j_std();
+			label4j_Container_Code.setText(lang.get("lbl_Container_Code"));
+			label4j_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_Container_Code.setBounds(7, 542, 159, 22);
+			jDesktopPane1.add(label4j_Container_Code);
+
+			JButton4j button4j_LookupProductGroup = new JButton4j(Common.icon_lookup_16x16);
+			button4j_LookupProductGroup.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
 				{
-					public void actionPerformed(ActionEvent e)
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.wtProductGroups())
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "";
-						if (JLaunchLookup.wtContainerCode())
+						if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult) == false)
 						{
-							if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult) == false)
-							{
-								textField4j_Container_Code.setText(JLaunchLookup.dlgResult);
-								matCustData.setMaterial(lmaterial);
-								matCustData.setCustomerID("SELF");
-								matCustData.setDataID("CONTAINER_CODE");
-								;
-								matCustData.setData(JLaunchLookup.dlgResult);
-								if (matCustData.isValidMaterialCustomerData() == false)
-								{
-									matCustData.create();
-								}
-								matCustData.update();
-							}
-						}
-					}
-				});
-				button4j_LookupContainerCode.setBounds(281, 542, 21, 22);
-				jDesktopPane1.add(button4j_LookupContainerCode);
-				jButtonRemoveProductGroup.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						if (textField4j_Product_Group.getText().equals("") == false)
-						{
-							textField4j_Product_Group.setText("");
+							textField4j_Product_Group.setText(JLaunchLookup.dlgResult);
 							matCustData.setMaterial(lmaterial);
 							matCustData.setCustomerID("SELF");
 							matCustData.setDataID("PRODUCT_GROUP");
 							;
-							matCustData.delete();
-							;
+							matCustData.setData(JLaunchLookup.dlgResult);
+							if (matCustData.isValidMaterialCustomerData() == false)
+							{
+								matCustData.create();
+							}
+							matCustData.update();
 						}
 					}
-				});
+				}
+			});
+			button4j_LookupProductGroup.setBounds(389, 513, 21, 22);
+			jDesktopPane1.add(button4j_LookupProductGroup);
 
-				jButtonRemoveProductGroup.setBounds(411, 513, 21, 22);
-				jDesktopPane1.add(jButtonRemoveProductGroup);
-				jButtonRemoveContainerCode.addActionListener(new ActionListener()
+			JButton4j button4j_LookupContainerCode = new JButton4j(Common.icon_lookup_16x16);
+			button4j_LookupContainerCode.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
 				{
-					public void actionPerformed(ActionEvent e)
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.wtContainerCode())
 					{
-						if (textField4j_Container_Code.getText().equals("") == false)
+						if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult) == false)
 						{
-							textField4j_Container_Code.setText("");
+							textField4j_Container_Code.setText(JLaunchLookup.dlgResult);
 							matCustData.setMaterial(lmaterial);
 							matCustData.setCustomerID("SELF");
 							matCustData.setDataID("CONTAINER_CODE");
 							;
-							matCustData.delete();
+							matCustData.setData(JLaunchLookup.dlgResult);
+							if (matCustData.isValidMaterialCustomerData() == false)
+							{
+								matCustData.create();
+							}
+							matCustData.update();
 						}
 					}
-				});
+				}
+			});
+			button4j_LookupContainerCode.setBounds(281, 542, 21, 22);
+			jDesktopPane1.add(button4j_LookupContainerCode);
+			jButtonRemoveProductGroup.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (textField4j_Product_Group.getText().equals("") == false)
+					{
+						textField4j_Product_Group.setText("");
+						matCustData.setMaterial(lmaterial);
+						matCustData.setCustomerID("SELF");
+						matCustData.setDataID("PRODUCT_GROUP");
+						;
+						matCustData.delete();
+						;
+					}
+				}
+			});
 
-				jButtonRemoveContainerCode.setBounds(302, 542, 21, 22);
-				jDesktopPane1.add(jButtonRemoveContainerCode);
+			jButtonRemoveProductGroup.setBounds(411, 513, 21, 22);
+			jDesktopPane1.add(jButtonRemoveProductGroup);
+			jButtonRemoveContainerCode.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (textField4j_Container_Code.getText().equals("") == false)
+					{
+						textField4j_Container_Code.setText("");
+						matCustData.setMaterial(lmaterial);
+						matCustData.setCustomerID("SELF");
+						matCustData.setDataID("CONTAINER_CODE");
+						;
+						matCustData.delete();
+					}
+				}
+			});
 
-				jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-				jStatusText.setForeground(new java.awt.Color(255, 0, 0));
-				jStatusText.setBounds(0, 575, 660, 21);
-				jDesktopPane1.add(jStatusText);
+			jButtonRemoveContainerCode.setBounds(302, 542, 21, 22);
+			jDesktopPane1.add(jButtonRemoveContainerCode);
 
-				jButtonSave.setEnabled(false);
-			}
+			jStatusText.setBounds(5, 575, 650, 21);
+			jDesktopPane1.add(jStatusText);
+
+			jButtonSave.setEnabled(false);
+
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-		}
-	}
-
-	private void setButtonStates()
-	{
-		jButtonSave.setEnabled(true);
-		if (checkBoxOverridePackLabel.isSelected())
-		{
-			comboBoxPackModuleID.setEnabled(true);
-		}
-		else
-		{
-			comboBoxPackModuleID.setEnabled(false);
-		}
-
-		if (checkBoxOverridePalletLabel.isSelected())
-		{
-			comboBoxPalletModuleID.setEnabled(true);
-		}
-		else
-		{
-			comboBoxPalletModuleID.setEnabled(false);
 		}
 	}
 
@@ -1315,6 +1103,137 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		{
 			jButtonSave.setEnabled(false);
 		}
+
+	}
+
+	private void setButtonStates()
+	{
+		jButtonSave.setEnabled(true);
+		if (checkBoxOverridePackLabel.isSelected())
+		{
+			comboBoxPackModuleID.setEnabled(true);
+		}
+		else
+		{
+			comboBoxPackModuleID.setEnabled(false);
+		}
+
+		if (checkBoxOverridePalletLabel.isSelected())
+		{
+			comboBoxPalletModuleID.setEnabled(true);
+		}
+		else
+		{
+			comboBoxPalletModuleID.setEnabled(false);
+		}
+	}
+
+	public void setMaterialID(String mat)
+	{
+
+		if (jButtonSave.isEnabled())
+		{
+
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Material [" + lmaterial + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+			if (question == 0)
+			{
+				save();
+			}
+		}
+
+		lmaterial = mat;
+		jTextFieldMaterial.setText(lmaterial);
+		setTitle("Material [" + lmaterial + "]");
+
+		material.setMaterial(lmaterial);
+
+		if (material.isValidMaterial())
+		{
+			material.getMaterialProperties(lmaterial);
+
+			materialtype.setType(material.getMaterialType());
+			materialtype.getMaterialTypeProperties();
+
+			baseuom.setInternalUom(material.getBaseUom());
+			baseuom.getInternalUomProperties();
+
+			weightuom.setInternalUom(material.getWeightUom());
+			weightuom.getInternalUomProperties();
+
+			sluom.getShelfLifeUomProperties(material.getShelfLifeUom());
+			slrr.getShelfLifeRuleProperties(material.getShelfLifeRule());
+
+			jTextFieldDescription.setText(material.getDescription());
+
+			jTextFieldEquipmentType.setText(material.getEquipmentType());
+
+			jTextFieldInspectionID.setText(material.getInspectionID());
+
+			jSpinnerShelfLife.setValue((Number) material.getShelfLife());
+
+			jSpinnerGrossWeight.setValue((BigDecimal) material.getGrossWeight());
+			jSpinnerNetWeight.setValue((BigDecimal) material.getNetWeight());
+
+			jTextFieldLegacyCode.setText(material.getOldMaterial());
+
+			jComboBoxDefaultBatchStatus.setSelectedItem(material.getDefaultBatchStatus());
+
+			checkBoxOverridePackLabel.setSelected(material.isOverridePackLabel());
+			checkBoxOverridePalletLabel.setSelected(material.isOverridePalletLabel());
+
+			checkBoxValidateScanPallet.setSelected(material.isValidateScanPallet());
+			checkBoxValidateScanCase.setSelected(material.isValidateScanCase());
+			checkBoxValidateScanEach.setSelected(material.isValidateScanEach());
+
+			checkBox4j_Enabled.setSelected(material.isEnabled());
+
+			checkBox4jMoveAfterMake.setSelected(material.isMoveAfterMakeEnabled());
+			textField4jMoveAfterMake.setText(material.getMoveAfterMakeLocationID());
+
+			comboBoxPackModuleID.setSelectedIndex(-1);
+			comboBoxPalletModuleID.setSelectedIndex(-1);
+			for (int x = 1; x < moduleList.size(); x++)
+			{
+				if (moduleList.get(x).getmData().equals(material.getPackLabelModuleID()))
+				{
+					comboBoxPackModuleID.setSelectedIndex(x);
+				}
+				if (moduleList.get(x).getmData().equals(material.getPalletLabelModuleID()))
+				{
+					comboBoxPalletModuleID.setSelectedIndex(x);
+				}
+			}
+
+			matCustData.setMaterial(lmaterial);
+			matCustData.setCustomerID("SELF");
+			matCustData.setDataID("PRODUCT_GROUP");
+
+			if (matCustData.getMaterialCustomerDataProperties())
+			{
+				textField4j_Product_Group.setText(matCustData.getData());
+			}
+
+			matCustData.setDataID("CONTAINER_CODE");
+			;
+
+			if (matCustData.getMaterialCustomerDataProperties())
+			{
+				textField4j_Container_Code.setText(matCustData.getData());
+			}
+
+			setButtonStates();
+
+		}
+
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				jTextFieldDescription.requestFocus();
+				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
+				jButtonSave.setEnabled(false);
+			}
+		});
 
 	}
 }

@@ -18,13 +18,13 @@ import java.awt.event.FocusEvent;
 public class JTextField4j extends JTextField {
 
     private static final long serialVersionUID = 1L;
-    private final Color overflowForeground = Color.RED;
+
     private JFixedSizeFilter tsf;
     private int characterLimit = -1; // -1 means "no limit"
     private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
     private boolean hasFocus = false;
 
-    
+
 	private void init()
 	{
         setDisabledTextColor(Common.color_textfield_foreground_disabled);
@@ -38,7 +38,7 @@ public class JTextField4j extends JTextField {
         initFocusBehavior();
         updateColors();
     }
-    
+
 	public JTextField4j(String text) {
 		super(text);
 		init();
@@ -59,12 +59,12 @@ public class JTextField4j extends JTextField {
     {
     	((AbstractDocument) getDocument()).setDocumentFilter(docfilter);
     }
-        
+
     public void resetCaseFilter()
     {
     	((AbstractDocument) getDocument()).setDocumentFilter(null);
     }
-    
+
     private void initFocusBehavior() {
         addFocusListener(new FocusAdapter() {
             @Override
@@ -105,13 +105,13 @@ public class JTextField4j extends JTextField {
 
                 private void updateTextColor() {
                     if (getText().length() >= characterLimit) {
-                        setForeground(overflowForeground);
+                        setForeground(Common.color_textfield_max_input_size_color);
                     } else {
                         updateColors();
                     }
                 }
             });
-    
+
     		tsf = new JFixedSizeFilter(characterLimit);
     	    ((AbstractDocument) getDocument()).setDocumentFilter(tsf);
         }
@@ -125,7 +125,7 @@ public class JTextField4j extends JTextField {
             this.characterLimit = limit;
         }
     }
-    
+
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
@@ -137,7 +137,7 @@ public class JTextField4j extends JTextField {
         super.setEditable(editable);
         updateColors();
     }
-    
+
     @Override
     public void updateUI() {
         super.updateUI();
@@ -158,10 +158,10 @@ public class JTextField4j extends JTextField {
         } else
         {
             setBackground(Common.color_textfield_background_nofocus_color);
-            setForeground(Common.color_textfield_forground_nofocus_color);	
+            setForeground(Common.color_textfield_foreground_nofocus_color);
         }
-        
+
     }
-    
+
 }
 

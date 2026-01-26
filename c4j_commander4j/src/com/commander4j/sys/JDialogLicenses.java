@@ -9,7 +9,7 @@ import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 import javax.swing.border.EmptyBorder;
 
 import com.commander4j.db.JDBLanguage;
@@ -17,9 +17,10 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.gui.JList4j;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.util.JUtility;
 
-import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 
 import java.awt.event.ActionListener;
@@ -33,10 +34,10 @@ import java.awt.event.MouseEvent;
 public class JDialogLicenses extends JDialog
 {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPanel = new JPanel();
-	JList4j<JLicenseInfo> list = new JList4j<JLicenseInfo>();
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JList4j<JLicenseInfo> list = new JList4j<JLicenseInfo>();
+	private JPanel4j contentPanel = new JPanel4j();
+	private static final long serialVersionUID = 1L;
 
 	public JDialogLicenses(JFrame frame)
 	{
@@ -50,7 +51,7 @@ public class JDialogLicenses extends JDialog
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane4j scrollPane = new JScrollPane4j(JScrollPane4j.List);
 		scrollPane.setBounds(6, 24, 755, 492);
 		contentPanel.add(scrollPane);
 		list.addMouseListener(new MouseAdapter()
@@ -67,7 +68,7 @@ public class JDialogLicenses extends JDialog
 						JDialogDisplayLicense dialog = new JDialogDisplayLicense(me, iii);
 						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 						dialog.setVisible(true);
-					
+
 					}
 
 				}
@@ -77,7 +78,7 @@ public class JDialogLicenses extends JDialog
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 
-		JPanel buttonPane = new JPanel();
+		JPanel4j buttonPane = new JPanel4j();
 		buttonPane.setBounds(6, 520, 755, 39);
 		contentPanel.add(buttonPane);
 		buttonPane.setLayout(null);

@@ -2,29 +2,29 @@ package com.commander4j.sys;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameRFMenu.java
- * 
+ *
  * Package Name : com.commander4j.sys
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -36,8 +36,7 @@ import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
-import javax.swing.JScrollPane;
+
 import javax.swing.ListModel;
 import javax.swing.border.BevelBorder;
 
@@ -47,7 +46,9 @@ import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBModuleJList;
 import com.commander4j.db.JDBRFMenu;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JLabel4j_title;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
@@ -58,32 +59,32 @@ import com.commander4j.util.JUtility;
  *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameRFMenu.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBRFMenu JDBRFMenu
  */
 public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 {
-	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
-	private JScrollPane jScrollPaneUnAssigned;
+	private DefaultComboBoxModel<JDBListData> assignedModel = new DefaultComboBoxModel<JDBListData>();
+	private DefaultComboBoxModel<JDBListData> unassignedModel = new DefaultComboBoxModel<JDBListData>();
 	private JButton4j jButtonAssign;
 	private JButton4j jButtonClose;
-	private JButton4j jButtonUndo;
-	private JDBModuleJList jListUnAssigned;
-	private JDBModuleJList jListAssigned;
-	private JButton4j jButtonSave;
-	private JButton4j jButtonHelp;
 	private JButton4j jButtonDown;
-	private JButton4j jButtonUp;
+	private JButton4j jButtonHelp;
+	private JButton4j jButtonSave;
 	private JButton4j jButtonUnAssign;
-	private JScrollPane jScrollPaneAssigned;
-	private DefaultComboBoxModel<JDBListData> unassignedModel = new DefaultComboBoxModel<JDBListData>();
-	private LinkedList<JDBListData> unassignedList = new LinkedList<JDBListData>();
-	private DefaultComboBoxModel<JDBListData> assignedModel = new DefaultComboBoxModel<JDBListData>();
-	private LinkedList<JDBListData> assignedList = new LinkedList<JDBListData>();
-	private JLabel4j_title jLabel2;
-	private JLabel4j_title jLabel1;
+	private JButton4j jButtonUndo;
+	private JButton4j jButtonUp;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBModuleJList jListAssigned;
+	private JDBModuleJList jListUnAssigned;
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_title jLabel_Assigned;
+	private JLabel4j_title jLabel_UnAssigned;
+	private JScrollPane4j jScrollPaneAssigned;
+	private JScrollPane4j jScrollPaneUnAssigned;
+	private LinkedList<JDBListData> assignedList = new LinkedList<JDBListData>();
+	private LinkedList<JDBListData> unassignedList = new LinkedList<JDBListData>();
+	private static final long serialVersionUID = 1;
 
 	public JInternalFrameRFMenu()
 	{
@@ -164,7 +165,8 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 			}
 			jButtonUp.setEnabled(true);
 			jButtonDown.setEnabled(true);
-		} else
+		}
+		else
 		{
 			jButtonUp.setEnabled(false);
 			jButtonDown.setEnabled(false);
@@ -201,232 +203,219 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(538, 440));
-			this.setBounds(0, 0, 526, 546);
+			this.setBounds(0, 0, 492, 546);
 			setVisible(true);
 
 			this.setClosable(true);
 			this.setIconifiable(true);
+
+			jDesktopPane1 = new JDesktopPane4j();
+
+			this.getContentPane().add(jDesktopPane1, BorderLayout.NORTH);
+			jDesktopPane1.setPreferredSize(new Dimension(536, 515));
+
+			jScrollPaneAssigned = new JScrollPane4j(JScrollPane4j.Assigned);
+			jDesktopPane1.add(jScrollPaneAssigned);
+			jScrollPaneAssigned.setBounds(0, 23, 220, 431);
+			jScrollPaneAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
+
+			ListModel<JDBListData> jListAssignedModel = new DefaultComboBoxModel<JDBListData>();
+			jListAssigned = new JDBModuleJList(Common.selectedHostID, Common.sessionID);
+			jScrollPaneAssigned.setViewportView(jListAssigned);
+
+			jListAssigned.setBackground(Common.color_list_background_assigned);
+			jListAssigned.setCellRenderer(Common.renderer_list_assigned);
+			jListAssigned.setModel(jListAssignedModel);
+
+			jScrollPaneUnAssigned = new JScrollPane4j(JScrollPane4j.UnAssigned);
+			jDesktopPane1.add(jScrollPaneUnAssigned);
+			jScrollPaneUnAssigned.setBounds(261, 23, 220, 431);
+			jScrollPaneUnAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
+
+			ListModel<JDBListData> jListUnAssignedModel = new DefaultComboBoxModel<JDBListData>();
+			jListUnAssigned = new JDBModuleJList(Common.selectedHostID, Common.sessionID);
+			jScrollPaneUnAssigned.setViewportView(jListUnAssigned);
+			jListUnAssigned.setBackground(Common.color_list_background_unassigned);
+			jListUnAssigned.setCellRenderer(Common.renderer_list_unassigned);
+			jListUnAssigned.setModel(jListUnAssignedModel);
+
+			jButtonAssign = new JButton4j(Common.icon_arrow_left_16x16);
+			jDesktopPane1.add(jButtonAssign);
+			jButtonAssign.setBounds(227, 133, 25, 25);
+			jButtonAssign.addActionListener(new ActionListener()
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
-				this.getContentPane().add(jDesktopPane1, BorderLayout.NORTH);
-				jDesktopPane1.setPreferredSize(new Dimension(536, 515));
+				public void actionPerformed(ActionEvent evt)
 				{
-					jScrollPaneAssigned = new JScrollPane();
-					jDesktopPane1.add(jScrollPaneAssigned);
-					jScrollPaneAssigned.setBounds(10, 25, 220, 431);
-					jScrollPaneAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
+					if (jListUnAssigned.getSelectedIndex() > -1)
 					{
-						ListModel<JDBListData> jListAssignedModel = new DefaultComboBoxModel<JDBListData>();
-						jListAssigned = new JDBModuleJList(Common.selectedHostID, Common.sessionID);
-						jScrollPaneAssigned.setViewportView(jListAssigned);
-
-						jListAssigned.setBackground(Common.color_list_assigned);
-						jListAssigned.setCellRenderer(Common.renderer_list_assigned);
-						jListAssigned.setModel(jListAssignedModel);
-					}
-				}
-				{
-					jScrollPaneUnAssigned = new JScrollPane();
-					jDesktopPane1.add(jScrollPaneUnAssigned);
-					jScrollPaneUnAssigned.setBounds(272, 25, 220, 431);
-					jScrollPaneUnAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
-					{
-						ListModel<JDBListData> jListUnAssignedModel = new DefaultComboBoxModel<JDBListData>();
-						jListUnAssigned = new JDBModuleJList(Common.selectedHostID, Common.sessionID);
-						jScrollPaneUnAssigned.setViewportView(jListUnAssigned);
-						jListUnAssigned.setBackground(Common.color_list_unassigned);
-						jListUnAssigned.setCellRenderer(Common.renderer_list_unassigned);
-						jListUnAssigned.setModel(jListUnAssignedModel);
-					}
-				}
-				{
-					jButtonAssign = new JButton4j(Common.icon_arrow_left_16x16);
-					jDesktopPane1.add(jButtonAssign);
-					jButtonAssign.setBounds(238, 133, 25, 25);
-					jButtonAssign.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
+						for (int j = jListUnAssigned.getMaxSelectionIndex(); j >= jListUnAssigned.getMinSelectionIndex(); j--)
 						{
-							if (jListUnAssigned.getSelectedIndex() > -1)
+							if (jListUnAssigned.isSelectedIndex(j))
 							{
-								for (int j = jListUnAssigned.getMaxSelectionIndex(); j >= jListUnAssigned.getMinSelectionIndex(); j--)
-								{
-									if (jListUnAssigned.isSelectedIndex(j))
-									{
-										JDBListData item = (JDBListData) jListUnAssigned.getModel().getElementAt(j);
+								JDBListData item = (JDBListData) jListUnAssigned.getModel().getElementAt(j);
 
-										addToList(assignedList, item, false);
-									}
-								}
-
-								for (int j = jListUnAssigned.getMaxSelectionIndex(); j >= jListUnAssigned.getMinSelectionIndex(); j--)
-								{
-									if (jListUnAssigned.isSelectedIndex(j))
-									{
-										Object item = jListUnAssigned.getModel().getElementAt(j);
-
-										removeFromList(unassignedList, item);
-									}
-								}
-
-								refreshJList(jListAssigned, assignedModel, assignedList);
-								refreshJList(jListUnAssigned, unassignedModel, unassignedList);
-
-								setButtonState();
-
+								addToList(assignedList, item, false);
 							}
-
 						}
-					});
-				}
-				{
-					jButtonUnAssign = new JButton4j(Common.icon_arrow_right_16x16);
-					jDesktopPane1.add(jButtonUnAssign);
-					jButtonUnAssign.setBounds(238, 168, 25, 25);
-					jButtonUnAssign.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
+
+						for (int j = jListUnAssigned.getMaxSelectionIndex(); j >= jListUnAssigned.getMinSelectionIndex(); j--)
 						{
-							if (jListAssigned.getSelectedIndex() > -1)
+							if (jListUnAssigned.isSelectedIndex(j))
 							{
-								for (int j = jListAssigned.getMaxSelectionIndex(); j >= jListAssigned.getMinSelectionIndex(); j--)
-								{
-									if (jListAssigned.isSelectedIndex(j))
-									{
-										JDBListData item = (JDBListData) jListAssigned.getModel().getElementAt(j);
+								Object item = jListUnAssigned.getModel().getElementAt(j);
 
-										addToList(unassignedList, item, true);
-									}
-								}
-
-								for (int j = jListAssigned.getMaxSelectionIndex(); j >= jListAssigned.getMinSelectionIndex(); j--)
-								{
-									if (jListAssigned.isSelectedIndex(j))
-									{
-										Object item = jListAssigned.getModel().getElementAt(j);
-
-										removeFromList(assignedList, item);
-									}
-								}
-								refreshJList(jListUnAssigned, unassignedModel, unassignedList);
-								refreshJList(jListAssigned, assignedModel, assignedList);
-
-								setButtonState();
+								removeFromList(unassignedList, item);
 							}
+						}
 
-						}
-					});
+						refreshJList(jListAssigned, assignedModel, assignedList);
+						refreshJList(jListUnAssigned, unassignedModel, unassignedList);
+
+						setButtonState();
+
+					}
+
 				}
+			});
+
+			jButtonUnAssign = new JButton4j(Common.icon_arrow_right_16x16);
+			jDesktopPane1.add(jButtonUnAssign);
+			jButtonUnAssign.setBounds(227, 168, 25, 25);
+			jButtonUnAssign.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jButtonUp = new JButton4j(Common.icon_arrow_up_16x16);
-					jDesktopPane1.add(jButtonUp);
-					jButtonUp.setBounds(238, 100, 25, 25);
-					jButtonUp.addActionListener(new ActionListener()
+					if (jListAssigned.getSelectedIndex() > -1)
 					{
-						public void actionPerformed(ActionEvent evt)
+						for (int j = jListAssigned.getMaxSelectionIndex(); j >= jListAssigned.getMinSelectionIndex(); j--)
 						{
-							int sel = jListAssigned.getSelectedIndex();
-							JDBListData element = ((JDBListData) jListAssigned.getModel().getElementAt(sel));
-							assignedList = JDBModule.moveElementUp(assignedList, element);
-							refreshJList(jListAssigned, assignedModel, assignedList);
-							jListAssigned.setSelectedIndex(assignedList.indexOf(element));
-							jButtonSave.setEnabled(true);
-							jButtonUndo.setEnabled(true);
+							if (jListAssigned.isSelectedIndex(j))
+							{
+								JDBListData item = (JDBListData) jListAssigned.getModel().getElementAt(j);
+
+								addToList(unassignedList, item, true);
+							}
 						}
-					});
-				}
-				{
-					jButtonDown = new JButton4j(Common.icon_arrow_down_16x16);
-					jDesktopPane1.add(jButtonDown);
-					jButtonDown.setBounds(238, 205, 25, 25);
-					jButtonDown.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
+
+						for (int j = jListAssigned.getMaxSelectionIndex(); j >= jListAssigned.getMinSelectionIndex(); j--)
 						{
-							int j = jListAssigned.getSelectedIndex();
-							JDBListData element = ((JDBListData) jListAssigned.getModel().getElementAt(j));
-							assignedList = JDBModule.moveElementDown(assignedList, element);
-							refreshJList(jListAssigned, assignedModel, assignedList);
-							jListAssigned.setSelectedIndex(assignedList.indexOf(element));
-							jButtonSave.setEnabled(true);
-							jButtonUndo.setEnabled(true);
+							if (jListAssigned.isSelectedIndex(j))
+							{
+								Object item = jListAssigned.getModel().getElementAt(j);
+
+								removeFromList(assignedList, item);
+							}
 						}
-					});
+						refreshJList(jListUnAssigned, unassignedModel, unassignedList);
+						refreshJList(jListAssigned, assignedModel, assignedList);
+
+						setButtonState();
+					}
+
 				}
+			});
+
+			jButtonUp = new JButton4j(Common.icon_arrow_up_16x16);
+			jDesktopPane1.add(jButtonUp);
+			jButtonUp.setBounds(227, 100, 25, 25);
+			jButtonUp.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonClose);
-					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(369, 468, 110, 32);
-					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							dispose();
-						}
-					});
+					int sel = jListAssigned.getSelectedIndex();
+					JDBListData element = ((JDBListData) jListAssigned.getModel().getElementAt(sel));
+					assignedList = JDBModule.moveElementUp(assignedList, element);
+					refreshJList(jListAssigned, assignedModel, assignedList);
+					jListAssigned.setSelectedIndex(assignedList.indexOf(element));
+					jButtonSave.setEnabled(true);
+					jButtonUndo.setEnabled(true);
 				}
+			});
+
+			jButtonDown = new JButton4j(Common.icon_arrow_down_16x16);
+			jDesktopPane1.add(jButtonDown);
+			jButtonDown.setBounds(227, 205, 25, 25);
+			jButtonDown.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jDesktopPane1.add(jButtonHelp);
-					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(258, 468, 110, 32);
-					jButtonHelp.setMnemonic(lang.getMnemonicChar());
+					int j = jListAssigned.getSelectedIndex();
+					JDBListData element = ((JDBListData) jListAssigned.getModel().getElementAt(j));
+					assignedList = JDBModule.moveElementDown(assignedList, element);
+					refreshJList(jListAssigned, assignedModel, assignedList);
+					jListAssigned.setSelectedIndex(assignedList.indexOf(element));
+					jButtonSave.setEnabled(true);
+					jButtonUndo.setEnabled(true);
 				}
+			});
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText(lang.get("btn_Close"));
+			jButtonClose.setBounds(363, 466, 120, 32);
+			jButtonClose.setMnemonic(lang.getMnemonicChar());
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jButtonSave = new JButton4j(Common.icon_update_16x16);
-					jDesktopPane1.add(jButtonSave);
-					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setBounds(30, 468, 112, 32);
+					dispose();
+				}
+			});
+
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setBounds(242, 466, 120, 32);
+			jButtonHelp.setMnemonic(lang.getMnemonicChar());
+
+			jButtonSave = new JButton4j(Common.icon_update_16x16);
+			jDesktopPane1.add(jButtonSave);
+			jButtonSave.setText(lang.get("btn_Save"));
+			jButtonSave.setBounds(0, 466, 120, 32);
+			jButtonSave.setEnabled(false);
+			jButtonSave.setMnemonic(lang.getMnemonicChar());
+			jButtonSave.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JDBRFMenu t = new JDBRFMenu(Common.selectedHostID, Common.sessionID);
+					t.rewriteRFMenu(assignedList);
 					jButtonSave.setEnabled(false);
-					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JDBRFMenu t = new JDBRFMenu(Common.selectedHostID, Common.sessionID);
-							t.rewriteRFMenu(assignedList);
-							jButtonSave.setEnabled(false);
-							jButtonUndo.setEnabled(false);
-						}
-					});
-				}
-				{
-					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
-					jDesktopPane1.add(jButtonUndo);
-					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(145, 468, 112, 32);
 					jButtonUndo.setEnabled(false);
-					jButtonUndo.setMnemonic(lang.getMnemonicChar());
-					jButtonUndo.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							populateAssignedList();
-							populateUnAssignedList();
-							jButtonSave.setEnabled(false);
-							jButtonUndo.setEnabled(false);
-						}
-					});
 				}
+			});
+
+			jButtonUndo = new JButton4j(Common.icon_undo_16x16);
+			jDesktopPane1.add(jButtonUndo);
+			jButtonUndo.setText(lang.get("btn_Undo"));
+			jButtonUndo.setBounds(121, 466, 120, 32);
+			jButtonUndo.setEnabled(false);
+			jButtonUndo.setMnemonic(lang.getMnemonicChar());
+			jButtonUndo.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
 				{
-					jLabel1 = new JLabel4j_title();
-					jDesktopPane1.add(jLabel1);
-					jLabel1.setText(lang.get("lbl_Assigned"));
-					jLabel1.setBounds(10, 5, 208, 22);
-					jLabel1.setFont(Common.font_title);
+					populateAssignedList();
+					populateUnAssignedList();
+					jButtonSave.setEnabled(false);
+					jButtonUndo.setEnabled(false);
 				}
-				{
-					jLabel2 = new JLabel4j_title();
-					jDesktopPane1.add(jLabel2);
-					jLabel2.setText(lang.get("lbl_Unassigned"));
-					jLabel2.setBounds(272, 5, 154, 22);
-					jLabel2.setFont(Common.font_title);
-				}
-			}
-		} catch (Exception e)
+			});
+
+			jLabel_Assigned = new JLabel4j_title();
+			jDesktopPane1.add(jLabel_Assigned);
+			jLabel_Assigned.setText(lang.get("lbl_Assigned"));
+			jLabel_Assigned.setBounds(0, 0, 208, 22);
+			jLabel_Assigned.setFont(Common.font_title);
+
+			jLabel_UnAssigned = new JLabel4j_title();
+			jDesktopPane1.add(jLabel_UnAssigned);
+			jLabel_UnAssigned.setText(lang.get("lbl_Unassigned"));
+			jLabel_UnAssigned.setBounds(261, 0, 154, 22);
+			jLabel_UnAssigned.setFont(Common.font_title);
+
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

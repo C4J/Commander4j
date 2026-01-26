@@ -2,29 +2,29 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFramePackLabelPrint.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -43,18 +43,13 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameAdapter;
@@ -79,10 +74,14 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBoxPODevices4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JPanel4j;
 import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JTitledBorder4j;
 import com.commander4j.print.JPrintDevice;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
@@ -104,7 +103,7 @@ import com.commander4j.util.JUtility;
  * physical labellers.
  * <p>
  * <img alt="" src="./doc-files/JInternalFramePackLabelPrint.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBLabelData JDBLabelData
  * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
  * @see com.commander4j.db.JDBAutoLabellerResources JDBAutoLabellerResources
@@ -113,96 +112,121 @@ import com.commander4j.util.JUtility;
 public class JInternalFramePackLabelPrint extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
-	private JLabel4j_std jLabelPrintLabel_2;
-	private JSpinner4j jSpinnerQuantity;
-	private JLabel4j_std jLabelQuantity_1;
-	private JCheckBox4j jCheckBoxAutoPreview;
-	private JLabel4j_std jLabelPrintLabel_1;
-	private JButton4j jButtonHelp;
-	private JDateControl jSpinnerDueDate;
-	private JLabel4j_std jLabelDueDate;
-	private JTextField4j jTextFieldRecipe;
-	private JLabel4j_std jLabelRecipe;
-	private JTextField4j jTextFieldRecipeVersion;
-	private JTextField4j jTextFieldShelfLifeRoundingRule;
-	private JLabel4j_std jLabelRounding;
-	private JTextField4j jTextFieldProcessOrderDescription;
-	private JLabel4j_std jLabelOrderDescription;
-	private JTextField4j jTextFieldMaterial;
-	private JLabel4j_std jLabelMaterial;
-	private JTextField4j jTextFieldProcessOrder;
-	private JLabel4j_std jLabelProcessOrder;
-	private JTextField4j jTextFieldMaterialDescription;
-	private JLabel4j_std jLabelDescription;
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JInternalFramePackLabelPrint.class);
+	private BigDecimal caseDefaultQuantity;
+	private ClockListener clocklistener = new ClockListener();
+	private JButton4j jButtonAssign;
 	private JButton4j jButtonClose;
-	private JTextField4j jTextFieldRequiredUom;
-	private JTextField4j jTextFieldBaseUom;
-	private JCheckBox4j jCheckBoxBatchPrefixOverride;
-	private JCheckBox4j jCheckBoxExpiryOverride;
+	private JButton4j jButtonHelp;
 	private JButton4j jButtonPOLookup;
-	private JQuantityInput jFormattedTextFieldRequiredUOMQuantity;
-	private JQuantityInput jFormattedTextFieldBaseUOMQuantity;
-	private JLabel4j_std jLabelProductionDate;
-	private JDateControl jSpinnerProductionDate;
-	private JPanel jPanelLabel;
-	private JTextField4j jTextFieldBaseVariant;
-	private JTextField4j jTextFieldRequiredVariant;
-	private JTextField4j jTextFieldRequiredEAN;
-	private JTextField4j jTextFieldBaseEAN;
-	private JLabel4j_std jLabelEAN;
-	private JTextField4j jTextFieldLegacyCode;
-	private JLabel4j_std jLabelLegacyCode;
-	private JTextField4j jTextFieldShelfLifeUOM;
-	private JLabel4j_std jLabel1ShelfLifeUOM;
-	private JCheckBox4j jCheckBoxDOMOverride;
-	private JLabel4j_std jStatusText;
-	private JLabel4j_std jLabelShelfLife;
-	private JTextField4j jTextFieldProcessOrderStatus;
-	private JPanel jPanelMaterial;
-	private JPanel jPanelProcessOrder;
-	private JLabel4j_std jLabelOrderStatus;
-	private JDateControl jSpinnerExpiryDate;
-	private JLabel4j_std jLabelBatchExpiry;
-	private JTextField4j jTextFieldBatchPrefix;
-	private JLabel4j_std jLabelBatch;
-	private JSpinner4j jSpinnerShelfLife;
-	private JTextField4j jTextFieldLocation;
-	private JLabel4j_std jLabelLocation;
 	private JButton4j jButtonPrint;
-	private JDesktopPane jDesktopPane1;
-	private SpinnerNumberModel shelflifenumbermodel = new SpinnerNumberModel();
-	private SpinnerNumberModel quantitynumbermodel = new SpinnerNumberModel();
+	private JCalendarButton calendarButtonjSpinnerExpiryDate;
+	private JCalendarButton calendarButtonjSpinnerProductionDate;
+	private JCheckBox4j checkBoxIncHeaderText;
+	private JCheckBox4j jCheckBoxAutoPreview;
+	private JCheckBox4j jCheckBoxBatchPrefixOverride;
+	private JCheckBox4j jCheckBoxDOMOverride;
+	private JCheckBox4j jCheckBoxExpiryOverride;
+	private JComboBoxPODevices4j comboBoxPrintQueue;
+	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialBatch materialbatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialUom materialuom = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
+	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrder processorder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrderResource processorderResource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
-	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-	private JDBMaterialUom materialuom = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
-	private JDBMaterialBatch materialbatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
-	private JShelfLifeUom shelflifeuom = new JShelfLifeUom();
-	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
-	private JShelfLifeRoundingRule shelfliferoundingrule = new JShelfLifeRoundingRule();
-	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JInternalFramePackLabelPrint.class);
-	private ClockListener clocklistener = new ClockListener();
-	private Timer timer = new Timer(1000, clocklistener);
-	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JComboBoxPODevices4j comboBoxPrintQueue;
+	private JDateControl jSpinnerDueDate;
+	private JDateControl jSpinnerExpiryDate;
+	private JDateControl jSpinnerProductionDate;
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusText;
+	private JLabel4j_std jLabel1ShelfLifeUOM;
+	private JLabel4j_std jLabelBatch;
+	private JLabel4j_std jLabelBatchExpiry;
+	private JLabel4j_std jLabelDescription;
+	private JLabel4j_std jLabelDueDate;
+	private JLabel4j_std jLabelEAN;
+	private JLabel4j_std jLabelLegacyCode;
+	private JLabel4j_std jLabelLocation;
+	private JLabel4j_std jLabelMaterial;
+	private JLabel4j_std jLabelOrderDescription;
+	private JLabel4j_std jLabelOrderStatus;
+	private JLabel4j_std jLabelPrintLabel_1;
+	private JLabel4j_std jLabelPrintLabel_2;
+	private JLabel4j_std jLabelProcessOrder;
+	private JLabel4j_std jLabelProductionDate;
+	private JLabel4j_std jLabelQuantity_1;
+	private JLabel4j_std jLabelRecipe;
+	private JLabel4j_std jLabelRounding;
+	private JLabel4j_std jLabelShelfLife;
 	private JLabel4j_std lblPrintQueueFor;
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JLabelPrint labelPrint = new JLabelPrint(Common.selectedHostID, Common.sessionID);
+	private JPanel4j jPanelLabel;
+	private JPanel4j jPanelMaterial;
+	private JPanel4j jPanelProcessOrder;
+	private JQuantityInput jFormattedTextFieldBaseUOMQuantity;
+	private JQuantityInput jFormattedTextFieldRequiredUOMQuantity;
+	private JShelfLifeRoundingRule shelfliferoundingrule = new JShelfLifeRoundingRule();
+	private JShelfLifeUom shelflifeuom = new JShelfLifeUom();
+	private JSpinner4j jSpinnerQuantity;
+	private JSpinner4j jSpinnerShelfLife;
+	private JTextField4j jTextFieldBaseEAN;
+	private JTextField4j jTextFieldBaseUom;
+	private JTextField4j jTextFieldBaseVariant;
+	private JTextField4j jTextFieldBatchPrefix;
+	private JTextField4j jTextFieldBatchSuffix;
+	private JTextField4j jTextFieldLegacyCode;
+	private JTextField4j jTextFieldLocation;
+	private JTextField4j jTextFieldMaterial;
+	private JTextField4j jTextFieldMaterialDescription;
+	private JTextField4j jTextFieldProcessOrder;
+	private JTextField4j jTextFieldProcessOrderDescription;
+	private JTextField4j jTextFieldProcessOrderStatus;
+	private JTextField4j jTextFieldRecipe;
+	private JTextField4j jTextFieldRecipeVersion;
+	private JTextField4j jTextFieldRequiredEAN;
+	private JTextField4j jTextFieldRequiredUom;
+	private JTextField4j jTextFieldRequiredVariant;
+	private JTextField4j jTextFieldShelfLifeRoundingRule;
+	private JTextField4j jTextFieldShelfLifeUOM;
+	private JTextField4j textField4jCustomer = new JTextField4j();
+	private JTextField4j textField4jResource = new JTextField4j();
+	private PreparedStatement listStatement;
+	private SpinnerNumberModel quantitynumbermodel = new SpinnerNumberModel();
+	private SpinnerNumberModel shelflifenumbermodel = new SpinnerNumberModel();
 	private String batchFormat = "";
 	private String batchValidate = "";
-	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private String expiryMode = "";
-	private JCheckBox4j checkBoxIncHeaderText;
-	private JTextField4j jTextFieldBatchSuffix;
-	private JCalendarButton calendarButtonjSpinnerProductionDate;
-	private JCalendarButton calendarButtonjSpinnerExpiryDate;
-	private BigDecimal caseDefaultQuantity;
-	private JLabelPrint labelPrint = new JLabelPrint(Common.selectedHostID, Common.sessionID);
-	private PreparedStatement listStatement;
-	private JButton4j jButtonAssign;
+	private Timer timer = new Timer(1000, clocklistener);
 	private boolean DOMEditable = true;
 	private boolean ExpiryEditable = true;
-	private JTextField4j textField4jResource = new JTextField4j();
-	private JTextField4j textField4jCustomer = new JTextField4j();
+
+	public class ClockListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			Calendar rightNow = Calendar.getInstance();
+			Date d = rightNow.getTime();
+
+			try
+			{
+				if (jCheckBoxDOMOverride.isSelected() == false)
+				{
+					jSpinnerProductionDate.setDate(d);
+				}
+				else
+				{
+					calcBBEBatch();
+				}
+
+			}
+			catch (Exception e)
+			{
+			}
+		}
+	}
 
 	public JInternalFramePackLabelPrint(String procOrder)
 	{
@@ -245,217 +269,33 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				jTextFieldProcessOrder.requestFocus();
 				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
 
-				textField4jResource.setText("");
-				textField4jResource.setEnabled(false);
-				textField4jResource.setEditable(false);
-				textField4jResource.setBounds(588, 49, 148, 22);
-				jPanelProcessOrder.add(textField4jResource);
-
-				textField4jCustomer.setText("");
-				textField4jCustomer.setEnabled(false);
-				textField4jCustomer.setEditable(false);
-				textField4jCustomer.setBounds(587, 77, 148, 22);
-				jPanelProcessOrder.add(textField4jCustomer);
-
-				JLabel4j_std jLabelRecipeVersion = new JLabel4j_std();
-				jLabelRecipeVersion.setText("/");
-				jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
-				jLabelRecipeVersion.setBounds(280, 77, 21, 21);
-				jPanelProcessOrder.add(jLabelRecipeVersion);
-
 			}
 		});
-
 
 		procOrder = JUtility.replaceNullStringwithBlank(procOrder);
 
 		processOrderChanged(procOrder);
 	}
 
-
-	public void processOrderChanged(String po)
+	private void buildSQL(String key)
 	{
-		boolean valid = false;
-		clearFields();
+		JDBQuery.closeStatement(listStatement);
 
-		jTextFieldProcessOrder.setText(po);
-		processorder.setProcessOrder(po);
+		String temp = "";
 
-		mod.setModuleId(labelPrint.getPackLabelReportName(po));
-		mod.getModuleProperties();
+		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+		query.clear();
 
-		if (mod.getReportType().equals("Label"))
-		{
-			jCheckBoxAutoPreview.setSelected(false);
-			jCheckBoxAutoPreview.setEnabled(false);
+		temp = Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBLabelData.select");
 
-		}
-		else
-		{
-			jCheckBoxAutoPreview.setSelected(true);
-			jCheckBoxAutoPreview.setEnabled(true);
-		}
+		query.addText(temp);
 
-		if (processorder.getProcessOrderProperties() == true)
-		{
-			pallet.setProcessOrder(po);
-			pallet.populateFromProcessOrder();
+		query.addParameter(key);
 
-			jTextFieldProcessOrderDescription.setText(processorder.getDescription());
-			jTextFieldMaterial.setText(processorder.getMaterial());
+		query.applyRestriction(false, "none", 0);
+		query.bindParams();
 
-			jTextFieldProcessOrderStatus.setText(processorder.getStatus());
-			jTextFieldRecipe.setText(processorder.getRecipe());
-			jTextFieldRecipeVersion.setText(processorder.getRecipeVersion());
-			jTextFieldLocation.setText(processorder.getLocation());
-
-			try
-			{
-				jSpinnerDueDate.setDate(processorder.getDueDate());
-			}
-			catch (Exception e)
-			{
-			}
-
-			material.getMaterialProperties(processorder.getMaterial());
-			jTextFieldMaterialDescription.setText(material.getDescription());
-			jSpinnerShelfLife.setValue((Number) material.getShelfLife());
-			shelflifeuom.getShelfLifeUomProperties(material.getShelfLifeUom());
-			jTextFieldShelfLifeUOM.setText(shelflifeuom.toString());
-			shelfliferoundingrule.getShelfLifeRuleProperties(material.getShelfLifeRule());
-			jTextFieldShelfLifeRoundingRule.setText(shelfliferoundingrule.toString());
-			jFormattedTextFieldRequiredUOMQuantity.setValue(JUtility.stringToBigDecimal(processorder.getRequiredUOMQuantity()));
-			caseDefaultQuantity = JUtility.stringToBigDecimal(processorder.getRequiredUOMQuantity());
-			jTextFieldLegacyCode.setText(material.getOldMaterial());
-			jTextFieldRequiredUom.setText(processorder.getRequiredUom());
-			materialuom.getMaterialUomProperties(material.getMaterial(), processorder.getRequiredUom());
-			jTextFieldRequiredEAN.setText(materialuom.getEan());
-			jTextFieldRequiredVariant.setText(materialuom.getVariant());
-
-			pallet.setBatchNumber(jTextFieldBatchPrefix.getText() + jTextFieldBatchSuffix.getText());
-			pallet.setQuantity(JUtility.stringToBigDecimal(jFormattedTextFieldRequiredUOMQuantity.getText().toString()));
-
-			materialuom.getMaterialUomProperties(material.getMaterial(), material.getBaseUom());
-			jFormattedTextFieldBaseUOMQuantity.setValue(materialuom.getNumerator());
-			jTextFieldBaseUom.setText(material.getBaseUom());
-			jTextFieldBaseEAN.setText(materialuom.getEan());
-			jTextFieldBaseVariant.setText(materialuom.getVariant());
-			textField4jResource.setText(processorder.getRequiredResource());
-			textField4jCustomer.setText(processorder.getCustomerID());
-
-			valid = true;
-
-			jTextFieldBatchSuffix.setText(processorderResource.getBatchSuffixForResource(processorder.getRequiredResource()));
-
-			batchFormat = materialbatch.getBatchFormatString(processorder);
-			batchValidate = materialbatch.getBatchValidationString(processorder);
-
-			calcBBEBatch();
-			
-			comboBoxPrintQueue.refreshData("RPT_PACK_LABEL", po);
-
-		}
-		else
-		{
-			valid = false;
-		}
-
-		if (valid)
-		{
-
-			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_PRINTER"));
-			jButtonAssign.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB"));
-			jFormattedTextFieldRequiredUOMQuantity.setEnabled(true);
-
-			jCheckBoxDOMOverride.setEnabled(true);
-			jCheckBoxExpiryOverride.setEnabled(true);
-			jCheckBoxBatchPrefixOverride.setEnabled(true);
-			enableField(jSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
-			enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiryOverride.isSelected()));
-			enableField(jTextFieldBatchPrefix, jCheckBoxBatchPrefixOverride.isSelected());
-			jTextFieldBatchSuffix.setEnabled(true);
-			
-
-			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_visible);
-					
-			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
-			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_visible);
-
-		}
-		else
-		{
-
-			jButtonPrint.setEnabled(false);
-			jButtonAssign.setEnabled(false);
-			jFormattedTextFieldRequiredUOMQuantity.setEnabled(false);
-
-			jSpinnerProductionDate.setEnabled(false);
-			jCheckBoxDOMOverride.setSelected(false);
-			jCheckBoxDOMOverride.setEnabled(false);
-
-			jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
-			jCheckBoxExpiryOverride.setSelected(false);
-			jCheckBoxExpiryOverride.setEnabled(false);
-
-			jTextFieldBatchPrefix.setEnabled(false);
-			jTextFieldBatchSuffix.setEnabled(false);
-			jCheckBoxBatchPrefixOverride.setSelected(false);
-			jCheckBoxBatchPrefixOverride.setEnabled(false);
-			
-			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_not_visible);
-
-			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_not_visible);
-			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_not_visible);
-		}
-		checkFieldColours();
-	}
-
-	private void enableField(JComponent field, Boolean allowed)
-	{
-		if (allowed == true)
-		{
-			field.setEnabled(true);
-		}
-		else
-		{
-			field.setEnabled(false);
-		}
-	}
-
-	private void clearFields()
-	{
-		// previousDateString = "";
-		jTextFieldProcessOrderDescription.setText("");
-		jTextFieldProcessOrderStatus.setText("");
-		jTextFieldRecipe.setText("");
-		jTextFieldRecipeVersion.setText("");
-		jTextFieldLocation.setText("");
-		jTextFieldMaterial.setText("");
-		jTextFieldMaterialDescription.setText("");
-		jTextFieldShelfLifeUOM.setText("");
-		jTextFieldShelfLifeRoundingRule.setText("");
-		jTextFieldLegacyCode.setText("");
-		jTextFieldBatchPrefix.setText("");
-		jTextFieldBatchSuffix.setText("");
-		jTextFieldRequiredUom.setText("");
-		jTextFieldRequiredEAN.setText("");
-		jTextFieldRequiredVariant.setText("");
-		jTextFieldBaseEAN.setText("");
-		jTextFieldBaseVariant.setText("");
-		textField4jResource.setText("");
-		textField4jCustomer.setText("");
-
-		jCheckBoxDOMOverride.setSelected(false);
-		enableField(jSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
-
-		jCheckBoxExpiryOverride.setSelected(false);
-		enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiryOverride.isSelected()));
-
-		jCheckBoxBatchPrefixOverride.setSelected(false);
-		enableField(jTextFieldBatchPrefix, jCheckBoxBatchPrefixOverride.isSelected());
-
-		jFormattedTextFieldRequiredUOMQuantity.setValue(0);
-		jFormattedTextFieldBaseUOMQuantity.setValue(0);
+		listStatement = query.getPreparedStatement();
 	}
 
 	private void calcBBEBatch()
@@ -532,6 +372,104 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		}
 	}
 
+	private void checkFieldColours()
+	{
+		Color background = Common.color_app_window;
+
+		try
+		{
+			if (jTextFieldProcessOrderStatus.getText().equals("") == false)
+			{
+				if (jTextFieldProcessOrderStatus.getText().equals("Ready") || (jTextFieldProcessOrderStatus.getText().equals("Running")))
+				{
+					jTextFieldProcessOrderStatus.setBackground(Common.color_app_window);
+				}
+				else
+				{
+					jTextFieldProcessOrderStatus.setBackground(Color.RED);
+				}
+				if (jTextFieldBaseEAN.getText().equals("") == true)
+				{
+					background = Color.YELLOW;
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			background = Color.YELLOW;
+		}
+
+		try
+		{
+			jTextFieldBaseEAN.setBackground(background);
+		}
+		catch (Exception e)
+		{
+
+		}
+
+		try
+		{
+			if (jTextFieldProcessOrderStatus.getText().equals("") == false)
+			{
+				if (jTextFieldRequiredEAN.getText().equals("") == true)
+				{
+					background = Color.YELLOW;
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			background = Color.YELLOW;
+		}
+
+		try
+		{
+			jTextFieldRequiredEAN.setBackground(background);
+		}
+		catch (Exception e)
+		{
+
+		}
+
+	}
+
+	private void clearFields()
+	{
+		// previousDateString = "";
+		jTextFieldProcessOrderDescription.setText("");
+		jTextFieldProcessOrderStatus.setText("");
+		jTextFieldRecipe.setText("");
+		jTextFieldRecipeVersion.setText("");
+		jTextFieldLocation.setText("");
+		jTextFieldMaterial.setText("");
+		jTextFieldMaterialDescription.setText("");
+		jTextFieldShelfLifeUOM.setText("");
+		jTextFieldShelfLifeRoundingRule.setText("");
+		jTextFieldLegacyCode.setText("");
+		jTextFieldBatchPrefix.setText("");
+		jTextFieldBatchSuffix.setText("");
+		jTextFieldRequiredUom.setText("");
+		jTextFieldRequiredEAN.setText("");
+		jTextFieldRequiredVariant.setText("");
+		jTextFieldBaseEAN.setText("");
+		jTextFieldBaseVariant.setText("");
+		textField4jResource.setText("");
+		textField4jCustomer.setText("");
+
+		jCheckBoxDOMOverride.setSelected(false);
+		enableField(jSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
+
+		jCheckBoxExpiryOverride.setSelected(false);
+		enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiryOverride.isSelected()));
+
+		jCheckBoxBatchPrefixOverride.setSelected(false);
+		enableField(jTextFieldBatchPrefix, jCheckBoxBatchPrefixOverride.isSelected());
+
+		jFormattedTextFieldRequiredUOMQuantity.setValue(0);
+		jFormattedTextFieldBaseUOMQuantity.setValue(0);
+	}
+
 	private String createLabelData(int labels)
 	{
 		String result = "";
@@ -578,63 +516,40 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		return result;
 	}
 
-	private void printOrAssign(String mode)
+	private void enableField(JComponent field, Boolean allowed)
 	{
-		int noOfLabels = Integer.valueOf(jSpinnerQuantity.getValue().toString());
-
-		Boolean confirmQuantity = true;
-		BigDecimal a = jFormattedTextFieldRequiredUOMQuantity.getQuantity();
-
-		if (caseDefaultQuantity.compareTo(new BigDecimal("0")) > 0)
+		if (allowed == true)
 		{
-			if (a.compareTo(caseDefaultQuantity) > 0)
-			{
-				if (JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Quantity_Confirm"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16) == JOptionPane.YES_OPTION)
-				{
-					confirmQuantity = true;
-				}
-				else
-				{
-					confirmQuantity = false;
-				}
-			}
+			field.setEnabled(true);
+		}
+		else
+		{
+			field.setEnabled(false);
+		}
+	}
+
+	private boolean getExpiryDateManualEditStatus(boolean requestedStatus)
+	{
+		boolean result = ExpiryEditable;
+
+		if (ExpiryEditable)
+		{
+			result = requestedStatus;
 		}
 
-		if (confirmQuantity == true)
+		return result;
+	}
+
+	private boolean getProductionDateManualEditStatus(boolean requestedStatus)
+	{
+		boolean result = DOMEditable;
+
+		if (DOMEditable)
 		{
-
-			String processOrder = processorder.getProcessOrder();
-			String material = processorder.getMaterial();
-			String batchNumber = jTextFieldBatchPrefix.getText() + jTextFieldBatchSuffix.getText();
-			Timestamp expiryDate = JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate());
-
-			if (materialbatch.autoCreateMaterialBatch(material, batchNumber, batchValidate, expiryDate, ""))
-			{
-
-				String key = createLabelData(noOfLabels);
-
-				if (mode.equals("Print"))
-				{
-
-					JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
-					buildSQL(key);
-
-					JLaunchReport.runReport(labelPrint.getPackLabelReportName(processOrder), listStatement, jCheckBoxAutoPreview.isSelected(), pq, noOfLabels, checkBoxIncHeaderText.isSelected());
-
-				}
-
-				if (mode.equals("Assign"))
-				{
-					JLaunchMenu.runDialog("FRM_LABEL_DATA_ASSIGN", key);
-				}
-
-			}
-			else
-			{
-				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, materialbatch.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-			}
+			result = requestedStatus;
 		}
+
+		return result;
 	}
 
 	private void initGUI()
@@ -642,14 +557,14 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(674, 474));
-			this.setBounds(0, 0, 785, 567);
+			this.setBounds(0, 0, 774, 567);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
-			jDesktopPane1 = new JDesktopPane();
+			jDesktopPane1 = new JDesktopPane4j();
 			getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 			jDesktopPane1.setPreferredSize(new java.awt.Dimension(665, 490));
-			jDesktopPane1.setBackground(Common.color_app_window);
+
 			jDesktopPane1.setLayout(null);
 			jButtonPrint = new JButton4j(Common.icon_label_16x16);
 			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_PRINTER"));
@@ -707,13 +622,13 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
 			jButtonHelp.setBounds(382, 471, 182, 32);
-			jPanelProcessOrder = new JPanel();
+			jPanelProcessOrder = new JPanel4j();
 			jPanelProcessOrder.setFont(Common.font_title);
 			jDesktopPane1.add(jPanelProcessOrder);
 			jPanelProcessOrder.setBounds(7, 7, 748, 112);
-			jPanelProcessOrder.setBorder(BorderFactory.createTitledBorder(lang.get("lbl_Process_Order")));
+			jPanelProcessOrder.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("lbl_Process_Order")));
 			jPanelProcessOrder.setLayout(null);
-			jPanelProcessOrder.setBackground(Common.color_app_window);
+
 			jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
 			jPanelProcessOrder.add(jTextFieldProcessOrder);
 			;
@@ -749,9 +664,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jSpinnerDueDate = new JDateControl();
 			jPanelProcessOrder.add(jSpinnerDueDate);
 			jSpinnerDueDate.setEnabled(false);
-			jSpinnerDueDate.setBounds(161, 49, 128, 22);
+			jSpinnerDueDate.setBounds(161, 49, 120, 22);
 			jSpinnerDueDate.getEditor().setOpaque(true);
-			jSpinnerDueDate.setForeground(new java.awt.Color(238, 238, 238));
 			jLabelDueDate = new JLabel4j_std();
 			jPanelProcessOrder.add(jLabelDueDate);
 			jLabelDueDate.setText(lang.get("lbl_Process_Order_Due_Date"));
@@ -805,11 +719,11 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				}
 			});
 
-			jPanelMaterial = new JPanel();
-			jPanelMaterial.setBackground(Common.color_app_window);
+			jPanelMaterial = new JPanel4j();
+
 			jDesktopPane1.add(jPanelMaterial);
 			jPanelMaterial.setBounds(7, 119, 748, 112);
-			jPanelMaterial.setBorder(BorderFactory.createTitledBorder(lang.get("lbl_Material")));
+			jPanelMaterial.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("lbl_Material")));
 			jPanelMaterial.setLayout(null);
 			jPanelMaterial.setFont(Common.font_title);
 			jTextFieldMaterial = new JTextField4j();
@@ -874,22 +788,21 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jLabelLegacyCode.setText(lang.get("lbl_Material_Legacy_Code"));
 			jLabelLegacyCode.setHorizontalAlignment(SwingConstants.TRAILING);
 			jLabelLegacyCode.setBounds(10, 77, 142, 22);
-			jPanelLabel = new JPanel();
+			jPanelLabel = new JPanel4j();
 			jDesktopPane1.add(jPanelLabel);
 			jPanelLabel.setBounds(7, 231, 748, 136);
-			jPanelLabel.setBorder(BorderFactory.createTitledBorder(null, lang.get("btn_Label"), TitledBorder.LEADING, TitledBorder.TOP));
+			jPanelLabel.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("btn_Label")));
 			jPanelLabel.setLayout(null);
 			jPanelLabel.setFont(Common.font_std);
-			jPanelLabel.setBackground(Common.color_app_window);
-	
-			comboBoxPrintQueue =  new JComboBoxPODevices4j(Common.selectedHostID,Common.sessionID,"RPT_PACK_LABEL","");
+
+			comboBoxPrintQueue = new JComboBoxPODevices4j(Common.selectedHostID, Common.sessionID, "RPT_PACK_LABEL", "");
 			comboBoxPrintQueue.setBounds(115, 436, 621, 22);
 			jDesktopPane1.add(comboBoxPrintQueue);
-			
+
 			jSpinnerProductionDate = new JDateControl();
 			jPanelLabel.add(jSpinnerProductionDate);
 			jSpinnerProductionDate.setFont(new java.awt.Font("Dialog", 0, 12));
-			jSpinnerProductionDate.setBounds(176, 21, 128, 22);
+			jSpinnerProductionDate.setBounds(176, 21, 120, 22);
 			jSpinnerProductionDate.getEditor().addKeyListener(new KeyAdapter()
 			{
 				public void keyPressed(KeyEvent e)
@@ -960,7 +873,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 
 			jCheckBoxDOMOverride = new JCheckBox4j();
 			jPanelLabel.add(jCheckBoxDOMOverride);
-			jCheckBoxDOMOverride.setBackground(new java.awt.Color(255, 255, 255));
+
 			jCheckBoxDOMOverride.setBounds(153, 21, 21, 22);
 			jCheckBoxDOMOverride.setEnabled(false);
 			jCheckBoxDOMOverride.addActionListener(new ActionListener()
@@ -974,7 +887,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 
 			calendarButtonjSpinnerProductionDate = new JCalendarButton(jSpinnerProductionDate);
 			calendarButtonjSpinnerProductionDate.setEnabled(getProductionDateManualEditStatus(false));
-			calendarButtonjSpinnerProductionDate.setBounds(308, 21, 21, 21);
+			calendarButtonjSpinnerProductionDate.setBounds(300, 21, 21, 21);
 			jPanelLabel.add(calendarButtonjSpinnerProductionDate);
 			jLabelBatch = new JLabel4j_std();
 			jPanelLabel.add(jLabelBatch);
@@ -998,7 +911,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 
 			jPanelLabel.add(jSpinnerExpiryDate);
 			jSpinnerExpiryDate.setFont(Common.font_std);
-			jSpinnerExpiryDate.setBounds(176, 52, 128, 22);
+			jSpinnerExpiryDate.setBounds(176, 52, 120, 22);
 			jSpinnerExpiryDate.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
 			jSpinnerExpiryDate.getEditor().setSize(87, 21);
 			jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
@@ -1010,7 +923,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jCheckBoxExpiryOverride = new JCheckBox4j();
 			jPanelLabel.add(jCheckBoxExpiryOverride);
 			jCheckBoxExpiryOverride.setBounds(153, 52, 21, 22);
-			jCheckBoxExpiryOverride.setBackground(new java.awt.Color(255, 255, 255));
+
 			jCheckBoxExpiryOverride.setEnabled(false);
 			jCheckBoxExpiryOverride.addActionListener(new ActionListener()
 			{
@@ -1025,7 +938,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jCheckBoxBatchPrefixOverride = new JCheckBox4j();
 			jPanelLabel.add(jCheckBoxBatchPrefixOverride);
 			jCheckBoxBatchPrefixOverride.setEnabled(false);
-			jCheckBoxBatchPrefixOverride.setBackground(new java.awt.Color(255, 255, 255));
+
 			jCheckBoxBatchPrefixOverride.setBounds(153, 85, 21, 22);
 			jCheckBoxBatchPrefixOverride.addActionListener(new ActionListener()
 			{
@@ -1036,15 +949,13 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				}
 			});
 
-			jStatusText = new JLabel4j_std();
+			jStatusText = new JLabel4j_status();
 			jDesktopPane1.add(jStatusText);
-			jStatusText.setForeground(new java.awt.Color(255, 0, 0));
-			jStatusText.setBounds(0, 513, 775, 21);
-			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+			jStatusText.setBounds(6, 511, 748, 21);
 
-			final JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, lang.get("lbl_Options"), TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
-			panel.setBackground(Common.color_app_window);
+			final JPanel4j panel = new JPanel4j();
+			panel.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("lbl_Options")));
+
 			panel.setFont(Common.font_title);
 			panel.setLayout(null);
 			panel.setBounds(7, 379, 748, 45);
@@ -1060,7 +971,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			panel.add(jCheckBoxAutoPreview);
 			jCheckBoxAutoPreview.setToolTipText("Auto SSCC");
 			jCheckBoxAutoPreview.setSelected(true);
-			jCheckBoxAutoPreview.setBackground(Common.color_app_window);
+
 			jCheckBoxAutoPreview.setEnabled(true);
 			jLabelPrintLabel_2 = new JLabel4j_std();
 			jLabelPrintLabel_2.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1103,7 +1014,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 
 			checkBoxIncHeaderText = new JCheckBox4j();
 			checkBoxIncHeaderText.setSelected(true);
-			checkBoxIncHeaderText.setBackground(Color.WHITE);
+
 			checkBoxIncHeaderText.setBounds(453, 15, 21, 22);
 			panel.add(checkBoxIncHeaderText);
 
@@ -1114,7 +1025,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 
 			calendarButtonjSpinnerExpiryDate = new JCalendarButton(jSpinnerExpiryDate);
 			calendarButtonjSpinnerExpiryDate.setEnabled(false);
-			calendarButtonjSpinnerExpiryDate.setBounds(308, 52, 21, 21);
+			calendarButtonjSpinnerExpiryDate.setBounds(300, 52, 21, 21);
 			jPanelLabel.add(calendarButtonjSpinnerExpiryDate);
 
 			lblPrintQueueFor = new JLabel4j_std(lang.get("lbl_Print_Queue"));
@@ -1199,6 +1110,24 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			label4j_std_2.setBounds(455, 27, 63, 22);
 			jPanelLabel.add(label4j_std_2);
 
+			textField4jResource.setText("");
+			textField4jResource.setEnabled(false);
+			textField4jResource.setEditable(false);
+			textField4jResource.setBounds(588, 49, 148, 22);
+			jPanelProcessOrder.add(textField4jResource);
+
+			textField4jCustomer.setText("");
+			textField4jCustomer.setEnabled(false);
+			textField4jCustomer.setEditable(false);
+			textField4jCustomer.setBounds(587, 77, 148, 22);
+			jPanelProcessOrder.add(textField4jCustomer);
+
+			JLabel4j_std jLabelRecipeVersion = new JLabel4j_std();
+			jLabelRecipeVersion.setText("/");
+			jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
+			jLabelRecipeVersion.setBounds(280, 77, 21, 21);
+			jPanelProcessOrder.add(jLabelRecipeVersion);
+
 		}
 		catch (Exception e)
 		{
@@ -1206,135 +1135,198 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		}
 	}
 
-	private boolean getProductionDateManualEditStatus(boolean requestedStatus)
+	private void printOrAssign(String mode)
 	{
-		boolean result = DOMEditable;
+		int noOfLabels = Integer.valueOf(jSpinnerQuantity.getValue().toString());
 
-		if (DOMEditable)
+		Boolean confirmQuantity = true;
+		BigDecimal a = jFormattedTextFieldRequiredUOMQuantity.getQuantity();
+
+		if (caseDefaultQuantity.compareTo(new BigDecimal("0")) > 0)
 		{
-			result = requestedStatus;
-		}
-
-		return result;
-	}
-
-	private boolean getExpiryDateManualEditStatus(boolean requestedStatus)
-	{
-		boolean result = ExpiryEditable;
-
-		if (ExpiryEditable)
-		{
-			result = requestedStatus;
-		}
-
-		return result;
-	}
-
-	private void checkFieldColours()
-	{
-		Color background = Common.color_app_window;
-
-		try
-		{
-			if (jTextFieldProcessOrderStatus.getText().equals("") == false)
+			if (a.compareTo(caseDefaultQuantity) > 0)
 			{
-				if (jTextFieldProcessOrderStatus.getText().equals("Ready") || (jTextFieldProcessOrderStatus.getText().equals("Running")))
+				if (JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Quantity_Confirm"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16) == JOptionPane.YES_OPTION)
 				{
-					jTextFieldProcessOrderStatus.setBackground(Common.color_app_window);
+					confirmQuantity = true;
 				}
 				else
 				{
-					jTextFieldProcessOrderStatus.setBackground(Color.RED);
-				}
-				if (jTextFieldBaseEAN.getText().equals("") == true)
-				{
-					background = Color.YELLOW;
+					confirmQuantity = false;
 				}
 			}
 		}
-		catch (Exception e)
-		{
-			background = Color.YELLOW;
-		}
 
-		try
-		{
-			jTextFieldBaseEAN.setBackground(background);
-		}
-		catch (Exception e)
+		if (confirmQuantity == true)
 		{
 
-		}
+			String processOrder = processorder.getProcessOrder();
+			String material = processorder.getMaterial();
+			String batchNumber = jTextFieldBatchPrefix.getText() + jTextFieldBatchSuffix.getText();
+			Timestamp expiryDate = JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate());
 
-		try
-		{
-			if (jTextFieldProcessOrderStatus.getText().equals("") == false)
+			if (materialbatch.autoCreateMaterialBatch(material, batchNumber, batchValidate, expiryDate, ""))
 			{
-				if (jTextFieldRequiredEAN.getText().equals("") == true)
+
+				String key = createLabelData(noOfLabels);
+
+				if (mode.equals("Print"))
 				{
-					background = Color.YELLOW;
+
+					JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
+					buildSQL(key);
+
+					JLaunchReport.runReport(labelPrint.getPackLabelReportName(processOrder), listStatement, jCheckBoxAutoPreview.isSelected(), pq, noOfLabels, checkBoxIncHeaderText.isSelected());
+
 				}
+
+				if (mode.equals("Assign"))
+				{
+					JLaunchMenu.runDialog("FRM_LABEL_DATA_ASSIGN", key);
+				}
+
+			}
+			else
+			{
+				JUtility.errorBeep();
+				JOptionPane.showMessageDialog(Common.mainForm, materialbatch.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 			}
 		}
-		catch (Exception e)
-		{
-			background = Color.YELLOW;
-		}
-
-		try
-		{
-			jTextFieldRequiredEAN.setBackground(background);
-		}
-		catch (Exception e)
-		{
-
-		}
-
 	}
 
-	public class ClockListener implements ActionListener
+	public void processOrderChanged(String po)
 	{
-		public void actionPerformed(ActionEvent event)
+		boolean valid = false;
+		clearFields();
+
+		jTextFieldProcessOrder.setText(po);
+		processorder.setProcessOrder(po);
+
+		mod.setModuleId(labelPrint.getPackLabelReportName(po));
+		mod.getModuleProperties();
+
+		if (mod.getReportType().equals("Label"))
 		{
-			Calendar rightNow = Calendar.getInstance();
-			Date d = rightNow.getTime();
+			jCheckBoxAutoPreview.setSelected(false);
+			jCheckBoxAutoPreview.setEnabled(false);
+
+		}
+		else
+		{
+			jCheckBoxAutoPreview.setSelected(true);
+			jCheckBoxAutoPreview.setEnabled(true);
+		}
+
+		if (processorder.getProcessOrderProperties() == true)
+		{
+			pallet.setProcessOrder(po);
+			pallet.populateFromProcessOrder();
+
+			jTextFieldProcessOrderDescription.setText(processorder.getDescription());
+			jTextFieldMaterial.setText(processorder.getMaterial());
+
+			jTextFieldProcessOrderStatus.setText(processorder.getStatus());
+			jTextFieldRecipe.setText(processorder.getRecipe());
+			jTextFieldRecipeVersion.setText(processorder.getRecipeVersion());
+			jTextFieldLocation.setText(processorder.getLocation());
 
 			try
 			{
-				if (jCheckBoxDOMOverride.isSelected() == false)
-				{
-					jSpinnerProductionDate.setDate(d);
-				}
-				else
-				{
-					calcBBEBatch();
-				}
-
+				jSpinnerDueDate.setDate(processorder.getDueDate());
 			}
 			catch (Exception e)
 			{
 			}
+
+			material.getMaterialProperties(processorder.getMaterial());
+			jTextFieldMaterialDescription.setText(material.getDescription());
+			jSpinnerShelfLife.setValue((Number) material.getShelfLife());
+			shelflifeuom.getShelfLifeUomProperties(material.getShelfLifeUom());
+			jTextFieldShelfLifeUOM.setText(shelflifeuom.toString());
+			shelfliferoundingrule.getShelfLifeRuleProperties(material.getShelfLifeRule());
+			jTextFieldShelfLifeRoundingRule.setText(shelfliferoundingrule.toString());
+			jFormattedTextFieldRequiredUOMQuantity.setValue(JUtility.stringToBigDecimal(processorder.getRequiredUOMQuantity()));
+			caseDefaultQuantity = JUtility.stringToBigDecimal(processorder.getRequiredUOMQuantity());
+			jTextFieldLegacyCode.setText(material.getOldMaterial());
+			jTextFieldRequiredUom.setText(processorder.getRequiredUom());
+			materialuom.getMaterialUomProperties(material.getMaterial(), processorder.getRequiredUom());
+			jTextFieldRequiredEAN.setText(materialuom.getEan());
+			jTextFieldRequiredVariant.setText(materialuom.getVariant());
+
+			pallet.setBatchNumber(jTextFieldBatchPrefix.getText() + jTextFieldBatchSuffix.getText());
+			pallet.setQuantity(JUtility.stringToBigDecimal(jFormattedTextFieldRequiredUOMQuantity.getText().toString()));
+
+			materialuom.getMaterialUomProperties(material.getMaterial(), material.getBaseUom());
+			jFormattedTextFieldBaseUOMQuantity.setValue(materialuom.getNumerator());
+			jTextFieldBaseUom.setText(material.getBaseUom());
+			jTextFieldBaseEAN.setText(materialuom.getEan());
+			jTextFieldBaseVariant.setText(materialuom.getVariant());
+			textField4jResource.setText(processorder.getRequiredResource());
+			textField4jCustomer.setText(processorder.getCustomerID());
+
+			valid = true;
+
+			jTextFieldBatchSuffix.setText(processorderResource.getBatchSuffixForResource(processorder.getRequiredResource()));
+
+			batchFormat = materialbatch.getBatchFormatString(processorder);
+			batchValidate = materialbatch.getBatchValidationString(processorder);
+
+			calcBBEBatch();
+
+			comboBoxPrintQueue.refreshData("RPT_PACK_LABEL", po);
+
 		}
-	}
+		else
+		{
+			valid = false;
+		}
 
-	private void buildSQL(String key)
-	{
-		JDBQuery.closeStatement(listStatement);
+		if (valid)
+		{
 
-		String temp = "";
+			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_PRINTER"));
+			jButtonAssign.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB"));
+			jFormattedTextFieldRequiredUOMQuantity.setEnabled(true);
 
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.clear();
+			jCheckBoxDOMOverride.setEnabled(true);
+			jCheckBoxExpiryOverride.setEnabled(true);
+			jCheckBoxBatchPrefixOverride.setEnabled(true);
+			enableField(jSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
+			enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiryOverride.isSelected()));
+			enableField(jTextFieldBatchPrefix, jCheckBoxBatchPrefixOverride.isSelected());
+			jTextFieldBatchSuffix.setEnabled(true);
 
-		temp = Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBLabelData.select");
+			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_visible);
 
-		query.addText(temp);
+			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_visible);
+			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_visible);
 
-		query.addParameter(key);
+		}
+		else
+		{
 
-		query.applyRestriction(false, "none", 0);
-		query.bindParams();
+			jButtonPrint.setEnabled(false);
+			jButtonAssign.setEnabled(false);
+			jFormattedTextFieldRequiredUOMQuantity.setEnabled(false);
 
-		listStatement = query.getPreparedStatement();
+			jSpinnerProductionDate.setEnabled(false);
+			jCheckBoxDOMOverride.setSelected(false);
+			jCheckBoxDOMOverride.setEnabled(false);
+
+			jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
+			jCheckBoxExpiryOverride.setSelected(false);
+			jCheckBoxExpiryOverride.setEnabled(false);
+
+			jTextFieldBatchPrefix.setEnabled(false);
+			jTextFieldBatchSuffix.setEnabled(false);
+			jCheckBoxBatchPrefixOverride.setSelected(false);
+			jCheckBoxBatchPrefixOverride.setEnabled(false);
+
+			jSpinnerProductionDate.setDisplayMode(JDateControl.mode_disable_not_visible);
+
+			jSpinnerExpiryDate.setDisplayMode(JDateControl.mode_disable_not_visible);
+			jSpinnerDueDate.setDisplayMode(JDateControl.mode_disable_not_visible);
+		}
+		checkFieldColours();
 	}
 }

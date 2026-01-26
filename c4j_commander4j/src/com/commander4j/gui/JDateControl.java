@@ -153,7 +153,7 @@ public class JDateControl extends JSpinner4j
 		else
 		{
 			tf.setBackground(Common.color_textfield_background_nofocus_color);
-			tf.setForeground(Common.color_textfield_forground_nofocus_color);
+			tf.setForeground(Common.color_textfield_foreground_nofocus_color);
 		}
 	}
 

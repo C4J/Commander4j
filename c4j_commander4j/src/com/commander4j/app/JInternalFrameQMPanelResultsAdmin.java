@@ -2,33 +2,32 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFrameQMPanelResultsAdmin.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -48,18 +47,13 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -74,9 +68,12 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JDateControl;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
@@ -94,100 +91,93 @@ import com.commander4j.util.JUtility;
 /**
  * The JInternalFrameWasteLogAdmin allows the user to view/edit the table
  * APP_WASTE_LOG table.
- * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameWasteLogAdmin.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBWasteLog JDBWasteLog
  */
 public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 {
+
+	private DefaultComboBoxModel<String> sortFieldsFriendly;
 	private JButton4j jButtonClear;
-	private JButton4j jButtonPrint;
-	private JButton4j jButtonExcel;
-	private JLabel4j_std jStatusText;
-	private JLabel4j_std jLabelProcessOrder;
-
-	private JCheckBox4j jCheckBoxPanelDateTo;
-	private JCheckBox4j jCheckBoxPanelDateFrom;
-	private JCheckBox4j jCheckBoxSampleDateTo;
-	private JCheckBox4j jCheckBoxSampleDateFrom;
-	private JLabel4j_std jLabelPanelDate;
-	private JLabel4j_std jLabelSampleDate;
-	private JButton4j jButtonLookupPlant;
-	private JButton4j jButtonLookupFiller;
-
-	private JButton4j jButtonLookupWasteMaterial;
-	private JButton4j jButtonLookupPanelResult;
-	private JButton4j jButtonLookupUserID;
-	private JTextField4j jTextFieldProcessOrder;
-	private JTextField4j jTextFieldUserID;
-	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
-
 	private JButton4j jButtonClose;
-	private JToggleButton4j jToggleButtonSequence;
-	private JButton4j jButtonLookupProcessOrder;
-	private JTextField4j jTextFieldPlant;
-
-	private JComboBox4j<String> jComboBoxStatus;
-
-	private JLabel4j_std jLabelStatus;
-
-	private JComboBox4j<String> jComboBoxSortBy;
-	private JLabel4j_std jLabelSortby;
-	private JLabel4j_std jLabelPlant;
-
-	private JTextField4j jTextFieldMaterial;
-	private JTextField4j jTextFieldPanelResult;
-	private JTextField4j jTextFieldPanelID;
-	private JTextField4j jTextFieldTrayID;
-	private JTextField4j jTextFieldSampleID;
-	private JTextField4j jTextFieldFillerID;
-	private JLabel4j_std jLabelMaterial;
-	private JLabel4j_std jLabelPanelResult;
-	private JLabel4j_std jLabelPanelID;
-	private JLabel4j_std jLabelReportType;
-	private JLabel4j_std jLabelTrayID;
-	private JLabel4j_std jLabelSampleID;
-	private JLabel4j_std jLabelFillerID;
-	private JLabel4j_std jLabelUser;
-	private JTable4j jTable1;
+	private JButton4j jButtonExcel;
 	private JButton4j jButtonHelp;
+	private JButton4j jButtonLookupFiller;
+	private JButton4j jButtonLookupPanelResult;
+	private JButton4j jButtonLookupPlant;
+	private JButton4j jButtonLookupProcessOrder;
+	private JButton4j jButtonLookupUserID;
+	private JButton4j jButtonLookupWasteMaterial;
+	private JButton4j jButtonPrint;
 	private JButton4j jButtonSearch;
-	private JScrollPane jScrollPane1;
-	private String lref;
-	private String ltransaction;
-	private static boolean dlg_sort_descending = true;
-	private JDateControl panelDateFrom = new JDateControl();
-	private JDateControl panelDateTo = new JDateControl();
-	private JDateControl sampleDateFrom = new JDateControl();
-	private JDateControl sampleDateTo = new JDateControl();
-	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-	private JDBLanguage lang;
 	private JCalendarButton calendarButtonPanelDateFrom;
 	private JCalendarButton calendarButtonPanelDateTo;
 	private JCalendarButton calendarButtonSampleDateFrom;
 	private JCalendarButton calendarButtonSampleDateTo;
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
-	private JDBViewProductGroups d = new JDBViewProductGroups(Common.selectedHostID, Common.sessionID);
+	private JCheckBox4j jCheckBoxPanelDateFrom;
+	private JCheckBox4j jCheckBoxPanelDateTo;
+	private JCheckBox4j jCheckBoxSampleDateFrom;
+	private JCheckBox4j jCheckBoxSampleDateTo;
 	private JComboBox4j<JDBViewProductGroups> comboBoxProductGroups = new JComboBox4j<JDBViewProductGroups>();
-	private Vector<JDBViewProductGroups> productGroupList = new Vector<JDBViewProductGroups>();
-	private JSpinner4j jSpinnerLimit = new JSpinner4j();
-	private JTextField4j textFieldUserData3 = new JTextField4j(20);
-
-	private DefaultComboBoxModel<String> sortFieldsFriendly;
-	private LinkedList<String> sortFieldsSQL;
-	private boolean emptyresult = true;
-	private JDBQuery qSearch = new JDBQuery(Common.selectedHostID, Common.sessionID);
-	private JDBQuery qPrint = new JDBQuery(Common.selectedHostID, Common.sessionID);
-	private JDBQuery qExcel = new JDBQuery(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> jComboBoxReportType;
+	private JComboBox4j<String> jComboBoxSortBy;
+	private JComboBox4j<String> jComboBoxStatus;
+	private JDBLanguage lang;
+	private JDBQuery qExcel = new JDBQuery(Common.selectedHostID, Common.sessionID);
+	private JDBQuery qPrint = new JDBQuery(Common.selectedHostID, Common.sessionID);
+	private JDBQuery qSearch = new JDBQuery(Common.selectedHostID, Common.sessionID);
+	private JDBViewProductGroups d = new JDBViewProductGroups(Common.selectedHostID, Common.sessionID);
+	private JDateControl panelDateFrom = new JDateControl();
+	private JDateControl panelDateTo = new JDateControl();
+	private JDateControl sampleDateFrom = new JDateControl();
+	private JDateControl sampleDateTo = new JDateControl();
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusText;
+	private JLabel4j_std jLabelFillerID;
+	private JLabel4j_std jLabelMaterial;
+	private JLabel4j_std jLabelPanelDate;
+	private JLabel4j_std jLabelPanelID;
+	private JLabel4j_std jLabelPanelResult;
+	private JLabel4j_std jLabelPlant;
+	private JLabel4j_std jLabelProcessOrder;
+	private JLabel4j_std jLabelReportType;
+	private JLabel4j_std jLabelSampleDate;
+	private JLabel4j_std jLabelSampleID;
+	private JLabel4j_std jLabelSortby;
+	private JLabel4j_std jLabelStatus;
+	private JLabel4j_std jLabelTrayID;
+	private JLabel4j_std jLabelUser;
+	private JScrollPane4j jScrollPane1;
+	private JSpinner4j jSpinnerLimit = new JSpinner4j();
+	private JTable4j jTable1;
+	private JTextField4j jTextFieldFillerID;
+	private JTextField4j jTextFieldMaterial;
+	private JTextField4j jTextFieldPanelID;
+	private JTextField4j jTextFieldPanelResult;
+	private JTextField4j jTextFieldPlant;
+	private JTextField4j jTextFieldProcessOrder;
+	private JTextField4j jTextFieldSampleID;
+	private JTextField4j jTextFieldTrayID;
+	private JTextField4j jTextFieldUserID;
+	private JTextField4j textFieldUserData3 = new JTextField4j(20);
+	private JToggleButton4j jToggleButtonSequence;
+	private LinkedList<String> sortFieldsSQL;
+	private String lref;
+	private String ltransaction;
+	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+	private Vector<JDBViewProductGroups> productGroupList = new Vector<JDBViewProductGroups>();
+	private boolean emptyresult = true;
+	private static boolean dlg_sort_descending = true;
+	private static final long serialVersionUID = 1;
 
 	private void buildSortList()
 	{
 		sortFieldsFriendly = new DefaultComboBoxModel<String>();
-		
+
 		sortFieldsFriendly.addElement("Sample ID");
 
 		sortFieldsFriendly.addElement("Panel ID");
@@ -195,36 +185,36 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		sortFieldsFriendly.addElement("Panel Date");
 
 		sortFieldsFriendly.addElement("Plant");
-		
+
 		sortFieldsFriendly.addElement("Result");
-		
+
 		sortFieldsFriendly.addElement("Process Order");
-		
+
 		sortFieldsFriendly.addElement("Material");
-		
+
 		sortFieldsFriendly.addElement("User ID");
 
 		sortFieldsSQL = new LinkedList<String>();
-		
+
 		sortFieldsSQL.add("SAMPLE_ID");
 
 		sortFieldsSQL.add("PANEL_ID,TRAY_ID,SAMPLE_ID");
-		
+
 		sortFieldsSQL.add("PANEL_DATE,TRAY_ID,SAMPLE_ID");
 
 		sortFieldsSQL.add("PLANT,PANEL_ID,TRAY_ID,SAMPLE_ID");
-		
+
 		sortFieldsSQL.add("RESULT_DESCRIPTION,PANEL_ID,TRAY_ID,SAMPLE_ID");
-		
+
 		sortFieldsSQL.add("PROCESS_ORDER,PANEL_ID,TRAY_ID,SAMPLE_ID");
-		
+
 		sortFieldsSQL.add("MATERIAL,PANEL_ID,TRAY_ID,SAMPLE_ID");
-		
+
 		sortFieldsSQL.add("USER_ID,PANEL_ID,TRAY_ID,SAMPLE_ID");
 
 		jComboBoxSortBy.setModel(sortFieldsFriendly);
 		jComboBoxSortBy.setMaximumRowCount(sortFieldsSQL.size());
-		
+
 		productGroupList.add(new JDBViewProductGroups(Common.selectedHostID, Common.sessionID));
 		productGroupList.addAll(d.getProductGroups());
 
@@ -253,7 +243,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_QM_PANEL_RESULTS"));
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -267,8 +257,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		jTextFieldMaterial.setText("");
 
 		jTextFieldPlant.setText("");
-		
-		
+
 		jTextFieldPanelResult.setText("");
 		jTextFieldPanelID.setText("");
 		jTextFieldTrayID.setText("");
@@ -277,7 +266,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		jTextFieldProcessOrder.setText("");
 
 		jTextFieldUserID.setText("");
-		
+
 		textFieldUserData3.setText("");
 
 		panelDateTo.setEnabled(false);
@@ -286,7 +275,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		jCheckBoxPanelDateTo.setSelected(false);
 		calendarButtonPanelDateFrom.setEnabled(false);
 		calendarButtonPanelDateTo.setEnabled(false);
-		
+
 		sampleDateTo.setEnabled(false);
 		sampleDateFrom.setEnabled(false);
 		jCheckBoxSampleDateFrom.setSelected(false);
@@ -306,22 +295,22 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			
-			if (fieldname.equals(lang.get("lbl_Panel_ID"))== true)
+
+			if (fieldname.equals(lang.get("lbl_Panel_ID")) == true)
 			{
 				jTextFieldPanelID.setText(jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.PanelID_Col).toString());
 			}
-			
-			if (fieldname.equals(lang.get("lbl_Tray_ID"))== true)
+
+			if (fieldname.equals(lang.get("lbl_Tray_ID")) == true)
 			{
 				jTextFieldTrayID.setText(jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.TrayID_Col).toString());
 			}
-			
-			if (fieldname.equals(lang.get("lbl_Sample_ID"))== true)
+
+			if (fieldname.equals(lang.get("lbl_Sample_ID")) == true)
 			{
 				jTextFieldSampleID.setText(jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.SampleID_Col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Process_Order")) == true)
 			{
 				jTextFieldProcessOrder.setText(jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.ProcessOrder_Col).toString());
@@ -332,11 +321,16 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				jTextFieldMaterial.setText(jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.Material_Col).toString());
 			}
 
+			if (fieldname.equals(lang.get("lbl_Result")) == true)
+			{
+				jTextFieldPanelResult.setText(jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.Result_Col).toString());
+			}
+
 			if (fieldname.equals(lang.get("lbl_User_ID")) == true)
 			{
 				jTextFieldUserID.setText(jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.UserID_Col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Panel_Date")) == true)
 			{
 				String dateString = jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.PanelDate_Col).toString();
@@ -352,7 +346,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					parsedDate = new java.util.Date();
 					e.printStackTrace();
 				}
-				
+
 				panelDateTo.setEnabled(true);
 				panelDateFrom.setEnabled(true);
 				jCheckBoxPanelDateFrom.setSelected(true);
@@ -363,9 +357,9 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				panelDateFrom.setDate(cal.getTime());
 				cal.set(Calendar.SECOND, 59);
 				panelDateTo.setDate(cal.getTime());
-				
+
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Sample_Date")) == true)
 			{
 				String dateString = jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.SampleDate_Col).toString();
@@ -381,7 +375,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					parsedDate = new java.util.Date();
 					e.printStackTrace();
 				}
-				
+
 				sampleDateTo.setEnabled(true);
 				sampleDateFrom.setEnabled(true);
 				jCheckBoxSampleDateFrom.setSelected(true);
@@ -393,7 +387,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				cal.set(Calendar.SECOND, 59);
 				sampleDateTo.setDate(cal.getTime());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Plant")) == true)
 			{
 				jTextFieldPlant.setText(jTable1.getValueAt(row, JDBViewQMPanelResultsTableModel.Plant_Col).toString());
@@ -418,7 +412,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 	{
 		populateList();
 	}
-	
+
 	private void editRecord()
 	{
 		int row = jTable1.getSelectedRow();
@@ -438,11 +432,10 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		populateList();
 	}
 
-
 	private void copyToClipboard(String fieldname)
 	{
 		StringSelection stringSelection = new StringSelection("");
-		
+
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -451,47 +444,47 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
 			}
-			
+
 			if (fieldname.equals("Tray ID") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
 			}
-			
+
 			if (fieldname.equals("Sample ID") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
 			}
 
 			if (fieldname.equals("Result") == true)
-			{				
-				stringSelection = new StringSelection("[" + jTable1.getValueAt(row, 9).toString() + "] "+jTable1.getValueAt(row, 10).toString());
+			{
+				stringSelection = new StringSelection("[" + jTable1.getValueAt(row, 9).toString() + "] " + jTable1.getValueAt(row, 10).toString());
 			}
 
 			if (fieldname.equals("Process Order") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 11).toString());
 			}
-			
+
 			if (fieldname.equals("Material") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 12).toString());
 			}
-			
+
 			if (fieldname.equals("Sample Date") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
 			}
-			
+
 			if (fieldname.equals("Panel Date") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 4).toString());
 			}
-						
+
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
 		}
 	}
-	
+
 	private void sortBy(String fieldname)
 	{
 		jComboBoxSortBy.setSelectedItem(fieldname);
@@ -527,33 +520,30 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 	{
 
 		PreparedStatement result;
-		
+
 		query.clear();
 
 		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}view_qm_panel_results"));
-		
-		
+
 		if (emptyresult)
 		{
 			query.addParamtoSQL("1 = ", 2);
 			emptyresult = false;
 		}
-		
+
 		query.addParamtoSQL("material=", jTextFieldMaterial.getText());
 		query.addParamtoSQL("process_order=", jTextFieldProcessOrder.getText());
 		query.addParamtoSQL("user_id=", jTextFieldUserID.getText());
 
-
 		if (jComboBoxStatus.getSelectedIndex() > 0)
 		{
-			query.addParamtoSQL("status = ",jComboBoxStatus.getSelectedItem().toString());
-		}
-		
-		if (comboBoxProductGroups.getSelectedIndex() > 0)
-		{
-			query.addParamtoSQL("product_group = ",comboBoxProductGroups.getSelectedItem().toString());
+			query.addParamtoSQL("status = ", jComboBoxStatus.getSelectedItem().toString());
 		}
 
+		if (comboBoxProductGroups.getSelectedIndex() > 0)
+		{
+			query.addParamtoSQL("product_group = ", comboBoxProductGroups.getSelectedItem().toString());
+		}
 
 		if (jCheckBoxPanelDateFrom.isSelected())
 		{
@@ -565,7 +555,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		{
 			query.addParamtoSQL("panel_date <=", JUtility.getTimestampFromDate(panelDateTo.getDate()));
 		}
-		
+
 		if (jCheckBoxSampleDateFrom.isSelected())
 		{
 			query.addParamtoSQL("sample_date >=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
@@ -577,37 +567,37 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			query.addParamtoSQL("sample_date <=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
 		}
 
-		if (jTextFieldPanelID.getText().isEmpty()==false)
+		if (jTextFieldPanelID.getText().isEmpty() == false)
 		{
 			query.addParamtoSQL("panel_id =", Long.valueOf(jTextFieldPanelID.getText()));
 		}
-		
-		if (jTextFieldTrayID.getText().isEmpty()==false)
+
+		if (jTextFieldTrayID.getText().isEmpty() == false)
 		{
 			query.addParamtoSQL("tray_id =", Long.valueOf(jTextFieldTrayID.getText()));
 		}
-		
-		if (jTextFieldSampleID.getText().isEmpty()==false)
+
+		if (jTextFieldSampleID.getText().isEmpty() == false)
 		{
 			query.addParamtoSQL("sample_id =", Long.valueOf(jTextFieldSampleID.getText()));
 		}
-		
-		if (jTextFieldPlant.getText().isEmpty()==false)
+
+		if (jTextFieldPlant.getText().isEmpty() == false)
 		{
-			query.addParamtoSQL("plant =",jTextFieldPlant.getText());
+			query.addParamtoSQL("plant =", jTextFieldPlant.getText());
 		}
-		
-		if (jTextFieldFillerID.getText().isEmpty()==false)
+
+		if (jTextFieldFillerID.getText().isEmpty() == false)
 		{
-			query.addParamtoSQL("filler =",jTextFieldFillerID.getText());
+			query.addParamtoSQL("filler =", jTextFieldFillerID.getText());
 		}
-		
-		if (textFieldUserData3.getText().isEmpty()==false)
+
+		if (textFieldUserData3.getText().isEmpty() == false)
 		{
-			query.addParamtoSQL("user_data_3 =",textFieldUserData3.getText());
+			query.addParamtoSQL("user_data_3 =", textFieldUserData3.getText());
 		}
-		
-		if (jTextFieldPanelResult.getText().isEmpty()==false)
+
+		if (jTextFieldPanelResult.getText().isEmpty() == false)
 		{
 			String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
 
@@ -620,7 +610,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				query.addParamtoSQL("value = ", jTextFieldPanelResult.getText());
 			}
 		}
-		
+
 		query.appendSort(sortFieldsSQL.get(jComboBoxSortBy.getSelectedIndex()), jToggleButtonSequence.isSelected());
 		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
 
@@ -668,7 +658,6 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		JUtility.setResultRecordCountColour(jStatusText, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), panelLogTable.getRowCount());
 	}
 
-
 	private void initGUI()
 	{
 		try
@@ -679,1063 +668,992 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			this.setClosable(true);
 			this.setTitle("Panel Results");
 
+			jDesktopPane1 = new JDesktopPane4j();
+
+			getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
+
+			jScrollPane1 = new JScrollPane4j(JScrollPane4j.Table);
+
+			jDesktopPane1.setLayout(null);
+			jDesktopPane1.add(jScrollPane1);
+			jScrollPane1.setBounds(0, 212, 988, 391);
+
+			TableModel jTable1Model = new DefaultTableModel(new String[][]
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_app_window);
-				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
+					{ "One", "Two" },
+					{ "Three", "Four" } }, new String[]
+			{ "Column 1", "Column 2" });
+			jTable1 = new JTable4j();
+			jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
+			jScrollPane1.setViewportView(jTable1);
+			jTable1.setModel(jTable1Model);
+
+			final JPopupMenu popupMenu = new JPopupMenu();
+			addPopup(jTable1, popupMenu);
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
 				{
-					jScrollPane1 = new JScrollPane();
-					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
-					jDesktopPane1.setLayout(null);
-					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 239, 988, 376);
+					public void actionPerformed(final ActionEvent e)
 					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][]
-						{
-								{ "One", "Two" },
-								{ "Three", "Four" } }, new String[]
-						{ "Column 1", "Column 2" });
-						jTable1 = new JTable4j();
-						jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
-						jScrollPane1.setViewportView(jTable1);
-						jTable1.setModel(jTable1Model);
-
-
-						{
-							final JPopupMenu popupMenu = new JPopupMenu();
-							addPopup(jTable1, popupMenu);
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										search();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Search"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										excel();
-									}
-								});
-								newItemMenuItem.setText(lang.get("btn_Excel"));
-								popupMenu.add(newItemMenuItem);
-							}
-							
-							{
-								final JMenuItem4j menuItemEdit = new JMenuItem4j(Common.icon_edit_16x16);
-								menuItemEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_SAMPLE_EDIT"));
-								menuItemEdit.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										editRecord();
-									}
-								});
-								menuItemEdit.setText(lang.get("btn_Edit"));
-								popupMenu.add(menuItemEdit);
-							}
-
-							{
-								final JMenu4j sortByMenu = new JMenu4j();
-								sortByMenu.setText(lang.get("lbl_Sort_By"));
-								popupMenu.add(sortByMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Panell ID");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Panel_ID"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Panel Date");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Panel_Date"));
-									sortByMenu.add(newItemMenuItem);
-								}
-								
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Plant");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Plant"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Result");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Result"));
-									sortByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Process Order");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Process_Order"));
-									sortByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("Material");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									sortByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("User ID");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_User_ID"));
-									sortByMenu.add(newItemMenuItem);
-								}
-							}
-
-							{
-								final JMenu4j filterByMenu = new JMenu4j();
-								filterByMenu.setText(lang.get("lbl_Filter_By"));
-								popupMenu.add(filterByMenu);
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Panel_ID"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Tray_ID"));
-									filterByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Sample_ID"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Process_Order"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									filterByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_User_ID"));
-									filterByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Panel_Date"));
-									filterByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Sample_Date"));
-									filterByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											filterBy(newItemMenuItem.getText());
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Plant"));
-									filterByMenu.add(newItemMenuItem);
-								}
-
-								{
-									filterByMenu.addSeparator();
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											clearFilter();
-										}
-									});
-									newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
-									filterByMenu.add(newItemMenuItem);
-								}
-							}
-							
-							
-							{
-								final JMenu4j clipboardByMenu = new JMenu4j();
-								clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
-								popupMenu.add(clipboardByMenu);
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Panel ID");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Panel_ID"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Tray ID");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Tray_ID"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Sample ID");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_SampleID"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Result");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Result"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Process Order");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Process_Order"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Material");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Sample Date");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Sample_Date"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-								
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											copyToClipboard("Panel Date");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Panel_Date"));
-									clipboardByMenu.add(newItemMenuItem);
-								}
-
-							}
-
-							
-						}
+						search();
 					}
-				}
+				});
+				newItemMenuItem.setText(lang.get("btn_Search"));
+				popupMenu.add(newItemMenuItem);
+			}
+
+			{
+				final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
+				newItemMenuItem.addActionListener(new ActionListener()
 				{
-					jButtonSearch = new JButton4j(Common.icon_search_16x16);
-					jDesktopPane1.add(jButtonSearch);
-					jButtonSearch.setText(lang.get("btn_Search"));
-					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(117, 195, 123, 32);
-					jButtonSearch.addActionListener(new ActionListener()
+					public void actionPerformed(final ActionEvent e)
 					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							search();
+						excel();
+					}
+				});
+				newItemMenuItem.setText(lang.get("btn_Excel"));
+				popupMenu.add(newItemMenuItem);
+			}
 
-						}
-					});
-				}
-
+			{
+				final JMenuItem4j menuItemEdit = new JMenuItem4j(Common.icon_edit_16x16);
+				menuItemEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_SAMPLE_EDIT"));
+				menuItemEdit.addActionListener(new ActionListener()
 				{
-					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jDesktopPane1.add(jButtonHelp);
-					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(609, 195, 123, 32);
-				}
-				{
-					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jDesktopPane1.add(jButtonClose);
-					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(732, 195, 123, 32);
-					jButtonClose.addActionListener(new ActionListener()
+					public void actionPerformed(final ActionEvent e)
 					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							qSearch = null;
-						    qPrint = null;
-							qExcel = null;
-							dispose();
-						}
-					});
-				}
-				{
-					jLabelMaterial = new JLabel4j_std();
-					jDesktopPane1.add(jLabelMaterial);
-					jLabelMaterial.setText(lang.get("lbl_Material"));
-					jLabelMaterial.setBounds(245, 51, 108, 22);
-					jLabelMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelPanelResult = new JLabel4j_std();
-					jDesktopPane1.add(jLabelPanelResult);
-					jLabelPanelResult.setText(lang.get("lbl_Result"));
-					jLabelPanelResult.setBounds(-4, 86, 130, 22);
-					jLabelPanelResult.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelPanelID = new JLabel4j_std();
-					jDesktopPane1.add(jLabelPanelID);
-					jLabelPanelID.setText(lang.get("lbl_Panel_ID"));
-					jLabelPanelID.setBounds(0, 123, 126, 22);
-					jLabelPanelID.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelReportType = new JLabel4j_std();
-					jDesktopPane1.add(jLabelReportType);
-					jLabelReportType.setText(lang.get("lbl_Module_Report_Type"));
-					jLabelReportType.setBounds(0, 159, 126, 22);
-					jLabelReportType.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelTrayID = new JLabel4j_std();
-					jDesktopPane1.add(jLabelTrayID);
-					jLabelTrayID.setText(lang.get("lbl_Tray_ID"));
-					jLabelTrayID.setBounds(260, 123, 93, 22);
-					jLabelTrayID.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelSampleID = new JLabel4j_std();
-					jDesktopPane1.add(jLabelSampleID);
-					jLabelSampleID.setText(lang.get("lbl_Sample_ID"));
-					jLabelSampleID.setBounds(458, 123, 108, 22);
-					jLabelSampleID.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jLabelFillerID = new JLabel4j_std();
-					jDesktopPane1.add(jLabelFillerID);
-					jLabelFillerID.setText(lang.get("lbl_Filler_ID"));
-					jLabelFillerID.setBounds(732, 51, 81, 22);
-					jLabelFillerID.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
-				{
-					jTextFieldMaterial = new JTextField4j(JDBViewQMPanelResults.field_MaterialID);
-					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(363, 51, 93, 22);
-				}
-				{
-					jTextFieldPanelResult = new JTextField4j(JDBViewQMPanelResults.field_Result);
-					jDesktopPane1.add(jTextFieldPanelResult);
-					jTextFieldPanelResult.setBounds(134, 86, 93, 22);
-				}
-				{
-					jTextFieldPanelID = new JTextField4j(JDBViewQMPanelResults.field_PanelID);
-					jTextFieldPanelID.addKeyListener(new KeyAdapter() {
-						@Override
-						public void keyTyped(KeyEvent e) {
-				             char c = e.getKeyChar();
-				             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
-				                  e.consume();
-				             }
-						}
-					});
-					jDesktopPane1.add(jTextFieldPanelID);
-					jTextFieldPanelID.setBounds(134, 123, 68, 22);
-				}
-				{
-					jTextFieldTrayID = new JTextField4j(JDBViewQMPanelResults.field_TrayID);
-					jDesktopPane1.add(jTextFieldTrayID);
-					jTextFieldTrayID.setBounds(363, 123, 68, 22);
-					jTextFieldTrayID.addKeyListener(new KeyAdapter() {
-						@Override
-						public void keyTyped(KeyEvent e) {
-				             char c = e.getKeyChar();
-				             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
-				                  e.consume();
-				             }
-						}
-					});
-				}
-				{
-					jTextFieldSampleID = new JTextField4j(JDBViewQMPanelResults.field_SampleID);
-					jDesktopPane1.add(jTextFieldSampleID);
-					jTextFieldSampleID.setBounds(574, 123, 68, 22);
-					jTextFieldSampleID.addKeyListener(new KeyAdapter() {
-						@Override
-						public void keyTyped(KeyEvent e) {
-				             char c = e.getKeyChar();
-				             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
-				                  e.consume();
-				             }
-						}
-					});
-				}
-				{
-					jTextFieldFillerID = new JTextField4j(JDBViewQMPanelResults.field_SampleID);
-					jDesktopPane1.add(jTextFieldFillerID);
-					jTextFieldFillerID.setBounds(822, 51, 106, 22);
-					jTextFieldFillerID.addKeyListener(new KeyAdapter() {
-						@Override
-						public void keyTyped(KeyEvent e) {
-				             char c = e.getKeyChar();
-				             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
-				                  e.consume();
-				             }
-						}
-					});
-				}
-				{
-					jLabelPlant = new JLabel4j_std();
-					jDesktopPane1.add(jLabelPlant);
-					jLabelPlant.setText(lang.get("lbl_Plant"));
-					jLabelPlant.setBounds(485, 51, 81, 22);
-					jLabelPlant.setHorizontalAlignment(SwingConstants.TRAILING);
-				}
+						editRecord();
+					}
+				});
+				menuItemEdit.setText(lang.get("btn_Edit"));
+				popupMenu.add(menuItemEdit);
+			}
+
+			{
+				final JMenu4j sortByMenu = new JMenu4j();
+				sortByMenu.setText(lang.get("lbl_Sort_By"));
+				popupMenu.add(sortByMenu);
 
 				{
-					jTextFieldPlant = new JTextField4j(JDBViewQMPanelResults.field_Plant);
-					jDesktopPane1.add(jTextFieldPlant);
-					jTextFieldPlant.setBounds(574, 51, 98, 22);
-				}
-
-				{
-					jLabelSortby = new JLabel4j_std();
-					jDesktopPane1.add(jLabelSortby);
-					jLabelSortby.setText(lang.get("lbl_Sort_By"));
-					jLabelSortby.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelSortby.setBounds(325, 158, 87, 23);
-				}
-				{
-					jComboBoxSortBy = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setBounds(419, 159, 255, 22);
-				}
-
-				{
-					jLabelStatus = new JLabel4j_std();
-					jDesktopPane1.add(jLabelStatus);
-					jLabelStatus.setText(lang.get("lbl_Panel_Status"));
-					jLabelStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelStatus.setBounds(704, 86, 126, 22);
-				}
-
-
-				{
-					String[] test =
-					{ "", "Prepare", "Ready","Complete" };
-					ComboBoxModel<String> jComboBoxRecycleModel = new DefaultComboBoxModel<String>(test);
-					jComboBoxStatus = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxStatus);
-					jComboBoxStatus.setModel(jComboBoxRecycleModel);
-					jComboBoxStatus.setBounds(839, 86, 108, 22);
-					jComboBoxStatus.setMaximumRowCount(test.length);
-				}
-
-				{
-					jToggleButtonSequence = new JToggleButton4j();
-					jToggleButtonSequence.setSelected(true);
-					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(672, 159, 21, 22);
-					jToggleButtonSequence.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							setSequence(jToggleButtonSequence.isSelected());
-						}
-					});
-				}
-
-				{
-					jButtonLookupWasteMaterial = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupWasteMaterial.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.materials())
-							{
-								jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-					jButtonLookupWasteMaterial.setBounds(457, 51, 21, 22);
-					jDesktopPane1.add(jButtonLookupWasteMaterial);
-				}
-
-				{
-					jButtonLookupPanelResult = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupPanelResult.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.panel_ZWSIPANE())
-							{
-								jTextFieldPanelResult.setText(JLaunchLookup.dlgResult);
-							}
-						}
-					});
-					jButtonLookupPanelResult.setBounds(225, 86, 21, 22);
-					jDesktopPane1.add(jButtonLookupPanelResult);
-				}
-
-				{
-					jButtonLookupPlant = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupPlant.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgCriteriaDefault = "";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.plants_po_resource())
-							{
-								jTextFieldPlant.setText(JLaunchLookup.dlgResult);
-							}
-
-						}
-					});
-					jButtonLookupPlant.setBounds(672, 51, 21, 22);
-					jDesktopPane1.add(jButtonLookupPlant);
-				}
-				
-				{
-					jButtonLookupFiller = new JButton4j(Common.icon_lookup_16x16);
-					jButtonLookupFiller.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgCriteriaDefault = "";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.panel_Filler())
-							{
-								jTextFieldFillerID.setText(JLaunchLookup.dlgResult);
-							}
-
-						}
-					});
-					jButtonLookupFiller.setBounds(926, 51, 21, 22);
-					jDesktopPane1.add(jButtonLookupFiller);
-				}
-				
-
-				{
-					panelDateFrom.setBounds(155, 13, 128, 22);
-					panelDateFrom.setEnabled(false);
-					jDesktopPane1.add(panelDateFrom);
-				}
-
-				{
-					panelDateTo.setBounds(328, 13, 128, 22);
-					panelDateTo.setEnabled(false);
-					jDesktopPane1.add(panelDateTo);
-				}
-				
-				{
-					sampleDateFrom.setBounds(645, 13, 128, 22);
-					sampleDateFrom.setEnabled(false);
-					jDesktopPane1.add(sampleDateFrom);
-				}
-
-				{
-					sampleDateTo.setBounds(822, 13, 128, 22);
-					sampleDateTo.setEnabled(false);
-					jDesktopPane1.add(sampleDateTo);
-				}
-
-				{
-					jLabelPanelDate = new JLabel4j_std();
-					jLabelPanelDate.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelPanelDate.setText(lang.get("lbl_Panel_Date"));
-					jLabelPanelDate.setBounds(0, 13, 126, 22);
-					jDesktopPane1.add(jLabelPanelDate);
-				}
-				
-				{
-					jLabelSampleDate = new JLabel4j_std();
-					jLabelSampleDate.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelSampleDate.setText(lang.get("lbl_Sample_Date"));
-					jLabelSampleDate.setBounds(490, 13, 126, 22);
-					jDesktopPane1.add(jLabelSampleDate);
-				}
-
-				{
-					jCheckBoxPanelDateFrom = new JCheckBox4j();
-					jCheckBoxPanelDateFrom.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							if (jCheckBoxPanelDateFrom.isSelected())
-							{
-								panelDateFrom.setEnabled(true);
-								calendarButtonPanelDateFrom.setEnabled(true);
-							}
-							else
-							{
-								panelDateFrom.setEnabled(false);
-								calendarButtonPanelDateFrom.setEnabled(false);
-							}
-						}
-					});
-					jCheckBoxPanelDateFrom.setBackground(new Color(255, 255, 255));
-					jCheckBoxPanelDateFrom.setBounds(133, 13, 21, 22);
-					jDesktopPane1.add(jCheckBoxPanelDateFrom);
-				}
-
-				{
-					jCheckBoxPanelDateTo = new JCheckBox4j();
-					jCheckBoxPanelDateTo.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							if (jCheckBoxPanelDateTo.isSelected())
-							{
-								panelDateTo.setEnabled(true);
-								calendarButtonPanelDateTo.setEnabled(true);
-							}
-							else
-							{
-								panelDateTo.setEnabled(false);
-								calendarButtonPanelDateTo.setEnabled(false);
-							}
-						}
-					});
-					jCheckBoxPanelDateTo.setBackground(new Color(255, 255, 255));
-					jCheckBoxPanelDateTo.setBounds(306, 13, 21, 22);
-					jDesktopPane1.add(jCheckBoxPanelDateTo);
-				}
-
-				{
-					jCheckBoxSampleDateFrom = new JCheckBox4j();
-					jCheckBoxSampleDateFrom.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							if (jCheckBoxSampleDateFrom.isSelected())
-							{
-								sampleDateFrom.setEnabled(true);
-								calendarButtonSampleDateFrom.setEnabled(true);
-							}
-							else
-							{
-								sampleDateFrom.setEnabled(false);
-								calendarButtonSampleDateFrom.setEnabled(false);
-							}
-						}
-					});
-					jCheckBoxSampleDateFrom.setBackground(new Color(255, 255, 255));
-					jCheckBoxSampleDateFrom.setBounds(623, 13, 21, 22);
-					jDesktopPane1.add(jCheckBoxSampleDateFrom);
-				}
-				
-				{
-					jCheckBoxSampleDateTo = new JCheckBox4j();
-					jCheckBoxSampleDateTo.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							if (jCheckBoxSampleDateTo.isSelected())
-							{
-								sampleDateTo.setEnabled(true);
-								calendarButtonSampleDateTo.setEnabled(true);
-							}
-							else
-							{
-								sampleDateTo.setEnabled(false);
-								calendarButtonSampleDateTo.setEnabled(false);
-							}
-						}
-					});
-					jCheckBoxSampleDateTo.setBackground(new Color(255, 255, 255));
-					jCheckBoxSampleDateTo.setBounds(800, 13, 21, 22);
-					jDesktopPane1.add(jCheckBoxSampleDateTo);
-				}
-
-				{
-					jStatusText = new JLabel4j_std();
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 615, 988, 21);
-					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jDesktopPane1.add(jStatusText);
-				}
-
-				{
-					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
-							excel();
+							sortBy("Panell ID");
 						}
 					});
-
-					jButtonExcel.setText(lang.get("btn_Excel"));
-					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(363, 195, 123, 32);
-					jDesktopPane1.add(jButtonExcel);
+					newItemMenuItem.setText(lang.get("lbl_Panel_ID"));
+					sortByMenu.add(newItemMenuItem);
 				}
 
 				{
-					calendarButtonPanelDateFrom = new JCalendarButton(panelDateFrom);
-					calendarButtonPanelDateFrom.setEnabled(false);
-					calendarButtonPanelDateFrom.setBounds(286, 13, 21, 25);
-					jDesktopPane1.add(calendarButtonPanelDateFrom);
-				}
-				
-				{
-					calendarButtonSampleDateFrom = new JCalendarButton(sampleDateFrom);
-					calendarButtonSampleDateFrom.setEnabled(false);
-					calendarButtonSampleDateFrom.setBounds(775, 13, 21, 25);
-					jDesktopPane1.add(calendarButtonSampleDateFrom);
-				}
-				
-				{
-					calendarButtonPanelDateTo = new JCalendarButton(panelDateTo);
-					calendarButtonPanelDateTo.setEnabled(false);
-					calendarButtonPanelDateTo.setBounds(457, 13, 21, 25);
-					jDesktopPane1.add(calendarButtonPanelDateTo);
-				}
-				
-				{
-					calendarButtonSampleDateTo = new JCalendarButton(sampleDateTo);
-					calendarButtonSampleDateTo.setEnabled(false);
-					calendarButtonSampleDateTo.setBounds(952, 13, 21, 25);
-					jDesktopPane1.add(calendarButtonSampleDateTo);
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("Panel Date");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Panel_Date"));
+					sortByMenu.add(newItemMenuItem);
 				}
 
-				JLabel4j_std labelLimit = new JLabel4j_std();
-				labelLimit.setText(lang.get("lbl_Limit"));
-				labelLimit.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelLimit.setBounds(725, 159, 116, 22);
-				jDesktopPane1.add(labelLimit);
-
-				jCheckBoxLimit = new JCheckBox4j();
-				jCheckBoxLimit.setSelected(true);
-				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(850, 159, 21, 22);
-				jDesktopPane1.add(jCheckBoxLimit);
-				
-
-
-				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
-
-				jSpinnerLimit.setEditor(ne);
-				jSpinnerLimit.setBounds(879, 159, 68, 22);
-				jSpinnerLimit.setValue(1000);
-				jDesktopPane1.add(jSpinnerLimit);
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("Plant");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Plant"));
+					sortByMenu.add(newItemMenuItem);
+				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear_16x16);
-					jButtonClear.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("Result");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Result"));
+					sortByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("Process Order");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Process_Order"));
+					sortByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("Material");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					sortByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sortBy("User ID");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_User_ID"));
+					sortByMenu.add(newItemMenuItem);
+				}
+			}
+
+			{
+				final JMenu4j filterByMenu = new JMenu4j();
+				filterByMenu.setText(lang.get("lbl_Filter_By"));
+				popupMenu.add(filterByMenu);
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Panel_ID"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Tray_ID"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Sample_ID"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Process_Order"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Result"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_User_ID"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Panel_Date"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Sample_Date"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							filterBy(newItemMenuItem.getText());
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Plant"));
+					filterByMenu.add(newItemMenuItem);
+				}
+
+				{
+					filterByMenu.addSeparator();
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
 							clearFilter();
-
 						}
 					});
-					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(240, 195, 123, 32);
-					jDesktopPane1.add(jButtonClear);
+					newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
+					filterByMenu.add(newItemMenuItem);
 				}
+			}
+
+			{
+				final JMenu4j clipboardByMenu = new JMenu4j();
+				clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
+				popupMenu.add(clipboardByMenu);
 
 				{
-					jButtonPrint = new JButton4j(Common.icon_report_16x16);
-					jDesktopPane1.add(jButtonPrint);
-					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(486, 195, 123, 32);
-					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_LOG"));
-					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
-						public void actionPerformed(ActionEvent evt)
+						public void actionPerformed(final ActionEvent e)
 						{
-							print();
-
+							copyToClipboard("Panel ID");
 						}
 					});
+					newItemMenuItem.setText(lang.get("lbl_Panel_ID"));
+					clipboardByMenu.add(newItemMenuItem);
 				}
+
 				{
-					jTextFieldProcessOrder = new JTextField4j(JDBViewQMPanelResults.field_ProcessOrder);
-					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(134, 51, 93, 22);
-				}
-				{
-					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupProcessOrder);
-					jButtonLookupProcessOrder.setBounds(225, 51, 21, 22);
-					jButtonLookupProcessOrder.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
-						public void actionPerformed(ActionEvent evt)
+						public void actionPerformed(final ActionEvent e)
 						{
-							JLaunchLookup.dlgCriteriaDefault = "Ready";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.processOrders())
-							{
-								jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
-							}
+							copyToClipboard("Tray ID");
 						}
 					});
-				}
-				{
-					jLabelProcessOrder = new JLabel4j_std();
-					jDesktopPane1.add(jLabelProcessOrder);
-					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
-					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(0, 51, 126, 22);
+					newItemMenuItem.setText(lang.get("lbl_Tray_ID"));
+					clipboardByMenu.add(newItemMenuItem);
 				}
 
 				{
-					jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
-					jDesktopPane1.add(jTextFieldUserID);
-					jTextFieldUserID.setBounds(363, 86, 93, 22);
-				}
-				{
-					jButtonLookupUserID = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupUserID);
-					jButtonLookupUserID.setBounds(457, 86, 21, 22);
-					jButtonLookupUserID.addActionListener(new ActionListener()
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
 					{
-						public void actionPerformed(ActionEvent evt)
+						public void actionPerformed(final ActionEvent e)
 						{
-							JLaunchLookup.dlgCriteriaDefault = "Y";
-							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.panelUsers())
-							{
-								jTextFieldUserID.setText(JLaunchLookup.dlgResult);
-							}
+							copyToClipboard("Sample ID");
 						}
 					});
-				}
-				{
-					jLabelUser = new JLabel4j_std();
-					jDesktopPane1.add(jLabelUser);
-					jLabelUser.setText(lang.get("lbl_User_ID"));
-					jLabelUser.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelUser.setBounds(245, 86, 108, 22);
+					newItemMenuItem.setText(lang.get("lbl_SampleID"));
+					clipboardByMenu.add(newItemMenuItem);
 				}
 
-				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[] { "Daily Panel Summary","Daily Panel Detail","Detail Report","Summary Report" });
-				jComboBoxReportType = new JComboBox4j<String>();
-				jComboBoxReportType.setMaximumRowCount(15);
-				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
-				jComboBoxReportType.setBounds(134, 159, 182, 22);
-				jComboBoxReportType.setSelectedItem("Daily Panel Summary");
-				jDesktopPane1.add(jComboBoxReportType);
-				
-				ComboBoxModel<JDBViewProductGroups> jComboBox3Model = new DefaultComboBoxModel<JDBViewProductGroups>(productGroupList);
-				comboBoxProductGroups.setModel(jComboBox3Model);
-				comboBoxProductGroups.setMaximumRowCount(25);
-				comboBoxProductGroups.setBounds(778, 123, 169, 22);
-				jDesktopPane1.add(comboBoxProductGroups);
-				
-				JLabel4j_std jLabelProductGroup = new JLabel4j_std();
-				jLabelProductGroup.setText(lang.get("lbl_Product_Group"));
-				jLabelProductGroup.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabelProductGroup.setBounds(644, 123, 126, 22);
-				jDesktopPane1.add(jLabelProductGroup);
-				
-				JLabel4j_std lblUserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
-				lblUserData3.setHorizontalAlignment(SwingConstants.TRAILING);
-				lblUserData3.setBounds(490, 86, 76, 22);
-				jDesktopPane1.add(lblUserData3);
-				
-				textFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
-				textFieldUserData3.setColumns(20);
-				textFieldUserData3.setBounds(574, 86, 98, 22);
-				jDesktopPane1.add(textFieldUserData3);
-				
-				JButton4j jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
-				jButtonLookup_Shift_Names.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "";
-						if (JLaunchLookup.shiftNames())
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
 						{
-							textFieldUserData3.setText(JLaunchLookup.dlgResult);
-							textFieldUserData3.setCaretPosition(textFieldUserData3.getText().length());
+							copyToClipboard("Result");
 						}
-					}
-				});
-				jButtonLookup_Shift_Names.setEnabled(true);
-				jButtonLookup_Shift_Names.setBounds(672, 86, 21, 22);
-				jDesktopPane1.add(jButtonLookup_Shift_Names);
+					});
+					newItemMenuItem.setText(lang.get("lbl_Result"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Process Order");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Process_Order"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Material");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Material"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Sample Date");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Sample_Date"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
+
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							copyToClipboard("Panel Date");
+						}
+					});
+					newItemMenuItem.setText(lang.get("lbl_Panel_Date"));
+					clipboardByMenu.add(newItemMenuItem);
+				}
 
 			}
+
+			jButtonSearch = new JButton4j(Common.icon_search_16x16);
+			jDesktopPane1.add(jButtonSearch);
+			jButtonSearch.setText(lang.get("btn_Search"));
+			jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
+			jButtonSearch.setBounds(117, 168, 123, 32);
+			jButtonSearch.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					search();
+
+				}
+			});
+
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
+			jButtonHelp.setBounds(609, 168, 123, 32);
+
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonClose);
+			jButtonClose.setText(lang.get("btn_Close"));
+			jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
+			jButtonClose.setBounds(732, 168, 123, 32);
+			jButtonClose.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					qSearch = null;
+					qPrint = null;
+					qExcel = null;
+					dispose();
+				}
+			});
+
+			jLabelMaterial = new JLabel4j_std();
+			jDesktopPane1.add(jLabelMaterial);
+			jLabelMaterial.setText(lang.get("lbl_Material"));
+			jLabelMaterial.setBounds(245, 40, 108, 22);
+			jLabelMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelPanelResult = new JLabel4j_std();
+			jDesktopPane1.add(jLabelPanelResult);
+			jLabelPanelResult.setText(lang.get("lbl_Result"));
+			jLabelPanelResult.setBounds(-4, 72, 130, 22);
+			jLabelPanelResult.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelPanelID = new JLabel4j_std();
+			jDesktopPane1.add(jLabelPanelID);
+			jLabelPanelID.setText(lang.get("lbl_Panel_ID"));
+			jLabelPanelID.setBounds(0, 104, 126, 22);
+			jLabelPanelID.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelReportType = new JLabel4j_std();
+			jDesktopPane1.add(jLabelReportType);
+			jLabelReportType.setText(lang.get("lbl_Module_Report_Type"));
+			jLabelReportType.setBounds(0, 136, 126, 22);
+			jLabelReportType.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelTrayID = new JLabel4j_std();
+			jDesktopPane1.add(jLabelTrayID);
+			jLabelTrayID.setText(lang.get("lbl_Tray_ID"));
+			jLabelTrayID.setBounds(260, 104, 93, 22);
+			jLabelTrayID.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelSampleID = new JLabel4j_std();
+			jDesktopPane1.add(jLabelSampleID);
+			jLabelSampleID.setText(lang.get("lbl_Sample_ID"));
+			jLabelSampleID.setBounds(458, 104, 108, 22);
+			jLabelSampleID.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jLabelFillerID = new JLabel4j_std();
+			jDesktopPane1.add(jLabelFillerID);
+			jLabelFillerID.setText(lang.get("lbl_Filler_ID"));
+			jLabelFillerID.setBounds(732, 40, 81, 22);
+			jLabelFillerID.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jTextFieldMaterial = new JTextField4j(JDBViewQMPanelResults.field_MaterialID);
+			jDesktopPane1.add(jTextFieldMaterial);
+			jTextFieldMaterial.setBounds(363, 40, 93, 22);
+
+			jTextFieldPanelResult = new JTextField4j(JDBViewQMPanelResults.field_Result);
+			jDesktopPane1.add(jTextFieldPanelResult);
+			jTextFieldPanelResult.setBounds(134, 72, 93, 22);
+
+			jTextFieldPanelID = new JTextField4j(JDBViewQMPanelResults.field_PanelID);
+			jTextFieldPanelID.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					char c = e.getKeyChar();
+					if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE))
+					{
+						e.consume();
+					}
+				}
+			});
+			jDesktopPane1.add(jTextFieldPanelID);
+			jTextFieldPanelID.setBounds(134, 104, 68, 22);
+
+			jTextFieldTrayID = new JTextField4j(JDBViewQMPanelResults.field_TrayID);
+			jDesktopPane1.add(jTextFieldTrayID);
+			jTextFieldTrayID.setBounds(363, 104, 68, 22);
+			jTextFieldTrayID.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					char c = e.getKeyChar();
+					if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE))
+					{
+						e.consume();
+					}
+				}
+			});
+
+			jTextFieldSampleID = new JTextField4j(JDBViewQMPanelResults.field_SampleID);
+			jDesktopPane1.add(jTextFieldSampleID);
+			jTextFieldSampleID.setBounds(574, 104, 68, 22);
+			jTextFieldSampleID.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					char c = e.getKeyChar();
+					if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE))
+					{
+						e.consume();
+					}
+				}
+			});
+
+			jTextFieldFillerID = new JTextField4j(JDBViewQMPanelResults.field_SampleID);
+			jDesktopPane1.add(jTextFieldFillerID);
+			jTextFieldFillerID.setBounds(822, 40, 106, 22);
+			jTextFieldFillerID.addKeyListener(new KeyAdapter()
+			{
+				@Override
+				public void keyTyped(KeyEvent e)
+				{
+					char c = e.getKeyChar();
+					if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE))
+					{
+						e.consume();
+					}
+				}
+			});
+
+			jLabelPlant = new JLabel4j_std();
+			jDesktopPane1.add(jLabelPlant);
+			jLabelPlant.setText(lang.get("lbl_Plant"));
+			jLabelPlant.setBounds(485, 40, 81, 22);
+			jLabelPlant.setHorizontalAlignment(SwingConstants.TRAILING);
+
+			jTextFieldPlant = new JTextField4j(JDBViewQMPanelResults.field_Plant);
+			jDesktopPane1.add(jTextFieldPlant);
+			jTextFieldPlant.setBounds(574, 40, 98, 22);
+
+			jLabelSortby = new JLabel4j_std();
+			jDesktopPane1.add(jLabelSortby);
+			jLabelSortby.setText(lang.get("lbl_Sort_By"));
+			jLabelSortby.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelSortby.setBounds(325, 135, 87, 23);
+
+			jComboBoxSortBy = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxSortBy);
+			jComboBoxSortBy.setBounds(419, 136, 255, 22);
+
+			jLabelStatus = new JLabel4j_std();
+			jDesktopPane1.add(jLabelStatus);
+			jLabelStatus.setText(lang.get("lbl_Panel_Status"));
+			jLabelStatus.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelStatus.setBounds(704, 72, 126, 22);
+
+			String[] test =
+			{ "", "Prepare", "Ready", "Complete" };
+			ComboBoxModel<String> jComboBoxRecycleModel = new DefaultComboBoxModel<String>(test);
+			jComboBoxStatus = new JComboBox4j<String>();
+			jDesktopPane1.add(jComboBoxStatus);
+			jComboBoxStatus.setModel(jComboBoxRecycleModel);
+			jComboBoxStatus.setBounds(839, 72, 108, 22);
+			jComboBoxStatus.setMaximumRowCount(test.length);
+
+			jToggleButtonSequence = new JToggleButton4j();
+			jToggleButtonSequence.setSelected(true);
+			jDesktopPane1.add(jToggleButtonSequence);
+			jToggleButtonSequence.setBounds(672, 136, 21, 22);
+			jToggleButtonSequence.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					setSequence(jToggleButtonSequence.isSelected());
+				}
+			});
+
+			jButtonLookupWasteMaterial = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupWasteMaterial.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = false;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.materials())
+					{
+						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+			jButtonLookupWasteMaterial.setBounds(457, 40, 21, 22);
+			jDesktopPane1.add(jButtonLookupWasteMaterial);
+
+			jButtonLookupPanelResult = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupPanelResult.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = false;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.panel_ZWSIPANE())
+					{
+						jTextFieldPanelResult.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+			jButtonLookupPanelResult.setBounds(225, 72, 21, 22);
+			jDesktopPane1.add(jButtonLookupPanelResult);
+
+			jButtonLookupPlant = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupPlant.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.plants_po_resource())
+					{
+						jTextFieldPlant.setText(JLaunchLookup.dlgResult);
+					}
+
+				}
+			});
+			jButtonLookupPlant.setBounds(672, 40, 21, 22);
+			jDesktopPane1.add(jButtonLookupPlant);
+
+			jButtonLookupFiller = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupFiller.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.panel_Filler())
+					{
+						jTextFieldFillerID.setText(JLaunchLookup.dlgResult);
+					}
+
+				}
+			});
+			jButtonLookupFiller.setBounds(926, 40, 21, 22);
+			jDesktopPane1.add(jButtonLookupFiller);
+
+			panelDateFrom.setBounds(155, 8, 120, 22);
+			panelDateFrom.setEnabled(false);
+			jDesktopPane1.add(panelDateFrom);
+
+			panelDateTo.setBounds(328, 8, 120, 22);
+			panelDateTo.setEnabled(false);
+			jDesktopPane1.add(panelDateTo);
+
+			sampleDateFrom.setBounds(645, 8, 120, 22);
+			sampleDateFrom.setEnabled(false);
+			jDesktopPane1.add(sampleDateFrom);
+
+			sampleDateTo.setBounds(822, 8, 120, 22);
+			sampleDateTo.setEnabled(false);
+			jDesktopPane1.add(sampleDateTo);
+
+			jLabelPanelDate = new JLabel4j_std();
+			jLabelPanelDate.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelPanelDate.setText(lang.get("lbl_Panel_Date"));
+			jLabelPanelDate.setBounds(0, 8, 126, 22);
+			jDesktopPane1.add(jLabelPanelDate);
+
+			jLabelSampleDate = new JLabel4j_std();
+			jLabelSampleDate.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelSampleDate.setText(lang.get("lbl_Sample_Date"));
+			jLabelSampleDate.setBounds(490, 8, 126, 22);
+			jDesktopPane1.add(jLabelSampleDate);
+
+			jCheckBoxPanelDateFrom = new JCheckBox4j();
+			jCheckBoxPanelDateFrom.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jCheckBoxPanelDateFrom.isSelected())
+					{
+						panelDateFrom.setEnabled(true);
+						calendarButtonPanelDateFrom.setEnabled(true);
+					}
+					else
+					{
+						panelDateFrom.setEnabled(false);
+						calendarButtonPanelDateFrom.setEnabled(false);
+					}
+				}
+			});
+
+			jCheckBoxPanelDateFrom.setBounds(133, 8, 21, 22);
+			jDesktopPane1.add(jCheckBoxPanelDateFrom);
+
+			jCheckBoxPanelDateTo = new JCheckBox4j();
+			jCheckBoxPanelDateTo.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jCheckBoxPanelDateTo.isSelected())
+					{
+						panelDateTo.setEnabled(true);
+						calendarButtonPanelDateTo.setEnabled(true);
+					}
+					else
+					{
+						panelDateTo.setEnabled(false);
+						calendarButtonPanelDateTo.setEnabled(false);
+					}
+				}
+			});
+
+			jCheckBoxPanelDateTo.setBounds(306, 8, 21, 22);
+			jDesktopPane1.add(jCheckBoxPanelDateTo);
+
+			jCheckBoxSampleDateFrom = new JCheckBox4j();
+			jCheckBoxSampleDateFrom.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jCheckBoxSampleDateFrom.isSelected())
+					{
+						sampleDateFrom.setEnabled(true);
+						calendarButtonSampleDateFrom.setEnabled(true);
+					}
+					else
+					{
+						sampleDateFrom.setEnabled(false);
+						calendarButtonSampleDateFrom.setEnabled(false);
+					}
+				}
+			});
+
+			jCheckBoxSampleDateFrom.setBounds(623, 8, 21, 22);
+			jDesktopPane1.add(jCheckBoxSampleDateFrom);
+
+			jCheckBoxSampleDateTo = new JCheckBox4j();
+			jCheckBoxSampleDateTo.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jCheckBoxSampleDateTo.isSelected())
+					{
+						sampleDateTo.setEnabled(true);
+						calendarButtonSampleDateTo.setEnabled(true);
+					}
+					else
+					{
+						sampleDateTo.setEnabled(false);
+						calendarButtonSampleDateTo.setEnabled(false);
+					}
+				}
+			});
+
+			jCheckBoxSampleDateTo.setBounds(800, 8, 21, 22);
+			jDesktopPane1.add(jCheckBoxSampleDateTo);
+
+			jStatusText = new JLabel4j_status();
+			jStatusText.setBounds(5, 610, 975, 21);
+			jDesktopPane1.add(jStatusText);
+
+			jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
+			jButtonExcel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					excel();
+				}
+			});
+
+			jButtonExcel.setText(lang.get("btn_Excel"));
+			jButtonExcel.setMnemonic(lang.getMnemonicChar());
+			jButtonExcel.setBounds(363, 168, 123, 32);
+			jDesktopPane1.add(jButtonExcel);
+
+			calendarButtonPanelDateFrom = new JCalendarButton(panelDateFrom);
+			calendarButtonPanelDateFrom.setEnabled(false);
+			calendarButtonPanelDateFrom.setBounds(277, 8, 21, 25);
+			jDesktopPane1.add(calendarButtonPanelDateFrom);
+
+			calendarButtonSampleDateFrom = new JCalendarButton(sampleDateFrom);
+			calendarButtonSampleDateFrom.setEnabled(false);
+			calendarButtonSampleDateFrom.setBounds(767, 8, 21, 25);
+			jDesktopPane1.add(calendarButtonSampleDateFrom);
+
+			calendarButtonPanelDateTo = new JCalendarButton(panelDateTo);
+			calendarButtonPanelDateTo.setEnabled(false);
+			calendarButtonPanelDateTo.setBounds(450, 8, 21, 25);
+			jDesktopPane1.add(calendarButtonPanelDateTo);
+
+			calendarButtonSampleDateTo = new JCalendarButton(sampleDateTo);
+			calendarButtonSampleDateTo.setEnabled(false);
+			calendarButtonSampleDateTo.setBounds(944, 8, 21, 25);
+			jDesktopPane1.add(calendarButtonSampleDateTo);
+
+			JLabel4j_std labelLimit = new JLabel4j_std();
+			labelLimit.setText(lang.get("lbl_Limit"));
+			labelLimit.setHorizontalAlignment(SwingConstants.TRAILING);
+			labelLimit.setBounds(725, 136, 116, 22);
+			jDesktopPane1.add(labelLimit);
+
+			jCheckBoxLimit = new JCheckBox4j();
+			jCheckBoxLimit.setSelected(true);
+
+			jCheckBoxLimit.setBounds(850, 136, 21, 22);
+			jDesktopPane1.add(jCheckBoxLimit);
+
+			JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerLimit);
+
+			jSpinnerLimit.setEditor(ne);
+			jSpinnerLimit.setBounds(879, 136, 68, 22);
+			jSpinnerLimit.setValue(1000);
+			jDesktopPane1.add(jSpinnerLimit);
+
+			jButtonClear = new JButton4j(Common.icon_clear_16x16);
+			jButtonClear.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
+					clearFilter();
+
+				}
+			});
+			jButtonClear.setText(lang.get("btn_Clear_Filter"));
+			jButtonClear.setBounds(240, 168, 123, 32);
+			jDesktopPane1.add(jButtonClear);
+
+			jButtonPrint = new JButton4j(Common.icon_report_16x16);
+			jDesktopPane1.add(jButtonPrint);
+			jButtonPrint.setText(lang.get("btn_Print"));
+			jButtonPrint.setBounds(486, 168, 123, 32);
+			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_LOG"));
+			jButtonPrint.setMnemonic(lang.getMnemonicChar());
+			jButtonPrint.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					print();
+
+				}
+			});
+
+			jTextFieldProcessOrder = new JTextField4j(JDBViewQMPanelResults.field_ProcessOrder);
+			jDesktopPane1.add(jTextFieldProcessOrder);
+			jTextFieldProcessOrder.setBounds(134, 40, 93, 22);
+
+			jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupProcessOrder);
+			jButtonLookupProcessOrder.setBounds(225, 40, 21, 22);
+			jButtonLookupProcessOrder.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "Ready";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.processOrders())
+					{
+						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jLabelProcessOrder = new JLabel4j_std();
+			jDesktopPane1.add(jLabelProcessOrder);
+			jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
+			jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelProcessOrder.setBounds(0, 40, 126, 22);
+
+			jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
+			jDesktopPane1.add(jTextFieldUserID);
+			jTextFieldUserID.setBounds(363, 72, 93, 22);
+
+			jButtonLookupUserID = new JButton4j(Common.icon_lookup_16x16);
+			jDesktopPane1.add(jButtonLookupUserID);
+			jButtonLookupUserID.setBounds(457, 72, 21, 22);
+			jButtonLookupUserID.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgCriteriaDefault = "Y";
+					JLaunchLookup.dlgAutoExec = true;
+					if (JLaunchLookup.panelUsers())
+					{
+						jTextFieldUserID.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+
+			jLabelUser = new JLabel4j_std();
+			jDesktopPane1.add(jLabelUser);
+			jLabelUser.setText(lang.get("lbl_User_ID"));
+			jLabelUser.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelUser.setBounds(245, 72, 108, 22);
+
+			ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
+			{ "Daily Panel Summary", "Daily Panel Detail", "Detail Report", "Summary Report" });
+			jComboBoxReportType = new JComboBox4j<String>();
+			jComboBoxReportType.setMaximumRowCount(15);
+			jComboBoxReportType.setModel(jComboBoxReportTypeModel);
+			jComboBoxReportType.setBounds(134, 136, 182, 22);
+			jComboBoxReportType.setSelectedItem("Daily Panel Summary");
+			jDesktopPane1.add(jComboBoxReportType);
+
+			ComboBoxModel<JDBViewProductGroups> jComboBox3Model = new DefaultComboBoxModel<JDBViewProductGroups>(productGroupList);
+			comboBoxProductGroups.setModel(jComboBox3Model);
+			comboBoxProductGroups.setMaximumRowCount(25);
+			comboBoxProductGroups.setBounds(778, 104, 169, 22);
+			jDesktopPane1.add(comboBoxProductGroups);
+
+			JLabel4j_std jLabelProductGroup = new JLabel4j_std();
+			jLabelProductGroup.setText(lang.get("lbl_Product_Group"));
+			jLabelProductGroup.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabelProductGroup.setBounds(644, 104, 126, 22);
+			jDesktopPane1.add(jLabelProductGroup);
+
+			JLabel4j_std lblUserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
+			lblUserData3.setHorizontalAlignment(SwingConstants.TRAILING);
+			lblUserData3.setBounds(490, 72, 76, 22);
+			jDesktopPane1.add(lblUserData3);
+
+			textFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
+			textFieldUserData3.setColumns(20);
+			textFieldUserData3.setBounds(574, 72, 98, 22);
+			jDesktopPane1.add(textFieldUserData3);
+
+			JButton4j jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookup_Shift_Names.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.shiftNames())
+					{
+						textFieldUserData3.setText(JLaunchLookup.dlgResult);
+						textFieldUserData3.setCaretPosition(textFieldUserData3.getText().length());
+					}
+				}
+			});
+			jButtonLookup_Shift_Names.setEnabled(true);
+			jButtonLookup_Shift_Names.setBounds(672, 72, 21, 22);
+			jDesktopPane1.add(jButtonLookup_Shift_Names);
+
 		}
 		catch (Exception e)
 		{
@@ -1746,22 +1664,22 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 	private void print()
 	{
 		jComboBoxSortBy.setSelectedIndex(0);
-		
+
 		if (jComboBoxReportType.getSelectedItem().equals("Detail Report"))
 		{
 			JLaunchReport.runReport("RPT_PANEL_RESULTS1", null, "", buildSQL(qPrint), "");
 		}
-		
+
 		if (jComboBoxReportType.getSelectedItem().equals("Summary Report"))
 		{
 			JLaunchReport.runReport("RPT_PANEL_RESULTS2", null, "", buildSQL(qPrint), "");
 		}
-		
+
 		if (jComboBoxReportType.getSelectedItem().equals("Daily Panel Summary"))
 		{
 			JLaunchReport.runReport("RPT_PANEL_RESULTS3", null, "", buildSQL(qPrint), "");
 		}
-		
+
 		if (jComboBoxReportType.getSelectedItem().equals("Daily Panel Detail"))
 		{
 			JLaunchReport.runReport("RPT_PANEL_RESULTS4", null, "", buildSQL(qPrint), "");

@@ -22,6 +22,9 @@ public class JComboBox4j<E> extends JComboBox<E> {
 		setFont(Common.font_combo);
         setFocusable(false);
         setBorder(EMPTY_BORDER);
+        setBackground(Common.color_combobox_background);
+        setForeground(Common.color_combobox_font);
+
     }
     
 	public JComboBox4j(E[] items) {

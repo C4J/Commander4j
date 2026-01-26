@@ -25,9 +25,9 @@ import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
+
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
@@ -51,6 +51,8 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JPanel4j;
+import com.commander4j.gui.JScrollPane4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileFilterXML;
@@ -66,7 +68,7 @@ public class JInternalFrameBom extends JInternalFrame
 
 	private Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 	private Transferable transferable;
-	private JPanel contentPane;
+	private JPanel4j contentPane;
 	private JToolBar jtreeToolbar;
 	private JButton4j btnExpandAll;
 	private JButton4j btnExpandNode;
@@ -77,7 +79,7 @@ public class JInternalFrameBom extends JInternalFrame
 	private JButton4j btnSearch;
 	private JButton4j btnProcess;
 	private JButton4j btnClose;
-	private JScrollPane scrollPane = new JScrollPane();
+	private JScrollPane4j scrollPane = new JScrollPane4j();
 	private JTextField4j textFieldVersion;
 	private JTextField4j textFieldBOM;
 	private JLabel4j_std lblBOM;
@@ -99,7 +101,7 @@ public class JInternalFrameBom extends JInternalFrame
 
 		setTitle("Bill of Materials");
 		setBounds(100, 100, 820, 730);
-		contentPane = new JPanel();
+		contentPane = new JPanel4j();
 
 		UIManager.put("ToolTip.font", Common.font_tree_tooltip);
 

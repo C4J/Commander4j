@@ -1,5 +1,7 @@
 package com.commander4j.db;
 
+import java.awt.Color;
+
 /**
  * @author David Garratt
  * 
@@ -44,6 +46,7 @@ public class JDBWasteReportingIDSJList extends JList<JDBListData>
 	private JDBWasteReportingIDS mod;
 	private String hostID;
 	private String sessionID;
+	private Color backgroundColor = Common.color_list_background;
 
 	private void setSessionID(String session) {
 		sessionID = session;
@@ -60,11 +63,16 @@ public class JDBWasteReportingIDSJList extends JList<JDBListData>
 	private String getHostID() {
 		return hostID;
 	}
+	
+	public void setBackground(Color c)
+	{
+		backgroundColor = c;
+	}
 
 	public JDBWasteReportingIDSJList()
 	{
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(Common.color_list_background);
 	}
 
 	public JDBWasteReportingIDSJList(String host, String session)
@@ -73,7 +81,7 @@ public class JDBWasteReportingIDSJList extends JList<JDBListData>
 		setSessionID(session);
 		mod = new JDBWasteReportingIDS(getHostID(), getSessionID());
 		setFont(Common.font_list);
-		setBackground(Common.color_listBackground);
+		setBackground(backgroundColor);
 	}
 
 	public String getToolTipText(MouseEvent e) {

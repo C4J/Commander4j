@@ -7,339 +7,339 @@
         <library>
             <description>aalto-xml</description>
             <version>1.3.3</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>
         
         <library>
             <description>angus-activation</description>
             <version>2.02</version>
-            <type>Eclipse Distribution Licence 1.0</type>
+            <type>Eclipse Distribution License 1.0</type>
         </library>
         
         <library>
             <description>angus-mail</description>
             <version>2.03</version>
-            <type>Eclipse Public Licence 2.0</type>
+            <type>Eclipse Public License 2.0</type>
         </library>
         
     	<library>
     		<description>Apache Commons CLI</description>
     		<version>1.0.0</version>
-    		<type>Apache Licence 2.0</type>> 
+    		<type>Apache License 2.0</type>> 
     	</library>
     	
         <library>
             <description>Apache Commons IO</description>
-            <version>2.11</version>
-            <type>Apache Licence 2.18.0</type>> 
+            <version>2.18</version>
+            <type>Apache License 2.0</type>> 
          </library>
 
         <library>
             <description>Apache Commons Lang</description>
             <version>2.6</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>
         
         <library>
             <description>Apache Commons Lang3</description>
             <version>3.17.0</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>
         <library>
             <description>Apache Commons Text</description>
             <version>1.13.0</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>
         
         <library>
             <description>Jackcess</description>
             <version>4.08</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>
         
         <library>
             <description>Apache Log4j</description>
             <version>2.24.3</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>
         
         <library>
             <description>OpenCSV</description>
             <version>5.10</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>       
         <library>
             <description>Cups4j</description>
             <version>0.7.9</version>
-            <type>GNU Lesser General Public Licence V3</type>
+            <type>GNU Lesser General Public License V3</type>
         </library>   
         <library>
             <description>Simple-XML</description>
             <version>2.7.1</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>   
         
         <library>
             <description>slf4j-api</description>
             <version>2.0.16</version>
-            <type>MIT Licence</type>
+            <type>MIT License</type>
         </library>    
         <library>
             <description>slf4j-nop</description>
             <version>2.0.16</version>
-            <type>MIT Licence</type>
+            <type>MIT License</type>
         </library>  
 
         <library>
             <description>stax</description>
             <version>1.2.0</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>   
         
         <library>
             <description>stax2-api</description>
             <version>4.2.2</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>   
         
         <library>
             <description>Microsoft JDBC</description>
             <version>12.8.1</version>
-            <type>Microsoft JDBC Licence</type>
+            <type>Microsoft JDBC License</type>
         </library>  
         
         <library>
             <description>mySQL JDBC</description>
             <version>9.2.0</version>
-            <type>mySQL JDBC Licence</type>
+            <type>mySQL JDBC License</type>
         </library>    
         
         <library>
             <description>Oracle JDBC</description>
             <version>Oracle Database 21c (21.1)</version>
-            <type>Oracle JDBC Licence</type>
+            <type>Oracle JDBC License</type>
         </library> 
             
         <library>
             <description>Jasper Reports Library</description>
             <version>7.0.2</version>
-            <type>Jasper Reports Licence</type>
+            <type>Jasper Reports License</type>
         </library>       
 
         <library>
             <description>Batik</description>
             <version>1.18</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>   
 
         <library>
             <description>Barbeque Barcode</description>
             <version>1.5</version>
-            <type>Barbeque Licence</type>
+            <type>Barbeque License</type>
         </library>   
         
         <library>
         	<description>Apache Ant Core</description>
         	<version>1.10.14</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>
         
         <library>
             <description>Apache Ant Launcher</description>
             <version>1.10.14</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>
         
         <library>
         	<description>antlr</description>
         	<version>2.7.7</version>
-        	<type>ANTLR 4 Licence</type>
+        	<type>ANTLR 4 License</type>
         </library>  
         
         <library>
             <description>antlr4-runtime</description>
             <version>4.10.1</version>
-            <type>ANTLR 4 Licence</type>
+            <type>ANTLR 4 License</type>
         </library>  
          
         <library>
             <description>Barcode4j</description>
             <version>2.1.0</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>  
         
         <library>
             <description>Castor Core</description>
             <version>1.4.1</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>   
         
         <library>
             <description>Castor XML</description>
             <version>1.4.1</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>  
         
         <library>
         	<description>Apache Commons BeanUtils</description>
         	<version>1.9.4</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>
         
         <library>
         	<description>Apache Commons Codec</description>
         	<version>1.18</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>
  
         <library>
         	<description>Apache Commons Collections</description>
         	<version>3.2.2</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
         
         <library>
         	<description>Apache Commons Collections4</description>
         	<version>4.4.4</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
         
         <library>
         	<description>Apache Commons Logging</description>
         	<version>1.3</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
         
         <library>
         	<description>Apache Commons Pool</description>
         	<version>1.3</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>
         
         <library>
         	<description>Apache Groovy</description>
         	<version>4.0.16</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>  
 
         <library>
         	<description>Hibernate Core</description>
         	<version>6.3.1 Final</version>
-        	<type>GNU Lesser General Public Licence V2.1</type>
+        	<type>GNU Lesser General Public License V2.1</type>
         </library>  
 
         <library>
         	<description>Apache HttpClient</description>
         	<version>4.5.14</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>  
  
         <library>
         	<description>Apache HttpCore</description>
         	<version>4.4.16</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>
         
         <library>
         	<description>Jackson Annotations</description>
         	<version>2.17.1</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
         
         <library>
         	<description>Jackson Core</description>
         	<version>2.17.1</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
 
         <library>
         	<description>Jackson Databind</description>
         	<version>2.17.1</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
                     
         <library>
         	<description>Javax Persistence API</description>
         	<version>2.2</version>
-        	<type>Eclipse Public Licence 1.0</type>
+        	<type>Eclipse Public License 1.0</type>
         </library>                     
 
         <library>
         	<description>JFreeChart</description>
         	<version>1.5.4</version>
-        	<type>GNU Lesser General Public Licence</type>
+        	<type>GNU Lesser General Public License</type>
         </library> 
         
         <library>
         	<description>Lucene Common Analyzers</description>
         	<version>8.11.2</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
         
         <library>
         	<description>Lucene Core</description>
             <version>8.11.2</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
 
         <library>
         	<description>olap4j - Open Java API for OLAP</description>
         	<version>0.9.7.309-JS-3</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>
         
         <library>
             <description>Apache Commons Math3</description>
             <version>3.6.1</version>
-            <type>Apache Licence 2.0</type>
+            <type>Apache License 2.0</type>
         </library>
         
         <library>
 	        <description>Apache POI</description>
 	        <version>4.1.1</version>
-	        <type>Apache Licence 2.0</type>
+	        <type>Apache License 2.0</type>
         </library>
 
         <library>
 	        <description>Mozilla Rhino</description>
 	        <version>1.7.6</version>
-	        <type>Mozilla Public Licence V2.0</type>
+	        <type>Mozilla Public License V2.0</type>
         </library>
         
         <library>
         	<description>JavaServlet(TM) Specification</description>
         	<version>2.4</version>
-        	<type>GNU General Public Licence V2</type>
+        	<type>GNU General Public License V2</type>
         </library>
         
         <library>
         	<description>Spring Beans</description>
         	<version>5.3.27</version>
-         	<type>Apache Licence 2.0</type>
+         	<type>Apache License 2.0</type>
         </library>
   
         <library>
         	<description>Spring Core</description>
         	<version>5.3.27</version>
-         	<type>Apache Licence 2.0</type>
+         	<type>Apache License 2.0</type>
         </library>  
         
         <library>
         	<description>Spring JCL</description>
         	<version>5.3.27</version>
-         	<type>Apache Licence 2.0</type>
+         	<type>Apache License 2.0</type>
         </library> 
         
         <library>
         	<description>Apache Velocity</description>
         	<version>2.3</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library> 
         
         <library>
         	<description>XML Commons External Components XML APIs</description>
         	<version>1.3.04</version>
-        	<type>Apache Licence 2.0</type>
+        	<type>Apache License 2.0</type>
         </library>
         
         <library>
@@ -351,157 +351,156 @@
         <library>
         	<description>ASM bytecode manipulation framework</description>
          	<version>5.2</version>
-        	<type>3-Clause BSD Licence</type>       
+        	<type>3-Clause BSD License</type>       
         </library>  
         
         <library>
         	<description>Beanshell</description>
          	<version>2.0b6</version>
-        	<type>Apache Licence 2.0</type>    
+        	<type>Apache License 2.0</type>    
         </library>        
  
         <library>
         	<description>XML APIs</description>
          	<version>1.4.01</version>
-        	<type>Apache Licence 2.0</type>    
+        	<type>Apache License 2.0</type>    
         </library>   
         
         <library>
         	<description>Apache XML Graphics Commons</description>
         	<version>2.2</version>
-        	<type>Apache Licence 2.0</type>   
+        	<type>Apache License 2.0</type>   
         </library>
         
         <library>
             <description>JSerialComm</description>
-            <type>Apache Licence 2.0</type> 
+            <type>Apache License 2.0</type> 
             <version>2.11.0</version>
         </library>
                                 
     </libraries>
 
-    <Licences>
-    
-        <Licence>
+    <licenses>
+        <license>
     		<type>Adobe</type>
     		<filename>Adobe.txt</filename>
-    	</Licence>
+        </license>
     
-    	<Licence>
-    		<type>GNU General Public Licence V2</type>
-    		<filename>GNU General Public Licence V2.txt</filename>
-    	</Licence>
+        <license>
+    		<type>GNU General Public License V2</type>
+    		<filename>GNU General Public License V2.txt</filename>
+        </license>
     
-    	<Licence>
-    		<type>Common Public Licence v1.0</type>
-    		<filename>Common Public Licence v1.0.txt</filename>
-    	</Licence>
+        <license>
+    		<type>Common Public License v1.0</type>
+    		<filename>Common Public License v1.0.txt</filename>
+        </license>
     
-    	<Licence>
-    		<type>2-Clause BSD Licence</type>
-    		<filename>2-Clause BSD Licence.txt</filename>
-    	</Licence>
+        <license>
+    		<type>2-Clause BSD License</type>
+    		<filename>2-Clause BSD License.txt</filename>
+        </license>
 
-    	<Licence>
-    		<type>3-Clause BSD Licence</type>
-    		<filename>3-Clause BSD Licence.txt</filename>
-    	</Licence>    	
+        <license>
+    		<type>3-Clause BSD License</type>
+    		<filename>3-Clause BSD License.txt</filename>
+        </license>    	
     
-    	<Licence>
+        <license>
     		<type>CDDL V1</type>
     		<filename>CDDL V1.txt</filename>
-    	</Licence>
+        </license>
         
-        <Licence>
-            <type>Apache Licence 2.0</type>
-            <filename>Apache Licence Version 2.0.txt</filename>
-        </Licence>
+        <license>
+            <type>Apache License 2.0</type>
+            <filename>Apache License Version 2.0.txt</filename>
+        </license>
         
-        <Licence>
+        <license>
             <type>JDOM</type>
             <filename>JDOM.txt</filename>
-        </Licence>    
+        </license>    
         
-        <Licence>
-        	<type>GNU Lesser General Public Licence</type>
-        	<filename>GNU Lesser General Public Licence.txt</filename>
-        </Licence>          
+        <license>
+        	<type>GNU Lesser General Public License</type>
+        	<filename>GNU Lesser General Public License.txt</filename>
+        </license>          
         
-        <Licence>
-        	<type>GNU Lesser General Public Licence V3</type>
-        	<filename>GNU Lesser General Public Licence V3.txt</filename>
-        </Licence>   
+        <license>
+        	<type>GNU Lesser General Public License V3</type>
+        	<filename>GNU Lesser General Public License V3.txt</filename>
+        </license>   
         
-        <Licence>
-        	<type>GNU Lesser General Public Licence V2.1</type>
-        	<filename>GNU Lesser General Public Licence V2.1.txt</filename>
-        </Licence>   
+        <license>
+        	<type>GNU Lesser General Public License V2.1</type>
+        	<filename>GNU Lesser General Public License V2.1.txt</filename>
+        </license>   
         
-         <Licence>
-        	<type>MIT Licence</type>
-        	<filename>MIT Licence.txt</filename>
-        </Licence>   
+        <license>
+        	<type>MIT License</type>
+        	<filename>MIT License.txt</filename>
+        </license>   
         
-        <Licence>
-        	<type>Microsoft JDBC Licence</type>
-        	<filename>Microsoft JDBC Licence.txt</filename>
-        </Licence>   
+        <license>
+        	<type>Microsoft JDBC License</type>
+        	<filename>Microsoft JDBC License.txt</filename>
+        </license>   
         
-        <Licence>
-        	<type>mySQL JDBC Licence</type>
-        	<filename>mySQL JDBC Licence.txt</filename>
-        </Licence>  
+        <license>
+        	<type>mySQL JDBC License</type>
+        	<filename>mySQL JDBC License.txt</filename>
+        </license>  
         
-        <Licence>
-        	<type>Oracle JDBC Licence</type>
-        	<filename>Oracle JDBC Licence.txt</filename>
-        </Licence>  
+        <license>
+        	<type>Oracle JDBC License</type>
+        	<filename>Oracle JDBC License.txt</filename>
+        </license>  
         
-        <Licence>
-        	<type>Jasper Reports Licence</type>
-            <filename>TIB_js-jrlib-ce_6.18.1_Licence.txt</filename>
-        </Licence>   
+        <license>
+        	<type>Jasper Reports License</type>
+            <filename>TIB_js-jrlib-ce_6.18.1_License.txt</filename>
+        </license>   
          
-        <Licence>
-            <type>Barbeque Licence</type>
-            <filename>Barbeque Licence.txt</filename>
-        </Licence>
+        <license>
+            <type>Barbeque License</type>
+            <filename>Barbeque License.txt</filename>
+        </license>
         
-        <Licence>
-            <type>ANTLR Licence</type>
-            <filename>ANTLR Licence.txt</filename>
-        </Licence>   
+        <license>
+            <type>ANTLR 4 License</type>
+            <filename>ANTLR 4 License.txt</filename>
+        </license>   
  
-        <Licence>
-            <type>Eclipse Public Licence 1.0</type>
-            <filename>Eclipse Public Licence 1.0.txt</filename>
-        </Licence>   
+        <license>
+            <type>Eclipse Public License 1.0</type>
+            <filename>Eclipse Public License 1.0.txt</filename>
+        </license>   
         
-        <Licence>
-            <type>Eclipse Public Licence 2.0</type>
-            <filename>Eclipse Public Licence v2.0.txt</filename>
-        </Licence>
+        <license>
+            <type>Eclipse Public License 2.0</type>
+            <filename>Eclipse Public License v2.0.txt</filename>
+        </license>
         
-        <Licence>
-            <type>Eclipse Distribution Licence 1.0</type>
-            <filename>Eclipse Distribution Licence - v1.txt</filename>
-        </Licence>
+        <license>
+            <type>Eclipse Distribution License 1.0</type>
+            <filename>Eclipse Distribution License - v1.txt</filename>
+        </license>
         
-        <Licence>
-        	<type>ICU4J Licence</type>
-        	<filename>ICU4J Licence.txt</filename>
-        </Licence>
+        <license>
+        	<type>ICU4J License</type>
+        	<filename>ICU4J License.txt</filename>
+        </license>
         
-        <Licence>
-            <type>Mozilla Public Licence 1.1</type>
-       	 <filename>Mozilla Public Licence 1.1.txt</filename>
-        </Licence>
+        <license>
+            <type>Mozilla Public License 1.1</type>
+       	 <filename>Mozilla Public License 1.1.txt</filename>
+        </license>
         
-        <Licence>
-       	 <type>Mozilla Public Licence V2.0</type>
-       	 <filename>Mozilla Public Licence 2.0.txt</filename>
-        </Licence>
+        <license>
+       	 <type>Mozilla Public License V2.0</type>
+       	 <filename>Mozilla Public License 2.0.txt</filename>
+        </license>
                 
-    </Licences>
+    </licenses>
 
 </info>

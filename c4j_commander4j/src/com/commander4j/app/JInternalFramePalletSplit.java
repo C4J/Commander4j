@@ -2,29 +2,29 @@ package com.commander4j.app;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JInternalFramePalletSplit.java
- * 
+ *
  * Package Name : com.commander4j.app
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.awt.BorderLayout;
@@ -37,15 +37,10 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
 
-import javax.swing.BorderFactory;
-import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.TitledBorder;
 
 import com.commander4j.bar.JLabelPrint;
 import com.commander4j.db.JDBControl;
@@ -56,64 +51,68 @@ import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBoxPODevices4j;
+import com.commander4j.gui.JDesktopPane4j;
+import com.commander4j.gui.JLabel4j_status;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JPanel4j;
 import com.commander4j.gui.JQuantityInput;
 import com.commander4j.gui.JSpinner4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.gui.JTitledBorder4j;
+import com.commander4j.print.JPrintDevice;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import com.commander4j.print.JPrintDevice;
 
 /**
  * JInternalFramePalletSplit allows a user to split a pallet into 2 pallets. You
  * are prompted to enter a quantity of cases to remove from the current SSCC and
  * this is automatically added to a new SSCC. The program also allows you to
  * reprint labels for the old and new SSCC's
-  * 
+ *
  * <p>
  * <img alt="" src="./doc-files/JInternalFramePalletSplit.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBPallet JDBPallet
  * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
  */
 public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 {
-	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonCancel;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSplit;
-	private JTextField4j jTextFieldSSCC;
-	private JTextField4j jTextFieldNewSSCC;
-	private JLabel4j_std labelSSCC;
-	private JLabel4j_std labelNewSSCC;
-	private JLabel4j_std labelSSCCNewQuantity;
-	private String lsscc;
-	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
-	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
-	private JLabelPrint lab = new JLabelPrint(Common.selectedHostID, Common.sessionID);
-	private JComboBoxPODevices4j comboBoxPrintQueue;
-	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
 	private JCheckBox4j checkBoxIncHeaderText = new JCheckBox4j();
+	private JCheckBox4j checkBoxPrintNewSSCC = new JCheckBox4j("");
+	private JCheckBox4j checkBoxPrintOldSSCC = new JCheckBox4j("");
 	private JCheckBox4j jCheckBoxAutoPreview;
-	private JSpinner4j jSpinnerCopies = new JSpinner4j();
+	private JComboBoxPODevices4j comboBoxPrintQueue;
+	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	private JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
+	private JDesktopPane4j jDesktopPane1;
+	private JLabel4j_status jStatusBar = new JLabel4j_status();
+	private JLabel4j_std labelCopies = new JLabel4j_std();
+	private JLabel4j_std labelNewSSCC;
+	private JLabel4j_std labelNewSSCCQuantity;
 	private JLabel4j_std labelPreview;
-	private PreparedStatement listStatement;
+	private JLabel4j_std labelSSCC;
+	private JLabel4j_std labelSSCCNewQuantity;
+	private JLabel4j_std labelSSCCQuantity;
+	private JLabelPrint lab = new JLabelPrint(Common.selectedHostID, Common.sessionID);
+	private JQuantityInput jFormattedTextFieldNewQuantity;
 	private JQuantityInput jFormattedTextFieldQuantity;
 	private JQuantityInput jFormattedTextFieldSplitQuantity;
-	private JQuantityInput jFormattedTextFieldNewQuantity;
-	private JLabel4j_std labelSSCCQuantity;
-	private JLabel4j_std labelNewSSCCQuantity;
+	private JSpinner4j jSpinnerCopies = new JSpinner4j();
+	private JSpinner4j jSpinnerQuantity = new JSpinner4j();
+	private JTextField4j jTextFieldNewSSCC;
+	private JTextField4j jTextFieldSSCC;
+	private PreparedStatement listStatement;
 	private SpinnerNumberModel copiesnumbermodel;
-	private JLabel4j_std jStatusBar = new JLabel4j_std();
-	private JCheckBox4j checkBoxPrintOldSSCC = new JCheckBox4j("");
-	private JCheckBox4j checkBoxPrintNewSSCC = new JCheckBox4j("");
-	private JLabel4j_std labelCopies = new JLabel4j_std();
 	private String defaultlabel = "";
+	private String lsscc;
+	private static final long serialVersionUID = 1;
 
 	public JInternalFramePalletSplit()
 	{
@@ -191,13 +190,15 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				jStatusBar.setText(sscc + " retrieved.");
 				order = pal.getProcessOrder();
 				comboBoxPrintQueue.refreshData("RPT_PALLET_LABEL", pal.getProcessOrder());
-			} else
+			}
+			else
 			{
 				jStatusBar.setText(pal.getErrorMessage());
 				jFormattedTextFieldQuantity.setValue(0);
 				jButtonSplit.setEnabled(false);
 			}
-		} else
+		}
+		else
 		{
 			jStatusBar.setText("");
 			jButtonSplit.setEnabled(false);
@@ -214,7 +215,8 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 
 				jSpinnerCopies.setVisible(true);
 				labelCopies.setVisible(true);
-			} else
+			}
+			else
 			{
 				jCheckBoxAutoPreview.setSelected(true);
 				jCheckBoxAutoPreview.setEnabled(true);
@@ -256,243 +258,239 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
+
+			jDesktopPane1 = new JDesktopPane4j();
+
+			this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(462, 497));
+			jDesktopPane1.setLayout(null);
+
+			jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
+
+			jTextFieldSSCC.addKeyListener(new KeyAdapter()
 			{
-				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Common.color_edit_properties);
-				this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(462, 497));
-				jDesktopPane1.setLayout(null);
-
-				jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
-
-				jTextFieldSSCC.addKeyListener(new KeyAdapter()
+				@Override
+				public void keyReleased(KeyEvent arg0)
 				{
-					@Override
-					public void keyReleased(KeyEvent arg0)
+					refresh();
+				}
+			});
+			jTextFieldSSCC.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					refresh();
+				}
+			});
+			jDesktopPane1.add(jTextFieldSSCC);
+			jTextFieldSSCC.setBounds(121, 24, 134, 22);
+
+			jTextFieldNewSSCC = new JTextField4j();
+			jDesktopPane1.add(jTextFieldNewSSCC);
+			jTextFieldNewSSCC.setEditable(false);
+			jTextFieldNewSSCC.setEnabled(false);
+			jTextFieldNewSSCC.setBounds(121, 53, 134, 22);
+
+			jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
+			jDesktopPane1.add(jFormattedTextFieldQuantity);
+			jFormattedTextFieldQuantity.setBounds(464, 24, 91, 22);
+			jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
+			jFormattedTextFieldQuantity.setEnabled(false);
+
+			jFormattedTextFieldNewQuantity = new JQuantityInput(new BigDecimal("0"));
+			jDesktopPane1.add(jFormattedTextFieldNewQuantity);
+			jFormattedTextFieldNewQuantity.setBounds(464, 53, 91, 22);
+			jFormattedTextFieldNewQuantity.setVerifyInputWhenFocusTarget(false);
+			jFormattedTextFieldNewQuantity.setEnabled(false);
+
+			jFormattedTextFieldSplitQuantity = new JQuantityInput(new BigDecimal("0"));
+			jDesktopPane1.add(jFormattedTextFieldSplitQuantity);
+			jFormattedTextFieldSplitQuantity.setBounds(269, 87, 91, 22);
+			jFormattedTextFieldSplitQuantity.setVerifyInputWhenFocusTarget(false);
+
+			labelSSCCQuantity = new JLabel4j_std();
+			jDesktopPane1.add(labelSSCCQuantity);
+			labelSSCCQuantity.setText(lang.get("lbl_Pallet_Quantity"));
+			labelSSCCQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
+			labelSSCCQuantity.setBounds(369, 24, 88, 22);
+
+			labelSSCCNewQuantity = new JLabel4j_std();
+			jDesktopPane1.add(labelSSCCNewQuantity);
+			labelSSCCNewQuantity.setText(lang.get("lbl_Pallet_Quantity"));
+			labelSSCCNewQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
+			labelSSCCNewQuantity.setBounds(369, 53, 88, 22);
+
+			labelNewSSCCQuantity = new JLabel4j_std();
+			jDesktopPane1.add(labelNewSSCCQuantity);
+			labelNewSSCCQuantity.setText(lang.get("lbl_Required_Quantity"));
+			labelNewSSCCQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
+			labelNewSSCCQuantity.setBounds(137, 87, 125, 22);
+
+			jButtonSplit = new JButton4j(Common.icon_split_16x16);
+			jButtonSplit.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					try
 					{
-						refresh();
+						jFormattedTextFieldSplitQuantity.commitEdit();
+						System.out.println(jFormattedTextFieldSplitQuantity.getText());
 					}
-				});
-				jTextFieldSSCC.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
+					catch (ParseException e1)
 					{
-						refresh();
+
 					}
-				});
-				jDesktopPane1.add(jTextFieldSSCC);
-				jTextFieldSSCC.setBounds(121, 24, 134, 22);
-
-				jTextFieldNewSSCC = new JTextField4j();
-				jDesktopPane1.add(jTextFieldNewSSCC);
-				jTextFieldNewSSCC.setEditable(false);
-				jTextFieldNewSSCC.setEnabled(false);
-				jTextFieldNewSSCC.setBounds(121, 53, 134, 22);
-
-				jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
-				jDesktopPane1.add(jFormattedTextFieldQuantity);
-				jFormattedTextFieldQuantity.setBounds(464, 24, 91, 22);
-				jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
-				jFormattedTextFieldQuantity.setEnabled(false);
-
-				jFormattedTextFieldNewQuantity = new JQuantityInput(new BigDecimal("0"));
-				jDesktopPane1.add(jFormattedTextFieldNewQuantity);
-				jFormattedTextFieldNewQuantity.setBounds(464, 53, 91, 22);
-				jFormattedTextFieldNewQuantity.setVerifyInputWhenFocusTarget(false);
-				jFormattedTextFieldNewQuantity.setEnabled(false);
-
-				jFormattedTextFieldSplitQuantity = new JQuantityInput(new BigDecimal("0"));
-				jDesktopPane1.add(jFormattedTextFieldSplitQuantity);
-				jFormattedTextFieldSplitQuantity.setBounds(269, 87, 91, 22);
-				jFormattedTextFieldSplitQuantity.setVerifyInputWhenFocusTarget(false);
-
-				labelSSCCQuantity = new JLabel4j_std();
-				jDesktopPane1.add(labelSSCCQuantity);
-				labelSSCCQuantity.setText(lang.get("lbl_Pallet_Quantity"));
-				labelSSCCQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelSSCCQuantity.setBounds(369, 24, 88, 22);
-
-				labelSSCCNewQuantity = new JLabel4j_std();
-				jDesktopPane1.add(labelSSCCNewQuantity);
-				labelSSCCNewQuantity.setText(lang.get("lbl_Pallet_Quantity"));
-				labelSSCCNewQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelSSCCNewQuantity.setBounds(369, 53, 88, 22);
-
-				labelNewSSCCQuantity = new JLabel4j_std();
-				jDesktopPane1.add(labelNewSSCCQuantity);
-				labelNewSSCCQuantity.setText(lang.get("lbl_Required_Quantity"));
-				labelNewSSCCQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelNewSSCCQuantity.setBounds(137, 87, 125, 22);
-
-				jButtonSplit = new JButton4j(Common.icon_split_16x16);
-				jButtonSplit.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
+					String splitSSCC = pal.splitPallet(jTextFieldSSCC.getText(), new BigDecimal(jFormattedTextFieldSplitQuantity.getValue().toString()));
+					if (splitSSCC.equals("") == false)
 					{
+						jStatusBar.setText("SSCC " + jTextFieldSSCC.getText() + " updated, SSCC " + splitSSCC + " created.");
+						jTextFieldNewSSCC.setText(splitSSCC);
 						try
 						{
 							jFormattedTextFieldSplitQuantity.commitEdit();
-							System.out.println(jFormattedTextFieldSplitQuantity.getText());
 						}
 						catch (ParseException e1)
 						{
 
 						}
-						String splitSSCC = pal.splitPallet(jTextFieldSSCC.getText(), new BigDecimal(jFormattedTextFieldSplitQuantity.getValue().toString()));
-						if (splitSSCC.equals("") == false)
+						jFormattedTextFieldNewQuantity.setValue(jFormattedTextFieldSplitQuantity.getValue());
+						JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
+
+						if (checkBoxPrintOldSSCC.isSelected())
 						{
-							jStatusBar.setText("SSCC " + jTextFieldSSCC.getText() + " updated, SSCC " + splitSSCC + " created.");
-							jTextFieldNewSSCC.setText(splitSSCC);
-							try
-							{
-								jFormattedTextFieldSplitQuantity.commitEdit();
-							}
-							catch (ParseException e1)
-							{
-	
-							}
-							jFormattedTextFieldNewQuantity.setValue(jFormattedTextFieldSplitQuantity.getValue());
-							JPrintDevice pq = (JPrintDevice) comboBoxPrintQueue.getSelectedItem();
-							
-							if (checkBoxPrintOldSSCC.isSelected())
-							{
-								buildSQL1Record(jTextFieldSSCC.getText());
-								JLaunchReport.runReport(defaultlabel, listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());
-							}
-							if (checkBoxPrintNewSSCC.isSelected())
-							{
-								buildSQL1Record(jTextFieldNewSSCC.getText());
-								JLaunchReport.runReport(defaultlabel, listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());
-							}
-						} else
+							buildSQL1Record(jTextFieldSSCC.getText());
+							JLaunchReport.runReport(defaultlabel, listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());
+						}
+						if (checkBoxPrintNewSSCC.isSelected())
 						{
-							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(Common.mainForm, pal.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.WARNING_MESSAGE);
+							buildSQL1Record(jTextFieldNewSSCC.getText());
+							JLaunchReport.runReport(defaultlabel, listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());
 						}
 					}
-				});
-
-				jDesktopPane1.add(jButtonSplit);
-				jButtonSplit.setText(lang.get("btn_Split"));
-				jButtonSplit.setMnemonic(lang.getMnemonicChar());
-				jButtonSplit.setBounds(151, 205, 111, 32);
-
-				jButtonHelp = new JButton4j(Common.icon_help_16x16);
-				jDesktopPane1.add(jButtonHelp);
-				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setMnemonic(lang.getMnemonicChar());
-				jButtonHelp.setBounds(265, 205, 111, 32);
-
-				jButtonCancel = new JButton4j(Common.icon_close_16x16);
-				jDesktopPane1.add(jButtonCancel);
-				jButtonCancel.setText(lang.get("btn_Close"));
-				jButtonCancel.setMnemonic(lang.getMnemonicChar());
-				jButtonCancel.setBounds(378, 205, 111, 32);
-				jButtonCancel.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent evt)
+					else
 					{
-						dispose();
+						JUtility.errorBeep();
+						JOptionPane.showMessageDialog(Common.mainForm, pal.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.WARNING_MESSAGE);
 					}
-				});
+				}
+			});
 
-				labelSSCC = new JLabel4j_std();
-				jDesktopPane1.add(labelSSCC);
-				labelSSCC.setText(lang.get("lbl_Source_SSCC"));
-				labelSSCC.setBounds(6, 24, 103, 22);
-				labelSSCC.setHorizontalAlignment(SwingConstants.TRAILING);
+			jDesktopPane1.add(jButtonSplit);
+			jButtonSplit.setText(lang.get("btn_Split"));
+			jButtonSplit.setMnemonic(lang.getMnemonicChar());
+			jButtonSplit.setBounds(151, 205, 111, 32);
 
-				labelNewSSCC = new JLabel4j_std();
-				jDesktopPane1.add(labelNewSSCC);
-				labelNewSSCC.setText(lang.get("lbl_Destination_SSCC"));
-				labelNewSSCC.setBounds(18, 53, 91, 22);
-				labelNewSSCC.setHorizontalAlignment(SwingConstants.TRAILING);
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
+			jDesktopPane1.add(jButtonHelp);
+			jButtonHelp.setText(lang.get("btn_Help"));
+			jButtonHelp.setMnemonic(lang.getMnemonicChar());
+			jButtonHelp.setBounds(265, 205, 111, 32);
 
-				JLabel4j_std labelHeader = new JLabel4j_std();
-				labelHeader.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelHeader.setText(lang.get("lbl_Label_Header_Text"));
-				labelHeader.setBounds(18, 112, 91, 22);
-				jDesktopPane1.add(labelHeader);
+			jButtonCancel = new JButton4j(Common.icon_close_16x16);
+			jDesktopPane1.add(jButtonCancel);
+			jButtonCancel.setText(lang.get("btn_Close"));
+			jButtonCancel.setMnemonic(lang.getMnemonicChar());
+			jButtonCancel.setBounds(378, 205, 111, 32);
+			jButtonCancel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					dispose();
+				}
+			});
 
-				checkBoxIncHeaderText.setSelected(true);
-				checkBoxIncHeaderText.setBackground(Color.WHITE);
-				checkBoxIncHeaderText.setBounds(121, 112, 21, 22);
-				jDesktopPane1.add(checkBoxIncHeaderText);
+			labelSSCC = new JLabel4j_std();
+			jDesktopPane1.add(labelSSCC);
+			labelSSCC.setText(lang.get("lbl_Source_SSCC"));
+			labelSSCC.setBounds(6, 24, 103, 22);
+			labelSSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 
-				JLabel4j_std labelQuantity = new JLabel4j_std();
-				labelQuantity.setBounds(248, 112, 182, 22);
-				labelQuantity.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelQuantity.setText(lang.get("lbl_Number_of_SSCCs"));
-				jDesktopPane1.add(labelQuantity);
+			labelNewSSCC = new JLabel4j_std();
+			jDesktopPane1.add(labelNewSSCC);
+			labelNewSSCC.setText(lang.get("lbl_Destination_SSCC"));
+			labelNewSSCC.setBounds(18, 53, 91, 22);
+			labelNewSSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 
-				labelCopies.setHorizontalAlignment(SwingConstants.RIGHT);
-				labelCopies.setBounds(248, 141, 182, 22);
-				labelCopies.setText(lang.get("lbl_Labels_Per_SSCC"));
-				jDesktopPane1.add(labelCopies);
+			JLabel4j_std labelHeader = new JLabel4j_std();
+			labelHeader.setHorizontalAlignment(SwingConstants.TRAILING);
+			labelHeader.setText(lang.get("lbl_Label_Header_Text"));
+			labelHeader.setBounds(18, 112, 91, 22);
+			jDesktopPane1.add(labelHeader);
 
-				jSpinnerQuantity.setEnabled(false);
-				jSpinnerQuantity.setModel(new SpinnerNumberModel(Integer.valueOf(1), null, null,Integer.valueOf(1)));
-				jSpinnerQuantity.setBounds(437, 112, 39, 22);
-				JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerQuantity);
-				jSpinnerQuantity.setEditor(ne);
-				jDesktopPane1.add(jSpinnerQuantity);
+			checkBoxIncHeaderText.setSelected(true);
+			checkBoxIncHeaderText.setBackground(Color.WHITE);
+			checkBoxIncHeaderText.setBounds(121, 112, 21, 22);
+			jDesktopPane1.add(checkBoxIncHeaderText);
 
-				jSpinnerCopies.setBounds(437, 141, 39, 22);
-				jSpinnerCopies.setInputVerifier(null);
-				jSpinnerCopies.setModel(copiesnumbermodel);
-				JSpinner4j.NumberEditor nec2 = new JSpinner4j.NumberEditor(jSpinnerCopies);
-				jSpinnerCopies.setEditor(nec2);
-				jDesktopPane1.add(jSpinnerCopies);
+			JLabel4j_std labelQuantity = new JLabel4j_std();
+			labelQuantity.setBounds(248, 112, 182, 22);
+			labelQuantity.setHorizontalAlignment(SwingConstants.RIGHT);
+			labelQuantity.setText(lang.get("lbl_Number_of_SSCCs"));
+			jDesktopPane1.add(labelQuantity);
 
-				JLabel4j_std label_3 = new JLabel4j_std(lang.get("lbl_Print_Queue"));
-				label_3.setHorizontalAlignment(SwingConstants.TRAILING);
-				label_3.setBounds(18, 170, 91, 22);
-				jDesktopPane1.add(label_3);
+			labelCopies.setHorizontalAlignment(SwingConstants.RIGHT);
+			labelCopies.setBounds(248, 141, 182, 22);
+			labelCopies.setText(lang.get("lbl_Labels_Per_SSCC"));
+			jDesktopPane1.add(labelCopies);
 
-				comboBoxPrintQueue =  new JComboBoxPODevices4j(Common.selectedHostID,Common.sessionID,"RPT_PALLET_LABEL","");
-				comboBoxPrintQueue.setBounds(121, 170, 499, 22);
-				jDesktopPane1.add(comboBoxPrintQueue);
+			jSpinnerQuantity.setEnabled(false);
+			jSpinnerQuantity.setModel(new SpinnerNumberModel(Integer.valueOf(1), null, null, Integer.valueOf(1)));
+			jSpinnerQuantity.setBounds(437, 112, 39, 22);
+			JSpinner4j.NumberEditor ne = new JSpinner4j.NumberEditor(jSpinnerQuantity);
+			jSpinnerQuantity.setEditor(ne);
+			jDesktopPane1.add(jSpinnerQuantity);
 
-				jCheckBoxAutoPreview = new JCheckBox4j();
-				jCheckBoxAutoPreview.setToolTipText("Auto SSCC");
-				jCheckBoxAutoPreview.setSelected(true);
-				jCheckBoxAutoPreview.setEnabled(false);
-				jCheckBoxAutoPreview.setBackground(Color.WHITE);
-				jCheckBoxAutoPreview.setBounds(121, 141, 21, 22);
-				jCheckBoxAutoPreview.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRODDEC_PREVIEW"));
-				jDesktopPane1.add(jCheckBoxAutoPreview);
+			jSpinnerCopies.setBounds(437, 141, 39, 22);
+			jSpinnerCopies.setInputVerifier(null);
+			jSpinnerCopies.setModel(copiesnumbermodel);
+			JSpinner4j.NumberEditor nec2 = new JSpinner4j.NumberEditor(jSpinnerCopies);
+			jSpinnerCopies.setEditor(nec2);
+			jDesktopPane1.add(jSpinnerCopies);
 
-				labelPreview = new JLabel4j_std();
-				labelPreview.setBounds(18, 141, 91, 22);
-				labelPreview.setHorizontalTextPosition(SwingConstants.CENTER);
-				labelPreview.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelPreview.setText(lang.get("lbl_Preview"));
-				jDesktopPane1.add(labelPreview);
+			JLabel4j_std label_3 = new JLabel4j_std(lang.get("lbl_Print_Queue"));
+			label_3.setHorizontalAlignment(SwingConstants.TRAILING);
+			label_3.setBounds(18, 170, 91, 22);
+			jDesktopPane1.add(label_3);
 
-				jStatusBar.setForeground(Color.RED);
-				jStatusBar.setBackground(Color.GRAY);
-				jStatusBar.setBounds(0, 249, 632, 21);
-				jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-				jDesktopPane1.add(jStatusBar);
+			comboBoxPrintQueue = new JComboBoxPODevices4j(Common.selectedHostID, Common.sessionID, "RPT_PALLET_LABEL", "");
+			comboBoxPrintQueue.setBounds(121, 170, 499, 22);
+			jDesktopPane1.add(comboBoxPrintQueue);
 
-				JPanel panel = new JPanel();
-				panel.setBackground(Common.color_edit_properties);
-				panel.setBorder(new TitledBorder(null, lang.get("btn_Print"), TitledBorder.CENTER, TitledBorder.TOP, null, null));
-				panel.setBounds(270, 6, 90, 75);
-				jDesktopPane1.add(panel);
-				panel.setLayout(null);
+			jCheckBoxAutoPreview = new JCheckBox4j();
+			jCheckBoxAutoPreview.setToolTipText("Auto SSCC");
+			jCheckBoxAutoPreview.setSelected(true);
+			jCheckBoxAutoPreview.setEnabled(false);
+			jCheckBoxAutoPreview.setBackground(Color.WHITE);
+			jCheckBoxAutoPreview.setBounds(121, 141, 21, 22);
+			jCheckBoxAutoPreview.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRODDEC_PREVIEW"));
+			jDesktopPane1.add(jCheckBoxAutoPreview);
 
-				checkBoxPrintOldSSCC.setSelected(true);
-				checkBoxPrintOldSSCC.setBounds(32, 17, 28, 22);
-				panel.add(checkBoxPrintOldSSCC);
+			labelPreview = new JLabel4j_std();
+			labelPreview.setBounds(18, 141, 91, 22);
+			labelPreview.setHorizontalTextPosition(SwingConstants.CENTER);
+			labelPreview.setHorizontalAlignment(SwingConstants.TRAILING);
+			labelPreview.setText(lang.get("lbl_Preview"));
+			jDesktopPane1.add(labelPreview);
 
-				checkBoxPrintNewSSCC.setSelected(true);
-				checkBoxPrintNewSSCC.setBounds(32, 46, 28, 22);
-				panel.add(checkBoxPrintNewSSCC);
+			jStatusBar.setBounds(5, 249, 622, 21);
+			jDesktopPane1.add(jStatusBar);
 
-			}
+			JPanel4j panel = new JPanel4j();
+			panel.setBorder(JTitledBorder4j.getPanelTitledBorder(lang.get("btn_Print")));
+			panel.setBounds(270, 6, 90, 75);
+			jDesktopPane1.add(panel);
+			panel.setLayout(null);
 
-		} catch (Exception e)
+			checkBoxPrintOldSSCC.setSelected(true);
+			checkBoxPrintOldSSCC.setBounds(32, 17, 28, 22);
+			panel.add(checkBoxPrintOldSSCC);
+
+			checkBoxPrintNewSSCC.setSelected(true);
+			checkBoxPrintNewSSCC.setBounds(32, 46, 28, 22);
+			panel.add(checkBoxPrintNewSSCC);
+
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

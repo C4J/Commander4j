@@ -137,7 +137,7 @@ public class JQuantityInput extends JFormattedTextField
             setForeground(Common.color_textfield_foreground_disabled);
         } else {
             setBackground(Common.color_textfield_background_nofocus_color);
-            setForeground(Common.color_textfield_forground_nofocus_color);
+            setForeground(Common.color_textfield_foreground_nofocus_color);
         }
     }
 }
