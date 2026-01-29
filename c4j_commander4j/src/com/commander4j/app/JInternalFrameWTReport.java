@@ -496,7 +496,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 			jDesktopPane1.add(checkBox4jFromEnabled);
 
 			sampleDateFrom.setEnabled(false);
-			sampleDateFrom.setBounds(415, 14, 128, 22);
+			sampleDateFrom.setBounds(415, 14, 120, 22);
 			jDesktopPane1.add(sampleDateFrom);
 			checkBox4jToEnabled.addActionListener(new ActionListener()
 			{
@@ -519,7 +519,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 			jDesktopPane1.add(checkBox4jToEnabled);
 
 			sampleDateTo.setEnabled(false);
-			sampleDateTo.setBounds(603, 14, 128, 22);
+			sampleDateTo.setBounds(603, 14, 120, 22);
 			jDesktopPane1.add(sampleDateTo);
 
 			scrollPane.setBounds(5, 169, 1014, 433);
@@ -622,12 +622,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 			button_CalendarSampleDateFrom = new JCalendarButton(sampleDateFrom);
 			button_CalendarSampleDateFrom.setEnabled(false);
-			button_CalendarSampleDateFrom.setBounds(542, 14, 22, 22);
+			button_CalendarSampleDateFrom.setBounds(534, 14, 22, 22);
 			jDesktopPane1.add(button_CalendarSampleDateFrom);
 
 			button_CalendarSampleDateTo = new JCalendarButton(sampleDateTo);
 			button_CalendarSampleDateTo.setEnabled(false);
-			button_CalendarSampleDateTo.setBounds(732, 14, 22, 22);
+			button_CalendarSampleDateTo.setBounds(724, 14, 22, 22);
 			jDesktopPane1.add(button_CalendarSampleDateTo);
 
 			jButtonClear = new JButton4j(Common.icon_clear_16x16);

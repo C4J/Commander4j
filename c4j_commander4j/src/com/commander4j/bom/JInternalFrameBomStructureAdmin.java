@@ -358,7 +358,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonPrint);
 			jButtonPrint.setText(lang.get("btn_Print"));
 			jButtonPrint.setMnemonic(lang.getMnemonicChar());
-			jButtonPrint.setBounds(327, 110, 125, 32);
+			jButtonPrint.setBounds(327, 109, 125, 32);
 			jButtonPrint.setEnabled(true);
 			jButtonPrint.addActionListener(new ActionListener()
 			{
@@ -372,13 +372,13 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
-			jButtonHelp.setBounds(327, 203, 125, 32);
+			jButtonHelp.setBounds(327, 202, 125, 32);
 
 			jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 			jDesktopPane1.add(jButtonRefresh);
 			jButtonRefresh.setText(lang.get("btn_Refresh"));
 			jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-			jButtonRefresh.setBounds(327, 172, 125, 32);
+			jButtonRefresh.setBounds(327, 171, 125, 32);
 			jButtonRefresh.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -391,7 +391,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
-			jButtonClose.setBounds(327, 234, 125, 32);
+			jButtonClose.setBounds(327, 233, 125, 32);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -403,7 +403,7 @@ public class JInternalFrameBomStructureAdmin extends javax.swing.JInternalFrame
 			jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 			jButtonExcel.setText(lang.get("btn_Excel"));
 			jButtonExcel.setMnemonic(lang.getMnemonicChar());
-			jButtonExcel.setBounds(327, 141, 125, 32);
+			jButtonExcel.setBounds(327, 140, 125, 32);
 			jButtonExcel.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)

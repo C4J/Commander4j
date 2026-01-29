@@ -204,7 +204,7 @@ public class Common
 	public static final TableHeaderRenderer renderer_tableheader = new TableHeaderRenderer();
 
 	public final static Color color_app_window = new Color(241, 241, 241);
-	public final static Color color_app_window_main = new Color(33,33,33);
+	public final static Color color_app_window_main = Color.WHITE;
 
 	public final static Color color_app_window_properties = new Color(241, 241, 241);
 	public final static Color color_background_result_error = new Color(236,52,56);

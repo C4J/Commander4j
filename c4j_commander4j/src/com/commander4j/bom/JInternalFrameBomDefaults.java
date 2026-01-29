@@ -203,7 +203,7 @@ public class JInternalFrameBomDefaults extends javax.swing.JInternalFrame
 			jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 			this.getContentPane().add(jButtonEdit);
 			jButtonEdit.setText(lang.get("btn_Edit"));
-			jButtonEdit.setBounds(462, 32, 106, 32);
+			jButtonEdit.setBounds(462, 31, 106, 32);
 			jButtonEdit.setMnemonic(lang.getMnemonicChar());
 			jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_DEFAULTS_EDIT"));
 			jButtonEdit.addActionListener(new ActionListener()
@@ -217,7 +217,7 @@ public class JInternalFrameBomDefaults extends javax.swing.JInternalFrame
 			jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 			this.getContentPane().add(jButtonRefresh);
 			jButtonRefresh.setText(lang.get("btn_Refresh"));
-			jButtonRefresh.setBounds(462, 160, 106, 32);
+			jButtonRefresh.setBounds(462, 155, 106, 32);
 			jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 			jButtonRefresh.addActionListener(new ActionListener()
 			{
@@ -230,7 +230,7 @@ public class JInternalFrameBomDefaults extends javax.swing.JInternalFrame
 			jButtonClose = new JButton4j(Common.icon_close_16x16);
 			this.getContentPane().add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
-			jButtonClose.setBounds(462, 220, 106, 32);
+			jButtonClose.setBounds(462, 217, 106, 32);
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
 			jButtonClose.addActionListener(new ActionListener()
 			{
@@ -306,7 +306,7 @@ public class JInternalFrameBomDefaults extends javax.swing.JInternalFrame
 			jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 			this.getContentPane().add(jButtonDelete);
 			jButtonDelete.setText(lang.get("btn_Delete"));
-			jButtonDelete.setBounds(462, 64, 106, 32);
+			jButtonDelete.setBounds(462, 62, 106, 32);
 			jButtonDelete.setMnemonic(lang.getMnemonicChar());
 			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_DEFAULTS_DELETE"));
 			jButtonDelete.addActionListener(new ActionListener()
@@ -333,7 +333,7 @@ public class JInternalFrameBomDefaults extends javax.swing.JInternalFrame
 			jButtonPrint = new JButton4j(Common.icon_report_16x16);
 			this.getContentPane().add(jButtonPrint);
 			jButtonPrint.setText(lang.get("btn_Print"));
-			jButtonPrint.setBounds(462, 128, 106, 32);
+			jButtonPrint.setBounds(462, 124, 106, 32);
 			jButtonPrint.setMnemonic(lang.getMnemonicChar());
 			jButtonPrint.addActionListener(new ActionListener()
 			{
@@ -346,7 +346,7 @@ public class JInternalFrameBomDefaults extends javax.swing.JInternalFrame
 			jButtonHelp = new JButton4j(Common.icon_help_16x16);
 			this.getContentPane().add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
-			jButtonHelp.setBounds(462, 192, 106, 32);
+			jButtonHelp.setBounds(462, 186, 106, 32);
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
 
 			jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
@@ -362,7 +362,7 @@ public class JInternalFrameBomDefaults extends javax.swing.JInternalFrame
 			});
 			jButtonExcel.setText(lang.get("btn_Excel"));
 			jButtonExcel.setMnemonic(lang.getMnemonicChar());
-			jButtonExcel.setBounds(462, 96, 106, 32);
+			jButtonExcel.setBounds(462, 93, 106, 32);
 			getContentPane().add(jButtonExcel);
 
 		}
