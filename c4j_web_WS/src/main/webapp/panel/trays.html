@@ -8,7 +8,7 @@
 	<meta http-equiv="expires" content="-1">
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
 	<meta http-equiv="pragma" content="no-cache">
-	
+
 	<!-- The meta viewport will scale my content to any device width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,64 +17,13 @@
 	<title>Tray Menu</title>
 
 	<script src="scriptTrays.js"></script> <!-- Link to the javascript file -->
-	
-	<style>
-	
-	  .is-scrollLocked {
-		   overflow: hidden;
-	   } 
-	        
-      .grid-container {
-		  display: grid;
-		  flex-wrap: wrap;
-		  grid-template-columns: 150px 150px 150px;
-		  padding: 2px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 5px;
-		  font-size: 16px;
-		}
-	</style>
-	
-	<style>	
-	  .tableFixHead {
-	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-	    height: 600px; /* gives an initial height of 200px to the table */
-		width: 600px; /* gives an initial height of 200px to the table */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  .tableFixHead thead th {
-	    position: sticky; /* make the table heads sticky */
-	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  table {
-	    border-collapse: collapse; /* make the table borders collapse to each other */
-	    width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  th,
-	  td {
-	    padding: 8px 16px;
-	    border: 1px solid #ccc;
-	  }
-	  th {
-	    background: #eee;
-	  }
-	</style>
-	
+
 </head>
 
 <body onLoad="buildTrayTable()">
 
 	<h1 id="heading" style="text-align:center">Trays</h1>
-	
+
 	<div class="tableFixHead">
 		<table id="trayTable">
 			<thead>
@@ -87,17 +36,17 @@
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewTray()">New</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick="editTrayRecord()">Edit</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" onclick="confirmDeleteTray()">Delete</button></div>   
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewTray()">New Tray</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="editTrayRecord()">Edit Tray</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmDeleteTray()">Delete Tray</button></div>
 	</div>
-	
-	<div class="grid-container">  
-  		 <div class="grid-item" align="center"><button class="button" onclick="refreshTray()">Refresh</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick="panelMenu()">Back</button></div>   
-  		 <div class="grid-item" align="center"><button class="button" onclick="sampleMenu()">Samples</button></div> 
+
+	<div class="grid-container">
+	  	<div class="grid-item" align="center"><button class="button" onclick="panelMenu()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshTray()">Refresh List</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="sampleMenu()">Setup Samples&gt;</button></div>
 	</div>
 
 </body>
@@ -105,7 +54,7 @@
 <script>
 
 	document.getElementById('heading').innerHTML = "[Panel "+sessionStorage.getItem('selectedPanel')+"]";
-		
+
 	function setCheckedValue(radioObj, newValue) {
 		if(!radioObj)
 			return;
@@ -121,7 +70,7 @@
 			}
 		}
 	}
-	
+
 	function getCheckedValue(radioObj) {
 		if(!radioObj)
 			return "";
@@ -140,10 +89,10 @@
 	}
 
 	function buildTrayTable() {
-	
+
 		var selected = sessionStorage.getItem('selectedPanel');
 
-		
+
 		fetch(getContextPath()+"/Trays?panelID="+selected)
 			.then(function(response) { return response.json(); })
 			.then(function(trays) {
@@ -152,16 +101,16 @@
 				for (let tray of trays) {
 					out += `
 			<tr>
-				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${tray.traySequence}" name="traySelectList" onchange="trayListSave('selectedTray',${tray.trayID});trayListSave('selectedTraySeq',${tray.traySequence})" value="${tray.traySequence}" ` + trayListGet('selectedTray', tray.trayID) + `>  <label for="${tray.traySequence}"> ${tray.traySequence}</label></td>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${tray.traySequence}" name="traySelectList" onchange="trayListSave('selectedTray',${tray.trayID});trayListSave('selectedTraySeq',${tray.traySequence})" value="${tray.traySequence}" ` + trayListGet('selectedTray', tray.trayID,tray.traySequence) + `>  <label for="${tray.traySequence}"> ${tray.traySequence}</label></td>
 				<td style="color:black; background-color:#f0f8ff">${tray.description}</td>
 			</tr>`;
 				}
-	
+
 				placeholder.innerHTML = out;
 			})
 	}
-	
-	
+
+
 	function confirmNewTray() {
 		var result =  confirm("Create new Tray ?");
 		if (result == true)
@@ -169,25 +118,25 @@
 			newTray();
 		}
 	}
-	
+
 	function confirmDeleteTray() {
-		
-		var selectedTray = sessionStorage.getItem('selectedTray');
-		
+
+		var selectedTray = sessionStorage.getItem('selectedTraySeq');
+
 		if (selectedTray !== null)
 		{
-			if (selectedTray)			
+			if (selectedTray)
 			{
 				if (selectedTray !== '')
-				{					
-					var result =  confirm("Delete Tray ["+selectedTray+"] ?");
+				{
+					var result =  confirm("*WARNING*\n\nDelete Tray ["+selectedTray+"] ? \n\n\This will remove any result you have already recorded for assigned samples.");
 					if (result == true)
 					{
 						deleteTray();
 					}
 				}
 			}
-		}		
+		}
 	}
 </script>
 

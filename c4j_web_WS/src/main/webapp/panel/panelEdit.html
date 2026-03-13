@@ -17,57 +17,7 @@
 	<title>Panel Edit</title>
 
 	<script src="scriptPanels.js"></script>
-	
-	<style>
-	
-	  .is-scrollLocked {
-		   overflow: hidden;
-	   }
-      
-      .grid-container {
-		  display: grid;
-		  flex-wrap: wrap;
-		  grid-template-columns: 90px 90px 90px 90px;
-		  padding: 2px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 5px;
-		  font-size: 16px;
-		}
-	</style>
-	
-	<style>	
-	  .tableFixHead {
-	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-	    height: 600px; /* gives an initial height of 200px to the table */
-		width: 600px; /* gives an initial height of 200px to the table */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  .tableFixHead thead th {
-	    position: sticky; /* make the table heads sticky */
-	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  table {
-	    border-collapse: collapse; /* make the table borders collapse to each other */
-	    width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  th,
-	  td {
-	    padding: 8px 16px;
-	    border: 1px solid #ccc;
-	  }
-	  th {
-	    background: #eee;
-	  }
-	</style>
+
 
 </head>
 
@@ -77,7 +27,7 @@
 
 	<div class="tableFixHead">
 		<table id="trayEditTable">
-	
+
 			<tr>
 				<td style="color:black; background-color:#f0f8ff">Plant</td>
 				<td style="color:black; background-color:#f0f8ff"><input type="text" id="plant" name="plant" autofocus></td>
@@ -110,12 +60,22 @@
 	<table id="panelEditTable">
 		<tbody id="panelEdit-output"></tbody>
 	</table>
-	
+
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" onclick='updatePanel(document.getElementById("plant").value,document.getElementById("description").value,document.getElementById("status").value);loadTrays()'>Trays</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick='updatePanel(document.getElementById("plant").value,document.getElementById("description").value,document.getElementById("status").value)'>Save</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" onclick="refreshPanel()">Refresh</button></div>   
-  		 <div class="grid-item" align="center"><button class="button" onclick="panelMenu()">Back</button></div> 
+		 <div class="grid-item" align="center"></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="fastLoad()">Load Samples</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick='updatePanel(document.getElementById("plant").value,document.getElementById("description").value,document.getElementById("status").value);loadTrays()'>Trays</button></div>
+	</div>
+	<div class="grid-container">
+	  	<div class="grid-item" align="center"><button class="button" onclick="panelMenu()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick='
+  		 updatePanel(
+  		 Number(sessionStorage.getItem("selectedPanel")),
+  		  document.getElementById("plant").value,
+  		  document.getElementById("description").value,
+  		  document.getElementById("status").value)'>Save</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshPanel()">Refresh</button></div>
+
 	</div>
 
 </body>
@@ -123,14 +83,14 @@
 <script>
 
 	document.getElementById('heading').innerHTML = "[Panel "+sessionStorage.getItem('selectedPanel')+"]";
-	
+
 	var plantfield = document.getElementById("plant");
 	plantfield.addEventListener("keydown", function (e) {
 		if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
 			 document.getElementById("description").focus();
 		}
 	});
-	
+
 	var descfield = document.getElementById("description");
 	descfield.addEventListener("keydown", function (e) {
 		if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
@@ -154,26 +114,26 @@
 			.then((data) => {
 
 				console.log("Returned  value panelID=" + data[0].panelID);
-				
+
 				document.getElementById("plant").value = data[0].plant;
 				document.getElementById("description").value = data[0].description;
-				
+
 				document.getElementById("created").value = formatDate(data[0].created);
-				
+
 				if (data[0].updated)
 				{
-					document.getElementById("updated").value = formatDate(data[0].updated);	
+					document.getElementById("updated").value = formatDate(data[0].updated);
 				}
-				else 
+				else
 				{
 					 document.getElementById("updated").value = "";
 				}
-				
+
 				let element = document.getElementById("status");
-				element.value = data[0].status;	
-				
-			    
-				document.getElementById('status').style.backgroundColor = getStatusColour(data[0].status);
+				element.value = data[0].status;
+
+
+				document.getElementById('status').style.color = getStatusColour(data[0].status);
 
 
 				return data;

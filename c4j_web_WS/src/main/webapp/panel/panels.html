@@ -17,64 +17,23 @@
 	<title>Panel Menu</title>
 
 	<script src="scriptPanels.js"></script> <!-- Link to the javascript file -->
-	
-	<style>
-	
-	  .is-scrollLocked {
-		   overflow: hidden;
-	   }
-	         
-      .grid-container {
-		  display: grid;
-		  flex-wrap: wrap;
-		  grid-template-columns: 150px 150px 150px;
-		  padding: 2px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 5px;
-		  font-size: 16px;
-		}
+	<style type="text/css">
+	.tableFixHead {
+	overflow-y: auto;
+	/* make the table scrollable if height is more than 200 px  */
+	height: 485px; /* gives an initial height of 200px to the table */
+	width: 675px; /* gives an initial height of 200px to the table */
+	margin-left: auto;
+	margin-right: auto;
+}
 	</style>
 
-	<style>	
-	  .tableFixHead {
-	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-	    height: 600px; /* gives an initial height of 200px to the table */
-		width: 600px; /* gives an initial height of 200px to the table */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  .tableFixHead thead th {
-	    position: sticky; /* make the table heads sticky */
-	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  table {
-	    border-collapse: collapse; /* make the table borders collapse to each other */
-	    width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  th,
-	  td {
-	    padding: 8px 16px;
-	    border: 1px solid #ccc;
-	  }
-	  th {
-	    background: #eee;
-	  }
-	</style>
-	
 </head>
 
 <body onLoad="buildPanelTable()">
 
 <h1 style="text-align:center">Panels</h1>
-	
+
 	<div class="tableFixHead">
 		<table id="panelTable">
 			<thead>
@@ -89,24 +48,33 @@
 			</tbody>
 		</table>
 	</div>
-	
+	<br>
+
 	<div class="grid-container">
-	
-  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewPanel()">New</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick="editPanelRecord()">Edit</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" onclick="confirmDeletePanel()">Delete</button></div>   
+		 <div class="grid-item" align="center"></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="fastLoad()">Scan Samples</button></div>
 	</div>
-	
-	<div class="grid-container">  
-  		 <div class="grid-item" align="center"><button class="button" onclick="refreshPanel()">Refresh</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick="menu()">Back</button></div>   
-  		 <div class="grid-item" align="center"><button class="button" onclick="loadTrays()">Trays</button></div> 
+
+	<div class="grid-container">
+
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewPanel()">New Panel</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="editPanelRecord()">Edit Panel</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmDeletePanel()">Delete Panel</button></div>
+	</div>
+
+
+
+	<div class="grid-container">
+	  	 <div class="grid-item" align="center"><button class="button" onclick="menu()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshPanel()">Refresh List</button></div>
+
+  		 <div class="grid-item" align="center"><button class="button" onclick="loadTrays()">Setup Trays&gt;</button></div>
 	</div>
 
 </body>
 
 <script>
-	
+
 	function setCheckedValue(radioObj, newValue) {
 		if(!radioObj)
 			return;
@@ -122,7 +90,7 @@
 			}
 		}
 	}
-	
+
 	function getCheckedValue(radioObj) {
 		if(!radioObj)
 			return "";
@@ -139,10 +107,10 @@
 		}
 		return "";
 	}
-	
+
 	function buildPanelTable() {
-			
-		fetch(getContextPath()+"/Panels?maxRows=15")
+
+		fetch(getContextPath()+"/Panels?maxRows=24")
 			.then(function(response) { return response.json(); })
 			.then(function(panels) {
 				let placeholder = document.querySelector("#panelsTable-output");
@@ -150,16 +118,16 @@
 				for (let panel of panels) {
 					out += `
 			<tr>
-				<td style="color:black; background-color:`+getStatusColour(panel.status)+`"><input type="radio" id="${panel.panelID}" name="panelSelectList" onchange="panelListSave('selectedPanel',${panel.panelID});panelListSave('selectedPanelPlant','${panel.plant}');" value="${panel.panelID}" ` + panelListGet('selectedPanel', panel.panelID) + `>  <label for="${panel.panelID}"> ${panel.panelID}</label></td>
-				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.plant+`</td>
-				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.description+`</td>
-				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.status+`</td>
+				<td><input type="radio" id="${panel.panelID}" name="panelSelectList" onchange="panelListSave('selectedPanel',${panel.panelID});panelListSave('selectedPanelPlant','${panel.plant}');panelListSave('selectedTray','');;panelListSave('selectedTraySeq','');" value="${panel.panelID}" ` + panelListGet('selectedPanel', panel.panelID,panel.plant) + `>  <label for="${panel.panelID}"> ${panel.panelID}</label></td>
+				<td>`+panel.plant+`</td>
+				<td>`+panel.description+`</td>
+				<td style="color:`+getStatusColour(panel.status)+`">`+panel.status+`</td>
 			</tr>`;
 				}
 				placeholder.innerHTML = out;
 			})
 	}
-	
+
 	function confirmNewPanel() {
 		var result =  confirm("Create new Panel ?");
 		if (result == true)
@@ -168,17 +136,17 @@
 			newPanel();
 		}
 	}
-	
+
 	function confirmDeletePanel() {
 		var selectedPanel = sessionStorage.getItem('selectedPanel');
-		
+
 		if (selectedPanel !== null)
 		{
-			if (selectedPanel)			
+			if (selectedPanel)
 			{
 				if (selectedPanel !== '')
 				{
-					var result =  confirm("Delete Panel ["+selectedPanel+"] ?");
+					var result =  confirm("*WARNING*\n\nDelete Panel ["+selectedPanel+"] ? \n\n\This will remove any result you have already recorded for assigned samples.");
 					if (result == true)
 					{
 						deletePanel();
@@ -187,12 +155,12 @@
 			}
 		}
 	}
-	
+
 	function menu()
 	{
-		window.location='menu.html';	
+		window.location='menu.html';
 	}
-	
+
 </script>
 
 </html>

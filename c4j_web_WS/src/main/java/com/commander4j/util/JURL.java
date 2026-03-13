@@ -23,7 +23,7 @@ public class JURL
 	{
 		HashMap<String, String> resultMap = new HashMap<String, String>();
 		String queryString = JUtility.replaceNullStringwithBlank(request.getQueryString());
-		
+
 		logger.debug("Reading request parameters for session "+request.getSession().getId());
 
 		String[] varArray = queryString.split("[&]");
@@ -62,7 +62,7 @@ public class JURL
 
 		return result;
 	}
-	
+
 	public Long getParameterVariableLong(HttpServletRequest request, String variable)
 	{
 		Long result = (long) -1;
@@ -73,7 +73,7 @@ public class JURL
 		}
 
 		String temp = JUtility.replaceNullStringwithBlank(paramMap.get(variable));
-		
+
 		try
 		{
 			result = Long.valueOf(temp);
@@ -87,14 +87,39 @@ public class JURL
 
 		return result;
 	}
-	
+
+	public int getParameterVariableInt(HttpServletRequest request, String variable)
+	{
+		int result =  -1;
+
+		if (paramMap == null)
+		{
+			paramMap = getParameters(request);
+		}
+
+		String temp = JUtility.replaceNullStringwithBlank(paramMap.get(variable));
+
+		try
+		{
+			result = Integer.valueOf(temp);
+		}
+		catch (Exception ex)
+		{
+			result = -1;
+		}
+
+		logger.debug("Returning var {"+variable +"} with value [" + result+"]");
+
+		return result;
+	}
+
 	public String getPathInfoValue(HttpServletRequest request)
 	{
 		String result = "";
-		
+
 		result = JUtility.replaceNullStringwithBlank(request.getPathInfo());
 		result = result.replace("/", "");
-		
+
 		return result;
 	}
 

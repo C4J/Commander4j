@@ -14,68 +14,72 @@
 
 	 <!-- Link to my stylesheet -->
 	<link rel="stylesheet" href="stylesPanels.css">
+
 	<title>Panel Menu</title>
 
 	<script src="scriptPanels.js"></script> <!-- Link to the javascript file -->
-	
+
 	<style>
-	
- 	  .is-scrollLocked {
-		   overflow: hidden;
-	   }
-	        
-      .grid-container {
-		  display: grid;
-		  grid-template-columns: 150px 150px 150px;
-		  padding: 10px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 10px;
-		  font-size: 16px;
-		}
-	</style>
-	
-	<style>	
-	  .tableFixHead {
-	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-	    height: 600px; /* gives an initial height of 200px to the table */
-		width: 600px; /* gives an initial height of 200px to the table */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  .tableFixHead thead th {
-	    position: sticky; /* make the table heads sticky */
-	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  table {
-	    border-collapse: collapse; /* make the table borders collapse to each other */
-	    width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  th,
-	  td {
-	    padding: 8px 16px;
-	    border: 1px solid #ccc;
-	  }
-	  th {
-	    background: #eee;
-	  }
-	</style>
-	
+.tableFixHead2 {
+	overflow-y: auto;
+	/* make the table scrollable if height is more than 200 px  */
+	height: 570px; /* gives an initial height of 200px to the table */
+	width: 675px; /* gives an initial height of 200px to the table */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tableFixHead2 thead th {
+	position: sticky; /* make the table heads sticky */
+	top: 0px;
+	/* table head will be placed from the top of the table and sticks to it */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tableFixHead3 {
+	overflow-y: auto;
+	/* make the table scrollable if height is more than 200 px  */
+	height: 70px; /* gives an initial height of 200px to the table */
+	width: 675px; /* gives an initial height of 200px to the table */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tableFixHead3 thead th {
+	position: sticky; /* make the table heads sticky */
+	top: 0px;
+	/* table head will be placed from the top of the table and sticks to it */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.grid-container {
+	display: grid;
+	flex-wrap: wrap;
+	grid-template-columns: 220px 220px 220px;
+	padding: 5px;
+	align-content: center;
+	justify-content: center;
+}
+</style>
 </head>
 
 <body onLoad="buildPanelTable()">
 
 	<h1 id="heading" style="text-align:center">Panels</h1>
-	<h2 id="userid" style="text-align:center">Panelist</h2>
-		
-	<div class="tableFixHead">
+
+	<div class="tableFixHead2">
+
+		<table id="selectedTable">
+		  <thead>
+		    <tr>
+		      <th>Panelist</th>
+		      <th style="background-color: white;" id="panelistValue">111111111111</th>
+		    </tr>
+		  </thead>
+		</table>
+
 		<table id="panelTable">
 			<thead>
 				<tr>
@@ -88,22 +92,22 @@
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()">Next</button></div>     
+  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()">Next&gt;</button></div>
 	</div>
 
 </body>
 
 <script>
-	
-	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUsername')+"]";
-	
+
+document.getElementById('panelistValue').innerHTML = sessionStorage.getItem('selectedUsername');
+
+
 	function buildPanelTable() {
-	
-		
+
 		fetch(getContextPath()+"/Panels?status=Ready")
 			.then(function(response) { return response.json(); })
 			.then(function(panels) {
@@ -112,44 +116,44 @@
 				for (let panel of panels) {
 					out += `
 			<tr>
-				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${panel.panelID}" name="panelSelectList" onchange="panelListSave('selectedPanel',${panel.panelID});panelListSave('selectedPanelPlant','${panel.plant}');" value="${panel.panelID}" ` + panelListGet('selectedPanel', panel.panelID) + `>  <label for="${panel.panelID}"> ${panel.panelID}</label></td>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${panel.panelID}" name="panelSelectList" onchange="panelListSave('selectedPanel',${panel.panelID});panelListSave('selectedPanelPlant','${panel.plant}');" value="${panel.panelID}" ` + panelListGet('selectedPanel', panel.panelID,panel.plant) + `>  <label for="${panel.panelID}"> ${panel.panelID}</label></td>
 				<td style="color:black; background-color:#f0f8ff">`+panel.plant+`</td>
 				<td style="color:black; background-color:#f0f8ff">`+panel.description+`</td>
 			</tr>`;
 				}
-	
+
 				placeholder.innerHTML = out;
 			})
 	}
-	
-	
-	function next() 
+
+
+	function next()
 	{
 		var selectedPanel = sessionStorage.getItem('selectedPanel');
-		
+
 		if (selectedPanel !== null)
 		{
-			if (selectedPanel)			
+			if (selectedPanel)
 			{
 				if (selectedPanel !== '')
 				{
-					window.location='resultTraySelect.html';	
+					window.location='resultTraySelect.html';
 				}
 			}
 		}
 	}
-	
+
 	function back()
 	{
-		window.location='resultUserSelect.html';	
+		window.location='resultUserSelect.html';
 	}
-	
+
 	function refresh()
 	{
-		console.log('resultPanelSelect.html'); 
+		console.log('resultPanelSelect.html');
 		location.reload();
 	}
-	
+
 </script>
 
 </html>

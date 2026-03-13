@@ -52,7 +52,7 @@ public class JDBQMSample
 		setUserData1(userData1);
 		setUserData2(userData2);
 		setUserData3(userData3);
-		setUserData4(userData4);		
+		setUserData4(userData4);
 	}
 
 	public void clear()
@@ -198,7 +198,7 @@ public class JDBQMSample
 			result = dbUserData2;
 		return result;
 	}
-	
+
 	public String getUserData3()
 	{
 		String result = "";
@@ -206,7 +206,7 @@ public class JDBQMSample
 			result = dbUserData3;
 		return result;
 	}
-	
+
 	public String getUserData4()
 	{
 		String result = "";
@@ -334,7 +334,7 @@ public class JDBQMSample
 	{
 		dbUserData4 = ud4;
 	}
-	
+
 	public void setActivityID(String actid)
 	{
 		dbActivityID = actid;

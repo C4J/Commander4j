@@ -1,2 +1,1 @@
-sh java21
-mvn -f b7_pom.xml clean dependency:copy-dependencies
+mvn clean dependency:copy-dependencies -DincludeScope=runtime -DoutputDirectory=target/dependency

@@ -8,7 +8,7 @@
 	<meta http-equiv="expires" content="-1">
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
 	<meta http-equiv="pragma" content="no-cache">
-	
+
 	<!-- The meta viewport will scale my content to any device width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,33 +17,15 @@
 	<title>User Edit</title>
 
 	<script src="scriptUsers.js"></script>
-	
-	<style>
- 
- 	  .is-scrollLocked {
-		   overflow: hidden;
-	   }
-	        
-      .grid-container {
-		  display: grid;
-		  flex-wrap: wrap;
-		  grid-template-columns: 150px 150px 150px;
-		  padding: 2px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 5px;
-		  font-size: 16px;
-		}
-	</style>
+
 
 </head>
 
 <body onLoad="getUserProperties()">
 
 	<h1 id="heading" style="text-align:center">Tray</h1>
+
+	<div class="tableFixHead">
 
 	<table id="userEditTable">
 		<tr>
@@ -62,35 +44,36 @@
 			<td style="color:black; background-color:#f0f8ff">Enabled</td>
 			<td style="color:black; background-color:#f0f8ff"><input type="checkbox" id="enabled" name="enabled"></td>
 		</tr>
-	</table>	
-	
+	</table>
+	</div>
+
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" onclick='updateUser(document.getElementById("firstname").value,document.getElementById("surname").value,document.getElementById("enabled").checked)'>Update</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick="refreshUser()">Refresh</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" onclick="userMenu()">Back</button></div>   
+	  	<div class="grid-item" align="center"><button class="button" onclick="userMenu()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick='updateUser(document.getElementById("firstname").value,document.getElementById("surname").value,document.getElementById("enabled").checked)'>Update</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshUser()">Refresh</button></div>
 	</div>
 
 </body>
 
 <script>
-	
+
 	document.getElementById('heading').innerHTML = "User "+sessionStorage.getItem('selectedUser');
-	
-	
+
+
 	var plantField = document.getElementById("firstname");
 	plantField.addEventListener("keydown", function (e) {
 		if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
 			document.getElementById("surname").focus();
 		}
 	});
-	
+
 	var descriptionField = document.getElementById("surname");
 	descriptionField.addEventListener("keydown", function (e) {
 		if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
 			document.getElementById("enabled").focus();
 		}
 	});
-	
+
 	function getUserProperties() {
 
 		var selectedUser = sessionStorage.getItem('selectedUser');
@@ -111,7 +94,7 @@
 				document.getElementById("userlID").value = data[0].userID;
 				document.getElementById("firstname").value = data[0].firstname;
 				document.getElementById("surname").value = data[0].surname;
-				
+
 				if (data[0].enabled == "Y")
 				{
 					document.getElementById("enabled").checked = true;
@@ -120,7 +103,7 @@
 				{
 					document.getElementById("enabled").checked = false;
 				}
-				
+
 				return data;
 			})
 			.catch((error) => {
@@ -129,5 +112,5 @@
 
 	}
 </script>
-			
+
 </html>

@@ -10,12 +10,13 @@ public class JQMTrayResultEntity
 	private Long trayID;
 	private Long sampleID;
 	private Long sequenceID;
+	private String sequenceLetter;
 	private String userID;
 	private String testID;
 	private String value;
 	private Timestamp updated;
 	private Timestamp created;
-	
+
 
 	public Long getTrayID()
 	{
@@ -39,17 +40,25 @@ public class JQMTrayResultEntity
 		return sequenceID;
 	}
 
+	public String getSequenceLetter()
+	{
+		return sequenceLetter;
+	}
 
 	public void setSampleID(Long sampleID)
 	{
 		this.sampleID = sampleID;
 	}
-	
+
 	public void setSequenceID(Long sequenceID)
 	{
 		this.sequenceID = sequenceID;
 	}
 
+	public void setSequenceLetter(String sequenceLetter)
+	{
+		this.sequenceLetter = sequenceLetter;
+	}
 
 	public String getUserID()
 	{

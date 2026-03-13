@@ -204,6 +204,32 @@ public class JQMTrayResultDB
 		return result;
 	}
 
+	public boolean deleteByTrayID(Long trayID)
+	{
+		PreparedStatement stmtupdate;
+		boolean result = false;
+
+		logger.debug("delete :" + trayID);
+		setErrorMessage("");
+
+		try
+		{
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.deleteByTrayID"));
+			stmtupdate.setLong(1, trayID);;
+			stmtupdate.execute();
+			stmtupdate.clearParameters();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate.close();
+			result = true;
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
 	public JQMTrayResultEntity getProperties(Long trayid, Long sampleId, String userId)
 	{
 		PreparedStatement stmt;
@@ -271,6 +297,14 @@ public class JQMTrayResultDB
 				tent.setTrayID(rs.getLong("tray_id"));
 				tent.setSampleID(rs.getLong("sample_id"));
 				tent.setSequenceID(rs.getLong("sequence_id"));
+
+				Long a1b = rs.getLong("sequence_id");
+				int a2b = a1b.intValue()+64;
+				char a3b = (char) a2b;
+				String a4b = String.valueOf(a3b);
+				tent.setSequenceLetter(a4b);
+
+
 				tent.setUserID(JUtility.replaceNullStringwithBlank(rs.getString("user_id")));
 				tent.setTestID(JUtility.replaceNullStringwithBlank(rs.getString("test_id")));
 				tent.setValue(JUtility.replaceNullStringwithBlank(rs.getString("value")));

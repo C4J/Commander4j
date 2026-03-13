@@ -1,23 +1,30 @@
 /*jshint esversion: 6 */
 /*jshint esversion: 8 */
-	
+
 	function getContextPath() {
 	   let result = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 	   return result;
 	};
 
+	/**
+ * @param {number} trayID
+ * @param {number} sampleID
+ * @param {string} userID
+ * @param {string} testID
+ * @param {string} resultID
+ */
 	async function newResult(trayID,sampleID,userID,testID,resultID) {
-	
-		const dataObject = { 
+
+		const dataObject = {
 			trayID: trayID,
 			sampleID: sampleID,
 			userID: userID,
 			testID: testID,
 			value: resultID
 		};
-	
+
 		console.log(JSON.stringify(dataObject));
-	
+
 		let response = await fetch(getContextPath()+"/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
 			.then((response) => {
 				if (!response.ok) {
@@ -33,9 +40,9 @@
 			.catch((error) => {
 				console.log("Error " + error);
 			});
-	
+
 		console.log(response);
-	
+
 	}
-	
+
 

@@ -6,29 +6,29 @@ import java.nio.file.Paths;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JHostList.java
- * 
+ *
  * Package Name : com.commander4j.sys
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.util.Hashtable;
@@ -36,6 +36,7 @@ import java.util.LinkedList;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.c4jWS.Common;
@@ -155,7 +156,7 @@ public class JHostList
 				else
 				{
 
-					hostUpdatePath = StringUtils.removeIgnoreCase(hostUpdatePath, "file:");
+					hostUpdatePath = Strings.CI.removeStart(hostUpdatePath, "file:");
 
 					int windowsDriveLetter = hostUpdatePath.indexOf(":");
 					if (windowsDriveLetter > 0)
@@ -164,7 +165,7 @@ public class JHostList
 					}
 
 					hostUpdatePath = JUtility.formatPath(hostUpdatePath);
-					hostUpdatePath = StringUtils.replaceIgnoreCase(hostUpdatePath, "updates.xml", "hosts.xml");
+					hostUpdatePath = Strings.CI.replace(hostUpdatePath, "updates.xml", "hosts.xml");
 					logger.debug("Using application update url to check for updated hosts.");
 				}
 			}
@@ -306,7 +307,7 @@ public class JHostList
 				}
 			}
 		}
-		
+
 		JHost.deRegisterDrivers();
 	}
 

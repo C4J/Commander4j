@@ -29,7 +29,7 @@ public class JQMTraySampleDB
 	{
 		return traySampleEntity;
 	}
-	
+
 	private String getSessionID()
 	{
 		return sessionID;
@@ -93,7 +93,7 @@ public class JQMTraySampleDB
 		traySampleEntity = traySample;
 		logger.debug("create :" + traySampleEntity.toString());
 		setErrorMessage("");
-		
+
 		if (sampleDB.isValidSample(traySample.getSampleID()))
 		{
 
@@ -101,16 +101,16 @@ public class JQMTraySampleDB
 			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTraySamples.create"));
-	
+
 				stmtupdate.setLong(1, traySampleEntity.getTrayID());
 				stmtupdate.setLong(2, traySampleEntity.getSampleID());
 				stmtupdate.setLong(3, traySampleEntity.getSequenceID());
 				traySampleEntity.setCreated(JUtility.getSQLDateTime());
 				stmtupdate.setTimestamp(4, traySampleEntity.getCreated());
-	
+
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
-	
+
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
@@ -128,13 +128,48 @@ public class JQMTraySampleDB
 		return result;
 	}
 
+
+	public boolean isSampleAssignedToTray(JQMTraySampleEntity traySample)
+	{
+		PreparedStatement stmt;
+		ResultSet rs;
+		boolean result = false;
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTraySamples.isAssignedToTray"));
+			stmt.setLong(1, traySample.getSampleID());
+			stmt.setFetchSize(1);
+			rs = stmt.executeQuery();
+
+			if (rs.next())
+			{
+				result = true;
+				setErrorMessage("Sample [" + String.valueOf(traySample.getSampleID()) + "] already assigned to Panel ["+rs.getLong("panel_id")+"] Tray ["+rs.getLong("tray_sequence")+"] Sample Sequence ["+rs.getLong("sequence_id")+"]");
+			} else
+			{
+				result = false;
+				setErrorMessage("");
+			}
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+
+	}
+
 	public boolean update(JQMTraySampleEntity traySample)
 	{
 		boolean result = false;
 		traySampleEntity = traySample;
 		logger.debug("update :" + traySampleEntity.toString());
 		setErrorMessage("");
-		
+
 		try
 		{
 			PreparedStatement stmtupdate;
@@ -161,7 +196,7 @@ public class JQMTraySampleDB
 
 		return result;
 	}
-	
+
 	public boolean delete(JQMTraySampleEntity traysample)
 	{
 		PreparedStatement stmtupdate;
@@ -187,14 +222,39 @@ public class JQMTraySampleDB
 
 		return result;
 	}
-	
-	
+
+	public boolean deleteByTrayID(Long trayID)
+	{
+		PreparedStatement stmtupdate;
+		boolean result = false;
+
+		logger.debug("delete :" + trayID);
+
+		setErrorMessage("");
+
+		try
+		{
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTraySamples.deleteByTrayID"));
+			stmtupdate.setLong(1, trayID);
+			stmtupdate.execute();
+			stmtupdate.clearParameters();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate.close();
+			result = true;
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
 	public JQMTraySampleEntity getProperties(Long trayid,Long sampleId)
 	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		JQMTraySampleEntity result = new JQMTraySampleEntity();	
+		JQMTraySampleEntity result = new JQMTraySampleEntity();
 
 		try
 		{
@@ -211,8 +271,8 @@ public class JQMTraySampleDB
 				result.setSequenceID(rs.getLong("sequence_id"));
 				result.setCreated(rs.getTimestamp("created"));
 				result.setUpdated(rs.getTimestamp("updated"));
-				
-				
+
+
 			} else
 			{
 				setErrorMessage("Unknown Tray ID / Sample ID[" + trayid + "]");
@@ -227,7 +287,7 @@ public class JQMTraySampleDB
 
 		return result;
 	}
-	
+
 	public Long getNewSequenceID(Long trayid)
 	{
 		PreparedStatement stmt;
@@ -261,7 +321,36 @@ public class JQMTraySampleDB
 
 		return result;
 	}
-	
+
+	public Long getNextSequenceID(Long trayid)
+	{
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+		Long result = (long) 0;
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTraySamples.nextSequenceID"));
+			stmt.setFetchSize(1);
+			stmt.setLong(1, trayid);
+			rs = stmt.executeQuery();
+			if (rs.next())
+			{
+				result = rs.getLong("next_sequence");
+			} else
+			{
+				result = (long) 1;
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+			logger.error(e);
+			result = (long) -1;
+		}
+		return result;
+	}
 	public LinkedList<JQMTraySampleEntity> getSamplesByTray(Long trayid)
 	{
 		PreparedStatement stmt;
@@ -276,13 +365,20 @@ public class JQMTraySampleDB
 			stmt.setLong(1, trayid);
 			rs = stmt.executeQuery();
 
-			
+
 			while (rs.next())
 			{
 				JQMTraySampleEntity tent = new JQMTraySampleEntity();
-				
+
 				tent.setTrayID(rs.getLong("tray_id"));
 				tent.setSequenceID(rs.getLong("sequence_id"));
+
+				Long a1b = rs.getLong("sequence_id");
+				int a2b = a1b.intValue()+64;
+				char a3b = (char) a2b;
+				String a4b = String.valueOf(a3b);
+				tent.setSequenceLetter(a4b);
+
 				tent.setSampleID(rs.getLong("sample_id"));
 				tent.setCreated(rs.getTimestamp("created"));
 				tent.setUpdated(rs.getTimestamp("updated"));
@@ -290,7 +386,7 @@ public class JQMTraySampleDB
 			}
 			rs.close();
 			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());

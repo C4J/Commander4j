@@ -4,29 +4,29 @@ import java.io.File;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JDBPrinters.java
- * 
+ *
  * Package Name : com.commander4j.db
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.sql.PreparedStatement;
@@ -38,6 +38,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
@@ -66,7 +67,7 @@ public class JDBPrinters
 	private String hostID;
 	private String sessionID;
 	private String dbPrinterDPI;
-	private String dbPaperSize;	
+	private String dbPaperSize;
 	private String dbEnableExport = "N";
 	private String dbExportPath = "";
 	private String dbExportFormat = "CSV";
@@ -156,7 +157,7 @@ public class JDBPrinters
 		logger.debug(result);
 		return result;
 	}
-	
+
 	public String getExportFormat()
 	{
 		if (dbExportFormat.equals(""))
@@ -305,11 +306,11 @@ public class JDBPrinters
 	{
 		dbPrinterDPI = JUtility.replaceNullStringwithBlank(dpi);
 	}
-	
+
 	public void setPaperSize(String size)
 	{
 		String result = JUtility.replaceNullStringwithBlank(size).toLowerCase();
-		dbPaperSize = StringUtils.remove(result, " ");
+		dbPaperSize = Strings.CS.remove(result, " ");
 	}
 
 	public String getDPI()
@@ -320,10 +321,10 @@ public class JDBPrinters
 	public String getPaperSize()
 	{
 		String result = JUtility.replaceNullStringwithBlank(dbPaperSize).toLowerCase();
-		result = StringUtils.remove(result, " ");
+		result = Strings.CS.remove(result, " ");
 		return result;
 	}
-	
+
 	private String getHostID()
 	{
 		return hostID;
@@ -358,7 +359,7 @@ public class JDBPrinters
 		}
 		return dbPort;
 	}
-	
+
 	public int getPortInt()
 	{
 		dbPort = JUtility.replaceNullStringwithBlank(dbPort);

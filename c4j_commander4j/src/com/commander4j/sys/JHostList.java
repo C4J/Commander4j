@@ -36,6 +36,7 @@ import java.util.LinkedList;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
@@ -153,8 +154,7 @@ public class JHostList
 				}
 				else
 				{
-
-					hostUpdatePath = StringUtils.removeIgnoreCase(hostUpdatePath, "file:");
+					hostUpdatePath = Strings.CI.removeStart(hostUpdatePath, "file:");
 
 					int windowsDriveLetter = hostUpdatePath.indexOf(":");
 					if (windowsDriveLetter > 0)
@@ -163,7 +163,9 @@ public class JHostList
 					}
 
 					hostUpdatePath = JUtility.formatPath(hostUpdatePath);
-					hostUpdatePath = StringUtils.replaceIgnoreCase(hostUpdatePath, "updates.xml", "hosts.xml");
+
+					hostUpdatePath = Strings.CI.replace(hostUpdatePath, "updates.xml", "hosts.xml");
+
 					logger.debug("Using application update url to check for updated hosts.");
 				}
 			}

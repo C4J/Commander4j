@@ -43,16 +43,31 @@ public class JQMTrayController extends HttpServlet
 		// parameter
 		Long panelID = url.getParameterVariableLong(request, "panelID");
 		Long trayID = url.getParameterVariableLong(request, "trayID");
+		Long traySequence = url.getParameterVariableLong(request, "traySequence");
+		String queryType = url.getParameterVariable(request, "queryType");
+
+		logger.debug("doGet TrayController panelID="+panelID+ " trayID="+trayID+" traySequence="+traySequence+" queryType="+queryType);
 
 		String reply = "";
 
 		// No status specified so check of panelId was provided
 		if (panelID > 0)
 		{
-			if (trayID > 0)
+			Long find = (long) -1;
+			if (queryType.equals("TrayID"))
+			{
+				find = trayID;
+			}
+
+			if (queryType.equals("TraySequence"))
+			{
+				find=traySequence;
+			}
+
+			if (find > 0)
 			{
 				// Only PanelId and TrayID Specified
-				trayList.addLast(tdb.getProperties(Long.valueOf(panelID), Long.valueOf(trayID)));
+				trayList.addLast(tdb.getProperties(Long.valueOf(panelID), Long.valueOf(find),queryType));
 				reply = gson.toJson(trayList);
 			}
 			else
@@ -140,6 +155,16 @@ public class JQMTrayController extends HttpServlet
 		// fields of the Object passed to the method.
 		JQMTrayEntity trayEntity = gson.fromJson(bufferedReader, JQMTrayEntity.class);
 
+		JURL url = new JURL(request);
+
+		// getParameterVariableLong will return -1 for missing or non numeric
+		// parameter
+		Long trayID = url.getParameterVariableLong(request, "trayID");
+		Long traySequence = url.getParameterVariableLong(request, "traySequence");
+
+		trayEntity.setTrayID(trayID);
+		trayEntity.setTraySequence(traySequence);
+
 		String reply = "";
 
 		// Create database handler
@@ -185,6 +210,7 @@ public class JQMTrayController extends HttpServlet
 		JQMTrayDB trayDB = new JQMTrayDB(Common.selectedHostID, request.getSession().getId());
 		JURL url = new JURL(request);
 
+		String queryType = url.getParameterVariable(request, "queryType");
 		// getParameterVariableLong will return -1 for missing or non numeric
 		// parameter
 
@@ -210,6 +236,8 @@ public class JQMTrayController extends HttpServlet
 			trayEntity.setPanelID(panelID);
 
 			trayEntity.setTrayID(trayID);
+
+			trayEntity.setqueryType(queryType);
 		}
 
 		// Invoke the create method and pass an instance of the object

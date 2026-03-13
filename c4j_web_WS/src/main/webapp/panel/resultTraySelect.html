@@ -8,7 +8,7 @@
 	<meta http-equiv="expires" content="-1">
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
 	<meta http-equiv="pragma" content="no-cache">
-	
+
 	<!-- The meta viewport will scale my content to any device width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,65 +17,68 @@
 	<title>Tray Menu</title>
 
 	<script src="scriptTrays.js"></script> <!-- Link to the javascript file -->
-	
+
 	<style>
-  
-  	  .is-scrollLocked {
-		   overflow: hidden;
-	   }
-	       
-      .grid-container {
-		  display: grid;
-		  grid-template-columns: 150px 150px 150px;
-		  padding: 10px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 10px;
-		  font-size: 16px;
-		}
+	.tableFixHead2 {
+		overflow-y: auto;
+		/* make the table scrollable if height is more than 200 px  */
+		height: 570px; /* gives an initial height of 200px to the table */
+		width: 675px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.tableFixHead2 thead th {
+		position: sticky; /* make the table heads sticky */
+		top: 0px;
+		/* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.tableFixHead3 {
+		overflow-y: auto;
+		/* make the table scrollable if height is more than 200 px  */
+		height: 70px; /* gives an initial height of 200px to the table */
+		width: 675px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.tableFixHead3 thead th {
+		position: sticky; /* make the table heads sticky */
+		top: 0px;
+		/* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.grid-container {
+		display: grid;
+		flex-wrap: wrap;
+		grid-template-columns: 220px 220px 220px;
+		padding: 5px;
+		align-content: center;
+		justify-content: center;
+	}
 	</style>
-	
-	<style>	
-	  .tableFixHead {
-	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-	    height: 600px; /* gives an initial height of 200px to the table */
-		width: 600px; /* gives an initial height of 200px to the table */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  .tableFixHead thead th {
-	    position: sticky; /* make the table heads sticky */
-	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  table {
-	    border-collapse: collapse; /* make the table borders collapse to each other */
-	    width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  th,
-	  td {
-	    padding: 8px 16px;
-	    border: 1px solid #ccc;
-	  }
-	  th {
-	    background: #eee;
-	  }
-	</style>
-	
+
 </head>
 
 <body onLoad="buildTrayTable()">
 
 	<h1  id="heading" style="text-align:center">Trays</h1>
-	<h2 id="userid" style="text-align:center">Panelist</h2>
-	
-	<div class="tableFixHead">
+
+	<div class="tableFixHead2">
+		<table id="selectedTable">
+		  <thead>
+		    <tr>
+		      <th>Panelist</th>
+		      <th style="background-color: white;" id="panelistValue">111111111111</th>
+		    </tr>
+		  </thead>
+		</table>
+
 		<table id="trayTable">
 			<thead>
 				<tr>
@@ -87,11 +90,11 @@
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()">Next</button></div>     
+  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()">Next&gt;</button></div>
 	</div>
 
 
@@ -100,15 +103,15 @@
 <script>
 
 	document.getElementById('heading').innerHTML = sessionStorage.getItem('selectedPanelPlant')+" [Panel "+sessionStorage.getItem('selectedPanel')+"]";
-	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUsername')+"]";
+	document.getElementById('panelistValue').innerHTML = sessionStorage.getItem('selectedUsername');
 
-	
+
 	sessionStorage.setItem("selectedResult", "");
 
 	function buildTrayTable() {
-	
+
 		var selected = sessionStorage.getItem('selectedPanel');
-		
+
 		fetch(getContextPath()+"/Trays?panelID="+selected)
 			.then(function(response) { return response.json(); })
 			.then(function(trays) {
@@ -117,42 +120,42 @@
 				for (let tray of trays) {
 					out += `
 			<tr>
-				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${tray.traySequence}" name="traySelectList" onchange="trayListSave('selectedTray',${tray.trayID});trayListSave('selectedTraySeq',${tray.traySequence})" value="${tray.traySequence}" ` + trayListGet('selectedTray', tray.trayID) + `>  <label for="${tray.traySequence}"> ${tray.traySequence}</label></td>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${tray.traySequence}" name="traySelectList" onchange="trayListSave('selectedTray',${tray.trayID});trayListSave('selectedTraySeq',${tray.traySequence})" value="${tray.traySequence}" ` + trayListGet('selectedTray', tray.trayID,tray.traySequence) + `>  <label for="${tray.traySequence}"> ${tray.traySequence}</label></td>
 				<td style="color:black; background-color:#f0f8ff">${tray.description}</td>
 			</tr>`;
 				}
-	
+
 				placeholder.innerHTML = out;
 			})
 	}
-	
-	function next() 
+
+	function next()
 	{
 		var selectedTray = sessionStorage.getItem('selectedTray');
-		
+
 		if (selectedTray !== null)
 		{
-			if (selectedTray)			
+			if (selectedTray)
 			{
 				if (selectedTray !== '')
 				{
-					window.location='resultSampleSelect.html';	
+					window.location='resultSampleSelect.html';
 				}
 			}
 		}
 	}
-	
+
 	function back()
 	{
-		window.location='resultPanelSelect.html';	
+		window.location='resultPanelSelect.html';
 	}
-	
+
 	function refresh()
 	{
-		console.log('resultTraySelect.html'); 
+		console.log('resultTraySelect.html');
 		location.reload();
 	}
-	
+
 </script>
 
 </html>

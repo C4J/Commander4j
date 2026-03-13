@@ -12,39 +12,42 @@
 
 	<!-- The meta viewport will scale my content to any device width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<link rel="stylesheet" href="stylesPanels.css">
 	<title>Admin Menu</title>
-	
+
 	<style>
-	
-	    .is-scrollLocked {
-		   overflow: hidden;
-		}
-		
-		.grid-container {
+
+      .grid-container {
 		  display: grid;
-		  grid-template-columns: 150px;
-		  padding: 10px;
+		  flex-wrap: wrap;
+		  grid-template-columns: 250px 250px 250px;
+		  padding: 5px;
 		  align-content: center;
 		  justify-content: center;
 		}
 		.grid-item {
-		
-		  padding: 10px;
+
+		  padding: 15px;
 		  font-size: 16px;
 		}
 	</style>
-	
+
 </head>
 
 <body>
 
 <h1 style="text-align:center">Admin Menu</h1>
+<br>
 
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" onclick="users()">Panelists</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick="mainmenu()">Back</button></div>    
+		<div class="grid-item" align="center"></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="users()">Panelists</button></div>
+	</div>
+
+	<div class="grid-container">
+		<div class="grid-item" align="center"></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="mainmenu()">&lt;Back</button></div>
 	</div>
 
 </body>
@@ -53,12 +56,12 @@
 
 	function users()
 	{
-		window.location='users.html';	
+		window.location='users.html';
 	}
-	
+
 	function mainmenu()
 	{
-		window.location='menu.html';	
+		window.location='menu.html';
 	}
 
 </script>

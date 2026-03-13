@@ -8,7 +8,7 @@
 	<meta http-equiv="expires" content="-1">
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
 	<meta http-equiv="pragma" content="no-cache">
-	
+
 	<!-- The meta viewport will scale my content to any device width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,58 +17,34 @@
 	<title>User Menu</title>
 
 	<script src="scriptUsers.js"></script> <!-- Link to the javascript file -->
-	
-	<style>
-	
- 	  .is-scrollLocked {
-		   overflow: hidden;
-	   }  
-	      
-      .grid-container {
-		  display: grid;
-		  flex-wrap: wrap;
-		  grid-template-columns: 100px 100px 100px 100px;
-		  padding: 2px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 5px;
-		  font-size: 16px;
-		}
-	</style>	
-	
-	<style>
-	  .tableFixHead {
-	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-	    height: 600px; /* gives an initial height of 200px to the table */
-		width: 600px; /* gives an initial height of 200px to the table */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  .tableFixHead thead th {
-	    position: sticky; /* make the table heads sticky */
-	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  table {
-	    border-collapse: collapse; /* make the table borders collapse to each other */
-	    width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  th,
-	  td {
-	    padding: 8px 16px;
-	    border: 1px solid #ccc;
-	  }
-	  th {
-	    background: #eee;
-	  }
+
+	<style type="text/css">
+	.grid-container {
+		display: grid;
+		flex-wrap: wrap;
+		grid-template-columns: 220px 220px;
+		padding: 5px;
+		align-content: center;
+		justify-content: center;
+	}
+
+		.tableFixHead2 {
+	overflow-y: auto;
+	/* make the table scrollable if height is more than 200 px  */
+	height: 470px; /* gives an initial height of 200px to the table */
+	width: 675px; /* gives an initial height of 200px to the table */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tableFixHead2 thead th {
+	position: sticky; /* make the table heads sticky */
+	top: 0px;
+	/* table head will be placed from the top of the table and sticks to it */
+	margin-left: auto;
+	margin-right: auto;
+}
 	</style>
-	
 </head>
 
 <body onLoad="buildUserTable()">
@@ -76,15 +52,15 @@
 	<h1  style="text-align:center">Users</h1>
 
 	<div align="center">
-		Filter by Status : 
+		Filter by Status :
 		<input type="radio" name="filterStatus" onChange="filterChange(this)" value="Y" id="Y">
-		<label  style="color: green;" for="Y">: Enabled</label>		
+		<label  style="color: green;" for="Y">: Enabled</label>
 		<input type="radio" name="filterStatus" onChange="filterChange(this)" value="N" id="N">
 		<label  style="color: red;" for="N">: Disabled</label>
 	</div>
 	<br>
-	
-	<div class="tableFixHead">
+
+	<div class="tableFixHead2">
 		<table id="userTable">
 			<thead>
 				<tr>
@@ -100,10 +76,12 @@
 	</div>
 	<br>
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewUser()">Add</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick="editUserRecord()">Edit</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" onclick="refreshUser()">Refresh</button></div>   
-  		 <div class="grid-item" align="center"><button class="button" onclick="adminMenu()">Back</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewUser()">Add User</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="editUserRecord()">Edit User</button></div>
+	</div>
+	<div class="grid-container">
+	  	<div class="grid-item" align="center"><button class="button" onclick="adminMenu()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshUser()">Refresh</button></div>
 	</div>
 
 </body>
@@ -112,11 +90,11 @@
 
 	var filterCombo = document.querySelectorAll('input[type=radio][name="filterStatus"]');
 	var filter = sessionStorage.getItem('userStatus');
-	
+
 	if ((filter === undefined) || (filter === null) || (filter === ""))
 	{
 	      sessionStorage.setItem('userStatus', 'Y');
-		  filterCombo.value = 'Y';   	
+		  filterCombo.value = 'Y';
 		  setCheckedValue(filterCombo,'Y');
 		  filter = "Y";
 	}
@@ -124,13 +102,13 @@
 	{
 		setCheckedValue(filterCombo, filter);
 	}
-	
+
 	function filterChange(radio) {
 	    console.debug(radio.value);
 	    userListSave('userStatus',radio.value);
 	    refreshUser();
 	}
-	
+
 	function setCheckedValue(radioObj, newValue) {
 		if(!radioObj)
 			return;
@@ -146,7 +124,7 @@
 			}
 		}
 	}
-	
+
 	function getCheckedValue(radioObj) {
 		if(!radioObj)
 			return "";
@@ -165,8 +143,8 @@
 	}
 
 	function buildUserTable() {
-	
-		
+
+
 		fetch(getContextPath()+"/Users?enabled="+filter)
 			.then(function(response) { return response.json(); })
 			.then(function(users) {
@@ -181,11 +159,11 @@
 				<td style="color:black; background-color:#f0f8ff"><input type="checkbox" id="enabled" name="enabled" disabled `+getChecked(user.enabled)+`</td>
 			</tr>`;
 				}
-	
+
 				placeholder.innerHTML = out;
 			})
 	}
-	
+
 	function confirmNewUser() {
 		var result =  confirm("Create new User ?");
 		if (result == true)
@@ -196,12 +174,12 @@
 			newUser();
 		}
 	}
-	
+
 	function adminMenu()
 	{
-		window.location='admin.html';	
+		window.location='admin.html';
 	}
-	
+
 </script>
 
 </html>

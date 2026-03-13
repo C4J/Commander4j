@@ -32,6 +32,8 @@ public class JQMTraySampleController extends HttpServlet
 
 		// Create instance of database handler.
 		JQMTraySampleDB tsdb = new JQMTraySampleDB(Common.selectedHostID, request.getSession().getId());
+
+		JQMTrayDB tdb = new JQMTrayDB(Common.selectedHostID, request.getSession().getId());
 		// Create an object to hold the return result;
 		LinkedList<JQMTraySampleEntity> traySampleList = new LinkedList<JQMTraySampleEntity>();
 		// Create and instance of the Google JSON utility.
@@ -41,31 +43,30 @@ public class JQMTraySampleController extends HttpServlet
 
 		// getParameterVariableLong will return -1 for missing or non numeric
 		// parameter
+		Long panelID = url.getParameterVariableLong(request, "panelID");
 		Long trayID = url.getParameterVariableLong(request, "trayID");
+		Long traySequence = url.getParameterVariableLong(request, "traySequence");
 		Long sampleID = url.getParameterVariableLong(request, "sampleID");
+		String queryType = url.getParameterVariable(request, "queryType");
 
 		String reply = "";
 
-		if (trayID > 0)
+		if (queryType.equals("TraySequence"))
 		{
-			if (sampleID > 0)
-			{
-				// Only PanelId and TrayID Specified
-				traySampleList.addLast(tsdb.getProperties(Long.valueOf(trayID), Long.valueOf(sampleID)));
-				reply = gson.toJson(traySampleList);
-			}
-			else
-			{
-				traySampleList = tsdb.getSamplesByTray(trayID);
-				reply = gson.toJson(traySampleList);
-			}
+			JQMTrayEntity tent = tdb.getProperties(Long.valueOf(panelID), traySequence, queryType);
+			trayID = tent.getTrayID();
+		}
+
+		if (sampleID > 0)
+		{
+			// Only PanelId and TrayID Specified
+			traySampleList.addLast(tsdb.getProperties(Long.valueOf(trayID), Long.valueOf(sampleID)));
+			reply = gson.toJson(traySampleList);
 		}
 		else
 		{
-			// No panelId provided and no status provided so we can't do
-			// anything.
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
-			reply = gson.toJson("Invalid URL - trayID invalid");
+			traySampleList = tsdb.getSamplesByTray(trayID);
+			reply = gson.toJson(traySampleList);
 		}
 
 		// Output the response
@@ -125,6 +126,7 @@ public class JQMTraySampleController extends HttpServlet
 								// initialisation for session occurs with
 								// AppServlet Session Listener.
 
+		JQMTrayDB tdb = new JQMTrayDB(Common.selectedHostID, request.getSession().getId());
 		// Create and instance of the Google JSON utility.
 		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 		// Read the JSON Body of the request
@@ -143,38 +145,50 @@ public class JQMTraySampleController extends HttpServlet
 
 		// getParameterVariableLong will return -1 for missing or non numeric
 		// parameter
+
+		Long panelID = url.getParameterVariableLong(request, "panelID");
+		Long traySequence = url.getParameterVariableLong(request, "traySequence");
+		String queryType = url.getParameterVariable(request, "queryType");
 		Long trayID = url.getParameterVariableLong(request, "trayID");
-		Long sampleID = url.getParameterVariableLong(request, "sampleID");
-		Long sequenceID = url.getParameterVariableLong(request, "sequenceID");
-		
-		if (traySampleEntity == null)
+
+		// If no Sequence Provided create one
+		if (traySequence == -1)
 		{
-			traySampleEntity = new JQMTraySampleEntity();
+			traySequence = tdb.getNextSequenceID(panelID);
 		}
 
-		if (trayID > 0)
+		if (queryType.equals("TraySequence"))
 		{
-			traySampleEntity.setTrayID(trayID);
+			// Derive trayID from TraySequence
+			JQMTrayEntity tent = tdb.getProperties(Long.valueOf(panelID), traySequence, queryType);
+			trayID = tent.getTrayID();
+
+			// See if Tray ID was found
+			if (trayID == -1)
+			{
+				// if Not found create one
+				trayID = tdb.getNewTrayID();
+				JQMTrayEntity trayEntity = new JQMTrayEntity();
+				trayEntity.setPanelID(panelID);
+				trayEntity.setTrayID(trayID);
+				trayEntity.setTraySequence(traySequence);
+				tdb.create(trayEntity);
+			}
 		}
 
-		if (sampleID > 0)
+		if (queryType.equals("TrayID"))
 		{
-			traySampleEntity.setSampleID(sampleID);
+			if (trayID == -1)
+			{
+				// if Not found create one
+				trayID = tdb.getNewTrayID();
+			}
 		}
 
-		if (sequenceID > 0)
-		{
-			traySampleEntity.setSequenceID(sequenceID);
-		}
+		traySampleEntity.setTrayID(trayID);
+		traySampleEntity.setSequenceID(traySampleDB.getNextSequenceID(trayID));
 
-		// If the provided sequence_numnber is zero then calculate the next one
-		// to use.
-		if (traySampleEntity.getSequenceID() == 0)
-		{
-			traySampleEntity.setSequenceID(traySampleDB.getNewSequenceID(traySampleEntity.getTrayID()));
-		}
-
-		if ((traySampleEntity.getSequenceID() == 0) || (traySampleEntity.getTrayID() == 0) || ((traySampleEntity.getSampleID() == 0)))
+		if ((traySampleEntity.getSequenceID() <= 0) || (traySampleEntity.getTrayID() <= 0) || ((traySampleEntity.getSampleID() <= 0)))
 		{
 			// No panelId provided and no status provided so we can't do
 			// anything.
@@ -184,20 +198,22 @@ public class JQMTraySampleController extends HttpServlet
 		else
 		{
 
-			// Invoke the create method and pass an instance of the object
-			if (traySampleDB.create(traySampleEntity))
+			if (traySampleDB.isSampleAssignedToTray(traySampleEntity) == false)
 			{
-				traySampleEntity = traySampleDB.getTraySampleEntity();
-				// Return the record created which will include the TrayID which
-				// was
-				// created dynamically.
-				reply = gson.toJson(traySampleEntity);
+				// Invoke the create method and pass an instance of the object
+				if (traySampleDB.create(traySampleEntity))
+				{
+					traySampleEntity = traySampleDB.getTraySampleEntity();
+					reply = gson.toJson(traySampleEntity);
+				}
+				else
+				{
+					response.setStatus(Response.SC_NOT_ACCEPTABLE);
+					reply = gson.toJson(traySampleDB.getErrorMessage());
+				}
 			}
 			else
 			{
-				// Create method encountered an error so return fail response
-				// with
-				// error message.
 				response.setStatus(Response.SC_NOT_ACCEPTABLE);
 				reply = gson.toJson(traySampleDB.getErrorMessage());
 			}
@@ -225,19 +241,19 @@ public class JQMTraySampleController extends HttpServlet
 
 		JQMTraySampleDB traySampleDB = new JQMTraySampleDB(Common.selectedHostID, request.getSession().getId());
 		JURL url = new JURL(request);
-		
+
 		// getParameterVariableLong will return -1 for missing or non numeric
 		// parameter
 		Long trayID = url.getParameterVariableLong(request, "trayID");
 		Long sampleID = url.getParameterVariableLong(request, "sampleID");
-		
+
 		if (traySampleEntity == null)
 		{
 			traySampleEntity = new JQMTraySampleEntity();
 			traySampleEntity.setTrayID((long) -1);
 			traySampleEntity.setSampleID((long) -1);
 		}
-		
+
 		String reply = "";
 
 		if ((trayID > 0) && (sampleID > 0))
@@ -246,7 +262,7 @@ public class JQMTraySampleController extends HttpServlet
 			traySampleEntity.setTrayID(trayID);
 			traySampleEntity.setSampleID(sampleID);
 		}
-		
+
 		// Invoke the create method and pass an instance of the object
 		if (traySampleDB.delete(traySampleEntity))
 		{

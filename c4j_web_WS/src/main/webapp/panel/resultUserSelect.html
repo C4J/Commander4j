@@ -8,117 +8,142 @@
 	<meta http-equiv="expires" content="-1">
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
 	<meta http-equiv="pragma" content="no-cache">
-	
+
 	<!-- The meta viewport will scale my content to any device width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	 <!-- Link to my stylesheet -->
 	 <link rel="stylesheet" href="stylesPanels.css">
-	 
+
 	<title>Select Panelist</title>
 
 	<script src="scriptUsers.js"></script> <!-- Link to the javascript file -->
-	
+
 	<style>
-	
-	  .is-scrollLocked {
-		   overflow: hidden;
-	   }	
-	
-      .box {
-        width: 350px;
-        height: 30px;
-        border: 1px solid #999;
-        font-size: 18px;
-        color: #1c87c9;
-        background-color: #eee;
-        border-radius: 5px;
-        box-shadow: 4px 4px #ccc;
-      }
-      
-      .grid-container {
-		  display: grid;
-		  grid-template-columns: 120px 120px 120px 120px;
-		  padding: 10px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 10px;
-		  font-size: 16px;
-		}
+
+	.tableFixHead2 {
+	overflow-y: auto;
+	/* make the table scrollable if height is more than 200 px  */
+	height: 70px; /* gives an initial height of 200px to the table */
+	width: 675px; /* gives an initial height of 200px to the table */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tableFixHead2 thead th {
+	position: sticky; /* make the table heads sticky */
+	top: 0px;
+	/* table head will be placed from the top of the table and sticks to it */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+	.tableFixHead3 {
+	overflow-y: auto;
+	/* make the table scrollable if height is more than 200 px  */
+	height: 485px; /* gives an initial height of 200px to the table */
+	width: 675px; /* gives an initial height of 200px to the table */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tableFixHead3 thead th {
+	position: sticky; /* make the table heads sticky */
+	top: 0px;
+	/* table head will be placed from the top of the table and sticks to it */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+table {
+	border-collapse: collapse;
+	/* make the table borders collapse to each other */
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+th, td {
+	padding: 8px 16px;
+	border: 5px solid #ccc;
+	font-size: 18px;
+}
+
+th {
+	background: #eee;
+	font-size: 20px;
+}
+
+.box {
+	width: 350px;
+	height: 35px;
+	border: 1px solid #999;
+	font-size: 18px;
+	color: #1c87c9;
+	background-color: #eee;
+	border-radius: 3px;
+	box-shadow: 2px 2px #ccc;
+}
+
 	</style>
-	
-	<style>	
-	  .tableFixHead {
-	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-	    height: 500px; /* gives an initial height of 200px to the table */
-		width: 600px; /* gives an initial height of 200px to the table */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  .tableFixHead thead th {
-	    position: sticky; /* make the table heads sticky */
-	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  table {
-	    border-collapse: collapse; /* make the table borders collapse to each other */
-	    width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  th,
-	  td {
-	    padding: 8px 16px;
-	    border: 1px solid #ccc;
-	  }
-	  th {
-	    background: #eee;
-	  }
-	</style>
-	
+
 </head>
 
 <body onLoad="buildUserComboBox()">
 
 <h1 style="text-align:center">Select Panelist</h1>
 
-<br><br>	
-	<div align="center" id="userCombobox-output"></div>
-<br><br>
+	<div class="tableFixHead2">
 
-	<div class="tableFixHead">
-	<table id="userEditTable">
+
+	  <table id="userEditTable">
+
 		<tr>
-			<td style="color:black; background-color:#f0f8ff">User ID</td>
+			<td style="color:black; background-color:#f0f8ff"><div class="grid-item" align="center">Panelist</div></td>
+			<td style="color:black; background-color:#f0f8ff"><div align="center" id="userCombobox-output"></div></td>
+		</tr>
+
+	  </table>
+	</div>
+
+	<div class="tableFixHead3">
+
+
+	  <table id="userEditTable">
+
+		<tr>
+			<td style="color:black; background-color:#f0f8ff"><div class="grid-item" align="center"><button class="button" id="findButton" onclick="find()">Find</button></div></td>
 			<td style="color:black; background-color:#f0f8ff"><input type="text" id="userlID" name="userlID" autofocus></td>
 		</tr>
 
-	</table>
+	  </table>
 	</div>
-	
+
 	<br>
-	
+
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" id="findButton" onclick="find()">Find</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()" disabled>Next</button></div>     
+  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()" disabled>Next&gt;</button></div>
 	</div>
-	
+
 
 </body>
 
 <script>
-		
-   		
+
+	var barcode = document.getElementById("userlID");
+	barcode.addEventListener("keydown", function (e) {
+		if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+			find();
+		}
+	});
+
 	function buildUserComboBox() {
-		
-		var dropdownHTML = '<label for "userSelect">Panelist : </label><select id="userSelect" name="userSelect" class="box" onchange="newSelection()">';
-		
+
+		var dropdownHTML = '<select id="userSelect" name="userSelect" class="box" onchange="newSelection()">';
+
 		fetch(getContextPath()+"/Users?enabled=Y")
 			.then(function(response) { return response.json(); })
 			.then(function(users) {
@@ -128,49 +153,49 @@
 				    var value = user.userID;
 				    dropdownHTML+='<option value="'+value+'" '+getComboChecked(user.userID)+'>'+name+'</option>';
 				}
-				
-				 dropdownHTML+='</select>';        
+
+				 dropdownHTML+='</select>';
 
 				 var container=document.getElementById("userCombobox-output");
 				 container.innerHTML=dropdownHTML;
-	
+
 			})
-			
+
 			var selectedUser = sessionStorage.getItem('selectedUser');
-			var enabled = true;	
-		
+			var enabled = true;
+
 			if (selectedUser !== null)
 			{
-				if (selectedUser !== "")	
+				if (selectedUser !== "")
 				{
-					enabled = false;	
+					enabled = false;
 				}
 			}
-			
+
 			var button=document.getElementById("nextButton");
 			button.disabled = enabled;
-			
+
 			document.getElementById("userlID").focus();
 	}
-	
+
 	function newSelection()
 	{
-		
+
 		var select = document.getElementById("userSelect");
 		var option = select.options[select.selectedIndex];
 		var label = option.text;
 		var val = option.value;
-		    
-	    console.log('selected user = '+val); 
-	    console.log('selected name = '+label); 
-	    
+
+	    console.log('selected user = '+val);
+	    console.log('selected name = '+label);
+
 	    sessionStorage.setItem("selectedUser", val);
 	    sessionStorage.setItem("selectedUsername", label);
 	    sessionStorage.setItem("selectedPanel", "");
 	    sessionStorage.setItem("selectedTray", "");
-	    
+
 	    var button=document.getElementById("nextButton");
-	    
+
 	    if (val === "")
 	    {
 	    	button.disabled = true;
@@ -180,45 +205,46 @@
 	    	button.disabled = false;
 	    }
 	}
-	
+
 	function find()
 	{
-		
+
 		document.getElementById('userSelect').value = document.getElementById("userlID").value;
 		newSelection();
+		document.getElementById("userlID").focus();
 
 	}
-	
+
 	function next()
 	{
 		var selectedUser = sessionStorage.getItem('selectedUser');
-		
+
 		if (selectedUser !== null)
 		{
-			if (selectedUser !== "")	
+			if (selectedUser !== "")
 			{
-				window.location='resultPanelSelect.html';	
+				window.location='resultPanelSelect.html';
 			}
 		}
 	}
-	
+
 	function back()
 	{
-		window.location='menu.html';	
+		window.location='menu.html';
 	}
-	
+
 	function refresh()
 	{
-		console.log('resultUserSelect.html'); 
+		console.log('resultUserSelect.html');
 		location.reload();
 	}
-	
+
 	function getComboChecked(input)
 	{
 		var result = "";
-		
+
 		var selectedUser = sessionStorage.getItem('selectedUser');
-		
+
 		if (selectedUser !== null)
 		{
 			if (input == selectedUser)
@@ -226,10 +252,10 @@
 				result = 'selected';
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 </script>
 
 </html>

@@ -3,20 +3,24 @@ package com.commander4j.c4jWS;
 import java.sql.Timestamp;
 
 import com.commander4j.util.JUtility;
+import com.google.gson.annotations.Expose;
 
 import jakarta.persistence.Entity;
 
 @Entity
 public class JQMPanelEntity
 {
-	private Long panelID;
-	private Timestamp panelDate;
-	private String plant;
-	private String description;
-	private String status;
-	private Timestamp updated;
-	private Timestamp created;
-
+	@Expose
+	private Long panelID= (long) 0;
+	private Timestamp panelDate = JUtility.getSQLDateTime();
+	@Expose
+	private String plant = "";
+	@Expose
+	private String description = "";
+	@Expose
+	private String status = "";
+	private Timestamp updated = JUtility.getSQLDateTime();
+	private Timestamp created = JUtility.getSQLDateTime();
 	public Long getPanelID()
 	{
 		if (panelID == null)

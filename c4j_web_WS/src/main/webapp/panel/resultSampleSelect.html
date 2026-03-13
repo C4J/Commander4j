@@ -8,7 +8,7 @@
 	<meta http-equiv="expires" content="-1">
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
 	<meta http-equiv="pragma" content="no-cache">
-	
+
 	<!-- The meta viewport will scale my content to any device width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,76 +18,53 @@
 
 	<script src="scriptSamples.js"></script> <!-- Link to the javascript file -->
 	<script src="scriptResults.js"></script> <!-- Link to the javascript file -->
-	
-	<style>
-	
-	  .is-scrollLocked {
-		   overflow: hidden;
-	   }
-	   	
-      .box {
-        width: 350px;
-        height: 30px;
-        border: 1px solid #999;
-        font-size: 16px;
-        color: #1c87c9;
-        background-color: #eee;
-        border-radius: 5px;
-        box-shadow: 4px 4px #ccc;
-      }
-      
-      .grid-container {
-		  display: grid;
-		  grid-template-columns: 150px 150px 150px;
-		  padding: 5px;
-		  align-content: center;
-		  justify-content: center;
-		}
-		.grid-item {
-		
-		  padding: 5px;
-		  font-size: 16px;
-		}
+
+	<style type="text/css">
+	.tableFixHead2 {
+		overflow-y: auto;
+		/* make the table scrollable if height is more than 200 px  */
+		height: 457px; /* gives an initial height of 200px to the table */
+		width: 675px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.tableFixHead2 thead th {
+		position: sticky; /* make the table heads sticky */
+		top: 0px;
+		/* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.grid-container2 {
+	display: grid;
+	flex-wrap: wrap;
+	grid-template-columns: 220px 220px;
+	padding: 5px;
+	align-content: center;
+	justify-content: center;
+}
+
 	</style>
-	
-	<style>	
-	  .tableFixHead {
-	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-	    height: 500px; /* gives an initial height of 200px to the table */
-		width: 600px; /* gives an initial height of 200px to the table */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  .tableFixHead thead th {
-	    position: sticky; /* make the table heads sticky */
-	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  table {
-	    border-collapse: collapse; /* make the table borders collapse to each other */
-	    width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-	  }
-	  th,
-	  td {
-	    padding: 8px 16px;
-	    border: 1px solid #ccc;
-	  }
-	  th {
-	    background: #eee;
-	  }
-	</style>
-	
+
 </head>
 
 <body onLoad="buildSampleTable()">
 
 	<h1 id="heading" style="text-align:center">Samples</h1>
-	<h2 id="userid" style="text-align:center">Panelist</h2>
-	
-	<div class="tableFixHead">
+
+		<div class="tableFixHead2">
+
+		<table id="selectedTable">
+		  <thead>
+		    <tr>
+		      <th>Panelist</th>
+		      <th style="background-color: white;" id="panelistValue">111111111111</th>
+		    </tr>
+		  </thead>
+		</table>
+
 		<table id="sampleTable">
 			<thead>
 				<tr>
@@ -100,36 +77,36 @@
 			</tbody>
 		</table>
 	</div>
-	
-	<br>	
+
+	<br>
 	<div align="center" id="resultCombobox-output"></div>
 	<br>
-	
-	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" id="selecButton" onclick="selectAll()">Select All</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" id="deselectButton" onclick="DeselectAll()">Deselect All</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" id="applyButton" onclick="GetSelected()">Apply</button></div>     
+
+	<div class="grid-container2">
+  		 <div class="grid-item" align="center"><button class="button" id="selecButton" onclick="selectAll()">Select All</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="deselectButton" onclick="DeselectAll()">Deselect All</button></div>
 	</div>
-	
+
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>    
+  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">&lt;Back</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>
+  		 <div class="grid-item" align="center"><button class="button" id="applyButton" onclick="GetSelected()">Apply</button></div>
 	</div>
-		
+
 
 </body>
 
 <script>
-	
-    document.getElementById('heading').innerHTML = sessionStorage.getItem('selectedPanelPlant')+" Tray "+" "+sessionStorage.getItem('selectedTraySeq');
-	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUsername')+"]";
 
-		
+    document.getElementById('heading').innerHTML = sessionStorage.getItem('selectedPanelPlant')+" Tray "+" "+sessionStorage.getItem('selectedTraySeq');
+	document.getElementById('panelistValue').innerHTML = sessionStorage.getItem('selectedUsername');
+
+
 	function buildSampleTable() {
-	
+
 		var selectedTray = sessionStorage.getItem('selectedTray');
 		var selectedUser = sessionStorage.getItem('selectedUser');
-	
+
 		fetch(getContextPath()+"/TrayResults?trayID="+selectedTray+"&userID="+selectedUser)
 			.then(function(response) { return response.json(); })
 			.then(function(samples) {
@@ -138,23 +115,24 @@
 				for (let sample of samples) {
 					out += `
 			<tr>
-				<td style="color:black; background-color:#f0f8ff"><input type="checkbox" id="${sample.sampleID}" name="sampleSelectList" onchange="sampleListSave('selectedSample',${sample.sampleID});" value="${sample.sampleID}" ` + sampleListGet('selectedTray', sample.sampleID) + `>  <label for="${sample.sampleID}"> ${sample.sampleID}</label></td>
+				<td style="color:black; background-color:#f0f8ff"><input type="checkbox" id="${sample.sampleID}" name="sampleSelectList" onchange="sampleListSave('selectedSample',${sample.sampleID});" value="${sample.sampleID}" ` + sampleListGet('selectedTray', sample.sampleID) + `>  <label for="${sample.sampleID}"> (${sample.sequenceLetter}) ${sample.sampleID}</label></td>
+
 				<td style="color:black; background-color:#f0f8ff">${sample.value}</td>
 				<td style="color:black; background-color:#f0f8ff">${sample.sequenceID}</td>
 			</tr>`;
 				}
-	
+
 				placeholder.innerHTML = out;
 			})
-			
+
 			buildResultListComboBox();
 	}
-	
+
 
 	function buildResultListComboBox() {
-		
+
 		var dropdownHTML = '<label for "resultSelect">Decision : </label><select id="resultSelect" name="resultSelect" class="box" onchange="newSelection(this.value)">';
-		
+
 		fetch(getContextPath()+"/SelectLists?selectListID=ZWSIPANE")
 			.then(function(response) { return response.json(); })
 			.then(function(records) {
@@ -164,22 +142,22 @@
 				    var value = record.value;
 				    dropdownHTML+='<option value="'+value+'" '+getComboChecked(record.value)+'>'+name+'</option>';
 				}
-				
-				 dropdownHTML+='</select>';        
+
+				 dropdownHTML+='</select>';
 
 				 var container=document.getElementById("resultCombobox-output");
 				 container.innerHTML=dropdownHTML;
-	
+
 			})
 	}
-	
+
 	function newSelection(combovalue)
 	{
-	    console.log('selected result = '+combovalue); 
+	    console.log('selected result = '+combovalue);
 	    sessionStorage.setItem("selectedResult", combovalue);
-	    
+
 	    var button=document.getElementById("applyButton");
-	    
+
 	    if (combovalue === "")
 	    {
 	    	button.disabled = true;
@@ -189,24 +167,24 @@
 	    	button.disabled = false;
 	    }
 	}
-	
+
 	function back()
 	{
-		window.location='resultTraySelect.html';	
+		window.location='resultTraySelect.html';
 	}
-	
+
 	function refresh()
 	{
-		console.log('resultSampleSelect.html'); 
+		console.log('resultSampleSelect.html');
 		location.reload();
 	}
-	
+
 	function getComboChecked(input)
 	{
 		var result = "";
-		
+
 		var selectedResult = sessionStorage.getItem('selectedResult');
-		
+
 		if (selectedResult !== null)
 		{
 			if (input == selectedResult)
@@ -214,11 +192,11 @@
 				result = 'selected';
 			}
 		}
-		
+
 		return result;
 	}
-	
-    function GetSelected() 
+
+    function GetSelected()
     {
     	var updateCount = 0;
     	var selectedTray = sessionStorage.getItem('selectedTray');
@@ -226,10 +204,10 @@
     	var selectedUser = sessionStorage.getItem('selectedUser');
     	var results = {};
     	list = new Array();
-    	
+
     	const checkboxes = document.getElementsByTagName('input');
-    	
-    	for (const checkbox of checkboxes) 
+
+    	for (const checkbox of checkboxes)
     	{
     	  if (checkbox.type == 'checkbox')
     		{
@@ -244,28 +222,28 @@
 	    				  "userID": selectedUser,
 	    				  "testID": "PANEL",
 	    				  "value": selectedResult
-	
+
 	    			  });
     			  updateCount = updateCount + 1;
     			  }
     		  }
     		}
     	}
-    	
+
     	if (updateCount > 0)
     	{
     		  console.log(JSON.stringify(list));
-    		  postUpdates(list);  
+    		  postUpdates(list);
     	}
     }
-    
+
 	function postUpdates(dataObject) {
-		
-		
+
+
 		console.log('post sample results');
-	
+
 		console.log(JSON.stringify(dataObject));
-	
+
 		let response = fetch(getContextPath()+"/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
 			.then((response) => {
 				if (!response.ok) {
@@ -279,17 +257,17 @@
 			.catch((error) => {
 				console.log("Error " + error);
 			});
-	
+
 		console.log(response);
 
 	};
-    
-    function selectAll() 
+
+    function selectAll()
     {
-    	
+
     	const checkboxes = document.getElementsByTagName('input');
-    	
-    	for (const checkbox of checkboxes) 
+
+    	for (const checkbox of checkboxes)
     	{
     	  if (checkbox.type == 'checkbox')
     	  {
@@ -300,13 +278,13 @@
     	  }
     	}
     }
-    
-    function DeselectAll() 
+
+    function DeselectAll()
     {
-    	
+
     	const checkboxes = document.getElementsByTagName('input');
-    	
-    	for (const checkbox of checkboxes) 
+
+    	for (const checkbox of checkboxes)
     	{
     	  if (checkbox.type == 'checkbox')
     		{
@@ -317,7 +295,7 @@
     		}
     	}
     }
-	
+
 </script>
 
 </html>

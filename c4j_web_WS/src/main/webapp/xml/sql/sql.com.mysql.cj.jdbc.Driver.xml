@@ -1405,26 +1405,7 @@
 		</statement>
 		<statement>
 			<id>JDBPrinters.getPrintersForModule</id>
-			<text>SELECT
-					SYS_PRINTERS.*
-				FROM
-					SYS_MODULES
-					INNER JOIN
-					SYS_PRINTERS
-					ON 
-						SYS_PRINTERS.GROUP_ID = SYS_MODULES.GROUP_ID AND
-						SYS_PRINTERS.LANGUAGE = SYS_MODULES.LANGUAGE AND
-						SYS_PRINTERS.PRINTER_DPI = SYS_MODULES.PRINTER_DPI AND
-						SYS_PRINTERS.ENABLE_DIRECT_PRINT = SYS_MODULES.ENABLE_DIRECT_PRINT AND
-						SYS_PRINTERS.PRINTER_TYPE = SYS_MODULES.PRINTER_TYPE
-				WHERE
-					SYS_MODULES.MODULE_ID = ? AND
-					SYS_PRINTERS.ENABLED = 'Y' AND
-					SYS_MODULES.REPORT_TYPE = 'Label' AND
-					SYS_PRINTERS.ENABLE_DIRECT_PRINT = 'Y'
-				ORDER BY
-				SYS_PRINTERS.PRINTER_ID ASC
-			</text>
+			<text>SELECT SYS_PRINTERS.* FROM SYS_MODULES INNER JOIN SYS_PRINTERS ON SYS_PRINTERS.GROUP_ID = SYS_MODULES.GROUP_ID AND SYS_PRINTERS.LANGUAGE = SYS_MODULES.LANGUAGE AND SYS_PRINTERS.PRINTER_DPI = SYS_MODULES.PRINTER_DPI AND SYS_PRINTERS.ENABLE_DIRECT_PRINT = SYS_MODULES.ENABLE_DIRECT_PRINT AND SYS_PRINTERS.PRINTER_TYPE = SYS_MODULES.PRINTER_TYPE WHERE SYS_MODULES.MODULE_ID = ? AND SYS_PRINTERS.ENABLED = 'Y' AND SYS_MODULES.REPORT_TYPE = 'Label' AND SYS_PRINTERS.ENABLE_DIRECT_PRINT = 'Y' ORDER BY SYS_PRINTERS.PRINTER_ID ASC</text>
 		</statement>
 		<?JDBLabelData?>
 		<statement>
@@ -2624,28 +2605,48 @@
 		</statement>
 		<?JDBQMTrays?>
 		<statement>
-			<id>JDBQMTrays.getProperties</id>
+			<id>JDBQMTrays.getPropertiesTrayID</id>
 			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_id = ?</text>
 		</statement>
 		<statement>
-			<id>JDBQMTrays.isValid</id>
+			<id>JDBQMTrays.getPropertiesTraySequence</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_sequence = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrays.isValidTrayID</id>
 			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrays.isValidTraySequence</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_sequence = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMTrays.create</id>
-			<text>insert into {schema}APP_QM_PANEL_TRAY (panel_id,tray_id,description,created) values (?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_PANEL_TRAY (panel_id,tray_id,tray_sequence,description,created) values (?,?,?,?,?)</text>
 		</statement>
 		<statement>
-			<id>JDBQMTrays.update</id>
+			<id>JDBQMTrays.updateByTrayID</id>
 			<text>update {schema}APP_QM_PANEL_TRAY set description=?,updated=? where panel_id=? and tray_id=?</text>
 		</statement>
 		<statement>
-			<id>JDBQMTrays.delete</id>
+			<id>JDBQMTrays.updateByTraySequence</id>
+			<text>update {schema}APP_QM_PANEL_TRAY set description=?,updated=? where panel_id=? and tray_sequence=?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrays.deletebyTrayID</id>
 			<text>delete from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_id=?</text>
 		</statement>
 		<statement>
+			<id>JDBQMTrays.deleteByTraySequence</id>
+			<text>delete from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_sequence=?</text>
+		</statement>
+		<statement>
 			<id>JDBQMTrays.getByPanel</id>
-			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id = ? order by tray_id</text>
+			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id = ? order by tray_sequence</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrays.nextSequenceID</id>
+			<text>with recursive seq as ( select distinct tray_sequence as n from app_qm_panel_tray where panel_id = ? ), bounds as ( select coalesce(max(n), 0) + 1 as max_needed from seq ), nums as ( select 1 as n union all select n + 1 from nums join bounds where n &lt; bounds.max_needed ) select min(nums.n) as next_sequence from nums left join seq on seq.n = nums.n where seq.n is null;</text>
 		</statement>
 		<?JDBQMTraySamples?>
 		<statement>
@@ -2655,6 +2656,10 @@
 		<statement>
 			<id>JDBQMTraySamples.getProperties</id>
 			<text>select * from {schema}APP_QM_PANEL_TRAY_SAMPLES where tray_id = ? and sample_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTraySamples.isAssignedToTray</id>
+			<text>select * from {schema}view_qm_panel_tray_samples where sample_id = ? </text>
 		</statement>
 		<statement>
 			<id>JDBQMTraySamples.create</id>
@@ -2675,6 +2680,14 @@
 		<statement>
 			<id>JDBQMTraySamples.maxSequenceID</id>
 			<text>select coalesce(max(sequence_id),0) AS max_sequence_id from {schema}APP_QM_PANEL_TRAY_SAMPLES where tray_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTraySamples.nextSequenceID</id>
+			<text>with recursive seq as ( select distinct sequence_id as n from app_qm_panel_tray_samples where tray_id = ? ), bounds as ( select coalesce(max(n), 0) + 1 as max_needed from seq ), nums as ( select 1 as n union all select n + 1 from nums join bounds where n &lt; bounds.max_needed ) select min(nums.n) as next_sequence from nums left join seq on seq.n = nums.n where seq.n is null;</text>
+		</statement>
+		<statement>
+			<id>JDBQMTraySamples.deleteByTrayID</id>
+			<text>delete from {schema}APP_QM_PANEL_TRAY_SAMPLES where tray_id = ?</text>
 		</statement>
 		<?JDBQMPanels?>
 		<statement>
@@ -2699,7 +2712,7 @@
 		</statement>
 		<statement>
 			<id>JDBQMPanels.getByStatus</id>
-			<text>select * from {schema}APP_QM_PANEL where status = ? order by panel_id</text>
+			<text>select * from {schema}APP_QM_PANEL where status = ? order by panel_id desc</text>
 		</statement>
 		<statement>
 			<id>JDBQMPanels.getListLimit</id>
@@ -2729,6 +2742,10 @@
 		<statement>
 			<id>JDBQMTrayResults.getByTrayID</id>
 			<text>select APP_QM_PANEL_TRAY_SAMPLES.tray_id, APP_QM_PANEL_TRAY_SAMPLES.sample_id, APP_QM_PANEL_TRAY_SAMPLES.sequence_id, APP_QM_PANEL_TRAY_SAMPLES.updated, APP_QM_PANEL_TRAY_SAMPLES.created, ? as user_id, ? as test_id, (select value from APP_QM_PANEL_TRAY_RESULTS where APP_QM_PANEL_TRAY_RESULTS.tray_id = APP_QM_PANEL_TRAY_SAMPLES.tray_id and APP_QM_PANEL_TRAY_RESULTS.sample_id = APP_QM_PANEL_TRAY_SAMPLES.sample_id and APP_QM_PANEL_TRAY_RESULTS.user_id = ? and test_id = ?) as 'value' from APP_QM_PANEL_TRAY_SAMPLES where tray_id = ? order by sequence_id</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrayResults.deleteByTrayID</id>
+			<text>delete from {schema}APP_QM_PANEL_TRAY_RESULTS where tray_id = ?</text>
 		</statement>
 		<?JDBQMUsers?>
 		<statement>
@@ -2938,7 +2955,7 @@
 		</statement>
 		<statement>
 			<id>JDBViewBomRecord.getBomStages</id>
-			<text>SELECT  stage,bom_id,bom_version from view_bom where bom_id = ? and bom_version = ? group by stage,bom_id,bom_version</text>
+			<text>SELECT stage,bom_id,bom_version from view_bom where bom_id = ? and bom_version = ? group by stage,bom_id,bom_version</text>
 		</statement>
 		<statement>
 			<id>JDBViewBomRecord.isValidMaterialForLocation</id>
@@ -2979,7 +2996,7 @@
 		</statement>
 		<statement>
 			<id>JDBBomList.create</id>
-			<text>insert into APP_BOM_LISTS (list_id,item,sequence,enabled) values (?,?,?,?) </text>
+			<text>insert into APP_BOM_LISTS (list_id,item,sequence,enabled) values (?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBBomList.delete</id>

@@ -17,18 +17,22 @@ public class JQMPanelDB
 	private JQMPanelEntity panelEntity;
 	private String dbErrorMessage;
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMPanelDB.class);
+	private JQMTrayDB trayDB;
+
 
 	public JQMPanelDB(String host, String session)
 	{
 		setHostID(host);
 		setSessionID(session);
+		trayDB = new JQMTrayDB(host,session);
+
 	}
-	
+
 	public JQMPanelEntity getPanelEntity()
 	{
 		return panelEntity;
 	}
-	
+
 	private String getSessionID()
 	{
 		return sessionID;
@@ -100,7 +104,19 @@ public class JQMPanelDB
 			panelEntity.setPanelID(getNewPanelID());
 			stmtupdate.setLong(1, panelEntity.getPanelID());
 			stmtupdate.setTimestamp(2, panelEntity.getPanelDate());
+
+			if (panelEntity.getDescription().equals(""))
+			{
+				panelEntity.setDescription("Daily Panel");
+			}
+
 			stmtupdate.setString(3, panelEntity.getDescription());
+
+			if (panelEntity.getPlant().equals(""))
+			{
+				panelEntity.setPlant("Pouch");
+			}
+
 			stmtupdate.setString(4, panelEntity.getPlant());
 			stmtupdate.setString(5, panelEntity.getStatus());
 			stmtupdate.setTimestamp(6, JUtility.getSQLDateTime());
@@ -126,7 +142,7 @@ public class JQMPanelDB
 		panelEntity = panel;
 		logger.debug("update :" + panelEntity.toString());
 		setErrorMessage("");
-		
+
 		try
 		{
 			PreparedStatement stmtupdate;
@@ -199,7 +215,7 @@ public class JQMPanelDB
 		logger.debug("New Panel ID :" + result);
 		return result;
 	}
-	
+
 	public boolean delete(JQMPanelEntity panel)
 	{
 		PreparedStatement stmtupdate;
@@ -217,6 +233,25 @@ public class JQMPanelDB
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
+
+			//Get a list of Trays assigned to Panel
+			LinkedList<JQMTrayEntity> trayList = trayDB.getTraysByPanel(panel.getPanelID());
+
+			JQMTrayEntity trayEntity = new JQMTrayEntity();
+
+
+			for (int x=0;x<trayList.size();x++)
+			{
+				//Get the Tray Data
+				trayEntity = trayList.get(x);
+
+				//Delete the Tray itself.
+				trayEntity.setqueryType("TrayID");
+
+				trayDB.delete(trayEntity);
+			}
+
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -224,14 +259,16 @@ public class JQMPanelDB
 
 		return result;
 	}
-	
-	
+
+
+
+
 	public JQMPanelEntity getProperties(Long panelid)
 	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		JQMPanelEntity result = new JQMPanelEntity();	
+		JQMPanelEntity result = new JQMPanelEntity();
 
 		try
 		{
@@ -263,7 +300,7 @@ public class JQMPanelDB
 
 		return result;
 	}
-	
+
 	public LinkedList<JQMPanelEntity> getPanelsByStatus(String status)
 	{
 		PreparedStatement stmt;
@@ -281,7 +318,7 @@ public class JQMPanelDB
 			while (rs.next())
 			{
 				JQMPanelEntity tent = new JQMPanelEntity();
-				
+
 				tent.setPanelID(rs.getLong("panel_id"));
 				tent.setPanelDate(rs.getTimestamp("panel_date"));
 				tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
@@ -294,7 +331,7 @@ public class JQMPanelDB
 			}
 			rs.close();
 			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -302,7 +339,7 @@ public class JQMPanelDB
 
 		return result;
 	}
-	
+
 	public LinkedList<JQMPanelEntity> getPanelsListLimit(Long maxrows)
 	{
 		PreparedStatement stmt;
@@ -320,7 +357,7 @@ public class JQMPanelDB
 			while (rs.next())
 			{
 				JQMPanelEntity tent = new JQMPanelEntity();
-				
+
 				tent.setPanelID(rs.getLong("panel_id"));
 				tent.setPanelDate(rs.getTimestamp("panel_date"));
 				tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
@@ -333,7 +370,7 @@ public class JQMPanelDB
 			}
 			rs.close();
 			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -342,7 +379,7 @@ public class JQMPanelDB
 
 		return result;
 	}
-	
+
 	private void setErrorMessage(String errorMsg)
 	{
 		dbErrorMessage = errorMsg;

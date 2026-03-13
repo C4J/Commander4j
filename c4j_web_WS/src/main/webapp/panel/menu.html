@@ -11,42 +11,49 @@
 
 	<!-- The meta viewport will scale my content to any device width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	 <link rel="stylesheet" href="stylesPanels.css">
 	<title>Main Menu</title>
-	
+
 	<style>
-	
-		.is-scrollLocked {
-		   overflow: hidden;
-		}
-		
-		.grid-container {
+
+      .grid-container {
 		  display: grid;
-		  grid-template-columns: 150px;
-		  padding: 10px;
+		  flex-wrap: wrap;
+		  grid-template-columns: 250px 250px 250px;
+		  padding: 5px;
 		  align-content: center;
 		  justify-content: center;
 		}
 		.grid-item {
-		
-		  padding: 10px;
+
+		  padding: 15px;
 		  font-size: 16px;
 		}
 	</style>
-	
+
+
 </head>
 
 <body>
 
 <h1 style="text-align:center">Main Menu</h1>
-	
+<br>
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" onclick="results()">Results</button></div> 
-  		 <div class="grid-item" align="center"><button class="button" onclick="setup()">Setup</button></div>  
-  		 <div class="grid-item" align="center"><button class="button" onclick="admin()">Admin</button></div>   
+		<div class="grid-item" align="center"></div>
+  		<div class="grid-item" align="center"><button class="button" onclick="results()">Panel Scores</button></div>
 	</div>
-	
+
+	<div class="grid-container">
+	     <div class="grid-item" align="center"></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="setup()">Setup Panel<br></button></div>
+	</div>
+
+	<div class="grid-container">
+	     <div class="grid-item" align="center"></div>
+  		 <div class="grid-item" align="center"><button class="button" onclick="admin()">Admin</button></div>
+	</div>
+
 </body>
 
 <script>
@@ -56,20 +63,20 @@
 		sessionStorage.setItem("selectedUser", "");
 		sessionStorage.setItem("selectedPanel", "");
 		sessionStorage.setItem("selectedTray", "");
-		window.location='panels.html';	
+		window.location='panels.html';
 	}
-	
+
 	function results()
 	{
 		sessionStorage.setItem("selectedUser", "");
 		sessionStorage.setItem("selectedPanel", "");
 		sessionStorage.setItem("selectedTray", "");
-		window.location='resultUserSelect.html';	
+		window.location='resultUserSelect.html';
 	}
-	
+
 	function admin()
 	{
-		window.location='admin.html';	
+		window.location='admin.html';
 	}
 
 </script>

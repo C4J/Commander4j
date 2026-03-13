@@ -111,6 +111,8 @@ public class JQMPanelController extends HttpServlet
 		// Create an instance of the database handler.
 		JQMPanelDB paneldb = new JQMPanelDB(Common.selectedHostID, request.getSession().getId());
 
+		logger.debug("Invoke update on Panel ID :" + String.valueOf(panelEntity));
+
 		String reply = "";
 
 		// Invoke the update method and pass an instance of the object
@@ -197,15 +199,15 @@ public class JQMPanelController extends HttpServlet
 		JURL url = new JURL(request);
 
 		String reply = "";
-		
+
 		if (panelEntity == null)
 		{
 			panelEntity = new JQMPanelEntity();
-			panelEntity.setPanelID((long) -1);		
+			panelEntity.setPanelID((long) -1);
 		}
-		
+
 		Long panelID = url.getParameterVariableLong(request, "panelID");
-		
+
 		if ((panelID > 0))
 		{
 			panelEntity = new JQMPanelEntity();
@@ -213,7 +215,7 @@ public class JQMPanelController extends HttpServlet
 			// If panelID and trayID are provided as URL parameters then use
 			// those instead of Body
 			panelEntity.setPanelID(panelID);
-	
+
 		}
 
 		// Invoke the create method and pass an instance of the object
