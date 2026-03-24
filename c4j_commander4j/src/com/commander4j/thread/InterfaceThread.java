@@ -2,29 +2,29 @@ package com.commander4j.thread;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : InterfaceThread.java
- * 
+ *
  * Package Name : com.commander4j.thread
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.io.File;
@@ -83,6 +83,7 @@ public class InterfaceThread extends Thread
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(InterfaceThread.class);
 	private boolean abortThread = false;
 	private int backupMessageRetention = 30;
+	private int errorMessageRetention = 30;
 
 	Runtime runtime = Runtime.getRuntime();
 	int mb = 1024 * 1024;
@@ -391,10 +392,33 @@ public class InterfaceThread extends Thread
 			}
 			else
 			{
-				archivedFiles = "Auto archive of messages disabled";
+				archivedFiles = "Auto archive of backup messages disabled";
 			}
 
 			archivedFiles = "<p>" + archivedFiles + "</p>";
+
+
+			try
+			{
+				errorMessageRetention = Integer.valueOf(ctrl.getKeyValueWithDefault("INTERFACE ERROR RETENTION", "0", "NUMBER OF DAYS TO KEEP ERROR MESSAGES"));
+			}
+			catch (Exception ex)
+			{
+				errorMessageRetention = 30;
+			}
+
+			// Archive old error files goes here
+			String errorFiles = "Error message files removed by auto archive = ";
+			if (errorMessageRetention > 0)
+			{
+				errorFiles = errorFiles + String.valueOf(JArchive.archiveBackupFiles(System.getProperty("user.dir") + File.separator + Common.interface_error_path, errorMessageRetention));
+			}
+			else
+			{
+				errorFiles = "Auto archive of error messages disabled";
+			}
+
+			errorFiles = "<p>" + errorFiles + "</p>";
 
 			String freeSpace = JUtility.diskFree();
 
@@ -407,7 +431,7 @@ public class InterfaceThread extends Thread
 
 			if (enableEnterfaceStatusEmails == true)
 			{
-				Common.sendmail.Send(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(),EmailHTML.header + ept.getHTML() + interfaceStats + archiveStats + memoryStats + archivedFiles + freeSpace + EmailHTML.footer, "");
+				Common.sendmail.Send(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(),EmailHTML.header + ept.getHTML() + interfaceStats + archiveStats + memoryStats + archivedFiles +errorFiles+ freeSpace + EmailHTML.footer, "");
 			}
 
 			logger.debug("Interface Garbage Collection.");
@@ -426,7 +450,7 @@ public class InterfaceThread extends Thread
 	private String getMemoryStats()
 	{
 		String result = "";
-		
+
 		result = result + "<div id=\"garbage\" >\n"
 				+ "<table border=\"3\">\n"
 				+ "	<thead>\n"
@@ -456,9 +480,9 @@ public class InterfaceThread extends Thread
 				+ "	</tbody>\n"
 				+ "</table> \n"
 				+ "<br>\n";
-		
+
 				System.gc();
-				
+
 				result = result + "<table border=\"3\">\n"
 				+ " <thead>\n"
 				+ "   <caption>After GC</caption>\n"
@@ -487,7 +511,7 @@ public class InterfaceThread extends Thread
 				+ " </tbody>\n"
 				+ "</table> \n"
 				+ "</div>";
-		
+
 		return result;
 	}
 
