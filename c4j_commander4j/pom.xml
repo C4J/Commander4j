@@ -18,7 +18,7 @@
 
         <jasperreports.version>7.0.6</jasperreports.version>
         <batik.version>1.19</batik.version>
-        <log4j.version>2.25.3</log4j.version>
+        <log4j.version>2.25.4</log4j.version>
         <jaxb.version>4.0.7</jaxb.version>
         <ant.version>1.10.15</ant.version>
         <jna.version>5.18.1</jna.version>
