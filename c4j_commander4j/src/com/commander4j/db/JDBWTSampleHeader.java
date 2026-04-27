@@ -205,12 +205,12 @@ public class JDBWTSampleHeader
 	
 	public String getContainerCode()
 	{
-		return dbContainerCode;
+		return JUtility.replaceNullStringwithBlank(dbContainerCode);
 	}
 
 	public String getCustomerID()
 	{
-		return dbCustomerID;
+		return JUtility.replaceNullStringwithBlank(dbCustomerID);
 	}
 
 	public String getErrorMessage()
@@ -225,7 +225,7 @@ public class JDBWTSampleHeader
 
 	public String getMaterial()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 	public BigDecimal getNegT1()
@@ -245,17 +245,17 @@ public class JDBWTSampleHeader
 
 	public String getNominalWeightUom()
 	{
-		return dbNominalWeightUom;
+		return JUtility.replaceNullStringwithBlank(dbNominalWeightUom);
 	}
 
 	public String getProcessOrder()
 	{
-		return dbProcessOrder;
+		return JUtility.replaceNullStringwithBlank(dbProcessOrder);
 	}
 
 	public String getProductGroup()
 	{
-		return dbProductGroup;
+		return JUtility.replaceNullStringwithBlank(dbProductGroup);
 	}
 
 	public boolean getProperties(String samplepoint, Timestamp sampledate)
@@ -340,7 +340,7 @@ public class JDBWTSampleHeader
 
 	public String getRequiredResource()
 	{
-		return dbRequiredResource;
+		return JUtility.replaceNullStringwithBlank(dbRequiredResource);
 	}
 
 	public Integer getSampleCount()
@@ -456,7 +456,7 @@ public class JDBWTSampleHeader
 
 	public String getSamplePoint()
 	{
-		return dbSamplePoint;
+		return JUtility.replaceNullStringwithBlank(dbSamplePoint);
 	}
 
 	public Integer getSampleSequence()
@@ -486,7 +486,7 @@ public class JDBWTSampleHeader
 
 	public String getScaleID()
 	{
-		return dbScaleID;
+		return JUtility.replaceNullStringwithBlank(dbScaleID);
 	}
 
 	private String getSessionID()
@@ -501,7 +501,7 @@ public class JDBWTSampleHeader
 
 	public String getTareWeightUom()
 	{
-		return dbTareWeightUom;
+		return JUtility.replaceNullStringwithBlank(dbTareWeightUom);
 	}
 
 	public BigDecimal getTNE()
@@ -511,12 +511,12 @@ public class JDBWTSampleHeader
 
 	public String getUserID()
 	{
-		return dbUserID;
+		return JUtility.replaceNullStringwithBlank(dbUserID);
 	}
 
 	public String getWorkstationID()
 	{
-		return dbWorkstationID;
+		return JUtility.replaceNullStringwithBlank(dbWorkstationID);
 	}
 
 	public boolean isValidSampleHeader()

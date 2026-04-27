@@ -141,7 +141,7 @@ public class JDBViewWasteReporting
 
 	public String getReportingID()
 	{
-		return dbReportingID;
+		return JUtility.replaceNullStringwithBlank(dbReportingID);
 	}
 	
 	public long getReportingGroup()
@@ -156,7 +156,7 @@ public class JDBViewWasteReporting
 
 	public String getMaterialType()
 	{
-		return dbMaterialType;
+		return JUtility.replaceNullStringwithBlank(dbMaterialType);
 	}
 
 	public void setMaterialType(String dbMaterialType)

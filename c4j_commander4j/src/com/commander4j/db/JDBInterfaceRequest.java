@@ -2,29 +2,29 @@ package com.commander4j.db;
 
 /**
  * @author David Garratt
- * 
+ *
  * Project Name : Commander4j
- * 
+ *
  * Filename     : JDBInterfaceRequest.java
- * 
+ *
  * Package Name : com.commander4j.db
- * 
+ *
  * License      : GNU General Public License
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
+ *
+ * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * http://www.commander4j.com/website/license.html.
- * 
+ *
  */
 
 import java.sql.PreparedStatement;
@@ -47,7 +47,7 @@ import com.commander4j.util.JUtility;
  * transaction number within the APP_PALLET_HISTORY_TABLE.
  * <p>
  * <img alt="" src="./doc-files/SYS_INTERFACE_REQUEST.jpg" >
- * 
+ *
  * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
  */
 public class JDBInterfaceRequest
@@ -72,7 +72,7 @@ public class JDBInterfaceRequest
 
 	public String getStatus()
 	{
-		return dbStatus;
+		return JUtility.replaceNullStringwithBlank(dbStatus);
 	}
 
 	public void setStatus(String status)
@@ -275,7 +275,7 @@ public class JDBInterfaceRequest
 
 	public String getFilename()
 	{
-		return dbFilename;
+		return JUtility.replaceNullStringwithBlank(dbFilename);
 	}
 
 	private void setMode(String mode)
@@ -285,7 +285,7 @@ public class JDBInterfaceRequest
 
 	public String getMode()
 	{
-		return dbMode;
+		return JUtility.replaceNullStringwithBlank(dbMode);
 	}
 
 	public Long getInterfaceRequestID()
@@ -404,7 +404,7 @@ public class JDBInterfaceRequest
 
 	public String getInterfaceType()
 	{
-		return dbInterfaceType;
+		return JUtility.replaceNullStringwithBlank(dbInterfaceType);
 	}
 
 	private String getSessionID()
@@ -419,7 +419,7 @@ public class JDBInterfaceRequest
 
 	public String getWorkstationID()
 	{
-		return dbWorkstationID;
+		return JUtility.replaceNullStringwithBlank(dbWorkstationID);
 	}
 
 	private void setErrorMessage(String err)

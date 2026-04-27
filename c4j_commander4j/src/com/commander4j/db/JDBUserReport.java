@@ -575,7 +575,7 @@ public class JDBUserReport {
 
 	public String getReportID()
 	{
-		return dbReportID;
+		return JUtility.replaceNullStringwithBlank(dbReportID);
 	}
 
 	public String getSavePath()

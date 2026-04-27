@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 
-import org.apache.catalina.connector.Response;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JURL;
@@ -82,7 +81,7 @@ public class JQMTrayController extends HttpServlet
 		{
 			// No panelId provided and no status provided so we can't do
 			// anything.
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			reply = gson.toJson("Invalid URL - panelID invalid");
 		}
 
@@ -126,7 +125,7 @@ public class JQMTrayController extends HttpServlet
 		{
 			// Update method encountered an error so return fail response with
 			// error message.
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			reply = gson.toJson(trayDB.getErrorMessage());
 		}
 
@@ -182,7 +181,7 @@ public class JQMTrayController extends HttpServlet
 		{
 			// Create method encountered an error so return fail response with
 			// error message.
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			reply = gson.toJson(trayDB.getErrorMessage());
 		}
 
@@ -254,7 +253,7 @@ public class JQMTrayController extends HttpServlet
 			// Create method encountered an error so return fail response
 			// with
 			// error message.
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			reply = gson.toJson(trayDB.getErrorMessage());
 		}
 

@@ -16,34 +16,34 @@
 			commandStatus: ""
 		};
 	
-		console.log(JSON.stringify(payload));
-	
-		let response = await fetch(getContextPath()+"/Users", { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error(`HTTP error, status = ${response.status}`);
-				}
-				return response.json();
-			})
-			.then((data) => {
-				setResultMessage(errMsg,"",true);
-			    sessionStorage.setItem("selectedUsername", data.userID.toUpperCase());
-			    if (data.commandStatus == "Success")
-			   	{
+		await fetch(getContextPath()+"/Users", { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+			.then(async (response) => {
+				const data = await response.json().catch(() => ({}));
+				if (response.ok && data.commandStatus === "Success")
+				{
 					setResultMessage(errMsg,"",true);
-			   		 window.location.href=getContextPath()+'/html/menu.html';
-			   	}
-			   	else
-			   	{
-					setResultMessage(errMsg,data.commandStatus,false);
+					sessionStorage.setItem("selectedUsername", (data.userID || "").toUpperCase());
+					window.location.href=getContextPath()+'/html/menu.html';
+				}
+				else if (response.status === 401)
+				{
+					sessionStorage.setItem("selectedUsername", "");
+					setResultMessage(errMsg,data.commandStatus || "Invalid credentials",false);
+				}
+				else if (!response.ok)
+				{
+					sessionStorage.setItem("selectedUsername", "");
+					setResultMessage(errMsg,`HTTP error, status = ${response.status}`,false);
+				}
+				else
+				{
+					setResultMessage(errMsg,data.commandStatus || "Logon failed",false);
 				}
 			})
 			.catch((error) => {
 				sessionStorage.setItem("selectedUsername", "");
 				setResultMessage(errMsg,error.message,false);
 			});
-	
-		console.log(response);
 	}
 
 	function refreshUser()

@@ -178,7 +178,7 @@ public class JDBWTViewWeightSample
 	
 	public String getSamplePoint()
 	{
-		return dbSamplePoint;
+		return JUtility.replaceNullStringwithBlank(dbSamplePoint);
 	}
 
 	public Integer getTotalT1s()
@@ -269,7 +269,7 @@ public class JDBWTViewWeightSample
 	
 	public String getNominalWeightUOM()
 	{
-		return dbNominalWeightUOM;
+		return JUtility.replaceNullStringwithBlank(dbNominalWeightUOM);
 	}
 
 	public void setSamplePoint(String spoint)

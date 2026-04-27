@@ -425,7 +425,7 @@ public class JDBQMSample
 
 	public String getActivityID()
 	{
-		return dbActivityID;
+		return JUtility.replaceNullStringwithBlank(dbActivityID);
 	}
 
 	private String getSessionID()

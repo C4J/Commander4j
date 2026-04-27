@@ -236,7 +236,7 @@ public class JDBWTProductGroups
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public String getErrorMessage()
@@ -291,7 +291,7 @@ public class JDBWTProductGroups
 
 	public String getProductGroup()
 	{
-		return dbMaterialGroup;
+		return JUtility.replaceNullStringwithBlank(dbMaterialGroup);
 	}
 
 	public boolean getProductGroupProperties()

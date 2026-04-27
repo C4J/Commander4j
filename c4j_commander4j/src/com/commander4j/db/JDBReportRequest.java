@@ -246,11 +246,11 @@ public class JDBReportRequest
 	}
 
 	public String getInvocationMode() {
-		return dbInvocationMode;
+		return JUtility.replaceNullStringwithBlank(dbInvocationMode);
 	}
 
 	public String getModuleID() {
-		return dbModuleID;
+		return JUtility.replaceNullStringwithBlank(dbModuleID);
 	}
 
 	public Integer getParameterCount() {
@@ -258,19 +258,19 @@ public class JDBReportRequest
 	}
 
 	public String getParameterDelimiter() {
-		return dbParameterDelimiter;
+		return JUtility.replaceNullStringwithBlank(dbParameterDelimiter);
 	}
 
 	public String getParameterNames() {
-		return dbParameterNames;
+		return JUtility.replaceNullStringwithBlank(dbParameterNames);
 	}
 
 	public String getParameterTypes() {
-		return dbParameterTypes;
+		return JUtility.replaceNullStringwithBlank(dbParameterTypes);
 	}
 
 	public String getParameterValues() {
-		return dbParameterValues;
+		return JUtility.replaceNullStringwithBlank(dbParameterValues);
 	}
 
 	public String getPrintQueue() {
@@ -409,7 +409,7 @@ public class JDBReportRequest
 	}
 
 	public String getSQL() {
-		return dbSQL;
+		return JUtility.replaceNullStringwithBlank(dbSQL);
 	}
 
 	public void setCopies(Integer copies) {

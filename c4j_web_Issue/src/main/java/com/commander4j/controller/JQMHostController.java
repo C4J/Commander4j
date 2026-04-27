@@ -3,7 +3,6 @@ package com.commander4j.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.apache.catalina.connector.Response;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.entity.JQMHostEntity;
@@ -19,30 +18,29 @@ public class JQMHostController extends HttpServlet
 {
 
 	private static final long serialVersionUID = 6266031476649351904L;
+	private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMHostController.class);
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
 
 		request.getSession();
-		
+
 		logger.debug("doPut");
-		
+
 		String uniquieHost = Common.hostList.getHostIDforUniqueId("service");
-		
+
 		String hostName = Common.hostList.getHost(uniquieHost).getSiteDescription();
-				
-		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 
 		String reply = "";
 
 		JQMHostEntity host = new JQMHostEntity();
-		
+
 		host.setHostID(uniquieHost);
 		host.setDescription(hostName);
-		
-		reply = gson.toJson(host);
-		response.setStatus(Response.SC_ACCEPTED);
+
+		reply = GSON.toJson(host);
+		response.setStatus(HttpServletResponse.SC_OK);
 
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();

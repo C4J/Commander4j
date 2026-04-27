@@ -320,7 +320,7 @@ public class JDBLabelData
 
 	public String getBaseEAN()
 	{
-		return dbBaseEAN;
+		return JUtility.replaceNullStringwithBlank(dbBaseEAN);
 	}
 
 	public BigDecimal getBaseQuantity()
@@ -330,32 +330,32 @@ public class JDBLabelData
 
 	public String getBaseUom()
 	{
-		return dbBaseUom;
+		return JUtility.replaceNullStringwithBlank(dbBaseUom);
 	}
 
 	public String getBaseVariant()
 	{
-		return dbBaseVariant;
+		return JUtility.replaceNullStringwithBlank(dbBaseVariant);
 	}
 
 	public String getBatchNumber()
 	{
-		return dbBatchNumber;
+		return JUtility.replaceNullStringwithBlank(dbBatchNumber);
 	}
 
 	public String getBatchPrefix()
 	{
-		return dbBatchPrefix;
+		return JUtility.replaceNullStringwithBlank(dbBatchPrefix);
 	}
 
 	public String getBatchSuffix()
 	{
-		return dbBatchSuffix;
+		return JUtility.replaceNullStringwithBlank(dbBatchSuffix);
 	}
 
 	public String getCustomer()
 	{
-		return dbCustomer;
+		return JUtility.replaceNullStringwithBlank(dbCustomer);
 	}
 
 	public Timestamp getDateofManufacture()
@@ -375,7 +375,7 @@ public class JDBLabelData
 
 	public String getExpiryMode()
 	{
-		return dbExpiryMode;
+		return JUtility.replaceNullStringwithBlank(dbExpiryMode);
 	}
 
 	private String getHostID()
@@ -443,7 +443,7 @@ public class JDBLabelData
 
 	public String getLabelType()
 	{
-		return dbLabelType;
+		return JUtility.replaceNullStringwithBlank(dbLabelType);
 	}
 
 	public String getLine()
@@ -453,42 +453,42 @@ public class JDBLabelData
 
 	public String getLocationID()
 	{
-		return dbLocationID;
+		return JUtility.replaceNullStringwithBlank(dbLocationID);
 	}
 
 	public String getMaterial()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 	public String getMaterialType()
 	{
-		return dbMaterialType;
+		return JUtility.replaceNullStringwithBlank(dbMaterialType);
 	}
 
 	public String getMessageInformation()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 	public String getModuleID()
 	{
-		return dbModuleID;
+		return JUtility.replaceNullStringwithBlank(dbModuleID);
 	}
 
 	public String getOverrideBatchPrefix()
 	{
-		return dbOverrideBatchPrefix;
+		return JUtility.replaceNullStringwithBlank(dbOverrideBatchPrefix);
 	}
 
 	public String getOverrideDateofManufacture()
 	{
-		return dbOverideDateofManufacture;
+		return JUtility.replaceNullStringwithBlank(dbOverideDateofManufacture);
 	}
 
 	public String getOverrideExpiryDate()
 	{
-		return dbOverideExpiryDate;
+		return JUtility.replaceNullStringwithBlank(dbOverideExpiryDate);
 	}
 
 	public Long getPrintCopies()
@@ -503,17 +503,17 @@ public class JDBLabelData
 
 	public String getPrintQueue()
 	{
-		return dbPrintQueue;
+		return JUtility.replaceNullStringwithBlank(dbPrintQueue);
 	}
 
 	public String getProcessOrder()
 	{
-		return dbProcessOrder;
+		return JUtility.replaceNullStringwithBlank(dbProcessOrder);
 	}
 
 	public String getProdEAN()
 	{
-		return dbProdEAN;
+		return JUtility.replaceNullStringwithBlank(dbProdEAN);
 	}
 
 	public BigDecimal getProdQuantity()
@@ -523,12 +523,12 @@ public class JDBLabelData
 
 	public String getProdUom()
 	{
-		return dbProdUom;
+		return JUtility.replaceNullStringwithBlank(dbProdUom);
 	}
 
 	public String getProdVariant()
 	{
-		return dbProdVariant;
+		return JUtility.replaceNullStringwithBlank(dbProdVariant);
 	}
 
 	public String[] getDataArray(String unique, String mode)
@@ -633,17 +633,17 @@ public class JDBLabelData
 
 	public String getUniqueID()
 	{
-		return dbUniqueID;
+		return JUtility.replaceNullStringwithBlank(dbUniqueID);
 	}
 
 	public String getUserID()
 	{
-		return dbUserID;
+		return JUtility.replaceNullStringwithBlank(dbUserID);
 	}
 
 	public String getWorkstationID()
 	{
-		return dbWorkstationID;
+		return JUtility.replaceNullStringwithBlank(dbWorkstationID);
 	}
 
 	public void setBaseEAN(String ean)

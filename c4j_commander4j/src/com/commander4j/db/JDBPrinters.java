@@ -115,7 +115,7 @@ public class JDBPrinters
 
 	public String getEnableExport()
 	{
-		return dbEnableExport;
+		return JUtility.replaceNullStringwithBlank(dbEnableExport);
 	}
 
 	public void setEnableExport(boolean enabled)
@@ -145,7 +145,7 @@ public class JDBPrinters
 
 	public String getExportPath()
 	{
-		return dbExportPath;
+		return JUtility.replaceNullStringwithBlank(dbExportPath);
 	}
 
 	public String getExportRealPath()
@@ -174,7 +174,7 @@ public class JDBPrinters
 
 	public String getEnableDirectPrint()
 	{
-		return dbEnableDirectPrint;
+		return JUtility.replaceNullStringwithBlank(dbEnableDirectPrint);
 	}
 
 	public void setEnableDirectPrint(boolean enabled)
@@ -282,7 +282,7 @@ public class JDBPrinters
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public String getErrorMessage()
@@ -398,7 +398,7 @@ public class JDBPrinters
 
 	public String getPrinterID()
 	{
-		return dbPrinterID;
+		return JUtility.replaceNullStringwithBlank(dbPrinterID);
 	}
 
 	public LinkedList<JDBListData> getPrinterIDs()

@@ -654,7 +654,7 @@ public class JDBMaterial
 	 */
 	public String getBaseUom()
 	{
-		return dbBaseUom;
+		return JUtility.replaceNullStringwithBlank(dbBaseUom);
 	}
 
 	/**
@@ -720,7 +720,7 @@ public class JDBMaterial
 
 	public String getInspectionID()
 	{
-		return dbInspectionID;
+		return JUtility.replaceNullStringwithBlank(dbInspectionID);
 	}
 
 	/**
@@ -905,7 +905,7 @@ public class JDBMaterial
 
 	public String getMaterialType()
 	{
-		return dbMaterialType;
+		return JUtility.replaceNullStringwithBlank(dbMaterialType);
 	}
 
 	public Integer getMaterialUomCount()
@@ -981,7 +981,7 @@ public class JDBMaterial
 
 	public String getOldMaterial()
 	{
-		return dbOldMaterial;
+		return JUtility.replaceNullStringwithBlank(dbOldMaterial);
 	}
 
 	public void getPropertiesfromResultSet(ResultSet rs)
@@ -1091,17 +1091,17 @@ public class JDBMaterial
 
 	public String getShelfLifeRule()
 	{
-		return dbShelflifeRule;
+		return JUtility.replaceNullStringwithBlank(dbShelflifeRule);
 	}
 
 	public String getShelfLifeUom()
 	{
-		return dbShelflifeUom;
+		return JUtility.replaceNullStringwithBlank(dbShelflifeUom);
 	}
 
 	public String getWeightUom()
 	{
-		return dbWeightUom;
+		return JUtility.replaceNullStringwithBlank(dbWeightUom);
 	}
 
 	public boolean isValid()

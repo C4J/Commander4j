@@ -261,7 +261,7 @@ public class JDBMHN
 
 	public String getAuthorisor()
 	{
-		return dbAuthorisor;
+		return JUtility.replaceNullStringwithBlank(dbAuthorisor);
 	}
 
 	public String getComments()
@@ -297,7 +297,7 @@ public class JDBMHN
 
 	public String getInitiator()
 	{
-		return dbInitiator;
+		return JUtility.replaceNullStringwithBlank(dbInitiator);
 	}
 
 	public ResultSet getMHNDataResultSet(PreparedStatement criteria)
@@ -320,7 +320,7 @@ public class JDBMHN
 
 	public String getMHNNumber()
 	{
-		return dbMHN_Number;
+		return JUtility.replaceNullStringwithBlank(dbMHN_Number);
 	}
 
 	public boolean getMHNProperties()
@@ -479,22 +479,22 @@ public class JDBMHN
 
 	public String getRecorder()
 	{
-		return dbRecorder;
+		return JUtility.replaceNullStringwithBlank(dbRecorder);
 	}
 
 	public String getResource()
 	{
-		return dbResource;
+		return JUtility.replaceNullStringwithBlank(dbResource);
 	}
 
 	public String getWriteOffRef()
 	{
-		return dbWriteOffRef;
+		return JUtility.replaceNullStringwithBlank(dbWriteOffRef);
 	}
 	
 	public String getGS_GSTD_REF()
 	{
-		return dbGS_GSTD_REF;
+		return JUtility.replaceNullStringwithBlank(dbGS_GSTD_REF);
 	}
 	
 	public String getSessionID()
@@ -504,7 +504,7 @@ public class JDBMHN
 
 	public String getStatus()
 	{
-		return dbStatus;
+		return JUtility.replaceNullStringwithBlank(dbStatus);
 	}
 
 	public boolean isValidMHN()

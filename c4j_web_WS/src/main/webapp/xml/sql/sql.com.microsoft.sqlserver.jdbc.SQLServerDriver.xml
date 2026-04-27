@@ -2690,7 +2690,10 @@
 		</statement>
 		<statement>
 			<id>JDBQMTraySamples.nextSequenceID</id>
-			<text>with recursive seq as ( select distinct sequence_id as n from app_qm_panel_tray_samples where tray_id = ? ), bounds as ( select coalesce(max(n), 0) + 1 as max_needed from seq ), nums as ( select 1 as n union all select n + 1 from nums join bounds where n &lt; bounds.max_needed ) select min(nums.n) as next_sequence from nums left join seq on seq.n = nums.n where seq.n is null;</text>
+			<text>WITH seq AS (SELECT DISTINCT sequence_id AS n FROM app_qm_panel_tray_samples WHERE tray_id = ?),bounds AS (SELECT COALESCE(MAX(n), 0) + 1 AS max_needed FROM seq),
+                  nums AS (SELECT 1 AS n UNION ALL SELECT n + 1 FROM nums CROSS JOIN bounds WHERE n &lt; bounds.max_needed ) 
+                  SELECT MIN(nums.n) AS next_sequence FROM nums LEFT JOIN seq ON seq.n = nums.n WHERE seq.n IS NULL OPTION (MAXRECURSION 0)
+			</text>
 		</statement>
 		<statement>
 			<id>JDBQMTraySamples.deleteByTrayID</id>

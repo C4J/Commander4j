@@ -466,7 +466,7 @@ public class JDBCustomer
 
 	public String getPrintOnLabel()
 	{
-		return dbPrintOnLabel;
+		return JUtility.replaceNullStringwithBlank(dbPrintOnLabel);
 	}
 
 	private String getSessionID()

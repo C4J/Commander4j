@@ -79,6 +79,6 @@ public class JQMUserEntity
 	@Override
 	public String toString()
 	{
-		return "user="+getUserID().toString()+" userPassword="+getUserPassword().toString();
+		return "user="+getUserID();
 	}
 }

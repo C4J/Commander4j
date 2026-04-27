@@ -120,7 +120,7 @@ public class JDBModuleAlternative
 
 	public String getAlternativeModuleId()
 	{
-		return dbAlternativeModuleId;
+		return JUtility.replaceNullStringwithBlank(dbAlternativeModuleId);
 	}
 
 	public String getErrorMessage()
@@ -135,7 +135,7 @@ public class JDBModuleAlternative
 
 	public String getModuleId()
 	{
-		return dbModuleId;
+		return JUtility.replaceNullStringwithBlank(dbModuleId);
 	}
 
 	private String getSessionID()
@@ -145,7 +145,7 @@ public class JDBModuleAlternative
 
 	public String getWorkstationId()
 	{
-		return dbWorkstationId;
+		return JUtility.replaceNullStringwithBlank(dbWorkstationId);
 	}
 
 	public void setAternativeModuleId(String sequenceId)

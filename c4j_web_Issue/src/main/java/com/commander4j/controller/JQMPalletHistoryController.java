@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 
-import org.apache.catalina.connector.Response;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JQMPalletHistoryDB;
@@ -22,6 +21,7 @@ public class JQMPalletHistoryController extends HttpServlet
 {
 
 	private static final long serialVersionUID = 6266031477849351904L;
+	private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMPalletHistoryController.class);
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException
@@ -30,12 +30,10 @@ public class JQMPalletHistoryController extends HttpServlet
 
 		logger.debug("doPut");
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-
 		JQMPalletHistoryDB palletHistoryDB = new JQMPalletHistoryDB(Common.selectedHostID, request.getSession().getId());
 		LinkedList<JQMPalletHistoryEntity> result = new LinkedList<JQMPalletHistoryEntity>();
 		BufferedReader bufferedReader = request.getReader();
-		JQMPalletHistoryEntity palletHistoryEntity = gson.fromJson(bufferedReader, JQMPalletHistoryEntity.class);
+		JQMPalletHistoryEntity palletHistoryEntity = GSON.fromJson(bufferedReader, JQMPalletHistoryEntity.class);
 
 		String reply = "";
 		String action = palletHistoryEntity.getAction().toString();
@@ -46,8 +44,8 @@ public class JQMPalletHistoryController extends HttpServlet
 		if (action.equals("query"))
 		{
 			result = palletHistoryDB.getPalletHistoryBySSCC(sscc);
-			reply = gson.toJson(result);
-			response.setStatus(Response.SC_ACCEPTED);
+			reply = GSON.toJson(result);
+			response.setStatus(HttpServletResponse.SC_OK);
 		}
 
 		response.setContentType("application/json");

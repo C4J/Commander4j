@@ -170,7 +170,7 @@ public class JDBModule
 
 	public String getEnableDirectPrint()
 	{
-		return dbEnableDirectPrint;
+		return JUtility.replaceNullStringwithBlank(dbEnableDirectPrint);
 	}
 
 	public void setEnableDirectPrint(boolean enabled)
@@ -564,12 +564,12 @@ public class JDBModule
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public String getDKActive()
 	{
-		return dbDKActive;
+		return JUtility.replaceNullStringwithBlank(dbDKActive);
 	}
 
 	public String getErrorMessage()
@@ -579,12 +579,12 @@ public class JDBModule
 
 	public String getExecDir()
 	{
-		return dbExecDir;
+		return JUtility.replaceNullStringwithBlank(dbExecDir);
 	}
 
 	public String getExecFilename()
 	{
-		return dbExecFilename;
+		return JUtility.replaceNullStringwithBlank(dbExecFilename);
 	}
 
 	public LinkedList<String> getFormIds()
@@ -694,7 +694,7 @@ public class JDBModule
 
 	public String getHelpSetID()
 	{
-		return dbHelpsetId;
+		return JUtility.replaceNullStringwithBlank(dbHelpsetId);
 	}
 
 	public String getHint()
@@ -752,7 +752,7 @@ public class JDBModule
 
 	public String getMnemonicStr()
 	{
-		return dbMnemonicStr;
+		return JUtility.replaceNullStringwithBlank(dbMnemonicStr);
 	}
 
 	public ResultSet getModuleData()
@@ -798,7 +798,7 @@ public class JDBModule
 
 	public String getModuleId()
 	{
-		return dbModuleId;
+		return JUtility.replaceNullStringwithBlank(dbModuleId);
 	}
 
 	public LinkedList<JDBListData> getModuleIds()
@@ -1201,7 +1201,7 @@ public class JDBModule
 
 	public String getRFActive()
 	{
-		return dbRFActive;
+		return JUtility.replaceNullStringwithBlank(dbRFActive);
 	}
 
 	private String getSessionID()
@@ -1211,7 +1211,7 @@ public class JDBModule
 
 	public String getType()
 	{
-		return dbModuleType;
+		return JUtility.replaceNullStringwithBlank(dbModuleType);
 	}
 
 	public boolean isDKModule()

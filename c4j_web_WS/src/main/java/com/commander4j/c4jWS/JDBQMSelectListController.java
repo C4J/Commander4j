@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 
-import org.apache.catalina.connector.Response;
-
 import com.commander4j.util.JURL;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,7 +50,7 @@ public class JDBQMSelectListController extends HttpServlet
 		{
 			// No panelId provided and no status provided so we can't do
 			// anything.
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			reply = gson.toJson("Invalid URL - selectListID invalid");
 		}
 

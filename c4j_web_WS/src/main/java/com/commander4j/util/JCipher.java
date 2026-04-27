@@ -27,10 +27,10 @@ package com.commander4j.util;
  * 
  */
 
+import java.util.Base64;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.codec.binary.Base64;
 
 public class JCipher {
 	private String encryptionKey;
@@ -45,13 +45,13 @@ public class JCipher {
 		Cipher cipher = getCipher(Cipher.ENCRYPT_MODE);
 		byte[] encryptedBytes = cipher.doFinal(plainText.getBytes());
 
-		return Base64.encodeBase64String(encryptedBytes);
+		return Base64.getEncoder().encodeToString(encryptedBytes);
 	}
 
 	public String decrypt(String encrypted) throws Exception
 	{
 		Cipher cipher = getCipher(Cipher.DECRYPT_MODE);
-		byte[] plainBytes = cipher.doFinal(Base64.decodeBase64(encrypted));
+		byte[] plainBytes = cipher.doFinal(Base64.getMimeDecoder().decode(encrypted));
 
 		return new String(plainBytes);
 	}

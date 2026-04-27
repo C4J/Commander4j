@@ -132,7 +132,7 @@ public class JDBShifts {
 	}
 
 	public String getEndTime() {
-		return db_end_time;
+		return JUtility.replaceNullStringwithBlank(db_end_time);
 	}
 
 	public int getEndTimeHours()
@@ -311,7 +311,7 @@ public class JDBShifts {
 	}
 	
 	public String getStartTime() {
-		return db_start_time;
+		return JUtility.replaceNullStringwithBlank(db_start_time);
 	}
 
 	public void setDescription(String Description) {

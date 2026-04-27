@@ -361,17 +361,17 @@ public class JDBProcessOrder
 
 	public String getLocation()
 	{
-		return dbLocationId;
+		return JUtility.replaceNullStringwithBlank(dbLocationId);
 	}
 
 	public String getMaterial()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 	public String getProcessOrder()
 	{
-		return dbProcessOrder;
+		return JUtility.replaceNullStringwithBlank(dbProcessOrder);
 	}
 
 	public Vector<JDBProcessOrder> getProcessOrderData(PreparedStatement criteria)
@@ -589,12 +589,12 @@ public class JDBProcessOrder
 	 */
 	public String getRecipe()
 	{
-		return dbRecipeId;
+		return JUtility.replaceNullStringwithBlank(dbRecipeId);
 	}
 	
 	public String getRecipeVersion()
 	{
-		return dbRecipeVersion;
+		return JUtility.replaceNullStringwithBlank(dbRecipeVersion);
 	}
 
 	public BigDecimal getRequiredQuantity()
@@ -609,7 +609,7 @@ public class JDBProcessOrder
 
 	public String getRequiredUom()
 	{
-		return dbRequiredUom;
+		return JUtility.replaceNullStringwithBlank(dbRequiredUom);
 	}
 
 	private String getSessionID()
@@ -624,7 +624,7 @@ public class JDBProcessOrder
 	 */
 	public String getStatus()
 	{
-		return dbStatus;
+		return JUtility.replaceNullStringwithBlank(dbStatus);
 	}
 
 	/**

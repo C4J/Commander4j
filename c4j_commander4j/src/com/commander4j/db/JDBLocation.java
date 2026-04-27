@@ -117,7 +117,7 @@ public class JDBLocation
 
 	public String getEnabled()
 	{
-		return dbEnabled;
+		return JUtility.replaceNullStringwithBlank(dbEnabled);
 	}
 
 	public void setEnabled(Boolean enabled)
@@ -278,12 +278,12 @@ public class JDBLocation
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public String getEquipmentTrackingID()
 	{
-		return dbEquipmentTrackingID;
+		return JUtility.replaceNullStringwithBlank(dbEquipmentTrackingID);
 	}
 
 	public String getErrorMessage()
@@ -471,7 +471,7 @@ public class JDBLocation
 
 	public String getLocationID()
 	{
-		return dbLocationId;
+		return JUtility.replaceNullStringwithBlank(dbLocationId);
 	}
 
 	public LinkedList<JDBLocation> getLocationList()
@@ -634,7 +634,7 @@ public class JDBLocation
 
 	public String getPlant()
 	{
-		return dbPlant;
+		return JUtility.replaceNullStringwithBlank(dbPlant);
 	}
 
 	public void getPropertiesfromResultSet(ResultSet rs)
@@ -682,22 +682,22 @@ public class JDBLocation
 
 	public String getStorageBin()
 	{
-		return dbStorageBin;
+		return JUtility.replaceNullStringwithBlank(dbStorageBin);
 	}
 
 	public String getStorageLocation()
 	{
-		return dbStorageLocation;
+		return JUtility.replaceNullStringwithBlank(dbStorageLocation);
 	}
 
 	public String getStorageSection()
 	{
-		return dbStorageSection;
+		return JUtility.replaceNullStringwithBlank(dbStorageSection);
 	}
 
 	public String getStorageType()
 	{
-		return dbStorageType;
+		return JUtility.replaceNullStringwithBlank(dbStorageType);
 	}
 
 	public String getWarehouse()

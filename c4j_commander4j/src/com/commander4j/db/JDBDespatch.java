@@ -1213,7 +1213,7 @@ public class JDBDespatch
 
 	public String getStatus()
 	{
-		return dbStatus;
+		return JUtility.replaceNullStringwithBlank(dbStatus);
 	}
 
 	public int getTotalPallets()

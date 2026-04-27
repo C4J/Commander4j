@@ -263,17 +263,17 @@ public class JDBPalletHistory
 
 	public String getTransactionSubtype()
 	{
-		return dbTransactionSubtype;
+		return JUtility.replaceNullStringwithBlank(dbTransactionSubtype);
 	}
 
 	public String getTransactionType()
 	{
-		return dbTransactionType;
+		return JUtility.replaceNullStringwithBlank(dbTransactionType);
 	}
 
 	public String getUserID()
 	{
-		return dbUserId;
+		return JUtility.replaceNullStringwithBlank(dbUserId);
 	}
 
 	private void setErrorMessage(String ErrorMsg)

@@ -241,7 +241,7 @@ public class JDBMaterialCustomerData
 
 	public String getMaterial()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 	public Vector<JDBMaterialCustomerData> getMaterialCustomerData(PreparedStatement criteria)
@@ -322,7 +322,7 @@ public class JDBMaterialCustomerData
 
 	public String getCustomerID()
 	{
-		return dbCustomerID;
+		return JUtility.replaceNullStringwithBlank(dbCustomerID);
 	}
 
 	public String getData()

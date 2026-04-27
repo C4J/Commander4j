@@ -31,6 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import com.commander4j.util.JUtility;
 
 import javax.swing.Icon;
 
@@ -197,12 +198,12 @@ public class JDBGroupPermissions
 
 	public String getGroupId()
 	{
-		return dbGroupId;
+		return JUtility.replaceNullStringwithBlank(dbGroupId);
 	}
 
 	public String getModuleId()
 	{
-		return dbModuleId;
+		return JUtility.replaceNullStringwithBlank(dbModuleId);
 	}
 
 	public LinkedList<JDBListData> getModulesAssigned(String host, String session)

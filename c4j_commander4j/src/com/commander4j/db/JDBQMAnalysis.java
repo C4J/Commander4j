@@ -31,6 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import com.commander4j.util.JUtility;
 
 import org.apache.logging.log4j.Logger;
 
@@ -229,7 +230,7 @@ public class JDBQMAnalysis
 
 	public String getAnalysisID()
 	{
-		return dbAnalysisID;
+		return JUtility.replaceNullStringwithBlank(dbAnalysisID);
 	}
 
 	public boolean getAnalysisProperties()
@@ -298,12 +299,12 @@ public class JDBQMAnalysis
 	
 	public String getBatchSuffixParam()
 	{
-		return dbBatchSuffixParam;
+		return JUtility.replaceNullStringwithBlank(dbBatchSuffixParam);
 	}
 
 	public String getBatchSuffixReqd()
 	{
-		return dbBatchSuffixReqd;
+		return JUtility.replaceNullStringwithBlank(dbBatchSuffixReqd);
 	}
 
 	public String getDescription()
@@ -409,22 +410,22 @@ public class JDBQMAnalysis
 
 	public String getSampleDateEndParam()
 	{
-		return dbSampleDateEndParam;
+		return JUtility.replaceNullStringwithBlank(dbSampleDateEndParam);
 	}
 	
 	public String getSampleDateEndReqd()
 	{
-		return dbSampleDateEndReqd;
+		return JUtility.replaceNullStringwithBlank(dbSampleDateEndReqd);
 	}
 
 	public String getSampleDateStartParam()
 	{
-		return dbSampleDateStartParam;
+		return JUtility.replaceNullStringwithBlank(dbSampleDateStartParam);
 	}
 
 	public String getSampleDateStartReqd()
 	{
-		return dbSampleDateStartReqd;
+		return JUtility.replaceNullStringwithBlank(dbSampleDateStartReqd);
 	}
 
 	private String getSessionID()
@@ -434,43 +435,43 @@ public class JDBQMAnalysis
 
 	public String getUserData1Param()
 	{
-		return dbUserData1Param;
+		return JUtility.replaceNullStringwithBlank(dbUserData1Param);
 	}
 
 	public String getUserData1Reqd()
 	{
-		return dbUserData1Reqd;
+		return JUtility.replaceNullStringwithBlank(dbUserData1Reqd);
 	}
 
 	public String getUserData2Param()
 	{
-		return dbUserData2Param;
+		return JUtility.replaceNullStringwithBlank(dbUserData2Param);
 	}
 	
 	public String getUserData2Reqd()
 	{
-		return dbUserData2Reqd;
+		return JUtility.replaceNullStringwithBlank(dbUserData2Reqd);
 	}
 
 	public String getUserData3Param()
 	{
-		return dbUserData3Param;
+		return JUtility.replaceNullStringwithBlank(dbUserData3Param);
 	}
 
 
 	public String getUserData3Reqd()
 	{
-		return dbUserData3Reqd;
+		return JUtility.replaceNullStringwithBlank(dbUserData3Reqd);
 	}
 
 	public String getUserData4Param()
 	{
-		return dbUserData4Param;
+		return JUtility.replaceNullStringwithBlank(dbUserData4Param);
 	}
 	
 	public String getUserData4Reqd()
 	{
-		return dbUserData4Reqd;
+		return JUtility.replaceNullStringwithBlank(dbUserData4Reqd);
 	}	
 	
 	public boolean isAscending()

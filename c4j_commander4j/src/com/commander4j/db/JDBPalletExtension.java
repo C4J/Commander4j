@@ -357,7 +357,7 @@ public class JDBPalletExtension
 
 	public String getSSCC()
 	{
-		return dbSSCC;
+		return JUtility.replaceNullStringwithBlank(dbSSCC);
 	}
 
 	public String getSupplierID1()

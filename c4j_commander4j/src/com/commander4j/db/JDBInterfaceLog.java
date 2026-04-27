@@ -268,7 +268,7 @@ public class JDBInterfaceLog
 
 	public String getAction()
 	{
-		return dbAction;
+		return JUtility.replaceNullStringwithBlank(dbAction);
 	}
 
 	public String getErrorMessage()
@@ -293,7 +293,7 @@ public class JDBInterfaceLog
 
 	public String getInterfaceDirection()
 	{
-		return dbInterfaceDirection;
+		return JUtility.replaceNullStringwithBlank(dbInterfaceDirection);
 	}
 
 	public Vector<JDBInterfaceLog> getInterfaceLogData(PreparedStatement criteria)
@@ -412,7 +412,7 @@ public class JDBInterfaceLog
 
 	public String getInterfaceType()
 	{
-		return dbInterfaceType;
+		return JUtility.replaceNullStringwithBlank(dbInterfaceType);
 	}
 
 	public Timestamp getMessageDate()
@@ -427,17 +427,17 @@ public class JDBInterfaceLog
 
 	public String getMessageInformation()
 	{
-		return dbMessageInformation;
+		return JUtility.replaceNullStringwithBlank(dbMessageInformation);
 	}
 
 	public String getMessageRef()
 	{
-		return dbMessageRef;
+		return JUtility.replaceNullStringwithBlank(dbMessageRef);
 	}
 
 	public String getMessageStatus()
 	{
-		return dbMessageStatus;
+		return JUtility.replaceNullStringwithBlank(dbMessageStatus);
 	}
 
 	public void getPropertiesfromResultSet(ResultSet rs)
@@ -470,7 +470,7 @@ public class JDBInterfaceLog
 
 	public String getWorkstationID()
 	{
-		return dbWorkstationID;
+		return JUtility.replaceNullStringwithBlank(dbWorkstationID);
 	}
 
 	public void setAction(String Action)

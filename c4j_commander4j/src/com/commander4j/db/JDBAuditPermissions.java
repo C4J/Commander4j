@@ -305,7 +305,7 @@ public class JDBAuditPermissions
 	}
 
 	public String getTargetAction() {
-		return dbTargetAction;
+		return JUtility.replaceNullStringwithBlank(dbTargetAction);
 	}
 
 	public Timestamp getEventTime() {
@@ -313,7 +313,7 @@ public class JDBAuditPermissions
 	}
 
 	public String getTargetType() {
-		return dbTargetType;
+		return JUtility.replaceNullStringwithBlank(dbTargetType);
 	}
 
 	private String getHostID() {
@@ -374,7 +374,7 @@ public class JDBAuditPermissions
 
 
 	public String getTargetData() {
-		return dbTargetData;
+		return JUtility.replaceNullStringwithBlank(dbTargetData);
 	}
 
 	public String getTargetWorkstation() {
@@ -382,11 +382,11 @@ public class JDBAuditPermissions
 	}
 
 	public String getTargetID() {
-		return dbTargetID;
+		return JUtility.replaceNullStringwithBlank(dbTargetID);
 	}
 
 	public String getUserID() {
-		return dbUserID;
+		return JUtility.replaceNullStringwithBlank(dbUserID);
 	}
 
 	public void setAuditLogID(Long logID) {

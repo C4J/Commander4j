@@ -96,7 +96,7 @@ public class JDBAutoLabeller
 
 	public String getEnabled()
 	{
-		return db_enabled;
+		return JUtility.replaceNullStringwithBlank(db_enabled);
 	}
 	
 	public void setEnabled(String yesno)
@@ -128,12 +128,12 @@ public class JDBAutoLabeller
 	
 	public String getValidateResource()
 	{
-		return db_ValidateResource;
+		return JUtility.replaceNullStringwithBlank(db_ValidateResource);
 	}
 
 	public String getValidateWorkstation()
 	{
-		return db_ValidateWorkstation;
+		return JUtility.replaceNullStringwithBlank(db_ValidateWorkstation);
 	}
 
 	public boolean isValidateResource()
@@ -196,7 +196,7 @@ public class JDBAutoLabeller
 
 	public String getModified()
 	{
-		return db_modified;
+		return JUtility.replaceNullStringwithBlank(db_modified);
 	}
 
 	public boolean isModified()
@@ -346,12 +346,12 @@ public class JDBAutoLabeller
 
 	public String getDescription()
 	{
-		return db_description;
+		return JUtility.replaceNullStringwithBlank(db_description);
 	}
 	
 	public String getPrefixCode()
 	{
-		return db_prefix_code;
+		return JUtility.replaceNullStringwithBlank(db_prefix_code);
 	}
 
 
@@ -437,12 +437,12 @@ public class JDBAutoLabeller
 
 	public String getLine()
 	{
-		return db_line;
+		return JUtility.replaceNullStringwithBlank(db_line);
 	}
 
 	public String getGroup()
 	{
-		return db_group;
+		return JUtility.replaceNullStringwithBlank(db_group);
 	}
 
 	public boolean getProperties(String line, String group)
@@ -509,7 +509,7 @@ public class JDBAutoLabeller
 
 	public String getSSCCRangeEnable()
 	{
-		return db_sscc_range;
+		return JUtility.replaceNullStringwithBlank(db_sscc_range);
 	}
 
 	public Long getSSCCSequence()
@@ -519,7 +519,7 @@ public class JDBAutoLabeller
 
 	public String getUniqueID()
 	{
-		return db_unique_id;
+		return JUtility.replaceNullStringwithBlank(db_unique_id);
 	}
 
 	public boolean isSSCCRangeEnabled()

@@ -174,7 +174,7 @@ public class JDBUserGroupMembership
 	}
 
 	public String getGroupId() {
-		return db_group_id;
+		return JUtility.replaceNullStringwithBlank(db_group_id);
 	}
 
 	public LinkedList<String> getGroupsAssignedtoUser() {
@@ -270,7 +270,7 @@ public class JDBUserGroupMembership
 	
 
 	public String getUserId() {
-		return db_user_id;
+		return JUtility.replaceNullStringwithBlank(db_user_id);
 	}
 
 	public boolean isValidUserGroupMembership() {

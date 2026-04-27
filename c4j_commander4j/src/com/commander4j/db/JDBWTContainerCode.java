@@ -137,7 +137,7 @@ public class JDBWTContainerCode
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public String getErrorMessage()
@@ -205,7 +205,7 @@ public class JDBWTContainerCode
 
 	public String getContainerCode()
 	{
-		return dbContainerCode;
+		return JUtility.replaceNullStringwithBlank(dbContainerCode);
 	}
 
 	public ResultSet getContainerCodesDataResultSet() {

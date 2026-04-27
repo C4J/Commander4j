@@ -219,7 +219,7 @@ public class JDBSSCCRange
 
 
 	public String getPrefix() {
-		return db_prefix;
+		return JUtility.replaceNullStringwithBlank(db_prefix);
 	}
 
 

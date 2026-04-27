@@ -62,7 +62,7 @@ public class JDBWTSamplePoint
 
 	public String getRequiredResource()
 	{
-		return dbRequiredResource;
+		return JUtility.replaceNullStringwithBlank(dbRequiredResource);
 	}
 
 	public void setRequiredResource(String requiredResource)
@@ -164,7 +164,7 @@ public class JDBWTSamplePoint
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public String getErrorMessage()
@@ -179,7 +179,7 @@ public class JDBWTSamplePoint
 
 	public String getLocation()
 	{
-		return dbLocation;
+		return JUtility.replaceNullStringwithBlank(dbLocation);
 	}
 
 	public boolean getProperties(String samplepoint)
@@ -241,17 +241,17 @@ public class JDBWTSamplePoint
 
 	public String getSamplePoint()
 	{
-		return dbSamplePoint;
+		return JUtility.replaceNullStringwithBlank(dbSamplePoint);
 	}
 	
 	public String getReportingGroup()
 	{
-		return dbReportingGroup;
+		return JUtility.replaceNullStringwithBlank(dbReportingGroup);
 	}
 	
 	public String getEnabled()
 	{
-		return dbEnabled;
+		return JUtility.replaceNullStringwithBlank(dbEnabled);
 	}
 	
 	public boolean isEnabled()

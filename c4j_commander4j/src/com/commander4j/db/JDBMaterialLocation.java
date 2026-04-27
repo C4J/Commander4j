@@ -34,6 +34,7 @@ import java.sql.SQLException;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
+import com.commander4j.util.JUtility;
 
 /**
  * JDBMaterialLocation class is used to insert/update/delete records from the
@@ -236,7 +237,7 @@ public class JDBMaterialLocation
 
 	public String getStatus()
 	{
-		return dbStatus;
+		return JUtility.replaceNullStringwithBlank(dbStatus);
 	}
 
 	public boolean isValidMaterialLocation()

@@ -206,12 +206,12 @@ public class JDBWorkstationPreferences
 
 	public String getModuleId()
 	{
-		return db_module_id;
+		return JUtility.replaceNullStringwithBlank(db_module_id);
 	}
 
 	public String getDeviceType()
 	{
-		return db_device_type;
+		return JUtility.replaceNullStringwithBlank(db_device_type);
 	}
 
 	public void setDeviceType(String val)
@@ -221,12 +221,12 @@ public class JDBWorkstationPreferences
 
 	public String getPrinterId()
 	{
-		return db_printer_id;
+		return JUtility.replaceNullStringwithBlank(db_printer_id);
 	}
 
 	public String getWorkstationId()
 	{
-		return db_workstation_id;
+		return JUtility.replaceNullStringwithBlank(db_workstation_id);
 	}
 
 	private String getSessionID()

@@ -313,7 +313,7 @@ public class JDBMaterialUom
 	 */
 	public String getMaterial()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 
@@ -443,7 +443,7 @@ public class JDBMaterialUom
 
 	public String getUom()
 	{
-		return dbMaterialUom;
+		return JUtility.replaceNullStringwithBlank(dbMaterialUom);
 	}
 
 

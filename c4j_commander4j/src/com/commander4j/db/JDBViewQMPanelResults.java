@@ -127,7 +127,7 @@ public class JDBViewQMPanelResults
 
 	public String getMaterial()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 	public void setMaterial(String val)
@@ -137,7 +137,7 @@ public class JDBViewQMPanelResults
 	
 	public String getProductGroup()
 	{
-		return dbProductGroup;
+		return JUtility.replaceNullStringwithBlank(dbProductGroup);
 	}
 
 	public void setProductGroup(String val)
@@ -147,7 +147,7 @@ public class JDBViewQMPanelResults
 	
 	public String getContainerCode()
 	{
-		return dbContainerCode;
+		return JUtility.replaceNullStringwithBlank(dbContainerCode);
 	}
 
 	public void setContainerCode(String val)
@@ -157,7 +157,7 @@ public class JDBViewQMPanelResults
 
 	public String getUserData1()
 	{
-		return dbUserData1;
+		return JUtility.replaceNullStringwithBlank(dbUserData1);
 	}
 
 	public void setUserData1(String val)
@@ -167,7 +167,7 @@ public class JDBViewQMPanelResults
 	
 	public String getUserData2()
 	{
-		return dbUserData2;
+		return JUtility.replaceNullStringwithBlank(dbUserData2);
 	}
 
 	public void setUserData2(String val)
@@ -177,7 +177,7 @@ public class JDBViewQMPanelResults
 	
 	public String getUserData3()
 	{
-		return dbUserData3;
+		return JUtility.replaceNullStringwithBlank(dbUserData3);
 	}
 
 	public void setUserData3(String val)
@@ -187,7 +187,7 @@ public class JDBViewQMPanelResults
 	
 	public String getUserData4()
 	{
-		return dbUserData4;
+		return JUtility.replaceNullStringwithBlank(dbUserData4);
 	}
 
 	public void setUserData4(String val)
@@ -197,7 +197,7 @@ public class JDBViewQMPanelResults
 	
 	public String getFirstName()
 	{
-		return dbFirstname;
+		return JUtility.replaceNullStringwithBlank(dbFirstname);
 	}
 
 	public void setFirstName(String val)
@@ -207,7 +207,7 @@ public class JDBViewQMPanelResults
 	
 	public String getSurname()
 	{
-		return dbSurname;
+		return JUtility.replaceNullStringwithBlank(dbSurname);
 	}
 
 	public void setSurname(String val)

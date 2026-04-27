@@ -207,7 +207,7 @@ public class JDBControl
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public String getErrorMessage()
@@ -222,7 +222,7 @@ public class JDBControl
 
 	public String getKeyValue()
 	{
-		return dbKeyValue;
+		return JUtility.replaceNullStringwithBlank(dbKeyValue);
 	}
 
 	public String getKeyValue(String key)
@@ -309,7 +309,7 @@ public class JDBControl
 
 	public String getSystemKey()
 	{
-		return dbSystemKey;
+		return JUtility.replaceNullStringwithBlank(dbSystemKey);
 	}
 
 	public boolean isValidSystemKey()

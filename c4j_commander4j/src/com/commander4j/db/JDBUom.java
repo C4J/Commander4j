@@ -173,7 +173,7 @@ public class JDBUom
 	 * @return String
 	 */
 	public String getIsoUom() {
-		return db_iso_uom;
+		return JUtility.replaceNullStringwithBlank(db_iso_uom);
 	}
 
 	// ===============================================================
@@ -351,7 +351,7 @@ public class JDBUom
 	}
 
 	public String getLocalUom() {
-		return db_local_uom;
+		return JUtility.replaceNullStringwithBlank(db_local_uom);
 	}
 
 	public boolean getLocalUomProperties() {

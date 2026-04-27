@@ -784,7 +784,7 @@ public class JDBUser
 
 	public String getEmailAddress()
 	{
-		return dbEmailAddress;
+		return JUtility.replaceNullStringwithBlank(dbEmailAddress);
 	}
 
 	private int getPasswordVersion()
@@ -808,7 +808,7 @@ public class JDBUser
 
 	public String getPasswordEncrypted()
 	{
-		return dbPasswordEncrypted;
+		return JUtility.replaceNullStringwithBlank(dbPasswordEncrypted);
 	}
 
 	public void setPasswordEncrypted(String yesNo)
@@ -883,7 +883,7 @@ public class JDBUser
 
 	public String getPasswordChangeAllowed()
 	{
-		return dbPasswordChangeAllowed;
+		return JUtility.replaceNullStringwithBlank(dbPasswordChangeAllowed);
 	}
 
 	public Timestamp getPasswordChanged()
@@ -898,7 +898,7 @@ public class JDBUser
 
 	public String getPasswordExpires()
 	{
-		return dbPasswordExpires;
+		return JUtility.replaceNullStringwithBlank(dbPasswordExpires);
 	}
 
 	public java.util.Date getPasswordExpiryDate()

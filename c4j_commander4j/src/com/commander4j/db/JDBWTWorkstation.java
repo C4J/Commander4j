@@ -196,7 +196,7 @@ public class JDBWTWorkstation
 	
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 	
 	public String getErrorMessage()
@@ -211,7 +211,7 @@ public class JDBWTWorkstation
 	
 	public String getLocation()
 	{
-		return dbLocation;
+		return JUtility.replaceNullStringwithBlank(dbLocation);
 	}
 	
 	public boolean getProperties(String workstationId)
@@ -272,17 +272,17 @@ public class JDBWTWorkstation
 	
 	public String getSamplePoint()
 	{
-		return dbSamplePoint;
+		return JUtility.replaceNullStringwithBlank(dbSamplePoint);
 	}
 	
 	public String getScaleID()
 	{
-		return dbScaleID;
+		return JUtility.replaceNullStringwithBlank(dbScaleID);
 	}
 	
 	public String getScalePort()
 	{
-		return dbScalePort;
+		return JUtility.replaceNullStringwithBlank(dbScalePort);
 	}
 	
 	private String getSessionID()
@@ -312,7 +312,7 @@ public class JDBWTWorkstation
 	
 	public String getWorkstationID()
 	{
-		return dbWorkstationID;
+		return JUtility.replaceNullStringwithBlank(dbWorkstationID);
 	}
 	
 	public LinkedList<JDBWTWorkstation> getWorkstations() {

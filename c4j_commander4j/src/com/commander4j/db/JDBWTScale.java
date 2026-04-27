@@ -157,17 +157,17 @@ public class JDBWTScale
 	
 	public String getParity()
 	{
-		return dbParity;
+		return JUtility.replaceNullStringwithBlank(dbParity);
 	}
 
 	public String getEndOfLine()
 	{
-		return dbEndOfLine;
+		return JUtility.replaceNullStringwithBlank(dbEndOfLine);
 	}
 	
 	public String getCommandPrefix()
 	{
-		return dbCommandPrefix;
+		return JUtility.replaceNullStringwithBlank(dbCommandPrefix);
 	}
 
 	public boolean create(String scaleId)
@@ -252,12 +252,12 @@ public class JDBWTScale
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 	
 	public String getSerialNo()
 	{
-		return dbSerialNo;
+		return JUtility.replaceNullStringwithBlank(dbSerialNo);
 	}
 
 	public String getErrorMessage()
@@ -267,12 +267,12 @@ public class JDBWTScale
 
 	public String getFlowControl()
 	{
-		return dbFlowControl;
+		return JUtility.replaceNullStringwithBlank(dbFlowControl);
 	}
 
 	public String getConnection()
 	{
-		return dbConnection;
+		return JUtility.replaceNullStringwithBlank(dbConnection);
 	}
 
 	private String getHostID()
@@ -282,12 +282,12 @@ public class JDBWTScale
 
 	public String getMake()
 	{
-		return dbMake;
+		return JUtility.replaceNullStringwithBlank(dbMake);
 	}
 
 	public String getModel()
 	{
-		return dbModel;
+		return JUtility.replaceNullStringwithBlank(dbModel);
 	}
 
 	public boolean getProperties(String scaleID)
@@ -356,7 +356,7 @@ public class JDBWTScale
 
 	public String getScaleID()
 	{
-		return dbScaleID;
+		return JUtility.replaceNullStringwithBlank(dbScaleID);
 	}
 
 	private String getSessionID()

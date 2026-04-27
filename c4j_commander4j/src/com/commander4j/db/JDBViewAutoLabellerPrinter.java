@@ -69,17 +69,17 @@ public class JDBViewAutoLabellerPrinter {
 
 	public String getModuleID()
 	{
-		return dbModuleID;
+		return JUtility.replaceNullStringwithBlank(dbModuleID);
 	}
 
 	public String getPrinterID()
 	{
-		return dbPrinterID;
+		return JUtility.replaceNullStringwithBlank(dbPrinterID);
 	}
 
 	public String getUniqiueID()
 	{
-		return dbUnique;
+		return JUtility.replaceNullStringwithBlank(dbUnique);
 	}
 
 	public String getErrorMessage()

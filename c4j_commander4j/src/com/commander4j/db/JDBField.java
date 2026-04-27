@@ -40,12 +40,22 @@ public class JDBField
 	private String fieldName = "";
 	private String fieldType = "";
 	private int fieldSize = 0;
+	private int primaryKeySeq = 0;   // 0 = not a primary key; >0 = position in PK
+	private boolean nullable = false;
 
+	/** Backward-compatible constructor — PK seq defaults to 0, nullable to false. */
 	public JDBField(String name, String type, int size)
+	{
+		this(name, type, size, 0, false);
+	}
+
+	public JDBField(String name, String type, int size, int pkSeq, boolean nullable)
 	{
 		fieldName = name;
 		fieldType = type;
 		fieldSize = size;
+		primaryKeySeq = pkSeq;
+		this.nullable = nullable;
 	}
 
 	public String getfieldName()
@@ -61,7 +71,16 @@ public class JDBField
 	public int getfieldSize()
 	{
 		return fieldSize;
+	}
 
+	public int getPrimaryKeySeq()
+	{
+		return primaryKeySeq;
+	}
+
+	public boolean isNullable()
+	{
+		return nullable;
 	}
 
 	public String toString()

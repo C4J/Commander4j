@@ -189,12 +189,12 @@ public class JDBLanguage
 
 	public String getKey()
 	{
-		return dbKey;
+		return JUtility.replaceNullStringwithBlank(dbKey);
 	}
 
 	public String getLanguage()
 	{
-		return dbLanguage;
+		return JUtility.replaceNullStringwithBlank(dbLanguage);
 	}
 
 	public ResultSet getLanguageDataResultSet(PreparedStatement criteria)
@@ -230,7 +230,7 @@ public class JDBLanguage
 
 	public String getMnemonicString()
 	{
-		return dbMnemonic;
+		return JUtility.replaceNullStringwithBlank(dbMnemonic);
 	}
 
 	public boolean getProperties(String key, String language)
@@ -295,7 +295,7 @@ public class JDBLanguage
 
 	public String getText()
 	{
-		return dbText;
+		return JUtility.replaceNullStringwithBlank(dbText);
 	}
 
 	public boolean isValidKey()

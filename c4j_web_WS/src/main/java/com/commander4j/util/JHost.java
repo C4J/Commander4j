@@ -76,8 +76,8 @@ public class JHost
 		String basePath = "";
 		if (Common.applicationMode.equals("Servlet"))
 		{
-			sqlPath = Common.paths.get("sql." + getDatabaseParameters().getjdbcDriver() + ".xml").toString();
-			viewPath = Common.paths.get("view." + getDatabaseParameters().getjdbcDriver() + ".xml").toString();
+			sqlPath = Common.paths.get("sql." + getDatabaseParameters().getjdbcDriver() + ".xml");
+			viewPath = Common.paths.get("view." + getDatabaseParameters().getjdbcDriver() + ".xml");
 		}
 		else
 		{

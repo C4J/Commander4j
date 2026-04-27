@@ -20,6 +20,7 @@ public class JQMResourceController extends HttpServlet
 {
 
 	private static final long serialVersionUID = 6266031476649351904L;
+	private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMResourceController.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
@@ -27,20 +28,18 @@ public class JQMResourceController extends HttpServlet
 		// Retrieve
 
 		request.getSession();
-		
+
 		logger.debug("doGet");
 
 		// Create instance of database handler.
 		JQMResourcesDB tdb = new JQMResourcesDB(Common.selectedHostID, request.getSession().getId());
 		// Create an object to hold the return result;
 		LinkedList<JQMResourceEntity> panelUserList = new LinkedList<JQMResourceEntity>();
-		// Create and instance of the Google JSON utility.
-		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 
 		String reply = "";
 
 		panelUserList = tdb.getResources();
-		reply = gson.toJson(panelUserList);
+		reply = GSON.toJson(panelUserList);
 
 		// Output the response
 		response.setContentType("application/json");

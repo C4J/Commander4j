@@ -1,6 +1,7 @@
 package com.commander4j.c4jWS;
 
-import org.apache.xalan.xsltc.runtime.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.commander4j.util.JHostList;
 import com.commander4j.util.JSessionData;
@@ -14,7 +15,7 @@ public class Common
 	public static String hostVersion = "";
 	public static String hostUpdatePath = "";
 	public static String updateURL = "";
-	public static Hashtable paths = new Hashtable();
+	public static Map<String, String> paths = new HashMap<>();
 	public static JSessionData sd = new JSessionData();
 	public static String base_dir = "";
 	public static String updateInstallDir = "";

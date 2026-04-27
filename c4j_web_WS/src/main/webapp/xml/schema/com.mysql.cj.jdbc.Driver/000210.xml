@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+  <statement>ALTER TABLE `APP_BOM_LISTS` MODIFY COLUMN `ITEM` varchar(255)</statement>
+
+  <statement>ALTER TABLE `APP_PACKING_LINES` MODIFY COLUMN `DESCRIPTION` varchar(45)</statement>
+
+  <statement>ALTER TABLE `APP_PALLET_EXTENSION` MODIFY COLUMN `SHIFT_ID` varchar(15)</statement>
+
+  <statement>ALTER TABLE `APP_PROCESS_ORDER` MODIFY COLUMN `REQUIRED_UOM` varchar(10)</statement>
+
+  <statement>ALTER TABLE `SYS_INTERFACE_REQUEST` MODIFY COLUMN `FILENAME` varchar(255)</statement>
+
+  <statement>ALTER TABLE `SYS_AUDIT_PERMISSIONS` MODIFY COLUMN `DATA` varchar(45)</statement>
+  
+</DDL>

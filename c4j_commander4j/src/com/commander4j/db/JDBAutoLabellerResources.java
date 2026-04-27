@@ -185,7 +185,7 @@ public class JDBAutoLabellerResources
 
 	public String getRequiredResource()
 	{
-		return dbRequiredResource;
+		return JUtility.replaceNullStringwithBlank(dbRequiredResource);
 	}
 
 	public LinkedList<String> getRequiredResourceList(String line, String group)

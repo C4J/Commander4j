@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 
-import org.apache.catalina.connector.Response;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JQMViewBomDB;
@@ -23,6 +22,7 @@ public class JQMViewBOMController extends HttpServlet
 {
 
 	private static final long serialVersionUID = 6266031476649351904L;
+	private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMViewBOMController.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
@@ -30,29 +30,26 @@ public class JQMViewBOMController extends HttpServlet
 		// Retrieve
 
 		request.getSession();
-		
+
 		logger.debug("doGet");
 
 		// Create instance of database handler.
 		JQMViewBomDB tdb = new JQMViewBomDB(Common.selectedHostID, request.getSession().getId());
 		// Create an object to hold the return result;
 		LinkedList<JQMViewBOMEntity> stageList = new LinkedList<JQMViewBOMEntity>();
-		// Create and instance of the Google JSON utility.
-		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-		JURL url = new JURL(request);
 
-		String action = url.getParameterVariable(request, "action");
+		String action = JURL.getParameter(request, "action");
 		String reply = "";
-		
+
 		if (action.equals("getStages"))
 		{
-		
-			String bom_id = url.getParameterVariable(request, "bom_id");
-			String bom_version = url.getParameterVariable(request, "bom_version");
-			
+
+			String bom_id = JURL.getParameter(request, "bom_id");
+			String bom_version = JURL.getParameter(request, "bom_version");
+
 			stageList = tdb.getStagesForBOM(bom_id, bom_version);
-			reply = gson.toJson(stageList);
-		
+			reply = GSON.toJson(stageList);
+
 		}
 		
 
@@ -72,9 +69,8 @@ public class JQMViewBOMController extends HttpServlet
 
 		logger.debug("doPost");
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 		BufferedReader bufferedReader = request.getReader();
-		JQMViewBOMEntity viewBOMEntity = gson.fromJson(bufferedReader, JQMViewBOMEntity.class);
+		JQMViewBOMEntity viewBOMEntity = GSON.fromJson(bufferedReader, JQMViewBOMEntity.class);
 		JQMViewBomDB viewBOMDB = new JQMViewBomDB(Common.selectedHostID, request.getSession().getId());
 
 		Boolean result = false;
@@ -87,13 +83,13 @@ public class JQMViewBOMController extends HttpServlet
 
 			if (result == true)
 			{
-				reply = gson.toJson("valid");
-				response.setStatus(Response.SC_ACCEPTED);
+				reply = GSON.toJson("valid");
+				response.setStatus(HttpServletResponse.SC_OK);
 			}
 			else
 			{
-				response.setStatus(Response.SC_NOT_ACCEPTABLE);
-				reply = gson.toJson("invalid");
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				reply = GSON.toJson("invalid");
 			}
 		}
 
@@ -102,11 +98,11 @@ public class JQMViewBOMController extends HttpServlet
 
 			LinkedList<JQMViewBOMEntity> validLocations = viewBOMDB.getValidtLocationsforMaterial(viewBOMEntity.getBomID(), viewBOMEntity.getBomVersion(), viewBOMEntity.getStage(), viewBOMEntity.getInputOutput(), viewBOMEntity.getMaterial());
 
-			reply = gson.toJson(validLocations);
-			response.setStatus(Response.SC_ACCEPTED);
+			reply = GSON.toJson(validLocations);
+			response.setStatus(HttpServletResponse.SC_OK);
 
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
-			reply = gson.toJson("none");
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			reply = GSON.toJson("none");
 
 		}
 
@@ -115,8 +111,8 @@ public class JQMViewBOMController extends HttpServlet
 
 			LinkedList<JQMViewBOMEntity> validLocations = viewBOMDB.getValidMaterialsForBOM(viewBOMEntity.getBomID(), viewBOMEntity.getBomVersion(), viewBOMEntity.getStage(), viewBOMEntity.getInputOutput());
 
-			reply = gson.toJson(validLocations);
-			response.setStatus(Response.SC_ACCEPTED);
+			reply = GSON.toJson(validLocations);
+			response.setStatus(HttpServletResponse.SC_OK);
 
 		}
 
@@ -134,12 +130,10 @@ public class JQMViewBOMController extends HttpServlet
 
 		logger.debug("doPut");
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-
 		String reply = "";
 
-		response.setStatus(Response.SC_NOT_ACCEPTABLE);
-		reply = gson.toJson("Update not supported");
+		response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+		reply = GSON.toJson("Update not supported");
 
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();

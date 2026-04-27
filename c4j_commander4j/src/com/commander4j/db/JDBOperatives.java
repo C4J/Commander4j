@@ -391,7 +391,7 @@ public class JDBOperatives {
 
 	public String getID()
 	{
-		return db_id;
+		return JUtility.replaceNullStringwithBlank(db_id);
 	}
 	
 	public String toString() {

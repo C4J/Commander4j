@@ -178,7 +178,7 @@ public class JDBInterface
 
 	public String getDevice()
 	{
-		return dbDevice;
+		return JUtility.replaceNullStringwithBlank(dbDevice);
 	}
 
 	public String getEmailAddresses()
@@ -226,7 +226,7 @@ public class JDBInterface
 
 	public String getEnabled()
 	{
-		return dbEnabled;
+		return JUtility.replaceNullStringwithBlank(dbEnabled);
 	}
 
 	public String getErrorMessage()
@@ -321,7 +321,7 @@ public class JDBInterface
 
 	public String getInterfaceDirection()
 	{
-		return dbInterfaceDirection;
+		return JUtility.replaceNullStringwithBlank(dbInterfaceDirection);
 	}
 
 	public LinkedList<JDBInterface> getInterfaceList(String device, String interfaceDirection)
@@ -408,7 +408,7 @@ public class JDBInterface
 
 	public String getInterfaceType()
 	{
-		return dbInterfaceType;
+		return JUtility.replaceNullStringwithBlank(dbInterfaceType);
 	}
 
 	public String getPath()

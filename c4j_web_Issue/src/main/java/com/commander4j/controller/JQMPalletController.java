@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 
-import org.apache.catalina.connector.Response;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBPallet;
@@ -15,7 +14,6 @@ import com.commander4j.db.JQMViewBomDB;
 import com.commander4j.entity.JQMPalletEntity;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JURL;
-import com.commander4j.util.JUtility;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -27,6 +25,7 @@ public class JQMPalletController extends HttpServlet
 {
 
 	private static final long serialVersionUID = 6266031476649351904L;
+	private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMPalletController.class);
 
 
@@ -34,12 +33,11 @@ public class JQMPalletController extends HttpServlet
 	{
 
 		request.getSession();
-		
+
 		logger.debug("doPut");
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 		BufferedReader bufferedReader = request.getReader();
-		JQMPalletEntity palletEntity = gson.fromJson(bufferedReader, JQMPalletEntity.class);
+		JQMPalletEntity palletEntity = GSON.fromJson(bufferedReader, JQMPalletEntity.class);
 		JQMPalletDB palletDB = new JQMPalletDB(Common.selectedHostID, request.getSession().getId());
 		JDBPallet pallet_db = new JDBPallet(Common.selectedHostID, request.getSession().getId());
 		JDBProcessOrder order_db = new JDBProcessOrder(Common.selectedHostID, request.getSession().getId());
@@ -53,9 +51,7 @@ public class JQMPalletController extends HttpServlet
 		String location_id = palletEntity.getLocationId();
 		BigDecimal quantity = palletEntity.getQuantity();
 
-		JURL url = new JURL(request);
-
-		String stage = JUtility.replaceNullStringwithBlank(url.getParameterVariable(request, "stage"));
+		String stage = JURL.getParameter(request, "stage");
 		
 		System.out.println(action);
 
@@ -65,13 +61,13 @@ public class JQMPalletController extends HttpServlet
 			if (palletDB.isValid(palletEntity.getSSCC()))
 			{
 				palletEntity = palletDB.getProperties(palletEntity.getSSCC());
-				reply = gson.toJson(palletEntity);
-				response.setStatus(Response.SC_ACCEPTED);
+				reply = GSON.toJson(palletEntity);
+				response.setStatus(HttpServletResponse.SC_OK);
 			}
 			else
 			{
-				response.setStatus(Response.SC_NOT_ACCEPTABLE);
-				reply = gson.toJson("Invalid URL or SSCC invalid");
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				reply = GSON.toJson("Invalid URL or SSCC invalid");
 			}
 		}
 		
@@ -83,13 +79,13 @@ public class JQMPalletController extends HttpServlet
 				palletEntity = palletDB.getProperties(palletEntity.getSSCC());
 				palletEntity.setDescription(pallet_db.getMaterialObj().getDescription());
 				palletEntity.setLocationId(pallet_db.getLocationID());
-				reply = gson.toJson(palletEntity);
-				response.setStatus(Response.SC_ACCEPTED);
+				reply = GSON.toJson(palletEntity);
+				response.setStatus(HttpServletResponse.SC_OK);
 			}
 			else
 			{
-				response.setStatus(Response.SC_NOT_ACCEPTABLE);
-				reply = gson.toJson("Invalid URL or SSCC invalid");
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				reply = GSON.toJson("Invalid URL or SSCC invalid");
 			}
 		}
 		
@@ -99,8 +95,8 @@ public class JQMPalletController extends HttpServlet
 			pallet_db.getPalletProperties(sscc);
 			palletEntity.getPropertiesFromPallet(pallet_db);
 			palletDB.issueToOrder_rest(sscc,issueToOrder, quantity,location_id,userId);
-			reply = gson.toJson(palletEntity);
-			response.setStatus(Response.SC_ACCEPTED);
+			reply = GSON.toJson(palletEntity);
+			response.setStatus(HttpServletResponse.SC_OK);
 		}
 		
 		if (action.equals("return"))
@@ -109,8 +105,8 @@ public class JQMPalletController extends HttpServlet
 			pallet_db.getPalletProperties(sscc);
 			palletEntity.getPropertiesFromPallet(pallet_db);
 			palletDB.returnFromOrder_rest(sscc,issueToOrder, quantity,location_id,userId);
-			reply = gson.toJson(palletEntity);
-			response.setStatus(Response.SC_ACCEPTED);
+			reply = GSON.toJson(palletEntity);
+			response.setStatus(HttpServletResponse.SC_OK);
 		}
 		
 		if (action.equals("validateMaterial"))
@@ -158,8 +154,8 @@ public class JQMPalletController extends HttpServlet
 				palletEntity.setErrorMessage(pallet_db.getErrorMessage());
 			}
 			
-			reply = gson.toJson(palletEntity);
-			response.setStatus(Response.SC_ACCEPTED);
+			reply = GSON.toJson(palletEntity);
+			response.setStatus(HttpServletResponse.SC_OK);
 		}
 		
 		if (action.equals("validateLocation"))
@@ -207,8 +203,8 @@ public class JQMPalletController extends HttpServlet
 				palletEntity.setErrorMessage(pallet_db.getErrorMessage());
 			}
 			
-			reply = gson.toJson(palletEntity);
-			response.setStatus(Response.SC_ACCEPTED);
+			reply = GSON.toJson(palletEntity);
+			response.setStatus(HttpServletResponse.SC_OK);
 		}
 
 		response.setContentType("application/json");

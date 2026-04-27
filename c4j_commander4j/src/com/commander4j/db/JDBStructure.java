@@ -38,7 +38,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -289,6 +291,25 @@ public class JDBStructure
 			select_prefix = required_schema + ".";
 		}
 
+		// Build primary-key map: upper-case column name → KEY_SEQ position
+		Map<String, Integer> pkMap = new HashMap<>();
+		try
+		{
+			DatabaseMetaData dmd = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).getMetaData();
+			ResultSet pkRs = dmd.getPrimaryKeys(
+					Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabase(),
+					null, table_name);
+			while (pkRs.next())
+			{
+				pkMap.put(pkRs.getString("COLUMN_NAME").toUpperCase(), pkRs.getInt("KEY_SEQ"));
+			}
+			pkRs.close();
+		}
+		catch (SQLException e)
+		{
+			// PK metadata unavailable — leave pkMap empty
+		}
+
 		try
 		{
 			Statement st = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).createStatement();
@@ -301,7 +322,9 @@ public class JDBStructure
 				col_name = md.getColumnName(i);
 				col_type = md.getColumnTypeName(i);
 				col_size = md.getColumnDisplaySize(i);
-				JDBField field = new JDBField(col_name, col_type, col_size);
+				int pkSeq = pkMap.getOrDefault(col_name.toUpperCase(), 0);
+				boolean nullable = md.isNullable(i) == ResultSetMetaData.columnNullable;
+				JDBField field = new JDBField(col_name, col_type, col_size, pkSeq, nullable);
 				fieldNames.addLast(field);
 			}
 

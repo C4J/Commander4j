@@ -32,6 +32,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.LinkedList;
 import java.util.Vector;
+import com.commander4j.util.JUtility;
 
 import com.commander4j.sys.Common;
 
@@ -253,7 +254,7 @@ public class JDBTable
 
 
 	public String getTableName() {
-		return dbTableName;
+		return JUtility.replaceNullStringwithBlank(dbTableName);
 	}
 
 

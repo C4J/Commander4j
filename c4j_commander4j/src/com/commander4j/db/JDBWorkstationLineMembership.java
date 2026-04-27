@@ -211,17 +211,17 @@ public class JDBWorkstationLineMembership {
 
 	public String getLineId()
 	{
-		return db_line_id;
+		return JUtility.replaceNullStringwithBlank(db_line_id);
 	}
 
 	public String getGroupId()
 	{
-		return db_group_id;
+		return JUtility.replaceNullStringwithBlank(db_group_id);
 	}	
 	
 	public String getWorkstationId()
 	{
-		return db_workstation_id;
+		return JUtility.replaceNullStringwithBlank(db_workstation_id);
 	}
 
 	public LinkedList<String> getWorkstationsAssignedtoLine(String line,String group)

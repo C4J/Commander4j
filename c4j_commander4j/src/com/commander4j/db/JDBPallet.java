@@ -737,7 +737,7 @@ public class JDBPallet
 
 	public String getCustomerID()
 	{
-		return dbCustomerID;
+		return JUtility.replaceNullStringwithBlank(dbCustomerID);
 	}
 
 	public Timestamp getDateCreated()
@@ -774,7 +774,7 @@ public class JDBPallet
 
 	public String getEAN()
 	{
-		return dbEAN;
+		return JUtility.replaceNullStringwithBlank(dbEAN);
 	}
 
 	public String getErrorMessage()
@@ -794,7 +794,7 @@ public class JDBPallet
 
 	public String getLocationID()
 	{
-		return dbLocationId;
+		return JUtility.replaceNullStringwithBlank(dbLocationId);
 	}
 
 	public JDBLocation getLocationObj()
@@ -850,7 +850,7 @@ public class JDBPallet
 
 	public String getMHNNumber()
 	{
-		return dbMHNNumber;
+		return JUtility.replaceNullStringwithBlank(dbMHNNumber);
 	}
 
 	public Vector<JDBPallet> getPalletData(PreparedStatement criteria, boolean calcBaseQty)
@@ -985,7 +985,7 @@ public class JDBPallet
 
 	public String getProcessOrder()
 	{
-		return dbProcessOrder;
+		return JUtility.replaceNullStringwithBlank(dbProcessOrder);
 	}
 
 	public JDBProcessOrder getProcessOrderObj(boolean refresh)
@@ -1109,7 +1109,7 @@ public class JDBPallet
 
 	public String getUom()
 	{
-		return dbUom;
+		return JUtility.replaceNullStringwithBlank(dbUom);
 	}
 
 	public String getUpdatedBy()
@@ -1119,7 +1119,7 @@ public class JDBPallet
 
 	public String getVariant()
 	{
-		return dbVariant;
+		return JUtility.replaceNullStringwithBlank(dbVariant);
 	}
 
 	private void initObjects()
@@ -1538,7 +1538,7 @@ public class JDBPallet
 						stmtupdate.setInt(13, getLayersOnPallet());
 						stmtupdate.setTimestamp(14, getBatchExpiry());
 						stmtupdate.setString(15, getCustomerID());
-						stmtupdate.setString(16, JUtility.replaceNullStringwithBlank(getMHNNumber()));
+						stmtupdate.setString(16, getMHNNumber());
 						stmtupdate.setString(17, getDecision());
 						setUpdatedBy(Common.userList.getUser(getSessionID()).getUserId());
 						stmtupdate.setString(18, getUpdatedBy());

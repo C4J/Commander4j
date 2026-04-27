@@ -517,7 +517,7 @@ public class JDBMaterialBatch
 
 	public String getMaterial()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 	public Vector<JDBMaterialBatch> getMaterialBatchData(PreparedStatement criteria)

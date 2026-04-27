@@ -376,7 +376,7 @@ public class JDBPalletSamples
 
 	public String getSSCC()
 	{
-		return dbSSCC;
+		return JUtility.replaceNullStringwithBlank(dbSSCC);
 	}
 
 	public String getSampleComment()

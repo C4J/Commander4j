@@ -261,7 +261,7 @@ public class JDBWTSampleDetail
 
 	public String getSamplePoint()
 	{
-		return dbSamplePoint;
+		return JUtility.replaceNullStringwithBlank(dbSamplePoint);
 	}
 
 	public ResultSet getSamplePointDataResultSet() {
@@ -355,7 +355,7 @@ public class JDBWTSampleDetail
 
 	public String getSampleWeightUom()
 	{
-		return dbSampleWeightUom;
+		return JUtility.replaceNullStringwithBlank(dbSampleWeightUom);
 	}
 
 	private String getSessionID()

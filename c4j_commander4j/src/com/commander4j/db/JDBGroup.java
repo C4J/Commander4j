@@ -32,6 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
+import com.commander4j.util.JUtility;
 
 import org.apache.logging.log4j.Logger;
 
@@ -185,7 +186,7 @@ public class JDBGroup
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public String getErrorMessage()
@@ -195,7 +196,7 @@ public class JDBGroup
 
 	public String getGroupId()
 	{
-		return dbGroupId;
+		return JUtility.replaceNullStringwithBlank(dbGroupId);
 	}
 
 	public LinkedList<String> getGroupIds()

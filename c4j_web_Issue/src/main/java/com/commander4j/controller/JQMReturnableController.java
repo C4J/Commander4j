@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 
-import org.apache.catalina.connector.Response;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JQMReturnableDB;
@@ -22,35 +21,33 @@ public class JQMReturnableController extends HttpServlet
 {
 
 	private static final long serialVersionUID = 6266031476649351904L;
+	private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMReturnableController.class);
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
 
 		request.getSession();
-		
+
 		logger.debug("doGet");
-		
+
 		JQMReturnableDB tdb = new JQMReturnableDB(Common.selectedHostID, request.getSession().getId());
 		LinkedList<JQMReturnableEntity> returnable = new LinkedList<JQMReturnableEntity>();
-		
-		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-		JURL url = new JURL(request);
 
-		String sscc = url.getParameterVariable(request, "sscc");
+		String sscc = JURL.getParameter(request, "sscc");
 
 		String reply = "";
 
 		if ((sscc.equals("") == false))
 		{
 			returnable = tdb.getReturnableBySSCC(sscc);
-			reply = gson.toJson(returnable);
-			response.setStatus(Response.SC_ACCEPTED);
+			reply = GSON.toJson(returnable);
+			response.setStatus(HttpServletResponse.SC_OK);
 		}
 		else
 		{
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
-			reply = gson.toJson("Invalid URL - enabled or SSCC invalid");
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			reply = GSON.toJson("Invalid URL - enabled or SSCC invalid");
 		}
 
 		response.setContentType("application/json");

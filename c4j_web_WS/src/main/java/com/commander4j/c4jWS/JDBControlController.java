@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.apache.catalina.connector.Response;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JURL;
@@ -56,7 +55,7 @@ public class JDBControlController extends HttpServlet
 		}
 		else
 		{
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			reply = gson.toJson("Invalid URL - systemKey invalid");
 		}
 
@@ -94,7 +93,7 @@ public class JDBControlController extends HttpServlet
 
 		if ((controlEntity.getSystemKey().equals("") == true) || (controlEntity.getKeyValue().equals("") == true) || (controlEntity.getDescription().equals("") == true))
 		{
-			response.setStatus(Response.SC_NOT_ACCEPTABLE);
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 			reply = "Missing values, body must contain, systemKey,keyValue and description.\n"+gson.toJson(controlEntity);
 		}
 		else

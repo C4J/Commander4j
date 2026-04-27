@@ -30,6 +30,7 @@ package com.commander4j.db;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import com.commander4j.util.JUtility;
 
 import org.apache.logging.log4j.Logger;
 
@@ -206,12 +207,12 @@ public class JDBMenus
 
 	public String getMenuId()
 	{
-		return dbMenuId;
+		return JUtility.replaceNullStringwithBlank(dbMenuId);
 	}
 
 	public String getModuleId()
 	{
-		return dbModuleId;
+		return JUtility.replaceNullStringwithBlank(dbModuleId);
 	}
 
 	public int getSequenceId()

@@ -212,17 +212,17 @@ public class JDBPrinterLineMembership
 
 	public String getLineId()
 	{
-		return db_line_id;
+		return JUtility.replaceNullStringwithBlank(db_line_id);
 	}
 
 	public String getGroupId()
 	{
-		return db_group_id;
+		return JUtility.replaceNullStringwithBlank(db_group_id);
 	}
 
 	public String getPrinterId()
 	{
-		return db_printer_id;
+		return JUtility.replaceNullStringwithBlank(db_printer_id);
 	}
 
 	public LinkedList<JDBListData> getPrintersAssignedtoLine(String line, String group)

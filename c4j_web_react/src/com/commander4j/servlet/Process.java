@@ -46,8 +46,8 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 	private static final long serialVersionUID = 1;
 	private String xmlfilename;
 	private String logfilename;
-	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(Process.class);
-	private JEANBarcode bcode;
+	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(Process.class);
+	private transient JEANBarcode bcode;
 	private boolean bcodeLoaded = false;
 	private Integer despatchListSize = 8;
 
@@ -420,11 +420,11 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 				subscript = "[" + String.valueOf(checkedIndex) + "]";
 			}
 			logger.debug("subscript=" + subscript);
-			despatchIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() {document.despatchSelect.elements[\"despatchNo\"]" + subscript + ".focus(); } " + "</script>";
+			despatchIndexFocus = "<script>" + " function focusIt() {document.despatchSelect.elements[\"despatchNo\"]" + subscript + ".focus(); } " + "</script>";
 		}
 		else
 		{
-			despatchIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() {document.despatchSelect.buttonAmend.focus(); } " + "</script>";
+			despatchIndexFocus = "<script>" + " function focusIt() {document.despatchSelect.buttonAmend.focus(); } " + "</script>";
 		}
 		session.setAttribute("despatchIndexFocus", despatchIndexFocus);
 
@@ -683,8 +683,6 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		Common.hostList.disconnectAll();
 		Common.userList.clear();
 		JHost.deRegisterDrivers();
-		logger = null;
-
 	}
 
 	protected synchronized void displayHosts(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
@@ -783,11 +781,11 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		// if (checkedIndex >= 0)
 		if (checkedIndex > 0)
 		{
-			hostIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() {document.hosts.elements[\"selectedHost\"][" + String.valueOf(checkedIndex) + "].focus(); } " + "</script>";
+			hostIndexFocus = "<script>" + " function focusIt() {document.hosts.elements[\"selectedHost\"][" + String.valueOf(checkedIndex) + "].focus(); } " + "</script>";
 		}
 		else
 		{
-			hostIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() { document.hosts.buttonSubmit.focus(); } " + "</script>";
+			hostIndexFocus = "<script>" + " function focusIt() { document.hosts.buttonSubmit.focus(); } " + "</script>";
 		}
 		session.setAttribute("hostIndexFocus", hostIndexFocus);
 
@@ -811,11 +809,11 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		String menuIndexFocus = "";
 		if (checkedIndex >= 0)
 		{
-			menuIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() {document.menus.elements[\"selectedMenuOption\"][" + String.valueOf(checkedIndex) + "].focus(); } " + "</script>";
+			menuIndexFocus = "<script>" + " function focusIt() {document.menus.elements[\"selectedMenuOption\"][" + String.valueOf(checkedIndex) + "].focus(); } " + "</script>";
 		}
 		else
 		{
-			menuIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() { document.menus.buttonSubmit.focus(); } " + "</script>";
+			menuIndexFocus = "<script>" + " function focusIt() { document.menus.buttonSubmit.focus(); } " + "</script>";
 		}
 		session.setAttribute("menuIndexFocus", menuIndexFocus);
 
@@ -862,8 +860,8 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 			}
 			else
 			{
-				button = JUtility.replaceNullObjectwithBlank((String) request.getParameter("button"));
-				formName = JUtility.replaceNullObjectwithBlank((String) request.getParameter("formName"));
+				button = JUtility.replaceNullStringwithBlank(request.getParameter("button"));
+				formName = JUtility.replaceNullStringwithBlank(request.getParameter("formName"));
 
 				String testHost = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "selectedHost"));
 				if ((testHost.equals("") == true) & (formName.equals("hosts.jsp") == false) & (formName.equals("sessionTimeout.jsp") == false) & (formName.equals("index.jsp") == false))
