@@ -4,10 +4,12 @@
     <SplashScreen>Y</SplashScreen>
     <UpdateURL/>
     <UpdateMODE>MANUAL</UpdateMODE>
-    <UpdateDIR></UpdateDIR>
-    <hostVersion>3</hostVersion>
+    <UpdateDIR/>
+    <hostVersion>1</hostVersion>
     <hostUpdatePath/>
     <SetupPassword/>
+    <singleInstance>N</singleInstance>
+    <singleInstancePort>16309</singleInstancePort>
     <Site Number="1">
         <Enabled>Y</Enabled>
         <UniqueID>service</UniqueID>
@@ -32,16 +34,23 @@
             <jdbcPort>3306</jdbcPort>
             <jdbcSID/>
             <jdbcDatabase>C4J_Demo_Database</jdbcDatabase>
+            <jdbcDatabaseEncrypt>N</jdbcDatabaseEncrypt>
+            <jdbcDatabaseIntegratedSecurity>N</jdbcDatabaseIntegratedSecurity>
+            <jdbcDatabaseTrustServerCertificate>N</jdbcDatabaseTrustServerCertificate>
+            <jdbcDatabaseLoginTimeoutEnabled>Y</jdbcDatabaseLoginTimeoutEnabled>
+            <jdbcDatabaseLoginTimeout>5</jdbcDatabaseLoginTimeout>
+            <jdbcDatabaseSocketTimeoutEnabled>Y</jdbcDatabaseSocketTimeoutEnabled>
+            <jdbcDatabaseSocketTimeout>0</jdbcDatabaseSocketTimeout>
         </DatabaseParameters>
     </Site>
     <Site Number="2">
         <Enabled>Y</Enabled>
-        <UniqueID/>
+        <UniqueID>8c7f7250-dbf0-4010-b468-afb074495ed7</UniqueID>
         <Description>SQL Server Example Only</Description>
         <URL>http://</URL>
         <DatabaseDriver>
             <jdbcDriver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbcDriver>
-            <jdbcConnectString>jdbc:sqlserver://192.168.1.100:1433;databaseName=C4J_Demo_Database;selectMethod=direct</jdbcConnectString>
+            <jdbcConnectString>jdbc:sqlserver://192.168.1.100:1433;databaseName=C4J_Demo_Database;selectMethod=direct;encrypt=false;trustServerCertificate=false;integratedSecurity=false;loginTimeout=30;socketTimeout=0;</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>top</jdbcDatabaseSelectLimit>
             <jdbcDatabaseTimeZone/>
@@ -58,11 +67,18 @@
             <jdbcPort>1433</jdbcPort>
             <jdbcSID/>
             <jdbcDatabase>C4J_Demo_Database</jdbcDatabase>
+            <jdbcDatabaseEncrypt>N</jdbcDatabaseEncrypt>
+            <jdbcDatabaseIntegratedSecurity>N</jdbcDatabaseIntegratedSecurity>
+            <jdbcDatabaseTrustServerCertificate>N</jdbcDatabaseTrustServerCertificate>
+            <jdbcDatabaseLoginTimeoutEnabled>Y</jdbcDatabaseLoginTimeoutEnabled>
+            <jdbcDatabaseLoginTimeout>30</jdbcDatabaseLoginTimeout>
+            <jdbcDatabaseSocketTimeoutEnabled>Y</jdbcDatabaseSocketTimeoutEnabled>
+            <jdbcDatabaseSocketTimeout>0</jdbcDatabaseSocketTimeout>
         </DatabaseParameters>
     </Site>
     <Site Number="3">
         <Enabled>Y</Enabled>
-        <UniqueID/>
+        <UniqueID>199badbc-c90e-4649-b6ad-c1aabef68b14</UniqueID>
         <Description>Oracle Example Only</Description>
         <URL>http://</URL>
         <DatabaseDriver>
@@ -84,6 +100,13 @@
             <jdbcPort>1521</jdbcPort>
             <jdbcSID>orcl</jdbcSID>
             <jdbcDatabase/>
+            <jdbcDatabaseEncrypt>N</jdbcDatabaseEncrypt>
+            <jdbcDatabaseIntegratedSecurity>N</jdbcDatabaseIntegratedSecurity>
+            <jdbcDatabaseTrustServerCertificate>N</jdbcDatabaseTrustServerCertificate>
+            <jdbcDatabaseLoginTimeoutEnabled>N</jdbcDatabaseLoginTimeoutEnabled>
+            <jdbcDatabaseLoginTimeout>0</jdbcDatabaseLoginTimeout>
+            <jdbcDatabaseSocketTimeoutEnabled>N</jdbcDatabaseSocketTimeoutEnabled>
+            <jdbcDatabaseSocketTimeout>0</jdbcDatabaseSocketTimeout>
         </DatabaseParameters>
     </Site>
 </Hosts>
