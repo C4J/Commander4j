@@ -37,7 +37,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.text.WordUtils;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBOperatives;

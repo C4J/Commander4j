@@ -3,7 +3,7 @@ package com.commander4j.email;
 import java.io.File;
 import java.util.Properties;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;

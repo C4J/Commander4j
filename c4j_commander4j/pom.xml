@@ -35,19 +35,28 @@
                 </configuration>
             </plugin>
 
-            <!-- Useful for this downloader POM: prevents xml-apis from being copied into target/lib -->
+            <!-- Useful for this downloader POM: prevents jars not present in lib/ from being copied into target/dependency -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.10.0</version>
                 <configuration>
-                    <excludeArtifactIds>xml-apis</excludeArtifactIds>
+                    <excludeArtifactIds>xml-apis,ant-antlr,ant-junit,ivy</excludeArtifactIds>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.groovy/groovy
+             Single core jar; lib/ does not need the rest of the groovy-all aggregator. -->
+        <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>4.0.31</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- Source: https://mvnrepository.com/artifact/commons-logging/commons-logging -->
         <dependency>
@@ -154,19 +163,19 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Source: https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-text</artifactId>
-            <version>1.15.0</version>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- Source: https://mvnrepository.com/artifact/commons-lang/commons-lang -->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.15.0</version>
             <scope>compile</scope>
         </dependency>
 
@@ -564,6 +573,40 @@
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna-platform</artifactId>
             <version>${jna.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Pin newer versions matching lib/; otherwise transitive resolution downgrades them. -->
+
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.5.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.5.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.28.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.20.0</version>
             <scope>compile</scope>
         </dependency>
 

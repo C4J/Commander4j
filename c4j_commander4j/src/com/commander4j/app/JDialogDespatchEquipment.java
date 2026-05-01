@@ -43,7 +43,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.commander4j.db.JDBDespatch;
 import com.commander4j.db.JDBDespatchEquipmentTypes;

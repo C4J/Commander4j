@@ -8,9 +8,9 @@ cd "$BASEDIR"
 file="./.install4j/jre.bundle/Contents/Home/bin/java"
 if [ -f "$file" ]
 then
-	./.install4j/jre.bundle/Contents/Home/bin/java -classpath commander4j.jar:./lib/devonly/* com.commander4j.clone.Clone
+	./.install4j/jre.bundle/Contents/Home/bin/java --enable-native-access=ALL-UNNAMED -classpath commander4j.jar:./lib/devonly/* com.commander4j.clone.Clone
 else
-	java -classpath commander4j.jar:./lib/devonly/* com.commander4j.clone.Clone
+	java --enable-native-access=ALL-UNNAMED -classpath commander4j.jar:./lib/devonly/* com.commander4j.clone.Clone
 fi
 
 exit

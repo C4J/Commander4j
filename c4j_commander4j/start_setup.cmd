@@ -13,6 +13,6 @@ SET PATH=%PATH%;.\jre\bin
 
 :end
 
-java -classpath commander4j.jar;.\lib\devonly\i4jruntime.jar com.commander4j.cfg.Setup
+java --enable-native-access=ALL-UNNAMED -classpath commander4j.jar;.\lib\devonly\i4jruntime.jar com.commander4j.cfg.Setup
 
 exit

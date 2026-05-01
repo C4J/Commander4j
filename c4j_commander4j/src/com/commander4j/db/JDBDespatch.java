@@ -34,7 +34,8 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.bar.JEANBarcode;
@@ -225,7 +226,7 @@ public class JDBDespatch
 
 		// Replace Despatch No
 
-		temp = StringUtils.replace(temp, "%1", "'" + despatchNo + "'");
+		temp = Strings.CS.replace(temp, "%1", "'" + despatchNo + "'");
 
 		// Replace Valid Pallet Status List
 
@@ -245,7 +246,7 @@ public class JDBDespatch
 			}
 		}
 
-		temp = StringUtils.replace(temp, "%2", l);
+		temp = Strings.CS.replace(temp, "%2", l);
 
 		// Replace Valid Batch Status List
 
@@ -265,7 +266,7 @@ public class JDBDespatch
 			}
 		}
 
-		temp = StringUtils.replace(temp, "%3", l);
+		temp = Strings.CS.replace(temp, "%3", l);
 
 		PreparedStatement stmt = null;
 		ResultSet rs;

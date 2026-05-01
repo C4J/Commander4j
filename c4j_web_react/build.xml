@@ -4,11 +4,11 @@
     <!-- General properties -->
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="21"/>
-    <property name="source" value="21"/>
+    <property name="target" value="25"/>
+    <property name="source" value="25"/>
     
     <!-- Custom property for Tomcat libraries -->
-    <property name="tomcat.lib.dir" value="../../../../tools/apache-tomcat-11.0.7 (Java 21)/lib"/>
+    <property name="tomcat.lib.dir" value="../../../../tools/apache-tomcat-11.0.21 (Java 25)/lib"/>
 
     <!-- Classpath declarations -->
     <path id="EAR Libraries.libraryclasspath"/>
