@@ -134,8 +134,8 @@
 			</element>
 			<element kind="textField" uuid="a8b43aae-3f37-4365-8083-b694a882e8db" x="3" y="193" width="430" height="22" fontSize="12.0" hTextAlign="Center">
 				<expression>
-					<![CDATA["(01)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
-"(20)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
+					<![CDATA["(01)"+org.apache.commons.lang3.StringUtils.leftPad($F{PROD_EAN},14,"0") +
+"(20)"+org.apache.commons.lang3.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
 "(15)"+new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
 "(10)"+$F{BATCH_NUMBER}]]>
@@ -164,8 +164,8 @@ new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
 			<element kind="component" uuid="3c48205d-5b30-49d7-bc8b-b52a7564a095" x="10" y="124" width="420" height="85">
 				<component kind="barcode4j:EAN128" moduleWidth="2.0" textPosition="none">
 					<codeExpression>
-						<![CDATA["01"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
-"20"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
+						<![CDATA["01"+org.apache.commons.lang3.StringUtils.leftPad($F{PROD_EAN},14,"0") +
+"20"+org.apache.commons.lang3.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
 "15"+new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
 "10"+$F{BATCH_NUMBER}]]>
@@ -178,7 +178,7 @@ new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
 			</element>
 			<element kind="textField" uuid="e73ce261-baa3-4501-ab1b-e1c6e5e50bfd" x="65" y="78" width="153" height="16" fontSize="12.0" pattern="" blankWhenNull="true">
 				<expression>
-					<![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0")]]>
+					<![CDATA[org.apache.commons.lang3.StringUtils.leftPad($F{PROD_EAN},14,"0")]]>
 				</expression>
 			</element>
 			<element kind="staticText" uuid="b7220c3c-6787-493d-8448-df69b6e79ee8" x="0" y="78" width="61" height="16" fontSize="12.0">
@@ -193,7 +193,7 @@ new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
 			</element>
 			<element kind="textField" uuid="f05439b0-234e-4c60-9da7-00dea3c59830" x="101" y="62" width="113" height="16" fontSize="12.0" blankWhenNull="true">
 				<expression>
-					<![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{BASE_EAN},14,"0")]]>
+					<![CDATA[org.apache.commons.lang3.StringUtils.leftPad($F{BASE_EAN},14,"0")]]>
 				</expression>
 			</element>
 			<element kind="staticText" uuid="28a27b45-3c4e-4a2a-8d6a-a159521e2af1" x="214" y="78" width="80" height="16" fontSize="12.0" hTextAlign="Right">

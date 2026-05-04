@@ -1079,11 +1079,11 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 			}
 		}
 	}
-	
+
 	private String getHostPath()
 	{
 		String result = "";
-		
+
 		String catalinaHome = System.getProperty("catalina.home");
 		String contextPath = getServletContext().getContextPath().replace("/", "");
 
@@ -1102,7 +1102,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		}
 
 		configPath = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath + File.separator + "hosts.xml");
-		
+
 		result = configPath.getAbsolutePath();
 
 		if (configPath.exists() == false)
@@ -1111,15 +1111,15 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 			try
 			{
 				File source = new File(getServletContext().getRealPath("/xml/hosts/hosts.xml"));
-				
+
 				File destination = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath);
-				
+
 				FileUtils.copyFileToDirectory(source, destination);
 
 				source = new File(getServletContext().getRealPath("/xml/hosts/hosts.dtd"));
-				
+
 				FileUtils.copyFileToDirectory(source, destination);
-				
+
 			}
 			catch (IOException e)
 			{
@@ -1938,7 +1938,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 
 		HttpSession session = request.getSession();
 
-		if (button.equals("Select"))
+		if (button.equals("Submit"))
 		{
 			saveData(session, "defaultPrinter", request.getParameter("selectedPrintQueue"), true);
 			session.setAttribute("defaultPrinter", request.getParameter("selectedPrintQueue"));

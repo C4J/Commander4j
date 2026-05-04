@@ -20,6 +20,7 @@
         <batik.version>1.19</batik.version>
         <log4j.version>2.25.3</log4j.version>
         <jaxb.version>4.0.7</jaxb.version>
+        <jaxb.api.version>4.0.5</jaxb.api.version>
         <ant.version>1.10.15</ant.version>
         <jna.version>5.18.1</jna.version>
     </properties>
@@ -82,12 +83,28 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Source: https://mvnrepository.com/artifact/org.cups4j/cups4j -->
+        <!-- c4j_cups4j (jakarta fork of cups4j 0.8.1) is managed outside Maven;
+             jar is kept directly in lib/. Its transitive HTTP client dep is
+             declared below so Maven still pulls it into target/dependency. -->
+
+        <!-- Source: https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
         <dependency>
-            <groupId>org.cups4j</groupId>
-            <artifactId>cups4j</artifactId>
-            <version>0.8.0</version>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <version>5.6</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- Explicit httpcore5 overrides to match c4j_middleware4j (httpclient5:5.6 transitively pulls httpcore5:5.4) -->
+        <dependency>
+            <groupId>org.apache.httpcomponents.core5</groupId>
+            <artifactId>httpcore5</artifactId>
+            <version>5.4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents.core5</groupId>
+            <artifactId>httpcore5-h2</artifactId>
+            <version>5.4.2</version>
         </dependency>
 
         <!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
@@ -111,6 +128,14 @@
             <groupId>jaxen</groupId>
             <artifactId>jaxen</artifactId>
             <version>2.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>${jaxb.api.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -163,13 +188,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Source: https://mvnrepository.com/artifact/commons-lang/commons-lang -->
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-            <scope>compile</scope>
-        </dependency>
 
         <!-- Source: https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
         <dependency>
@@ -372,50 +390,10 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-javaflow -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-javaflow</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-data-adapters -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-data-adapters</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-pdf -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-pdf</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-charts -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-charts</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-excel-poi -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-excel-poi</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-javascript -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-javascript</artifactId>
             <version>${jasperreports.version}</version>
             <scope>compile</scope>
         </dependency>
@@ -436,74 +414,10 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-json -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-json</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-jdt -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-jdt</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-chart-themes -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-chart-themes</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-annotation-processors -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-annotation-processors</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-chart-customizers -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-chart-customizers</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-hibernate -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-hibernate</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-jaxen -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-jaxen</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-spring -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-spring</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-barbecue -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-barbecue</artifactId>
             <version>${jasperreports.version}</version>
             <scope>compile</scope>
         </dependency>
@@ -525,22 +439,6 @@
             <groupId>com.singingbush</groupId>
             <artifactId>barcode4j</artifactId>
             <version>2.4.0</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-data-adapters-http -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-data-adapters-http</artifactId>
-            <version>${jasperreports.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Source: https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-servlets -->
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-servlets</artifactId>
-            <version>${jasperreports.version}</version>
             <scope>compile</scope>
         </dependency>
 

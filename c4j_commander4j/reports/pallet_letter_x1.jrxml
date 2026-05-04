@@ -59,44 +59,44 @@
 				<text><![CDATA[CONTENT]]></text>
 			</element>
 			<element kind="textField" uuid="cd5d5f75-3aff-4f00-b13b-b9f15246653c" x="18" y="241" width="296" height="52" fontSize="32.0" pattern="&quot;00000000000000&quot;">
-				<expression><![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")]]></expression>
+				<expression><![CDATA[org.apache.commons.lang3.StringUtils.leftPad($F{EAN},14,"0")]]></expression>
 			</element>
 			<element kind="staticText" uuid="8f3fecce-de97-4052-8d87-5946e7312db3" x="320" y="221" width="71" height="20" fontSize="14.0" hTextAlign="Center">
 				<text><![CDATA[VARIANT]]></text>
 			</element>
 			<element kind="textField" uuid="2da26af8-e46c-453c-bb38-259097ec082b" x="320" y="240" width="71" height="52" fontSize="32.0" pattern="00" hTextAlign="Center">
-				<expression><![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")]]></expression>
+				<expression><![CDATA[org.apache.commons.lang3.StringUtils.leftPad($F{VARIANT},2,"0")]]></expression>
 			</element>
 			<element kind="textField" uuid="62563590-56bb-42d5-904b-99c29172cb33" x="522" y="13" width="56" height="40" fontSize="32.0" hTextAlign="Right">
 				<expression><![CDATA[$P{LABEL_NO}]]></expression>
 			</element>
 			<element kind="component" uuid="c1a404ad-a0d4-4ee0-941d-7e348fbddbe0" x="72" y="605" width="433" height="136">
 				<component kind="barcode4j:EAN128" moduleWidth="3.0" textPosition="none" checksumMode="auto">
-					<codeExpression><![CDATA["00"+org.apache.commons.lang.StringUtils.leftPad($F{SSCC},18,"0")]]></codeExpression>
+					<codeExpression><![CDATA["00"+org.apache.commons.lang3.StringUtils.leftPad($F{SSCC},18,"0")]]></codeExpression>
 				</component>
 			</element>
 			<element kind="component" uuid="c9baccad-4715-4505-940f-e06c71313117" x="57" y="458" width="498" height="120">
 				<component kind="barcode4j:EAN128" moduleWidth="1.5" textPosition="none" checksumMode="auto">
-					<codeExpression><![CDATA["02"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
-"20"+org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")+
+					<codeExpression><![CDATA["02"+org.apache.commons.lang3.StringUtils.leftPad($F{EAN},14,"0")+
+"20"+org.apache.commons.lang3.StringUtils.leftPad($F{VARIANT},2,"0")+
 "15"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
-"37"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") + "\u00F1" +
+"37"+org.apache.commons.lang3.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") + "\u00F1" +
 "10" + $F{BATCH_NUMBER}]]></codeExpression>
 				</component>
 			</element>
 			<element kind="textField" uuid="0bc6cfc1-ca09-46bc-821d-996e77114361" x="47" y="578" width="508" height="20" fontSize="14.0" hTextAlign="Center">
-				<expression><![CDATA["(02)"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
-"(20)"+org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")+
+				<expression><![CDATA["(02)"+org.apache.commons.lang3.StringUtils.leftPad($F{EAN},14,"0")+
+"(20)"+org.apache.commons.lang3.StringUtils.leftPad($F{VARIANT},2,"0")+
 "(15)"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
-"(37)"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") +
+"(37)"+org.apache.commons.lang3.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") +
 "(10)" + $F{BATCH_NUMBER}]]></expression>
 			</element>
 			<element kind="textField" uuid="750ddb65-a340-428a-a50a-21732a07ec9c" x="85" y="738" width="420" height="22" fontSize="16.0" hTextAlign="Center" vTextAlign="Top">
-				<expression><![CDATA["(00)"+org.apache.commons.lang.StringUtils.leftPad($F{SSCC},18,"0")]]></expression>
+				<expression><![CDATA["(00)"+org.apache.commons.lang3.StringUtils.leftPad($F{SSCC},18,"0")]]></expression>
 			</element>
 			<element kind="textField" uuid="a719fc03-b309-409a-95dc-7c4d9329e58d" x="110" y="158" width="158" height="63" fontSize="44.0" textAdjust="StretchHeight" pattern="">
 				<expression><![CDATA[$F{SSCC}.subSequence( 3, 8 )]]></expression>
@@ -117,7 +117,7 @@ new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 				<text><![CDATA[LAYERS]]></text>
 			</element>
 			<element kind="textField" uuid="7aced5d3-6531-41ef-b20f-2dee88b9a8b3" x="404" y="240" width="92" height="52" fontSize="32.0">
-				<expression><![CDATA[org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0")]]></expression>
+				<expression><![CDATA[org.apache.commons.lang3.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0")]]></expression>
 			</element>
 			<element kind="textField" uuid="690ecd85-59b4-4a15-b7e8-5e1f1be6cb4a" x="505" y="241" width="66" height="50" fontSize="32.0" hTextAlign="Center">
 				<expression><![CDATA[$F{LAYERS}]]></expression>
@@ -134,7 +134,7 @@ new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 				<expression><![CDATA[new SimpleDateFormat("MM").format($F{EXPIRY_DATE})]]></expression>
 			</element>
 			<element kind="textField" uuid="ecd9c6c6-f638-4bab-a00e-5469bb4a90fa" x="435" y="394" width="87" height="46" fontSize="32.0" textAdjust="StretchHeight" pattern="">
-				<expression><![CDATA[org.apache.commons.lang.StringUtils.leftPad(($F{SSCC_EXPIRY_DATE}.getYear()+1900).toString(),4,"0")]]></expression>
+				<expression><![CDATA[org.apache.commons.lang3.StringUtils.leftPad(($F{SSCC_EXPIRY_DATE}.getYear()+1900).toString(),4,"0")]]></expression>
 			</element>
 			<element kind="staticText" uuid="552b10dc-22bc-403e-8b09-245d0cb67d3e" x="334" y="374" width="198" height="20" fontSize="16.0">
 				<text><![CDATA[BEST BEFORE  (MM YYYY)]]></text>

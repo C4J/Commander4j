@@ -63,11 +63,11 @@
 				<text><![CDATA[Content]]></text>
 			</element>
 			<element kind="textField" uuid="e5635338-bafc-4966-955e-f0e4d216a09a" x="16" y="316" width="296" height="52" fontSize="32.0" pattern="&quot;00000000000000&quot;" hTextAlign="Center">
-				<expression><![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")]]></expression>
+				<expression><![CDATA[org.apache.commons.lang3.StringUtils.leftPad($F{EAN},14,"0")]]></expression>
 			</element>
 			<element kind="component" uuid="9b0b8d66-17d2-4d76-b4e1-b88d818e5d83" x="21" y="640" width="555" height="140">
 				<component kind="barcode4j:EAN128" moduleWidth="2.2" textPosition="none">
-					<codeExpression><![CDATA["00"+org.apache.commons.lang.StringUtils.leftPad($F{SSCC},18,"0") +
+					<codeExpression><![CDATA["00"+org.apache.commons.lang3.StringUtils.leftPad($F{SSCC},18,"0") +
 "13"+new SimpleDateFormat("yy").format($F{DATE_OF_MANUFACTURE})+
 new SimpleDateFormat("MM").format($F{DATE_OF_MANUFACTURE})+
 new SimpleDateFormat("dd").format($F{DATE_OF_MANUFACTURE})+
@@ -76,18 +76,18 @@ new SimpleDateFormat("dd").format($F{DATE_OF_MANUFACTURE})+
 			</element>
 			<element kind="component" uuid="6008621a-db15-4fef-94da-eae8e0389d95" x="40" y="473" width="536" height="125">
 				<component kind="barcode4j:EAN128" moduleWidth="2.2" textPosition="none">
-					<codeExpression><![CDATA["02"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
-"37"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") + "\u00F1" +
+					<codeExpression><![CDATA["02"+org.apache.commons.lang3.StringUtils.leftPad($F{EAN},14,"0")+
+"37"+org.apache.commons.lang3.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") + "\u00F1" +
 "90"+"000000"]]></codeExpression>
 				</component>
 			</element>
 			<element kind="textField" uuid="006bb1c6-6a09-4be0-b4e9-7991f6640768" x="21" y="598" width="553" height="20" fontSize="14.0" hTextAlign="Center">
-				<expression><![CDATA["(02)"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
-"(37)"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") +
+				<expression><![CDATA["(02)"+org.apache.commons.lang3.StringUtils.leftPad($F{EAN},14,"0")+
+"(37)"+org.apache.commons.lang3.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") +
 "(90)"+"000000"]]></expression>
 			</element>
 			<element kind="textField" uuid="da730715-0f79-4b56-a899-04bd06086c46" x="18" y="780" width="558" height="22" fontSize="16.0" hTextAlign="Center" vTextAlign="Top">
-				<expression><![CDATA["(00)"+org.apache.commons.lang.StringUtils.leftPad($F{SSCC},18,"0")+
+				<expression><![CDATA["(00)"+org.apache.commons.lang3.StringUtils.leftPad($F{SSCC},18,"0")+
 "(13)"+new SimpleDateFormat("yy").format($F{DATE_OF_MANUFACTURE})+
 new SimpleDateFormat("MM").format($F{DATE_OF_MANUFACTURE})+
 new SimpleDateFormat("dd").format($F{DATE_OF_MANUFACTURE})+
@@ -109,7 +109,7 @@ new SimpleDateFormat("dd").format($F{DATE_OF_MANUFACTURE})+
 				<text><![CDATA[Pallet Quantity]]></text>
 			</element>
 			<element kind="textField" uuid="1e9f211a-3adc-4db9-964d-491c909b8b5f" x="465" y="316" width="92" height="52" fontSize="32.0">
-				<expression><![CDATA[org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0")]]></expression>
+				<expression><![CDATA[org.apache.commons.lang3.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0")]]></expression>
 			</element>
 			<element kind="line" uuid="9de2a7e1-e43d-410a-b9b0-a30c357a09ad" x="16" y="378" width="560" height="1"/>
 			<element kind="staticText" uuid="f858bcab-fd6a-4c6d-8533-8cb078c45a5f" x="14" y="230" width="162" height="20" fontSize="12.0">
