@@ -18,7 +18,7 @@
 
         <jasperreports.version>7.0.6</jasperreports.version>
         <batik.version>1.19</batik.version>
-        <log4j.version>2.25.3</log4j.version>
+        <log4j.version>2.25.4</log4j.version>
         <jaxb.version>4.0.7</jaxb.version>
         <jaxb.api.version>4.0.5</jaxb.api.version>
         <ant.version>1.10.15</ant.version>
@@ -91,11 +91,11 @@
         <dependency>
             <groupId>org.apache.httpcomponents.client5</groupId>
             <artifactId>httpclient5</artifactId>
-            <version>5.6</version>
+            <version>5.6.1</version>
             <scope>compile</scope>
         </dependency>
 
-        <!-- Explicit httpcore5 overrides to match c4j_middleware4j (httpclient5:5.6 transitively pulls httpcore5:5.4) -->
+        <!-- Explicit httpcore5 overrides to match c4j_middleware4j (httpclient5:5.6.1 transitively pulls httpcore5:5.4) -->
         <dependency>
             <groupId>org.apache.httpcomponents.core5</groupId>
             <artifactId>httpcore5</artifactId>
