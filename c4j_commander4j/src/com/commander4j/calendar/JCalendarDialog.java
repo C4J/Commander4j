@@ -38,6 +38,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 
@@ -76,6 +77,8 @@ public class JCalendarDialog extends JDialog
 	
 	public JCalendarDialog(JDateControl datetimecontrol)
 	{
+		super(SwingUtilities.getWindowAncestor(datetimecontrol));
+
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent e) {
 			}

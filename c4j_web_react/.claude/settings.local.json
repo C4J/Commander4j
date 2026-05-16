@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/usr/libexec/java_home -V)",
+      "Bash(ant -version)",
+      "Bash(JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-21.jdk/Contents/Home ant clean build)"
+    ]
+  }
+}
