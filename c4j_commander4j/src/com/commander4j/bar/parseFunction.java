@@ -51,6 +51,7 @@ public class parseFunction
 	private String expiryDateMode = "";
 	private static String incorrectNoParams = " [Incorrect number of parameters]";
 	private static String incorrectDateTimeFormat = " [Incorrect date/time format]";
+	private org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(parseFunction.class);
 
 	ResultSetMetaData rsMetaData;
 	ResultSet rs;
@@ -109,51 +110,85 @@ public class parseFunction
 		{ "<SUBTR_LPAD(", "<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(",  "<JULIAN_YJJJ(","<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(", "<PRODDATE(", "<DATE_CREATED(",
 				"<PALLET_WEIGHT_TEXT(", "<PALLET_WEIGHT_BARCODE(" };
 
-		// For each expression above
-		for (int x = 0; x < Functions.length; x++)
+		// Resolve calls innermost-first. On each pass we locate the function call
+		// with the highest start index - it cannot contain another call, so it is
+		// safe to evaluate and its result feeds any enclosing call. Repeating until
+		// none remain lets functions be nested, e.g. <PADLEFT(<SUBSTRING(x,1,3)>,5,0)>.
+		int safety = 5000; // guard so a malformed line can never loop forever
+
+		while (safety-- > 0)
 		{
-
-			while (parseResult.indexOf(Functions[x].toUpperCase()) >= 0)
+			// Find the rightmost (= innermost) "<NAME(" token of any function.
+			int callStart = -1;
+			String token = "";
+			for (int x = 0; x < Functions.length; x++)
 			{
-				// Can we find the expression in the data passed to the function
-				// ?
-				int functionStartPos = inputLine.toUpperCase().indexOf(Functions[x].toUpperCase());
-				int bracketStartPos = -1;
-				int bracketEndPos = -1;
-				String functionName = "";
-				String paramString = "";
-				String params[];
-				String fullFunctionDeclaration = "";
-
-				// Was the function name found ?
-				if (functionStartPos >= 0)
+				int pos = parseResult.lastIndexOf(Functions[x]);
+				if (pos > callStart)
 				{
-
-					bracketStartPos = functionStartPos + Functions[x].length();
-
-					// If yes scan for parameters
-					for (int y = bracketStartPos; y < inputLine.length(); y++)
-					{
-						// Check for trailing ) which indicates end of
-						// parameters
-						if (inputLine.substring(y, y + 1).equals(")"))
-						{
-							bracketEndPos = y;
-							functionName = inputLine.substring(functionStartPos + 1, functionStartPos + Functions[x].length() - 1).toUpperCase();
-							fullFunctionDeclaration = inputLine.substring(functionStartPos, bracketEndPos + 2);
-							paramString = inputLine.substring(bracketStartPos, bracketEndPos);
-							params = paramString.split(",");
-							inputLine = inputLine.replace(fullFunctionDeclaration, executeFunction(functionName, params));
-							parseResult = inputLine;
-							break;
-						}
-					}
+					callStart = pos;
+					token = Functions[x];
 				}
 			}
+
+			if (callStart < 0)
+			{
+				break; // no function calls remain
+			}
+
+			int bracketStartPos = callStart + token.length();
+			// The call closes with ")>". Because this call is innermost, its parameters
+			// contain no nested call and (data parentheses were masked to {}/} earlier)
+			// no stray parenthesis, so the first ")>" is its closing marker.
+			int bracketEndPos = parseResult.indexOf(")>", bracketStartPos);
+
+			if (bracketEndPos < 0)
+			{
+				logger.warn("Unterminated function call [" + token + " ... )>] in [" + parseResult + "] - leaving literal");
+				break;
+			}
+
+			String functionName = token.substring(1, token.length() - 1).toUpperCase();
+			String paramString = parseResult.substring(bracketStartPos, bracketEndPos);
+			String[] params = paramString.split(",");
+
+			String value = executeFunction(functionName, params);
+
+			// Protect commas in the result so an enclosing function's split(",") keeps
+			// it as a single argument. Restored alongside the {}/() restore below.
+			value = value.replace(",", "±");
+
+			parseResult = parseResult.substring(0, callStart) + value + parseResult.substring(bracketEndPos + 2);
 		}
+
+		parseResult = parseResult.replace("±", ",");
 		parseResult = parseResult.replace("{", "(");
 		parseResult = parseResult.replace("}", ")");
 		return parseResult;
+	}
+
+	// Bounds-safe substring: clamps from/to into [0, length] so short data returns
+	// what is available instead of throwing an error string onto the label. Matches
+	// the autolab4j engine so shared label templates render identically.
+	private String safeSubstring(String s, int from, int to)
+	{
+		if (from < 0)
+		{
+			from = 0;
+		}
+		if (from > s.length())
+		{
+			from = s.length();
+		}
+		if (to > s.length())
+		{
+			to = s.length();
+		}
+		if (to < from)
+		{
+			to = from;
+		}
+		return s.substring(from, to);
 	}
 
 	private String executeFunction(String functionName, String[] params)
@@ -178,21 +213,7 @@ public class parseFunction
 					target = params[0];
 					start = Integer.valueOf(params[1].toString());
 					end = Integer.valueOf(params[2].toString());
-					size = target.length();
-
-					if (start > size)
-					{
-						result = "";
-					}
-					else
-					{
-						while ((start + end - 1) > size)
-						{
-							end--;
-						}
-
-						result = target.substring(start - 1, start + end - 1);
-					}
+					result = safeSubstring(target, start - 1, start + end - 1);
 				}
 				else
 				{
@@ -213,7 +234,7 @@ public class parseFunction
 					{
 						target = pad + target;
 					}
-					result = target.substring(start - 1, start + end - 1);
+					result = safeSubstring(target, start - 1, start + end - 1);
 				}
 				else
 				{
@@ -229,7 +250,7 @@ public class parseFunction
 				{
 					target = params[0];
 					end = Integer.valueOf(params[1].toString());
-					result = target.substring(0, end);
+					result = safeSubstring(target, 0, end);
 				}
 				else
 				{
@@ -244,7 +265,7 @@ public class parseFunction
 					target = params[0];
 					start = Integer.valueOf(params[1].toString());
 					end = target.length();
-					result = target.substring(target.length() - start, target.length());
+					result = safeSubstring(target, target.length() - start, target.length());
 				}
 				else
 				{
