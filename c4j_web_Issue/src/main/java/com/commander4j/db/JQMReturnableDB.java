@@ -49,35 +49,32 @@ public class JQMReturnableDB
 
 	public LinkedList<JQMReturnableEntity> getReturnableBySSCC(String sscc)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMReturnableEntity> result = new LinkedList<JQMReturnableEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.getReturnableBySSCC")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.getReturnableBySSCC"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, sscc);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				if (rs.getBigDecimal("quantity").compareTo(new BigDecimal(0)) > 0)
+				while (rs.next())
 				{
-					JQMReturnableEntity tent = new JQMReturnableEntity();
+					if (rs.getBigDecimal("quantity").compareTo(new BigDecimal(0)) > 0)
+					{
+						JQMReturnableEntity tent = new JQMReturnableEntity();
 
-					tent.setProcessOrderID(rs.getString("process_order"));
-					tent.setLocationID(rs.getString("location_id"));
-					tent.setQuantity(rs.getBigDecimal("quantity"));
-					tent.setUom(rs.getString("uom"));
+						tent.setProcessOrderID(rs.getString("process_order"));
+						tent.setLocationID(rs.getString("location_id"));
+						tent.setQuantity(rs.getBigDecimal("quantity"));
+						tent.setUom(rs.getString("uom"));
 
-					result.addLast(tent);
+						result.addLast(tent);
+					}
+
 				}
-
 			}
-			rs.close();
-			stmt.close();
 
 		}
 		catch (SQLException e)

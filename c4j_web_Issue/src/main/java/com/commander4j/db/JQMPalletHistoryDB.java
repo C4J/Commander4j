@@ -73,11 +73,10 @@ public class JQMPalletHistoryDB
 			ph.setTransactionDate(JUtility.getSQLDateTime());
 			pal.setLocationID(location_id);
 			ph.setPallet(pal);
-			write_rest(ph,userid);
-		}
-		else
-		{
-
+			if (!write_rest(ph, userid))
+			{
+				txn = 0;
+			}
 		}
 
 		return txn;
@@ -87,11 +86,8 @@ public class JQMPalletHistoryDB
 	{
 		boolean result = false;
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.write")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.write"));
-			
 			stmtupdate.setLong(1, ph.getTransactionRef());
 			stmtupdate.setString(2, ph.getTransactionType());
 			stmtupdate.setString(3, ph.getTransactionSubtype());
@@ -120,10 +116,8 @@ public class JQMPalletHistoryDB
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
-			stmtupdate.close();
 			result = true;
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -134,30 +128,26 @@ public class JQMPalletHistoryDB
 	
 	public LinkedList<JQMPalletHistoryEntity> getPalletHistoryBySSCC(String status)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMPalletHistoryEntity> result = new LinkedList<JQMPalletHistoryEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.selectWithSSCC")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.selectWithSSCC"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, status);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMPalletHistoryEntity tent = new JQMPalletHistoryEntity();
-				
-				tent.getPropertiesFromResultSet(rs);
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMPalletHistoryEntity tent = new JQMPalletHistoryEntity();
 
+					tent.getPropertiesFromResultSet(rs);
+					result.addLast(tent);
+
+				}
 			}
-			
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());

@@ -45,14 +45,14 @@ public class JDialogLicenses extends JDialog
 		super(frame);
 		JDialogLicenses me = this;
 		setTitle("Libraries");
-		setBounds(100, 100, 767, 599);
+		setBounds(100, 100, 802, 599);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
 		JScrollPane4j scrollPane = new JScrollPane4j(JScrollPane4j.List);
-		scrollPane.setBounds(6, 24, 755, 492);
+		scrollPane.setBounds(6, 24, 790, 492);
 		contentPanel.add(scrollPane);
 		list.addMouseListener(new MouseAdapter()
 		{
@@ -79,7 +79,7 @@ public class JDialogLicenses extends JDialog
 		scrollPane.setViewportView(list);
 
 		JPanel4j buttonPane = new JPanel4j();
-		buttonPane.setBounds(6, 520, 755, 39);
+		buttonPane.setBounds(6, 520, 790, 39);
 		contentPanel.add(buttonPane);
 		buttonPane.setLayout(null);
 		{
@@ -92,14 +92,14 @@ public class JDialogLicenses extends JDialog
 					dispose();
 				}
 			});
-			okButton.setBounds(313, 6, 128, 32);
+			okButton.setBounds(331, 6, 128, 32);
 			okButton.setActionCommand("OK");
 			buttonPane.add(okButton);
 			getRootPane().setDefaultButton(okButton);
 		}
 
 		JLabel4j_title lblNewLabel = new JLabel4j_title(JUtility.padString("Library", true, JLicenseInfo.width_description, " ") + JUtility.padString("Version", true, JLicenseInfo.width_version, " ") + "Licence");
-		lblNewLabel.setBounds(6, 5, 727, 16);
+		lblNewLabel.setBounds(6, 5, 790, 16);
 		lblNewLabel.setFont(Common.font_list);
 		contentPanel.add(lblNewLabel);
 

@@ -114,8 +114,6 @@ public class JQMPanelEntity
 	@Override
 	public String toString()
 	{
-		System.out.print("panelID=" + getPanelID().toString());
-		System.out.print("panelDate=" + getPanelDate().toString());
 		return "panelID=" + getPanelID().toString() + "panelDate=" + getPanelDate().toString() + " status=" + getStatus() + " created " + getCreated() + " updated " + getUpdated();
 	}
 }

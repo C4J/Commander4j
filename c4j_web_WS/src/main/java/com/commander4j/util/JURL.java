@@ -1,5 +1,7 @@
 package com.commander4j.util;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 import org.apache.logging.log4j.Logger;
@@ -26,25 +28,41 @@ public class JURL
 
 		logger.debug("Reading request parameters for session "+request.getSession().getId());
 
-		String[] varArray = queryString.split("[&]");
-
-		for (int x = 0; x < varArray.length; x++)
+		if (queryString.isEmpty() == false)
 		{
-			String expression = varArray[x];
-			String[] parts = expression.split("[=]");
+			String[] varArray = queryString.split("[&]");
 
-			if (parts.length == 2)
+			for (int x = 0; x < varArray.length; x++)
 			{
-				String var = parts[0];
-				var = var.replace("%20", " ");
-				String val = parts[1];
-				val = val.replace("%20", " ");
-				resultMap.put(var, val);
-				logger.debug("Found var [" + var + "] with value [" + val + "]");
+				String expression = varArray[x];
+				// Split on the first '=' only so values that themselves contain
+				// '=' (e.g. base64) are preserved.
+				int eq = expression.indexOf('=');
+
+				if (eq > 0)
+				{
+					String var = urlDecode(expression.substring(0, eq));
+					String val = urlDecode(expression.substring(eq + 1));
+					resultMap.put(var, val);
+					logger.debug("Found var [" + var + "] with value [" + val + "]");
+				}
 			}
 		}
 
 		return resultMap;
+	}
+
+	private String urlDecode(String value)
+	{
+		try
+		{
+			return URLDecoder.decode(value, StandardCharsets.UTF_8);
+		}
+		catch (Exception e)
+		{
+			// Malformed escape sequence - fall back to the raw value.
+			return value;
+		}
 	}
 
 	public String getParameterVariable(HttpServletRequest request, String variable)

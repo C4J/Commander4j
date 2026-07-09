@@ -52,31 +52,27 @@ public class JQMProcessOrderDB
 
 	public boolean isValid(String processOrder)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
 
 		logger.debug("isValid :" + processOrder.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrder.isValidProcessOrder")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrder.isValidProcessOrder"));
 			stmt.setString(1, processOrder);
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = true;
+				if (rs.next())
+				{
+					result = true;
+				}
+				else
+				{
+					setErrorMessage("Invalid Process Order");
+				}
 			}
-			else
-			{
-				setErrorMessage("Invalid Process Order");
-			}
-
-			rs.close();
-			stmt.close();
 		}
 		catch (SQLException e)
 		{
@@ -89,32 +85,29 @@ public class JQMProcessOrderDB
 	
 	public JQMProcessOrderEntity getProperties(String processOrder)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
-		JQMProcessOrderEntity result = new JQMProcessOrderEntity();	
+		JQMProcessOrderEntity result = new JQMProcessOrderEntity();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMProcessOrder.getProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMProcessOrder.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, processOrder);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result.setUserProcessOrderID(rs.getString("process_order"));
-				result.setMaterial(rs.getString("material"));
-				result.setDescription(rs.getString("description"));
-				result.setStatus(rs.getString("status"));
-				result.setBomID(rs.getString("recipe_id"));
-				result.setBomVersion(rs.getString("recipe_version"));
-			} else
-			{
-				setErrorMessage("Unknown Process Order [" + processOrder + "]");
+				if (rs.next())
+				{
+					result.setUserProcessOrderID(rs.getString("process_order"));
+					result.setMaterial(rs.getString("material"));
+					result.setDescription(rs.getString("description"));
+					result.setStatus(rs.getString("status"));
+					result.setBomID(rs.getString("recipe_id"));
+					result.setBomVersion(rs.getString("recipe_version"));
+				} else
+				{
+					setErrorMessage("Unknown Process Order [" + processOrder + "]");
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -126,34 +119,31 @@ public class JQMProcessOrderDB
 	
 	public LinkedList<JQMProcessOrderEntity> getProcessOrdersByStatus(String status)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMProcessOrderEntity> result = new LinkedList<JQMProcessOrderEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrder.selectByStatus")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrder.selectByStatus"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, status);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMProcessOrderEntity tent = new JQMProcessOrderEntity();
-				
-				tent.setUserProcessOrderID(rs.getString("process_order"));
-				tent.setMaterial(rs.getString("material"));
-				tent.setDescription(rs.getString("description"));
-				tent.setStatus(rs.getString("status"));
-				tent.setBomID(rs.getString("recipe_id"));
-				tent.setBomVersion(rs.getString("recipe_version"));
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMProcessOrderEntity tent = new JQMProcessOrderEntity();
 
+					tent.setUserProcessOrderID(rs.getString("process_order"));
+					tent.setMaterial(rs.getString("material"));
+					tent.setDescription(rs.getString("description"));
+					tent.setStatus(rs.getString("status"));
+					tent.setBomID(rs.getString("recipe_id"));
+					tent.setBomVersion(rs.getString("recipe_version"));
+					result.addLast(tent);
+
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -164,35 +154,32 @@ public class JQMProcessOrderDB
 	
 	public LinkedList<JQMProcessOrderEntity> getProcessOrdersByStatusByResource(String status,String resource)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMProcessOrderEntity> result = new LinkedList<JQMProcessOrderEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrder.selectByStatusByResource")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrder.selectByStatusByResource"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, status);
 			stmt.setString(2, resource);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMProcessOrderEntity tent = new JQMProcessOrderEntity();
-				
-				tent.setUserProcessOrderID(rs.getString("process_order"));
-				tent.setMaterial(rs.getString("material"));
-				tent.setDescription(rs.getString("description"));
-				tent.setStatus(rs.getString("status"));
-				tent.setBomID(rs.getString("recipe_id"));
-				tent.setBomVersion(rs.getString("recipe_version"));
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMProcessOrderEntity tent = new JQMProcessOrderEntity();
 
+					tent.setUserProcessOrderID(rs.getString("process_order"));
+					tent.setMaterial(rs.getString("material"));
+					tent.setDescription(rs.getString("description"));
+					tent.setStatus(rs.getString("status"));
+					tent.setBomID(rs.getString("recipe_id"));
+					tent.setBomVersion(rs.getString("recipe_version"));
+					result.addLast(tent);
+
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -203,33 +190,30 @@ public class JQMProcessOrderDB
 	
 	public LinkedList<JQMProcessOrderEntity> getProcessOrderByID(String order)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMProcessOrderEntity> result = new LinkedList<JQMProcessOrderEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrder.getProcessOrderProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrder.getProcessOrderProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, order);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMProcessOrderEntity tent = new JQMProcessOrderEntity();
-				
-				tent.setUserProcessOrderID(rs.getString("process_order"));
-				tent.setMaterial(rs.getString("material"));
-				tent.setDescription(rs.getString("description"));
-				tent.setStatus(rs.getString("status"));
-				tent.setBomID(rs.getString("recipe_id"));
-				tent.setBomVersion(rs.getString("recipe_version"));
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMProcessOrderEntity tent = new JQMProcessOrderEntity();
+
+					tent.setUserProcessOrderID(rs.getString("process_order"));
+					tent.setMaterial(rs.getString("material"));
+					tent.setDescription(rs.getString("description"));
+					tent.setStatus(rs.getString("status"));
+					tent.setBomID(rs.getString("recipe_id"));
+					tent.setBomVersion(rs.getString("recipe_version"));
+					result.addLast(tent);
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());

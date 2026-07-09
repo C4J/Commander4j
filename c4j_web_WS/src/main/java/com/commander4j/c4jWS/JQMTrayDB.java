@@ -57,32 +57,28 @@ public class JQMTrayDB
 	{
 		// queryType should be TrayID or TraySequence
 
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
 
 		logger.debug("isValid :" + trayIDorSeq.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.isValid"+queryType)))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.isValid"+queryType));
 			stmt.setLong(1, panelid);
 			stmt.setLong(2, trayIDorSeq);
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = true;
+				if (rs.next())
+				{
+					result = true;
+				}
+				else
+				{
+					setErrorMessage("Invalid Panel/Tray ID");
+				}
 			}
-			else
-			{
-				setErrorMessage("Invalid Panel/Tray ID");
-			}
-
-			rs.close();
-			stmt.close();
 		}
 		catch (SQLException e)
 		{
@@ -99,15 +95,24 @@ public class JQMTrayDB
 		logger.debug("create :" + trayEntity.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.create")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.create"));
-
 			if (trayEntity.getTrayID()== -1)
 			{
 				trayEntity.setTrayID(getNewTrayID());
 			}
+
+			if (trayEntity.getTrayID() <= 0)
+			{
+				// getNewTrayID() failed to allocate (error message already set).
+				// Skip the insert and report failure rather than writing id 0.
+				if (getErrorMessage() == null || getErrorMessage().equals(""))
+				{
+					setErrorMessage("Could not allocate a new Tray ID");
+				}
+				return false;
+			}
+
 			if (trayEntity.getTraySequence()== -1)
 			{
 				trayEntity.setTraySequence(getNextSequenceID(trayEntity.getPanelID()));
@@ -130,7 +135,6 @@ public class JQMTrayDB
 			stmtupdate.clearParameters();
 
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -148,11 +152,8 @@ public class JQMTrayDB
 		logger.debug("update :" + trayEntity.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.updateByTrayID")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.updateByTrayID"));
-
 			trayEntity.setUpdated(JUtility.getSQLDateTime());
 			stmtupdate.setString(1, trayEntity.getDescription());
 			stmtupdate.setTimestamp(2,trayEntity.getUpdated());
@@ -164,7 +165,6 @@ public class JQMTrayDB
 			stmtupdate.clearParameters();
 
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -177,20 +177,21 @@ public class JQMTrayDB
 
 	public long getNewTrayID()
 	{
-		long result = 0;
+		long result = -1;
 		long new_tray_id = 0;
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 		String temp = "";
 		String transaction_ref_str = "1";
 
-		boolean retry = true;
-		@SuppressWarnings("unused")
+		boolean success = false;
 		int counter = 0;
+		final int maxAttempts = 3;
 
 		ctrl.getKeyValueWithDefault("TRAY ID", "0", "Unique Tray Sequence");
 
 		do
 		{
+			counter++;
 			if (ctrl.lockRecord("TRAY ID") == true)
 			{
 				if (ctrl.getProperties("TRAY ID") == true)
@@ -203,42 +204,52 @@ public class JQMTrayDB
 
 					if (ctrl.update())
 					{
-						retry = false;
+						success = true;
 					}
 				}
 			}
-			else
-			{
-				retry = true;
-				counter++;
-			}
 		}
-		while (retry);
+		while ((success == false) && (counter < maxAttempts));
 
-		result = new_tray_id;
+		if (success)
+		{
+			result = new_tray_id;
+			logger.debug("New Tray ID :" + result);
+		}
+		else
+		{
+			// Could not allocate an ID. Roll back to release any row lock taken
+			// by lockRecord so it does not linger on the per-session connection,
+			// and return -1 so create() skips the insert instead of writing id 0.
+			try
+			{
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).rollback();
+			}
+			catch (java.sql.SQLException e)
+			{
+				logger.error("getNewTrayID rollback failed : " + e.getMessage());
+			}
+			setErrorMessage("Could not allocate a new Tray ID (lock timeout)");
+			logger.error("Could not allocate a new Tray ID after " + counter + " attempts");
+		}
 
-		logger.debug("New Tray ID :" + result);
 		return result;
 	}
 
 	public boolean delete(JQMTrayEntity tray)
 	{
-		PreparedStatement stmtupdate;
 		boolean result = false;
 
 		logger.debug("delete : trayID=" + tray.getTrayID().toString()+" panelID="+ tray.getPanelID().toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.deleteby"+tray.getqueryType())))
 		{
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.deleteby"+tray.getqueryType()));
-
 			stmtupdate.setLong(1, tray.getPanelID());
 			stmtupdate.setLong(2, tray.getTrayID());
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 
 
@@ -257,34 +268,31 @@ public class JQMTrayDB
 
 	public JQMTrayEntity getProperties(Long panelid,Long trayIDorSeq,String queryType)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		JQMTrayEntity result = new JQMTrayEntity();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.getProperties"+queryType)))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.getProperties"+queryType));
 			stmt.setFetchSize(1);
 			stmt.setLong(1, panelid);
 			stmt.setLong(2, trayIDorSeq);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result.setPanelID(rs.getLong("panel_id"));
-				result.setTrayID(rs.getLong("tray_id"));
-				result.setTraySequence(rs.getLong("tray_sequence"));
-				result.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
-				result.setCreated(rs.getTimestamp("created"));
-				result.setUpdated(rs.getTimestamp("updated"));
-			} else
-			{
-				result.setTrayID((long) -1);
-				setErrorMessage("Unknown Tray ID [" + trayIDorSeq + "]");
+				if (rs.next())
+				{
+					result.setPanelID(rs.getLong("panel_id"));
+					result.setTrayID(rs.getLong("tray_id"));
+					result.setTraySequence(rs.getLong("tray_sequence"));
+					result.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
+					result.setCreated(rs.getTimestamp("created"));
+					result.setUpdated(rs.getTimestamp("updated"));
+				} else
+				{
+					result.setTrayID((long) -1);
+					setErrorMessage("Unknown Tray ID [" + trayIDorSeq + "]");
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -296,33 +304,29 @@ public class JQMTrayDB
 
 	public LinkedList<JQMTrayEntity> getTraysByPanel(Long panel)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMTrayEntity> result = new LinkedList<JQMTrayEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.getByPanel")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.getByPanel"));
 			stmt.setFetchSize(1);
 			stmt.setLong(1, panel);
-			rs = stmt.executeQuery();
 
-
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMTrayEntity tent = new JQMTrayEntity();
+				while (rs.next())
+				{
+					JQMTrayEntity tent = new JQMTrayEntity();
 
-				tent.setPanelID(rs.getLong("panel_id"));
-				tent.setTrayID(rs.getLong("tray_id"));
-				tent.setTraySequence(rs.getLong("tray_sequence"));
-				tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
-				tent.setCreated(rs.getTimestamp("created"));
-				tent.setUpdated(rs.getTimestamp("updated"));
-				result.addLast(tent);
+					tent.setPanelID(rs.getLong("panel_id"));
+					tent.setTrayID(rs.getLong("tray_id"));
+					tent.setTraySequence(rs.getLong("tray_sequence"));
+					tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
+					tent.setCreated(rs.getTimestamp("created"));
+					tent.setUpdated(rs.getTimestamp("updated"));
+					result.addLast(tent);
+				}
 			}
-			rs.close();
-			stmt.close();
 
 		} catch (SQLException e)
 		{
@@ -344,27 +348,24 @@ public class JQMTrayDB
 
 	public Long getNextSequenceID(Long panelid)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		Long result = (long) 1;
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.nextSequenceID")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrays.nextSequenceID"));
 			stmt.setFetchSize(1);
 			stmt.setLong(1, panelid);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = rs.getLong("next_sequence");
-			} else
-			{
-				result = (long) 1;
+				if (rs.next())
+				{
+					result = rs.getLong("next_sequence");
+				} else
+				{
+					result = (long) 1;
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -372,8 +373,7 @@ public class JQMTrayDB
 			result = (long) -1;
 		}
 
-		System.out.println("***************");
-		System.out.println("NEXT TRAY SEQ IS "+result+ "FOR PANEL "+panelid);
+		logger.debug("Next Tray Sequence is " + result + " for Panel " + panelid);
 
 		return result;
 	}

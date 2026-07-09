@@ -98,11 +98,8 @@ public class JDBControl
 
 		if (isValidSystemKey() == false)
 		{
-			try
+			try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.create")))
 			{
-				PreparedStatement stmtupdate;
-
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.create"));
 				stmtupdate.setString(1, getSystemKey());
 				stmtupdate.setString(2, getKeyValue());
 				stmtupdate.setString(3, getDescription());
@@ -112,7 +109,6 @@ public class JDBControl
 				{
 					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				}
-				stmtupdate.close();
 				result = true;
 			} catch (Exception e)
 			{
@@ -129,7 +125,6 @@ public class JDBControl
 
 	public boolean delete()
 	{
-		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
 
@@ -137,13 +132,14 @@ public class JDBControl
 		{
 			if (isValidSystemKey() == true)
 			{
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.delete"));
-				stmtupdate.setString(1, getSystemKey());
-				stmtupdate.execute();
-				stmtupdate.clearParameters();
-				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-				stmtupdate.close();
-				result = true;
+				try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.delete")))
+				{
+					stmtupdate.setString(1, getSystemKey());
+					stmtupdate.execute();
+					stmtupdate.clearParameters();
+					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+					result = true;
+				}
 			}
 		} catch (SQLException e)
 		{
@@ -155,27 +151,24 @@ public class JDBControl
 
 	public Vector<JDBControl> getControlData()
 	{
-		Statement stmt;
-		ResultSet rs;
 		Vector<JDBControl> result = new Vector<JDBControl>();
 
-		if (Common.hostList.getHost(getHostID()).toString().equals(null))
+		if (Common.hostList.isValidSite(getHostID()) == false)
 		{
 			result.addElement(new JDBControl(getHostID(), getSessionID(), "system_key", "key_value", "description"));
 		} else
 		{
-			try
+			try (Statement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).createStatement())
 			{
-				stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).createStatement();
 				stmt.setFetchSize(1);
-				rs = stmt.executeQuery(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.getControlData"));
 
-				while (rs.next())
+				try (ResultSet rs = stmt.executeQuery(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.getControlData")))
 				{
-					result.addElement(new JDBControl(getHostID(), getSessionID(), rs.getString("system_key"), rs.getString("key_value"), rs.getString("description")));
+					while (rs.next())
+					{
+						result.addElement(new JDBControl(getHostID(), getSessionID(), rs.getString("system_key"), rs.getString("key_value"), rs.getString("description")));
+					}
 				}
-				rs.close();
-				stmt.close();
 
 			} catch (Exception e)
 			{
@@ -252,26 +245,24 @@ public class JDBControl
 	public boolean getProperties()
 	{
 
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
 
 		clear();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.getProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getSystemKey());
-			rs = stmt.executeQuery();
-			if (rs.next())
+
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				setKeyValue(rs.getString("Key_Value"));
-				setDescription(rs.getString("Description"));
-				result = true;
+				if (rs.next())
+				{
+					setKeyValue(rs.getString("Key_Value"));
+					setDescription(rs.getString("Description"));
+					result = true;
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (Exception e)
 		{
 			setErrorMessage(e.getMessage());
@@ -313,21 +304,19 @@ public class JDBControl
 
 	public boolean isValidSystemKey()
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.isValidSystemKey")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.isValidSystemKey"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getSystemKey());
-			rs = stmt.executeQuery();
-			if (rs.next())
+
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = true;
+				if (rs.next())
+				{
+					result = true;
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (Exception e)
 		{
 			setErrorMessage(e.getMessage());
@@ -347,15 +336,12 @@ public class JDBControl
 		setSystemKey(key);
 		do
 		{
-			try
+			try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.lockRecord")))
 			{
-				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.lockRecord"));
 				stmtupdate.setString(1, getSystemKey());
 				stmtupdate.setQueryTimeout(timeout);
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
-				stmtupdate.close();
 				result = true;
 			} catch (Exception e)
 			{
@@ -407,10 +393,8 @@ public class JDBControl
 	public boolean update()
 	{
 		boolean result = false;
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.update")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.update"));
 			stmtupdate.setString(1, getKeyValue());
 			stmtupdate.setString(2, getDescription());
 			stmtupdate.setString(3, getSystemKey());
@@ -420,7 +404,6 @@ public class JDBControl
 			{
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			}
-			stmtupdate.close();
 			result = true;
 		} catch (Exception e)
 		{

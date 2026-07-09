@@ -12,7 +12,7 @@ import com.commander4j.xml.JXMLDocument;
 public class JLicenseInfo implements Comparable<JLicenseInfo>
 {
 	public static int width_description = 42;
-	public static int width_version = 22;
+	public static int width_version = 27;
 	public static int width_type = 25;
 	public String description;
 	public String licenceFilename;

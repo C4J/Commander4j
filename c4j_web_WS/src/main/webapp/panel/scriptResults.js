@@ -23,9 +23,11 @@
 			value: resultID
 		};
 
-		console.log(JSON.stringify(dataObject));
+		// The /TrayResults endpoint expects a JSON array of results, so wrap the
+		// single result before posting (mirrors postUpdates in resultSampleSelect.html).
+		console.log(JSON.stringify([dataObject]));
 
-		let response = await fetch(getContextPath()+"/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
+		let response = await fetch(getContextPath()+"/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify([dataObject]) })
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);

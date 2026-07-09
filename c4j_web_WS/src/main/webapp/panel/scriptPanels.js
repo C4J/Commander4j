@@ -112,8 +112,8 @@
 			})
 			.then((data) => {
 				/*for (const panel of data) {*/
-				console.log("Returned  value panelID=" + data.userID);
-				userListSave('selectedUser', data.userID);
+				console.log("Returned  value panelID=" + data.panelID);
+				panelListSave('selectedPanel', data.panelID);
 				/*}*/
 			})
 			.catch((error) => {

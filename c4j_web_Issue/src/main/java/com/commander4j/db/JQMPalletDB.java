@@ -3,8 +3,10 @@ package com.commander4j.db;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import com.commander4j.entity.JQMPalletEntity;
+import com.commander4j.entity.JQMPalletHistoryEntity;
 import com.commander4j.messages.OutgoingPalletIssue;
 import com.commander4j.messages.OutgoingPalletReturn;
 import com.commander4j.sys.Common;
@@ -124,43 +126,63 @@ public class JQMPalletDB
 			if ((paldb.getQuantity().compareTo(quantity) >= 0) && (quantity.compareTo(new BigDecimal(0)) > 0))
 			{
 
-				String location_id = "";
+				// Location the pallet is leaving, captured before any mutation of paldb.
+				String fromLocation = paldb.getLocationID();
+
+				// Location the pallet is being issued to (the scanned lane).
+				String toLocation = "";
 
 				if (barcode_id.equals(""))
 				{
-					location_id = paldb.getLocationID();
+					toLocation = paldb.getLocationID();
 				}
 				else
 				{
 					JDBLocation locdb = new JDBLocation(getHostID(), getSessionID());
-					location_id = locdb.getLocationIDfromBarcodeID(barcode_id);
+					toLocation = locdb.getLocationIDfromBarcodeID(barcode_id);
 				}
 
-				if (location_id.equals(""))
+				if (toLocation.equals(""))
 				{
-					location_id = paldb.getLocationID();
+					toLocation = paldb.getLocationID();
 				}
 
+				// Block the issue if the pallet / batch status is not permitted at the
+				// destination lane, before any self-committing mutation takes place.
+				if (paldb.isStatusValidForLocation(toLocation) == false)
+				{
+					setErrorMessage(paldb.getErrorMessage());
+					return result;
+				}
+
+				BigDecimal originalQty = paldb.getQuantity();
 				Long txn = (long) 0;
 
-				PreparedStatement stmtupdate;
+				// Reduce the remaining quantity and MOVE the pallet to the selected lane.
+				try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.Issue")))
+				{
+					stmtupdate.setBigDecimal(1, originalQty.subtract(quantity));
+					stmtupdate.setString(2, paldb.getUpdatedBy());
+					stmtupdate.setTimestamp(3, JUtility.getSQLDateTime());
+					stmtupdate.setString(4, toLocation);
+					stmtupdate.setString(5, paldb.getSSCC());
+					stmtupdate.execute();
+					stmtupdate.clearParameters();
+					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				}
 
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.Issue"));
-				stmtupdate.setBigDecimal(1, paldb.getQuantity().subtract(quantity));
-				stmtupdate.setString(2, paldb.getUpdatedBy());
-				stmtupdate.setTimestamp(3, JUtility.getSQLDateTime());
-				stmtupdate.setString(4, paldb.getLocationID());
-				stmtupdate.setString(5, paldb.getSSCC());
-				stmtupdate.execute();
-				stmtupdate.clearParameters();
-				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-				stmtupdate.close();
-
+				// The two history rows describe the issued quantity against the target order.
 				paldb.setProcessOrder(toOrder);
 				paldb.setQuantity(quantity);
-				paldb.setLocationID(location_id);
 
-				txn = phdb.writePalletHistory_rest(paldb, txn, "ISSUE", "TO", userId, location_id);
+				// ISSUE / FROM = the location the pallet has just left.
+				txn = phdb.writePalletHistory_rest(paldb, txn, "ISSUE", "FROM", userId, fromLocation);
+
+				// ISSUE / TO = the selected lane (shares the same transaction ref).
+				if (txn > 0)
+				{
+					txn = phdb.writePalletHistory_rest(paldb, txn, "ISSUE", "TO", userId, toLocation);
+				}
 
 				if (txn > 0)
 				{
@@ -171,6 +193,10 @@ public class JQMPalletDB
 						opi.submit(txn);
 					}
 
+				}
+				else
+				{
+					setErrorMessage(phdb.getErrorMessage());
 				}
 				result = txn;
 			}
@@ -202,53 +228,73 @@ public class JQMPalletDB
 			if ((quantity.compareTo(new BigDecimal(0)) > 0))
 			{
 
-				String location_id = "";
+				// The lane the pallet is being returned from (its current location),
+				// captured before any mutation of paldb.
+				String fromLocation = paldb.getLocationID();
 
-				if (barcode_id.equals(""))
+				// Whether a return message is required is governed by the lane (current
+				// location), so capture it before the history writes move paldb's location.
+				boolean returnMessageRequired = paldb.getLocationObj().isPalletReturnMessageRequired();
+
+				// Destination = the location the pallet occupied before its most recent
+				// issue, read back from the pallet history (the latest ISSUE / FROM row).
+				String destination = findMostRecentIssueFromLocation(phdb, sscc);
+
+				if (destination.equals(""))
 				{
-					location_id = paldb.getLocationID();
-				}
-				else
-				{
-					JDBLocation locdb = new JDBLocation(getHostID(), getSessionID());
-					location_id = locdb.getLocationIDfromBarcodeID(barcode_id);
+					setErrorMessage("Cannot return pallet [" + sscc + "] - no prior issue location found in history.");
+					return result;
 				}
 
-				if (location_id.equals(""))
+				// Block the return if the pallet / batch status is not permitted at the
+				// destination (pre-issue) location, before any self-committing mutation.
+				if (paldb.isStatusValidForLocation(destination) == false)
 				{
-					location_id = paldb.getLocationID();
+					setErrorMessage(paldb.getErrorMessage());
+					return result;
 				}
 
+				BigDecimal originalQty = paldb.getQuantity();
 				Long txn = (long) 0;
 
-				PreparedStatement stmtupdate;
-
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.Return"));
-				stmtupdate.setBigDecimal(1, paldb.getQuantity().add(quantity));
-				stmtupdate.setString(2, paldb.getUpdatedBy());
-				stmtupdate.setTimestamp(3, JUtility.getSQLDateTime());
-				stmtupdate.setString(4, paldb.getLocationID());
-				stmtupdate.setString(5, paldb.getSSCC());
-				stmtupdate.execute();
-				stmtupdate.clearParameters();
-				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-				stmtupdate.close();
+				// Restore the quantity and MOVE the pallet back to its pre-issue location.
+				try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.Return")))
+				{
+					stmtupdate.setBigDecimal(1, originalQty.add(quantity));
+					stmtupdate.setString(2, paldb.getUpdatedBy());
+					stmtupdate.setTimestamp(3, JUtility.getSQLDateTime());
+					stmtupdate.setString(4, destination);
+					stmtupdate.setString(5, paldb.getSSCC());
+					stmtupdate.execute();
+					stmtupdate.clearParameters();
+					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				}
 
 				paldb.setProcessOrder(fromOrder);
 				paldb.setQuantity(quantity);
-				paldb.setLocationID(location_id);
 
-				txn = phdb.writePalletHistory_rest(paldb, txn, "RETURN", "FROM", userId, location_id);
+				// RETURN / FROM = the lane the pallet has just left.
+				txn = phdb.writePalletHistory_rest(paldb, txn, "RETURN", "FROM", userId, fromLocation);
+
+				// RETURN / TO = the pre-issue location (shares the same transaction ref).
+				if (txn > 0)
+				{
+					txn = phdb.writePalletHistory_rest(paldb, txn, "RETURN", "TO", userId, destination);
+				}
 
 				if (txn > 0)
 				{
 
-					if (paldb.getLocationObj().isPalletReturnMessageRequired() == true)
+					if (returnMessageRequired == true)
 					{
 						OutgoingPalletReturn opr = new OutgoingPalletReturn(getHostID(), getSessionID());
 						opr.submit(txn);
 					}
 
+				}
+				else
+				{
+					setErrorMessage(phdb.getErrorMessage());
 				}
 				result = txn;
 			}
@@ -264,6 +310,27 @@ public class JQMPalletDB
 		}
 
 		return result;
+	}
+
+	/**
+	 * Return the location_id from the most recent ISSUE / FROM pallet history row
+	 * for the given SSCC, or an empty string when none exists. The history is
+	 * returned ordered by transaction_ref descending, so the first matching row is
+	 * the latest issue.
+	 */
+	private String findMostRecentIssueFromLocation(JQMPalletHistoryDB phdb, String sscc)
+	{
+		LinkedList<JQMPalletHistoryEntity> history = phdb.getPalletHistoryBySSCC(sscc);
+
+		for (JQMPalletHistoryEntity row : history)
+		{
+			if ("ISSUE".equals(row.getTransactionType()) && "FROM".equals(row.getTransactionSubtype()))
+			{
+				return JUtility.replaceNullStringwithBlank(row.getLocationId());
+			}
+		}
+
+		return "";
 	}
 
 }

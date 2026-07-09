@@ -28,8 +28,11 @@ package com.commander4j.util;
  * 
  */
 
+import org.apache.logging.log4j.Logger;
+
 public class JWait
 {
+	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JWait.class);
 
 	public static void milliSec(long ms) {
 		try
@@ -38,7 +41,7 @@ public class JWait
 		}
 		catch (InterruptedException e)
 		{
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 
@@ -49,7 +52,7 @@ public class JWait
 		}
 		catch (InterruptedException e)
 		{
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 
@@ -60,7 +63,7 @@ public class JWait
 		}
 		catch (InterruptedException e)
 		{
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 

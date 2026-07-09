@@ -71,6 +71,7 @@ import org.apache.logging.log4j.core.LoggerContext;
 
 public class JUtility
 {
+	private static final Logger classLogger = org.apache.logging.log4j.LogManager.getLogger(JUtility.class);
 
 	public static int field_timestamp = 20;
 
@@ -1244,7 +1245,7 @@ public class JUtility
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			classLogger.error(e);
 		}
 	}
 
@@ -1265,7 +1266,7 @@ public class JUtility
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			classLogger.error(e);
 		}
 	}
 
@@ -1342,7 +1343,7 @@ public class JUtility
 		}
 		catch (IOException ioe)
 		{
-			ioe.printStackTrace();
+			classLogger.error(ioe);
 		}
 		finally
 		{ // always close the file

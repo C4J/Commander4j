@@ -808,6 +808,33 @@ public class JDBPallet
 		return location;
 	}
 
+	/**
+	 * Verify that this pallet's current pallet status and material batch status
+	 * are both permitted at the supplied destination location. Mirrors the
+	 * destination check in {@link JDBDespatch#assignSSCC(String)}. On failure the
+	 * error message is set (JDBDespatch style) and false is returned so the caller
+	 * can block the transaction and surface the reason.
+	 */
+	public boolean isStatusValidForLocation(String destinationLocationID)
+	{
+		JDBLocation loc = new JDBLocation(getHostID(), getSessionID());
+		loc.getLocationProperties(destinationLocationID);
+
+		if (loc.isPalletStatusValidforLocation(getStatus()) == false)
+		{
+			setErrorMessage(getSSCC() + " status is " + getStatus());
+			return false;
+		}
+
+		if (loc.isBatchStatusValidforLocation(getMaterialBatchStatus()) == false)
+		{
+			setErrorMessage(getSSCC() + " batch status is " + getMaterialBatchStatus());
+			return false;
+		}
+
+		return true;
+	}
+
 	public String getMaterial()
 	{
 		return JUtility.replaceNullStringwithBlank(dbMaterial);

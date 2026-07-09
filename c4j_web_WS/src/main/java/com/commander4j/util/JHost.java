@@ -159,7 +159,10 @@ public class JHost
 						}
 
 						logger.fatal(ex);
-						if (Common.sd.getData(sessionID, "silentExceptions").equals("Yes") == false)
+						// GUI error dialogs only make sense for the Commander4j desktop
+						// application this code was copied from. In Servlet mode never
+						// show a dialog (would throw HeadlessException on a server).
+						if (Common.applicationMode.equals("Servlet") == false && Common.sd.getData(sessionID, "silentExceptions").equals("Yes") == false)
 						{
 							JUtility.errorBeep();
 
@@ -171,7 +174,10 @@ public class JHost
 				catch (Exception ex)
 				{
 					logger.fatal(ex);
-					if (Common.sd.getData(sessionID, "silentExceptions").equals("Yes") == false)
+					// GUI error dialogs only make sense for the Commander4j desktop
+					// application this code was copied from. In Servlet mode never
+					// show a dialog (would throw HeadlessException on a server).
+					if (Common.applicationMode.equals("Servlet") == false && Common.sd.getData(sessionID, "silentExceptions").equals("Yes") == false)
 					{
 						JUtility.errorBeep();
 						JOptionPane.showMessageDialog(null, "Invalid jdbc driver [" + ex.getMessage() + "]", "Login Error (" + getSiteDescription() + ")", JOptionPane.ERROR_MESSAGE);
@@ -218,7 +224,7 @@ public class JHost
 		}
 		catch (Exception ex)
 		{
-			System.out.println("SQLException: " + ex.getMessage());
+			logger.error("SQLException: " + ex.getMessage());
 		}
 	}
 
@@ -252,7 +258,7 @@ public class JHost
 		while (e.hasMoreElements())
 		{
 			Object driverAsObject = e.nextElement();
-			System.out.println("JDBC Driver=" + driverAsObject);
+			org.apache.logging.log4j.LogManager.getLogger(JHost.class).debug("De-registering JDBC Driver=" + driverAsObject);
 			try
 			{
 				DriverManager.deregisterDriver((java.sql.Driver) driverAsObject);
@@ -385,7 +391,7 @@ public class JHost
 			}
 			catch (Exception ex)
 			{
-				System.out.println("SQLException: " + ex.getMessage());
+				logger.error("SQLException: " + ex.getMessage());
 			}
 
 		}

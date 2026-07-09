@@ -54,28 +54,25 @@ public class JQMResourcesDB
 
 	public JQMResourceEntity getProperties(String resource)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
-		JQMResourceEntity result = new JQMResourceEntity();	
+		JQMResourceEntity result = new JQMResourceEntity();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrderResource.getProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrderResource.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, resource);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result.setRequiredResource(rs.getString("required_resource"));
-				result.setDescription(rs.getString("description"));
-			} else
-			{
-				setErrorMessage("Unknown Resource [" + resource + "]");
+				if (rs.next())
+				{
+					result.setRequiredResource(rs.getString("required_resource"));
+					result.setDescription(rs.getString("description"));
+				} else
+				{
+					setErrorMessage("Unknown Resource [" + resource + "]");
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -87,29 +84,26 @@ public class JQMResourcesDB
 	
 	public LinkedList<JQMResourceEntity> getResources()
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMResourceEntity> result = new LinkedList<JQMResourceEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrderResource.getResources")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrderResource.getResources"));
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMResourceEntity tent = new JQMResourceEntity();
-				
-				tent.setRequiredResource(rs.getString("required_resource"));
-				tent.setDescription(rs.getString("description"));
+				while (rs.next())
+				{
+					JQMResourceEntity tent = new JQMResourceEntity();
 
-				result.addLast(tent);
+					tent.setRequiredResource(rs.getString("required_resource"));
+					tent.setDescription(rs.getString("description"));
+
+					result.addLast(tent);
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());

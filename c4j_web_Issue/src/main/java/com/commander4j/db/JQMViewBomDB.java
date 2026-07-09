@@ -50,15 +50,12 @@ public class JQMViewBomDB
 
 	public boolean isValidMaterialForLocation(String bom_id,String bom_version,String stage,String inout,String material,String location)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
 
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.isValidMaterialForLocation")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.isValidMaterialForLocation"));
 			stmt.setString(1, bom_id);
 			stmt.setString(2, bom_version);
 			stmt.setString(3, inout);
@@ -66,19 +63,18 @@ public class JQMViewBomDB
 			stmt.setString(5, material);
 			stmt.setString(6, location);
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = true;
+				if (rs.next())
+				{
+					result = true;
+				}
+				else
+				{
+					setErrorMessage("Material ["+material+"] is not valid for Location ["+location+"]");
+				}
 			}
-			else
-			{
-				setErrorMessage("Material ["+material+"] is not valid for Location ["+location+"]");	
-			}
-
-			rs.close();
-			stmt.close();
 		}
 		catch (SQLException e)
 		{
@@ -91,33 +87,30 @@ public class JQMViewBomDB
 	
 	public LinkedList<JQMViewBOMEntity> getStagesForBOM(String bom_id,String bom_version)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMViewBOMEntity> result = new LinkedList<JQMViewBOMEntity>();
-		
-		try
+
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.getBomStages")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.getBomStages"));
 			stmt.setFetchSize(10);
 			stmt.setString(1, bom_id);
 			stmt.setString(2, bom_version);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMViewBOMEntity tent = new JQMViewBOMEntity();
-				
-				tent.setAction("result");
-				tent.setBomID(JUtility.replaceNullStringwithBlank(rs.getString("bom_id")));
-				tent.setBomVersion(JUtility.replaceNullStringwithBlank(rs.getString("bom_version")));
-				tent.setStage(JUtility.replaceNullStringwithBlank(rs.getString("stage")));
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMViewBOMEntity tent = new JQMViewBOMEntity();
 
+					tent.setAction("result");
+					tent.setBomID(JUtility.replaceNullStringwithBlank(rs.getString("bom_id")));
+					tent.setBomVersion(JUtility.replaceNullStringwithBlank(rs.getString("bom_version")));
+					tent.setStage(JUtility.replaceNullStringwithBlank(rs.getString("stage")));
+					result.addLast(tent);
+
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -129,40 +122,37 @@ public class JQMViewBomDB
 	
 	public LinkedList<JQMViewBOMEntity> getValidtLocationsforMaterial(String bom_id,String bom_version,String inout,String stage,String material)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMViewBOMEntity> result = new LinkedList<JQMViewBOMEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.getValidtLocationsforMaterial")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.getValidtLocationsforMaterial"));
 			stmt.setFetchSize(10);
 			stmt.setString(1, bom_id);
 			stmt.setString(2, bom_version);
 			stmt.setString(3, inout);
 			stmt.setString(4, stage);
 			stmt.setString(5, material);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMViewBOMEntity tent = new JQMViewBOMEntity();
-				
-				tent.setAction("result");
-				tent.setBomID(JUtility.replaceNullStringwithBlank(rs.getString("bom_id")));
-				tent.setBomVersion(JUtility.replaceNullStringwithBlank(rs.getString("bom_version")));
-				tent.setLocation_id(JUtility.replaceNullStringwithBlank(rs.getString("location_Id")));
-				tent.setMaterial(JUtility.replaceNullStringwithBlank(rs.getString("material")));
-				tent.setInputOutput(JUtility.replaceNullStringwithBlank(rs.getString("input_output")));
-				tent.setStage(JUtility.replaceNullStringwithBlank(rs.getString("stage")));
-				tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMViewBOMEntity tent = new JQMViewBOMEntity();
 
+					tent.setAction("result");
+					tent.setBomID(JUtility.replaceNullStringwithBlank(rs.getString("bom_id")));
+					tent.setBomVersion(JUtility.replaceNullStringwithBlank(rs.getString("bom_version")));
+					tent.setLocation_id(JUtility.replaceNullStringwithBlank(rs.getString("location_Id")));
+					tent.setMaterial(JUtility.replaceNullStringwithBlank(rs.getString("material")));
+					tent.setInputOutput(JUtility.replaceNullStringwithBlank(rs.getString("input_output")));
+					tent.setStage(JUtility.replaceNullStringwithBlank(rs.getString("stage")));
+					tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
+					result.addLast(tent);
+
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -173,40 +163,36 @@ public class JQMViewBomDB
 	
 	public LinkedList<JQMViewBOMEntity> getValidMaterialsForBOM(String bom_id,String bom_version,String stage,String inout)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMViewBOMEntity> result = new LinkedList<JQMViewBOMEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.getValidMaterialsForBOM")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.getValidMaterialsForBOM"));
 			stmt.setFetchSize(10);
 			stmt.setString(1, bom_id);
 			stmt.setString(2, bom_version);
 			stmt.setString(3, inout);
 			stmt.setString(4, stage);
 
-			rs = stmt.executeQuery();
-
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMViewBOMEntity tent = new JQMViewBOMEntity();
-				
-				tent.setAction("result");
-				tent.setBomID(JUtility.replaceNullStringwithBlank(rs.getString("bom_id")));
-				tent.setBomVersion(JUtility.replaceNullStringwithBlank(rs.getString("bom_version")));
-				tent.setLocation_id(JUtility.replaceNullStringwithBlank(rs.getString("location_Id")));
-				tent.setMaterial(JUtility.replaceNullStringwithBlank(rs.getString("material")));
-				tent.setInputOutput(JUtility.replaceNullStringwithBlank(rs.getString("input_output")));
-				tent.setStage(JUtility.replaceNullStringwithBlank(rs.getString("stage")));
-				tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMViewBOMEntity tent = new JQMViewBOMEntity();
 
+					tent.setAction("result");
+					tent.setBomID(JUtility.replaceNullStringwithBlank(rs.getString("bom_id")));
+					tent.setBomVersion(JUtility.replaceNullStringwithBlank(rs.getString("bom_version")));
+					tent.setLocation_id(JUtility.replaceNullStringwithBlank(rs.getString("location_Id")));
+					tent.setMaterial(JUtility.replaceNullStringwithBlank(rs.getString("material")));
+					tent.setInputOutput(JUtility.replaceNullStringwithBlank(rs.getString("input_output")));
+					tent.setStage(JUtility.replaceNullStringwithBlank(rs.getString("stage")));
+					tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
+					result.addLast(tent);
+
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -220,13 +206,10 @@ public class JQMViewBomDB
 		
 		Boolean result = false;
 		
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.isMaterialValidForBOM")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBViewBomRecord.isMaterialValidForBOM"));
 			stmt.setFetchSize(10);
 			stmt.setString(1, bom_id);
 			stmt.setString(2, bom_version);
@@ -234,19 +217,18 @@ public class JQMViewBomDB
 			stmt.setString(4, stage);
 			stmt.setString(5, material);
 
-			rs = stmt.executeQuery();
+			try (ResultSet rs = stmt.executeQuery())
+			{
+				if (rs.next())
+				{
+					result = true;
+				}
+				else
+				{
+					setErrorMessage("Material ["+material+"] is not valid for BOM ["+bom_id+"/"+bom_version+"]");
+				}
+			}
 
-			if (rs.next())
-			{
-				result = true;
-			}
-			else
-			{
-				setErrorMessage("Material ["+material+"] is not valid for BOM ["+bom_id+"/"+bom_version+"]");	
-			}
-			rs.close();
-			stmt.close();
-			
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());

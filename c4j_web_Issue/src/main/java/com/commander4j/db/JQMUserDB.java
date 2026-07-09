@@ -52,28 +52,25 @@ public class JQMUserDB
 
 	public JQMUserEntity getProperties(String userid)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
-		JQMUserEntity result = new JQMUserEntity();	
+		JQMUserEntity result = new JQMUserEntity();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.getProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, userid);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result.setUserID(rs.getString("user_id"));
-				result.setUserPassword(rs.getString("password"));
-			} else
-			{
-				setErrorMessage("Unknown User ID [" + userid + "]");
+				if (rs.next())
+				{
+					result.setUserID(rs.getString("user_id"));
+					result.setUserPassword(rs.getString("password"));
+				} else
+				{
+					setErrorMessage("Unknown User ID [" + userid + "]");
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
