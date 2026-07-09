@@ -178,8 +178,10 @@
 	function refreshSample()
 	{
 		console.log('refreshSample');
+		// Focus of the scan field is handled by the page's onLoad (setFocusScanData);
+		// calling focus() here runs against the old document being unloaded and would
+		// throw on pages that have no scanData element.
 		location.reload();
-		document.getElementById("scanData").focus();
 	}
 
 	async function deleteSample() {

@@ -165,7 +165,7 @@
 			})
 			.then((data) => {
 				/*for (const panel of data) {*/
-				console.log("Returned  value panelID=" + data.userID);
+				console.log("Returned  value userID=" + data.userID);
 				userListSave('selectedUser', data.userID);
 				/*}*/
 			})
@@ -212,7 +212,7 @@
 			.then((data) => {
 				/*for (const panel of data) {*/
 				console.log("Returned  value userID=" + data.userID);
-				trayListSave('selectedUser', data.userID);
+				userListSave('selectedUser', data.userID);
 				/*}*/
 			})
 			.catch((error) => {

@@ -87,8 +87,7 @@ public class JQMTrayEntity
 	" description="+getDescription()+
 	" created "+
 	JUtility.replaceNullObjectwithBlank(getCreated())+
-	" updated "+JUtility.replaceNullObjectwithBlank(getUpdated()+
-	" queryType "+JUtility.replaceNullObjectwithBlank(getqueryType())
-			);
+	" updated "+JUtility.replaceNullObjectwithBlank(getUpdated())+
+	" queryType "+JUtility.replaceNullObjectwithBlank(getqueryType());
 	}
 }

@@ -118,8 +118,8 @@
 			})
 			.then((data) => {
 				/*for (const panel of data) {*/
-				console.log("Returned  value panelID=" + data.userID);
-				userListSave('selectedUser', data.userID);
+				console.log("Returned  value trayID=" + data.trayID);
+				trayListSave('selectedTray', data.trayID);
 				/*}*/
 			})
 			.catch((error) => {

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c4jWS Trays</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+ 	<p><a href="restindex.html">Home</a></p>
+ 	<h1>/Trays</h1>
+ 	<h2>Table APP_QM_PANEL_TRAY</h2>
+ 	<table style="width:800px">
+ 	<tr><th width=125px>Field Name</th><th width=75px>Type</th><th width=55px>Size</th><th width=55px>Primary Key</th><th width=355px>Comment</th></tr>
+ 	<tr><td>PANEL_ID</td><td>Long</td><td></td><td align="center">1</td><td>Auto Generated increments for each day or session. See /Panels</td></tr>
+ 	<tr><td>TRAY_ID</td><td>Long</td><td></td><td align="center">2</td><td>Auto Generated used to represent virtual tray identity. Note that a physical tray will be allocated a new virtual Tray ID each time new samples are arranged on it.</td></tr>
+ 	<tr><td>TRAY_SEQUENCE</td><td>Long</td><td></td><td></td><td>Sequence number of the tray within the panel. Auto generated if not supplied.</td></tr>
+ 	<tr><td>DESCRIPTION</td><td>String</td><td align="center">40</td><td></td><td>User comments for Tray, optional</td></tr>
+ 	<tr><td>UPDATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	<tr><td>CREATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	</table>
+ 	<p><i>Before an operator can prepare a physical tray of samples it must be created on the system. The system will generate a unique trayId for you. If the same tray is used more than once, on subsequent days for example it is created each time with a new Tray ID. This allows the system to maintain a record of which samples were grouped together. The PANEL_ID is part of the primary key and links to the day (panel scoring session). \nTypically a Panel occurs once a day and each Panel has a unique Panel ID generated for it.</i></p>
+
+ 	<h2>Transactions</h2>
+ 	<h3>GET (Read)</h3>
+
+ 	<table style="width:600px">
+ 	 <tr><td><b>&nbsp;Retrieve all Trays for a specific panelID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Trays?panelID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve a single Tray for a specific panelID and trayID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Trays?panelID={id}&amp;trayID={id}&amp;queryType=TrayID&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve a single Tray for a specific panelID and traySequence</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Trays?panelID={id}&amp;traySequence={seq}&amp;queryType=TraySequence&nbsp;</td></tr>
+ 	</table>
+ 	<p><i>*queryType must be supplied (TrayID or TraySequence) when requesting a single Tray; without it all Trays for the panelID are returned.</i></p>
+
+
+    <h4>JSON Example - Response</h4>
+    <pre>
+[
+  {
+    "panelID": 1,
+    "trayID": 6,
+    "traySequence": 1,
+    "description": "New Product Trial",
+    "updated": "2022-09-25T18:36:56",
+    "created": "2022-09-25T08:35:06"
+  },
+  {
+    "panelID": 1,
+    "trayID": 7,
+    "traySequence": 2,
+    "description": "New Product Trial",
+    "updated": "2022-09-25T18:44:30",
+    "created": "2022-09-25T08:42:30"
+  }
+]
+  </pre>
+    <h3>POST (Create)</h3>
+
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Inserts data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Trays</td></tr>
+ 	</table>
+ 	<p>*Server maintains created/updated record time stamps - leave trayID and traySequence blank as the server will auto create and return them in the response body.</p>
+
+    <h4>JSON Example - POST</h4>
+    <pre>
+{
+  "panelID": 1,
+  "description": "New Product Trial"
+}
+    </pre>
+
+    <h4>JSON Example - Response</h4>
+    <pre>
+{
+  "panelID": 1,
+  "trayID": 8,
+  "traySequence": 3,
+  "description": "New Product Trial",
+  "created": "2022-09-25T08:52:30"
+}
+    </pre>
+
+
+    <h3>PUT (Update)</h3>
+
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Updates data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Trays</td></tr>
+ 	</table>
+ 	<p>*Server maintains created/updated record time stamps. The Tray is matched on panelID and trayID.</p>
+
+    <h4>JSON Example - PUT</h4>
+    <pre>
+{
+  "panelID": 1,
+  "trayID": 8,
+  "description": "Updated comment"
+}
+    </pre>
+
+    <h4>JSON Example - Response</h4>
+    <pre>
+{
+  "panelID": 1,
+  "trayID": 8,
+  "traySequence": 3,
+  "description": "Updated comment",
+  "updated": "2022-09-25T18:55:30",
+  "created": "2022-09-25T08:52:30"
+}
+</pre>
+
+    <h3>DELETE (Delete)</h3>
+
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Deletes Tray as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Trays</td></tr>
+ 	</table>
+ 	 <br/>
+ 	<table style="width:600px">
+    <tr><td><b>&nbsp;Deletes Tray as per parameters for panelID and trayID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Trays?panelID={id}&amp;trayID={id}&amp;queryType=TrayID&nbsp;</td></tr>
+ 	</table>
+
+    <h4>JSON Example - DELETE</h4>
+    <pre>
+{
+  "panelID": 1,
+  "trayID": 8,
+  "queryType": "TrayID"
+}
+    </pre>
+
+</body>
+</html>

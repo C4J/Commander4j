@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c4jWS TraySamples</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+ 	<p><a href="restindex.html">Home</a></p>
+ 	<h1>/TraySamples</h1>
+ 	<h2>Table APP_QM_PANEL_TRAY_SAMPLES</h2>
+ 	<table style="width:800px">
+ 	<tr><th width=125px>Field Name</th><th width=75px>Type</th><th width=55px>Size</th><th width=55px>Primary Key</th><th width=355px>Comment</th></tr>
+ 	<tr><td>TRAY_ID</td><td>Long</td><td></td><td align="center">1</td><td>Link to APP_QM_PANEL_TRAY</td></tr>
+ 	<tr><td>SAMPLE_ID</td><td>Long</td><td></td><td align="center">2</td><td>Link to APP_QM_SAMPLE</td></tr>
+ 	<tr><td>SEQUENCE_ID</td><td>Long</td><td></td><td></td><td>Used to ensure that order of samples matches sequence used on physical tray. Auto generated.</td></tr>
+ 	<tr><td>UPDATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	<tr><td>CREATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	</table>
+ 	<p><i>As each sample is added to a tray by scanning its barcode or manually typing its Sample ID it is added to this table. The Tray ID links the Sample ID to the tray and the Sequence ID is used for sorting so that system can maintain the same order as the physical layout. A sequenceLetter (A, B, C ...) derived from the sequenceID is also returned for display.</i></p>
+
+ 	<h2>Transactions</h2>
+ 	<h3>GET (Read)</h3>
+
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve All Samples for a specific trayID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/TraySamples?trayID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve record for specific trayID and sampleID primary key</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/TraySamples?trayID={id}&amp;sampleID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+
+    <h4>JSON Example - Response</h4>
+    <pre>
+[
+  {
+    "trayID": 1,
+    "sequenceID": 1,
+    "sequenceLetter": "A",
+    "sampleID": 402034,
+    "created": "2022-09-29T15:51:53"
+  },
+  {
+    "trayID": 1,
+    "sequenceID": 2,
+    "sequenceLetter": "B",
+    "sampleID": 402193,
+    "created": "2022-09-29T15:52:23"
+  },
+  {
+    "trayID": 1,
+    "sequenceID": 3,
+    "sequenceLetter": "C",
+    "sampleID": 509798,
+    "created": "2022-09-29T15:53:08"
+  }
+]
+  </pre>
+    <h3>POST (Create)</h3>
+
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Inserts data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/TraySamples</td></tr>
+ 	</table>
+   	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Create, deriving the trayID from a panelID and traySequence</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/TraySamples?queryType=TraySequence&amp;panelID={id}&amp;traySequence={seq}&nbsp;</td></tr>
+ 	</table>
+ 	<p>*Server maintains created/updated record time stamps and <b>always auto generates the sequenceID</b> (any sequenceID supplied in the body is ignored). The generated value is returned in the response body.</p>
+
+    <h4>JSON Example - POST</h4>
+    <i>Specify trayID and sampleID; sequenceID is auto generated and included in the JSON response body.</i>
+<pre>
+{
+  "trayID": 1,
+  "sampleID": 402034
+}
+</pre>
+
+    <h4>JSON Example - Response</h4>
+<pre>
+{
+  "trayID": 1,
+  "sequenceID": 5,
+  "sequenceLetter": "E",
+  "sampleID": 402034,
+  "created": "2022-09-29T15:51:53"
+}
+</pre>
+
+
+    <h3>PUT (Update)</h3>
+
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Updates data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/TraySamples</td></tr>
+ 	</table>
+ 	<p>*Server maintains created/updated record time stamps. The record is matched on trayID and sampleID; sequenceID is updated.</p>
+
+    <h4>JSON Example - PUT</h4>
+    <pre>
+{
+  "trayID": 2,
+  "sampleID": 5,
+  "sequenceID": 7
+}
+    </pre>
+
+    <h4>JSON Example - Response</h4>
+    <pre>
+{
+  "trayID": 2,
+  "sequenceID": 7,
+  "sampleID": 5,
+  "updated": "2022-09-25T18:55:30",
+  "created": "2022-09-25T08:52:30"
+}
+</pre>
+
+    <h3>DELETE (Delete)</h3>
+
+
+ 	 <br/>
+ 	<table style="width:600px">
+    <tr><td><b>&nbsp;Deletes Sample from Tray as per parameters for trayID and sampleID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/TraySamples?trayID={id}&amp;sampleID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Deletes Sample from Tray as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/TraySamples</td></tr>
+ 	</table>
+
+    <h4>JSON Example - DELETE</h4>
+    <pre>
+{
+  "trayID": 8,
+  "sampleID": 1
+}
+    </pre>
+
+</body>
+</html>

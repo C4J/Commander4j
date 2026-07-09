@@ -175,15 +175,19 @@
 	
 		let response = await fetch(getContextPath()+"/Pallets", { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
 			.then((response) => {
-				if (!response.ok) {
-					throw new Error(`HTTP error, status = ${response.status}`);
-				}
 				return response.json();
 			})
 			.then((data) => {
-				setResultMessage(errMsg,data.quantity + " " + data.uom + " from " + data.sscc + " issued.",true);
-			    sessionStorage.setItem("selectedSSCC", data.sscc);
-			    window.location.href=getContextPath()+'/html/palletIssueConfirm.html';
+				if (data.commandStatus != "valid")
+				{
+					setResultMessage(errMsg, data.errorMessage,false);
+				}
+				else
+				{
+					setResultMessage(errMsg,data.quantity + " " + data.uom + " from " + data.sscc + " issued.",true);
+				    sessionStorage.setItem("selectedSSCC", data.sscc);
+				    window.location.href=getContextPath()+'/html/palletIssueConfirm.html';
+				}
 			})
 			.catch((error) => {
 				sessionStorage.setItem("selectedSSCC", "");

@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import org.apache.logging.log4j.Logger;
+
 import com.commander4j.db.JDBPalletHistory;
 import com.commander4j.util.JUtility;
 import com.google.gson.annotations.SerializedName;
@@ -19,6 +21,8 @@ import jakarta.persistence.Entity;
 @Entity
 public class JQMPalletHistoryEntity
 {
+
+	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMPalletHistoryEntity.class);
 
 	@JsonbProperty("action")
 	@SerializedName("action")
@@ -294,8 +298,7 @@ public class JQMPalletHistoryEntity
 		}
 		catch (SQLException e)
 		{
-
-			e.printStackTrace();
+			logger.error("getPropertiesFromResultSet failed", e);
 		}
 
 	}

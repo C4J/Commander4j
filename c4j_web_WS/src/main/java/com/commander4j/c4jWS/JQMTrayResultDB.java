@@ -50,33 +50,29 @@ public class JQMTrayResultDB
 
 	public boolean isValid(Long trayid, Long sampleid, String userid)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
 
 		logger.debug("isValid :" + trayid.toString() + "," + sampleid);
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.isValid")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.isValid"));
 			stmt.setLong(1, trayid);
 			stmt.setLong(2, sampleid);
 			stmt.setString(3, userid);
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = true;
+				if (rs.next())
+				{
+					result = true;
+				}
+				else
+				{
+					setErrorMessage("Invalid Tray/Sample ID");
+				}
 			}
-			else
-			{
-				setErrorMessage("Invalid Tray/Sample ID");
-			}
-
-			rs.close();
-			stmt.close();
 		}
 		catch (SQLException e)
 		{
@@ -93,11 +89,8 @@ public class JQMTrayResultDB
 		logger.debug("create :" + trayResultEntity.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.create")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.create"));
-
 			stmtupdate.setLong(1, trayResultEntity.getTrayID());
 			stmtupdate.setLong(2, trayResultEntity.getSampleID());
 			stmtupdate.setString(3, trayResultEntity.getUserID());
@@ -109,7 +102,6 @@ public class JQMTrayResultDB
 			stmtupdate.clearParameters();
 
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -149,11 +141,8 @@ public class JQMTrayResultDB
 		logger.debug("update :" + trayResultEntity.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.update")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.update"));
-
 			stmtupdate.setString(1, trayResultEntity.getTestID());
 			stmtupdate.setString(2, trayResultEntity.getValue());
 			stmtupdate.setTimestamp(3, JUtility.getSQLDateTime());
@@ -165,7 +154,6 @@ public class JQMTrayResultDB
 			stmtupdate.clearParameters();
 
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -178,22 +166,19 @@ public class JQMTrayResultDB
 
 	public boolean delete(JQMTrayResultEntity trayResult)
 	{
-		PreparedStatement stmtupdate;
 		boolean result = false;
 
 		logger.debug("delete :" + trayResult.getTrayID().toString() + " , " + trayResult.getSampleID().toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.delete")))
 		{
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.delete"));
 			stmtupdate.setLong(1, trayResult.getTrayID());
 			stmtupdate.setLong(2, trayResult.getSampleID());
 			stmtupdate.setString(3, trayResult.getUserID());
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -206,20 +191,17 @@ public class JQMTrayResultDB
 
 	public boolean deleteByTrayID(Long trayID)
 	{
-		PreparedStatement stmtupdate;
 		boolean result = false;
 
 		logger.debug("delete :" + trayID);
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.deleteByTrayID")))
 		{
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.deleteByTrayID"));
 			stmtupdate.setLong(1, trayID);;
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -232,36 +214,33 @@ public class JQMTrayResultDB
 
 	public JQMTrayResultEntity getProperties(Long trayid, Long sampleId, String userId)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		JQMTrayResultEntity result = new JQMTrayResultEntity();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.getProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setLong(1, trayid);
 			stmt.setLong(2, sampleId);
 			stmt.setString(3, userId);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result.setTrayID(rs.getLong("tray_id"));
-				result.setSampleID(rs.getLong("sample_id"));
-				result.setUserID(rs.getString("user_id"));
-				result.setTestID(rs.getString("test_id"));
-				result.setValue(rs.getString("value"));
-				result.setCreated(rs.getTimestamp("created"));
-				result.setUpdated(rs.getTimestamp("updated"));
+				if (rs.next())
+				{
+					result.setTrayID(rs.getLong("tray_id"));
+					result.setSampleID(rs.getLong("sample_id"));
+					result.setUserID(rs.getString("user_id"));
+					result.setTestID(rs.getString("test_id"));
+					result.setValue(rs.getString("value"));
+					result.setCreated(rs.getTimestamp("created"));
+					result.setUpdated(rs.getTimestamp("updated"));
+				}
+				else
+				{
+					setErrorMessage("Unknown Result ID [" + trayid + "]");
+				}
 			}
-			else
-			{
-				setErrorMessage("Unknown Result ID [" + trayid + "]");
-			}
-			rs.close();
-			stmt.close();
 		}
 		catch (SQLException e)
 		{
@@ -274,46 +253,43 @@ public class JQMTrayResultDB
 
 	public LinkedList<JQMTrayResultEntity> getResultsByTrayUser(Long trayid, String userid)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMTrayResultEntity> result = new LinkedList<JQMTrayResultEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.getByTrayID")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMTrayResults.getByTrayID"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, userid);
 			stmt.setString(2, "PANEL");
 			stmt.setString(3, userid);
 			stmt.setString(4, "PANEL");
 			stmt.setLong(5, trayid);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMTrayResultEntity tent = new JQMTrayResultEntity();
+				while (rs.next())
+				{
+					JQMTrayResultEntity tent = new JQMTrayResultEntity();
 
-				tent.setTrayID(rs.getLong("tray_id"));
-				tent.setSampleID(rs.getLong("sample_id"));
-				tent.setSequenceID(rs.getLong("sequence_id"));
+					tent.setTrayID(rs.getLong("tray_id"));
+					tent.setSampleID(rs.getLong("sample_id"));
+					tent.setSequenceID(rs.getLong("sequence_id"));
 
-				Long a1b = rs.getLong("sequence_id");
-				int a2b = a1b.intValue()+64;
-				char a3b = (char) a2b;
-				String a4b = String.valueOf(a3b);
-				tent.setSequenceLetter(a4b);
+					Long a1b = rs.getLong("sequence_id");
+					int a2b = a1b.intValue()+64;
+					char a3b = (char) a2b;
+					String a4b = String.valueOf(a3b);
+					tent.setSequenceLetter(a4b);
 
 
-				tent.setUserID(JUtility.replaceNullStringwithBlank(rs.getString("user_id")));
-				tent.setTestID(JUtility.replaceNullStringwithBlank(rs.getString("test_id")));
-				tent.setValue(JUtility.replaceNullStringwithBlank(rs.getString("value")));
-				tent.setCreated(rs.getTimestamp("created"));
-				tent.setUpdated(rs.getTimestamp("updated"));
-				result.addLast(tent);
+					tent.setUserID(JUtility.replaceNullStringwithBlank(rs.getString("user_id")));
+					tent.setTestID(JUtility.replaceNullStringwithBlank(rs.getString("test_id")));
+					tent.setValue(JUtility.replaceNullStringwithBlank(rs.getString("value")));
+					tent.setCreated(rs.getTimestamp("created"));
+					tent.setUpdated(rs.getTimestamp("updated"));
+					result.addLast(tent);
+				}
 			}
-			rs.close();
-			stmt.close();
 
 		}
 		catch (SQLException e)

@@ -55,31 +55,27 @@ public class JQMPanelDB
 
 	public boolean isValid(Long panelid)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
 
 		logger.debug("isValid :" + panelid.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.isValid")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.isValid"));
 			stmt.setLong(1, panelid);
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = true;
+				if (rs.next())
+				{
+					result = true;
+				}
+				else
+				{
+					setErrorMessage("Invalid Panel ID");
+				}
 			}
-			else
-			{
-				setErrorMessage("Invalid Panel ID");
-			}
-
-			rs.close();
-			stmt.close();
 		}
 		catch (SQLException e)
 		{
@@ -96,12 +92,21 @@ public class JQMPanelDB
 		logger.debug("create :" + panelEntity.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.create")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.create"));
-
 			panelEntity.setPanelID(getNewPanelID());
+
+			if (panelEntity.getPanelID() <= 0)
+			{
+				// getNewPanelID() failed to allocate (error message already set).
+				// Skip the insert and report failure rather than writing id 0.
+				if (getErrorMessage() == null || getErrorMessage().equals(""))
+				{
+					setErrorMessage("Could not allocate a new Panel ID");
+				}
+				return false;
+			}
+
 			stmtupdate.setLong(1, panelEntity.getPanelID());
 			stmtupdate.setTimestamp(2, panelEntity.getPanelDate());
 
@@ -125,7 +130,6 @@ public class JQMPanelDB
 			stmtupdate.clearParameters();
 
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -143,11 +147,8 @@ public class JQMPanelDB
 		logger.debug("update :" + panelEntity.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.update")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.update"));
-
 			stmtupdate.setTimestamp(1, panelEntity.getPanelDate());
 			stmtupdate.setString(2, panelEntity.getDescription());
 			stmtupdate.setString(3, panelEntity.getPlant());
@@ -159,7 +160,6 @@ public class JQMPanelDB
 			stmtupdate.clearParameters();
 
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -172,20 +172,21 @@ public class JQMPanelDB
 
 	public long getNewPanelID()
 	{
-		long result = 0;
+		long result = -1;
 		long new_tray_id = 0;
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 		String temp = "";
 		String transaction_ref_str = "1";
 
-		boolean retry = true;
-		@SuppressWarnings("unused")
+		boolean success = false;
 		int counter = 0;
+		final int maxAttempts = 3;
 
 		ctrl.getKeyValueWithDefault("PANEL ID", "0", "Unique Panel Sequence");
 
 		do
 		{
+			counter++;
 			if (ctrl.lockRecord("PANEL ID") == true)
 			{
 				if (ctrl.getProperties("PANEL ID") == true)
@@ -198,40 +199,51 @@ public class JQMPanelDB
 
 					if (ctrl.update())
 					{
-						retry = false;
+						success = true;
 					}
 				}
 			}
-			else
-			{
-				retry = true;
-				counter++;
-			}
 		}
-		while (retry);
+		while ((success == false) && (counter < maxAttempts));
 
-		result = new_tray_id;
+		if (success)
+		{
+			result = new_tray_id;
+			logger.debug("New Panel ID :" + result);
+		}
+		else
+		{
+			// Could not allocate an ID. Roll back to release any row lock taken
+			// by lockRecord so it does not linger on the per-session connection,
+			// and return -1 so create() skips the insert instead of writing id 0.
+			try
+			{
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).rollback();
+			}
+			catch (java.sql.SQLException e)
+			{
+				logger.error("getNewPanelID rollback failed : " + e.getMessage());
+			}
+			setErrorMessage("Could not allocate a new Panel ID (lock timeout)");
+			logger.error("Could not allocate a new Panel ID after " + counter + " attempts");
+		}
 
-		logger.debug("New Panel ID :" + result);
 		return result;
 	}
 
 	public boolean delete(JQMPanelEntity panel)
 	{
-		PreparedStatement stmtupdate;
 		boolean result = false;
 
 		logger.debug("delete :" + panel.getPanelID().toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.delete")))
 		{
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.delete"));
 			stmtupdate.setLong(1, panel.getPanelID());
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 
 			//Get a list of Trays assigned to Panel
@@ -265,33 +277,30 @@ public class JQMPanelDB
 
 	public JQMPanelEntity getProperties(Long panelid)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		JQMPanelEntity result = new JQMPanelEntity();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.getProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setLong(1, panelid);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result.setPanelID(rs.getLong("panel_id"));
-				result.setPanelDate(rs.getTimestamp("panel_date"));
-				result.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
-				result.setPlant(JUtility.replaceNullStringwithBlank(rs.getString("plant")));
-				result.setStatus(JUtility.replaceNullStringwithBlank(rs.getString("status")));
-				result.setCreated(rs.getTimestamp("created"));
-				result.setUpdated(rs.getTimestamp("updated"));
-			} else
-			{
-				setErrorMessage("Unknown Panel ID [" + panelid + "]");
+				if (rs.next())
+				{
+					result.setPanelID(rs.getLong("panel_id"));
+					result.setPanelDate(rs.getTimestamp("panel_date"));
+					result.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
+					result.setPlant(JUtility.replaceNullStringwithBlank(rs.getString("plant")));
+					result.setStatus(JUtility.replaceNullStringwithBlank(rs.getString("status")));
+					result.setCreated(rs.getTimestamp("created"));
+					result.setUpdated(rs.getTimestamp("updated"));
+				} else
+				{
+					setErrorMessage("Unknown Panel ID [" + panelid + "]");
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -303,34 +312,31 @@ public class JQMPanelDB
 
 	public LinkedList<JQMPanelEntity> getPanelsByStatus(String status)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMPanelEntity> result = new LinkedList<JQMPanelEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.getByStatus")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.getByStatus"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, status);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMPanelEntity tent = new JQMPanelEntity();
+				while (rs.next())
+				{
+					JQMPanelEntity tent = new JQMPanelEntity();
 
-				tent.setPanelID(rs.getLong("panel_id"));
-				tent.setPanelDate(rs.getTimestamp("panel_date"));
-				tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
-				tent.setPlant(JUtility.replaceNullStringwithBlank(rs.getString("plant")));
-				tent.setStatus(JUtility.replaceNullStringwithBlank(rs.getString("status")));
-				tent.setCreated(rs.getTimestamp("created"));
-				tent.setUpdated(rs.getTimestamp("updated"));
-				result.addLast(tent);
+					tent.setPanelID(rs.getLong("panel_id"));
+					tent.setPanelDate(rs.getTimestamp("panel_date"));
+					tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
+					tent.setPlant(JUtility.replaceNullStringwithBlank(rs.getString("plant")));
+					tent.setStatus(JUtility.replaceNullStringwithBlank(rs.getString("status")));
+					tent.setCreated(rs.getTimestamp("created"));
+					tent.setUpdated(rs.getTimestamp("updated"));
+					result.addLast(tent);
 
+				}
 			}
-			rs.close();
-			stmt.close();
 
 		} catch (SQLException e)
 		{
@@ -342,34 +348,31 @@ public class JQMPanelDB
 
 	public LinkedList<JQMPanelEntity> getPanelsListLimit(Long maxrows)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMPanelEntity> result = new LinkedList<JQMPanelEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.getListLimit")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMPanels.getListLimit"));
 			stmt.setFetchSize(15);
 			stmt.setLong(1, maxrows);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMPanelEntity tent = new JQMPanelEntity();
+				while (rs.next())
+				{
+					JQMPanelEntity tent = new JQMPanelEntity();
 
-				tent.setPanelID(rs.getLong("panel_id"));
-				tent.setPanelDate(rs.getTimestamp("panel_date"));
-				tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
-				tent.setPlant(JUtility.replaceNullStringwithBlank(rs.getString("plant")));
-				tent.setStatus(JUtility.replaceNullStringwithBlank(rs.getString("status")));
-				tent.setCreated(rs.getTimestamp("created"));
-				tent.setUpdated(rs.getTimestamp("updated"));
-				result.addLast(tent);
+					tent.setPanelID(rs.getLong("panel_id"));
+					tent.setPanelDate(rs.getTimestamp("panel_date"));
+					tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
+					tent.setPlant(JUtility.replaceNullStringwithBlank(rs.getString("plant")));
+					tent.setStatus(JUtility.replaceNullStringwithBlank(rs.getString("status")));
+					tent.setCreated(rs.getTimestamp("created"));
+					tent.setUpdated(rs.getTimestamp("updated"));
+					result.addLast(tent);
 
+				}
 			}
-			rs.close();
-			stmt.close();
 
 		} catch (SQLException e)
 		{

@@ -34,11 +34,11 @@ public class AppServletContextListener implements ServletContextListener
 		
 		Common.paths.clear();
 
-		Common.paths.put("sql.com.mysql.jdbc.Driver.xml", sce.getServletContext().getRealPath("/xml/sql/sql.com.mysql.jdbc.Driver.xml"));
+		Common.paths.put("sql.com.mysql.cj.jdbc.Driver.xml", sce.getServletContext().getRealPath("/xml/sql/sql.com.mysql.cj.jdbc.Driver.xml"));
 		Common.paths.put("sql.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml", sce.getServletContext().getRealPath("/xml/sql/sql.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml"));
 		Common.paths.put("sql.oracle.jdbc.driver.OracleDriver.xml", sce.getServletContext().getRealPath("/xml/sql/sql.oracle.jdbc.driver.OracleDriver.xml"));
 
-		Common.paths.put("view.com.mysql.jdbc.Driver.xml", sce.getServletContext().getRealPath("/xml/view/view.com.mysql.jdbc.Driver.xml"));
+		Common.paths.put("view.com.mysql.cj.jdbc.Driver.xml", sce.getServletContext().getRealPath("/xml/view/view.com.mysql.cj.jdbc.Driver.xml"));
 		Common.paths.put("view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml", sce.getServletContext().getRealPath("/xml/view/view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml"));
 		Common.paths.put("view.oracle.jdbc.driver.OracleDriver.xml", sce.getServletContext().getRealPath("/xml/view/view.oracle.jdbc.driver.OracleDriver.xml"));
 		

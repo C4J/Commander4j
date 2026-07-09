@@ -16,6 +16,7 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JURL;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,23 +38,43 @@ public class JQMPalletController extends HttpServlet
 		logger.debug("doPut");
 
 		BufferedReader bufferedReader = request.getReader();
-		JQMPalletEntity palletEntity = GSON.fromJson(bufferedReader, JQMPalletEntity.class);
+
+		JQMPalletEntity palletEntity;
+		try
+		{
+			palletEntity = GSON.fromJson(bufferedReader, JQMPalletEntity.class);
+		}
+		catch (JsonSyntaxException e)
+		{
+			palletEntity = null;
+		}
+
+		if (palletEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			out.print(GSON.toJson("Request body missing or invalid"));
+			out.flush();
+			return;
+		}
+
 		JQMPalletDB palletDB = new JQMPalletDB(Common.selectedHostID, request.getSession().getId());
 		JDBPallet pallet_db = new JDBPallet(Common.selectedHostID, request.getSession().getId());
 		JDBProcessOrder order_db = new JDBProcessOrder(Common.selectedHostID, request.getSession().getId());
 		JQMViewBomDB view_bom_db = new JQMViewBomDB(Common.selectedHostID, request.getSession().getId());
 
 		String reply = "";
-		String action = palletEntity.getAction().toString();
-		String sscc = palletEntity.getSSCC().toString();
-		String issueToOrder = palletEntity.getProcessOrder().toString();
-		String userId = palletEntity.getUserId().toString();
+		String action = palletEntity.getAction();
+		String sscc = palletEntity.getSSCC();
+		String issueToOrder = palletEntity.getProcessOrder();
+		String userId = palletEntity.getUserId();
 		String location_id = palletEntity.getLocationId();
 		BigDecimal quantity = palletEntity.getQuantity();
 
 		String stage = JURL.getParameter(request, "stage");
-		
-		System.out.println(action);
+
+		logger.debug("action [" + action + "]");
 
 		if (action.equals("query"))
 		{
@@ -71,7 +92,7 @@ public class JQMPalletController extends HttpServlet
 			}
 		}
 		
-		if (action.equals("info"))
+		else if (action.equals("info"))
 		{
 
 			if (pallet_db.getPalletProperties(palletEntity.getSSCC()))
@@ -89,27 +110,79 @@ public class JQMPalletController extends HttpServlet
 			}
 		}
 		
-		if (action.equals("issue"))
+		else if (action.equals("issue"))
 		{
 
-			pallet_db.getPalletProperties(sscc);
-			palletEntity.getPropertiesFromPallet(pallet_db);
-			palletDB.issueToOrder_rest(sscc,issueToOrder, quantity,location_id,userId);
+			try
+			{
+				pallet_db.getPalletProperties(sscc);
+				palletEntity.getPropertiesFromPallet(pallet_db);
+				Long txn = palletDB.issueToOrder_rest(sscc, issueToOrder, quantity, location_id, userId);
+				if (txn != null && txn > 0)
+				{
+					palletEntity.setCommandStatus("valid");
+					palletEntity.setErrorMessage("");
+					response.setStatus(HttpServletResponse.SC_OK);
+				}
+				else
+				{
+					String msg = palletDB.getErrorMessage();
+					if (msg == null || msg.equals(""))
+					{
+						msg = "Issue to order failed.";
+					}
+					palletEntity.setCommandStatus("invalid");
+					palletEntity.setErrorMessage(msg);
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				}
+			}
+			catch (RuntimeException e)
+			{
+				logger.error("issue failed for SSCC [" + sscc + "]", e);
+				palletEntity.setCommandStatus("invalid");
+				palletEntity.setErrorMessage("Issue to order failed - check SSCC [" + sscc + "]");
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			}
 			reply = GSON.toJson(palletEntity);
-			response.setStatus(HttpServletResponse.SC_OK);
 		}
-		
-		if (action.equals("return"))
+
+		else if (action.equals("return"))
 		{
 
-			pallet_db.getPalletProperties(sscc);
-			palletEntity.getPropertiesFromPallet(pallet_db);
-			palletDB.returnFromOrder_rest(sscc,issueToOrder, quantity,location_id,userId);
+			try
+			{
+				pallet_db.getPalletProperties(sscc);
+				palletEntity.getPropertiesFromPallet(pallet_db);
+				Long txn = palletDB.returnFromOrder_rest(sscc, issueToOrder, quantity, location_id, userId);
+				if (txn != null && txn > 0)
+				{
+					palletEntity.setCommandStatus("valid");
+					palletEntity.setErrorMessage("");
+					response.setStatus(HttpServletResponse.SC_OK);
+				}
+				else
+				{
+					String msg = palletDB.getErrorMessage();
+					if (msg == null || msg.equals(""))
+					{
+						msg = "Return from order failed.";
+					}
+					palletEntity.setCommandStatus("invalid");
+					palletEntity.setErrorMessage(msg);
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				}
+			}
+			catch (RuntimeException e)
+			{
+				logger.error("return failed for SSCC [" + sscc + "]", e);
+				palletEntity.setCommandStatus("invalid");
+				palletEntity.setErrorMessage("Return from order failed - check SSCC [" + sscc + "]");
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			}
 			reply = GSON.toJson(palletEntity);
-			response.setStatus(HttpServletResponse.SC_OK);
 		}
 		
-		if (action.equals("validateMaterial"))
+		else if (action.equals("validateMaterial"))
 		{
 			
 			palletEntity.setCommandStatus("invalid");
@@ -158,7 +231,7 @@ public class JQMPalletController extends HttpServlet
 			response.setStatus(HttpServletResponse.SC_OK);
 		}
 		
-		if (action.equals("validateLocation"))
+		else if (action.equals("validateLocation"))
 		{
 			
 			palletEntity.setCommandStatus("invalid");
@@ -205,6 +278,12 @@ public class JQMPalletController extends HttpServlet
 			
 			reply = GSON.toJson(palletEntity);
 			response.setStatus(HttpServletResponse.SC_OK);
+		}
+
+		else
+		{
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			reply = GSON.toJson("Unknown action [" + action + "]");
 		}
 
 		response.setContentType("application/json");

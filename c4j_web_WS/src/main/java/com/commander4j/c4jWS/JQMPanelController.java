@@ -107,6 +107,15 @@ public class JQMPanelController extends HttpServlet
 		// Use GSON to map the fields from the GSON Body to the fields of the
 		// Object
 		JQMPanelEntity panelEntity = gson.fromJson(bufferedReader, JQMPanelEntity.class);
+
+		if (panelEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
+
 		// Create an instance of the database handler.
 		JQMPanelDB paneldb = new JQMPanelDB(Common.selectedHostID, request.getSession().getId());
 
@@ -152,6 +161,14 @@ public class JQMPanelController extends HttpServlet
 		// Decode the body of the request and map the fields to the matching
 		// fields of the Object passed to the method.
 		JQMPanelEntity panelEntity = gson.fromJson(bufferedReader, JQMPanelEntity.class);
+
+		if (panelEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
 
 		String reply = "";
 

@@ -143,7 +143,6 @@ public class JXMLDocument
 		}
 		catch (Exception ex)
 		{
-			System.out.println(ex.getMessage());
 			logger.error("JXMLDocument.setDocumentText " + ex.getMessage());
 		}
 	}

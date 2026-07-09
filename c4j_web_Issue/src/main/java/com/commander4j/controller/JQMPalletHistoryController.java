@@ -12,6 +12,7 @@ import com.commander4j.entity.JQMPalletHistoryEntity;
 import com.commander4j.sys.Common;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,19 +34,43 @@ public class JQMPalletHistoryController extends HttpServlet
 		JQMPalletHistoryDB palletHistoryDB = new JQMPalletHistoryDB(Common.selectedHostID, request.getSession().getId());
 		LinkedList<JQMPalletHistoryEntity> result = new LinkedList<JQMPalletHistoryEntity>();
 		BufferedReader bufferedReader = request.getReader();
-		JQMPalletHistoryEntity palletHistoryEntity = GSON.fromJson(bufferedReader, JQMPalletHistoryEntity.class);
+
+		JQMPalletHistoryEntity palletHistoryEntity;
+		try
+		{
+			palletHistoryEntity = GSON.fromJson(bufferedReader, JQMPalletHistoryEntity.class);
+		}
+		catch (JsonSyntaxException e)
+		{
+			palletHistoryEntity = null;
+		}
+
+		if (palletHistoryEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			out.print(GSON.toJson("Request body missing or invalid"));
+			out.flush();
+			return;
+		}
 
 		String reply = "";
-		String action = palletHistoryEntity.getAction().toString();
-		String sscc = palletHistoryEntity.getSSCC().toString();
+		String action = palletHistoryEntity.getAction();
+		String sscc = palletHistoryEntity.getSSCC();
 
-		System.out.println(action);
+		logger.debug("action [" + action + "]");
 
 		if (action.equals("query"))
 		{
 			result = palletHistoryDB.getPalletHistoryBySSCC(sscc);
 			reply = GSON.toJson(result);
 			response.setStatus(HttpServletResponse.SC_OK);
+		}
+		else
+		{
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			reply = GSON.toJson("Unknown action [" + action + "]");
 		}
 
 		response.setContentType("application/json");

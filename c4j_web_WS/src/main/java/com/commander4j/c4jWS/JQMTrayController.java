@@ -110,6 +110,15 @@ public class JQMTrayController extends HttpServlet
 		// Use GSON to map the fields from the GSON Body to the fields of the
 		// Object
 		JQMTrayEntity trayEntity = gson.fromJson(bufferedReader, JQMTrayEntity.class);
+
+		if (trayEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
+
 		// Create an instance of the database handler.
 		JQMTrayDB trayDB = new JQMTrayDB(Common.selectedHostID, request.getSession().getId());
 
@@ -153,6 +162,14 @@ public class JQMTrayController extends HttpServlet
 		// Decode the body of the request and map the fields to the matching
 		// fields of the Object passed to the method.
 		JQMTrayEntity trayEntity = gson.fromJson(bufferedReader, JQMTrayEntity.class);
+
+		if (trayEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
 
 		JURL url = new JURL(request);
 

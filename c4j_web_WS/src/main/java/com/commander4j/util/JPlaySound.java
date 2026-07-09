@@ -41,6 +41,7 @@ import javax.sound.sampled.SourceDataLine;
 public class JPlaySound
 {
 
+	private static final org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger(JPlaySound.class);
 	private static final int EXTERNAL_BUFFER_SIZE = 128000;
 	private static boolean Enabled = false;
 
@@ -86,7 +87,7 @@ public class JPlaySound
 					}
 					catch (IOException e)
 					{
-						e.printStackTrace();
+						logger.error(e);
 					}
 					if (nBytesRead >= 0)
 					{
@@ -103,7 +104,7 @@ public class JPlaySound
 			}
 			catch (Exception e)
 			{
-				e.printStackTrace();
+				logger.error(e);
 			}
 		}
 

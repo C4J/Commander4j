@@ -94,6 +94,14 @@ public class JQMUserController extends HttpServlet
 		// fields of the Object passed to the method.
 		JQMUserEntity userEntity = gson.fromJson(bufferedReader, JQMUserEntity.class);
 
+		if (userEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
+
 		String reply = "";
 
 		// Create database handler
@@ -141,6 +149,15 @@ public class JQMUserController extends HttpServlet
 		// Use GSON to map the fields from the GSON Body to the fields of the
 		// Object
 		JQMUserEntity userEntity = gson.fromJson(bufferedReader, JQMUserEntity.class);
+
+		if (userEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
+
 		// Create an instance of the database handler.
 		JQMUserDB userDB = new JQMUserDB(Common.selectedHostID, request.getSession().getId());
 

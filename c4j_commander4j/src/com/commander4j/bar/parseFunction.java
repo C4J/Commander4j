@@ -588,7 +588,7 @@ public class parseFunction
 					long jd = JUtility.getJulianDay(caldate);
 					String jds = Long.toString(jd).trim();
 					jds = JUtility.padString(jds, false, 3, "0");
-					result = temp.substring(0, 1) + jds;
+					result = temp.substring(9, 10) + jds;
 				}
 
 			}

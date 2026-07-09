@@ -49,31 +49,27 @@ public class JQMUserDB
 
 	public boolean isValid(String userid)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
 
 		logger.debug("isValid :" + userid.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.isValid")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.isValid"));
 			stmt.setString(1, userid);
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = true;
+				if (rs.next())
+				{
+					result = true;
+				}
+				else
+				{
+					setErrorMessage("Invalid User ID");
+				}
 			}
-			else
-			{
-				setErrorMessage("Invalid User ID");
-			}
-
-			rs.close();
-			stmt.close();
 		}
 		catch (SQLException e)
 		{
@@ -90,11 +86,8 @@ public class JQMUserDB
 		logger.debug("create :" + userEntity.toString());
 		setErrorMessage("");
 
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.create")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.create"));
-
 			stmtupdate.setString(1, userEntity.getUserID());
 			stmtupdate.setString(2, userEntity.getFirstName());
 			stmtupdate.setString(3, userEntity.getSurname());
@@ -104,7 +97,6 @@ public class JQMUserDB
 			stmtupdate.clearParameters();
 
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -122,11 +114,8 @@ public class JQMUserDB
 		logger.debug("update :" + userEntity.toString());
 		setErrorMessage("");
 		
-		try
+		try (PreparedStatement stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.update")))
 		{
-			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.update"));
-
 			stmtupdate.setString(1, userEntity.getFirstName());
 			stmtupdate.setString(2, userEntity.getSurname());
 			stmtupdate.setString(3, userEntity.getEnabled());
@@ -136,7 +125,6 @@ public class JQMUserDB
 			stmtupdate.clearParameters();
 
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-			stmtupdate.close();
 			result = true;
 		}
 		catch (SQLException e)
@@ -150,30 +138,27 @@ public class JQMUserDB
 	
 	public JQMUserEntity getProperties(String userid)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
-		JQMUserEntity result = new JQMUserEntity();	
+		JQMUserEntity result = new JQMUserEntity();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.getProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, userid);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result.setUserID(rs.getString("user_id"));
-				result.setFirstName(rs.getString("first_name"));
-				result.setSurname(rs.getString("surname"));
-				result.setEnabled(rs.getString("enabled"));
-			} else
-			{
-				setErrorMessage("Unknown User ID [" + userid + "]");
+				if (rs.next())
+				{
+					result.setUserID(rs.getString("user_id"));
+					result.setFirstName(rs.getString("first_name"));
+					result.setSurname(rs.getString("surname"));
+					result.setEnabled(rs.getString("enabled"));
+				} else
+				{
+					setErrorMessage("Unknown User ID [" + userid + "]");
+				}
 			}
-			rs.close();
-			stmt.close();
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -185,31 +170,28 @@ public class JQMUserDB
 	
 	public LinkedList<JQMUserEntity> getUsersByEnabled(String enabled)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMUserEntity> result = new LinkedList<JQMUserEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.getByEnabled")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.getByEnabled"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, enabled);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMUserEntity tent = new JQMUserEntity();
-				
-				tent.setUserID(rs.getString("user_id"));
-				tent.setFirstName(rs.getString("first_name"));
-				tent.setSurname(rs.getString("surname"));
-				tent.setEnabled(rs.getString("enabled"));
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMUserEntity tent = new JQMUserEntity();
+
+					tent.setUserID(rs.getString("user_id"));
+					tent.setFirstName(rs.getString("first_name"));
+					tent.setSurname(rs.getString("surname"));
+					tent.setEnabled(rs.getString("enabled"));
+					result.addLast(tent);
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -220,31 +202,28 @@ public class JQMUserDB
 	
 	public LinkedList<JQMUserEntity> getUserByUserID(String userID)
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMUserEntity> result = new LinkedList<JQMUserEntity>();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.getByUserID")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMUsers.getByUserID"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, userID);
-			rs = stmt.executeQuery();
 
-			while (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				JQMUserEntity tent = new JQMUserEntity();
-				
-				tent.setUserID(rs.getString("user_id"));
-				tent.setFirstName(rs.getString("first_name"));
-				tent.setSurname(rs.getString("surname"));
-				tent.setEnabled(rs.getString("enabled"));
-				result.addLast(tent);
+				while (rs.next())
+				{
+					JQMUserEntity tent = new JQMUserEntity();
+
+					tent.setUserID(rs.getString("user_id"));
+					tent.setFirstName(rs.getString("first_name"));
+					tent.setSurname(rs.getString("surname"));
+					tent.setEnabled(rs.getString("enabled"));
+					result.addLast(tent);
+				}
 			}
-			rs.close();
-			stmt.close();
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());

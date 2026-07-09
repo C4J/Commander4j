@@ -104,38 +104,35 @@ public class JDBQMSample
 	{
 		boolean result = false;
 
-		PreparedStatement stmt;
-		ResultSet rs;
 		setErrorMessage("");
 		logger.debug("Sample.getProperties");
 
 		clear();
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.getProperties")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.getProperties"));
 			stmt.setLong(1, getSampleID());
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				setInspectionID(rs.getString("inspection_id"));
-				setActivityID(rs.getString("activity_id"));
-				setProcessOrder(rs.getString("process_order"));
-				setMaterial(rs.getString("material"));
-				setSampleDate(rs.getTimestamp("sample_date"));
-				setUserID(rs.getString("user_id"));
-				setUserData1(rs.getString("user_data_1"));
-				setUserData2(rs.getString("user_data_2"));
-				setUserData3(rs.getString("user_data_3"));
-				setUserData4(rs.getString("user_data_4"));
-				result = true;
-				rs.close();
-				stmt.close();
-			} else
-			{
-				setErrorMessage("Invalid Sample ID");
+				if (rs.next())
+				{
+					setInspectionID(rs.getString("inspection_id"));
+					setActivityID(rs.getString("activity_id"));
+					setProcessOrder(rs.getString("process_order"));
+					setMaterial(rs.getString("material"));
+					setSampleDate(rs.getTimestamp("sample_date"));
+					setUserID(rs.getString("user_id"));
+					setUserData1(rs.getString("user_data_1"));
+					setUserData2(rs.getString("user_data_2"));
+					setUserData3(rs.getString("user_data_3"));
+					setUserData4(rs.getString("user_data_4"));
+					result = true;
+				} else
+				{
+					setErrorMessage("Invalid Sample ID");
+				}
 			}
 		} catch (SQLException e)
 		{
@@ -246,26 +243,23 @@ public class JDBQMSample
 
 	public boolean isValidSample()
 	{
-		PreparedStatement stmt;
-		ResultSet rs;
 		boolean result = false;
 
-		try
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.isValid")))
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.isValid"));
 			stmt.setLong(1, getSampleID());
 			stmt.setFetchSize(1);
-			rs = stmt.executeQuery();
 
-			if (rs.next())
+			try (ResultSet rs = stmt.executeQuery())
 			{
-				result = true;
-			} else
-			{
-				setErrorMessage("Invalid Sample [" + String.valueOf(getSampleID()) + "]");
+				if (rs.next())
+				{
+					result = true;
+				} else
+				{
+					setErrorMessage("Invalid Sample [" + String.valueOf(getSampleID()) + "]");
+				}
 			}
-			rs.close();
-			stmt.close();
 
 		} catch (SQLException e)
 		{

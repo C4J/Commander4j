@@ -100,6 +100,15 @@ public class JQMTrayResultController extends HttpServlet
 		// Use GSON to map the fields from the GSON Body to the fields of the
 		// Object
 		JQMTrayResultEntity trayResultEntity = gson.fromJson(bufferedReader, JQMTrayResultEntity.class);
+
+		if (trayResultEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
+
 		// Create an instance of the database handler.
 		JQMTrayResultDB tsdb = new JQMTrayResultDB(Common.selectedHostID, request.getSession().getId());
 
@@ -141,6 +150,14 @@ public class JQMTrayResultController extends HttpServlet
 		// fields of the Object passed to the method.
 		JQMTrayResultEntity[] trayResultEntity = gson.fromJson(bufferedReader, JQMTrayResultEntity[].class);
 
+		if (trayResultEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
+
 		String reply = "";
 
 		// Create database handler
@@ -181,6 +198,15 @@ public class JQMTrayResultController extends HttpServlet
 		Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 		BufferedReader bufferedReader = request.getReader();
 		JQMTrayResultEntity trayResultEntity = gson.fromJson(bufferedReader, JQMTrayResultEntity.class);
+
+		if (trayResultEntity == null)
+		{
+			// No body supplied - fall back to an empty entity so the delete is
+			// driven by the URL parameters below instead of throwing an NPE.
+			trayResultEntity = new JQMTrayResultEntity();
+			trayResultEntity.setTrayID((long) -1);
+			trayResultEntity.setSampleID((long) -1);
+		}
 
 		JQMTrayResultDB trayResultdb = new JQMTrayResultDB(Common.selectedHostID, request.getSession().getId());
 		JURL url = new JURL(request);

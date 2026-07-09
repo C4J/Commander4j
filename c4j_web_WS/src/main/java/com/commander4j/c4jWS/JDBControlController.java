@@ -18,7 +18,7 @@ public class JDBControlController extends HttpServlet
 {
 
 	private static final long serialVersionUID = -3225137788488489978L;
-	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMPanelController.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBControlController.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
@@ -86,6 +86,14 @@ public class JDBControlController extends HttpServlet
 		// Decode the body of the request and map the fields to the matching
 		// fields of the Object passed to the method.
 		JDBControlEntity controlEntity = gson.fromJson(bufferedReader, JDBControlEntity.class);
+
+		if (controlEntity == null)
+		{
+			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			response.setContentType("application/json");
+			response.getWriter().print(gson.toJson("Request body is missing or not valid JSON."));
+			return;
+		}
 
 		String reply = "";
 

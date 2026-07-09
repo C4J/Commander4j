@@ -331,17 +331,20 @@
 		
 			let response = await fetch(getContextPath()+"/Pallets", { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
 				.then((response) => {
-					if (!response.ok) {
-						throw new Error(`HTTP error, status = ${response.status}`);
-					}
 					return response.json();
 				})
 				.then((data) => {
-					setResultMessage(errMsg,data.quantity + " " + data.uom + " returned to "+ data.sscc,true);
-				    sessionStorage.setItem("selectedSSCC", data.sscc);
-				    sessionStorage.setItem("selectedReturnQuantity", "");
-					getPalletProperties();
-
+					if (data.commandStatus != "valid")
+					{
+						setResultMessage(errMsg, data.errorMessage,false);
+					}
+					else
+					{
+						setResultMessage(errMsg,data.quantity + " " + data.uom + " returned to "+ data.sscc,true);
+					    sessionStorage.setItem("selectedSSCC", data.sscc);
+					    sessionStorage.setItem("selectedReturnQuantity", "");
+						getPalletProperties();
+					}
 				})
 				.catch((error) => {
 					sessionStorage.setItem("selectedSSCC", "");

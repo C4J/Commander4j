@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c4jWS Users</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+ 	<p><a href="restindex.html">Home</a></p>
+ 	<h1>/Users</h1>
+ 	<h2>Table APP_QM_USERS</h2>
+ 	<table style="width:800px">
+ 	<tr><th width=125px>Field Name</th><th width=75px>Type</th><th width=55px>Size</th><th width=55px>Primary Key</th><th width=355px>Comment</th></tr>
+ 	<tr><td>USER_ID</td><td>String</td><td></td><td align="center">1</td><td>User ID</td></tr>
+ 	<tr><td>FIRST_NAME</td><td>String</td><td></td><td></td><td>First name</td></tr>
+ 	<tr><td>SURNAME</td><td>String</td><td></td><td></td><td>Surname</td></tr>
+ 	<tr><td>ENABLED</td><td>String</td><td></td><td></td><td>Y or N - whether the user is active</td></tr>
+ 	</table>
+ 	<p><i></i></p>
+
+ 	<h2>Transactions</h2>
+ 	<h3>GET (Read)</h3>
+
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve Users by enabled flag (Y or N)</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Users?enabled={Y|N}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve User by userID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Users?userID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<p><i>*If userID is supplied it takes precedence; otherwise records are filtered by the enabled flag.</i></p>
+
+    <h4>JSON Example - Response</h4>
+    <pre>
+[
+  {
+    "userID": "DAVID",
+    "firstname": "David",
+    "surname": "Garratt",
+    "enabled": "Y"
+  }
+]
+  </pre>
+    <h3>POST (Create)</h3>
+
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Inserts data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Users</td></tr>
+ 	</table>
+
+    <h4>JSON Example - POST</h4>
+    <pre>
+{
+  "userID": "MANDY",
+  "firstname": "Mandy",
+  "surname": "Smith",
+  "enabled": "Y"
+}
+    </pre>
+
+    <h4>JSON Example - Response</h4>
+    <pre>
+{
+  "userID": "MANDY",
+  "firstname": "Mandy",
+  "surname": "Smith",
+  "enabled": "Y"
+}
+    </pre>
+
+    <h3>PUT (Update)</h3>
+
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Updates data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4j_web_WS/Users</td></tr>
+ 	</table>
+ 	<p>*The User is matched on userID; firstname, surname and enabled are updated.</p>
+
+    <h4>JSON Example - PUT</h4>
+    <pre>
+{
+  "userID": "MANDY",
+  "firstname": "Mandy",
+  "surname": "Jones",
+  "enabled": "N"
+}
+    </pre>
+
+</body>
+</html>

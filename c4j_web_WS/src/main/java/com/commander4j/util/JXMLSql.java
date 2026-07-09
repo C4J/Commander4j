@@ -29,10 +29,13 @@ package com.commander4j.util;
 
 import java.util.LinkedList;
 
+import org.apache.logging.log4j.Logger;
+
 import com.commander4j.c4jWS.Common;
 
 public class JXMLSql
 {
+	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JXMLSql.class);
 
 	public static LinkedList<JDBSQLStatement> loadSQLStatements(String host, String driver, String filename) {
 
@@ -61,7 +64,7 @@ public class JXMLSql
 				}
 				catch (Exception ex)
 				{
-					System.out.println(ex.getMessage());
+					logger.error(ex.getMessage());
 				}
 
 				if (statementId.equals("") == false)
