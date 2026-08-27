@@ -369,7 +369,9 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		JDBWasteLog materialBatch = new JDBWasteLog(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 
-		export.saveAs("waste_log.xls", materialBatch.getWasteLogResultSet(buildSQL(qExcel)), Common.mainForm);
+		PreparedStatement temp = buildSQL(qExcel);
+		export.saveAs("waste_log.xls", materialBatch.getWasteLogResultSet(temp), Common.mainForm);
+		JDBQuery.closeStatement(temp);
 		populateList();
 	}
 
@@ -1159,8 +1161,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.waste_materials_all())
 					{
 						jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
@@ -1175,8 +1175,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.waste_reasons())
 					{
 						jTextFieldWasteReason.setText(JLaunchLookup.dlgResult);
@@ -1191,8 +1189,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.waste_locations())
 					{
 						jTextFieldWasteLocation.setText(JLaunchLookup.dlgResult);
@@ -1208,8 +1204,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.waste_containers())
 					{
 						jTextFieldWasteContainer.setText(JLaunchLookup.dlgResult);
@@ -1391,8 +1385,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Ready";
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("status", "Ready");
 					if (JLaunchLookup.processOrders())
 					{
 						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -1417,8 +1410,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.users())
 					{
 						jTextFieldUserID.setText(JLaunchLookup.dlgResult);
@@ -1453,7 +1444,9 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 	private void print()
 	{
-		JLaunchReport.runReport("RPT_WASTE_LOG", null, "", buildSQL(qPrint), "");
+		PreparedStatement temp = buildSQL(qPrint);
+		JLaunchReport.runReport("RPT_WASTE_LOG", null, "", temp, "");
+		JDBQuery.closeStatement(temp);
 	}
 
 	/**

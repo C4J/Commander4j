@@ -380,6 +380,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("locations.xls", location.getLocationDataResultSet(temp), Common.mainForm);
+		JDBQuery2.closeStatement(temp);
 		populateList();
 	}
 
@@ -1304,6 +1305,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_LOCATIONS", null, "", temp, "");
+		JDBQuery2.closeStatement(temp);
 	}
 
 	private void search()

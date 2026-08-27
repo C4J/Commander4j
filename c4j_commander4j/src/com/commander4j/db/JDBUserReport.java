@@ -907,7 +907,7 @@ public class JDBUserReport {
 
 	public boolean runReport()
 	{
-		PreparedStatement prepStatement;
+		PreparedStatement prepStatement = null;
 		boolean result = true;
 
 		try
@@ -1042,6 +1042,8 @@ public class JDBUserReport {
 			setErrorMessage(ex.getMessage());
 			result = false;
 		}
+
+		JDBQuery2.closeStatement(prepStatement);
 
 		return result;
 	}

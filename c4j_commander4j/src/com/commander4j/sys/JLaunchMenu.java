@@ -605,6 +605,32 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
+		if (optionName.equals("FRM_PAL_ISSUE"))
+		{
+			final JInternalFramePalletIssue u;
+			if (isLoaded(JInternalFramePalletIssue.class))
+				setVisible(JInternalFramePalletIssue.class);
+			else
+			{
+				u = new JInternalFramePalletIssue();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_PAL_RETURN"))
+		{
+			final JInternalFramePalletReturn u;
+			if (isLoaded(JInternalFramePalletReturn.class))
+				setVisible(JInternalFramePalletReturn.class);
+			else
+			{
+				u = new JInternalFramePalletReturn();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_QM_SAMPLE_RESULTS"))
 		{
@@ -2301,6 +2327,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+	
 
 		if (optionName.equals("FRM_QM_SAMPLE_EDIT"))
 		{

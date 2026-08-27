@@ -251,8 +251,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 			public void actionPerformed(ActionEvent evt)
 			{
 
-				JLaunchLookup.dlgAutoExec = false;
-				JLaunchLookup.dlgCriteriaDefault = "REPORT";
+				JLaunchLookup.setSearchValue("module_type", "REPORT");
 				if (JLaunchLookup.modules())
 				{
 					textField4j_ModuleID.setText(JLaunchLookup.dlgResult);
@@ -454,8 +453,6 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "";
 
 				if (JLaunchLookup.groups())
 				{
@@ -468,8 +465,6 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "";
 
 				if (JLaunchLookup.users())
 				{

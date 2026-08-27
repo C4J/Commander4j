@@ -747,6 +747,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			PreparedStatement temp = buildSQLr();
 			export.saveAs("pallet.xls", pallet.getPalletDataResultSet(temp), Common.mainForm);
+			JDBQuery2.closeStatement(temp);
 		}
 		else
 		{
@@ -755,6 +756,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				PreparedStatement temp = buildSQL1Record();
 				export.saveAs("pallet.xls", pallet.getPalletDataResultSet(temp), Common.mainForm);
+				JDBQuery2.closeStatement(temp);
 			}
 		}
 		populateList();
@@ -1204,8 +1206,9 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Ready";
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("status", "Ready");
+					JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
+					JLaunchLookup.setSearchValue("required_resource", jTextFieldRequiredResource.getText());
 					if (JLaunchLookup.processOrders())
 					{
 						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -1221,8 +1224,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
 					if (JLaunchLookup.materialBatches())
 					{
 						jTextFieldBatch.setText(JLaunchLookup.dlgResult);
@@ -1237,8 +1239,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.materials())
 					{
 						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -1253,8 +1253,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.locations())
 					{
 						jTextFieldLocation.setText(JLaunchLookup.dlgResult);
@@ -1269,8 +1267,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.customers())
 					{
 						jTextFieldCustomer.setText(JLaunchLookup.dlgResult);
@@ -2322,8 +2318,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 
 					if (JLaunchLookup.users())
 					{
@@ -2352,8 +2346,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.equipmentType())
 					{
 						textFieldEquipmentType.setText(JLaunchLookup.dlgResult);
@@ -2375,8 +2367,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 
 					if (JLaunchLookup.users())
 					{
@@ -2420,8 +2410,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.resources())
 					{
 						jTextFieldRequiredResource.setText(JLaunchLookup.dlgResult);
@@ -2544,6 +2532,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		jComboBoxSortBy.setSelectedItem("MATERIAL,PROCESS_ORDER");
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_PAL_SUMMARY", null, "", temp, "");
+		JDBQuery2.closeStatement(temp);
 	}
 
 	private void printLabels()
@@ -2565,6 +2554,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			PreparedStatement temp = buildSQLr();
 			JLaunchReport.runReport("RPT_PALLETS", null, "", temp, "");
+			JDBQuery2.closeStatement(temp);
 		}
 		else
 		{
@@ -2573,6 +2563,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				PreparedStatement temp = buildSQL1Record();
 				JLaunchReport.runReport("RPT_PALLETS", null, "", temp, "");
+				JDBQuery2.closeStatement(temp);
 			}
 		}
 	}

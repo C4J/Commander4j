@@ -621,7 +621,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 
 						refreshAssignedJList(jListAssignedPrinters, assignedModel, assignedList);
 						refreshUnAssignedJList(jListUnAssignedPrinters, unassignedModel, unassignedList);
-
+						jButtonUpdate.setEnabled(true);
 						setButtonState();
 					}
 
@@ -661,7 +661,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 						}
 						refreshUnAssignedJList(jListUnAssignedPrinters, unassignedModel, unassignedList);
 						refreshAssignedJList(jListAssignedPrinters, assignedModel, assignedList);
-
+						jButtonUpdate.setEnabled(true);
 						setButtonState();
 					}
 				}

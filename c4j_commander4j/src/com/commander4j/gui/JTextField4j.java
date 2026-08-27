@@ -15,153 +15,222 @@ import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class JTextField4j extends JTextField {
+public class JTextField4j extends JTextField
+{
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JFixedSizeFilter tsf;
-    private int characterLimit = -1; // -1 means "no limit"
-    private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
-    private boolean hasFocus = false;
-
+	private JFixedSizeFilter tsf;
+	private int characterLimit = -1; // -1 means "no limit"
+	private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
+	private boolean hasFocus = false;
+	private boolean inError = false;
 
 	private void init()
 	{
-        setDisabledTextColor(Common.color_textfield_foreground_disabled);
-        setBorder(EMPTY_BORDER);
+		setDisabledTextColor(Common.color_textfield_foreground_disabled);
+		setBorder(EMPTY_BORDER);
 		setFont(Common.font_input);
 	}
 
-    public JTextField4j() {
-        super();
-        init();
-        initFocusBehavior();
-        updateColors();
-    }
-
-	public JTextField4j(String text) {
-		super(text);
+	public JTextField4j()
+	{
+		super();
 		init();
-        initFocusBehavior();
-        updateColors();
+		initFocusBehavior();
+		updateColors();
 	}
 
-    public JTextField4j(int columns) {
-        super(columns);
-        init();
-        this.characterLimit = columns;
-        initFocusBehavior();
-        initCharacterLimitBehavior();
-        updateColors();
-    }
+	public void inError(boolean error)
+	{
+		inError = error;
+		updateColors();
+	}
+	
+	public boolean inError()
+	{
+		return inError;
+	}
 
-    public void setDocumentFilter(DocumentFilter docfilter)
-    {
-    	((AbstractDocument) getDocument()).setDocumentFilter(docfilter);
-    }
+	public JTextField4j(String text)
+	{
+		super(text);
+		init();
+		initFocusBehavior();
+		updateColors();
+	}
 
-    public void resetCaseFilter()
-    {
-    	((AbstractDocument) getDocument()).setDocumentFilter(null);
-    }
+	public JTextField4j(int columns)
+	{
+		super(columns);
+		init();
+		this.characterLimit = columns;
+		initFocusBehavior();
+		initCharacterLimitBehavior();
+		updateColors();
+	}
 
-    private void initFocusBehavior() {
-        addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-            	hasFocus = true;
-            	if (isEditable())
-            	{
-                   setBackground(Common.color_textfield_background_focus_color);
-            	}
+	public void setDocumentFilter(DocumentFilter docfilter)
+	{
+		((AbstractDocument) getDocument()).setDocumentFilter(docfilter);
+	}
 
-            }
+	public void resetCaseFilter()
+	{
+		((AbstractDocument) getDocument()).setDocumentFilter(null);
+	}
 
-            @Override
-            public void focusLost(FocusEvent e) {
-            	hasFocus = false;
-            	if (isEditable())
-            	{
-                  setBackground(Common.color_textfield_background_nofocus_color);
-            	}
-            }
-        });
-    }
+	private void initFocusBehavior()
+	{
+		addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusGained(FocusEvent e)
+			{
+				hasFocus = true;
+				if (isEditable())
+				{
+					setBackground(Common.color_textfield_background_focus_color);
+				}
 
-    private void initCharacterLimitBehavior() {
-        if (characterLimit > 0) {
-            getDocument().addDocumentListener(new DocumentListener() {
-                public void insertUpdate(DocumentEvent e) {
-                    updateTextColor();
-                }
+			}
 
-                public void removeUpdate(DocumentEvent e) {
-                    updateTextColor();
-                }
+			@Override
+			public void focusLost(FocusEvent e)
+			{
+				hasFocus = false;
+				if (isEditable())
+				{
+					setBackground(Common.color_textfield_background_nofocus_color);
+				}
+			}
+		});
+	}
 
-                public void changedUpdate(DocumentEvent e) {
-                    updateTextColor();
-                }
+	private void initCharacterLimitBehavior()
+	{
+		if (characterLimit > 0)
+		{
+			getDocument().addDocumentListener(new DocumentListener()
+			{
+				public void insertUpdate(DocumentEvent e)
+				{
+					updateTextColor();
+				}
 
-                private void updateTextColor() {
-                    if (getText().length() >= characterLimit) {
-                        setForeground(Common.color_textfield_max_input_size_color);
-                    } else {
-                        updateColors();
-                    }
-                }
-            });
+				public void removeUpdate(DocumentEvent e)
+				{
+					updateTextColor();
+				}
 
-    		tsf = new JFixedSizeFilter(characterLimit);
-    	    ((AbstractDocument) getDocument()).setDocumentFilter(tsf);
-        }
-    }
+				public void changedUpdate(DocumentEvent e)
+				{
+					updateTextColor();
+				}
 
-    public void setCharacterLimit(int limit) {
-        if (characterLimit < 0 && limit > 0) {
-            this.characterLimit = limit;
-            initCharacterLimitBehavior();
-        } else {
-            this.characterLimit = limit;
-        }
-    }
+				private void updateTextColor()
+				{
+					if (getText().length() >= characterLimit)
+					{
+						setForeground(Common.color_textfield_max_input_size_color);
+					}
+					else
+					{
+						updateColors();
+					}
+				}
+			});
 
-    @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-        updateColors();
-    }
+			tsf = new JFixedSizeFilter(characterLimit);
+			((AbstractDocument) getDocument()).setDocumentFilter(tsf);
+		}
+	}
 
-    @Override
-    public void setEditable(boolean editable) {
-        super.setEditable(editable);
-        updateColors();
-    }
+	public void setCharacterLimit(int limit)
+	{
+		if (characterLimit < 0 && limit > 0)
+		{
+			this.characterLimit = limit;
+			initCharacterLimitBehavior();
+		}
+		else
+		{
+			this.characterLimit = limit;
+		}
+	}
 
-    @Override
-    public void updateUI() {
-        super.updateUI();
-        setDisabledTextColor(Common.color_textfield_foreground_disabled);
-        updateColors();
-    }
+	@Override
+	public void setEnabled(boolean enabled)
+	{
+		super.setEnabled(enabled);
+		updateColors();
+	}
 
-    private void updateColors() {
-        if (!isEnabled()) {
-            setBackground(Common.color_textfield_background_disabled);
-            setForeground(Common.color_textfield_foreground_disabled);
-        } else if (!isEditable()) {
-            setBackground(Common.color_textfield_background_disabled);
-            setForeground(Common.color_textfield_foreground_disabled);
-        } else if (hasFocus){
-            setBackground(Common.color_textfield_background_focus_color);
-            setForeground(Common.color_textfield_foreground_focus_color);
-        } else
-        {
-            setBackground(Common.color_textfield_background_nofocus_color);
-            setForeground(Common.color_textfield_foreground_nofocus_color);
-        }
+	@Override
+	public void setEditable(boolean editable)
+	{
+		super.setEditable(editable);
+		updateColors();
+	}
 
-    }
+	@Override
+	public void updateUI()
+	{
+		super.updateUI();
+		setDisabledTextColor(Common.color_textfield_foreground_disabled);
+		updateColors();
+	}
+
+	private void updateColors()
+	{
+
+		if (inError)
+		{
+			if (!isEnabled())
+			{
+				setBackground(Common.color_textfield_background_disabled_error);
+				setForeground(Common.color_textfield_foreground_disabled);
+			}
+			else if (!isEditable())
+			{
+				setBackground(Common.color_textfield_background_disabled_error);
+				setForeground(Common.color_textfield_foreground_disabled);
+			}
+			else if (hasFocus)
+			{
+				setBackground(Common.color_textfield_background_focus_error_color);
+				setForeground(Common.color_textfield_foreground_focus_color);
+			}
+			else
+			{
+				setBackground(Common.color_textfield_background_nofocus_error_color);
+				setForeground(Common.color_textfield_foreground_nofocus_color);
+			}
+		}
+		else
+		{
+			if (!isEnabled())
+			{
+				setBackground(Common.color_textfield_background_disabled);
+				setForeground(Common.color_textfield_foreground_disabled);
+			}
+			else if (!isEditable())
+			{
+				setBackground(Common.color_textfield_background_disabled);
+				setForeground(Common.color_textfield_foreground_disabled);
+			}
+			else if (hasFocus)
+			{
+				setBackground(Common.color_textfield_background_focus_color);
+				setForeground(Common.color_textfield_foreground_focus_color);
+			}
+			else
+			{
+				setBackground(Common.color_textfield_background_nofocus_color);
+				setForeground(Common.color_textfield_foreground_nofocus_color);
+			}
+		}
+
+	}
 
 }
-

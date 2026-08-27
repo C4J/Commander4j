@@ -16,9 +16,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>25</maven.compiler.release>
 
-        <jasperreports.version>7.0.6</jasperreports.version>
+        <jasperreports.version>7.0.8</jasperreports.version>
         <batik.version>1.19</batik.version>
-        <log4j.version>2.25.4</log4j.version>
+        <log4j.version>2.25.5</log4j.version>
         <jaxb.version>4.0.7</jaxb.version>
         <jaxb.api.version>4.0.5</jaxb.api.version>
         <ant.version>1.10.15</ant.version>
@@ -83,28 +83,15 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- c4j_cups4j (jakarta fork of cups4j 0.8.1) is managed outside Maven;
-             jar is kept directly in lib/. Its transitive HTTP client dep is
-             declared below so Maven still pulls it into target/dependency. -->
-
-        <!-- Source: https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
+        <!-- Source: https://mvnrepository.com/artifact/org.cups4j/cups4j
+             0.8.3 replaced Apache HttpClient 5 with the JDK 11 java.net.http
+             client, so httpclient5 / httpcore5 / httpcore5-h2 are no longer
+             needed (cups4j was their only consumer here). -->
         <dependency>
-            <groupId>org.apache.httpcomponents.client5</groupId>
-            <artifactId>httpclient5</artifactId>
-            <version>5.6.1</version>
+            <groupId>org.cups4j</groupId>
+            <artifactId>cups4j</artifactId>
+            <version>0.8.3</version>
             <scope>compile</scope>
-        </dependency>
-
-        <!-- Explicit httpcore5 overrides to match c4j_middleware4j (httpclient5:5.6.1 transitively pulls httpcore5:5.4) -->
-        <dependency>
-            <groupId>org.apache.httpcomponents.core5</groupId>
-            <artifactId>httpcore5</artifactId>
-            <version>5.4.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents.core5</groupId>
-            <artifactId>httpcore5-h2</artifactId>
-            <version>5.4.2</version>
         </dependency>
 
         <!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->

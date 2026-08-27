@@ -379,6 +379,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_PROCESS_ORDERS", null, "", temp, "");
+		JDBQuery.closeStatement(temp);
 
 	}
 
@@ -855,6 +856,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							{
 								PreparedStatement temp = buildSQLr();
 								JLaunchReport.runReport("RPT_WASTE_ORDER_LAB", null, "", temp, "");
+								JDBQuery.closeStatement(temp);
 							}
 						});
 						newItemMenuItem.setText(lang.get("mod_RPT_WASTE_ORDER_LAB"));
@@ -1526,8 +1528,6 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.materials())
 					{
 						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -1542,8 +1542,6 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.customers())
 					{
 						jTextFieldCustomer.setText(JLaunchLookup.dlgResult);
@@ -1558,8 +1556,11 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Ready";
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("status", "Ready");
+					JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
+					JLaunchLookup.setSearchValue("required_resource", jTextFieldRequiredResource.getText());
+					JLaunchLookup.setSearchValue("location_id", jTextFieldLocation.getText());
+					JLaunchLookup.setSearchValue("customer_id", jTextFieldCustomer.getText());
 					if (JLaunchLookup.processOrders())
 					{
 						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -1574,8 +1575,6 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.locations())
 					{
 						jTextFieldLocation.setText(JLaunchLookup.dlgResult);
@@ -1705,8 +1704,6 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.qmInspections())
 					{
 						jTextFieldInspectionID.setText(JLaunchLookup.dlgResult);
@@ -1745,8 +1742,6 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.resources())
 					{
 						jTextFieldRequiredResource.setText(JLaunchLookup.dlgResult);

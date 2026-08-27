@@ -321,6 +321,7 @@ public class JInternalFrameBomElements extends javax.swing.JInternalFrame
 					JExcel export = new JExcel();
 					PreparedStatement temp = buildSQLr();
 					export.saveAs("bom_elements.xls", bomElement.getBomElementsResultSet(temp), Common.mainForm);
+					JDBQuery.closeStatement(temp);
 					refresh();
 				}
 			});

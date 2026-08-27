@@ -160,6 +160,7 @@ public class JInternalFrameGroupUsers extends javax.swing.JInternalFrame
 			stmt = Common.hostList.getHost(Common.selectedHostID).getConnection(Common.sessionID).prepareStatement(Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBUserGroupMembership.getUsersAssignedtoGroup"));
 			stmt.setString(1, lgroup_id);
 			JLaunchReport.runReport("RPT_USERS", null, "", stmt, "");
+			stmt.close();
 
 		}
 		catch (SQLException e)

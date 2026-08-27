@@ -267,8 +267,6 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "";
 
 				if (JLaunchLookup.users())
 				{
@@ -284,8 +282,6 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 
 					if (JLaunchLookup.users())
 					{
@@ -477,6 +473,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("mhn_" + masterHoldNoticeNumber + ".xls", mhn.getMHNDataResultSet(temp), Common.mainForm);
+		JDBQuery.closeStatement(temp);
 		populateList();
 	}
 

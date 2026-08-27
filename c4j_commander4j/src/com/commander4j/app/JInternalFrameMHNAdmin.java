@@ -394,6 +394,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("mhn_list.xls", mhn.getMHNDataResultSet(temp), Common.mainForm);
+		JDBQuery.closeStatement(temp);
 		populateList();
 	}
 
@@ -967,8 +968,6 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.reasons())
 					{
 						jTextFieldReason.setText(JLaunchLookup.dlgResult);
@@ -1204,8 +1203,6 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 
 					if (JLaunchLookup.users())
 					{
@@ -1221,8 +1218,6 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 
 					if (JLaunchLookup.users())
 					{
@@ -1238,8 +1233,6 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 
 					if (JLaunchLookup.users())
 					{
@@ -1255,8 +1248,6 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.resources())
 					{
 						jTextFieldResource.setText(JLaunchLookup.dlgResult);
@@ -1325,6 +1316,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_MHNS", null, "", temp, "");
+		JDBQuery.closeStatement(temp);
 	}
 
 	private void search()

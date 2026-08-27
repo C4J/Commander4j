@@ -734,11 +734,11 @@
 		</statement>
 		<statement>
 			<id>JDBPallet.Issue</id>
-			<text>update app_pallet set quantity = ?,updated_by_user_id=?, date_updated=?,location_id=? where sscc = ?</text>
+			<text>update {schema}app_pallet set quantity = ?,updated_by_user_id=?, date_updated=?,location_id=? where sscc = ?</text>
 		</statement>
 		<statement>
 			<id>JDBPallet.Return</id>
-			<text>update app_pallet set quantity = ?,updated_by_user_id=?, date_updated=?,location_id=? where sscc = ?</text>
+			<text>update {schema}app_pallet set quantity = ?,updated_by_user_id=?, date_updated=?,location_id=? where sscc = ?</text>
 		</statement>
 		<statement>
 			<id>JDBPallet.updateMHNNumber</id>

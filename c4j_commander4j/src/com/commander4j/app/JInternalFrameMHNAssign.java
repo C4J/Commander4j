@@ -1203,8 +1203,8 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Ready";
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("status", "Ready");
+					JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
 					if (JLaunchLookup.processOrders())
 					{
 						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -1218,8 +1218,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
 					if (JLaunchLookup.materialBatches())
 					{
 						jTextFieldBatch.setText(JLaunchLookup.dlgResult);
@@ -1233,8 +1232,6 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.materials())
 					{
 						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -1248,8 +1245,6 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.locations())
 					{
 						jTextFieldLocation.setText(JLaunchLookup.dlgResult);
@@ -1263,8 +1258,6 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.customers())
 					{
 						jTextFieldCustomer.setText(JLaunchLookup.dlgResult);

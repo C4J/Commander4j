@@ -413,6 +413,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("materials.xls", material.getMaterialDataResultSet(temp), Common.mainForm);
+		JDBQuery.closeStatement(temp);
 		populateList();
 	}
 
@@ -953,8 +954,6 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.equipmentType())
 					{
 						textFieldEquipmentType.setText(JLaunchLookup.dlgResult);
@@ -1188,8 +1187,6 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.qmInspections())
 					{
 						textFieldInspectionID.setText(JLaunchLookup.dlgResult);
@@ -1318,6 +1315,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 	{
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_MATERIALS", null, "", temp, "");
+		JDBQuery.closeStatement(temp);
 	}
 
 	private void search()

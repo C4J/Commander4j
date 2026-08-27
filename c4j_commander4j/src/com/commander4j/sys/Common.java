@@ -246,12 +246,21 @@ public class Common
 	public final static Color color_text_label_status = Color.RED;
 	public final static Color color_text_label_std = Color.BLACK;
 	public final static Color color_text_label_title = Color.BLACK;
+	
 	public final static Color color_textfield_background_disabled = new Color(241, 241, 241);
+	public final static Color color_textfield_background_disabled_error = Color.red;
+	
 	public final static Color color_textfield_background_focus_color = new Color(255, 255, 200);
+	public final static Color color_textfield_background_focus_error_color = Color.RED;
+	
 	public final static Color color_textfield_background_nofocus_color = Color.WHITE;
+	public final static Color color_textfield_background_nofocus_error_color = Color.RED;
+	
 	public final static Color color_textfield_foreground_disabled = Color.BLUE;
 	public final static Color color_textfield_foreground_focus_color = Color.BLACK;
+	
 	public final static Color color_textfield_foreground_nofocus_color = Color.BLACK;
+	
 	public final static Color color_textfield_max_input_size_color = Color.RED;
 	public final static Color color_toolbar_background = new Color(233,236,242);
 	public final static Color color_tree_background = Color.WHITE;
@@ -362,6 +371,7 @@ public class Common
 	public final static Icon icon_search_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_search);
 	public final static Icon icon_select_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_select);
 	public final static Icon icon_split_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_split);
+	public final static Icon icon_issue_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_issue);
 	public final static Icon icon_unconfirm_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_unconfirm);
 	public final static Icon icon_undo_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_undo);
 	public final static Icon icon_uom_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_units);
@@ -462,6 +472,7 @@ public class Common
 	public final static String image_search = "search.gif";
 	public final static String image_select = "ok.gif";
 	public final static String image_split = "split.gif";
+	public final static String image_issue = "issue.png";
 	public final static String image_unconfirm = "pallet_unconfirm.gif";
 	public final static String image_undo = "undo.gif";
 	public final static String image_units = "units.gif";

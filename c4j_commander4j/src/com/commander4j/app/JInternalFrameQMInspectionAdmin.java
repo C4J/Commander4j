@@ -404,8 +404,6 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "";
 				if (JLaunchLookup.qmInspections())
 				{
 					textFieldInspectionID.setText(JLaunchLookup.dlgResult);

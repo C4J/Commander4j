@@ -401,11 +401,8 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent arg0)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.qmInspections())
 					{
-						JLaunchLookup.dlgCriteriaDefault = "";
 						jTextFieldInspectionID.setText(JLaunchLookup.dlgResult);
 						jButtonSave.setEnabled(true);
 					}
@@ -481,8 +478,6 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.customers())
 					{
 						jTextFieldCustomer.setText(JLaunchLookup.dlgResult);
@@ -545,8 +540,6 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.materials())
 					{
 						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -576,8 +569,6 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.locations())
 					{
 						jTextFieldLocation.setText(JLaunchLookup.dlgResult);
@@ -593,8 +584,6 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.resources())
 					{
 						jTextFieldRequiredResource.setText(JLaunchLookup.dlgResult);

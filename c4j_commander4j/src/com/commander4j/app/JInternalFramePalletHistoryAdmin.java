@@ -471,7 +471,9 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 
 		JExcel export = new JExcel();
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
-		export.saveAs("pallet_history.xls", palletHistory.getPalletHistoryDataResultSet(buildSQL(qExcel)), Common.mainForm);
+		PreparedStatement temp = buildSQL(qExcel);
+		export.saveAs("pallet_history.xls", palletHistory.getPalletHistoryDataResultSet(temp), Common.mainForm);
+		JDBQuery2.closeStatement(temp);
 		// populateList();
 	}
 
@@ -1468,8 +1470,8 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgCriteriaDefault = "Ready";
-						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.setSearchValue("status", "Ready");
+						JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
 						if (JLaunchLookup.processOrders())
 						{
 							jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -1484,8 +1486,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
-						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
 						if (JLaunchLookup.materialBatches())
 						{
 							jTextFieldBatch.setText(JLaunchLookup.dlgResult);
@@ -1500,8 +1501,6 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = false;
-						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.materials())
 						{
 							jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -1516,8 +1515,6 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "Y";
 						if (JLaunchLookup.locations())
 						{
 							jTextFieldLocation.setText(JLaunchLookup.dlgResult);
@@ -1669,8 +1666,6 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.customers())
 						{
 							jTextFieldCustomer.setText(JLaunchLookup.dlgResult);
@@ -1762,7 +1757,9 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 
 	private void print()
 	{
-		JLaunchReport.runReport("RPT_PALLET_HISTORY", null, "", buildSQL(qPrint), "");
+		PreparedStatement temp = buildSQL(qPrint);
+		JLaunchReport.runReport("RPT_PALLET_HISTORY", null, "", temp, "");
+		JDBQuery2.closeStatement(temp);
 	}
 
 	private void print_summary()
@@ -1771,7 +1768,9 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		comboBoxTransactionType.setSelectedItem("PROD DEC");
 		comboBoxTransactionSubtype.setSelectedItem("CONFIRM");
 		JWait.milliSec(100);
-		JLaunchReport.runReport("RPT_HIST_SUMMARY", null, "", buildSQL(qPrint), "");
+		PreparedStatement temp = buildSQL(qPrint);
+		JLaunchReport.runReport("RPT_HIST_SUMMARY", null, "", temp, "");
+		JDBQuery2.closeStatement(temp);
 	}
 
 	private void setSequence(boolean descending)

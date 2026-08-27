@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Connection to the util_modbusBridge REST service. When enabled="true", an attempt to
+     issue material to the wrong lane POSTs /api/points/{location}/pulse with {"value":1}
+     to fire the lane's relay. Which locations map to a relay is decided by the bridge's
+     own <restapi> id list (a location the bridge does not know returns 404 and is ignored),
+     and the relay hold time comes from the bridge's per-point defaultHoldMs - neither is
+     configured here. This file is copied to tomcat/c4j_config/<context>/bridge.xml on first
+     run; edit that external copy for environment-specific changes. -->
+<bridge enabled="true">
+    <url>http://127.0.0.1:8085</url>
+</bridge>

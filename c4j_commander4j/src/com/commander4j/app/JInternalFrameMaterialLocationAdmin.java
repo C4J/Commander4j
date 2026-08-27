@@ -652,8 +652,6 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.materials())
 					{
 						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -668,8 +666,6 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Y";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.locations())
 					{
 						jTextFieldLocation.setText(JLaunchLookup.dlgResult);

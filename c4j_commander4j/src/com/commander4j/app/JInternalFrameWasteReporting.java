@@ -350,7 +350,9 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	{
 		JDBViewWasteReporting materialBatch = new JDBViewWasteReporting(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
-		export.saveAs("waste_reporting.xls", materialBatch.getWasteLogResultSet(buildSQL(qExcel)), Common.mainForm);
+		PreparedStatement temp = buildSQL(qExcel);
+		export.saveAs("waste_reporting.xls", materialBatch.getWasteLogResultSet(temp), Common.mainForm);
+		JDBQuery2.closeStatement(temp);
 	}
 
 	private void copyToClipboard(String fieldname)
@@ -977,8 +979,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.waste_materials_for_location())
 					{
 						jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
@@ -993,8 +993,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.waste_reasons())
 					{
 						jTextFieldWasteReason.setText(JLaunchLookup.dlgResult);
@@ -1009,8 +1007,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.waste_locations())
 					{
 						jTextFieldWasteLocation.setText(JLaunchLookup.dlgResult);
@@ -1026,8 +1022,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.waste_containers())
 					{
 						jTextFieldWasteContainer.setText(JLaunchLookup.dlgResult);
@@ -1043,8 +1037,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.waste_report_ids())
 					{
 						jTextFieldWasteReportingID.setText(JLaunchLookup.dlgResult);
@@ -1199,8 +1191,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Ready";
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("status", "Ready");
 					if (JLaunchLookup.processOrders())
 					{
 						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -1225,8 +1216,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.users())
 					{
 						jTextFieldUserID.setText(JLaunchLookup.dlgResult);
@@ -1308,7 +1297,9 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				jComboBoxSortBy.setSelectedIndex(0);
 
-				JLaunchReport.runReport("RPT_WASTE_REPORTING1", null, "", buildSQL(qPrint), "");
+				PreparedStatement temp = buildSQL(qPrint);
+				JLaunchReport.runReport("RPT_WASTE_REPORTING1", null, "", temp, "");
+				JDBQuery2.closeStatement(temp);
 			}
 		});
 		item1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING1"));
@@ -1320,7 +1311,9 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				jComboBoxSortBy.setSelectedIndex(4);
 
-				JLaunchReport.runReport("RPT_WASTE_REPORTING2", null, "", buildSQL(qPrint), "");
+				PreparedStatement temp = buildSQL(qPrint);
+				JLaunchReport.runReport("RPT_WASTE_REPORTING2", null, "", temp, "");
+				JDBQuery2.closeStatement(temp);
 			}
 		});
 		item2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING2"));
@@ -1332,7 +1325,9 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				jComboBoxSortBy.setSelectedIndex(7);
 
-				JLaunchReport.runReport("RPT_WASTE_REPORTING3", null, "", buildSQL(qPrint), "");
+				PreparedStatement temp = buildSQL(qPrint);
+				JLaunchReport.runReport("RPT_WASTE_REPORTING3", null, "", temp, "");
+				JDBQuery2.closeStatement(temp);
 			}
 		});
 		item3.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING3"));

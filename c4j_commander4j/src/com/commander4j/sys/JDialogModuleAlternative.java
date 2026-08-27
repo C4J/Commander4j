@@ -326,6 +326,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("alternative_modules.xls", material.getDataResultSet(temp), this);
+		JDBQuery2.closeStatement(temp);
 		refreshWorkstationList();
 	}
 

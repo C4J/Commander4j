@@ -273,6 +273,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 	{
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_BOM_ENQUIRY", null, "", temp, "");
+		JDBQuery.closeStatement(temp);
 	}
 
 	private void search()

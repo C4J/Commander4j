@@ -9,6 +9,7 @@ import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.tomcat.jakartaee.commons.io.FileUtils;
 
 import com.commander4j.sys.Common;
+import com.commander4j.util.JQMBridgeClient;
 
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -53,10 +54,14 @@ public class AppServletContextListener implements ServletContextListener
 		Common.selectedHostID = Common.hostList.getHostIDforUniqueId(uniqueID);
 		
 		logger.debug("service host = "+Common.selectedHostID+" - "+Common.hostList.getHost(Common.selectedHostID).getSiteDescription());
+
+		JQMBridgeClient.init(getBridgePath(sce));
 	}
 
 	public void contextDestroyed(ServletContextEvent sce)
 	{
+		JQMBridgeClient.shutdown();
+
 		Common.hostList.getHost(Common.selectedHostID).disconnectAll();
 		
 		logger.debug("contextDestroyed ["+sce.getServletContext().getServletContextName()+"]");
@@ -95,19 +100,66 @@ public class AppServletContextListener implements ServletContextListener
 			try
 			{
 				File source = new File(sce.getServletContext().getRealPath("/xml/hosts/hosts.xml"));
-				
+
 				File destination = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath);
-				
+
 				FileUtils.copyFileToDirectory(source, destination);
 
 				source = new File(sce.getServletContext().getRealPath("/xml/hosts/hosts.dtd"));
-				
+
 				FileUtils.copyFileToDirectory(source, destination);
-				
+
 			}
 			catch (IOException e)
 			{
 				result = sce.getServletContext().getRealPath("/xml/hosts/hosts.xml");
+			}
+
+		}
+
+		return result;
+	}
+
+	private String getBridgePath(ServletContextEvent sce)
+	{
+		String result = "";
+
+		String catalinaHome = System.getProperty("catalina.home");
+		String contextPath = sce.getServletContext().getContextPath().replace("/", "");
+
+		File configPath = new File(catalinaHome + File.separator + "c4j_config");
+
+		if (configPath.exists() == false)
+		{
+			configPath.mkdir();
+		}
+
+		configPath = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath);
+
+		if (configPath.exists() == false)
+		{
+			configPath.mkdir();
+		}
+
+		configPath = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath + File.separator + "bridge.xml");
+
+		result = configPath.getAbsolutePath();
+
+		if (configPath.exists() == false)
+		{
+
+			try
+			{
+				File source = new File(sce.getServletContext().getRealPath("/xml/bridge/bridge.xml"));
+
+				File destination = new File(catalinaHome + File.separator + "c4j_config" + File.separator + contextPath);
+
+				FileUtils.copyFileToDirectory(source, destination);
+
+			}
+			catch (IOException e)
+			{
+				result = sce.getServletContext().getRealPath("/xml/bridge/bridge.xml");
 			}
 
 		}

@@ -204,6 +204,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 	{
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_AUDIT_PERMISSIONS", null, "", temp, "");
+		JDBQuery.closeStatement(temp);
 	}
 
 	private void populateList()
@@ -757,8 +758,6 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.users())
 					{
 						jTextFieldUserID.setText(JLaunchLookup.dlgResult);

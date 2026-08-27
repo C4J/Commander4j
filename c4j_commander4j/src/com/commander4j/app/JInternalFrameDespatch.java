@@ -747,8 +747,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "Y";
 
 				if (JLaunchLookup.locations())
 				{
@@ -769,9 +767,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "Y";
-
 				if (JLaunchLookup.locations())
 				{
 					textFieldDespatchLocationTo.setText(JLaunchLookup.dlgResult);
@@ -805,9 +800,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgAutoExec = false;
-				JLaunchLookup.dlgCriteriaDefault = "";
-
 				if (JLaunchLookup.materials())
 				{
 					textFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -822,8 +814,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgCriteriaDefault = textFieldMaterial.getText();
-				JLaunchLookup.dlgAutoExec = true;
+				JLaunchLookup.setSearchValue("material", textFieldMaterial.getText());
 
 				if (JLaunchLookup.materialBatches())
 				{
@@ -1003,8 +994,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "";
 
 				if (JLaunchLookup.users())
 				{
@@ -1045,8 +1034,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = textFieldDespatchLocationTo.getText();
+				JLaunchLookup.setSearchValue("location_id_to", textFieldDespatchLocationTo.getText());
 
 				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
 

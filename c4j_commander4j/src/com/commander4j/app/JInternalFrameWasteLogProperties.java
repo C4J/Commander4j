@@ -752,8 +752,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 				{
 					if (jTextFieldWasteLocation.getText().trim().equals("") == false)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = jTextFieldWasteLocation.getText().trim();
+						JLaunchLookup.setSearchValue("waste_location_id", jTextFieldWasteLocation.getText().trim());
 						if (JLaunchLookup.waste_materials_for_location())
 						{
 							jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
@@ -762,8 +761,6 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					}
 					else
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = jTextFieldWasteLocation.getText().trim();
 						if (JLaunchLookup.waste_materials_all())
 						{
 							jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
@@ -780,8 +777,6 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.waste_reasons())
 					{
 						jTextFieldWasteReason.setText(JLaunchLookup.dlgResult);
@@ -797,8 +792,6 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.waste_locations())
 					{
 						jTextFieldWasteLocation.setText(JLaunchLookup.dlgResult);
@@ -815,8 +808,6 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.waste_containers())
 					{
 						jTextFieldWasteContainer.setText(JLaunchLookup.dlgResult);
@@ -858,8 +849,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Ready";
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("status", "Ready");
 					if (JLaunchLookup.processOrders())
 					{
 						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);

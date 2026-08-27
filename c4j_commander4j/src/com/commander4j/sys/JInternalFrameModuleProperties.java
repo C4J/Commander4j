@@ -624,7 +624,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 
 			jButtonIconPreview = new JButton4j();
 			jDesktopPane1.add(jButtonIconPreview);
-			jButtonIconPreview.setBounds(292, 177, 23, 22);
+			jButtonIconPreview.setBounds(410, 181, 23, 22);
 			jButtonIconPreview.setBorderPainted(false);
 			jButtonIconPreview.setContentAreaFilled(false);
 			jButtonIconPreview.setRolloverEnabled(false);

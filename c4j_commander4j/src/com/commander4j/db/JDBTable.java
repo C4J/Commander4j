@@ -186,7 +186,7 @@ public class JDBTable
 		int result = 0;
 		if (getColumnTypeForField(fieldName).equals("java.sql.Timestamp"))
 		{
-			result = 16;
+			result = 19;
 		}
 		else
 		{

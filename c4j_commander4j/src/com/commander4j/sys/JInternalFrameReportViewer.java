@@ -29,6 +29,8 @@ package com.commander4j.sys;
 
 import java.awt.BorderLayout;
 
+import org.apache.logging.log4j.Logger;
+
 import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.gui.JPanel4j;
 
@@ -40,6 +42,7 @@ public class JInternalFrameReportViewer extends javax.swing.JInternalFrame
 	private JDesktopPane4j jDesktopPane1;
 	private JPanel4j pnlMain;
 	private static final long serialVersionUID = 1;
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JInternalFrameReportViewer.class);
 
 	/**
 	 * Auto-generated main method to display this JInternalFrame inside a new
@@ -68,7 +71,7 @@ public class JInternalFrameReportViewer extends javax.swing.JInternalFrame
 		}
 		catch (Exception e)
 		{
-
+			logger.error("JInternalFrameReportViewer error building report viewer : " + e.getMessage(), e);
 		}
 	}
 

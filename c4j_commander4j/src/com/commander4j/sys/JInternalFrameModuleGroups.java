@@ -159,6 +159,7 @@ public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 			stmt = Common.hostList.getHost(Common.selectedHostID).getConnection(Common.sessionID).prepareStatement(Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBModule.getGroupsAssigned"));
 			stmt.setString(1, lmodule_id);
 			JLaunchReport.runReport("RPT_GROUPS", null, "", stmt, "");
+			stmt.close();
 
 		}
 		catch (SQLException e)

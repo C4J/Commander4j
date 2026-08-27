@@ -424,8 +424,8 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgCriteriaDefault = "Ready";
-				JLaunchLookup.dlgAutoExec = true;
+				JLaunchLookup.setSearchValue("status", "Ready");
+				JLaunchLookup.setSearchValue("material", textFieldMaterial.getText());
 				if (JLaunchLookup.processOrders())
 				{
 					textFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -485,6 +485,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 					rs = null;
 
 				}
+				JDBQuery.closeStatement(temp);
 				populateTable();
 			}
 		});
@@ -571,14 +572,12 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 		jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
 		desktopPane.add(jButtonLookup_Shift_Names);
-		jButtonLookup_Shift_Names.setBounds(249, 78, 21, 22);
+		jButtonLookup_Shift_Names.setBounds(250, 78, 21, 22);
 		jButtonLookup_Shift_Names.setEnabled(true);
 		jButtonLookup_Shift_Names.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "";
 				if (JLaunchLookup.shiftNames())
 				{
 					textFieldUserData3.setText(JLaunchLookup.dlgResult);
@@ -590,14 +589,12 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 		jButtonLookup_Packing_Line = new JButton4j(Common.icon_lookup_16x16);
 		desktopPane.add(jButtonLookup_Packing_Line);
-		jButtonLookup_Packing_Line.setBounds(503, 44, 21, 22);
+		jButtonLookup_Packing_Line.setBounds(505, 44, 21, 22);
 		jButtonLookup_Packing_Line.setEnabled(true);
 		jButtonLookup_Packing_Line.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "";
 				if (JLaunchLookup.packingLine())
 				{
 					textFieldUserData2.setText(JLaunchLookup.dlgResult);
@@ -720,17 +717,14 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "";
 				if (JLaunchLookup.qmInspections())
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
 					textFieldInspectionID.setText(JLaunchLookup.dlgResult);
 				}
 			}
 		});
 		btnInspectionIDLookup.setIcon(Common.icon_lookup_16x16);
-		btnInspectionIDLookup.setBounds(249, 152, 21, 22);
+		btnInspectionIDLookup.setBounds(250, 152, 21, 22);
 		desktopPane.add(btnInspectionIDLookup);
 
 		JButton4j button = new JButton4j();
@@ -738,8 +732,6 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JLaunchLookup.dlgAutoExec = false;
-				JLaunchLookup.dlgCriteriaDefault = "";
 
 				if (JLaunchLookup.materials())
 				{
@@ -748,7 +740,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			}
 		});
 		button.setIcon(Common.icon_lookup_16x16);
-		button.setBounds(503, 14, 21, 22);
+		button.setBounds(505, 14, 21, 22);
 		desktopPane.add(button);
 
 		table = new JDBQMResultTable(Common.selectedHostID, Common.sessionID, "", "", "result");

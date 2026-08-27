@@ -165,8 +165,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgCriteriaDefault = "Ready";
-				JLaunchLookup.dlgAutoExec = true;
+				JLaunchLookup.setSearchValue("status", "Ready");
 				if (JLaunchLookup.processOrders())
 				{
 					textFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -277,8 +276,6 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JLaunchLookup.dlgAutoExec = false;
-				JLaunchLookup.dlgCriteriaDefault = "";
 
 				if (JLaunchLookup.materials())
 				{
@@ -380,8 +377,6 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JLaunchLookup.dlgCriteriaDefault = "Y";
-				JLaunchLookup.dlgAutoExec = true;
 				if (JLaunchLookup.resources())
 				{
 					textFieldResource.setText(JLaunchLookup.dlgResult);

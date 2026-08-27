@@ -42,7 +42,10 @@ import java.util.Vector;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.bar.JEANBarcode;
+
 import com.commander4j.messages.OutgoingPalletDelete;
+import com.commander4j.messages.OutgoingPalletIssue;
+import com.commander4j.messages.OutgoingPalletReturn;
 import com.commander4j.messages.OutgoingPalletSplit;
 import com.commander4j.messages.OutgoingPalletStatusChange;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
@@ -112,6 +115,219 @@ public class JDBPallet
 	private String dbUpdatedBy;
 	private String expiryMode = "";
 
+	public record Returnable(String processOrderID, String locationID, BigDecimal quantity, String uom)
+	{
+	};
+
+	public boolean issuePallet(String sscc, String issueToOrder, String issueToLocation, BigDecimal issueQuantity)
+	{
+		boolean result = false;
+
+		setErrorMessage("");
+
+		JDBPallet pallet = new JDBPallet(getHostID(), getSessionID());
+		JDBLocation toLocn = new JDBLocation(getHostID(), getSessionID());
+		BigDecimal palletQuantity;
+
+		Long txn = (long) 0;
+
+		if (pallet.getPalletProperties(sscc))
+		{
+			palletQuantity = pallet.getQuantity();
+
+			if ((issueQuantity.compareTo(BigDecimal.ZERO) > 0))
+			{
+				if (issueQuantity.compareTo(palletQuantity) <= 0)
+				{
+
+					// Defaults if Missing Params
+
+					if (issueToLocation.equals(""))
+					{
+						issueToLocation = pallet.getLocationID();
+					}
+
+					if (issueToOrder.equals(""))
+					{
+						issueToOrder = pallet.getProcessOrder();
+					}
+
+					if (toLocn.getLocationProperties(issueToLocation))
+					{
+						pallet.setQuantity(palletQuantity.subtract(issueQuantity));
+
+						result = pallet.update();
+
+						if (result == true)
+						{
+							pallet.setQuantity(issueQuantity);
+
+							txn = pallet.writePalletHistory(0, "ISSUE", "FROM");
+
+							if (txn > 0)
+							{
+								pallet.setLocationID(issueToLocation);
+								pallet.setProcessOrder(issueToOrder);
+								pallet.writePalletHistory(txn, "ISSUE", "TO");
+
+								if (toLocn.isPalletIssueMessageRequired() == true)
+								{
+									OutgoingPalletIssue opi = new OutgoingPalletIssue(getHostID(), getSessionID());
+									opi.submit(txn);
+								}
+								else
+								{
+									logger.debug("Pallet Issue Message Suppressed for Location " + issueToLocation);
+								}
+							}
+						}
+					}
+					else
+					{
+						setErrorMessage("Invalid location " + issueToLocation);
+					}
+				}
+				else
+				{
+					setErrorMessage("Quantity must be less than or equal to " + pallet.getQuantity().toString());
+				}
+			}
+			else
+			{
+				setErrorMessage("Quantity must be greater than 0");
+			}
+		}
+		else
+		{
+			// The message is set on the temporary pallet object, not on this
+			// one, so copy it across for the caller.
+			setErrorMessage(pallet.getErrorMessage());
+		}
+
+		pallet = null;
+
+		return result;
+	}
+
+	public boolean returnPallet(String sscc, String returnFromOrder, BigDecimal returnQuantity, String returnFromLocation)
+	{
+		boolean result = false;
+
+		setErrorMessage("");
+
+		JDBPallet pallet = new JDBPallet(getHostID(), getSessionID());
+		JDBLocation toLocn = new JDBLocation(getHostID(), getSessionID());
+
+		Long txn = (long) 0;
+
+		if (pallet.getPalletProperties(sscc))
+		{
+
+			String currentOrder = pallet.getProcessOrder();
+			String currentLocation = pallet.getLocationID();
+			BigDecimal currentQuantity = pallet.getQuantity();
+
+			if ((returnQuantity.compareTo(BigDecimal.ZERO) > 0))
+			{
+				if (returnFromLocation.equals(""))
+				{
+					returnFromLocation = pallet.getLocationID();
+				}
+
+				if (returnFromOrder.equals(""))
+				{
+					returnFromOrder = pallet.getProcessOrder();
+				}
+
+				pallet.setQuantity(currentQuantity.add(returnQuantity));
+				
+				result = pallet.update();
+
+				if (result)
+				{
+
+					pallet.setQuantity(returnQuantity);
+					pallet.setLocationID(returnFromLocation);
+					pallet.setProcessOrder(returnFromOrder);
+
+					txn = pallet.writePalletHistory(0, "RETURN", "FROM");
+
+					if (txn > 0)
+					{
+						pallet.setLocationID(currentLocation);
+						pallet.setProcessOrder(currentOrder);
+
+						txn = pallet.writePalletHistory(txn, "RETURN", "TO");
+
+						if (txn > 0)
+						{
+
+							if (toLocn.getLocationProperties(currentLocation))
+							{
+								if (toLocn.isPalletReturnMessageRequired() == true)
+								{
+									OutgoingPalletReturn opi = new OutgoingPalletReturn(getHostID(), getSessionID());
+									opi.submit(txn);
+								}
+								else
+								{
+									logger.debug("Pallet Return Message Suppressed for Location " + currentLocation);
+								}
+							}
+							else
+							{
+								logger.error("Pallet Return Message not sent - invalid location " + currentLocation);
+							}
+
+						}
+					}
+				}
+			}
+			else
+			{
+				setErrorMessage("Quantity must be greater than 0");
+			}
+		}
+		else
+		{
+			// The message is set on the temporary pallet object, not on this
+			// one, so copy it across for the caller.
+			setErrorMessage(pallet.getErrorMessage());
+		}
+
+		return result;
+	}
+
+	public LinkedList<Returnable> getReturnableBySSCC(String sscc)
+	{
+		setErrorMessage("");
+		LinkedList<com.commander4j.db.JDBPallet.Returnable> result = new LinkedList<com.commander4j.db.JDBPallet.Returnable>();
+
+		try (PreparedStatement stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.getReturnableBySSCC")))
+		{
+			stmt.setFetchSize(1);
+			stmt.setString(1, sscc);
+
+			try (ResultSet rs = stmt.executeQuery())
+			{
+				while (rs.next())
+				{
+					if (rs.getBigDecimal("quantity").compareTo(new BigDecimal(0)) > 0)
+					{
+						Returnable tent = new Returnable(rs.getString("process_order"), rs.getString("location_id"), rs.getBigDecimal("quantity"), rs.getString("uom"));
+						result.addLast(tent);
+					}
+				}
+			}
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
 	public JDBPallet(String host, String session)
 	{
 		setHostID(host);
@@ -158,9 +374,9 @@ public class JDBPallet
 			txnRef = writePalletHistory(txnRef, "SORT", "NOTIFY");
 
 			OutgoingSortNotify osn = new OutgoingSortNotify(getHostID(), getSessionID());
-			
+
 			osn.submit(txnRef);
-			
+
 			result = true;
 		}
 
@@ -811,9 +1027,9 @@ public class JDBPallet
 	/**
 	 * Verify that this pallet's current pallet status and material batch status
 	 * are both permitted at the supplied destination location. Mirrors the
-	 * destination check in {@link JDBDespatch#assignSSCC(String)}. On failure the
-	 * error message is set (JDBDespatch style) and false is returned so the caller
-	 * can block the transaction and surface the reason.
+	 * destination check in {@link JDBDespatch#assignSSCC(String)}. On failure
+	 * the error message is set (JDBDespatch style) and false is returned so the
+	 * caller can block the transaction and surface the reason.
 	 */
 	public boolean isStatusValidForLocation(String destinationLocationID)
 	{
@@ -1897,5 +2113,5 @@ public class JDBPallet
 
 		return txn;
 	}
-		
+
 }

@@ -13,6 +13,7 @@ import com.commander4j.db.JQMPalletDB;
 import com.commander4j.db.JQMViewBomDB;
 import com.commander4j.entity.JQMPalletEntity;
 import com.commander4j.sys.Common;
+import com.commander4j.util.JQMBridgeClient;
 import com.commander4j.util.JURL;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -134,6 +135,11 @@ public class JQMPalletController extends HttpServlet
 					palletEntity.setCommandStatus("invalid");
 					palletEntity.setErrorMessage(msg);
 					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+
+					if (palletDB.getBridgePulseId().equals("") == false)
+					{
+						JQMBridgeClient.pulseAsync(palletDB.getBridgePulseId());
+					}
 				}
 			}
 			catch (RuntimeException e)
@@ -210,11 +216,13 @@ public class JQMPalletController extends HttpServlet
 						else
 						{
 							palletEntity.setErrorMessage("Material ["+material+"] is not valid for order ["+order_db.getProcessOrder()+"]");
+							JQMBridgeClient.pulseAsync("INVALID_MATERIAL");
 						}
 					}
 					else
 					{
-						palletEntity.setErrorMessage("Pallet Quantity is ZERO");	
+						palletEntity.setErrorMessage("Pallet Quantity is ZERO");
+						JQMBridgeClient.pulseAsync("INVALID_QUANTITY");
 					}
 				}
 				else
@@ -259,11 +267,13 @@ public class JQMPalletController extends HttpServlet
 						else
 						{
 							palletEntity.setErrorMessage("Material ["+material+"] is not valid for Location ["+location_id+"]");
+							JQMBridgeClient.pulseAsync(location_id);
 						}
 					}
 					else
 					{
-						palletEntity.setErrorMessage("Pallet Quantity is ZERO");	
+						palletEntity.setErrorMessage("Pallet Quantity is ZERO");
+						JQMBridgeClient.pulseAsync("INVALID_QUANTITY");
 					}
 				}
 				else

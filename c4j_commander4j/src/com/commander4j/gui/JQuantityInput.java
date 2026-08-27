@@ -47,6 +47,7 @@ public class JQuantityInput extends JFormattedTextField
 
 	private static final long serialVersionUID = 1L;
     private static final Border EMPTY_BORDER = new LineBorder(Color.GRAY);
+	private boolean inError = false;
 	
 	private void init()
 	{
@@ -65,6 +66,17 @@ public class JQuantityInput extends JFormattedTextField
         init();
         initFocusBehavior();
         updateColors();
+	}
+	
+	public void inError(boolean error)
+	{
+		inError = error;
+		updateColors();
+	}
+	
+	public boolean inError()
+	{
+		return inError;
 	}
 	
 	public BigDecimal getQuantity()
@@ -129,15 +141,31 @@ public class JQuantityInput extends JFormattedTextField
     }
 
     private void updateColors() {
-        if (!isEnabled()) {
-            setBackground(Common.color_textfield_background_disabled);
-            setForeground(Common.color_textfield_foreground_disabled);
-        } else if (!isEditable()) {
-            setBackground(Common.color_textfield_background_disabled);
-            setForeground(Common.color_textfield_foreground_disabled);
-        } else {
-            setBackground(Common.color_textfield_background_nofocus_color);
-            setForeground(Common.color_textfield_foreground_nofocus_color);
-        }
+		if (inError)
+		{
+	        if (!isEnabled()) {
+	            setBackground(Common.color_textfield_background_disabled_error);
+	            setForeground(Common.color_textfield_foreground_disabled);
+	        } else if (!isEditable()) {
+	            setBackground(Common.color_textfield_background_disabled_error);
+	            setForeground(Common.color_textfield_foreground_disabled);
+	        } else {
+	            setBackground(Common.color_textfield_background_nofocus_error_color);
+	            setForeground(Common.color_textfield_foreground_nofocus_color);
+	        }
+		}
+		else
+		{
+	        if (!isEnabled()) {
+	            setBackground(Common.color_textfield_background_disabled);
+	            setForeground(Common.color_textfield_foreground_disabled);
+	        } else if (!isEditable()) {
+	            setBackground(Common.color_textfield_background_disabled);
+	            setForeground(Common.color_textfield_foreground_disabled);
+	        } else {
+	            setBackground(Common.color_textfield_background_nofocus_color);
+	            setForeground(Common.color_textfield_foreground_nofocus_color);
+	        }
+		}
     }
 }

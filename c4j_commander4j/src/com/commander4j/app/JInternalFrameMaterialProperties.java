@@ -688,8 +688,6 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.equipmentType())
 					{
 						jTextFieldEquipmentType.setText(JLaunchLookup.dlgResult);
@@ -763,7 +761,6 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				public void actionPerformed(ActionEvent e)
 				{
 					jButtonSave.setEnabled(true);
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.locations())
 					{
 						textField4jMoveAfterMake.setText(JLaunchLookup.dlgResult);
@@ -782,7 +779,6 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						JLaunchLookup.dlgAutoExec = true;
 						if (JLaunchLookup.qmInspections())
 						{
 							jTextFieldInspectionID.setText(JLaunchLookup.dlgResult);
@@ -821,8 +817,6 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.wtProductGroups())
 					{
 						if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult) == false)
@@ -850,8 +844,6 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.wtContainerCode())
 					{
 						if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult) == false)

@@ -357,6 +357,7 @@ public class JInternalFrameBomDefaults extends javax.swing.JInternalFrame
 					JExcel export = new JExcel();
 					PreparedStatement temp = buildSQLr();
 					export.saveAs("bom_defaults.xls", bomDefault.getBomDefaultsResultSet(temp), Common.mainForm);
+					JDBQuery.closeStatement(temp);
 					populateList("");
 				}
 			});

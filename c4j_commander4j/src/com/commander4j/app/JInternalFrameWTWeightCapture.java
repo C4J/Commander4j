@@ -621,8 +621,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = samplePointdb.getRequiredResource();
+					JLaunchLookup.setSearchValue("required_resource", samplePointdb.getRequiredResource());
 					if (JLaunchLookup.processOrdersResources())
 					{
 						fld_Process_Order.setText(JLaunchLookup.dlgResult);
@@ -639,8 +638,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.weightSamplePoint())
 					{
 						fld_SamplePoint.setText(JLaunchLookup.dlgResult);

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<!-- Schema 213 : Pallet Issue (FRM_PAL_ISSUE) and Pallet Return (FRM_PAL_RETURN) -->
+
+<!-- ===== btn_Issue ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Issue', 'EN', 'Issue', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Issue', 'DE', 'Ausgabe', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Issue', 'ES', 'Salida', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Issue', 'FR', 'Sortie', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Issue', 'HU', 'Kiadás', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Issue', 'IT', 'Uscita', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Issue', 'NL', 'Uitgifte', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Issue', 'PL', 'Wydanie', '0')
+</statement>
+
+<!-- ===== lbl_Issue_Location ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Location', 'EN', 'Issue Location', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Location', 'DE', 'Ausgabeort', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Location', 'ES', 'Ubicación de salida', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Location', 'FR', 'Emplacement de sortie', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Location', 'HU', 'Kiadási lokáció', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Location', 'IT', 'Luogo di uscita', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Location', 'NL', 'Uitgiftelocatie', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Location', 'PL', 'Lokalizacja wydania', '0')
+</statement>
+
+<!-- ===== lbl_Issue_Order ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Order', 'EN', 'Issue Order', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Order', 'DE', 'Ausgabeauftrag', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Order', 'ES', 'Orden de salida', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Order', 'FR', 'Ordre de sortie', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Order', 'HU', 'Kiadási rendelés', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Order', 'IT', 'Ordine di uscita', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Order', 'NL', 'Uitgifteorder', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Order', 'PL', 'Zlecenie wydania', '0')
+</statement>
+
+<!-- ===== lbl_Issue_Material ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Material', 'EN', 'Issue Material', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Material', 'DE', 'Ausgabematerial', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Material', 'ES', 'Material de salida', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Material', 'FR', 'Matériel de sortie', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Material', 'HU', 'Kiadási anyag', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Material', 'IT', 'Materiale di uscita', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Material', 'NL', 'Uitgiftemateriaal', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Material', 'PL', 'Materiał wydania', '0')
+</statement>
+
+<!-- ===== lbl_Issue_Quantity ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Quantity', 'EN', 'Issue Quantity', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Quantity', 'DE', 'Ausgabemenge', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Quantity', 'ES', 'Cantidad de salida', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Quantity', 'FR', 'Quantité de sortie', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Quantity', 'HU', 'Kiadási mennyiség', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Quantity', 'IT', 'Quantità di uscita', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Quantity', 'NL', 'Uitgiftehoeveelheid', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Quantity', 'PL', 'Ilość wydania', '0')
+</statement>
+
+<!-- ===== lbl_Issue_Resource ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Resource', 'EN', 'Issue Resource', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Resource', 'DE', 'Ausgaberessource', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Resource', 'ES', 'Recurso de salida', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Resource', 'FR', 'Ressource de sortie', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Resource', 'HU', 'Kiadási erőforrás', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Resource', 'IT', 'Risorsa di uscita', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Resource', 'NL', 'Uitgiftebron', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Issue_Resource', 'PL', 'Zasób wydania', '0')
+</statement>
+
+<!-- ===== btn_Return ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Return', 'EN', 'Return', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Return', 'DE', 'Rückgabe', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Return', 'ES', 'Devolución', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Return', 'FR', 'Retour', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Return', 'HU', 'Visszavétel', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Return', 'IT', 'Reso', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Return', 'NL', 'Retour', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Return', 'PL', 'Zwrot', '0')
+</statement>
+
+<!-- ===== lbl_Return_Quantity ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Return_Quantity', 'EN', 'Return Quantity', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Return_Quantity', 'DE', 'Rückgabemenge', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Return_Quantity', 'ES', 'Cantidad de devolución', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Return_Quantity', 'FR', 'Quantité de retour', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Return_Quantity', 'HU', 'Visszavételi mennyiség', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Return_Quantity', 'IT', 'Quantità di reso', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Return_Quantity', 'NL', 'Retourhoeveelheid', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Return_Quantity', 'PL', 'Ilość zwrotu', '0')
+</statement>
+
+<!-- ===== mod_FRM_PAL_ISSUE ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_ISSUE', 'EN', 'Pallet Issue', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_ISSUE', 'DE', 'Palettenausgabe', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_ISSUE', 'ES', 'Salida de palet', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_ISSUE', 'FR', 'Sortie de palette', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_ISSUE', 'HU', 'Raklap kiadás', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_ISSUE', 'IT', 'Uscita pallet', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_ISSUE', 'NL', 'Pallet uitgifte', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_ISSUE', 'PL', 'Wydanie palety', '0')
+</statement>
+
+<!-- ===== mod_FRM_PAL_RETURN ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_RETURN', 'EN', 'Pallet Return', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_RETURN', 'DE', 'Palettenrückgabe', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_RETURN', 'ES', 'Devolución de palet', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_RETURN', 'FR', 'Retour de palette', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_RETURN', 'HU', 'Raklap visszavétel', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_RETURN', 'IT', 'Reso pallet', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_RETURN', 'NL', 'Pallet retour', '0')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_PAL_RETURN', 'PL', 'Zwrot palety', '0')
+</statement>
+
+<!-- ===== Modules ===== -->
+
+<statement>
+INSERT INTO SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,MNEMONIC,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES,REPORT_TYPE,RESOURCE_KEY,AUTO_LABELLER_COMMAND_FILE,AUTO_LABELLER_LABEL_FILE) VALUES
+('FRM_PAL_ISSUE', 'N', 'Y', 'FORM', 'Pallet Issue', '0', 'issue.png', 'https://wiki.commander4j.com/index.php?title=Pallet_Issue', '', '', '', 'Y', 'N', '1', '', 'mod_FRM_PAL_ISSUE', '', '')
+</statement>
+
+<statement>
+INSERT INTO SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,MNEMONIC,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES,REPORT_TYPE,RESOURCE_KEY,AUTO_LABELLER_COMMAND_FILE,AUTO_LABELLER_LABEL_FILE) VALUES
+('FRM_PAL_RETURN', 'N', 'Y', 'FORM', 'Pallet Return', '0', 'return.png', 'https://wiki.commander4j.com/index.php?title=Pallet_Return', '', '', '', 'Y', 'N', '1', '', 'mod_FRM_PAL_RETURN', '', '')
+</statement>
+
+<!-- ===== Menu ===== -->
+
+<statement>
+INSERT INTO SYS_MENUS (MODULE_ID,MENU_ID,SEQUENCE_ID) VALUES ('FRM_PAL_ISSUE','MENU_PAL','9')
+</statement>
+
+<statement>
+INSERT INTO SYS_MENUS (MODULE_ID,MENU_ID,SEQUENCE_ID) VALUES ('FRM_PAL_RETURN','MENU_PAL','10')
+</statement>
+
+<!-- ===== Permissions ===== -->
+
+<statement>
+INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) VALUES ('ADMIN', 'FRM_PAL_ISSUE')
+</statement>
+
+<statement>
+INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) VALUES ('ADMIN', 'FRM_PAL_RETURN')
+</statement>
+
+</DDL>

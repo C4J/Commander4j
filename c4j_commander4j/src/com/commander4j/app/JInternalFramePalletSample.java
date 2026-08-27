@@ -833,8 +833,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "LAMINATE";
+						JLaunchLookup.setSearchValue("supplier_type", "LAMINATE");
 						if (JLaunchLookup.suppliers())
 						{
 							jTextFieldSupplier_ID1.setText(JLaunchLookup.dlgResult);
@@ -852,8 +851,6 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.shiftNames())
 						{
 							jTextFieldShift.setText(JLaunchLookup.dlgResult);
@@ -871,8 +868,6 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.samplePointLocations())
 						{
 							jTextFieldSampleLocation.setText(JLaunchLookup.dlgResult);

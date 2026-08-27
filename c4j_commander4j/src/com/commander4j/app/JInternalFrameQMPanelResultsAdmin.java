@@ -428,7 +428,9 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		JDBViewQMPanelResults sampleResults = new JDBViewQMPanelResults(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 
-		export.saveAs("panel_results.xls", sampleResults.getPanelResultSet(buildSQL(qExcel)), Common.mainForm);
+		PreparedStatement temp = buildSQL(qExcel);
+		export.saveAs("panel_results.xls", sampleResults.getPanelResultSet(temp), Common.mainForm);
+		JDBQuery.closeStatement(temp);
 		populateList();
 	}
 
@@ -1295,8 +1297,6 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.materials())
 					{
 						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -1311,8 +1311,6 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.panel_ZWSIPANE())
 					{
 						jTextFieldPanelResult.setText(JLaunchLookup.dlgResult);
@@ -1327,8 +1325,6 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.plants_po_resource())
 					{
 						jTextFieldPlant.setText(JLaunchLookup.dlgResult);
@@ -1344,8 +1340,6 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.panel_Filler())
 					{
 						jTextFieldFillerID.setText(JLaunchLookup.dlgResult);
@@ -1564,8 +1558,8 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Ready";
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("status", "Ready");
+					JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
 					if (JLaunchLookup.processOrders())
 					{
 						jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -1590,8 +1584,6 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgCriteriaDefault = "Y";
-					JLaunchLookup.dlgAutoExec = true;
 					if (JLaunchLookup.panelUsers())
 					{
 						jTextFieldUserID.setText(JLaunchLookup.dlgResult);
@@ -1641,8 +1633,6 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.shiftNames())
 					{
 						textFieldUserData3.setText(JLaunchLookup.dlgResult);
@@ -1667,22 +1657,30 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 
 		if (jComboBoxReportType.getSelectedItem().equals("Detail Report"))
 		{
-			JLaunchReport.runReport("RPT_PANEL_RESULTS1", null, "", buildSQL(qPrint), "");
+			PreparedStatement temp = buildSQL(qPrint);
+			JLaunchReport.runReport("RPT_PANEL_RESULTS1", null, "", temp, "");
+			JDBQuery.closeStatement(temp);
 		}
 
 		if (jComboBoxReportType.getSelectedItem().equals("Summary Report"))
 		{
-			JLaunchReport.runReport("RPT_PANEL_RESULTS2", null, "", buildSQL(qPrint), "");
+			PreparedStatement temp = buildSQL(qPrint);
+			JLaunchReport.runReport("RPT_PANEL_RESULTS2", null, "", temp, "");
+			JDBQuery.closeStatement(temp);
 		}
 
 		if (jComboBoxReportType.getSelectedItem().equals("Daily Panel Summary"))
 		{
-			JLaunchReport.runReport("RPT_PANEL_RESULTS3", null, "", buildSQL(qPrint), "");
+			PreparedStatement temp = buildSQL(qPrint);
+			JLaunchReport.runReport("RPT_PANEL_RESULTS3", null, "", temp, "");
+			JDBQuery.closeStatement(temp);
 		}
 
 		if (jComboBoxReportType.getSelectedItem().equals("Daily Panel Detail"))
 		{
-			JLaunchReport.runReport("RPT_PANEL_RESULTS4", null, "", buildSQL(qPrint), "");
+			PreparedStatement temp = buildSQL(qPrint);
+			JLaunchReport.runReport("RPT_PANEL_RESULTS4", null, "", temp, "");
+			JDBQuery.closeStatement(temp);
 		}
 
 	}

@@ -679,8 +679,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = llocation;
+						JLaunchLookup.setSearchValue("location", llocation);
 						if (JLaunchLookup.weightSamplePoint())
 						{
 							jTextFieldFiller_ID.setText(JLaunchLookup.dlgResult);
@@ -697,8 +696,6 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "Y";
 						if (JLaunchLookup.operatives())
 						{
 							jTextFieldOperative.setText(JLaunchLookup.dlgResult);

@@ -339,8 +339,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgCriteriaDefault = fld_Material.getText();
-						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.setSearchValue("material", fld_Material.getText());
 						if (JLaunchLookup.materialBatches())
 						{
 							fld_MaterialBatch.setText(JLaunchLookup.dlgResult);
@@ -377,8 +376,6 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "Y";
 						if (JLaunchLookup.locations())
 						{
 							fld_Location.setText(JLaunchLookup.dlgResult);
@@ -413,8 +410,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgCriteriaDefault = "Ready";
-						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.setSearchValue("status", "Ready");
 						if (JLaunchLookup.processOrders())
 						{
 							pallet.setProcessOrder(JLaunchLookup.dlgResult);
@@ -752,8 +748,6 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "Y";
 						if (JLaunchLookup.equipmentType())
 						{
 							fld_Equipment.setText(JLaunchLookup.dlgResult);

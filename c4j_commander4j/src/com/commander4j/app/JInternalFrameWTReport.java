@@ -393,8 +393,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				public void actionPerformed(ActionEvent e)
 				{
 
-					JLaunchLookup.dlgCriteriaDefault = "Ready";
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("status", "Ready");
 					if (JLaunchLookup.processOrders())
 					{
 						fld_Process_Order.setText(JLaunchLookup.dlgResult);
@@ -674,8 +673,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.wtProductGroups())
 					{
 
@@ -689,8 +686,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.wtContainerCode())
 					{
 
@@ -709,8 +704,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.materials())
 					{
 						fld_Material.setText(JLaunchLookup.dlgResult);
@@ -761,8 +754,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.weightSamplePointGroups())
 					{
 						fld_SamplePointReportingGroup.setText(JLaunchLookup.dlgResult);
@@ -801,6 +792,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 		PreparedStatement temp = buildSQLr("report");
 
 		JLaunchReport.runReport("RPT_WT_SD_MEAN", parameters, "", temp, "");
+		JDBQuery2.closeStatement(temp);
 	}
 
 	private void populateList()

@@ -322,8 +322,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent evt)
 			{
-				JLaunchLookup.dlgCriteriaDefault = "Ready";
-				JLaunchLookup.dlgAutoExec = true;
+				JLaunchLookup.setSearchValue("status", "Ready");
 				if (JLaunchLookup.processOrders())
 				{
 					textFieldProcessOrder.setText(JLaunchLookup.dlgResult);

@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<!-- Schema 214 : Replace the deprecated utf8 alias (= utf8mb3) with utf8mb4 -->
+<!--              in stored functions, and rebuild the three views whose     -->
+<!--              column metadata inherits the function return charset.      -->
+<!--                                                                         -->
+<!--              Forward-only: the historical files that created these       -->
+<!--              functions with CHARSET utf8 are deliberately left as they   -->
+<!--              are, so an existing database and a fresh build converge on  -->
+<!--              the same final state.                                       -->
+
+<!-- ===== Stored functions ===== -->
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetControlValue`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetControlValue`(
+					XNAME VARCHAR ( 50 )) RETURNS varchar(50) CHARSET utf8mb4
+				    READS SQL DATA
+				BEGIN
+					DECLARE
+						result VARCHAR ( 50 ) CHARACTER 
+						SET utf8mb4;
+					
+					SET result = ( SELECT key_value FROM SYS_CONTROL WHERE system_key = XNAME );
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetDay`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetDay`( XDATE datetime ) RETURNS varchar(2) CHARSET utf8mb4
+				    NO SQL
+				    DETERMINISTIC
+				BEGIN
+					DECLARE
+						result VARCHAR ( 2 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						dom INT;
+					
+					SET dom = DAYOFMONTH( XDATE );
+					
+					SET result = RIGHT (
+						CONCAT(
+							'0',
+						CONVERT ( dom, CHAR )),
+						2 
+					);
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetFinalBatchNumber`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetFinalBatchNumber`(
+					XPRODUCTION_DATE datetime,
+					XOVERRIDE_BATCH VARCHAR ( 1 ),
+					XOVERRIDE_BATCH_NUMBER VARCHAR ( 40 ),
+					XBATCH_OPTIONAL VARCHAR ( 40 ),
+					XPROCESS_ORDER VARCHAR ( 40 )) RETURNS varchar(100) CHARSET utf8mb4
+				    NO SQL
+				BEGIN
+					DECLARE
+						result VARCHAR ( 100 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						batchformat VARCHAR ( 100 ) CHARACTER 
+						SET utf8mb4;
+					IF
+						XOVERRIDE_BATCH = 'Y' THEN
+							
+							SET result = XOVERRIDE_BATCH_NUMBER;
+						
+					END IF;
+					IF
+						XOVERRIDE_BATCH = 'N' THEN
+							
+							SET batchformat = c4j_GetControlValue ( 'BATCH FORMAT' );
+						
+						SET result = batchformat;
+						
+						SET result = REPLACE (
+							result,
+							'{PLANT}',
+						c4j_GetPlant ());
+						
+						SET result = REPLACE ( result, '{PROCESS_ORDER}', XPROCESS_ORDER );
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR4}',
+						c4j_GetYear ( XPRODUCTION_DATE, 4 ));
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR2}',
+						c4j_GetYear ( XPRODUCTION_DATE, 2 ));
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR1}',
+						c4j_GetYear ( XPRODUCTION_DATE, 1 ));
+						
+						SET result = REPLACE (
+							result,
+							'{MONTH}',
+						c4j_GetMonth ( XPRODUCTION_DATE ));
+						
+						SET result = REPLACE (
+							result,
+							'{DAY}',
+						c4j_GetDay ( XPRODUCTION_DATE ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 1 ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN0_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 0 ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN1_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 1 ));
+						
+					END IF;
+					
+					SET result = CONCAT( result, XBATCH_OPTIONAL );
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetFullPalletQuantity`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetFullPalletQuantity`(
+					XPROCESS_ORDER VARCHAR ( 40 )) RETURNS decimal(22,3)
+				    READS SQL DATA
+				BEGIN
+					DECLARE
+						result DECIMAL ( 22, 3 );
+					DECLARE
+						xmaterial VARCHAR ( 40 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						xpal_uom VARCHAR ( 3 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						xpal_numerator DECIMAL ( 22, 3 );
+					DECLARE
+						xpal_denominator DECIMAL ( 22, 3 );
+					DECLARE
+						xrequired_uom VARCHAR ( 3 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						xrequired_denominator DECIMAL ( 22, 3 );
+					DECLARE
+						xrequired_numerator DECIMAL ( 22, 3 );
+					
+					SET xpal_uom = c4j_GetControlValue ( 'UOM FULL PALLET QTY' );
+					
+					SET xrequired_uom = ( SELECT REQUIRED_UOM FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER );
+					
+					SET xmaterial = ( SELECT MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER );
+					
+					SET xrequired_denominator = (
+						SELECT
+							DENOMINATOR 
+						FROM
+							APP_MATERIAL_UOM 
+						WHERE
+							MATERIAL = xmaterial 
+							AND UOM = xrequired_uom 
+						);
+					
+					SET xrequired_numerator = (
+						SELECT
+							NUMERATOR 
+						FROM
+							APP_MATERIAL_UOM 
+						WHERE
+							MATERIAL = xmaterial 
+							AND UOM = xrequired_uom 
+						);
+					
+					SET xpal_denominator = (
+						SELECT
+							DENOMINATOR 
+						FROM
+							APP_MATERIAL_UOM 
+						WHERE
+							MATERIAL = xmaterial 
+							AND UOM = xpal_uom 
+						);
+					
+					SET xpal_numerator = (
+						SELECT
+							NUMERATOR 
+						FROM
+							APP_MATERIAL_UOM 
+						WHERE
+							MATERIAL = xmaterial 
+							AND UOM = xpal_uom 
+						);
+					
+					SET result = ( xpal_numerator / xpal_denominator ) * ( xrequired_denominator / xrequired_numerator );
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetJulian`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetJulian`( XDATE datetime, XOFFSET INT ) RETURNS varchar(6) CHARSET utf8mb4
+				    NO SQL
+				    DETERMINISTIC
+				BEGIN
+					DECLARE
+						result VARCHAR ( 6 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						dayofyear INT;
+					
+					SET dayofyear = DAYOFYEAR( XDATE )- 1+XOFFSET;
+					
+					SET result = RIGHT (
+						CONCAT(
+							'000',
+						CONVERT ( dayofyear, CHAR )),
+						3 
+					);
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetLayers`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetLayers`(
+					XPROCESS_ORDER VARCHAR ( 20 )) RETURNS int
+				    READS SQL DATA
+				BEGIN
+					DECLARE
+						result INT;
+					DECLARE
+						xlayers_uom VARCHAR ( 3 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						xpallet_uom VARCHAR ( 3 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						xbase_quantity DECIMAL ( 22, 3 );
+					DECLARE
+						xmaterial VARCHAR ( 20 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						xproduction_uom VARCHAR ( 3 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						xproduction_quantity DECIMAL ( 22, 3 );
+					
+					SET xproduction_quantity = c4j_GetFullPalletQuantity ( XPROCESS_ORDER );
+					
+					SET xmaterial = ( SELECT MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER );
+					
+					SET xproduction_uom = ( SELECT REQUIRED_UOM FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER );
+					
+					SET xbase_quantity = c4j_GetBaseQuantity ( XMATERIAL, XPRODUCTION_QUANTITY, XPRODUCTION_UOM );
+					
+					SET xlayers_uom = c4j_GetControlValue ( 'UOM BASE QTY PER LAYER' );
+					
+					SET result = (
+						SELECT
+							CEILING( xbase_quantity / NUMERATOR * DENOMINATOR ) 
+						FROM
+							APP_MATERIAL_UOM 
+						WHERE
+							MATERIAL = xmaterial 
+							AND UOM = xlayers_uom 
+						);
+					
+					SET result = COALESCE ( result, 1 );
+					IF
+						result = 0 THEN
+							
+							SET result = 1;
+						
+					END IF;
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetMonth`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetMonth`( XDATE datetime ) RETURNS varchar(2) CHARSET utf8mb4
+				    NO SQL
+				    DETERMINISTIC
+				BEGIN
+					DECLARE
+						result VARCHAR ( 6 ) CHARACTER 
+						SET utf8mb4;
+					DECLARE
+						moy INT;
+					
+					SET moy = MONTH ( XDATE );
+					
+					SET result = RIGHT (
+						CONCAT(
+							'0',
+						CONVERT ( moy, CHAR )),
+						2 
+					);
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetPlant`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetPlant` () RETURNS VARCHAR ( 10 ) CHARSET utf8mb4 READS SQL DATA BEGIN
+					DECLARE
+						result VARCHAR ( 10 ) CHARACTER 
+						SET utf8mb4;
+					
+					SET result = c4j_GetControlValue ( 'PLANT' );
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `c4j_GetYear`</statement>
+
+<statement>
+				CREATE FUNCTION `c4j_GetYear`( XDATE datetime, XSIZE INT ) RETURNS int
+				    NO SQL
+				    DETERMINISTIC
+				BEGIN
+					DECLARE
+						result VARCHAR ( 4 ) CHARACTER 
+						SET utf8mb4;
+					
+					SET result = RIGHT (
+						CAST(
+						YEAR ( XDATE ) AS CHAR ( 4 )),
+						XSIZE 
+					);
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>DROP FUNCTION IF EXISTS `GetFullPalletLayers`</statement>
+
+<statement>
+CREATE FUNCTION `GetFullPalletLayers` (xmaterial VARCHAR (20), xproduction_uom VARCHAR (3)) RETURNS INT READS SQL DATA
+BEGIN
+	DECLARE	Xlayers INT;
+	DECLARE	xpallet_uom VARCHAR (3) CHARACTER	SET utf8mb4;
+	DECLARE	xbase_uom VARCHAR (3) CHARACTER	SET utf8mb4;
+	DECLARE	xfull_pallet_quantity DECIMAL (22, 3);
+	
+	SET xpallet_uom = 'PAL';
+	SET xbase_uom = (SELECT BASE_UOM FROM APP_MATERIAL WHERE MATERIAL = xmaterial);
+	SET xfull_pallet_quantity = (SELECT NUMERATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial AND UOM = xpallet_uom);
+	SET xlayers = GetLayers (xmaterial, xfull_pallet_quantity, xbase_uom);
+	SET xlayers = COALESCE(xlayers, 1);
+	
+	IF xlayers = 0 THEN
+		SET xlayers = 1;
+	END IF;
+	
+	RETURN xlayers;
+END
+</statement>
+
+<statement>DROP FUNCTION IF EXISTS `GetLayers`</statement>
+
+<statement>
+CREATE FUNCTION `GetLayers`(xmaterial VARCHAR (20), xproduction_quantity DECIMAL (22, 3), xproduction_uom VARCHAR (3)) RETURNS int
+    READS SQL DATA
+BEGIN
+	DECLARE	result INT;
+	DECLARE	xlayers_uom VARCHAR (3) CHARACTER	SET utf8mb4;
+	DECLARE	xpallet_uom VARCHAR (3) CHARACTER	SET utf8mb4;
+	DECLARE	xbase_quantity DECIMAL (22, 3);
+	
+	SET xbase_quantity = c4j_GetBaseQuantity (xmaterial, xproduction_quantity, xproduction_uom);
+	SET xlayers_uom = c4j_GetControlValue ('UOM BASE QTY PER LAYER');
+	SET result = (SELECT (xbase_quantity / NUMERATOR * DENOMINATOR) FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial AND UOM = xlayers_uom);
+	SET result = COALESCE(result, 1);
+	
+	IF result = 0 THEN
+		SET result = 1;
+	END IF;
+	
+	RETURN result;
+END
+</statement>
+
+<!-- ===== Views (rebuilt so column charsets re-derive from the functions) ===== -->
+
+<statement>ALTER ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_auto_labeller_full` 
+AS 
+SELECT
+  `PO`.`PROCESS_ORDER`,
+  `PO`.`STATUS`,
+  `PO`.`MATERIAL`,
+  `PO`.`REQUIRED_UOM`,
+  `MAT`.`MATERIAL_TYPE`,
+  `MAT`.`DESCRIPTION`,
+  `MATUOM`.`EAN`,
+  `MATUOM`.`VARIANT`,
+  `MAT`.`OLD_MATERIAL`,
+  `MAT`.`SHELF_LIFE`,
+  `MAT`.`SHELF_LIFE_UOM`,
+  `MAT`.`SHELF_LIFE_RULE`,
+  `PO`.`CUSTOMER_ID`,
+  `CUST`.`CUSTOMER_NAME`,
+  `MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+  `PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+  `c4j_GetFinalBatchNumber` (CURDATE(), 'N', '', '', `PO`.`PROCESS_ORDER`) AS `BATCH_NUMBER`,
+  `c4j_GetFinalExpiryDate` (CURDATE(), `MAT`.`SHELF_LIFE`, `MAT`.`SHELF_LIFE_UOM`, `MAT`.`SHELF_LIFE_RULE`, 'N', CURDATE()) AS `EXPIRY_DATE`,
+  `c4j_GetLayers` (`PO`.`PROCESS_ORDER`) AS `DEFAULT_LAYERS`,
+  `c4j_GetFullPalletQuantity` (`PO`.`PROCESS_ORDER`) AS `DEFAULT_QUANTITY`,
+  `CUSTDATA1`.`DATA` AS `PART_NO`,
+  `CUSTDATA2`.`DATA` AS `ALT_TEXT_1`
+FROM
+    `app_process_order` `PO` 
+    LEFT JOIN `app_material_uom` `MATUOM` ON (`PO`.`MATERIAL` = `MATUOM`.`MATERIAL`) AND (`PO`.`REQUIRED_UOM` = `MATUOM`.`UOM`)
+    LEFT JOIN `app_customer` `CUST` ON (`PO`.`CUSTOMER_ID` = `CUST`.`CUSTOMER_ID`)
+    LEFT JOIN `app_material` `MAT` ON (`PO`.`MATERIAL` = `MAT`.`MATERIAL`)
+    LEFT JOIN `app_material_customer_data` `CUSTDATA1` ON (`PO`.`MATERIAL` = `CUSTDATA1`.`MATERIAL`) AND (`PO`.`CUSTOMER_ID` = `CUSTDATA1`.`CUSTOMER_ID`) AND (`CUSTDATA1`.`DATA_ID` = 'PART_NO')
+    LEFT JOIN `app_material_customer_data` `CUSTDATA2` ON (`PO`.`MATERIAL` = `CUSTDATA2`.`MATERIAL`) AND (`PO`.`CUSTOMER_ID` = `CUSTDATA2`.`CUSTOMER_ID`) AND (`CUSTDATA2`.`DATA_ID` = 'ALT_TEXT_1');
+</statement>
+
+<statement>ALTER ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_label_data_process_order` 
+AS SELECT
+  `PO`.`PROCESS_ORDER`,
+  `PO`.`STATUS`,
+  `PO`.`MATERIAL`,
+  `PO`.`REQUIRED_UOM`,
+  `PO`.`REQUIRED_RESOURCE`,
+  `PO`.`DUE_DATE`,
+  `MAT`.`MATERIAL_TYPE`,
+  `MAT`.`DESCRIPTION`,
+   RIGHT(('00000000000000' + `MATUOM_PROD`.`EAN`), 14) AS `PROD_EAN`,
+   RIGHT(('00' + `MATUOM_PROD`.`VARIANT`), 2) AS `PROD_VARIANT`,
+  `MATUOM_BASE`.`NUMERATOR` AS `PROD_QUANTITY`,
+   RIGHT(('00000000000000' + `MATUOM_BASE`.`EAN`), 14) AS `BASE_EAN`,
+   RIGHT(('00' + `MATUOM_BASE`.`VARIANT`), 2) AS `BASE_VARIANT`,
+  `MATUOM_PROD`.`NUMERATOR` AS `BASE_QUANTITY`,
+  `c4j_GetFullPalletQuantity` (`PO`.`PROCESS_ORDER`) AS `PALLET_QUANTITY`,
+  `c4j_GetLayers` (`PO`.`PROCESS_ORDER`) AS `PALLET_LAYERS`,
+  `MAT`.`OLD_MATERIAL`,
+  `MAT`.`SHELF_LIFE`,
+  `MAT`.`SHELF_LIFE_UOM`,
+  `MAT`.`SHELF_LIFE_RULE`,
+  `PO`.`CUSTOMER_ID`,
+  `CUST`.`CUSTOMER_NAME`,
+  `c4j_GetFinalBatchNumber` (CURDATE(), 'N', '', '', `PO`.`PROCESS_ORDER`) AS `BATCH_NUMBER`,
+  `c4j_GetFinalExpiryDate` (CURDATE(), `MAT`.`SHELF_LIFE`, `MAT`.`SHELF_LIFE_UOM`, `MAT`.`SHELF_LIFE_RULE`, 'N', CURDATE()) AS `EXPIRY_DATE`,
+  `MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+  `PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+  `CUSTDATA1`.`DATA` AS `PART_NO`,
+  ifnull(`CUST`.`CUSTOMER_DATA_01`, '') AS `CASE__LABEL`,
+  ifnull(`CUST`.`CUSTOMER_DATA_02`, '') AS `PALLET__LABEL`,
+  `CUST`.`UPDATED` AS `CUSTOMER_UPDATED`,
+  `CUSTDATA2`.`DATA` AS `ALT_TEXT_1`
+FROM
+   `app_process_order` `PO` 
+   LEFT JOIN `app_material` `MAT` ON (`MAT`.`MATERIAL` = `PO`.`MATERIAL`)
+   LEFT JOIN `app_customer` `CUST` ON (`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`)
+   LEFT JOIN `app_material_uom` `MATUOM_PROD` ON (`MATUOM_PROD`.`MATERIAL` = `PO`.`MATERIAL`) AND (`MATUOM_PROD`.`UOM` = `PO`.`REQUIRED_UOM`)
+   LEFT JOIN `app_material_uom` `MATUOM_BASE` ON (`MATUOM_BASE`.`MATERIAL` = `PO`.`MATERIAL`) AND (`MATUOM_BASE`.`UOM` = `MAT`.`BASE_UOM`) AND (`MATUOM_BASE`.`UOM` = `MAT`.`BASE_UOM`)
+   LEFT JOIN `app_material_customer_data` `CUSTDATA1` ON (`PO`.`MATERIAL` = `CUSTDATA1`.`MATERIAL`) AND (`PO`.`CUSTOMER_ID` = `CUSTDATA1`.`CUSTOMER_ID`) AND (`CUSTDATA1`.`DATA_ID` = 'PART_NO')
+   LEFT JOIN `app_material_customer_data` `CUSTDATA2` ON (`PO`.`MATERIAL` = `CUSTDATA2`.`MATERIAL`) AND (`PO`.`CUSTOMER_ID` = `CUSTDATA2`.`CUSTOMER_ID`) AND (`CUSTDATA2`.`DATA_ID` = 'ALT_TEXT_1')
+</statement>
+
+<statement>ALTER ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_label_data_process_order_cdf`
+AS
+SELECT
+  PO.PROCESS_ORDER,
+  PO.STATUS,
+  PO.MATERIAL,
+  PO.REQUIRED_UOM,
+  PO.REQUIRED_RESOURCE,
+  PO.DUE_DATE,
+  MAT.MATERIAL_TYPE,
+  MAT.DESCRIPTION,
+  RIGHT('00000000000000' + MATUOM_PROD.EAN, 14) AS PROD_EAN,
+  RIGHT('00' + MATUOM_PROD.VARIANT, 2) AS PROD_VARIANT,
+  MATUOM_BASE.NUMERATOR AS PROD_QUANTITY,
+  RIGHT(('00000000000000' + `MATUOM_BASE`.`EAN`), 14) AS `BASE_EAN`,
+  RIGHT(('00' + `MATUOM_BASE`.`VARIANT`), 2) AS `BASE_VARIANT`,
+  coalesce(PART3.DATA, 0) AS BASE_QUANTITY,
+  c4j_GetFullPalletQuantity (PO.PROCESS_ORDER) AS PALLET_QUANTITY,
+  c4j_GetLayers (PO.PROCESS_ORDER) AS PALLET_LAYERS,
+  MAT.OLD_MATERIAL,
+  MAT.SHELF_LIFE,
+  MAT.SHELF_LIFE_UOM,
+  MAT.SHELF_LIFE_RULE,
+  PO.CUSTOMER_ID,
+  CUST.CUSTOMER_NAME,
+  c4j_GetFinalBatchNumber (CURDATE(), 'N', '', '', PO.PROCESS_ORDER) AS BATCH_NUMBER,
+  c4j_GetFinalExpiryDate (CURDATE(), MAT.SHELF_LIFE, MAT.SHELF_LIFE_UOM, MAT.SHELF_LIFE_RULE, 'N', CURDATE()) AS EXPIRY_DATE,
+  MAT.UPDATED AS MATERIAL_UPDATED,
+  PO.UPDATED AS PROCESS_ORDER_UPDATED,
+  coalesce(PART1.DATA, '') AS PART_NO,
+  coalesce(PART0.DATA, '') AS CASE_CONTENT,
+  coalesce(CUST.CUSTOMER_DATA_01, '') AS CASE__LABEL,
+  coalesce(CUST.CUSTOMER_DATA_02, '') AS PALLET__LABEL,
+  CUST.UPDATED AS CUSTOMER_UPDATED,
+  coalesce(PART5.DATA, '') AS ALT_TEXT_1
+FROM
+  APP_PROCESS_ORDER AS PO
+  LEFT JOIN APP_MATERIAL AS MAT ON MAT.MATERIAL = PO.MATERIAL
+  LEFT JOIN APP_CUSTOMER AS CUST ON CUST.CUSTOMER_ID = PO.CUSTOMER_ID
+  LEFT JOIN APP_MATERIAL_UOM AS MATUOM_PROD ON MATUOM_PROD.MATERIAL = PO.MATERIAL AND MATUOM_PROD.UOM = PO.REQUIRED_UOM
+  LEFT JOIN APP_MATERIAL_UOM AS MATUOM_BASE ON MATUOM_BASE.MATERIAL = PO.MATERIAL AND MATUOM_BASE.UOM = MAT.BASE_UOM
+  LEFT JOIN APP_MATERIAL_CUSTOMER_DATA AS PART3 ON PO.MATERIAL = PART3.MATERIAL AND PO.CUSTOMER_ID = PART3.CUSTOMER_ID AND PART3.DATA_ID = 'CU_QUANTITY'
+  LEFT JOIN APP_MATERIAL_CUSTOMER_DATA AS PART2 ON PO.MATERIAL = PART2.MATERIAL AND PO.CUSTOMER_ID = PART2.CUSTOMER_ID AND PART2.DATA_ID = 'CU_EAN'
+  LEFT JOIN APP_MATERIAL_CUSTOMER_DATA AS PART4 ON PO.MATERIAL = PART4.MATERIAL AND PO.CUSTOMER_ID = PART4.CUSTOMER_ID AND PART4.DATA_ID = 'CU_VARIANT'
+  LEFT JOIN APP_MATERIAL_CUSTOMER_DATA AS PART1 ON PO.MATERIAL = PART1.MATERIAL AND PO.CUSTOMER_ID = PART1.CUSTOMER_ID AND PART1.DATA_ID = 'PART_NO'
+  LEFT JOIN APP_MATERIAL_CUSTOMER_DATA AS PART0 ON PO.MATERIAL = PART0.MATERIAL AND PO.CUSTOMER_ID = PART0.CUSTOMER_ID AND PART0.DATA_ID = 'CASE_CONTENT'
+  LEFT JOIN APP_MATERIAL_CUSTOMER_DATA AS PART5 ON PO.MATERIAL = PART5.MATERIAL AND PO.CUSTOMER_ID = PART5.CUSTOMER_ID AND PART5.DATA_ID = 'ALT_TEXT_1';
+</statement>
+
+</DDL>

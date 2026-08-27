@@ -900,8 +900,6 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "Y";
 					if (JLaunchLookup.locations())
 					{
 						jTextFieldLocationID.setText(JLaunchLookup.dlgResult);
@@ -909,7 +907,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 			});
 
-			button4j_LocationLookup.setBounds(866, 8, 21, 22);
+			button4j_LocationLookup.setBounds(858, 8, 21, 22);
 			jDesktopPane1.add(button4j_LocationLookup);
 
 			JButton4j jButtonClear = new JButton4j(Common.icon_search_16x16);

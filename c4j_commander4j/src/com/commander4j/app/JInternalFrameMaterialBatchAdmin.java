@@ -733,8 +733,6 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.materials())
 					{
 						jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -749,8 +747,8 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
-					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
+					
 					if (JLaunchLookup.materialBatches())
 					{
 						jTextFieldBatch.setText(JLaunchLookup.dlgResult);

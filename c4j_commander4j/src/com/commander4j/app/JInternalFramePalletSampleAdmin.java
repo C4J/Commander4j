@@ -481,7 +481,9 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 
 		JExcel export = new JExcel();
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
-		export.saveAs("pallet_samples.xls", viewPalletSample.getPalletSampleResultSet(buildSQL(qExcel, "*", "", true)), Common.mainForm);
+		PreparedStatement temp = buildSQL(qExcel, "*", "", true);
+		export.saveAs("pallet_samples.xls", viewPalletSample.getPalletSampleResultSet(temp), Common.mainForm);
+		JDBQuery2.closeStatement(temp);
 		// populateList();
 	}
 
@@ -1094,8 +1096,6 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "Y";
 						if (JLaunchLookup.operatives())
 						{
 							jTextFieldOperative.setText(JLaunchLookup.dlgResult);
@@ -1266,8 +1266,8 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgCriteriaDefault = "Ready";
-						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.setSearchValue("status", "Ready");
+						JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
 						if (JLaunchLookup.processOrders())
 						{
 							jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
@@ -1282,8 +1282,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgCriteriaDefault = "Active";
-						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.setSearchValue("status", "Active");
 						if (JLaunchLookup.masterHoldNotices())
 						{
 							jTextFieldMHN.setText(JLaunchLookup.dlgResult);
@@ -1298,8 +1297,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
-						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.setSearchValue("material", jTextFieldMaterial.getText());
 						if (JLaunchLookup.materialBatches())
 						{
 							jTextFieldBatch.setText(JLaunchLookup.dlgResult);
@@ -1314,8 +1312,6 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = false;
-						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.materials())
 						{
 							jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
@@ -1330,8 +1326,6 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent evt)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "Y";
 						if (JLaunchLookup.locations())
 						{
 							jTextFieldLocationID.setText(JLaunchLookup.dlgResult);
@@ -1544,8 +1538,6 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.samplePointLocations())
 						{
 							jTextFieldSample_Location_Plant.setText(JLaunchLookup.dlgResult);
@@ -1563,8 +1555,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault = jTextFieldSample_Location_Plant.getText();
+						JLaunchLookup.setSearchValue("location", jTextFieldSample_Location_Plant.getText());
 						if (JLaunchLookup.weightSamplePoint())
 						{
 							jTextFieldSample_LocationFiller.setText(JLaunchLookup.dlgResult);
@@ -1686,7 +1677,9 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 
 	private void print()
 	{
-		JLaunchReport.runReport("RPT_PALLET_SAMPLES", null, "", buildSQL(qPrint, "*", "", true), "");
+		PreparedStatement temp = buildSQL(qPrint, "*", "", true);
+		JLaunchReport.runReport("RPT_PALLET_SAMPLES", null, "", temp, "");
+		JDBQuery2.closeStatement(temp);
 	}
 
 	private void print_summary()
@@ -1753,7 +1746,9 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 
 			header = header + " SUPPLIER_DESCRIPTION AS 'SUPPLIER_DESCRIPTION'";
 
-			export.saveAndView("sample_summary.xls", viewPalletSample.getPalletSampleResultSet(buildSQL(qExcel, header, " AS MMM", false)), Common.mainForm);
+			PreparedStatement temp = buildSQL(qExcel, header, " AS MMM", false);
+			export.saveAndView("sample_summary.xls", viewPalletSample.getPalletSampleResultSet(temp), Common.mainForm);
+			JDBQuery2.closeStatement(temp);
 		}
 
 		// ***********************************************************************
@@ -1806,7 +1801,9 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 
 			header = header + " SUPPLIER_DESCRIPTION AS 'SUPPLIER_DESCRIPTION'";
 
-			export.saveAndView("sample_summary.xls", viewPalletSample.getPalletSampleResultSet(buildSQL(qExcel, header, " MMM", false)), Common.mainForm);
+			PreparedStatement temp = buildSQL(qExcel, header, " MMM", false);
+			export.saveAndView("sample_summary.xls", viewPalletSample.getPalletSampleResultSet(temp), Common.mainForm);
+			JDBQuery2.closeStatement(temp);
 
 		}
 
@@ -1852,7 +1849,9 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 
 			header = header + " SUPPLIER_DESCRIPTION AS 'SUPPLIER_DESCRIPTION'";
 
-			export.saveAndView("sample_summary.xls", viewPalletSample.getPalletSampleResultSet(buildSQL(qExcel, header, " AS MMM", false)), Common.mainForm);
+			PreparedStatement temp = buildSQL(qExcel, header, " AS MMM", false);
+			export.saveAndView("sample_summary.xls", viewPalletSample.getPalletSampleResultSet(temp), Common.mainForm);
+			JDBQuery2.closeStatement(temp);
 		}
 
 	}
