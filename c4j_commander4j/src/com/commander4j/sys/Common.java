@@ -248,13 +248,13 @@ public class Common
 	public final static Color color_text_label_title = Color.BLACK;
 	
 	public final static Color color_textfield_background_disabled = new Color(241, 241, 241);
-	public final static Color color_textfield_background_disabled_error = Color.red;
+	public final static Color color_textfield_background_disabled_error = new Color(255, 214, 214);
 	
 	public final static Color color_textfield_background_focus_color = new Color(255, 255, 200);
-	public final static Color color_textfield_background_focus_error_color = Color.RED;
+	public final static Color color_textfield_background_focus_error_color = new Color(255, 190, 190);
 	
 	public final static Color color_textfield_background_nofocus_color = Color.WHITE;
-	public final static Color color_textfield_background_nofocus_error_color = Color.RED;
+	public final static Color color_textfield_background_nofocus_error_color = new Color(255, 214, 214);
 	
 	public final static Color color_textfield_foreground_disabled = Color.BLUE;
 	public final static Color color_textfield_foreground_focus_color = Color.BLACK;

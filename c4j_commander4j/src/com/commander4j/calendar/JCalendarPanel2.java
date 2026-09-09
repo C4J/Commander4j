@@ -48,6 +48,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
@@ -105,6 +106,16 @@ public class JCalendarPanel2 extends JPanel
 
 	public Calendar getDate()
 	{
+		// The HH/MM/SS spinners only update selectedDate from their ChangeListener, and a value
+		// typed but not committed never fires one. JButton4j (the OK button) is not focusable, so
+		// nothing else commits it either.
+		if (spinnerHH != null)
+		{
+			spinnerHH.commitPendingEdit();
+			spinnerMM.commitPendingEdit();
+			spinnerSS.commitPendingEdit();
+		}
+
 		return selectedDate;
 	}
 
@@ -380,6 +391,7 @@ public class JCalendarPanel2 extends JPanel
 		add(button_1);
 
 		spinnerHH = new JSpinner4j();
+		spinnerHH.setModel(new SpinnerNumberModel(23, 0, 23, 1));
 
 		JSpinner4j.NumberEditor neHH = new JSpinner4j.NumberEditor(spinnerHH);
 		neHH.getTextField().setFont(Common.font_std);
@@ -388,7 +400,6 @@ public class JCalendarPanel2 extends JPanel
 		spinnerHH.setForeground(Color.BLUE);
 		spinnerHH.getEditor().setBackground(UIManager.getColor("Panel.background"));
 		spinnerHH.setBorder(new LineBorder(UIManager.getColor("Button.darkShadow")));
-		//spinnerHH.setModel(new SpinnerNumberModel(23, 0, 23, 1));
 		spinnerHH.setFont(standard_font);
 		spinnerHH.setBounds(5, 190, 50, 18);
 		JTextField tf1 = ((JSpinner4j.DefaultEditor) spinnerHH.getEditor()).getTextField();
@@ -405,6 +416,7 @@ public class JCalendarPanel2 extends JPanel
 		add(spinnerHH);
 
 		spinnerMM = new JSpinner4j();
+		spinnerMM.setModel(new SpinnerNumberModel(59, 0, 59, 1));
 
 		JSpinner4j.NumberEditor neMM = new JSpinner4j.NumberEditor(spinnerMM);
 		neMM.getTextField().setFont(Common.font_std);
@@ -413,7 +425,6 @@ public class JCalendarPanel2 extends JPanel
 		spinnerMM.setForeground(Color.BLUE);
 		spinnerMM.getEditor().setBackground(UIManager.getColor("Panel.background"));
 		spinnerMM.setBorder(new LineBorder(UIManager.getColor("Button.darkShadow")));
-		//spinnerMM.setModel(new SpinnerNumberModel(59, 0, 59, 1));
 		spinnerMM.setFont(standard_font);
 		spinnerMM.setBounds(55, 190, 49, 18);
 		JTextField tf2 = ((JSpinner4j.DefaultEditor) spinnerMM.getEditor()).getTextField();
@@ -430,6 +441,7 @@ public class JCalendarPanel2 extends JPanel
 		add(spinnerMM);
 
 		spinnerSS = new JSpinner4j();
+		spinnerSS.setModel(new SpinnerNumberModel(59, 0, 59, 1));
 
 		JSpinner4j.NumberEditor neSS = new JSpinner4j.NumberEditor(spinnerSS);
 		neSS.getTextField().setFont(Common.font_std);
@@ -437,7 +449,6 @@ public class JCalendarPanel2 extends JPanel
 
 		spinnerSS.getEditor().setBackground(UIManager.getColor("Panel.background"));
 		spinnerSS.setBorder(new LineBorder(UIManager.getColor("Button.darkShadow")));
-		//spinnerSS.setModel(new SpinnerNumberModel(59, 0, 59, 1));
 		spinnerSS.setFont(standard_font);
 		spinnerSS.setBounds(102, 190, 49, 18);
 		JTextField tf3 = ((JSpinner4j.DefaultEditor) spinnerSS.getEditor()).getTextField();

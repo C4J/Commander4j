@@ -74,13 +74,13 @@ public class JDateControl extends JSpinner4j
 			@Override
 			public void focusGained(FocusEvent e)
 			{
-				textField.setBackground(Common.color_textfield_background_focus_color);
+				applyStyle();
 			}
 
 			@Override
 			public void focusLost(FocusEvent e)
 			{
-				textField.setBackground(Common.color_textfield_background_nofocus_color);
+				applyStyle();
 			}
 		});
 
@@ -142,17 +142,22 @@ public class JDateControl extends JSpinner4j
 
 		if (!isEnabled())
 		{
-			tf.setBackground(Common.color_textfield_background_disabled);
+			tf.setBackground(isInError() ? Common.color_textfield_background_disabled_error : Common.color_textfield_background_disabled);
 			tf.setForeground(getDisplayModeDisabledForgegroundColor());
 		}
 		else if (!isEditable())
 		{
-			tf.setBackground(Common.color_textfield_background_disabled);
+			tf.setBackground(isInError() ? Common.color_textfield_background_disabled_error : Common.color_textfield_background_disabled);
 			tf.setForeground(getDisplayModeDisabledForgegroundColor());
+		}
+		else if (tf.isFocusOwner())
+		{
+			tf.setBackground(isInError() ? Common.color_textfield_background_focus_error_color : Common.color_textfield_background_focus_color);
+			tf.setForeground(Common.color_textfield_foreground_focus_color);
 		}
 		else
 		{
-			tf.setBackground(Common.color_textfield_background_nofocus_color);
+			tf.setBackground(isInError() ? Common.color_textfield_background_nofocus_error_color : Common.color_textfield_background_nofocus_color);
 			tf.setForeground(Common.color_textfield_foreground_nofocus_color);
 		}
 	}
@@ -166,6 +171,8 @@ public class JDateControl extends JSpinner4j
 	
 	public Date getDate()
 	{
+		commitPendingEdit();
+
 		return datemodel.getDate();
 	}
 

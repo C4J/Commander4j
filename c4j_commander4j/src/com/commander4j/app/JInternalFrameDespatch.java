@@ -649,12 +649,14 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jSpinnerIntModel.setMinimum(1);
 		jSpinnerIntModel.setMaximum(50000);
 		jSpinnerIntModel.setStepSize(1);
+		jSpinnerIntModel.setValue(50);
+
+		spinnerDespatchLimit.setModel(jSpinnerIntModel);
+
 		JSpinner4j.NumberEditor ne2 = new JSpinner4j.NumberEditor(spinnerDespatchLimit);
 
 		spinnerDespatchLimit.setEditor(ne2);
-		spinnerDespatchLimit.setModel(jSpinnerIntModel);
 		spinnerDespatchLimit.setBounds(15, 335, 60, 22);
-		spinnerDespatchLimit.setValue(50);
 		desktopPane.add(spinnerDespatchLimit);
 
 		jLabel_Limit = new JLabel4j_std();
@@ -1328,7 +1330,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		}
 
 		despList.clear();
-		despList.addAll(despatch.browseDespatchData(status, Integer.valueOf(spinnerDespatchLimit.getModel().getValue().toString())));
+		despList.addAll(despatch.browseDespatchData(status, Integer.valueOf(spinnerDespatchLimit.getValue().toString())));
 
 		int sel = despList.size() - 1;
 

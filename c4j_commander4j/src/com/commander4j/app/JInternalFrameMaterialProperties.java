@@ -930,9 +930,9 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		material.setDefaultBatchStatus((String) jComboBoxDefaultBatchStatus.getSelectedItem());
 
 		BigDecimal bd = new BigDecimal(0).setScale(3, RoundingMode.HALF_UP);
-		bd = BigDecimal.valueOf(grossweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
+		bd = BigDecimal.valueOf(((Number) jSpinnerGrossWeight.getValue()).doubleValue()).setScale(3, RoundingMode.HALF_UP);
 		material.setGrossWeight(bd);
-		bd = BigDecimal.valueOf(netweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
+		bd = BigDecimal.valueOf(((Number) jSpinnerNetWeight.getValue()).doubleValue()).setScale(3, RoundingMode.HALF_UP);
 		material.setNetWeight(bd);
 
 		try
