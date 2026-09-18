@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Pallet Issue</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Pallet Issue</h1>
+		<form id="processOrderIssueSelect" name="processOrderIssueSelect" onsubmit="return false;">
+			<h2 id="subtitle">Select Process Order</h2>
+			<div class="divTable fields kv">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><label id="lbl_User_ID">User ID</label></div>
+						<div class="divTableCell"><span class="value" id="userLine"></span></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="resource" id="lbl_Issue_Resource">Resource :</label></div>
+						<div class="divTableCell"><select id="resource" name="resource"></select></div>
+					</div>
+				</div>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="orderTable">
+					<thead><tr><th id="lbl_Issue_Order">Order</th><th id="lbl_Material">Material</th><th id="lbl_Description">Description</th></tr></thead>
+					<tbody id="orders"></tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonIssue">Issue</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		// c4j_web_Issue processOrderIssueSelect.html: Ready orders, filtered by resource; the chosen order goes to palletIssueSelect
+		c4j.page(function () {
+			c4j.lang(['lbl_User_ID', 'dlg_Select_Process_Order', 'btn_Back', 'lbl_Order', 'mod_FRM_PAL_ISSUE', 'lbl_Issue_Resource', 'lbl_Issue_Order', 'lbl_Material', 'lbl_Description', 'btn_Issue']).then(function (t) {
+				c4j.label('lbl_User_ID', t.lbl_User_ID);
+				c4j.label('title', t.mod_FRM_PAL_ISSUE); c4j.label('subtitle', t.dlg_Select_Process_Order); c4j.label('buttonBack', t.btn_Back); c4j.label('lbl_Issue_Order', t.lbl_Order); c4j.label('lbl_Issue_Resource', t.lbl_Issue_Resource ? t.lbl_Issue_Resource + ' :' : '');
+				c4j.label('lbl_Material', t.lbl_Material); c4j.label('lbl_Description', t.lbl_Description);
+				c4j.label('buttonIssue', t.btn_Issue); 
+			});
+			function render(d) {
+				c4j.text('userLine', d.username);
+				var sel = document.getElementById('resource');
+				sel.innerHTML = '';
+				sel.appendChild(document.createElement('option'));
+				d.resources.forEach(function (r) { var o = document.createElement('option'); o.value = r.resource; o.textContent = r.resource; o.selected = (r.resource === d.selectedResource); sel.appendChild(o); });
+				var tb = document.getElementById('orders');
+				tb.innerHTML = '';
+				var focusMe = null;
+				d.orders.forEach(function (o) {
+					var tr = document.createElement('tr');
+					var td = document.createElement('td');
+					var radio = document.createElement('input'); radio.type = 'radio'; radio.name = 'processOrder'; radio.value = o.processOrder; radio.checked = o.selected;
+					td.appendChild(radio); td.appendChild(document.createTextNode(o.processOrder));
+					tr.appendChild(td);
+					var t2 = document.createElement('td'); t2.textContent = o.material; tr.appendChild(t2);
+					var t3 = document.createElement('td'); t3.className = 'wrap'; t3.textContent = o.description; tr.appendChild(t3);
+					if (o.selected) { tr.className = 'selected'; focusMe = radio; }
+					tr.addEventListener('click', function () { radio.checked = true; Array.prototype.forEach.call(tb.querySelectorAll('tr'), function (x) { x.className = ''; }); tr.className = 'selected'; });
+					tb.appendChild(tr);
+				});
+				if (focusMe) { focusMe.focus(); } else { c4j.focus('resource'); }
+			}
+			c4j.get('api/issue/orders').then(function (r) { if (r.ok) { render(r.data); } });
+			document.getElementById('resource').addEventListener('change', function () {
+				c4j.put('api/issue/resource', { resource: this.value }).then(function (r) { if (r.ok) { render(r.data); } });
+			});
+			c4j.onSubmit('processOrderIssueSelect', function () {
+				var chosen = document.querySelector('input[name="processOrder"]:checked');
+				c4j.put('api/issue/order', { processOrder: chosen ? chosen.value : '' });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.put('api/issue/exit'); });
+		});
+	</script>
+</body>
+</html>

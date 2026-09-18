@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<!-- Schema 217 : Nested RF menu (parent-linked SYS_RF_MENU) for c4j_commander4j_web, 2026-09-17.                -->
+<!--                                                                                                             -->
+<!--              SYS_RF_MENU adopts the SYS_MENUS shape: a new MENU_ID column names the parent menu, existing   -->
+<!--              rows default to 'root', and the primary key becomes (MODULE_ID, MENU_ID) so a module may sit   -->
+<!--              under more than one menu (decided by Dave 2026-09-17). The web app lists one level at a time  -->
+<!--              (MENU_ID = current menu), a MENU-type row opens its children, Back climbs one level.           -->
+<!--                                                                                                             -->
+<!--              The Panel Grading sub-menu faked by schema 216 (FRM_QM_PANEL, a FORM the web app recognised)  -->
+<!--              is replaced by the real MENU_QM module: rf_active = Y, a root-level SYS_RF_MENU row in the     -->
+<!--              slot FRM_QM_PANEL had (or 103 if it had none), and the three FRM_QM_PANEL_* options as its     -->
+<!--              children. FRM_QM_PANEL is then retired from every table a module lives in. This supersedes    -->
+<!--              216's "children must NOT get SYS_RF_MENU rows". Group permissions are shared with the desktop: -->
+<!--              a group holding MENU_QM already sees the desktop Quality Management pull-down.                 -->
+<!--                                                                                                             -->
+<!--              The web_react war (still shipped) reads the flat list and will now show MENU_QM and the three  -->
+<!--              children to permitted users without being able to run them - same acceptance as 215/216.      -->
+<!--                                                                                                             -->
+<!--              Additive where possible (new defaulted column, guarded inserts) so customer reports keep       -->
+<!--              working; the deletes are idempotent and harmless on a database where 216 never ran.           -->
+<!--              Needs: core JMenuRFMenu.getMenuOptions(menuID) + sql key JMenuRFMenu.getMenuOptions.           -->
+<!--              The desktop RF Menu editor must not be SAVED against this schema until its per-menu rewrite    -->
+<!--              (JInternalFrameRFMenu, same release) is in: the old whole-table rewrite would flatten the tree. -->
+
+<!-- ===== SYS_RF_MENU: parent column + re-key, matching SYS_MENUS ===== -->
+<!-- 000000 keys SYS_RF_MENU with a unique index (RF_MENU_PK), not a constraint, but a site may carry either.   -->
+<!-- The block drops whichever exists (the loader carries on past a failed statement, so a wrong guess would     -->
+<!-- silently leave the old key in place); the new key is a unique index as in 000000.                          -->
+
+<statement>
+ALTER TABLE SYS_RF_MENU ADD (MENU_ID VARCHAR2(35) DEFAULT 'root' NOT NULL)
+</statement>
+
+<statement>
+UPDATE SYS_RF_MENU SET MENU_ID = 'root' WHERE MENU_ID IS NULL
+</statement>
+
+<statement>
+BEGIN
+  FOR c IN (SELECT constraint_name FROM user_constraints WHERE table_name = 'SYS_RF_MENU' AND constraint_type IN ('P', 'U')) LOOP
+    EXECUTE IMMEDIATE 'ALTER TABLE SYS_RF_MENU DROP CONSTRAINT ' || c.constraint_name || ' DROP INDEX';
+  END LOOP;
+  FOR i IN (SELECT index_name FROM user_indexes WHERE table_name = 'SYS_RF_MENU') LOOP
+    EXECUTE IMMEDIATE 'DROP INDEX ' || i.index_name;
+  END LOOP;
+END;
+</statement>
+
+<statement>
+CREATE UNIQUE INDEX RF_MENU_PK ON SYS_RF_MENU (MODULE_ID, MENU_ID)
+</statement>
+
+<!-- ===== MENU_QM becomes the RF sub-menu (rf_active + root-level row in FRM_QM_PANEL's slot, else 103) ===== -->
+
+<statement>
+UPDATE SYS_MODULES SET RF_ACTIVE = 'Y' WHERE MODULE_ID = 'MENU_QM'
+</statement>
+
+<statement>
+INSERT INTO SYS_RF_MENU (MODULE_ID, MENU_ID, SEQUENCE_ID) SELECT 'MENU_QM', 'root', COALESCE((SELECT MAX(SEQUENCE_ID) FROM SYS_RF_MENU WHERE MODULE_ID = 'FRM_QM_PANEL' AND MENU_ID = 'root'), 103) FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_RF_MENU WHERE MODULE_ID = 'MENU_QM' AND MENU_ID = 'root')
+</statement>
+
+<!-- ===== The three panel grading options (schema 216 modules) become children of MENU_QM ===== -->
+
+<statement>
+INSERT INTO SYS_RF_MENU (MODULE_ID, MENU_ID, SEQUENCE_ID) SELECT 'FRM_QM_PANEL_SCORES', 'MENU_QM', 0 FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_RF_MENU WHERE MODULE_ID = 'FRM_QM_PANEL_SCORES' AND MENU_ID = 'MENU_QM')
+</statement>
+
+<statement>
+INSERT INTO SYS_RF_MENU (MODULE_ID, MENU_ID, SEQUENCE_ID) SELECT 'FRM_QM_PANEL_SETUP', 'MENU_QM', 1 FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_RF_MENU WHERE MODULE_ID = 'FRM_QM_PANEL_SETUP' AND MENU_ID = 'MENU_QM')
+</statement>
+
+<statement>
+INSERT INTO SYS_RF_MENU (MODULE_ID, MENU_ID, SEQUENCE_ID) SELECT 'FRM_QM_PANEL_ADMIN', 'MENU_QM', 2 FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_RF_MENU WHERE MODULE_ID = 'FRM_QM_PANEL_ADMIN' AND MENU_ID = 'MENU_QM')
+</statement>
+
+<!-- ===== ADMIN group permission for the sub-menu (216 pattern) ===== -->
+
+<statement>
+INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) SELECT 'ADMIN', 'MENU_QM' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_GROUP_PERMISSIONS WHERE GROUP_ID = 'ADMIN' AND MODULE_ID = 'MENU_QM')
+</statement>
+
+<!-- ===== Retire FRM_QM_PANEL (the 216 stand-in) from every table JDBModule.delete touches, plus its texts ===== -->
+
+<statement>
+DELETE FROM SYS_RF_MENU WHERE MODULE_ID = 'FRM_QM_PANEL'
+</statement>
+
+<statement>
+DELETE FROM SYS_GROUP_PERMISSIONS WHERE MODULE_ID = 'FRM_QM_PANEL'
+</statement>
+
+<statement>
+DELETE FROM SYS_MENUS WHERE MODULE_ID = 'FRM_QM_PANEL' OR MENU_ID = 'FRM_QM_PANEL'
+</statement>
+
+<statement>
+DELETE FROM SYS_TOOLBAR WHERE MODULE_ID = 'FRM_QM_PANEL'
+</statement>
+
+<statement>
+DELETE FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'mod_FRM_QM_PANEL'
+</statement>
+
+<statement>
+DELETE FROM SYS_MODULES WHERE MODULE_ID = 'FRM_QM_PANEL'
+</statement>
+
+</DDL>

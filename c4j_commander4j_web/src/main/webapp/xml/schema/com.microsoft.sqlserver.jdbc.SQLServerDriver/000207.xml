@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+  
+	<statement>
+	  	ALTER TABLE [dbo].[SYS_MODULES] ADD [PRINTER_TYPE] varchar(30)
+	</statement>
+
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD [GROUP_ID] varchar(15)
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD [PRINTER_DPI] varchar(10)
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD [LANGUAGE] varchar(15)
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD [ENABLE_DIRECT_PRINT] varchar(1)
+	</statement>
+	
+	<statement>
+		UPDATE [dbo].[SYS_MODULES]  SET PRINTER_TYPE = '', GROUP_ID = '', PRINTER_DPI = '', LANGUAGE = '',ENABLE_DIRECT_PRINT = 'N'
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD DEFAULT 'N' FOR [ENABLE_DIRECT_PRINT]
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD DEFAULT '' FOR [PRINTER_TYPE]
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD DEFAULT '' FOR [GROUP_ID]
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD DEFAULT '' FOR [PRINTER_DPI]
+	</statement>
+		
+	<statement>
+		ALTER TABLE [dbo].[SYS_MODULES] ADD DEFAULT '' FOR [LANGUAGE]
+	</statement>
+	
+	<statement>
+		CREATE TABLE [dbo].[SYS_WORKSTATION_PREFS] (
+		  [WORKSTATION] varchar(40) COLLATE database_default DEFAULT '' NOT NULL,
+		  [MODULE_ID] varchar(25) COLLATE database_default DEFAULT '' NOT NULL,
+		  [DEVICE_TYPE] varchar(30) COLLATE database_default DEFAULT '' NULL,
+		  [PRINTER_ID] varchar(255) COLLATE database_default DEFAULT '' NULL
+		)
+	</statement>
+  
+</DDL>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Setup Panel</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Setup Panel</h1>
+		<form id="qmPanelEdit" name="qmPanelEdit" onsubmit="return false;">
+			<h2 id="subtitle">Panel</h2>
+			<div class="divTable fields kv">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="plant" id="lbl_Plant">Plant :</label></div>
+						<div class="divTableCell"><input type="text" id="plant" name="plant" autocomplete="off" maxlength="50"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="description" id="lbl_Description">Description :</label></div>
+						<div class="divTableCell"><input type="text" id="description" name="description" autocomplete="off" maxlength="100"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="status" id="lbl_Panel_Status">Status :</label></div>
+						<div class="divTableCell">
+						<select id="status" name="status" style="width: 100%">
+							<option value="Prepare">Prepare</option>
+							<option value="Ready">Ready</option>
+							<option value="Complete">Complete</option>
+						</select>
+						</div>
+					</div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Created">Created</label></div><div class="divTableCell"><span class="value" id="created"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Updated">Updated</label></div><div class="divTableCell"><span class="value" id="updated"></span></div></div>
+				</div>
+			</div>
+			<div class="button-group" data-footer>
+				<button type="button" class="regular-btn" id="buttonScan">Load Samples</button>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="button" class="regular-btn" id="buttonTrays">Trays</button>
+				<button type="submit" class="submit-btn" id="buttonSave">Save</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script src="js/qm.55579df9.js"></script>
+	<script>
+		// c4j_web_WS panelEdit.html: Save updates; Trays saves then opens the tray list; Load Samples opens the scan page without saving
+		var PANEL = 'Panel';
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_SETUP', 'lbl_Panel', 'lbl_Plant', 'lbl_Description', 'lbl_Panel_Status', 'lbl_Created', 'lbl_Updated', 'btn_Load_Samples', 'btn_Back', 'btn_Save', 'btn_Trays']).then(function (t) {
+				if (t.lbl_Panel) { PANEL = t.lbl_Panel; }
+				c4j.label('title', t.mod_FRM_QM_PANEL_SETUP);
+				c4j.label('lbl_Plant', t.lbl_Plant ? t.lbl_Plant + ' :' : ''); c4j.label('lbl_Description', t.lbl_Description ? t.lbl_Description + ' :' : ''); c4j.label('lbl_Panel_Status', t.lbl_Panel_Status ? t.lbl_Panel_Status + ' :' : '');
+				c4j.label('lbl_Created', t.lbl_Created); c4j.label('lbl_Updated', t.lbl_Updated);
+				c4j.label('buttonScan', t.btn_Load_Samples); c4j.label('buttonBack', t.btn_Back); c4j.label('buttonSave', t.btn_Save); c4j.label('buttonTrays', t.btn_Trays);
+				load();
+			});
+			var panelID = '';
+			function load() {
+				c4j.get('api/qm/setup/panel').then(function (r) {
+					if (!r.ok) { return; }
+					var d = r.data;
+					panelID = d.panelID;
+					c4j.text('subtitle', '[' + PANEL + ' ' + d.panelID + ']');
+					c4j.setValue('plant', d.plant); c4j.setValue('description', d.description); c4j.setValue('status', d.status);
+					c4j.text('created', d.created); c4j.text('updated', d.updated);
+					document.getElementById('status').style.color = qm.status(d.status);
+					c4j.focus('plant');
+				});
+			}
+			function save(action) {
+				return c4j.put('api/qm/setup/panel', { plant: c4j.value('plant'), description: c4j.value('description'), status: c4j.value('status'), action: action });
+			}
+			document.getElementById('status').addEventListener('change', function () { this.style.color = qm.status(this.value); });
+			document.getElementById('plant').addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); c4j.focus('description'); } });
+			c4j.onSubmit('qmPanelEdit', function () { save('save').then(function (r) { if (r.ok) { load(); } }); });
+			document.getElementById('buttonTrays').addEventListener('click', function () { save('trays'); });
+			document.getElementById('buttonScan').addEventListener('click', function () { c4j.put('api/qm/setup/panels/samples', { panelID: panelID }); });
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('qmPanels'); });
+		});
+	</script>
+</body>
+</html>

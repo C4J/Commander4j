@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('DEFAULT_PACK_REPORT', 'RPT_PACK_LABEL', 'Default Module ID for Pack Labels')
+</statement>
+
+<statement>
+	INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('DEFAULT_PALLET_REPORT', 'RPT_PALLET_LABEL', 'Default Module ID for Pallet Labels')
+</statement>
+
+
+<statement>
+	ALTER TABLE [APP_DESPATCH] DROP CONSTRAINT [MATERIAL_DESPATCH_PK]
+</statement>
+
+<statement>
+	ALTER TABLE [APP_DESPATCH] ALTER COLUMN DESPATCH_NO [varchar](18) NOT NULL
+</statement>
+
+<statement>
+	ALTER TABLE [APP_DESPATCH] ADD CONSTRAINT [MATERIAL_DESPATCH_PK] PRIMARY KEY (DESPATCH_NO)
+</statement>
+
+
+
+
+<statement>
+	DROP INDEX [PALLET_HISTORY_DESPATCH_NDX] ON [APP_PALLET_HISTORY]
+</statement>
+
+<statement>
+	ALTER TABLE [APP_PALLET_HISTORY] ALTER COLUMN DESPATCH_NO [varchar](18)
+</statement>
+
+<statement>
+	CREATE NONCLUSTERED INDEX [PALLET_HISTORY_DESPATCH_NDX] ON [dbo].[APP_PALLET_HISTORY] ([DESPATCH_NO] ASC)
+</statement>
+
+
+
+
+<statement>
+	DROP INDEX [PALLET_DESPATCH_NDX] ON [APP_PALLET]
+</statement>
+
+<statement>
+	ALTER TABLE [APP_PALLET] ALTER COLUMN DESPATCH_NO [varchar](18)
+</statement>
+
+<statement>
+	CREATE NONCLUSTERED INDEX [PALLET_DESPATCH_NDX] ON [dbo].[APP_PALLET] (	[DESPATCH_NO] ASC)
+</statement>
+
+</DDL>

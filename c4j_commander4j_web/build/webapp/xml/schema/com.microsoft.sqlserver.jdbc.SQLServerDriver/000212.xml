@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+  <!-- Schema 212: capitalise first letter of non-EN text where EN begins upper-case -->
+
+  <!-- ===== DE ===== -->
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Gefährlich' WHERE RESOURCE_KEY='lbl_Hazard' AND LANGUAGE_ID='DE'</statement>
+
+  <!-- ===== ES ===== -->
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Asignar SSCC' WHERE RESOURCE_KEY='btn_Assign_SSCC' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Crear línea' WHERE RESOURCE_KEY='dlg_Line_Create' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Eliminar UOM' WHERE RESOURCE_KEY='dlg_UOM_Delete' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Asignado' WHERE RESOURCE_KEY='lbl_Assigned' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Correo electrónico de salida' WHERE RESOURCE_KEY='lbl_Email_Output' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Texto de cabecera de etiqueta' WHERE RESOURCE_KEY='lbl_Label_Header_Text' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Clave de recursos' WHERE RESOURCE_KEY='lbl_Language_Key' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Descripción larga' WHERE RESOURCE_KEY='lbl_Long_Description' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Tipo de equipo' WHERE RESOURCE_KEY='lbl_Material_Equipment_Type' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Tipo de material' WHERE RESOURCE_KEY='lbl_Material_Type' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Ejecutables' WHERE RESOURCE_KEY='lbl_Module_Executable' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Funciones' WHERE RESOURCE_KEY='lbl_Module_Function' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Menús' WHERE RESOURCE_KEY='lbl_Module_Menu' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Opciones' WHERE RESOURCE_KEY='lbl_Options' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Impresoras' WHERE RESOURCE_KEY='lbl_Printers' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Recursos requeridos' WHERE RESOURCE_KEY='lbl_Process_Order_Required_Resource' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Clave de recursos' WHERE RESOURCE_KEY='lbl_Resource_Key' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Filas' WHERE RESOURCE_KEY='lbl_Rows' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Tipo de transacción' WHERE RESOURCE_KEY='lbl_Transaction_Type' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Sin asignar' WHERE RESOURCE_KEY='lbl_Unassigned' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Cuenta activada' WHERE RESOURCE_KEY='lbl_User_Account_Enabled' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Cuenta Expira' WHERE RESOURCE_KEY='lbl_User_Account_Expires' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Último inicio de sesión' WHERE RESOURCE_KEY='lbl_User_Account_Last_Logon' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Bloqueado' WHERE RESOURCE_KEY='lbl_User_Account_Locked' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Desbloquear' WHERE RESOURCE_KEY='lbl_User_Account_Unlock' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Grupos' WHERE RESOURCE_KEY='mod_FRM_ADMIN_GROUPS' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Usuarios' WHERE RESOURCE_KEY='mod_FRM_ADMIN_USERS' AND LANGUAGE_ID='ES'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Confirmar STN' WHERE RESOURCE_KEY='web_Confirm_STN' AND LANGUAGE_ID='ES'</statement>
+
+  <!-- ===== FR ===== -->
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Désactivé' WHERE RESOURCE_KEY='lbl_Disabled' AND LANGUAGE_ID='FR'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Longue description' WHERE RESOURCE_KEY='lbl_Long_Description' AND LANGUAGE_ID='FR'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Identifiant de transaction' WHERE RESOURCE_KEY='lbl_Transaction_ID' AND LANGUAGE_ID='FR'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Rapports sur les déchets' WHERE RESOURCE_KEY='mod_FRM_ADMIN_WASTE_REPORTING' AND LANGUAGE_ID='FR'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Validation code-barres' WHERE RESOURCE_KEY='web_Barcode_Validate' AND LANGUAGE_ID='FR'</statement>
+
+  <!-- ===== HU ===== -->
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Adatbázis táblák' WHERE RESOURCE_KEY='lbl_Database_Tables' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Interfész irány' WHERE RESOURCE_KEY='lbl_Interface_Direction' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Interfész típusa' WHERE RESOURCE_KEY='lbl_Interface_Type' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Hosszú leírás' WHERE RESOURCE_KEY='lbl_Long_Description' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Futtatható fájlnév' WHERE RESOURCE_KEY='lbl_Module_Executable_Filename' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Megengedett típusok' WHERE RESOURCE_KEY='lbl_Permitted_Types' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Szükséges mennyiség' WHERE RESOURCE_KEY='lbl_Required_Quantity' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Típus' WHERE RESOURCE_KEY='lbl_Type_ID' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Menü Karbantartás' WHERE RESOURCE_KEY='mod_FRM_ADMIN_MENU' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Kiválasztási listák adminisztrációja' WHERE RESOURCE_KEY='mod_FRM_ADMIN_QM_SELECTLIST' AND LANGUAGE_ID='HU'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Sor található.' WHERE RESOURCE_KEY='lbl_Rows_Found' AND LANGUAGE_ID='HU'</statement>
+
+  <!-- ===== IT ===== -->
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Assegnare decisione' WHERE RESOURCE_KEY='btn_Decision_Assign' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Lotti' WHERE RESOURCE_KEY='btn_Material_Batches' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Ricaricare' WHERE RESOURCE_KEY='btn_Refresh' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Inviare di nuovo' WHERE RESOURCE_KEY='btn_Resend' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Assegnare Stato' WHERE RESOURCE_KEY='btn_Status_Assign' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Creare linea' WHERE RESOURCE_KEY='dlg_Line_Create' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Creare Materiale' WHERE RESOURCE_KEY='dlg_Material_Create' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Il numero massimo di etichette che possono essere stampate è 100. Modifica Criterio o il limite di record.' WHERE RESOURCE_KEY='dlg_SSCC_Print_Maximum' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Analisi ID' WHERE RESOURCE_KEY='lbl_Analysis_ID' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Partita' WHERE RESOURCE_KEY='lbl_Batch' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='File di comando' WHERE RESOURCE_KEY='lbl_Command_File' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Criteri' WHERE RESOURCE_KEY='lbl_Criteria' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Identificativo del cliente' WHERE RESOURCE_KEY='lbl_Customer_ID' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Dati ID' WHERE RESOURCE_KEY='lbl_Data_ID' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Tabelle di database' WHERE RESOURCE_KEY='lbl_Database_Tables' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Data di creazione' WHERE RESOURCE_KEY='lbl_Date_Created' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Notifiche di posta elettronica' WHERE RESOURCE_KEY='lbl_Email_Notifications' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Campi' WHERE RESOURCE_KEY='lbl_Fields' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Dalla Posizione' WHERE RESOURCE_KEY='lbl_From_Location' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Autotrasportatore' WHERE RESOURCE_KEY='lbl_Haulier' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Ispezione' WHERE RESOURCE_KEY='lbl_Inspection' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Lingua ID' WHERE RESOURCE_KEY='lbl_Language_ID' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Chiave di risorsa' WHERE RESOURCE_KEY='lbl_Language_Key' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Lista ID' WHERE RESOURCE_KEY='lbl_List_ID' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Partita' WHERE RESOURCE_KEY='lbl_Material_Batch' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Regola di arrotondamento' WHERE RESOURCE_KEY='lbl_Material_Shelf_Life_Rounding_Rule' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Tipo di materiale' WHERE RESOURCE_KEY='lbl_Material_Type' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Peso UOM' WHERE RESOURCE_KEY='lbl_Material_Weight_UOM' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Eseguibili' WHERE RESOURCE_KEY='lbl_Module_Executable' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Icona Nome file' WHERE RESOURCE_KEY='lbl_Module_Icon_Filename' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Finestra di dialogo Stampa' WHERE RESOURCE_KEY='lbl_Module_Print_Dialog' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Risorse necessarie' WHERE RESOURCE_KEY='lbl_Process_Order_Required_Resource' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Motivo richiesto' WHERE RESOURCE_KEY='lbl_Reason_Reqd' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Dati di riferimento' WHERE RESOURCE_KEY='lbl_Referenced_Data' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Rapporto ID' WHERE RESOURCE_KEY='lbl_Report_ID' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Chiave di risorsa' WHERE RESOURCE_KEY='lbl_Resource_Key' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Luogo' WHERE RESOURCE_KEY='lbl_Storage_Location' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Chiave di sistema' WHERE RESOURCE_KEY='lbl_System_Key' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Tabella' WHERE RESOURCE_KEY='lbl_Table' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Obiettivo' WHERE RESOURCE_KEY='lbl_Target' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Sottotipo di transazione' WHERE RESOURCE_KEY='lbl_Transaction_Subtype' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Aggiornato da' WHERE RESOURCE_KEY='lbl_Updated_By' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Account' WHERE RESOURCE_KEY='lbl_User_Account' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Account abilitato' WHERE RESOURCE_KEY='lbl_User_Account_Enabled' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Scadenza della password' WHERE RESOURCE_KEY='lbl_User_Account_Password_Expires' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Registro di controllo' WHERE RESOURCE_KEY='mod_FRM_ADMIN_AUDIT_PERM' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Gruppi' WHERE RESOURCE_KEY='mod_FRM_ADMIN_GROUPS' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Stampante predefinita' WHERE RESOURCE_KEY='mod_FRM_CM_PRINTERS' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Interfacce' WHERE RESOURCE_KEY='mod_MENU_INTERFACE' AND LANGUAGE_ID='IT'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Confermare STN' WHERE RESOURCE_KEY='web_Confirm_STN' AND LANGUAGE_ID='IT'</statement>
+
+  <!-- ===== NL ===== -->
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Materiaal Locaties' WHERE RESOURCE_KEY='btn_Material_Locations' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Kiezen' WHERE RESOURCE_KEY='btn_Select' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Toewijzen Status' WHERE RESOURCE_KEY='btn_Status_Assign' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Archief Compleet' WHERE RESOURCE_KEY='dlg_Archive_Complete' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Creëren' WHERE RESOURCE_KEY='dlg_Create' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Activiteit ID' WHERE RESOURCE_KEY='lbl_Activity_ID' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Analyse ID' WHERE RESOURCE_KEY='lbl_Analysis_ID' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Archief ID' WHERE RESOURCE_KEY='lbl_Archive_ID' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Toegewezen' WHERE RESOURCE_KEY='lbl_Assigned' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Gevaarlijk' WHERE RESOURCE_KEY='lbl_Hazard' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Initiatiefnemer' WHERE RESOURCE_KEY='lbl_Initiator' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Inspectie ID' WHERE RESOURCE_KEY='lbl_Inspection_ID' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Taal ID' WHERE RESOURCE_KEY='lbl_Language_ID' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Lange beschrijving' WHERE RESOURCE_KEY='lbl_Long_Description' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Bericht Informatie' WHERE RESOURCE_KEY='lbl_Message_Information' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Bericht Status' WHERE RESOURCE_KEY='lbl_Message_Status' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Bericht Type' WHERE RESOURCE_KEY='lbl_Message_Type' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Gegevens waarnaar verwezen wordt' WHERE RESOURCE_KEY='lbl_Referenced_Data' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Wachtwoord Verloopt' WHERE RESOURCE_KEY='lbl_User_Account_Password_Expires' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Afval Log' WHERE RESOURCE_KEY='mod_FRM_ADMIN_WASTE_LOG' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Afval Locaties' WHERE RESOURCE_KEY='mod_FRM_WASTE_LOCATIONS' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Afval Redenen' WHERE RESOURCE_KEY='mod_FRM_WASTE_REASON' AND LANGUAGE_ID='NL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Afval Transacties' WHERE RESOURCE_KEY='mod_FRM_WASTE_TRANSACTION' AND LANGUAGE_ID='NL'</statement>
+
+  <!-- ===== PL ===== -->
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Partie' WHERE RESOURCE_KEY='btn_Material_Batches' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Kryteria' WHERE RESOURCE_KEY='lbl_Criteria' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Pola' WHERE RESOURCE_KEY='lbl_Fields' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Wykonywalne' WHERE RESOURCE_KEY='lbl_Module_Executable' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Formularze' WHERE RESOURCE_KEY='lbl_Module_Form' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Skaner' WHERE RESOURCE_KEY='lbl_Module_Scanner' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Warstwy' WHERE RESOURCE_KEY='lbl_Pallet_Layers' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Dopuszczalne typy' WHERE RESOURCE_KEY='lbl_Permitted_Types' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Wymagany zasób' WHERE RESOURCE_KEY='lbl_Process_Order_Required_Resource' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Rejestrator' WHERE RESOURCE_KEY='lbl_Recorder' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Typ transakcji' WHERE RESOURCE_KEY='lbl_Transaction_Type' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Niepotwierdzone' WHERE RESOURCE_KEY='lbl_Unconfirmed' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Aktualizowany przez' WHERE RESOURCE_KEY='lbl_Updated_By' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Interfejsy' WHERE RESOURCE_KEY='mod_MENU_INTERFACE' AND LANGUAGE_ID='PL'</statement>
+  <statement>UPDATE SYS_LANGUAGE SET TEXT='Tak' WHERE RESOURCE_KEY='web_Yes' AND LANGUAGE_ID='PL'</statement>
+
+</DDL>

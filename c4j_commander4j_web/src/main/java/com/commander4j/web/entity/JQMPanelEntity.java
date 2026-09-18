@@ -1,0 +1,118 @@
+/* Copied AS-IS from c4j_web_WS (2026-09-12, step 8 port): only the package changed, the decorative @Entity annotation was dropped (jakarta.persistence is not in this war; serialisation is Gson) and the sample check uses core com.commander4j.db.JDBQMSample. */
+package com.commander4j.web.entity;
+
+import java.sql.Timestamp;
+
+import com.commander4j.util.JUtility;
+import com.google.gson.annotations.Expose;
+
+
+public class JQMPanelEntity
+{
+	@Expose
+	private Long panelID= (long) 0;
+	private Timestamp panelDate = JUtility.getSQLDateTime();
+	@Expose
+	private String plant = "";
+	@Expose
+	private String description = "";
+	@Expose
+	private String status = "";
+	private Timestamp updated = JUtility.getSQLDateTime();
+	private Timestamp created = JUtility.getSQLDateTime();
+	public Long getPanelID()
+	{
+		if (panelID == null)
+		{
+			panelID = (long) -1;
+		}
+		return panelID;
+	}
+
+	public void setPanelID(Long panelID)
+	{
+		if (panelID == null)
+		{
+			panelID = (long) -1;
+		}
+		this.panelID = panelID;
+	}
+
+	public Timestamp getPanelDate()
+	{
+		if (panelDate == null)
+		{
+			panelDate = JUtility.getSQLDateTime();
+		}
+		return panelDate;
+	}
+
+	public void setPanelDate(Timestamp panelDate)
+	{
+		if (panelDate == null)
+		{
+			panelDate = JUtility.getSQLDateTime();
+		}
+		this.panelDate = panelDate;
+	}
+
+	public String getPlant()
+	{
+		return plant;
+	}
+
+	public void setPlant(String plant)
+	{
+		this.plant = plant;
+	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
+	public String getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(String status)
+	{
+		if (status == null)
+		{
+			status = "Panel";
+		}
+		this.status = status;
+	}
+
+	public Timestamp getUpdated()
+	{
+		return updated;
+	}
+
+	public void setUpdated(Timestamp updated)
+	{
+		this.updated = updated;
+	}
+
+	public Timestamp getCreated()
+	{
+		return created;
+	}
+
+	public void setCreated(Timestamp created)
+	{
+		this.created = created;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "panelID=" + getPanelID().toString() + "panelDate=" + getPanelDate().toString() + " status=" + getStatus() + " created " + getCreated() + " updated " + getUpdated();
+	}
+}

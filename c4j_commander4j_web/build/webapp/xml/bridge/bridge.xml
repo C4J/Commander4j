@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Connection to the util_modbusBridge REST service, carried over from c4j_web_Issue.
+     When enabled="true", a refused issue POSTs /api/points/{id}/pulse with {"value":1}
+     to fire a relay: the scanned location id for a wrong lane, or INVALID_MATERIAL /
+     INVALID_QUANTITY / INVALID_STATUS for the error relay. Which ids map to a relay is
+     the bridge's own <restapi> list (an unknown id returns 404 and is ignored) and the
+     hold time is the bridge's per-point defaultHoldMs; neither is configured here.
+     This file is copied to tomcat/c4j_config/<context>/bridge.xml on first run; edit
+     that external copy to enable it for a site. Shipped disabled. -->
+<bridge enabled="false">
+    <url>http://127.0.0.1:8085</url>
+</bridge>

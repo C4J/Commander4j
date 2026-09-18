@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Pallet Info</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<form id="palletInfoDisplay" name="palletInfoDisplay" onsubmit="return false;">
+			<h1 id="title">Pallet Info</h1>
+			<div class="divTable kv">
+				<div class="divTableBody">
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_SSCC">SSCC</label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="sscc"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Process_Order"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="processOrder"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Material"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="material"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Description">Description</label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="description"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Lot_Number">Lot Number</label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="lotNumber"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Location_ID"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="location"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Despatch_No"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="despatchNo"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Pallet_Status"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="palletStatus"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Batch"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="batch"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Batch_Status"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="batchStatus"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Pallet_Quantity"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="quantity"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Pallet_UOM"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="uom"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_DOM"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="dom"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Material_Batch_Expiry_Date"></label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="expiry"></span></label></div>
+				</div>
+				</div>
+			</div>
+			<div class="form-group"><br></div>
+			<div class="button-group">
+				<button type="button" id="exitButton" name="exitButton" class="cancel-btn">Back</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			// description + lot number: the two web_Issue SSCC Info fields merged in (step 7, 2026-09-11)
+			var keys = ["web_SSCC", "lbl_Process_Order", "lbl_Material", "lbl_Description", "lbl_Location_ID", "lbl_Material_Batch", "lbl_Despatch_No", "lbl_Pallet_Status", "lbl_Batch", "lbl_Batch_Status", "lbl_Pallet_Quantity", "lbl_Pallet_UOM", "web_DOM", "lbl_Material_Batch_Expiry_Date"];
+			c4j.get('api/lang?keys=mod_FRM_PAL_INFO,btn_Back,' + keys.join(',')).then(function (r) {
+				if (r.ok && r.data && r.data.text && r.data.text.btn_Back) { c4j.text('exitButton', r.data.text.btn_Back); }
+				if (!r.ok) { return; }
+				c4j.text('title', r.data.text.mod_FRM_PAL_INFO);
+				keys.forEach(function (k) { if (r.data.text[k]) { c4j.text(k, r.data.text[k]); } }); if (r.data.text.lbl_Material_Batch) { c4j.text('lbl_Lot_Number', r.data.text.lbl_Material_Batch); }
+			});
+			c4j.get('api/pallets/state').then(function (r) {
+				if (!r.ok) { return; }
+				["sscc", "processOrder", "material", "description", "lotNumber", "location", "despatchNo", "palletStatus", "batch", "batchStatus", "quantity", "uom", "dom", "expiry"].forEach(function (k) { c4j.text(k, r.data[k]); });
+				c4j.focus('exitButton');
+			});
+			document.getElementById('exitButton').addEventListener('click', function () { c4j.goTo('palletInfo'); });
+		});
+	</script>
+</body>
+</html>

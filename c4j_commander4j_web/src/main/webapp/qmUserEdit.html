@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Panel Admin</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Panel Admin</h1>
+		<form id="qmUserEdit" name="qmUserEdit" onsubmit="return false;">
+			<h2 id="subtitle">Panelist</h2>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="userID" id="lbl_User_ID">User ID :</label></div>
+						<div class="divTableCell"><input type="text" id="userID" name="userID" autocomplete="off" maxlength="20" style="text-transform:uppercase"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="firstname" id="lbl_First_Name">First Name :</label></div>
+						<div class="divTableCell"><input type="text" id="firstname" name="firstname" autocomplete="off" maxlength="50"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="surname" id="lbl_surname">Surname :</label></div>
+						<div class="divTableCell"><input type="text" id="surname" name="surname" autocomplete="off" maxlength="50"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="enabled" id="lbl_Enabled">Enabled :</label></div>
+						<div class="divTableCell"><input type="checkbox" id="enabled" name="enabled" style="width:auto; transform:scale(1.5)"></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonSave">Save</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		// c4j_web_WS userEdit.html (+ the prompt() in users.html confirmNewUser): the User ID is typed here when creating,
+		// read-only when editing; Save creates or updates and stays on the page
+		var USER = 'User';
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_ADMIN', 'lbl_Panelist', 'lbl_User_ID', 'lbl_First_Name', 'lbl_surname', 'lbl_Enabled', 'btn_Back', 'btn_Save']).then(function (t) {
+				if (t.lbl_Panelist) { USER = t.lbl_Panelist; }
+				c4j.label('title', t.mod_FRM_QM_PANEL_ADMIN);
+				c4j.label('lbl_User_ID', t.lbl_User_ID ? t.lbl_User_ID + ' :' : ''); c4j.label('lbl_First_Name', t.lbl_First_Name ? t.lbl_First_Name + ' :' : '');
+				c4j.label('lbl_surname', t.lbl_surname ? t.lbl_surname + ' :' : ''); c4j.label('lbl_Enabled', t.lbl_Enabled ? t.lbl_Enabled + ' :' : '');
+				c4j.label('buttonBack', t.btn_Back); c4j.label('buttonSave', t.btn_Save);
+				load();
+			});
+			function show(d) {
+				c4j.text('subtitle', d.isNew ? USER : USER + ' ' + d.userID);
+				c4j.setValue('userID', d.userID); c4j.setValue('firstname', d.firstname); c4j.setValue('surname', d.surname);
+				document.getElementById('enabled').checked = d.enabled === 'Y';
+				document.getElementById('userID').disabled = !d.isNew;
+				c4j.focus(d.isNew ? 'userID' : 'firstname');
+			}
+			function load() { c4j.get('api/qm/admin/user').then(function (r) { if (r.ok) { show(r.data); } }); }
+			['userID', 'firstname'].forEach(function (id, i) {
+				document.getElementById(id).addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); c4j.focus(['firstname', 'surname'][i]); } });
+			});
+			c4j.onSubmit('qmUserEdit', function () {
+				c4j.put('api/qm/admin/user', { userID: c4j.value('userID'), firstname: c4j.value('firstname'), surname: c4j.value('surname'), enabled: document.getElementById('enabled').checked ? 'Y' : 'N' })
+					.then(function (r) { if (r.ok) { load(); } });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('qmUsers'); });
+		});
+	</script>
+</body>
+</html>

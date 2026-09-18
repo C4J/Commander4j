@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Pallet Delete</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Pallet Delete</h1>
+		<form id="palletDelete" name="palletDelete" onsubmit="return false;">
+			<div class="form-group">
+				<img src="images/pallet_sscc.gif" width="50%" style="display:block; margin-left:auto; margin-right:auto;max-width:300px">
+			</div>
+			<div class="form-group"><br></div>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell" align="right"><label for="sscc">SSCC :</label></div>
+						<div class="divTableCell"><input type="text" id="sscc" name="sscc" autocomplete="off"></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group"><br></div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
+				<button type="submit" class="submit-btn" id="buttonSubmit">Submit</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.get('api/lang?keys=mod_FRM_ADMIN_PALLET_DELETE,btn_Back').then(function (r) {
+				if (r.ok && r.data && r.data.text && r.data.text.btn_Back) { c4j.text('buttonCancel', r.data.text.btn_Back); }
+				if (r.ok && r.data.text['mod_FRM_ADMIN_PALLET_DELETE']) { c4j.text('title', r.data.text['mod_FRM_ADMIN_PALLET_DELETE']); }
+			});
+			c4j.get('api/pallets/state').then(function (r) {
+				if (r.ok) {  }
+				c4j.focus('sscc');
+			});
+			c4j.onSubmit('palletDelete', function () {
+				c4j.put('api/pallets/delete', { sscc: c4j.value('sscc') }).then(function (r) {
+					if (r.busy) { return; }
+					c4j.setValue('sscc', '');
+					
+					if (!r.next) { c4j.focus('sscc'); }
+				});
+			});
+			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.goTo('menu'); });
+		});
+	</script>
+</body>
+</html>

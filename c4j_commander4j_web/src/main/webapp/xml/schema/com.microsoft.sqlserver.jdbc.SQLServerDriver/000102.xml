@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	CREATE VIEW [dbo].[view_journeys]
+	AS
+	SELECT JOURNEY_REF, STATUS, DESPATCH_NO, TIMESLOT, LOCATION_ID_TO, DATE_UPDATED, LOAD_TYPE, LOAD_TYPE_DESC, HAULIER,
+	convert(varchar(25), timeslot, 120) +
+				  LEFT(ISNULL(LOAD_TYPE,'') + SPACE(10), 10) +
+				  LEFT(ISNULL(LOAD_TYPE_DESC,'') + SPACE(20), 20) +
+				  LEFT(ISNULL(HAULIER,'') + SPACE(20), 20)
+				  AS DESCRIPTION 
+	FROM     dbo.APP_JOURNEY
+	WHERE STATUS = 'Unassigned'	 AND JOURNEY_REF &lt;&gt; 'NO JOURNEY'
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_BLANK_Journey', 'EN', 'Blank Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_BLANK_Journey', 'NL', 'Blank Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_BLANK_Journey', 'HU', 'Blank Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_BLANK_Journey', 'IT', 'Blank Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_BLANK_Journey', 'DE', 'Blank Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_BLANK_Journey', 'ES', 'Blank Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_BLANK_Journey', 'PL', 'Blank Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_NO_JOURNEY', 'EN', 'Assign NO JOURNEY to Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_NO_JOURNEY', 'NL', 'Assign NO JOURNEY to Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_NO_JOURNEY', 'HU', 'Assign NO JOURNEY to Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_NO_JOURNEY', 'IT', 'Assign NO JOURNEY to Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_NO_JOURNEY', 'DE', 'Assign NO JOURNEY to Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_NO_JOURNEY', 'ES', 'Assign NO JOURNEY to Journey Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Despatch_NO_JOURNEY', 'PL', 'Assign NO JOURNEY to Journey Ref', 'Q')
+</statement>
+
+<statement>INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID], [RF_ACTIVE], [DK_ACTIVE], [MODULE_TYPE], [HINT], [ICON_FILENAME], [HELPSET_ID], [REPORT_FILENAME], [EXEC_FILENAME], [EXEC_DIR], [PRINT_PREVIEW], [PRINT_DIALOG], [PRINT_COPIES], [REPORT_TYPE]) VALUES ('FRM_ADMIN_DESPATCH_NO_JOURNEY', 'N', 'Y', 'FUNCTION', '', '', '', '', '', '', 'Y', 'Y', 1, '')</statement>
+
+<statement>INSERT INTO [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN',N'FRM_ADMIN_DESPATCH_NO_JOURNEY')</statement>
+
+<statement>INSERT INTO [dbo].[APP_JOURNEY] ([JOURNEY_REF], [STATUS]) VALUES (N'NO JOURNEY',N'Unassigned')</statement>
+
+
+</DDL>

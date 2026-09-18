@@ -1,0 +1,1363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	DROP VIEW [dbo].[view_labeller_process_order_info]
+</statement>
+
+<statement>
+	CREATE VIEW [dbo].[view_labeller_process_order_info]
+	AS
+	   SELECT PO.PROCESS_ORDER, PO.MATERIAL, PO.STATUS, PO.DUE_DATE, MAT.DESCRIPTION, MAT.SHELF_LIFE, MAT.SHELF_LIFE_UOM, MAT.SHELF_LIFE_RULE,
+	       PO.REQUIRED_UOM, MATUOM.EAN, MATUOM.VARIANT, MAT.OLD_MATERIAL, dbo.GetFullPalletLayers(PO.MATERIAL, PO.REQUIRED_UOM) AS DEFAULT_LAYERS,
+	       dbo.GetFullPalletQuantity(PO.PROCESS_ORDER) AS DEFAULT_QUANTITY, PO.UPDATED AS PROCESS_ORDER_UPDATED, 
+	       MAT.UPDATED AS MATERIAL_UPDATED, CUST.CUSTOMER_NAME
+	   FROM  dbo.APP_PROCESS_ORDER AS PO 
+	       INNER JOIN dbo.APP_CUSTOMER AS CUST ON PO.CUSTOMER_ID = CUST.CUSTOMER_ID 
+	       INNER JOIN dbo.APP_MATERIAL AS MAT ON PO.MATERIAL = MAT.MATERIAL 
+	       INNER JOIN dbo.APP_MATERIAL_UOM AS MATUOM ON PO.MATERIAL = MATUOM.MATERIAL AND PO.REQUIRED_UOM = MATUOM.UOM 
+	       INNER JOIN dbo.APP_MATERIAL_UOM AS MATUOMFULL ON PO.MATERIAL = MATUOMFULL.MATERIAL
+	   WHERE  (MATUOMFULL.UOM = 'PAL')
+</statement>
+
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Add',N'ES',N'Añadir',N'A')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Archive',N'ES',N'Archivar',N'A')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Assign_SSCC',N'ES',N'Asignar SSCC',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Assign_to_MHN',N'ES',N'Asignar a MHN',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Clear_Data',N'ES',N'Limpiar Datos',N'C')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Clear_Filter',N'ES',N'Limpiar Filtro',N'F')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Close',N'ES',N'Cerrar',N'C')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Confirm',N'ES',N'Confirmar',N'f')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Copy',N'ES',N'Copiar',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Decision_Assign',N'ES',N'Asignar Decisión',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Delete',N'ES',N'Borrar',N'D')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Dictionary',N'ES',N'Diccionario',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Edit',N'ES',N'Editar',N'E')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Edit_Batch',N'ES',N'Editar Lote',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Edit_Location',N'ES',N'Editar Localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Edit_Material',N'ES',N'Editar Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Edit_MHN',N'ES',N'Editar MHN',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Edit_Pallet',N'ES',N'Editar Palet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Edit_Process_Order',N'ES',N'Editar Orden de Trabajo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Excel',N'ES',N'Excel',N'x')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Find',N'ES',N'Buscar',N'F')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Help',N'ES',N'Ayuda',N'H')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Hold',N'ES',N'Retener',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Interface_Start',N'ES',N'Iniciar Interfaz',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Interface_Stop',N'ES',N'Detener Interfaz',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Label',N'ES',N'Etiqueta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Material_Batches',N'ES',N'Lotes',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Material_Locations',N'ES',N'Localizaciones de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Material_UOM_Conversions',N'ES',N'Conversiones de UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_New',N'ES',N'Nuevo',N'N')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Ok',N'ES',N'Ok',N'O')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Permissions',N'ES',N'Permisos',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Print',N'ES',N'Imprimir',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Print_Summary',N'ES',N'Sumario',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Refresh',N'ES',N'Actualizar',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Rename',N'ES',N'Cambiar Nombre',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Resubmit',N'ES',N'Volver a Enviar',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Re_Print',N'ES',N'Volver a Imprimir',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Run',N'ES',N'Ejecutar',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Save',N'ES',N'Guardar',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Schema',N'ES',N'Esquema',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Search',N'ES',N'Buscar',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Select',N'ES',N'Seleccionar',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Split',N'ES',N'Dividir',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Status_Assign',N'ES',N'Asignar Estado',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'btn_Undo',N'ES',N'Deshacer',N'U')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Confirm',N'ES',N'Confirmar',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Customer_Add',N'ES',N'Añadir Cliente',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Customer_Delete',N'ES',N'Borrar Cliente',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Customer_Rename',N'ES',N'Renombrar Cliente',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Decision_Add',N'ES',N'Añadir Decisión',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Decision_Delete',N'ES',N'Borra Decisión ?',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Decision_Rename',N'ES',N'Renombrar Decisión',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Despatch_Confirm',N'ES',N'Confirmar Envío',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Despatch_Create',N'ES',N'Crear Envío ?',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Despatch_Delete',N'ES',N'Borrar Envío',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Dictionary_Delete',N'ES',N'Borrar Elemento de Diccionario',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Error',N'ES',N'Error',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Information',N'ES',N'Información',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Material_Batch_Input',N'ES',N'Entrada de Lote',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Material_Input',N'ES',N'Entrada de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Material_Location_Input',N'ES',N'Localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Material_Type_Add',N'ES',N'Añadir Tipo de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Material_Type_Delete',N'ES',N'Borrar Tipo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Material_Type_Rename',N'ES',N'Renombrar Tipo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Material_UOM_Input',N'ES',N'Introducir UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Process_Order_Add',N'ES',N'Introducir Número de orden de Trabajo (Blanco = Auto)',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Quantity_Confirm',N'ES',N'La cantidad de pallet especificada es mayor que la cantidad completa de pallet por defecto - está seguro?',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Reason_Add',N'ES',N'Añadir Razón',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Reason_Delete',N'ES',N'Borrar Código de Razón',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_Reason_Rename',N'ES',N'Renombrar Código de Razón',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_SelectList_Delete',N'ES',N'Borrar elemento de la lista',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_SSCC_Add',N'ES',N'Introducir SSCC o AUTO',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_SSCC_Delete',N'ES',N'Borrar SSCC',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_SSCC_Print_Maximum',N'ES',N'La cantidad máxima de etiquetas que se pueden imprimir es 100. Cambie criterio o límite de registros.',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_UOM_Add',N'ES',N'Añadir UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_UOM_Delete',N'ES',N'Borrar UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'dlg_UOM_Rename',N'ES',N'Renombrar UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'err_Batch_Blank',N'ES',N'Lote está en blanco',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'err_Customer_Blank',N'ES',N'Cliente está en blanco',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'err_Location_Blank',N'ES',N'Localización está en blanco',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'err_Material_Blank',N'ES',N'Material está en blanco',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'err_Process_Order_Blank',N'ES',N'Orden de trabajo está en blanco',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Activity',N'ES',N'Actividad',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Activity_ID',N'ES',N'ID de actividad',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Assigned',N'ES',N'Asignado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Assign_to_MHN',N'ES',N'Asignar a MHN',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Authorisor',N'ES',N'Autorizado por',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Base_UOM',N'ES',N'UdM Base',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Batch',N'ES',N'Lote',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Batch_Status',N'ES',N'Estado del Lote',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Comment',N'ES',N'Comentarios',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Confirmed',N'ES',N'Confirmado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Created',N'ES',N'Creado',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Created_By',N'ES',N'Creado por',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Customer_Admin',N'ES',N'Administración de Clientes',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Customer_Edit',N'ES',N'Editar Cliente',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Customer_ID',N'ES',N'ID de Cliente',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Customer_Name',N'ES',N'Nombre de Cliente',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Database_Tables',N'ES',N'Tablas de la Base de Datos',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_DataType',N'ES',N'Tipo de Datos',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Date_Created',N'ES',N'Fecha Creada',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Date_Params_Reqd',N'ES',N'Fecha de Parámetros Requerida',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Date_Updated',N'ES',N'Fecha Actualizada',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Decision',N'ES',N'Decisión',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Deleted',N'ES',N'Borrado',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Description',N'ES',N'Descripción',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Despatches',N'ES',N'Envíos',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Despatch_Date',N'ES',N'Fecha de Envío',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Despatch_No',N'ES',N'Número de Envío',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Despatch_Status',N'ES',N'Estado del Envío',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Destination_SSCC',N'ES',N'SSCC Destino',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Email_Addresses',N'ES',N'Direcciones de Correo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Email_Error',N'ES',N'Error',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Email_Notifications',N'ES',N'Notificaciones por Email',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Email_Output',N'ES',N'Salida de Email',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Email_Prompt',N'ES',N'Pedir Dirección Email',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Email_Success',N'ES',N'Éxito',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Email_Warning',N'ES',N'Atención',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_End_Time',N'ES',N'Hora de Fin',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Expected',N'ES',N'Resolución Esperada',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Fields',N'ES',N'Campos',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Filter_By',N'ES',N'Filtrar por',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Find',N'ES',N'Buscar',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_From_Location',N'ES',N'Desde localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Group_ID',N'ES',N'ID de Grupo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Haulier',N'ES',N'Transportista',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Initiator',N'ES',N'Iniciado por',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Inspection',N'ES',N'Inspección',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Inspection_ID',N'ES',N'ID de Inspección',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Interface_Device',N'ES',N'Dispositivo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Interface_Direction',N'ES',N'Dirección de interfaz',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Interface_Enabled',N'ES',N'Habilitado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Interface_Filename',N'ES',N'Nombre de Fichero',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Interface_Format',N'ES',N'Formato',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Interface_Path',N'ES',N'Ruta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Interface_Type',N'ES',N'Tipo de Interfaz',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Labels_Per_SSCC',N'ES',N'Etiquetas por SSCC',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Label_Header_Text',N'ES',N'Texto de Cabecera de Etiqueta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Language',N'ES',N'Idioma',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Language_ID',N'ES',N'ID de Idioma',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Language_Key',N'ES',N'Clave de Recurso',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Language_Mnemonic',N'ES',N'Mnemónico',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Limit',N'ES',N'Límite',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Line_ID',N'ES',N'ID de Línea',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_List_ID',N'ES',N'ID de Lista',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Load_No',N'ES',N'Número de Carga',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Location_ID',N'ES',N'ID de Localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material',N'ES',N'Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Base_UOM',N'ES',N'UdM Base',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Batch',N'ES',N'Lote',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Batch_Expiry_Date',N'ES',N'Fecha de Caducidad',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Batch_Expiry_From',N'ES',N'Caducidad desde',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Batch_Expiry_To',N'ES',N'Caducidad hasta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Batch_Status',N'ES',N'Estado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Default_Batch_Status',N'ES',N'Estado de lote or defecto',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Equipment_Type',N'ES',N'Tipo de equipamiento',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Gross_Weight',N'ES',N'Peso Bruto',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Legacy_Code',N'ES',N'Código heredado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Location_Status',N'ES',N'Estado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Net_Weight',N'ES',N'Peso Neto',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Shelf_Life',N'ES',N'Vida Útil',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Shelf_Life_Rounding_Rule',N'ES',N'Regla de redondeo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Shelf_Life_UOM',N'ES',N'UOM de vida útil',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Type',N'ES',N'Tipo de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_UOM',N'ES',N'UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_UOM_Denominator',N'ES',N'Denominador',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_UOM_EAN',N'ES',N'EAN',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_UOM_Numerator',N'ES',N'Numerador',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_UOM_Variant',N'ES',N'Variante',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Material_Weight_UOM',N'ES',N'UdM Ponderada',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Date',N'ES',N'Fecha del Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Despatch_Confirm',N'ES',N'Confirmación de Envío del Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Despatch_Pre_Advice',N'ES',N'Preaviso de Envío del Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Equipment_Tracking',N'ES',N'Seguimiento de la Equipación del Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Error',N'ES',N'Resultado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Event_Date',N'ES',N'Fecha del Evento',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Information',N'ES',N'Información del Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Production_Confirmation',N'ES',N'Confirmación de Producción del Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Reference',N'ES',N'Referencia del Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Status',N'ES',N'Estado del Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Message_Type',N'ES',N'Tipo de Mensaje',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_MHN_Number',N'ES',N'Número MHN',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Mnemonic',N'ES',N'Mnemónico',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_ALL',N'ES',N'Todo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Desktop',N'ES',N'Escritorio',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Executable',N'ES',N'Ejecutables',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Executable_Directory',N'ES',N'Directorio Ejecutable',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Executable_Filename',N'ES',N'Nombre de Fichero Ejecutable',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Form',N'ES',N'Formularios',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Function',N'ES',N'Funciones',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Help',N'ES',N'Ayuda',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Icon_Filename',N'ES',N'Nombre del Fichero de Icono',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_ID',N'ES',N'ID de Módulo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Menu',N'ES',N'Menús',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Print_Copies',N'ES',N'Imprimir Copias',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Print_Dialog',N'ES',N'Imprimir Copias',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Print_Preview',N'ES',N'Imprimir Vista Previa',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Report',N'ES',N'Informes',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Report_Filename',N'ES',N'Nombre de Fichero del Informe',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Report_Type',N'ES',N'Tipo de Informe',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Scanner',N'ES',N'Escáner',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Module_Type',N'ES',N'Tipo de Módulo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_No_Of_Labels',N'ES',N'Número de Etiquetas',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_No_Of_Pallets',N'ES',N'Número de Palets',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Number_Of_Labels',N'ES',N'Número de Etiquetas',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Number_of_SSCCs',N'ES',N'Número de SSCCs',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Options',N'ES',N'Opciones',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Output',N'ES',N'Salida',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet',N'ES',N'Palet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet_Base_Quantity',N'ES',N'Cantidad Base',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet_Base_UOM',N'ES',N'UdM Base',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet_DOM',N'ES',N'Fecha de Fabricación',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet_Layers',N'ES',N'Capas',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet_Quantity',N'ES',N'Cantidad',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet_SSCC',N'ES',N'SSCC',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet_Status',N'ES',N'Estado del Palet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Pallet_UOM',N'ES',N'UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Preview',N'ES',N'Vista Previa',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Print',N'ES',N'Imprimir',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Print_Customer_on_Label',N'ES',N'Imprimir nombre en etiqueta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Print_Queue',N'ES',N'Cola de Impresión',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Private',N'ES',N'Privado',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Process_Order',N'ES',N'Orden de Trabajo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Process_Order_Default_Pallet_Status',N'ES',N'Estado de Pallet por Defecto',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Process_Order_Due_Date',N'ES',N'Fecha de Vencimiento',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Process_Order_Recipe',N'ES',N'Receta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Process_Order_Required_Quantity',N'ES',N'Cantidad',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Process_Order_Required_Resource',N'ES',N'Recursos Requeridos',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Process_Order_Required_UOM',N'ES',N'UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Process_Order_Status',N'ES',N'Estado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Reason',N'ES',N'Código de Razón',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Recorder',N'ES',N'Grabador',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Referenced_Data',N'ES',N'Datos de Referencia',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Report_ID',N'ES',N'ID de Informe',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Required_Quantity',N'ES',N'Cantidad Requerida',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Resolved',N'ES',N'Resuelto',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Resource_Key',N'ES',N'Clave de Recurso',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_SampleID',N'ES',N'ID ejemplo',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Sample_Date',N'ES',N'Fecha ejemplo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Sample_ID',N'ES',N'ID ejemplo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Save_As',N'ES',N'Preguntar al usuario antes de guardar',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Save_Path',N'ES',N'Ruta de guardado (en blanco = por defecto)',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Sequence_ID',N'ES',N'Secuencia',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Shift_ID',N'ES',N'ID de turno',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Sort_By',N'ES',N'Ordenar por',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Source_SSCC',N'ES',N'SSCC origen',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_SQL',N'ES',N'SQL',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_SSCC_Sequence',N'ES',N'Secuencia SSCC',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Start_Time',N'ES',N'Hora de Inicio',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Status',N'ES',N'Estado de MHN',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Bin',N'ES',N'Bin',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Equipment_Tracking_ID',N'ES',N'ID de equipamiento de seguimiento',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_GLN',N'ES',N'GLN',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Location',N'ES',N'Localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Location_Permit_Batch_Status',N'ES',N'Estado de Permiso de Lote',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Location_Permit_Pallet_Status',N'ES',N'Estado de Permiso de Pallet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Plant',N'ES',N'Planta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Section',N'ES',N'Sección',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Type',N'ES',N'Tipo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Storage_Warehouse',N'ES',N'Almacén',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Test',N'ES',N'Prueba',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Test_ID',N'ES',N'ID de Prueba',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Text',N'ES',N'Texto',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_To_Location',N'ES',N'A Localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Trailer',N'ES',N'Trailer',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Transaction_Date',N'ES',N'Fecha de la Transacción',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Transaction_Ref',N'ES',N'Referencia de Transacciín',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Transaction_Subtype',N'ES',N'Subtipo de Transacción',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Transaction_Type',N'ES',N'Tipo de Transsacción',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Unassigned',N'ES',N'No asignado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Unassigned_Filter',N'ES',N'Filtro No Asignado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Unconfirmed',N'ES',N'No Confirmado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_UOM_Conversion',N'ES',N'Conversión de UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_UOM_Internal',N'ES',N'UdM Interna',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_UOM_ISO',N'ES',N'UdM ISO',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_UOM_Local',N'ES',N'UdM Local',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Updated_By',N'ES',N'Actualizado por',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account',N'ES',N'Cuenta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Bad_Passwords',N'ES',N'Contraseñas Fallidas',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Email',N'ES',N'Email',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Expires',N'ES',N'La cuenta expira',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Expiry_Date',N'ES',N'Fecha de Caducidad',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Last_Logon',N'ES',N'Última entrada',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'',N'ES',N'Último Cambio de Contraseña',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Lock',N'ES',N'Bloquear',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Locked',N'ES',N'Bloqueado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Password',N'ES',N'Contraseña',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Password_Change_Allowed',N'ES',N'Permitir Cambio de Contraseña',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Password_Expires',N'ES',N'La Contraseña Caduca',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Password_Verify',N'ES',N'Verificar',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Account_Unlock',N'ES',N'Desbloquear',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Data1',N'ES',N'Código de contenedor',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_Data2',N'ES',N'Línea de envasado',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_User_ID',N'ES',N'ID de usuario',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Value',N'ES',N'Valor',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_View_Output',N'ES',N'Ver salida',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Visible',N'ES',N'Visible',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'lbl_Workstation',N'ES',N'Estación de Trabajo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_EXEC_CONFIG',N'ES',N'Configuración de host',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_EXEC_IREPORT',N'ES',N'iReports',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_AUTO_LAB_EDIT',N'ES',N'Añadir o actualizar una línea de producción',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_CONTROL_EDIT',N'ES',N'Controles de sistema',N'C')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_DESPATCH',N'ES',N'Envío',N'D')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_GROUPS',N'ES',N'Grupos',N'G')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_GROUP_ADD',N'ES',N'Añadir un Grupo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_GROUP_DELETE',N'ES',N'Borrar un Grupo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_GROUP_EDIT',N'ES',N'Propiedades del Grupo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_GROUP_PERM',N'ES',N'Permisos del Grupo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_GROUP_RENAME',N'ES',N'Renombrar un Grupo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_INTERFACE',N'ES',N'Administrar Interfaz',N'I')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_INTERFACE_EDIT',N'ES',N'Editar Interfaz',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_INTERFACE_LOG',N'ES',N'Log de interfaz',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_INTERFACE_PROCESS',N'ES',N'Mensajes de interfaz de proceso',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_INTERFACE_REQUEST',N'ES',N'Administración de Interfaz de Peticiones',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_LANGUAGE',N'ES',N'Traducciones',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_LOCATIONS',N'ES',N'Administrar Localizaciones',N'L')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_LOCATION_ADD',N'ES',N'Añadir Nueva Localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_LOCATION_DELETE',N'ES',N'Borrar Localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_LOCATION_EDIT',N'ES',N'Editar Localización',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIALS',N'ES',N'Administrar Materiales',N'M')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_ADD',N'ES',N'Añadir Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_BATCH',N'ES',N'Administrar Lotes',N'B')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_BATCH_EDIT',N'ES',N'Editar un registro de lote de material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_DELETE',N'ES',N'Borrar Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_EDIT',N'ES',N'Editar Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_LOCATION',N'ES',N'Administrar Localizaciones de Material',N'B')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',N'ES',N'',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_TYPE',N'ES',N'Administrar Tipos de Material',N'T')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_TYPE_ADD',N'ES',N'Añadir Tipo de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_TYPE_DELETE',N'ES',N'Borrar Tipo de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_TYPE_EDIT',N'ES',N'Añadir o Actualizar Tipo de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_TYPE_PRINT',N'ES',N'Imprimir Tipos de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_TYPE_RENAME',N'ES',N'Renombrar Tipo de Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_UOM',N'ES',N'Administrar UdM para un material',N'U')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_UOM_ADD',N'ES',N'Añadir UdM de un Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_UOM_DELETE',N'ES',N'Borrar UdM de un Material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MATERIAL_UOM_EDIT',N'ES',N'Editar propiedades de la UdM del material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MENU',N'ES',N'Mantenimiento de Menú',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MHN',N'ES',N'Administrar Maestro',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MHN_ASSIGN',N'ES',N'Asignar SSCC a MHN',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MHN_DECISION',N'ES',N'Administración de decisiones',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MHN_DECISION_EDIT',N'ES',N'Editar decisión',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MHN_EDIT',N'ES',N'Editar MHN',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MHN_REASON',N'ES',N'Administración de razones',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MHN_REASON_EDIT',N'ES',N'Editar razón',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MODULES',N'ES',N'Módulos',N'M')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MODULE_ADD',N'ES',N'Añadir Módulo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MODULE_DELETE',N'ES',N'Borrar Módulo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MODULE_EDIT',N'ES',N'Editar Propiedades de Módulo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_MODULE_RENAME',N'ES',N'Renombrar Módulo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLETS',N'ES',N'Información de Pallet',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_ADD',N'ES',N'Añadir Palet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_DELETE',N'ES',N'Borrar Palet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT',N'ES',N'Editar Palet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT_BATCH',N'ES',N'Editar lote de pallet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT_LOCATION',N'ES',N'Editar Localización de Palet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT_MATERIAL',N'ES',N'Editar material de pallet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER',N'ES',N'Editar orden de trabajo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT_PROD_DATE',N'ES',N'Editar Fecha de Producción',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT_QUANTITY',N'ES',N'Editar cantidad de pallet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT_STATUS',N'ES',N'Editar Estado de Palet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_EDIT_UOM',N'ES',N'Editar una UdM de un material',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_HISTORY',N'ES',N'Historial de pallet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PALLET_PRINT',N'ES',N'Imprimir pallet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PROCESS_ORDER',N'ES',N'Administrar orden de trabajo',N'O')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PROCESS_ORDER_ADD',N'ES',N'Añadir orden de trabajo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PROCESS_ORDER_DELETE',N'ES',N'Borrar orden de trabajo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_PROCESS_ORDER_EDIT',N'ES',N'Editar orden de trabajo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_QM_DICTIONARY',N'ES',N'Administrar Diccionario',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_QM_INSPECTION',N'ES',N'Administrar inspecciones',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_QM_SELECTLIST',N'ES',N'Administrar Listas de Selección',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_RF_MENU',N'ES',N'Mantenimiento de menú RF',N'F')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_SHIFT',N'ES',N'Patrones de cambio',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_TOOLBAR',N'ES',N'Mantenimiento de barra de herramientas',N'T')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_UOM',N'ES',N'Administrar Unidades de Medida',N'U')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_UOM_ADD',N'ES',N'Añadir nueva UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_UOM_DELETE',N'ES',N'Borrar UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_UOM_EDIT',N'ES',N'Editar UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_UOM_PRINT',N'ES',N'Imprimir Unidades de Medida',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_UOM_RENAME',N'ES',N'Renombrar UdM',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_USERS',N'ES',N'Usuarios',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_USER_ADD',N'ES',N'Añadir nuevo usuario',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_USER_DELETE',N'ES',N'Eliminar Usuario',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_USER_EDIT',N'ES',N'Propiedades de usuario',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_USER_PERM',N'ES',N'Permisos de usuario',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_USER_RENAME',N'ES',N'Renombrar Usuario',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_USER_REPORT',N'ES',N'Informes de usuario',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_ADMIN_USER_REPORT_PROP',N'ES',N'Propiedades de informes de usuario',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_AUTO_LABELLER',N'ES',N'Etiquetadora automática',N'A')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_CM_PRINTERS',N'ES',N'Impresora por Defecto',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PAL_INFO',N'ES',N'Información de pallet',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PAL_LABEL_COPIES',N'ES',N'Imprimir etiqueta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PAL_PROD_CONFIRM',N'ES',N'Terminación de pallet',N'C')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PAL_PROD_DEC',N'ES',N'Etiqueta de productos terminados',N'D')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PAL_SPLIT',N'ES',N'Dividir pallet',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PROCESS_ORDER_LABEL',N'ES',N'Imprimir etiqueta de orden de trabajo',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PRODDEC_CONFIRM',N'ES',N'Permitir a los usuarios marcar la casilla de confirmación',N'C')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PRODDEC_PREVIEW',N'ES',N'Permitir a los usuarios hacer click en la casilla de vista previa',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_PRODDEC_PRINT',N'ES',N'Permitir a los usuarios habilitar/deshabilitar la casilla de impresión',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_ACTIVITY',N'ES',N'Propiedades de actividad',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_DICTIONARY',N'ES',N'Propiedades de diccionario',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_INSPECTION',N'ES',N'Propiedades de Inspección',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_RESULT_ENQUIRY',N'ES',N'Petición de resultados',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_SAMPLE_EDIT',N'ES',N'Editar ejemplo',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_SAMPLE_LABEL',N'ES',N'Imprimir etiquetas de ejemplo',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_SAMPLE_RESULTS',N'ES',N'Actualizar resultados ejemplo',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_SELECTLIST',N'ES',N'Administrar lista de selección',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_QM_TEST',N'ES',N'Propiedades de test',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_SCHEMA_BROWSE',N'ES',N'Explorar esquema',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_SYSTEM_KEYS',N'ES',N'Mantenimiento de claves de sistema',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_SYSTEM_KEYS_ADD',N'ES',N'Añadir clave de sistema',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_SYSTEM_KEYS_DELETE',N'ES',N'Borrar una clave de sistema',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_FRM_SYSTEM_KEYS_EDIT',N'ES',N'Editar una clave de sistema',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_ADMIN',N'ES',N'Administración',N'A')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_CUSTOMISE',N'ES',N'Personalizar aplicación',N'C')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_DATA_MAINT',N'ES',N'Mantenimiento de Datos',N'D')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_INTERFACE',N'ES',N'Interfaces',N'I')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_MHN',N'ES',N'Maestro',N'0')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_PAL',N'ES',N'Transacciones de pallets',N'P')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_PAL_REPORTS',N'ES',N'Menú informes',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_PERMISSIONS',N'ES',N'Permisos',N'R')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_QM',N'ES',N'Gestión de calidad',N'Q')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_SETUP',N'ES',N'Configuración',N'S')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_MENU_TOOLS',N'ES',N'Herramientas',N'T')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'mod_root',N'ES',N'Menú Principal',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Add',N'ES',N'Añadir',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Add_SSCC',N'ES',N'Añadir SSCC',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Amend',N'ES',N'Corregir',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Cancel',N'ES',N'Cancelar',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Confirm_STN',N'ES',N'Confirmar STN',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Count',N'ES',N'Cuenta',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Create',N'ES',N'Crear',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_DOM',N'ES',N'D.O.M.',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Exit',N'ES',N'Salir',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_From',N'ES',N'Desde',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Next_Page',N'ES',N'Página Siguiente',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_No',N'ES',N'Número',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Previous_Page',N'ES',N'Vista Previa de Página',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Print_STN',N'ES',N'Imprimir STN',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Prod_Dec_Confirm',N'ES',N'Confirmación de producción',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Remove',N'ES',N'Eliminar',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_SSCC',N'ES',N'SSCC',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Submit',N'ES',N'Enviar',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_To',N'ES',N'A',N'')
+</statement>
+<statement>
+	INSERT INTO dbo.[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES  (N'web_Yes',N'ES',N'Si',N'')
+</statement>
+
+</DDL>

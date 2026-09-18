@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>System Information</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<form id="sysInfo" name="sysInfo" onsubmit="return false;">
+			<label id="browsername"></label>
+			<p id="agentname"></p>
+			<p id="dimensions"></p>
+			<p id="viewport" style="font-size:0.9em;color:blue"></p>
+			<label><span style="font-size: 100%">100%</span></label><br>
+			<label><span style="font-size: 100%">.........1.........2.........3.........4</span></label><br>
+			<label><span style="font-size: 100%">1234567890123456789012345678901234567890</span></label><br>
+			<label><span style="font-size: 90%">90%</span></label><br>
+			<label><span style="font-size: 90%">.........1.........2.........3.........4</span></label><br>
+			<label><span style="font-size: 90%">1234567890123456789012345678901234567890</span></label><br>
+			<label><span style="font-size: 80%">80%</span></label><br>
+			<label><span style="font-size: 80%">.........1.........2.........3.........4</span></label><br>
+			<label><span style="font-size: 80%">1234567890123456789012345678901234567890</span></label><br>
+			<label><span style="font-size: 70%">70%</span></label><br>
+			<label><span style="font-size: 70%">.........1.........2.........3.........4</span></label><br>
+			<label><span style="font-size: 70%">1234567890123456789012345678901234567890</span></label><br>
+			<label><span style="font-size: 60%">60%</span></label><br>
+			<label><span style="font-size: 60%">.........1.........2.........3.........4</span></label><br>
+			<label><span style="font-size: 60%">1234567890123456789012345678901234567890</span></label><br>
+			<label><span style="font-size: 50%">50%</span></label><br>
+			<label><span style="font-size: 50%">.........1.........2.........3.........4</span></label><br>
+			<label><span style="font-size: 50%">1234567890123456789012345678901234567890</span></label><br>
+			<label><span style="font-size: 40%">40%</span></label><br>
+			<label><span style="font-size: 40%">.........1.........2.........3.........4</span></label><br>
+			<label><span style="font-size: 40%">1234567890123456789012345678901234567890</span></label><br>
+			<div class="button-group">
+				<button type="submit" class="cancel-btn" id="buttonExit">Back</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		c4j.page(function () {
+			var ua = navigator.userAgent, friendlyName = 'Unknown';
+			if (ua.indexOf('Firefox') > -1) { friendlyName = 'Firefox'; }
+			if (ua.indexOf('Chrome') > -1) { friendlyName = 'Chrome'; }
+			if (ua.indexOf('Safari') > -1 && ua.indexOf('Chrome') === -1) { friendlyName = 'Safari'; }
+			c4j.text('dimensions', 'Screen width: ' + window.innerWidth + ', height: ' + window.innerHeight + '.');
+			// the line to read off the MC9400: CSS viewport, device pixel ratio, physical screen, visual viewport (soft keyboard shrinks it)
+			var vv = window.visualViewport ? Math.round(window.visualViewport.width) + 'x' + Math.round(window.visualViewport.height) : 'n/a';
+			c4j.text('viewport', 'Viewport ' + window.innerWidth + 'x' + window.innerHeight + ' css px | DPR ' + window.devicePixelRatio + ' | screen ' + screen.width + 'x' + screen.height + ' | visual ' + vv);
+			c4j.text('browsername', 'Browser : ' + friendlyName);
+			c4j.text('agentname', 'Agent : ' + ua);
+			c4j.onSubmit('sysInfo', function () { c4j.goTo('menu'); });
+			c4j.get('api/lang?keys=btn_Back').then(function (r) { if (r.ok && r.data && r.data.text && r.data.text.btn_Back) { c4j.text('buttonExit', r.data.text.btn_Back); } });
+			c4j.focus('buttonExit');
+		});
+	</script>
+</body>
+</html>

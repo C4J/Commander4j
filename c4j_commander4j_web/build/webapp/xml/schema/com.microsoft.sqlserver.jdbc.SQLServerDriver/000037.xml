@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+ALTER TABLE [dbo].[APP_MHN_DECISIONS] ADD [STATUS] [varchar] (20) COLLATE database_default NULL
+</statement>
+
+<statement>
+UPDATE [dbo].[APP_MHN_DECISIONS] SET [STATUS] = 'Blocked'
+</statement>
+
+<statement>
+UPDATE [dbo].[APP_MHN_DECISIONS] SET [STATUS] = 'Unrestricted' WHERE [DECISION] = 'Release'
+</statement>
+
+<statement>
+UPDATE [dbo].[APP_PALLET] SET [MHN_NUMBER] = '' WHERE [MHN_NUMBER] IS NULL
+</statement>
+
+<statement>
+UPDATE [dbo].[APP_PALLET] SET [DECISION] = '' WHERE [DECISION] IS NULL
+</statement>
+
+</DDL>

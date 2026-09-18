@@ -177,6 +177,18 @@
 			<text>select a.* from [view_rf_menu]a order by a.sequence_id</text>
 		</statement>
 		<statement>
+			<id>JDBModule.getRFMenuIds</id>
+			<text>select module_id,module_type,icon_filename from {schema}SYS_MODULES where module_type = 'MENU' and (module_id = 'root' or rf_active = 'Y') order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModulesAssignedtoRFMenuForMenu</id>
+			<text>select a.* from [view_rf_menu]a where a.menu_id = ? order by a.sequence_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModulesUnAssignedtoRFMenuForMenu</id>
+			<text>select * from {schema}SYS_MODULES where module_id&lt;>? and module_type in ('FORM','MENU') and rf_active = 'Y' and module_id not in (select module_id from {schema}SYS_RF_MENU where menu_id = ?) order by module_id</text>
+		</statement>
+		<statement>
 			<id>JDBModule.addGroup</id>
 			<text>insert into {schema}SYS_GROUP_PERMISSIONS (group_id,module_id) values (?,?)</text>
 		</statement>
@@ -279,12 +291,24 @@
 			<text>update {schema}SYS_RF_MENU set module_id = ? where module_id = ?</text>
 		</statement>
 		<statement>
-			<id>JDBRFMenu.rewriteRFMenu</id>
-			<text>delete from {schema}SYS_RF_MENU</text>
-		</statement>
-		<statement>
 			<id>JDBRFMenu.update</id>
 			<text>update {schema}SYS_RF_MENU set sequence_id=? where module_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBRFMenu.createInMenu</id>
+			<text>insert into {schema}SYS_RF_MENU (menu_id,module_id,sequence_id) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBRFMenu.rewriteRFMenuForMenu</id>
+			<text>delete from {schema}SYS_RF_MENU where menu_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBRFMenu.renameMenuTo</id>
+			<text>update {schema}SYS_RF_MENU set menu_id = ? where menu_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBRFMenu.deleteForMenuId</id>
+			<text>delete from {schema}SYS_RF_MENU where menu_id = ?</text>
 		</statement>
 		<?JDBUser?>
 		<statement>
@@ -474,6 +498,10 @@
 		<statement>
 			<id>JMenuRFMenu.buildMenu</id>
 			<text>SELECT a.* FROM [view_rf_menu]a WHERE a.MODULE_ID IN (select module_id from {schema}SYS_MODULES where rf_active = 'Y' and module_id in (select module_id from {schema}SYS_GROUP_PERMISSIONS where group_id in (select group_id from {schema}SYS_USER_GROUP_MEMBERSHIP where user_id = ?))) order by sequence_id</text>
+		</statement>
+		<statement>
+			<id>JMenuRFMenu.getMenuOptions</id>
+			<text>SELECT a.* FROM [view_rf_menu]a WHERE a.MENU_ID = ? AND a.MODULE_ID IN (select module_id from {schema}SYS_MODULES where rf_active = 'Y' and module_id in (select module_id from {schema}SYS_GROUP_PERMISSIONS where group_id in (select group_id from {schema}SYS_USER_GROUP_MEMBERSHIP where user_id = ?))) order by sequence_id</text>
 		</statement>
 		<?JMenuToolbarMenu?>
 		<statement>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Despatch</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<form id="despatchHeader" name="despatchHeader" onsubmit="return false;">
+		<div class="container">
+			<h1><span id="lbl_Despatch_No">Despatch No</span>&nbsp;<span id="despatchNo"></span> &middot; <span id="lbl_Assigned">Assigned</span>&nbsp;<span id="despatchPalletCount"></span></h1>
+			<div class="divTable fields">
+				<div class="divTableBody">
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_From"></label></div>
+					<div class="divTableCell"><select id="despatchFromLocation" name="despatchFromLocation"></select></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_To"></label></div>
+					<div class="divTableCell"><select id="despatchToLocation" name="despatchToLocation"></select></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Trailer"></label></div>
+					<div class="divTableCell"><input type="text" id="despatchTrailer" name="despatchTrailer"></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Haulier"></label></div>
+					<div class="divTableCell"><input type="text" id="despatchHaulier" name="despatchHaulier"></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Load_No"></label></div>
+					<div class="divTableCell"><input type="text" id="despatchLoadNo" name="despatchLoadNo"></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Journey_Ref"></label></div>
+					<div class="divTableCell"><input type="text" id="despatchJourneyRef" name="despatchJourneyRef"></div>
+				</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group" data-footer>
+				<button type="button" class="regular-btn" id="buttonAdd">Add SSCC</button>
+				<button type="button" class="regular-btn" id="buttonPrint">Print STN</button>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonExit">Back</button>
+				<button type="submit" class="submit-btn" id="buttonConfirm">Confirm STN</button>
+			</div>
+		</div>
+	</form>
+	<script src="js/c4j.js"></script>
+	<script>
+		c4j.page(function () {
+			var keys = ['lbl_Despatch_No', 'web_From', 'web_To', 'lbl_Trailer', 'lbl_Haulier', 'lbl_Load_No', 'lbl_Journey_Ref', 'lbl_Assigned'];
+			c4j.get('api/lang?keys=' + keys.join(',') + ',web_Add_SSCC,web_Print_STN,web_Confirm_STN,btn_Back').then(function (r) {
+				if (!r.ok) { return; }
+				keys.forEach(function (k) { c4j.text(k, r.data.text[k]); });
+				c4j.text('buttonAdd', r.data.text.web_Add_SSCC); c4j.text('buttonPrint', r.data.text.web_Print_STN);
+				c4j.text('buttonConfirm', r.data.text.web_Confirm_STN); c4j.text('buttonExit', r.data.text.btn_Back);
+			});
+			function fillSelect(id, values, selected) {
+				var sel = document.getElementById(id);
+				sel.innerHTML = '';
+				sel.appendChild(document.createElement('option'));
+				values.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; o.selected = (v === selected); sel.appendChild(o); });
+			}
+			c4j.get('api/despatch/header').then(function (r) {
+				if (!r.ok) { return; }
+				var d = r.data;
+				c4j.text('despatchNo', d.despatchNo);
+				fillSelect('despatchFromLocation', d.locations, d.despatchFromLocation);
+				fillSelect('despatchToLocation', d.locations, d.despatchToLocation);
+				['despatchTrailer', 'despatchHaulier', 'despatchLoadNo', 'despatchJourneyRef'].forEach(function (k) { c4j.setValue(k, d[k]); });
+				c4j.text('despatchPalletCount', d.despatchPalletCount);
+				document.getElementById('despatchFromLocation').focus();
+			});
+			function send(action) {
+				c4j.put('api/despatch/header', {
+					action: action,
+					despatchFromLocation: c4j.value('despatchFromLocation'), despatchToLocation: c4j.value('despatchToLocation'),
+					despatchTrailer: c4j.value('despatchTrailer'), despatchHaulier: c4j.value('despatchHaulier'),
+					despatchLoadNo: c4j.value('despatchLoadNo'), despatchJourneyRef: c4j.value('despatchJourneyRef')
+				});
+			}
+			document.getElementById('buttonAdd').addEventListener('click', function () { send('addPallets'); });
+			document.getElementById('buttonPrint').addEventListener('click', function () { send('print'); });
+			c4j.onSubmit('despatchHeader', function () { send('confirm'); });
+			document.getElementById('buttonExit').addEventListener('click', function () { send('exit'); });
+		});
+	</script>
+</body>
+</html>

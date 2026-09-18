@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+			CREATE INDEX "IDX_POINT_ORDER"  ON "APP_WEIGHT_SAMPLE_HEADER" ("SAMPLE_POINT" ASC, "PROCESS_ORDER" ASC)
+	</statement>
+
+</DDL>

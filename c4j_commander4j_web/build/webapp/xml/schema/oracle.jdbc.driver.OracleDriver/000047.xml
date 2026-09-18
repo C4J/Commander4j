@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+		UPDATE SYS_CONTROL SET KEY_VALUE = '{YEAR1}{JULIAN_DAY}{PLANT}' WHERE SYSTEM_KEY  = 'BATCH FORMAT'
+</statement>
+
+
+</DDL>

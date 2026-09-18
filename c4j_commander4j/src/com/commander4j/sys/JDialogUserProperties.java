@@ -631,12 +631,7 @@ public class JDialogUserProperties extends JDialog
 
 	public void postInitGUI()
 	{
-		jComboBoxLanguage.addItem("EN");
-		jComboBoxLanguage.addItem("DE");
-		jComboBoxLanguage.addItem("FR");
-		jComboBoxLanguage.addItem("HU");
-		jComboBoxLanguage.addItem("IT");
-		jComboBoxLanguage.addItem("NL");
+		// language list comes from Common.languages via the combo model set in initGUI()
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();

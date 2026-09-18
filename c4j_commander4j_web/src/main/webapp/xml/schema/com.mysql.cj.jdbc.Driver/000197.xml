@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+   <statement>     
+			CREATE TABLE `APP_BOM` (
+			  `BOM_ID` varchar(20) CHARACTER SET {charset} COLLATE {collation} NOT NULL DEFAULT '',
+			  `BOM_VERSION` varchar(10) NOT NULL DEFAULT '',
+			  `BOM_SEQUENCE` int NOT NULL DEFAULT '0',
+			  `DATA_ID` varchar(20) CHARACTER SET {charset} COLLATE {collation} NOT NULL DEFAULT '',
+			  `DATA_TYPE` varchar(20) DEFAULT '',
+			  `DATA_STRING` varchar(255) DEFAULT '',
+			  `DATA_DECIMAL` decimal(22,3) unsigned DEFAULT NULL,
+			  `DATA_DATE` datetime DEFAULT NULL,
+			  `DATA_TIMESTAMP` timestamp NULL DEFAULT NULL,
+			  `UUID` varchar(50) CHARACTER SET {charset} COLLATE {collation} NOT NULL DEFAULT (uuid()),
+			  `PARENT_UUID` varchar(50) DEFAULT NULL,
+			  PRIMARY KEY (`BOM_ID`,`BOM_VERSION`,`DATA_ID`,`UUID`) USING BTREE,
+			  UNIQUE KEY `UUID_NDX` (`UUID`) USING BTREE,
+			  KEY `UUID_PARENT_NDX` (`PARENT_UUID`) USING BTREE
+			) ENGINE=InnoDB DEFAULT CHARSET={charset} COLLATE={collation};
+    </statement>
+
+   <statement>  
+			CREATE TABLE `APP_BOM_DEFAULTS` (
+			  `SOURCE_FIELD` varchar(32) CHARACTER SET {charset} COLLATE {collation} NOT NULL,
+			  `SOURCE_VALUE` varchar(50) CHARACTER SET {charset} COLLATE {collation} NOT NULL,
+			  `DESTINATION_FIELD` varchar(32) CHARACTER SET {charset} COLLATE {collation} NOT NULL,
+			  `DESTINATION_VALUE` varchar(50) CHARACTER SET {charset} COLLATE {collation} DEFAULT NULL,
+			  PRIMARY KEY (`SOURCE_FIELD`,`SOURCE_VALUE`,`DESTINATION_FIELD`) USING BTREE
+			) ENGINE=InnoDB DEFAULT CHARSET={charset} COLLATE={collation};
+    </statement>
+
+   <statement>  
+			CREATE TABLE `APP_BOM_ELEMENTS` (
+			  `DATA_ID` varchar(20) NOT NULL,
+			  `DATA_TYPE` varchar(20) DEFAULT NULL,
+			  `ENABLE_EDIT` varchar(1) CHARACTER SET {charset} COLLATE {collation} DEFAULT 'Y',
+			  `ENABLE_CREATE` varchar(1) CHARACTER SET {charset} COLLATE {collation} DEFAULT 'Y',
+			  `ENABLE_DELETE` varchar(1) CHARACTER SET {charset} COLLATE {collation} DEFAULT 'Y',
+			  `ENABLE_DUPLICATE` varchar(1) CHARACTER SET {charset} COLLATE {collation} DEFAULT 'Y',
+			  `ENABLE_CLIPBOARD` varchar(1) CHARACTER SET {charset} COLLATE {collation} DEFAULT 'Y',
+			  `MAX_OCCUR_LEVEL` int DEFAULT '1',
+			  `ENABLE_LOOKUP` varchar(1) DEFAULT 'Y',
+			  `LOOKUP_SQL` varchar(255) DEFAULT '',
+			  `LOOKUP_FIELD` varchar(32) DEFAULT '',
+			  `ICON_FILENAME` varchar(80) DEFAULT '',
+			  `DESCRIPTION` varchar(80) DEFAULT '',
+			  PRIMARY KEY (`DATA_ID`) USING BTREE
+			) ENGINE=InnoDB DEFAULT CHARSET={charset} COLLATE={collation};
+    </statement>
+
+   <statement>  
+			CREATE TABLE `APP_BOM_LISTS` (
+			  `LIST_ID` varchar(25) NOT NULL DEFAULT '',
+			  `ITEM` varchar(50) NOT NULL DEFAULT '',
+			  `SEQUENCE` int DEFAULT '0',
+			  `ENABLED` varchar(1) CHARACTER SET {charset} COLLATE {collation} DEFAULT 'Y',
+			  PRIMARY KEY (`LIST_ID`,`ITEM`)
+			) ENGINE=InnoDB DEFAULT CHARSET={charset} COLLATE={collation};
+    </statement>
+
+
+   <statement>  
+		CREATE TABLE `APP_BOM_STRUCTURE` (
+		  `DATA_ID` varchar(20) NOT NULL,
+		  `PARENT_DATA_CATEGORY` varchar(20) NOT NULL,
+		  `PARENT_DATA_ID` varchar(20) NOT NULL,
+		  PRIMARY KEY (`DATA_ID`,`PARENT_DATA_CATEGORY`,`PARENT_DATA_ID`) USING BTREE
+		) ENGINE=InnoDB DEFAULT CHARSET={charset} COLLATE={collation};
+    </statement>
+
+    
+    <statement>
+    CREATE VIEW `view_bom` AS
+    	select `BOM_MATERIAL`.`BOM_ID` AS `bom_id`,
+		`BOM_MATERIAL`.`BOM_VERSION` AS `bom_version`,
+		`BOM_MATERIAL`.`BOM_SEQUENCE` AS `display_order`,
+		`BOM_STAGE`.`DATA_STRING` AS `stage`,
+		`BOM_IN_OUT`.`DATA_ID` AS `input_output`,
+		`BOM_SEQUENCE`.`DATA_STRING` AS `sequence`,
+		`BOM_MATERIAL`.`DATA_STRING` AS `material`,
+		`BOM_MATERIAL`.`UUID` AS `material_uuid`,
+		`BOM_DESCRIPTION`.`DATA_STRING` AS `description`,
+		`BOM_QUANTITY`.`DATA_DECIMAL` AS `quantity`,
+		`BOM_TYPE`.`DATA_STRING` AS `type`,
+		`BOM_UOM`.`DATA_STRING` AS `uom`,
+		`BOM_GTIN`.`DATA_STRING` AS `gtin`,
+		`BOM_VARIANT`.`DATA_STRING` AS `variant`,
+		`BOM_LOCATION`.`DATA_STRING` AS `location_id`,
+		`BOM_LOCATION`.`UUID` AS `location_uuid` 
+		from `app_bom` `BOM_MATERIAL` 
+		left join `app_bom` `BOM_DESCRIPTION` on (`BOM_DESCRIPTION`.`PARENT_UUID` = `BOM_MATERIAL`.`UUID`) 
+											  and (`BOM_DESCRIPTION`.`DATA_TYPE` = 'string') 
+											  and (`BOM_DESCRIPTION`.`DATA_ID` = 'description')
+		left join `app_bom` `BOM_QUANTITY` 	  on (`BOM_QUANTITY`.`PARENT_UUID` = `BOM_MATERIAL`.`UUID`) 
+										   	  and (`BOM_QUANTITY`.`DATA_TYPE` = 'decimal') 
+											  and (`BOM_QUANTITY`.`DATA_ID` = 'quantity')
+		left join `app_bom` `BOM_SEQUENCE` 	  on (`BOM_SEQUENCE`.`PARENT_UUID` = `BOM_MATERIAL`.`UUID`) 
+											  and (`BOM_SEQUENCE`.`DATA_TYPE` = 'string') 
+											  and (`BOM_SEQUENCE`.`DATA_ID` = 'sequence')
+		left join `app_bom` `BOM_TYPE` 		  on (`BOM_TYPE`.`PARENT_UUID` = `BOM_MATERIAL`.`UUID`) 
+											  and (`BOM_TYPE`.`DATA_TYPE` = 'string') 
+											  and (`BOM_TYPE`.`DATA_ID` = 'type')
+		left join `app_bom` `BOM_UOM`         on (`BOM_UOM`.`PARENT_UUID` = `BOM_MATERIAL`.`UUID`) 
+											  and (`BOM_UOM`.`DATA_TYPE` = 'string') 
+											  and (`BOM_UOM`.`DATA_ID` = 'uom')
+		left join `app_bom` `BOM_GTIN`        on (`BOM_GTIN`.`PARENT_UUID` = `BOM_UOM`.`UUID`) 
+											  and (`BOM_GTIN`.`DATA_TYPE` = 'string') 
+											  and (`BOM_GTIN`.`DATA_ID` = 'gtin')
+		left join `app_bom` `BOM_VARIANT` 	  on (`BOM_VARIANT`.`PARENT_UUID` = `BOM_UOM`.`UUID`) 
+											  and (`BOM_VARIANT`.`DATA_TYPE` = 'string') 
+											  and (`BOM_VARIANT`.`DATA_ID` = 'variant')
+		left join `app_bom` `BOM_IN_OUT` 	  on (`BOM_IN_OUT`.`UUID` = `BOM_MATERIAL`.`PARENT_UUID`) 
+											  and (`BOM_IN_OUT`.`DATA_TYPE` = 'string') 
+											  and (`BOM_IN_OUT`.`DATA_ID` in ('input','output'))
+		left join `app_bom` `BOM_STAGE`       on (`BOM_STAGE`.`UUID` = `BOM_IN_OUT`.`PARENT_UUID`) 
+											  and (`BOM_STAGE`.`DATA_TYPE` = 'string') 
+											  and (`BOM_STAGE`.`DATA_ID` = 'stage')
+		left join `app_bom` `BOM_LOCATION`    on (`BOM_LOCATION`.`PARENT_UUID` = `BOM_MATERIAL`.`UUID`) 
+											  and (`BOM_LOCATION`.`DATA_TYPE` = 'string') 
+											  and (`BOM_LOCATION`.`DATA_ID` = 'location_id')
+		where (`BOM_MATERIAL`.`DATA_ID` = 'material') 
+		order by `BOM_MATERIAL`.`BOM_ID`,`BOM_MATERIAL`.`BOM_VERSION`,`BOM_IN_OUT`.`DATA_ID`,`BOM_SEQUENCE`.`DATA_ID`,`BOM_MATERIAL`.`BOM_SEQUENCE`,`BOM_MATERIAL`.`UUID`;
+    
+    </statement>
+    
+   <statement>  
+		CREATE VIEW `view_bom_structure` AS 
+		select `app_bom_structure`.`DATA_ID` AS `DATA_ID`,
+			`app_bom_elements`.`DATA_TYPE` AS `DATA_TYPE`,
+			`app_bom_structure`.`PARENT_DATA_ID` AS `PARENT_DATA_ID`,
+			`app_bom_elements`.`ENABLE_EDIT` AS `ENABLE_EDIT`,
+			`app_bom_elements`.`ENABLE_CREATE` AS `ENABLE_CREATE`,
+			`app_bom_elements`.`ENABLE_DELETE` AS `ENABLE_DELETE`,
+			`app_bom_elements`.`ENABLE_DUPLICATE` AS `ENABLE_DUPLICATE`,
+			`app_bom_elements`.`ENABLE_CLIPBOARD` AS `ENABLE_CLIPBOARD`,
+			`app_bom_elements`.`ENABLE_LOOKUP` AS `ENABLE_LOOKUP`,
+			`app_bom_elements`.`LOOKUP_SQL` AS `LOOKUP_SQL`,
+			`app_bom_elements`.`LOOKUP_FIELD` AS `LOOKUP_FIELD`,
+			`app_bom_elements`.`ICON_FILENAME` AS `ICON_FILENAME`,
+			`app_bom_elements`.`MAX_OCCUR_LEVEL` AS `MAX_OCCUR_LEVEL`,
+			`app_bom_elements`.`DESCRIPTION` AS `DESCRIPTION` 
+		from (`app_bom_structure` 
+		join `app_bom_elements` 
+		on((`app_bom_structure`.`DATA_ID` = `app_bom_elements`.`DATA_ID`)));
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_DEFAULTS` (`SOURCE_FIELD`, `SOURCE_VALUE`, `DESTINATION_FIELD`, `DESTINATION_VALUE`) VALUES ('material', '40770321', 'location_id', 'LANEA');
+   </statement>
+   
+   <statement>  
+			INSERT INTO `APP_BOM_DEFAULTS` (`SOURCE_FIELD`, `SOURCE_VALUE`, `DESTINATION_FIELD`, `DESTINATION_VALUE`) VALUES ('material', '40770322', 'location_id', 'LANEB');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_DEFAULTS` (`SOURCE_FIELD`, `SOURCE_VALUE`, `DESTINATION_FIELD`, `DESTINATION_VALUE`) VALUES ('material', '40770323', 'location_id', 'LANEC');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('description', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'info.png', 'Description');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('gtin', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'barcode.gif', 'GTIN');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('hrs', 'decimal', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'clock.png', 'Hours');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('input', 'string', 'N', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'input.png', 'Input');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('location_id', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 3, 'Y', 'SELECT ITEM AS LOCATION_ID FROM APP_BOM_LISTS WHERE LIST_ID = \'location_id\' ORDER BY ITEM', 'LOCATION_ID', 'lanes.png', 'Lane');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('location_group', 'string', 'N', 'N', 'N', 'N', 'Y', 1, 'N', '', '', 'lane_group.png', 'Group');
+    </statement>
+    
+   <statement>  
+   		INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('line', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'line.png', 'Production Line');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('material', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 50, 'N', '', '', 'materials.gif', 'Material');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('output', 'string', 'N', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'output.png', 'Output');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('quantity', 'decimal', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'quantity.gif', 'Quantity');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('resource', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', '', 'resource');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('root', 'string', 'N', 'Y', 'N', 'N', 'Y', 1, 'N', '', '', 'recipe.gif', 'BOM/Version');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('runtime', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', '', 'Runtime');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('sequence', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'sequence.png', 'BOM Sequence');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('stage', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'stage.png', 'BOM Stage');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('type', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'Y', 'SELECT ITEM AS MATERIAL_TYPE FROM APP_BOM_LISTS WHERE LIST_ID = \'material_type\' ORDER BY ITEM', 'MATERIAL_TYPE', '', 'Material Type');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('uom', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'Y', 'SELECT ITEM AS UOM FROM APP_BOM_LISTS WHERE LIST_ID = \'uom\' ORDER BY ITEM', 'UOM', 'unit.png', 'Unit of Measure');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('updated', 'timestamp', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'schedule.png', 'Updated');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_ELEMENTS` (`DATA_ID`, `DATA_TYPE`, `ENABLE_EDIT`, `ENABLE_CREATE`, `ENABLE_DELETE`, `ENABLE_DUPLICATE`, `ENABLE_CLIPBOARD`, `MAX_OCCUR_LEVEL`, `ENABLE_LOOKUP`, `LOOKUP_SQL`, `LOOKUP_FIELD`, `ICON_FILENAME`, `DESCRIPTION`) VALUES ('variant', 'string', 'Y', 'Y', 'Y', 'Y', 'Y', 1, 'N', '', '', 'barcode.gif', 'Variant');
+    </statement>
+    
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('location_id', '', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('location_id', 'LANEA', 2)</statement>
+
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('location_id', 'LANEB', 1)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('location_id', 'LANEC', 3)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('location_id', 'LANED', 4)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('material_type', 'FG', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('material_type', 'IM', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('material_type', 'ING', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('material_type', 'PACK', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('material_type', 'RAW', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('uom', 'CS', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('uom', 'EA', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('uom', 'KG', 0)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('uom', 'UNI', 0)</statement>
+
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('stage', '00010', 1)</statement>
+	
+	<statement>INSERT INTO APP_BOM_LISTS (LIST_ID, ITEM, SEQUENCE) VALUES ('stage', '00020', 2)</statement>	
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('description', 'section', 'root');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('description', 'value', 'material');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('gtin', 'value', 'uom');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('hrs', 'section', 'resource');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('hrs', 'section', 'stage');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('input', 'section', 'stage');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('location_id', 'value', 'material');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('line', 'section', 'resource');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('line', 'section', 'stage');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('material', 'section', 'input');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('material', 'section', 'output');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('output', 'section', 'stage');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('quantity', 'value', 'material');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('resource', 'section', 'root');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('resource', 'section', 'stage');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('root', '', '');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('runtime', 'section', 'root');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('sequence', 'value', 'material');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('stage', 'section', 'root');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('type', 'value', 'material');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('uom', 'value', 'material');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('updated', 'section', 'root');
+    </statement>
+    
+   <statement>  
+			INSERT INTO `APP_BOM_STRUCTURE` (`DATA_ID`, `PARENT_DATA_CATEGORY`, `PARENT_DATA_ID`) VALUES ('variant', 'value', 'uom');
+    </statement>
+    
+	<statement>INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_ADMIN', 'N', 'Y', 'FORM', 'Admin Bill of Materials', 0, 'recipe.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_BOM_ADMIN', '', '')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'EN', 'Bill of Materials Admin', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'DE', 'Stücklistenverwaltung', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'FR', 'Administration de la nomenclature', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'NL', 'Administratie van stuklijsten', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'ES', 'Administración de listas de materiales', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'PL', 'Administracja wykazem materiałów', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'HU', 'Anyagigazgatási törvénykönyv', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'IT', 'Amministrazione della distinta base', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_BOM', 'EN', 'Bill of Materials', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_BOM', 'DE', 'Stückliste', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_BOM', 'FR', 'Nomenclature', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_BOM', 'NL', 'Stuklijst van materialen', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_BOM', 'ES', 'Lista de materiales', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_BOM', 'PL', 'Wykaz materiałów', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_BOM', 'HU', 'Anyagjegyzék', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_BOM', 'IT', 'Distinta base', '0')</statement>
+	
+	<statement>INSERT INTO SYS_GROUPS (GROUP_ID, DESCRIPTION) VALUES ('BOM', 'Bill of Materials')</statement>
+
+	<statement>INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_BOM_ADMIN')</statement>
+	
+	<statement>INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'MENU_BOM')</statement>
+	
+	<statement>INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_ADMIN')</statement>
+	
+	<statement>INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'MENU_BOM')</statement>
+	
+	<statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('MENU_BOM', 'N', 'Y', 'MENU', 'mod_MENU_BOM', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_MENU_BOM', '', '')
+    </statement>
+    
+    <statement>          
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('MENU_BOM', 'root', 20)
+    </statement> 
+    
+    <statement>          
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_BOM_ADMIN', 'MENU_BOM', 1)
+    </statement> 
+    
+    <statement>
+		    ALTER TABLE `APP_LOCATION` 
+				ADD COLUMN `MSG_PALLET_ISSUE` varchar(1) NULL DEFAULT 'Y' AFTER `MSG_PROD_UNCONFIRM`,
+				ADD COLUMN `MSG_PALLET_RETURN` varchar(1) NULL DEFAULT 'Y' AFTER `MSG_PALLET_ISSUE`,
+				ADD COLUMN `BARCODE_ID` varchar(25) NULL DEFAULT '' AFTER `MSG_PALLET_RETURN`;
+    </statement>
+    
+    <statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Barcode_ID', 'EN', 'Barcode ID', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Barcode_ID', 'DE', 'Barcode-ID', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Barcode_ID', 'FR', 'ID de code à barres', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Barcode_ID', 'NL', 'Streepjescode-ID', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Barcode_ID', 'ES', 'Código de barras', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Barcode_ID', 'PL', 'Identyfikator kodu kreskowego', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Barcode_ID', 'HU', 'Vonalkód azonosító', '0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Barcode_ID', 'IT', 'Codice a barre', '0')</statement>
+	
+
+    <statement>INSERT INTO APP_LOCATION (LOCATION_ID, PLANT, WAREHOUSE, GLN, DESCRIPTION, STORAGE_LOCATION, STORAGE_TYPE, STORAGE_SECTION, STORAGE_BIN, EQUIPMENT_TRACKING_ID, MSG_DESPATCH_CONFIRM, MSG_DESPATCH_PREADVICE, MSG_DESPATCH_EQUIP_TRACK, MSG_PROD_CONFIRM, PERMITTED_PALLET_STATUS, PERMITTED_BATCH_STATUS, MSG_PALLET_STATUS, MSG_PALLET_SPLIT, MSG_PALLET_DELETE, ENABLED, MSG_JOURNEY_REF, EMAIL_DESPATCH, MSG_PROD_UNCONFIRM, MSG_PALLET_ISSUE, MSG_PALLET_RETURN, BARCODE_ID) VALUES ('MPACK-LANE-A', '', '*', '', '', '', '', '', '', '', 'N', 'N', 'N', 'N', '^', '^', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'Y', 'Y', 'LANEA')</statement>
+    
+    <statement>INSERT INTO APP_LOCATION (LOCATION_ID, PLANT, WAREHOUSE, GLN, DESCRIPTION, STORAGE_LOCATION, STORAGE_TYPE, STORAGE_SECTION, STORAGE_BIN, EQUIPMENT_TRACKING_ID, MSG_DESPATCH_CONFIRM, MSG_DESPATCH_PREADVICE, MSG_DESPATCH_EQUIP_TRACK, MSG_PROD_CONFIRM, PERMITTED_PALLET_STATUS, PERMITTED_BATCH_STATUS, MSG_PALLET_STATUS, MSG_PALLET_SPLIT, MSG_PALLET_DELETE, ENABLED, MSG_JOURNEY_REF, EMAIL_DESPATCH, MSG_PROD_UNCONFIRM, MSG_PALLET_ISSUE, MSG_PALLET_RETURN, BARCODE_ID) VALUES ('MPACK-LANE-B', '', '*', '', '', '', '', '', '', '', 'N', 'N', 'N', 'N', '^', '^', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'Y', 'Y', 'LANEB')</statement>
+    
+    <statement>INSERT INTO APP_LOCATION (LOCATION_ID, PLANT, WAREHOUSE, GLN, DESCRIPTION, STORAGE_LOCATION, STORAGE_TYPE, STORAGE_SECTION, STORAGE_BIN, EQUIPMENT_TRACKING_ID, MSG_DESPATCH_CONFIRM, MSG_DESPATCH_PREADVICE, MSG_DESPATCH_EQUIP_TRACK, MSG_PROD_CONFIRM, PERMITTED_PALLET_STATUS, PERMITTED_BATCH_STATUS, MSG_PALLET_STATUS, MSG_PALLET_SPLIT, MSG_PALLET_DELETE, ENABLED, MSG_JOURNEY_REF, EMAIL_DESPATCH, MSG_PROD_UNCONFIRM, MSG_PALLET_ISSUE, MSG_PALLET_RETURN, BARCODE_ID) VALUES ('MPACK-LANE-C', '', '*', '', '', '', '', '', '', '', 'N', 'N', 'N', 'N', '^', '^', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'Y', 'Y', 'LANEC')</statement>
+    
+    <statement>INSERT INTO APP_LOCATION (LOCATION_ID, PLANT, WAREHOUSE, GLN, DESCRIPTION, STORAGE_LOCATION, STORAGE_TYPE, STORAGE_SECTION, STORAGE_BIN, EQUIPMENT_TRACKING_ID, MSG_DESPATCH_CONFIRM, MSG_DESPATCH_PREADVICE, MSG_DESPATCH_EQUIP_TRACK, MSG_PROD_CONFIRM, PERMITTED_PALLET_STATUS, PERMITTED_BATCH_STATUS, MSG_PALLET_STATUS, MSG_PALLET_SPLIT, MSG_PALLET_DELETE, ENABLED, MSG_JOURNEY_REF, EMAIL_DESPATCH, MSG_PROD_UNCONFIRM, MSG_PALLET_ISSUE, MSG_PALLET_RETURN, BARCODE_ID) VALUES ('MPACK-LANE-D', '', '*', '', '', '', '', '', '', '', 'N', 'N', 'N', 'N', '^', '^', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'Y', 'Y', 'LANED')</statement>
+
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Field','EN','Source Field','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Field','FR','Champ source','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Field','DE','Quellfeld','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Field','HU','Forrás mező','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Field','PL','Pole źródłowe','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Field','IT','Campo di origine','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Field','NL','Bronveld','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Field','ES','Campo de origen','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Value','EN','Source Value','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Value','FR','Valeur source','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Value','DE','Quellwert','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Value','HU','Forrásérték','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Value','PL','Wartość źródłowa','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Value','IT','Valore della fonte','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Value','NL','Bronwaarde','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Source_Value','ES','Valor de origen','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Field','EN','Destination Field','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Field','FR','Champ de destination','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Field','DE','Zielfeld','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Field','HU','Cél mező','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Field','PL','Pole docelowe','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Field','IT','Campo di destinazione','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Field','NL','Bestemmingsveld','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Field','ES','Campo de destino','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Value','EN','Destination Value','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Value','FR','Valeur de destination','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Value','DE','Zielwert','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Value','HU','Cél érték','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Value','PL','Wartość docelowa','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Value','IT','Valore di destinazione','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Value','NL','Bestemmingswaarde','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Destination_Value','ES','Valor de destino','0')</statement>
+	
+	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_DEFAULTS', 'N', 'Y', 'FORM', 'mod_FRM_BOM_DEFAULTS', 0, 'defaults.png', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_BOM_DEFAULTS', '', '')
+    </statement>
+    
+	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_DEFAULTS_ADD', 'N', 'Y', 'FUNCTION', '5 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>
+    
+	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_DEFAULTS_DELETE', 'N', 'Y', 'FUNCTION', '5 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>
+  
+	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_DEFAULTS_EDIT', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>
+    
+    	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_DEFAULTS_PRINT', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>
+    
+	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_DEFAULTS')
+    </statement>
+    
+	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_DEFAULTS_ADD')
+    </statement>
+    
+	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_DEFAULTS_DELETE')
+    </statement>
+    
+	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_DEFAULTS_EDIT')
+    </statement>
+    
+    <statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_DEFAULTS_PRINT')
+    </statement>
+    
+	<statement>   
+		INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_BOM_DEFAULTS', 'MENU_BOM', 1)
+    </statement>
+
+	<statement>  
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_DEFAULTS', 'EN', 'Bill of Material Defaults', '0')
+    </statement>
+  
+  	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_ELEMENTS', 'N', 'Y', 'FORM', 'mod_FRM_BOM_ELEMENTS', 0, 'elements.png', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_BOM_ELEMENTS', '', '')
+  	</statement>
+    
+	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_ELEMENTS_ADD', 'N', 'Y', 'FUNCTION', '5 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+  	</statement>
+    
+	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_ELEMENTS_DELETE', 'N', 'Y', 'FUNCTION', '5 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+  	</statement>
+  
+	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_ELEMENTS_EDIT', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+  	</statement>
+  	
+  	<statement>   
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_ELEMENTS_PRINT', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+  	</statement>
+    
+	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_ELEMENTS')
+  	</statement>
+    
+	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_ELEMENTS_ADD')
+  	</statement>
+    
+	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_ELEMENTS_DELETE')
+  	</statement>
+    
+	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_ELEMENTS_EDIT')
+  	</statement>
+  	
+  	<statement>   
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_ELEMENTS_PRINT')
+  	</statement>
+    
+	<statement>   
+		INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_BOM_ELEMENTS', 'MENU_BOM', 2)
+  	</statement>
+
+	<statement>  
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ELEMENTS', 'EN', 'Bill of Material Elements', '0')
+  	</statement>
+  	
+
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Data_Type','EN','Data Type','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Data_Type','FR','Type de données','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Data_Type','DE','Datentyp','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Data_Type','HU','Adattípus','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Data_Type','PL','Typ danych','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Data_Type','IT','Tipo di dati','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Data_Type','NL','Gegevenstype','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Data_Type','ES','Tipo de datos','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Occurrences','EN','Max Occurrences','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Occurrences','FR','Occurrences maximales','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Occurrences','DE','Maximale Vorkommen','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Occurrences','HU','Maximális előfordulások','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Occurrences','PL','Maksymalna liczba wystąpień','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Occurrences','IT','Numero massimo di occorrenze','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Occurrences','NL','Maximaal aantal voorkomens','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Occurrences','ES','Ocurrencias máximas','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Create','EN','Create','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Create','FR','Créer','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Create','DE','Erstellen','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Create','HU','Teremt','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Create','PL','Tworzyć','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Create','IT','Creare','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Create','NL','Creëren','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Create','ES','Crear','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Edit','EN','Edit','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Edit','FR','Modifier','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Edit','DE','Bearbeiten','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Edit','HU','Szerkesztés','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Edit','PL','Redagować','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Edit','IT','Modificare','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Edit','NL','Bewerking','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Edit','ES','Editar','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Delete','EN','Delete','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Delete','FR','Supprimer','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Delete','DE','Löschen','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Delete','HU','Töröl','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Delete','PL','Usuwać','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Delete','IT','Eliminare','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Delete','NL','Verwijderen','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Delete','ES','Borrar','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Duplicate','EN','Duplicate','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Duplicate','FR','Double','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Duplicate','DE','Duplikat','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Duplicate','HU','Másolat','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Duplicate','PL','Duplikat','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Duplicate','IT','Duplicato','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Duplicate','NL','Duplicaat','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Duplicate','ES','Duplicado','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Clipboard','EN','Clipboard','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Clipboard','FR','Presse-papiers','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Clipboard','DE','Zwischenablage','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Clipboard','HU','Vágólap','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Clipboard','PL','Schowek','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Clipboard','IT','Appunti','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Clipboard','NL','Klembord','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Clipboard','ES','Portapapeles','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup','EN','Lookup','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup','FR','Chercher','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup','DE','Nachschlagen','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup','HU','Keresés','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup','PL','Spojrzeć w górę','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup','IT','Cercare','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup','NL','Opzoeken','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup','ES','Buscar','0')</statement>
+
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_SQL','EN','Lookup SQL','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_SQL','FR','Recherche SQL','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_SQL','DE','SQL nachschlagen','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_SQL','HU','SQL keresése','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_SQL','PL','Wyszukaj SQL','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_SQL','IT','Cerca SQL','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_SQL','NL','SQL opzoeken','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_SQL','ES','SQL de búsqueda','0')</statement>
+	
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_Field','EN','Lookup Field','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_Field','FR','Champ de recherche','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_Field','DE','Nachschlagefeld','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_Field','HU','Keresési mező','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_Field','PL','Pole wyszukiwania','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_Field','IT','Campo di ricerca','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_Field','NL','Opzoekveld','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lookup_Field','ES','Campo de búsqueda','0')</statement>
+	    
+</DDL>

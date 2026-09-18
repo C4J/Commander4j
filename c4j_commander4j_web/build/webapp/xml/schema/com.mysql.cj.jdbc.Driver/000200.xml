@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Properties','EN','Properties','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Properties','FR','Propriétés','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Properties','DE','Eigenschaften','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Properties','HU','Tulajdonságok','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Properties','PL','Właściwości','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Properties','IT','Proprietà','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Properties','NL','Eigenschappen','0')</statement>
+	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Properties','ES','Propiedades','0')</statement>
+	
+	<statement>UPDATE SYS_MODULES SET RESOURCE_KEY = 'lbl_Properties' WHERE MODULE_ID = 'FRM_BOM_ELEMENTS_EDIT' </statement>
+	
+	<statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_BOM_ENQUIRY', 'N', 'Y', 'FORM', 'mod_FRM_BOM_ENQUIRY', 0, 'recipe.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_BOM_ENQUIRY', '', '')
+  	</statement>
+		
+	<statement>   
+			INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('BOM', 'FRM_BOM_ENQUIRY')
+  	</statement>
+  	
+  	<statement>   
+			INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_BOM_ENQUIRY')
+  	</statement>
+  	
+    <statement>   
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_BOM_ENQUIRY', 'MENU_BOM', 5)
+  	</statement>
+    	
+</DDL>

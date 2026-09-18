@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Barcode Validate</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Barcode Validate</h1>
+		<form id="validateDUSelect" name="validateDUSelect" onsubmit="return false;">
+			<div class="form-group">
+				<img src="images/pallet_sscc.gif" width="50%" style="display:block; margin-left:auto; margin-right:auto;max-width:300px">
+			</div>
+			<div class="form-group"><br></div>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell" align="right"><label for="validateOrder">Order</label></div>
+						<div class="divTableCell"><input type="text" id="validateOrder" name="validateOrder" autocomplete="off"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell" align="right"><label for="validateSSCC">SSCC :</label></div>
+						<div class="divTableCell"><input type="text" id="validateSSCC" name="validateSSCC" autocomplete="off"></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group"><br></div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
+				<button type="submit" class="submit-btn" id="buttonSubmit">Submit</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.get('api/lang?keys=web_Barcode_Validate,lbl_Process_Order,lbl_Material,web_Scan_Barcode,btn_Back').then(function (r) {
+				if (r.ok && r.data && r.data.text && r.data.text.btn_Back) { c4j.text('buttonCancel', r.data.text.btn_Back); }
+				if (!r.ok) { return; }
+				c4j.text('title', r.data.text.web_Barcode_Validate);
+				c4j.text('lbl_Process_Order', r.data.text.lbl_Process_Order);
+				c4j.text('lbl_Material', r.data.text.lbl_Material);
+				c4j.text('web_Scan_Barcode', r.data.text.web_Scan_Barcode);
+			});
+			c4j.get('api/pallets/state').then(function (r) {
+				if (r.ok) { c4j.setValue('validateOrder', r.data.validateOrder); c4j.setValue('validateSSCC', r.data.validateSSCC); }
+				c4j.focus('validateSSCC');
+			});
+			c4j.onSubmit('validateDUSelect', function () {
+				c4j.put('api/validate/select', { validateOrder: c4j.value('validateOrder'), validateSSCC: c4j.value('validateSSCC') }).then(function (r) {
+					if (r.busy) { return; }
+					if (!r.next) { c4j.setValue('validateOrder', ''); c4j.setValue('validateSSCC', ''); c4j.focus('validateSSCC'); }
+				});
+			});
+			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.put('api/validate/cancel', { to: 'menu' }); });
+		});
+	</script>
+</body>
+</html>

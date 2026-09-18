@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+ALTER TABLE `SYS_INTERFACE_LOG` ADD COLUMN `FILENAME` VARCHAR(150);
+</statement>
+
+<statement>
+ALTER TABLE `SYS_INTERFACE_LOG` ADD INDEX `SYS_INT_LOG_FILENAME_IDX`(`FILENAME`);
+</statement>
+
+</DDL>

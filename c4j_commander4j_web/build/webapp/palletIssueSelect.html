@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Pallet Issue</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Pallet Issue</h1>
+		<form id="palletIssueSelect" name="palletIssueSelect" onsubmit="return false;">
+			<h2 id="subtitle">Issue SSCC (Pallet)</h2>
+			<div class="divTable fields kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_User_ID">User ID</label></div><div class="divTableCell"><span class="value" id="userLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Order">Order</label></div><div class="divTableCell"><span class="value" id="orderLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Recipe">Recipe</label></div><div class="divTableCell"><span class="value" id="recipe"></span></div></div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="stage" id="lbl_Stage">Stage :</label></div>
+						<div class="divTableCell"><select id="stage" name="stage"></select></div>
+					</div>
+				</div>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="materialTable">
+					<thead><tr><th id="lbl_Material">Material</th><th id="lbl_Description">Description</th><th id="lbl_Location_ID">Location</th></tr></thead>
+					<tbody id="materials"></tbody>
+				</table>
+			</div>
+			<div class="form-group"><br></div>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="sscc" id="web_SSCC">SSCC :</label></div>
+						<div class="divTableCell"><input type="text" id="sscc" name="sscc" autocomplete="off" maxlength="40"></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonIssue">Issue</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		// c4j_web_Issue palletIssueSelect.html: stage + required materials for the order's BOM, then scan the pallet
+		c4j.page(function () {
+			c4j.lang(['lbl_User_ID', 'dlg_Issue_SSCC', 'btn_Back', 'lbl_Stage', 'lbl_Recipe', 'lbl_Order', 'mod_FRM_PAL_ISSUE', 'lbl_Material', 'lbl_Description', 'lbl_Location_ID', 'web_SSCC', 'btn_Issue']).then(function (t) {
+				c4j.label('lbl_User_ID', t.lbl_User_ID);
+				c4j.label('title', t.mod_FRM_PAL_ISSUE); c4j.label('subtitle', t.dlg_Issue_SSCC); c4j.label('buttonBack', t.btn_Back); c4j.label('lbl_Stage', t.lbl_Stage ? t.lbl_Stage + ' :' : ''); c4j.label('lbl_Recipe', t.lbl_Recipe); c4j.label('lbl_Order', t.lbl_Order); c4j.label('lbl_Material', t.lbl_Material); c4j.label('lbl_Description', t.lbl_Description);
+				c4j.label('lbl_Location_ID', t.lbl_Location_ID); c4j.label('web_SSCC', t.web_SSCC ? t.web_SSCC + ' :' : ''); c4j.label('buttonIssue', t.btn_Issue);
+			});
+			function render(d) {
+				c4j.text('userLine', d.username); c4j.text('orderLine', d.processOrder);
+				c4j.text('recipe', d.bomId + ' / ' + d.bomVersion);
+				var sel = document.getElementById('stage');
+				sel.innerHTML = '';
+				d.stages.forEach(function (s) { var o = document.createElement('option'); o.value = s; o.textContent = s; o.selected = (s === d.selectedStage); sel.appendChild(o); });
+				var tb = document.getElementById('materials');
+				tb.innerHTML = '';
+				d.materials.forEach(function (m) {
+					var tr = document.createElement('tr');
+					[m.material, m.description, m.location].forEach(function (v, i) { var td = document.createElement('td'); if (i === 1) { td.className = 'wrap'; } td.textContent = v; tr.appendChild(td); });
+					tb.appendChild(tr);
+				});
+				c4j.focus('sscc');
+			}
+			c4j.get('api/issue/bom').then(function (r) { if (r.ok) { render(r.data); } });
+			document.getElementById('stage').addEventListener('change', function () {
+				c4j.put('api/issue/stage', { stage: this.value }).then(function (r) { if (r.ok) { render(r.data); } });
+			});
+			c4j.onSubmit('palletIssueSelect', function () {
+				c4j.put('api/issue/sscc', { sscc: c4j.value('sscc') }).then(function (r) { if (r.busy) { return; } if (!r.next) { c4j.setValue('sscc', ''); c4j.focus('sscc'); } });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('processOrderIssueSelect'); });
+		});
+	</script>
+</body>
+</html>

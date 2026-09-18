@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Waste Log</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<form id="wasteLog" name="wasteLog" onsubmit="return false;">
+		<div class="container">
+			<h1 id="title">Waste Log</h1>
+			<div class="divTable fields">
+				<div class="divTableBody">
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_Waste_Transaction"></label></div>
+					<div class="divTableCell"><select id="wasteTransactionCombo" name="wasteTransactionCombo" style="width: 100%"></select></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_Waste_Location"></label></div>
+					<div class="divTableCell"><select id="wasteLocationCombo" name="wasteLocationCombo" style="width: 100%" data-ai="91"></select></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_Waste_Container"></label></div>
+					<div class="divTableCell"><select id="wasteContainerCombo" name="wasteContainerCombo" style="width: 100%" data-ai="95"></select></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Material"></label></div>
+					<div class="divTableCell"><select id="wasteMaterialCombo" name="wasteMaterialCombo" style="width: 100%" data-ai="92"></select></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_Waste_Reason"></label></div>
+					<div class="divTableCell"><select id="wasteReasonCombo" name="wasteReasonCombo" style="width: 100%" data-ai="93"></select></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_Waste_Process_Order"></label></div>
+					<div class="divTableCell"><input type="text" id="wasteProcessOrder" name="wasteProcessOrder"></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_Waste_Quantity"></label></div>
+					<div class="divTableCell"><input type="text" id="wasteQuantity" name="wasteQuantity" inputmode="decimal"></div>
+					<div class="divTableCell" align="left"><label id="wasteMaterialUOM"></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="web_Waste_Scan"></label></div>
+					<div class="divTableCell" align="left"><input type="text" id="wasteBarcode" name="wasteBarcode" autocomplete="off"></div>
+				</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
+				<button type="submit" class="submit-btn" id="buttonSubmit">Submit</button>
+			</div>
+		</div>
+	</form>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			var labels = ['mod_FRM_ADMIN_WASTE_LOG', 'web_Waste_Transaction', 'web_Waste_Location', 'web_Waste_Container', 'lbl_Material', 'web_Waste_Reason', 'web_Waste_Process_Order', 'web_Waste_Quantity', 'web_Waste_Scan', 'web_Submit', 'btn_Back'];
+			c4j.get('api/lang?keys=' + labels.join(',')).then(function (r) {
+				if (!r.ok) { return; }
+				labels.forEach(function (k) { c4j.text(k, r.data.text[k]); });
+				c4j.text('title', r.data.text.mod_FRM_ADMIN_WASTE_LOG);
+				c4j.text('buttonSubmit', r.data.text.web_Submit); c4j.text('buttonCancel', r.data.text.btn_Back);
+			});
+			function fillSelect(id, values, selected, noBlank) {
+				var sel = document.getElementById(id);
+				sel.innerHTML = '';
+				if (!noBlank) { sel.appendChild(document.createElement('option')); }
+				values.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; o.selected = (v === selected); sel.appendChild(o); });
+			}
+			function render(d) {
+				// as in web_react: core's JDBWasteTransactionType combo has NO blank entry and is built with
+				// default "" (the saved wasteTransactionID is never applied), so the first type is always selected
+				fillSelect('wasteTransactionCombo', d.transactions, '', true);
+				fillSelect('wasteLocationCombo', d.locations, d.wasteLocationID);
+				fillSelect('wasteContainerCombo', d.containers, d.wasteContainerID);
+				fillSelect('wasteMaterialCombo', d.materials, d.wasteMaterialID);
+				fillSelect('wasteReasonCombo', d.reasons, d.wasteReasonID);
+				c4j.setValue('wasteProcessOrder', d.wasteProcessOrder);
+				c4j.setValue('wasteQuantity', d.wasteQuantity === '' ? '0' : d.wasteQuantity);
+				c4j.text('wasteMaterialUOM', d.wasteMaterialUOM);
+				c4j.setValue('wasteBarcode', '');
+				c4j.focus('wasteBarcode');
+			}
+			function submit(barcode) {
+				c4j.put('api/waste', {
+					wasteTransactionCombo: c4j.value('wasteTransactionCombo'), wasteLocationCombo: c4j.value('wasteLocationCombo'),
+					wasteContainerCombo: c4j.value('wasteContainerCombo'), wasteMaterialCombo: c4j.value('wasteMaterialCombo'),
+					wasteReasonCombo: c4j.value('wasteReasonCombo'), wasteProcessOrder: c4j.value('wasteProcessOrder'),
+					wasteQuantity: c4j.value('wasteQuantity'), wasteBarcode: barcode
+				}).then(function (r) { if (r.busy) { return; } if (r.data) { render(r.data); } });
+			}
+			c4j.get('api/waste').then(function (r) { if (r.ok) { render(r.data); } });
+			// as in the JSP: choosing a combo value is sent as "<AI><value>" through the barcode path
+			['wasteLocationCombo', 'wasteContainerCombo', 'wasteMaterialCombo', 'wasteReasonCombo'].forEach(function (id) {
+				var sel = document.getElementById(id);
+				sel.addEventListener('change', function () { submit(sel.value ? sel.getAttribute('data-ai') + sel.value : ''); });
+			});
+			c4j.onSubmit('wasteLog', function () { submit(c4j.value('wasteBarcode')); });
+			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.put('api/waste/cancel'); });
+		});
+	</script>
+</body>
+</html>

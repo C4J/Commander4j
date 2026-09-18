@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Despatch</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1><span id="lbl_Despatch_No">Despatch No</span>&nbsp;<span id="despatchNo"></span></h1>
+		<form id="despatchPallet" name="despatchPallet" onsubmit="return false;">
+			<div class="form-group">
+				<img src="images/pallet_sscc.gif" width="50%" style="display:block; margin-left:auto; margin-right:auto;max-width:300px">
+			</div>
+			<div class="form-group"><br></div>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell" align="right"><label for="sscc">SSCC :</label></div>
+						<div class="divTableCell"><input type="text" id="sscc" name="sscc" autocomplete="off"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"></div>
+						<div class="divTableCell" align="center"><label>Assigned : <span id="despatchPalletCount"></span></label></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group"><br></div>
+			<div class="form-group radio-row">
+				<label><input name="addRemoveMode" accesskey="A" type="radio" id="modeAdd" value="add" checked="checked"> <span id="web_Add">Add</span></label>
+				<label><input name="addRemoveMode" accesskey="R" type="radio" id="modeRemove" value="remove"> <span id="web_Remove">Remove</span></label>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
+				<button type="submit" class="submit-btn" id="buttonSubmit">Submit</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.get('api/lang?keys=lbl_Despatch_No,web_Add,web_Remove,btn_Back').then(function (r) {
+				if (r.ok && r.data && r.data.text && r.data.text.btn_Back) { c4j.text('buttonCancel', r.data.text.btn_Back); }
+				if (!r.ok) { return; }
+				c4j.text('lbl_Despatch_No', r.data.text.lbl_Despatch_No); c4j.text('web_Add', r.data.text.web_Add); c4j.text('web_Remove', r.data.text.web_Remove);
+			});
+			c4j.get('api/despatch/header').then(function (r) {
+				if (!r.ok) { return; }
+				c4j.text('despatchNo', r.data.despatchNo);
+				c4j.text('despatchPalletCount', r.data.despatchPalletCount);
+				c4j.focus('sscc');
+			});
+			document.getElementById('modeAdd').addEventListener('click', function () { c4j.focus('sscc'); });
+			document.getElementById('modeRemove').addEventListener('click', function () { c4j.focus('sscc'); });
+			c4j.onSubmit('despatchPallet', function () {
+				var mode = document.querySelector('input[name="addRemoveMode"]:checked');
+				c4j.put('api/despatch/pallets', { sscc: c4j.value('sscc'), addRemoveMode: mode ? mode.value : 'add' }).then(function (r) {
+					if (r.busy) { return; }
+					c4j.setValue('sscc', '');
+					if (r.data && r.data.despatchPalletCount !== undefined) { c4j.text('despatchPalletCount', r.data.despatchPalletCount); }
+					c4j.focus('sscc');
+				});
+			});
+			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.put('api/despatch/pallets/cancel'); });
+		});
+	</script>
+</body>
+</html>

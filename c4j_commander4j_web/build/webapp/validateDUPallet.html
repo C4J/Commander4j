@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Barcode Validate</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Barcode Validate</h1>
+		<form id="validateDUPallet" name="validateDUPallet" onsubmit="return false;">
+			<div class="divTableBody">
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Process_Order">Process Order</label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="validateOrder"></span></label></div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" align="right"><label id="lbl_Material">Material</label></div>
+					<div class="divTableCell"><label><span style="color:blue" id="material"></span></label></div>
+				</div>
+			</div>
+			<label><span style="font-size:0.9em;color:blue" id="materialDescription"></span></label>
+			<div class="form-group"><br></div>
+			<div class="form-group">
+				<img src="images/pallet_du.gif" width="50%" style="display:block; margin-left:auto; margin-right:auto;max-width:300px">
+			</div>
+			<div class="form-group"><br></div>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell" align="right"><label for="palletDU" id="web_Scan_Barcode">Scan Barcode</label></div>
+						<div class="divTableCell"><input type="text" id="palletDU" name="palletDU" autocomplete="off"></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="form-group"><br></div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
+				<button type="submit" class="submit-btn" id="buttonSubmit">Submit</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.get('api/lang?keys=web_Barcode_Validate,lbl_Process_Order,lbl_Material,web_Scan_Barcode,btn_Back').then(function (r) {
+				if (r.ok && r.data && r.data.text && r.data.text.btn_Back) { c4j.text('buttonCancel', r.data.text.btn_Back); }
+				if (!r.ok) { return; }
+				c4j.text('title', r.data.text.web_Barcode_Validate);
+				c4j.text('lbl_Process_Order', r.data.text.lbl_Process_Order);
+				c4j.text('lbl_Material', r.data.text.lbl_Material);
+				c4j.text('web_Scan_Barcode', r.data.text.web_Scan_Barcode);
+			});
+			c4j.get('api/pallets/state').then(function (r) {
+				if (!r.ok) { return; }
+				c4j.text('validateOrder', r.data.validateOrder);
+				c4j.text('material', r.data.material);
+				c4j.text('materialDescription', r.data.materialDescription);
+				c4j.focus('palletDU');
+			});
+			c4j.onSubmit('validateDUPallet', function () {
+				c4j.put('api/validate/pallet', { palletDU: c4j.value('palletDU') }).then(function (r) {
+					if (r.busy) { return; }
+					c4j.setValue('palletDU', '');
+					if (!r.next) { c4j.focus('palletDU'); }
+				});
+			});
+			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.put('api/validate/cancel', { to: 'select' }); });
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	insert into SYS_CONTROL (system_key,key_value,description) values ('DEFAULT_LOCATION','FACTORY1','Home')
+</statement>
+
+<statement>
+	drop table APP_UOM_CONVERSION
+</statement>
+
+<statement>
+	drop table APP_STATUS
+</statement>
+
+<statement>
+	alter table APP_MATERIAL drop column default_pallet_status
+</statement>
+
+<statement>
+	alter table APP_MATERIAL drop column production_quantity
+</statement>
+
+<statement>
+	alter table APP_MATERIAL drop column production_uom
+</statement>
+
+<statement>
+	alter table APP_MATERIAL drop column issue_uom
+</statement>
+
+<statement>
+	alter table APP_MATERIAL drop column storage_unit_type
+</statement>
+
+<statement>
+	update SYS_CONTROL set key_value = '{YEAR1}{JULIAN_DAY}{PLANT}' where system_key = 'BATCH FORMAT'
+</statement>
+
+</DDL>

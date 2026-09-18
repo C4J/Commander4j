@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		CREATE TABLE `SYS_AUDIT_PERMISSIONS` (
+		  `SYS_AUDIT_LOG_ID` decimal(22,0) NOT NULL DEFAULT '0',
+		  `EVENT_TIME` datetime NOT NULL,
+		  `USER_ID` varchar(20) NOT NULL,
+		  `EVENT_TYPE` varchar(45) NOT NULL,
+		  `EVENT_ACTION` varchar(45) NOT NULL,
+		  `TARGET` varchar(45) DEFAULT NULL,
+		  `DATA` varchar(40) DEFAULT NULL,
+		  `WORKSTATION_ID` varchar(45) DEFAULT NULL,
+		  PRIMARY KEY (`SYS_AUDIT_LOG_ID`),
+		  KEY `TARGET_IDX` (`TARGET`,`EVENT_TIME`),
+		  KEY `DATA_IDX` (`DATA`,`EVENT_TIME`),
+		  KEY `WORKSTATION_ID_IDX` (`WORKSTATION_ID`,`EVENT_TIME`)
+		) ENGINE=InnoDB;
+	</statement>	
+	
+	<statement>
+		ALTER TABLE SYS_INTERFACE CHANGE EMAIL_ADDRESSES EMAIL_ADDRESSES VARCHAR(500)
+	</statement>
+	
+	<statement>
+		ALTER TABLE `SYS_ARCHIVE` CHANGE COLUMN `ARCHIVE_ID` `ARCHIVE_ID` VARCHAR(45) NOT NULL DEFAULT '' ;
+	</statement>	
+	
+	<statement>
+		ALTER TABLE `SYS_USERS` CHANGE COLUMN `PASSWORD` `PASSWORD` VARCHAR(50) NULL DEFAULT NULL ;
+	</statement>
+		
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Target','EN','Target')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Type','EN','Event Type')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Action','EN','Event Action')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Data','EN','Data')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Target','DE','Ziel')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Type','DE','Ereignistyp')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Action','DE','Ereignisaktion')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Data','DE','Daten')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Target','FR','Cible')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Type','FR','Type d''événement')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Action','FR','Action de l''événement')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Data','FR','Données')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Target','NL','Richten Op')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Type','NL','Soort evenement')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Action','NL','Gebeurtenis Actie')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Data','NL','Gegevens')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Target','PL','Cel')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Type','PL','Typ zdarzenia')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Action','PL','Akcja zdarzenia')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Data','PL','Dane')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Target','ES','Objetivo')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Type','ES','Tipo De Evento')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Action','ES','Acción de eventos')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Data','ES','Datos')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Target','IT','Bersaglio')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Type','IT','Tipo di evento')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Action','IT','Azione Evento')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Data','IT','Dati')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Target','HU','Cél')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Type','HU','Esemény típusa')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Event_Action','HU','Esemény Action')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Data','HU','Adat')	
+	</statement>
+	
+	<statement> 
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY) VALUES ('FRM_ADMIN_AUDIT_PERM', 'N', 'Y', 'FORM', 'mod_FRM_ADMIN_AUDIT_PERM', '0', 'audit.gif', '', '', '', '', 'N', 'N', '1', '', 'mod_FRM_ADMIN_AUDIT_PERM')
+	</statement> 
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('mod_FRM_ADMIN_AUDIT_PERM','EN','Audit Log')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('mod_FRM_ADMIN_AUDIT_PERM','DE','Audit Log')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('mod_FRM_ADMIN_AUDIT_PERM','FR','Journal d''audit')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('mod_FRM_ADMIN_AUDIT_PERM','NL','Auditlog')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('mod_FRM_ADMIN_AUDIT_PERM','PL','Audit Log')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('mod_FRM_ADMIN_AUDIT_PERM','SP','Registro de auditoría')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('mod_FRM_ADMIN_AUDIT_PERM','IT','Registro di controllo')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('mod_FRM_ADMIN_AUDIT_PERM','HU','Audit Log')
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_AUDIT_PERM')
+	</statement>		
+	
+	<statement>
+		INSERT INTO SYS_MENUS (MODULE_ID,MENU_ID,SEQUENCE_ID) VALUES ('FRM_ADMIN_AUDIT_PERM','MENU_PERMISSIONS','3')
+	</statement>		
+	
+	<statement>
+		INSERT INTO SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,MNEMONIC,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES,REPORT_TYPE,RESOURCE_KEY) VALUES ('RPT_AUDIT_PERMISSIONS', 'N', 'Y', 'REPORT', 'Audit Log', '0', '', '', 'audit_permissions.jrxml', '', '', 'Y', 'N', '1', 'Standard', 'mod_FRM_ADMIN_AUDIT_PERM')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_AUDIT_PERMISSIONS')
+	</statement>	
+	
+	<statement> 
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY) VALUES ('FRM_ADMIN_GROUP_USERS', 'N', 'Y', 'FORM', 'mod_FRM_ADMIN_GROUP_USERS', '0', 'audit.gif', '', '', '', '', 'N', 'N', '1', '', 'mod_FRM_ADMIN_GROUP_USERS')
+	</statement> 	
+	
+	<statement>
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_GROUP_USERS')
+	</statement>
+				
+	<statement> 
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY) VALUES ('FRM_ADMIN_MODULE_GROUPS', 'N', 'Y', 'FORM', 'mod_FRM_ADMIN_MODULE_GROUPS', '0', 'audit.gif', '', '', '', '', 'N', 'N', '1', '', 'mod_FRM_ADMIN_MODULE_GROUPS')
+	</statement> 	
+	
+	<statement>
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_MODULE_GROUPS')
+	</statement>				
+
+	<statement> 
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY) VALUES ('FRM_ADMIN_USER_COPY', 'N', 'Y', 'FUNCTION', '', '0', '', '', '', '', '', 'N', 'N', '1', '', '')
+	</statement> 	
+	
+	<statement>
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_USER_COPY')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Workstation_ID', 'EN', 'Validate Workstation ID', 'P')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Workstation_ID', 'NL', 'Validate Workstation ID', 'D')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Workstation_ID', 'HU', 'Érvényesítése Workstation ID', 'F')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Workstation_ID', 'IT', 'Convalida Workstation ID', 'S')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Workstation_ID', 'ES', 'Validar la estación de trabajo de identificación', 'I')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Workstation_ID', 'FR', 'Valider Workstation ID', 'I')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Workstation_ID', 'DE', 'Validate Workstation-ID', 'I')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Workstation_ID', 'PL', 'Testuj Workstation ID', 'I')
+	</statement>
+	
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Workstations', 'EN', 'Workstations', 'P')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Workstations', 'NL', 'Werkstations', 'D')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Workstations', 'HU', 'Munkaállomások', 'F')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Workstations', 'IT', 'Workstations', 'S')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Workstations', 'ES', 'Estaciones de Trabajo', 'I')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Workstations', 'FR', 'Stations de travail', 'I')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Workstations', 'DE', 'Workstations', 'I')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Workstations', 'PL', 'Stacje robocze', 'I')
+	</statement>
+	
+	<statement>
+		CREATE TABLE `SYS_WORKSTATION_LINE_MEMBERS` (
+	  	`LINE` varchar(20) NOT NULL,
+	  	`GROUP_ID` varchar(15) NOT NULL DEFAULT 'Pack',
+	  	`WORKSTATION_ID` varchar(40) NOT NULL,
+	  	PRIMARY KEY (`LINE`,`WORKSTATION_ID`,`GROUP_ID`)
+		) ENGINE=InnoDB;
+	</statement>	
+	
+	<statement>
+		ALTER TABLE `APP_AUTO_LABELLER` ADD COLUMN `VALIDATE_WORKSTATION` VARCHAR(1) NULL DEFAULT 'N' AFTER `VALIDATE_RESOURCE`
+	</statement>	
+	
+	<statement>
+		ALTER TABLE `SYS_USERS` ADD COLUMN `PASSWORD_VERSION` INT(11) NULL DEFAULT 0 AFTER `WORKSTATION_ID`;
+	</statement>	
+	
+	<statement>
+		UPDATE SYS_USERS SET PASSWORD_VERSION = 1
+	</statement>
+	
+	<statement>
+		CREATE TABLE `SYS_USERS_PASSWORD_HISTORY` (
+		  `USER_ID` varchar(20) NOT NULL DEFAULT '',
+		  `PASSWORD_VERSION` int(11) DEFAULT '0',
+		  `PASSWORD` varchar(20) DEFAULT NULL,
+		  PRIMARY KEY (`USER_ID`,`PASSWORD_VERSION`)
+		) ENGINE=InnoDB;
+	</statement>
+				
+	<statement>
+		INSERT INTO SYS_USERS_PASSWORD_HISTORY (USER_ID,PASSWORD_VERSION,PASSWORD)  (SELECT USER_ID,PASSWORD_VERSION,PASSWORD FROM SYS_USERS)
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('PASSWORD VERSION HISTORY','5','HOW MANY PREVIOUS PASSWORDS TO CHECK')
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('PASSWORD COMPLEX LOWER REQD','1','How Many Lower Case Characters Required')
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('PASSWORD COMPLEX UPPER REQD','1','How Many Upper Case Characters Required')
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('PASSWORD COMPLEX SPECIAL REQD','1','How Many Non-Alpha Required')
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('PASSWORD COMPLEX','false','Does the password need to be complex')
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('PASSWORD AUTO UNLOCK','10','Number of mins before unlock. 0 = don''t auto unlock.')
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) VALUES ('PASSWORD ENCRYPTED','Y','Store passwords in database using encrypted format')
+	</statement>		
+	
+	<statement>
+		ALTER TABLE `SYS_LANGUAGE` CHANGE COLUMN `TEXT` `TEXT` VARCHAR(250) NULL DEFAULT NULL
+	</statement>			
+				
+</DDL>

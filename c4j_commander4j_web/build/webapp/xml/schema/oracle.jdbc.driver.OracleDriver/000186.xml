@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp','ES','Mostrar ayuda','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp','EN','Show Help', '')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp','IT','Mostra aiuto','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp','NL','Help weergeven','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp','PL','Pokaż pomoc','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp','HU','Súgó megjelenítése','')
+	</statement>
+
+</DDL>

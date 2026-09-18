@@ -50,6 +50,9 @@ public class JDBRFMenu
 
 	private String dbModuleId;
 
+	/** parent menu (SYS_RF_MENU.MENU_ID, schema 217): "root" for the top level, else a MENU module id */
+	private String dbMenuId;
+
 	private int dbSequenceId;
 
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBRFMenu.class);
@@ -108,6 +111,40 @@ public class JDBRFMenu
 	}
 
 
+	/**
+	 * Insert a row under a given parent menu (schema 217 - SYS_RF_MENU is a tree like SYS_MENUS).
+	 */
+	public boolean create(String lMenuId, String lModuleId, int lSequenceId) {
+		boolean result = false;
+		setErrorMessage("");
+
+		try
+		{
+			setMenuId(lMenuId);
+			setModuleId(lModuleId);
+			setSequenceId(lSequenceId);
+
+			PreparedStatement stmtupdate;
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBRFMenu.createInMenu"));
+			stmtupdate.setString(1, getMenuId());
+			stmtupdate.setString(2, getModuleId());
+			stmtupdate.setInt(3, getSequenceId());
+			stmtupdate.execute();
+			stmtupdate.clearParameters();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate.close();
+			result = true;
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
+
 	public boolean delete() {
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -133,8 +170,42 @@ public class JDBRFMenu
 	}
 
 
+	/**
+	 * Remove every row under a menu (a MENU module being deleted, as JDBMenus.deleteMenusForMenuId).
+	 */
+	public boolean deleteForMenuId(String menuId) {
+		PreparedStatement stmtupdate;
+		boolean result = false;
+		setErrorMessage("");
+
+		try
+		{
+			setMenuId(menuId);
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBRFMenu.deleteForMenuId"));
+			stmtupdate.setString(1, getMenuId());
+			stmtupdate.execute();
+			stmtupdate.clearParameters();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate.close();
+			result = true;
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
+
 	public String getErrorMessage() {
 		return dbErrorMessage;
+	}
+
+
+	public String getMenuId() {
+		return JUtility.replaceNullStringwithBlank(dbMenuId);
 	}
 
 
@@ -176,7 +247,44 @@ public class JDBRFMenu
 	}
 
 
-	public boolean rewriteRFMenu(LinkedList<JDBListData> modules) {
+	/**
+	 * Re-point the rows of a menu that is being renamed (as JDBMenus.renameMenuTo).
+	 */
+	public boolean renameMenuTo(String newMenuId) {
+		boolean result = false;
+
+		setErrorMessage("");
+
+		try
+		{
+			PreparedStatement stmtupdate;
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBRFMenu.renameMenuTo"));
+			stmtupdate.setString(1, newMenuId);
+			stmtupdate.setString(2, getMenuId());
+			stmtupdate.execute();
+			stmtupdate.clearParameters();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate.close();
+
+			result = true;
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
+
+	/**
+	 * Replace the rows of ONE menu with the given modules in order 0..n, as
+	 * JDBMenus.rewriteMenu does for SYS_MENUS. Rows of other menus are untouched.
+	 * (Schema 217 - the former whole-table rewriteRFMenu(list) is gone: it would
+	 * have flattened the tree.)
+	 */
+	public boolean rewriteRFMenu(String lMenuId, LinkedList<JDBListData> modules) {
 		boolean result = false;
 		String lModuleId;
 		int lSequenceId = 0;
@@ -186,7 +294,8 @@ public class JDBRFMenu
 		try
 		{
 			PreparedStatement stmtupdate;
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBRFMenu.rewriteRFMenu"));
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBRFMenu.rewriteRFMenuForMenu"));
+			stmtupdate.setString(1, lMenuId);
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -195,7 +304,7 @@ public class JDBRFMenu
 			for (int j = 0; j < modules.size(); j++)
 			{
 				lModuleId = modules.get(j).toString();
-				create(lModuleId, lSequenceId++);
+				create(lMenuId, lModuleId, lSequenceId++);
 			}
 			result = true;
 
@@ -212,6 +321,11 @@ public class JDBRFMenu
 	private void setErrorMessage(String errorMsg) {
 		logger.error(errorMsg);
 		dbErrorMessage = errorMsg;
+	}
+
+
+	public void setMenuId(String menuId) {
+		dbMenuId = menuId;
 	}
 
 

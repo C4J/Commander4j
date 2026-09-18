@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Printer</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<form id="printerSelect" name="printerSelect" onsubmit="return false;">
+			<h1 id="title">Printer</h1>
+			<div class="form-group"><br></div>
+			<div class="divTable">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><label>Queue</label></div>
+						<div class="divTableCell"><label><select name="selectedPrintQueue" id="selectedPrintQueue"><option></option></select></label></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group"><br><br><br><br><br></div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
+				<button type="submit" class="submit-btn" id="buttonSubmit">Select</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.get('api/lang?keys=mod_FRM_CM_PRINTERS,btn_Back').then(function (r) {
+				if (r.ok && r.data && r.data.text && r.data.text.btn_Back) { c4j.text('buttonCancel', r.data.text.btn_Back); }
+				if (r.ok && r.data.text.mod_FRM_CM_PRINTERS) { c4j.text('title', r.data.text.mod_FRM_CM_PRINTERS); }
+			});
+			c4j.get('api/printers').then(function (r) {
+				if (!r.ok) { return; }
+				var sel = document.getElementById('selectedPrintQueue');
+				r.data.printers.forEach(function (p) {
+					var o = document.createElement('option');
+					o.value = p; o.textContent = p; o.selected = (p === r.data.selected);
+					sel.appendChild(o);
+				});
+				sel.focus();
+			});
+			c4j.onSubmit('printerSelect', function () {
+				c4j.put('api/printers', { selectedPrintQueue: c4j.value('selectedPrintQueue') });
+			});
+			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.goTo('menu'); });
+		});
+	</script>
+</body>
+</html>

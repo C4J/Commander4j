@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+		
+	<statement>	
+		ALTER TABLE `APP_WEIGHT_WORKSTATION` 
+		ADD COLUMN `OVERRIDE_SAMPLE_SIZE` varchar(1) NOT NULL DEFAULT 'N' AFTER `SCALE_PORT_ID`,
+		ADD COLUMN `SAMPLE_SIZE` int NOT NULL DEFAULT 5 AFTER `OVERRIDE_SAMPLE_SIZE`;
+	</statement>
+
+</DDL>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Pallet Return</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Pallet Return</h1>
+		<form id="palletReturnSelect" name="palletReturnSelect" onsubmit="return false;">
+			<h2 id="subtitle">Return SSCC (Pallet)</h2>
+			<div class="form-group">
+				<img src="images/pallet_sscc.gif" width="50%" style="display:block; margin-left:auto; margin-right:auto;max-width:300px">
+			</div>
+			<div class="form-group"><br></div>
+			<div class="divTable fields kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_User_ID">User ID</label></div><div class="divTableCell"><span class="value" id="userLine"></span></div></div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="sscc" id="web_SSCC">SSCC :</label></div>
+						<div class="divTableCell"><input type="text" id="sscc" name="sscc" autocomplete="off" maxlength="40"></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonReturn">Return</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		// c4j_web_Issue palletReturnSelect.html
+		c4j.page(function () {
+			c4j.lang(['lbl_User_ID', 'dlg_Return_SSCC', 'btn_Back', 'mod_FRM_PAL_RETURN', 'web_SSCC', 'btn_Return']).then(function (t) {
+				c4j.label('lbl_User_ID', t.lbl_User_ID);
+				c4j.label('title', t.mod_FRM_PAL_RETURN); c4j.label('subtitle', t.dlg_Return_SSCC); c4j.label('buttonBack', t.btn_Back); c4j.label('web_SSCC', t.web_SSCC ? t.web_SSCC + ' :' : ''); c4j.label('buttonReturn', t.btn_Return);
+			});
+			c4j.get('api/session').then(function (r) { if (r.ok) { c4j.text('userLine', r.data.username); } c4j.focus('sscc'); });
+			c4j.onSubmit('palletReturnSelect', function () {
+				c4j.put('api/return/sscc', { sscc: c4j.value('sscc') }).then(function (r) { if (r.busy) { return; } if (!r.next) { c4j.setValue('sscc', ''); c4j.focus('sscc'); } });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.put('api/return/exit'); });
+		});
+	</script>
+</body>
+</html>

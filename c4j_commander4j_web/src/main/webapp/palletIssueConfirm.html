@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Pallet Issue</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Issue to Order</h1>
+		<form id="palletIssueConfirm" name="palletIssueConfirm" onsubmit="return false;">
+			<div class="divTable kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_User_ID">User ID</label></div><div class="divTableCell"><span class="value" id="userLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Order">Order</label></div><div class="divTableCell"><span class="value" id="orderLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Recipe">Recipe</label></div><div class="divTableCell"><span class="value" id="recipe"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Stage">Stage</label></div><div class="divTableCell"><span class="value" id="stageLine"></span></div></div>
+					<div class="divTableRow gap"><div class="divTableCell"><label id="web_SSCC">SSCC</label></div><div class="divTableCell"><span class="value" id="sscc"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Process_Order">Process Order</label></div><div class="divTableCell"><span class="value" id="palletProcessOrder"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Material">Material</label></div><div class="divTableCell"><span class="value" id="material"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Description">Description</label></div><div class="divTableCell"><span class="value" id="description"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Pallet_Status">Pallet Status</label></div><div class="divTableCell"><span class="value" id="palletStatus"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Batch">Batch Number</label></div><div class="divTableCell"><span class="value" id="batchNumber"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Batch_Status">Batch Status</label></div><div class="divTableCell"><span class="value" id="batchStatus"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Pallet_Quantity">Current Quantity</label></div><div class="divTableCell"><span class="value" id="quantity"></span> <span class="value" id="uom"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Lot_Number">Lot Number</label></div><div class="divTableCell"><span class="value" id="lotNumber"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Location_ID">Location</label></div><div class="divTableCell"><span class="value" id="location"></span></div></div>
+					<div class="divTableRow gap">
+						<div class="divTableCell"><label for="issueLocation" id="lbl_Issue_Location">Location :</label></div>
+						<div class="divTableCell"><input type="text" id="issueLocation" name="issueLocation" autocomplete="off"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="issueQuantity" id="lbl_Issue_Quantity">Issue Quantity :</label></div>
+						<div class="divTableCell"><input type="text" id="issueQuantity" name="issueQuantity" inputmode="decimal" autocomplete="off"></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="button" class="regular-btn" id="buttonMenu">Menu</button>
+				<button type="submit" class="submit-btn" id="buttonIssue">Issue</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		// c4j_web_Issue palletIssueConfirm.html: scan/type the lane, confirm the quantity; one PUT does validateLocation + issue
+		c4j.page(function () {
+			c4j.lang(['lbl_User_ID', 'dlg_Issue_To_Order', 'btn_Back', 'btn_Menu', 'lbl_Material_Batch', 'lbl_Stage', 'lbl_Recipe', 'lbl_Order', 'mod_FRM_PAL_ISSUE', 'web_SSCC', 'lbl_Process_Order', 'lbl_Material', 'lbl_Description', 'lbl_Pallet_Status', 'lbl_Batch', 'lbl_Batch_Status', 'lbl_Pallet_Quantity', 'lbl_Location_ID', 'lbl_Issue_Location', 'lbl_Issue_Quantity', 'btn_Issue']).then(function (t) {
+				c4j.label('lbl_User_ID', t.lbl_User_ID); c4j.label('lbl_Recipe', t.lbl_Recipe); c4j.label('lbl_Order', t.lbl_Order); c4j.label('lbl_Stage', t.lbl_Stage);
+				c4j.label('title', t.dlg_Issue_To_Order); c4j.label('buttonBack', t.btn_Back); c4j.label('buttonMenu', t.btn_Menu); c4j.label('lbl_Lot_Number', t.lbl_Material_Batch);
+				['web_SSCC', 'lbl_Process_Order', 'lbl_Material', 'lbl_Description', 'lbl_Pallet_Status', 'lbl_Batch', 'lbl_Batch_Status', 'lbl_Pallet_Quantity', 'lbl_Location_ID'].forEach(function (k) { c4j.label(k, t[k]); });
+				c4j.label('lbl_Issue_Location', t.lbl_Issue_Location ? t.lbl_Issue_Location + ' :' : ''); c4j.label('lbl_Issue_Quantity', t.lbl_Issue_Quantity ? t.lbl_Issue_Quantity + ' :' : ''); c4j.label('buttonIssue', t.btn_Issue);
+			});
+			function render(d) {
+				c4j.text('userLine', d.username); c4j.text('orderLine', d.processOrder);
+				c4j.text('recipe', d.bomId + ' / ' + d.bomVersion); c4j.text('stageLine', d.stage);
+				['sscc', 'palletProcessOrder', 'material', 'description', 'palletStatus', 'batchNumber', 'batchStatus', 'quantity', 'uom', 'lotNumber', 'location'].forEach(function (k) { c4j.text(k, d[k]); });
+				document.getElementById('quantity').className = 'value' + (Number(d.quantity) === 0 ? ' zero' : '');
+				c4j.setValue('issueQuantity', d.issueQuantity);
+			}
+			c4j.get('api/issue/pallet').then(function (r) { if (r.ok) { render(r.data); c4j.focus('issueLocation'); } });
+			document.getElementById('issueLocation').addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); c4j.focus('issueQuantity'); } });
+			c4j.onSubmit('palletIssueConfirm', function () {
+				c4j.put('api/issue/confirm', { location: c4j.value('issueLocation'), quantity: c4j.value('issueQuantity') }).then(function (r) {
+					if (r.busy || r.next) { return; }
+					if (r.data) { render(r.data); }
+					if (r.ok) { c4j.setValue('issueLocation', ''); }
+					c4j.focus('issueLocation');
+				});
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('palletIssueSelect'); });
+			document.getElementById('buttonMenu').addEventListener('click', function () { c4j.put('api/issue/exit'); });
+		});
+	</script>
+</body>
+</html>

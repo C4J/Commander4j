@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Quantity_Confirm','EN','Specified pallet quantity is greater than the default full pallet quantity - are you sure ?','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Quantity_Confirm','NL','Specified pallet quantity is greater than the default full pallet quantity - are you sure ?','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Quantity_Confirm','HU','Specified pallet quantity is greater than the default full pallet quantity - are you sure ?','')
+</statement>
+ 
+</DDL>

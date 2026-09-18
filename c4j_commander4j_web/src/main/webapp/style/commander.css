@@ -1,0 +1,321 @@
+/*
+ * commander.css - step 6 restyle (2026-09-11).
+ *
+ * Same file name and the same class vocabulary the 24 ported pages already use
+ * (container, form-group, divTable*, button-group, submit-btn, cancel-btn,
+ * regular-btn), so no sub-page DOM changed. Look taken from c4j_web_Issue
+ * (sans-serif, flat buttons with a drop shadow, light-blue focus); sizes in rem
+ * with clamp() rather than web_Issue's fixed px so the MC9400 and a desktop
+ * browser both fit.
+ *
+ * Page skeleton (c4j.js builds it at load, see c4j.layout):
+ *     .container            flex column, full viewport height
+ *        h1                 fixed header
+ *        form
+ *           .c4j-body       the page content, scrolls when it overflows
+ *           .c4j-footer     message line + the page's last button row, always visible
+ *
+ * Colour roles are custom properties: flip one line to change a role everywhere.
+ * Message stays yellow (22 pages rely on it), focus is light blue, Submit/Cancel
+ * keep green/red because operators know them, menu buttons use web_Issue's yellow.
+ */
+
+:root {
+	--c4j-font: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--c4j-text: #333333;
+	--c4j-bg: #ffffff;
+	--c4j-border: #d4d4d4;
+	--c4j-shadow: rgba(25, 48, 71, 0.45);
+	--c4j-input-text: #0000cc;
+	--c4j-focus: #e6f2ff;
+	--c4j-row-bg: #f0f8ff;      /* label/field table cells, the web_WS panelEdit look */
+	--c4j-message: #ffff00;
+	--c4j-submit: #4CAF50;
+	--c4j-cancel: #f44336;
+	--c4j-regular: #2fbfea;
+	--c4j-menu-btn: #f1f624;
+	--c4j-menu-btn-text: #000000;
+	--c4j-text-size: clamp(1rem, 4vw, 1.2rem);   /* one body size: labels, values, inputs, selects, buttons, list tables, message line */
+	--c4j-gap: 0.5rem;
+	--c4j-touch: 2.5rem;        /* minimum tap height for buttons and inputs (3rem until 2026-09-12: MC9400 could not fit despatchHeader) */
+	--c4j-max-width: 650px;     /* same page width as before on a desktop browser */
+}
+
+* { box-sizing: border-box; }
+
+html {
+	font-size: 100%;
+	background-color: var(--c4j-bg);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: var(--c4j-font);
+	font-size: 1rem;
+	color: var(--c4j-text);
+	background-color: var(--c4j-bg);
+}
+
+/* Density (2026-09-12, MC9400 photos of despatchHeader): touch height 3 -> 2.5rem, field padding 0.4 -> 0.2rem,
+   row gap 0.4 -> 0.25rem, field/button/label font cap 1.4 -> 1.2rem, title margins trimmed. Tables and the one-tap
+   menu buttons (3.25rem) deliberately unchanged. All pages follow because every size comes from these rules. */
+/* ---- page skeleton --------------------------------------------------------- */
+
+.container {
+	max-width: var(--c4j-max-width);
+	margin: 0 auto;
+	padding: 0.4rem 0.75rem;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	height: 100dvh;             /* shrinks with the soft keyboard on Chrome; vh above is the fallback */
+	overflow: hidden;
+}
+
+.container > form {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	min-height: 0;
+}
+
+/* form > .container nesting (wasteLog, despatchHeader): the form is just a wrapper */
+form > .container { height: 100vh; height: 100dvh; }
+body > form { margin: 0; }
+
+.c4j-body {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	padding-bottom: var(--c4j-gap);
+}
+
+.c4j-footer {
+	flex: 0 0 auto;
+	padding-top: var(--c4j-gap);
+	border-top: 1px solid var(--c4j-border);
+	background-color: var(--c4j-bg);
+}
+
+h1 {
+	flex: 0 0 auto;
+	text-align: center;
+	font-size: clamp(1.2rem, 5vw, 1.7rem);
+	font-weight: 600;
+	margin: 0.2rem 0 0.35rem 0;
+}
+
+h2 {
+	text-align: center;
+	font-size: clamp(1rem, 4vw, 1.3rem);
+	font-weight: 600;
+	margin: 0.2rem 0 0.35rem 0;
+}
+
+/* ---- form rows --------------------------------------------------------------- */
+
+.form-group {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.25rem;
+}
+
+label {
+	margin-right: 0.75rem;
+	font-size: var(--c4j-text-size);
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+input[type="text"], input[type="password"], select {
+	flex: 1;
+	width: 100%;
+	min-height: var(--c4j-touch);
+	padding: 0.2rem 0.5rem;
+	border: 1px solid var(--c4j-border);
+	border-radius: 3px;
+	font-family: inherit;
+	font-size: var(--c4j-text-size);
+	color: var(--c4j-input-text);
+	background-color: var(--c4j-bg);
+	margin-bottom: 1px;
+}
+
+input:focus, select:focus {
+	outline: none;
+	background-color: var(--c4j-focus);
+	border-color: var(--c4j-regular);
+	box-shadow: 0 0 0 2px var(--c4j-regular);
+}
+
+input[type="radio"] {
+	height: 1.4rem;
+	width: 1.4rem;
+	vertical-align: middle;
+	margin: 0.35rem 0.5rem 0.35rem 0;
+}
+
+input[type="checkbox"] {
+	height: 1.4rem;
+	width: 1.4rem;
+	vertical-align: middle;
+}
+
+select { width: 100%; }
+
+/* message line: always takes its space so the footer never jumps, invisible when empty */
+#message {
+	display: block;
+	width: 100%;
+	min-height: 1.6em;
+	padding: 0.15em 0.4em;
+	border-radius: 2px;
+	font-size: var(--c4j-text-size);
+	white-space: normal;
+	overflow-wrap: anywhere;
+}
+#message:empty { visibility: hidden; }
+/* Footer spacing (Dave, 2026-09-12): the gap between the separator line and the button row was ~3.5rem
+   (footer padding + a reserved message line + two margins). The message line now collapses while blank
+   and the margins inside the footer are trimmed. When a message appears the footer grows UPWARD into the
+   scrolling body, so the buttons stay where they are. */
+.c4j-footer { padding-top: 0.25rem; }
+.c4j-footer .form-group { margin-bottom: 0; }
+.c4j-footer .button-group { margin-top: 0.25rem; }
+.c4j-footer #message:empty { min-height: 0; padding-top: 0; padding-bottom: 0; }
+.c4j-footer #message:not(:empty) { margin-bottom: 0.25rem; }
+
+/* ---- buttons ---------------------------------------------------------------- */
+
+button {
+	font-family: inherit;
+	font-size: var(--c4j-text-size);
+	letter-spacing: 0.04em;
+	min-height: var(--c4j-touch);
+	padding: 0.25rem 0.75rem;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	color: #ffffff;
+	background-color: var(--c4j-regular);
+	box-shadow: 0 3px 8px var(--c4j-shadow);
+	touch-action: manipulation;         /* no double-tap zoom delay on the device */
+	-webkit-tap-highlight-color: transparent;
+}
+
+button:active { transform: translateY(1px); box-shadow: 0 1px 3px var(--c4j-shadow); }
+button:focus-visible { outline: 3px solid var(--c4j-regular); outline-offset: 2px; }
+
+.submit-btn  { background-color: var(--c4j-submit); }
+.cancel-btn  { background-color: var(--c4j-cancel); }
+.regular-btn { background-color: var(--c4j-regular); }
+
+.button-group {
+	display: flex;
+	gap: var(--c4j-gap);
+	justify-content: center;
+	margin-top: 0.5rem;
+}
+.button-group > button { flex: 1 1 0; margin: 0; }
+
+.button-group-vertical {
+	margin-top: 0.5rem;
+}
+/* radio lists (hosts, despatch list): same size as the other labels, rows as tight as before.
+   No fixed height - the list fills the scrolling body between the title and the footer. */
+.button-group-vertical label {
+	display: block;
+	white-space: normal;
+	padding: 0;
+	line-height: 1.5;
+	font-size: clamp(1rem, 4vw, 1.4rem);
+}
+.button-group-vertical br { display: none; }
+.button-group-vertical input[type="radio"] { margin: 0 0.5rem 0 0; }
+
+/* ---- one-tap menu (menu.html) ------------------------------------------------ */
+
+.menu-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--c4j-gap);
+	padding: 0.25rem 0.1rem;
+}
+
+.menu-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	width: 100%;
+	min-height: 3.25rem;
+	padding: 0.4rem 0.9rem;
+	text-align: left;
+	color: var(--c4j-menu-btn-text);
+	background-color: var(--c4j-menu-btn);
+}
+.menu-btn:hover { background-color: #ffffff; }
+.menu-btn .menu-icon {
+	flex: 0 0 auto;
+	width: 2rem;
+	height: 2rem;
+	image-rendering: auto;
+}
+.menu-btn .menu-label { flex: 1 1 auto; }
+
+/* ---- table-like layout used by the data screens ------------------------------ */
+
+.divTable { display: table; margin: 0 auto; width: 100%; }
+.divTableRow { display: table-row; }
+.divTableHeading { display: table-header-group; }
+.divTableCell, .divTableHead { display: table-cell; padding: 0.15rem 0.3rem; vertical-align: middle; }
+.divTableHead { font-weight: 600; }
+.divTableFoot { display: table-footer-group; }
+.divTableBody { display: table-row-group; }
+
+img { max-width: 100%; }
+
+/* ---- small screens ----------------------------------------------------------- */
+
+@media screen and (max-width: 400px) {
+	html { font-size: 90%; }
+	.container { padding: 0.3rem 0.5rem; }
+}
+
+/* ---- data tables (issue / return / history lists, step 7) ------------------- */
+
+.table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+table.data-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--c4j-text-size);
+}
+table.data-table th, table.data-table td {
+	padding: 0.35rem 0.4rem;
+	border: 1px solid var(--c4j-border);
+	text-align: left;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+table.data-table th { background-color: #f4f4f4; font-weight: 600; position: sticky; top: 0; }
+table.data-table td.num { text-align: right; }
+table.data-table td.wrap { white-space: normal; }
+table.data-table tr.selected td { background-color: var(--c4j-focus); }
+table.data-table input[type="radio"] { margin: 0 0.4rem 0 0; }
+
+/* read-only value rows on the confirm pages */
+/* label column of every label/field table (.fields = inputs, .kv = read-only values): right-aligned,
+   sized to the widest label, a gap before the box */
+.kv, .fields { border-collapse: collapse; }
+.kv .divTableCell, .fields .divTableCell { background-color: var(--c4j-row-bg); border: 1px solid var(--c4j-border); padding: 0.25rem 0.5rem; }
+.kv .divTableCell:first-child, .fields .divTableCell:first-child { width: 1%; text-align: right; padding-right: 0.6rem; white-space: nowrap; }   /* width 1% + nowrap = column shrinks to the widest label */
+.divTableRow.gap > .divTableCell { padding-top: 0.6rem; }
+
+/* inline radio choices (despatchPallet Add/Remove): radio hugs its text, choices spaced evenly */
+.radio-row { justify-content: center; gap: 2rem; }
+.radio-row label { margin: 0; }
+.radio-row input[type="radio"] { margin: 0 0.4rem 0 0; }
+.kv .value { color: var(--c4j-input-text); font-size: var(--c4j-text-size); }
+.kv .value.zero { background-color: orange; padding: 0 0.3rem; }

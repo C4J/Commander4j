@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Panel Admin</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Panel Admin</h1>
+		<form id="qmUsers" name="qmUsers" onsubmit="return false;">
+			<h2 id="subtitle">Panelists</h2>
+			<div class="form-group">
+				<label id="lbl_Filter_By">Filter By :</label>
+				<label style="width:auto; font-weight:normal"><input type="radio" name="filter" value="Y" id="filterY"> <span id="lbl_Enabled" style="color:green">Enabled</span></label>
+				<label style="width:auto; font-weight:normal"><input type="radio" name="filter" value="N" id="filterN"> <span id="lbl_Disabled" style="color:red">Disabled</span></label>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="userTable">
+					<thead><tr><th id="lbl_User_ID">User ID</th><th id="lbl_First_Name">First Name</th><th id="lbl_surname">Surname</th><th id="lbl_Enabled2">Enabled</th></tr></thead>
+					<tbody id="users"></tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonEdit">Edit</button>
+				<button type="button" class="regular-btn" id="buttonAdd">Add</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script src="js/qm.55579df9.js"></script>
+	<script>
+		// c4j_web_WS admin.html + users.html: the panellist roster (APP_QM_USERS) filtered by enabled flag; Add / Edit
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_ADMIN', 'lbl_Panelists', 'lbl_Filter_By', 'lbl_Enabled', 'lbl_Disabled', 'lbl_User_ID', 'lbl_First_Name', 'lbl_surname', 'btn_Back', 'btn_Add', 'btn_Edit']).then(function (t) {
+				c4j.label('title', t.mod_FRM_QM_PANEL_ADMIN); c4j.label('subtitle', t.lbl_Panelists);
+				c4j.label('lbl_Filter_By', t.lbl_Filter_By ? t.lbl_Filter_By + ' :' : ''); c4j.label('lbl_Enabled', t.lbl_Enabled); c4j.label('lbl_Enabled2', t.lbl_Enabled); c4j.label('lbl_Disabled', t.lbl_Disabled);
+				c4j.label('lbl_User_ID', t.lbl_User_ID); c4j.label('lbl_First_Name', t.lbl_First_Name); c4j.label('lbl_surname', t.lbl_surname);
+				c4j.label('buttonBack', t.btn_Back); c4j.label('buttonAdd', t.btn_Add); c4j.label('buttonEdit', t.btn_Edit);
+			});
+			function load() {
+				c4j.get('api/qm/admin/users').then(function (r) {
+					if (!r.ok) { return; }
+					document.getElementById(r.data.filter === 'N' ? 'filterN' : 'filterY').checked = true;
+					qm.rows('users', r.data.users, { id: 'userID', cells: [function (u) { return u.firstname; }, function (u) { return u.surname; }, function (u) { return { text: u.enabled === 'Y' ? '✓' : '', colour: 'green' }; }] });
+					document.getElementById('buttonEdit').disabled = r.data.users.length === 0;
+				});
+			}
+			load();
+			Array.prototype.forEach.call(document.querySelectorAll('input[name="filter"]'), function (e) {
+				e.addEventListener('change', function () { c4j.put('api/qm/admin/users/filter', { enabled: this.value }).then(function (r) { if (r.ok) { load(); } }); });
+			});
+			document.getElementById('buttonAdd').addEventListener('click', function () { c4j.put('api/qm/admin/users/new'); });
+			c4j.onSubmit('qmUsers', function () {
+				var id = qm.chosen();
+				if (!id) { c4j.message('Select a user.'); return; }
+				c4j.put('api/qm/admin/users/edit', { userID: id });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('menu'); });
+		});
+	</script>
+</body>
+</html>

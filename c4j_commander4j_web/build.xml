@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="c4j_commander4j_web">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="25"/>
+    <property name="source" value="25"/>
+    
+    <!-- Custom property for Tomcat libraries -->
+    <property name="tomcat.lib.dir" value="../../../../tools/apache-tomcat-11.0.21 (Java 25)/lib"/>
+    
+    <path id="Web App Libraries.libraryclasspath">
+        <fileset dir="src/main/webapp/WEB-INF/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    
+    <path id="Server Runtime [Apache Tomcat v11.0].libraryclasspath">
+        <fileset dir="${tomcat.lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+    
+    <path id="c4j_commander4j_web.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Server Runtime [Apache Tomcat v11.0].libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src/main/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+        <delete dir="build/webapp"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/main/java"/>
+            <classpath refid="c4j_commander4j_web.classpath"/>
+             <compilerarg value="-proc:full"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <!-- Content-hash asset names (2026-09-13). The war is packed from a staging copy in
+         build/webapp where js/c4j.js, js/qm.js and style/commander.css are renamed to
+         name.<md5 first 8>.ext and the <script>/<link> tags in the pages are rewritten to
+         match. NoCacheFilter serves such names with a one-year immutable cache header; every
+         other path keeps no-cache. The sources are never touched, so Eclipse (which runs from
+         src/main/webapp) and GitHub only ever see the plain names. -->
+    <macrodef name="fingerprint">
+        <attribute name="path"/>
+        <attribute name="ext"/>
+        <sequential>
+            <local name="md5"/>
+            <local name="hash"/>
+            <checksum file="build/webapp/@{path}.@{ext}" algorithm="MD5" property="md5"/>
+            <loadresource property="hash">
+                <string value="${md5}"/>
+                <filterchain>
+                    <tokenfilter>
+                        <replaceregex pattern="^(.{8}).*$" replace="\1"/>
+                    </tokenfilter>
+                </filterchain>
+            </loadresource>
+            <move file="build/webapp/@{path}.@{ext}" tofile="build/webapp/@{path}.${hash}.@{ext}"/>
+            <replace dir="build/webapp" includes="*.html" encoding="UTF-8" summary="true"
+                     token="@{path}.@{ext}" value="@{path}.${hash}.@{ext}"/>
+            <echo message="fingerprint: @{path}.@{ext} -> @{path}.${hash}.@{ext}"/>
+        </sequential>
+    </macrodef>
+    <target name="stage" depends="build">
+        <delete dir="build/webapp"/>
+        <copy todir="build/webapp" includeemptydirs="true">
+            <fileset dir="src/main/webapp"/>
+        </copy>
+        <fingerprint path="js/c4j" ext="js"/>
+        <fingerprint path="js/qm" ext="js"/>
+        <fingerprint path="style/commander" ext="css"/>
+    </target>
+    <target name="war" depends="stage">
+        <war destfile="target/c4j_commander4j_web.war" webxml="build/webapp/WEB-INF/web.xml">
+            <fileset dir="build/webapp"/>
+            <lib dir="src/main/webapp/WEB-INF/lib"/>
+            <classes dir="build/classes"/>
+        </war>
+    </target>
+</project>

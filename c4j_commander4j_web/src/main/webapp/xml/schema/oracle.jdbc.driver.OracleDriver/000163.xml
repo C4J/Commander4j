@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+    
+    <statement>
+        ALTER TABLE "APP_WEIGHT_SCALE" ADD ("COMMAND_PREFIX" VARCHAR2(15) DEFAULT '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_CommandPrefix', 'DE', 'Befehlspräfix', '0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_CommandPrefix', 'EN', 'Command Prefix', '0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_CommandPrefix', 'ES', 'Prefijo de comando', '0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_CommandPrefix', 'FR', 'Préfixe de commande', '0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_CommandPrefix', 'HU', 'Parancs el tag', '0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_CommandPrefix', 'IT', 'Prefisso comando', '0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_CommandPrefix', 'NL', 'Opdrachtvoorvoegsel', '0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_CommandPrefix', 'PL', 'Przedrostek polecenia', '0')
+    </statement>
+    
+    <statement>    
+        UPDATE APP_WEIGHT_SCALE SET END_OF_LINE = '&lt;CR&gt;&lt;LF&gt;' WHERE END_OF_LINE = 'CR/LF'
+    </statement>
+    
+    <statement>
+        UPDATE APP_WEIGHT_SCALE SET END_OF_LINE = '&lt;CR&gt;' WHERE END_OF_LINE = 'CR'
+    </statement>
+    
+    <statement>
+        UPDATE APP_WEIGHT_SCALE SET END_OF_LINE = '&lt;LF&gt;' WHERE END_OF_LINE = 'LF'
+    </statement>
+    
+    <statement>    
+        UPDATE APP_WEIGHT_SCALE SET END_OF_LINE = '&lt;CR&gt;&lt;LF&gt;&lt;EOT&gt;' WHERE END_OF_LINE = 'CR/LF/EOT'
+    </statement>
+    
+</DDL>

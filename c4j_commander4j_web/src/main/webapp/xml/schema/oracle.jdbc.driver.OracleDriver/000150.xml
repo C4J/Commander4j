@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B001', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B001', 'PREP 1')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B001', 'ZONE 1')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B002', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B002', 'PREP 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B002', 'ZONE 1')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B003', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B003', 'PREP 3')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B003', 'ZONE 1')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B004', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B004', 'LINE 1')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B004', 'ZONE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B005', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B005', 'LINE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B005', 'ZONE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B006', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B006', 'LINE 3')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B006', 'ZONE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B007', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B007', 'LINE 4')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B007', 'ZONE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B008', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B008', 'LINE 1')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B008', 'ZONE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B009', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B009', 'LINE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B009', 'ZONE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B010', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B010', 'LINE 3')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B010', 'ZONE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B011', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B011', 'LINE 4')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B011', 'ZONE 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B012', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B012', 'PACKING 1')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B012', 'ZONE 3')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B013', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B013', 'PACKING 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B013', 'ZONE 3')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B014', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B014', 'PACKING 3')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B014', 'ZONE 3')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B015', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B015', 'PACKING 4')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B015', 'ZONE 3')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B016', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B016', 'PALLETISER 1')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B016', 'ZONE 4')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B017', 'FACTORY')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B017', 'PALLETISER 2')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_REPORTING (WASTE_LOCATION_ID, WASTE_REPORTING_ID) VALUES ('B017', 'ZONE 4')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B001', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B001', 'WATER')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B002', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B002', 'WATER')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B003', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B003', 'WATER')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B004', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B004', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B004', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B005', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B005', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B005', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B006', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B006', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B006', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B007', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B007', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B007', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B008', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B008', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B008', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B009', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B009', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B009', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B010', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B010', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B010', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B011', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B011', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B011', 'RAW')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B012', 'CARDBOARD')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B012', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B012', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B013', 'CARDBOARD')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B013', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B013', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B014', 'CARDBOARD')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B014', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B014', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B015', 'CARDBOARD')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B015', 'MIXED')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B015', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B016', 'CARDBOARD')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B016', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B017', 'CARDBOARD')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATION_TYPES (WASTE_LOCATION_ID, WASTE_TYPE_ID) VALUES ('B017', 'PLASTIC')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B001', 'Prep 1 Zone 1', 'N', 'N', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B002', 'Prep 2 Zone 1', 'N', 'N', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B003', 'Prep 3 Zone 1', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B004', 'Line 1 Zone 2', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B005', 'Line 2 Zone 2', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B006', 'Line 3 Zone 2', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B007', 'Line 4 Zone 2', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B008', 'Line 1 Zone 2', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B009', 'Line 2 Zone 2', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B010', 'Line 3 Zone 2', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B011', 'Line 4 Zone 2', 'Y', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B012', 'Pack 1 Zone 3', 'N', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B013', 'Pack 2 Zone 3', 'N', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B014', 'Pack 3 Zone 3', 'N', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B015', 'Pack 4 Zone 3', 'N', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B016', 'Palletiser 1 Zone 4', 'N', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOCATIONS (WASTE_LOCATION_ID, DESCRIPTION, PROCESS_ORDER_REQUIRED, REASON_ID_REQUIRED, ENABLED) VALUES ('B017', 'Palletiser 2 Zone 4 ', 'N', 'Y', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (1, 'ADD', 'B012', TO_DATE('2020-01-01 21:49:27', 'YYYY-MM-DD HH24:MI:SS'), 'EMPTY_CARTON_24', '24891947', 'PRODUCT_CHANGE', 'DAVE', 10.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (2, 'ADD', 'B013', TO_DATE('2020-01-01 23:40:30', 'YYYY-MM-DD HH24:MI:SS'), '16_PACK_100G', '24905967', 'PRODUCT_CHANGE', 'DAVE', 9.500)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (3, 'ADD', 'B003', TO_DATE('2020-01-02 10:11:00', 'YYYY-MM-DD HH24:MI:SS'), 'FULL_POUCH_85G', '24868314', 'SEAM_SEAL_FAULT', 'DAVE', 18.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (4, 'ADD', 'B003', TO_DATE('2020-01-02 12:21:00', 'YYYY-MM-DD HH24:MI:SS'), 'EMULSION', '24889945', 'MACHINE_FAULT', 'DAVE', 14.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (5, 'ADD', 'B008', TO_DATE('2020-01-05 12:49:36', 'YYYY-MM-DD HH24:MI:SS'), 'FULL_POUCH_85G', '24893837', 'WEIGHT_CHECKS', 'DAVE', 15.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (6, 'ADD', 'B015', TO_DATE('2020-01-05 12:52:38', 'YYYY-MM-DD HH24:MI:SS'), 'EMPTY_CARTON_32', '24868314', 'NORMAL_OPERATION', 'DAVE', 20.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (7, 'ADD', 'B004', TO_DATE('2020-01-05 12:58:34', 'YYYY-MM-DD HH24:MI:SS'), 'EMPTY_POUCH', '24891854', 'WEIGHT_CHECKS', 'DAVE', 11.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (8, 'ADD', 'B012', TO_DATE('2020-02-25 18:58:48', 'YYYY-MM-DD HH24:MI:SS'), '16_PACK_85G', '24893808', 'PRODUCT_CHANGE', 'DAVE', 18.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (22, 'ADD', 'B001', TO_DATE('2020-04-19 19:28:25', 'YYYY-MM-DD HH24:MI:SS'), 'EMULSION', '24893837', 'CALIBRATION', 'DAVE', 10.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (24, 'ADD', 'B011', TO_DATE('2020-04-19 20:42:27', 'YYYY-MM-DD HH24:MI:SS'), 'EMPTY_POUCH', '24905596', 'CLEANING', 'DAVE', 20.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (26, 'ADD', 'B004', TO_DATE('2020-04-19 19:44:52', 'YYYY-MM-DD HH24:MI:SS'), '24_PACK_85G', '24893837', 'OPERATOR_ERROR', 'DAVE', 12.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (28, 'ADD', 'B016', TO_DATE('2020-04-20 08:23:04', 'YYYY-MM-DD HH24:MI:SS'), 'EMPTY_CARTON_16', '24892666', 'PRODUCT_CHANGE', 'DAVE', 9.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (30, 'ADD', 'B002', TO_DATE('2020-04-24 16:19:21', 'YYYY-MM-DD HH24:MI:SS'), 'EMULSION', '24893837', 'FLUSHING', 'DAVE', 10.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (32, 'ADD', 'B006', TO_DATE('2020-04-25 16:12:13', 'YYYY-MM-DD HH24:MI:SS'), '24_PACK_100G', '24868567', 'MAINTENANCE', 'DAVE', 1.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (38, 'ADD', 'B016', TO_DATE('2020-04-25 18:08:10', 'YYYY-MM-DD HH24:MI:SS'), 'EMPTY_CARTON_32', '24893923', 'NORMAL_OPERATION', 'DAVE', 10.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (40, 'ADD', 'B014', TO_DATE('2020-04-25 18:10:14', 'YYYY-MM-DD HH24:MI:SS'), 'EMPTY_CARTON_16', '24891947', 'POWER_FAIL', 'DAVE', 120.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (42, 'ADD', 'B016', TO_DATE('2020-04-21 18:11:39', 'YYYY-MM-DD HH24:MI:SS'), 'EMPTY_CARTON_32', '24893923', 'OPERATOR_ERROR', 'DAVE', 30.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (44, 'ADD', 'B011', TO_DATE('2020-04-25 18:15:05', 'YYYY-MM-DD HH24:MI:SS'), 'FULL_POUCH_85G', '24893759', 'FLUSHING', 'DAVE', 50.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (46, 'REMOVE', 'B003', TO_DATE('2020-04-25 18:22:25', 'YYYY-MM-DD HH24:MI:SS'), 'EMULSION', '24893759', 'OPERATOR_ERROR', 'DAVE', -15.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_LOG (TRANSACTION_REF, WASTE_TRANSACTION_TYPE, WASTE_LOCATION_ID, REPORT_TIME, WASTE_MATERIAL_ID, PROCESS_ORDER, WASTE_REASON_ID, USER_ID, QUANTITY) VALUES (48, 'ADD', 'B007', TO_DATE('2020-04-26 11:09:05', 'YYYY-MM-DD HH24:MI:SS'), '32_PACK_85G', '24892666', 'OPERATOR_ERROR', 'DAVE', 5.000)
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('16_PACK_100G', 'MIXED', 'EA', 0.210, 1.600, '16 Pack 100 gram', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('16_PACK_85G', 'MIXED', 'EA', 0.220, 1.360, '16 Pack 85 gram', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('24_PACK_100G', 'MIXED', 'EA', 0.230, 2.400, '24 Pack 100 gram', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('24_PACK_85G', 'MIXED', 'EA', 0.240, 2.040, '24 Pack 85 gram', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('32_PACK_100G', 'MIXED', 'EA', 0.250, 3.200, '32 Pack 100 gram', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('32_PACK_85G', 'MIXED', 'EA', 0.260, 2.720, '32 Pack 85 gram', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('EMPTY_CARTON_16', 'CARDBOARD', 'EA', 0.110, 0.100, 'Empty Carton 16 ', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('EMPTY_CARTON_24', 'CARDBOARD', 'EA', 0.120, 0.130, 'Empty Carton 24', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('EMPTY_CARTON_32', 'CARDBOARD', 'EA', 0.130, 0.160, 'Empty Carton 32', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('EMPTY_POUCH', 'PLASTIC', 'EA', 0.040, 0.020, 'Empty Pouchs', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('EMULSION', 'UNPROCESSED', 'KG', 0.990, 1.000, 'Emulsion', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('FULL_POUCH_100G', 'MIXED', 'EA', 0.920, 0.100, 'Full Pouch 100 gram', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_MATERIAL (WASTE_MATERIAL_ID, WASTE_TYPE_ID, UOM, COST_PER_UOM, CONVERSION_TO_KG, DESCRIPTION, ENABLED) VALUES ('FULL_POUCH_85G', 'MIXED', 'EA', 0.790, 0.085, 'Full Pouch 85 gram', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('CALIBRATION', 'Calibration', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('CLEANING', 'Cleaning', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('COMMISIONING', 'Comissioning', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('CONTAMINATION', 'Contamination', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('FLUSHING', 'Flushing', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('FULL', 'Full', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('MACHINE_FAULT', 'Machine Fault', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('MAINTENANCE', 'Maintenance', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('NORMAL_OPERATION', 'Normal Operation', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('OPERATOR_ERROR', 'Operator Error', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('POWER_FAIL', 'Power Fail', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('PRODUCT_CHANGE', 'Product Change', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('RECIPE_FAULT', 'Recipe Error', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('SEAM_SEAL_FAULT', 'Seal Fault', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('TRIAL', 'Trial', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REASONS (WASTE_REASON_ID, DESCRIPTION, ENABLED) VALUES ('WEIGHT_CHECKS', 'Weight Checks', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (100, 'Preparation Areas 1 &amp; 2', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (200, 'Production Lines 1,2,3 &amp; 4', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (300, 'Packing', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (500, 'Zone 1', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (510, 'Zone 2', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (520, 'Zone 3', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (530, 'Zone 4', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (550, 'Palletiser', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_GROUP (REPORTING_GROUP, DESCRIPTION, ENABLED) VALUES (700, 'Factory', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('FACTORY', 'Main Factory', 700, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('LINE 1', 'Production Line 1', 200, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('LINE 2', 'Production Line 2', 200, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('LINE 3', 'Production Line 3', 200, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('LINE 4', 'Production Line 4', 200, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PACKING 1', 'Packing 1 Zone 3', 300, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PACKING 2', 'Packing 2 Zone 3', 300, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PACKING 3', 'Packing 3 Zone 3', 300, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PACKING 4', 'Packing 4 Zone 3', 300, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PALLETISER 1', 'Palletiser 1 Zone 4', 550, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PALLETISER 2', 'Palletiser 2 Zone 4', 550, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PREP 1', 'Preparation 1', 100, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PREP 2', 'Preparation 2', 100, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('PREP 3', 'Preparation 3', 100, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('ZONE 1', 'Factory Zone 1', 500, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('ZONE 2', 'Factory Zone 2', 510, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('ZONE 3', 'Factory Zone 3', 520, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_REPORTING_IDS (WASTE_REPORTING_ID, DESCRIPTION, REPORTING_GROUP, ENABLED) VALUES ('ZONE 4', 'Factory Zone 4', 530, 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_TYPES (WASTE_TYPE_ID, RECYCLABLE, HAZARDOUS, PPE_REQUIRED, DESCRIPTION, ENABLED) VALUES ('CARDBOARD', 'Y', 'N', 'N', 'Cardboard', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_TYPES (WASTE_TYPE_ID, RECYCLABLE, HAZARDOUS, PPE_REQUIRED, DESCRIPTION, ENABLED) VALUES ('MIXED', 'N', 'Y', 'Y', 'Mixed', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_TYPES (WASTE_TYPE_ID, RECYCLABLE, HAZARDOUS, PPE_REQUIRED, DESCRIPTION, ENABLED) VALUES ('PLASTIC', 'Y', 'N', 'N', 'Plastic', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_TYPES (WASTE_TYPE_ID, RECYCLABLE, HAZARDOUS, PPE_REQUIRED, DESCRIPTION, ENABLED) VALUES ('PROCESSED', 'N', 'N', 'N', 'Processed', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_TYPES (WASTE_TYPE_ID, RECYCLABLE, HAZARDOUS, PPE_REQUIRED, DESCRIPTION, ENABLED) VALUES ('UNPROCESSED', 'N', 'Y', 'Y', 'Unprocessed', 'Y')
+      </statement>
+      
+      <statement>
+            INSERT INTO APP_WASTE_TYPES (WASTE_TYPE_ID, RECYCLABLE, HAZARDOUS, PPE_REQUIRED, DESCRIPTION, ENABLED) VALUES ('WATER', 'Y', 'N', 'N', 'Water', 'Y')
+      </statement>
+     
+ 
+</DDL>

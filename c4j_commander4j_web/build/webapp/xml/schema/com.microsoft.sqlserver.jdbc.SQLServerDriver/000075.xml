@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	CREATE TABLE [dbo].[APP_LABEL_DATA](
+		[UNIQUE_ID] [varchar](40) NOT NULL,
+		[PRINT_DATE] [datetime] NULL,
+		[USER_ID] [varchar](10) NULL,
+		[WORKSTATION_ID] [varchar](40) NULL,
+		[MATERIAL] [varchar](20) NULL,
+		[MATERIAL_TYPE] [varchar](15) NULL,
+		[BATCH_NUMBER] [varchar](12) NULL,
+		[PROCESS_ORDER] [varchar](10) NULL,
+		[REQUIRED_RESOURCE] [varchar](50) NULL,
+		[LOCATION_ID] [varchar](15) NULL,
+		[QUANTITY] [numeric](22, 3) NULL,
+		[UOM] [varchar](10) NULL,
+		[DATE_OF_MANUFACTURE] [datetime] NULL,
+		[EXPIRY_DATE] [datetime] NULL,
+		[EXPIRY_MODE] [varchar](12) NULL,
+		[EAN] [varchar](14) NULL,
+		[VARIANT] [varchar](2) NULL,
+		[CUSTOMER_ID] [varchar](20) NULL,
+		[PRINT_COPIES] [varchar](10) NULL,
+		[PRINT_QUEUE_NAME] [varchar](250) NULL,	
+	 CONSTRAINT [APP_LABEL_DATA_PK] PRIMARY KEY NONCLUSTERED 
+	(
+		[UNIQUE_ID] ASC
+	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+</statement>
+
+
+<statement>
+	ALTER TABLE APP_CUSTOMER ADD [OVERRIDE_PACK_LABEL] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+<statement>
+	ALTER TABLE APP_CUSTOMER ADD [PACK_LABEL_MODULE_ID] VARCHAR(35) DEFAULT ''
+</statement>
+
+<statement>
+	ALTER TABLE APP_CUSTOMER ADD [OVERRIDE_PALLET_LABEL] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+<statement>
+	ALTER TABLE APP_CUSTOMER ADD [PALLET_LABEL_MODULE_ID] VARCHAR(35) DEFAULT ''
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL ADD [OVERRIDE_PACK_LABEL] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL ADD [PACK_LABEL_MODULE_ID] VARCHAR(35) DEFAULT ''
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL ADD [OVERRIDE_PALLET_LABEL] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL ADD [PALLET_LABEL_MODULE_ID] VARCHAR(35) DEFAULT ''
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL_TYPE ADD [OVERRIDE_PACK_LABEL] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL_TYPE ADD [PACK_LABEL_MODULE_ID] VARCHAR(35) DEFAULT ''
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL_TYPE ADD [OVERRIDE_PALLET_LABEL] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL_TYPE ADD [PALLET_LABEL_MODULE_ID] VARCHAR(35) DEFAULT ''
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Module_UserReport','DE','Anwenderdefinierte Bericht','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Module_UserReport','FR','User Report','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Module_UserReport','IT','Dell''utente di Report','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Module_UserReport','NL','Gebruiker Report','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Module_UserReport','EN','User Report','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Module_UserReport','HU','Felhasználó jelentés','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Module_UserReport','ES','Informe de usuario','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pack_Label','DE','Override-Pack Label-','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pack_Label','FR','Remplacer étiquette de l''emballage','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pack_Label','IT','Override etichetta della confezione','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pack_Label','NL','Override Pack Label','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pack_Label','EN','Override Pack Label','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pack_Label','HU','Felülbírálása Pack Label','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pack_Label','ES','Reemplace la etiqueta del envase','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pallet_Label','DE','Override-Palettenetikett','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pallet_Label','FR','Étiquette Override de la palette','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pallet_Label','IT','Override Pallet Label','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pallet_Label','NL','Override Pallet Label','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pallet_Label','EN','Override Pallet Label','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pallet_Label','HU','Felülbírálása raklap címke','A')
+</statement>
+
+<statement>
+  INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES  ('lbl_Override_Pallet_Label','ES','Pallet Override Label','A')
+</statement>
+
+</DDL>

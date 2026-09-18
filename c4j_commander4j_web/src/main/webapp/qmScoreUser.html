@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Panel Scores</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Panel Scores</h1>
+		<form id="qmScoreUser" name="qmScoreUser" onsubmit="return false;">
+			<h2 id="subtitle">Select Panelist</h2>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="panelist" id="lbl_Panelist">Panelist :</label></div>
+						<div class="divTableCell"><select id="panelist" name="panelist" style="width: 100%"></select></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="userID" id="lbl_User_ID">User ID :</label></div>
+						<div class="divTableCell"><input type="text" id="userID" name="userID" autocomplete="off" maxlength="20"></div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonNext">Next</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		// c4j_web_WS resultUserSelect.html: pick the panellist from the enabled list, or type/scan the id
+		// (the old Find button just set the combo; here Enter or Next submits whichever was given).
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_SCORES', 'dlg_Select_Panelist', 'lbl_Panelist', 'lbl_User_ID', 'btn_Back', 'btn_Next']).then(function (t) {
+				c4j.label('title', t.mod_FRM_QM_PANEL_SCORES); c4j.label('subtitle', t.dlg_Select_Panelist);
+				c4j.label('lbl_Panelist', t.lbl_Panelist ? t.lbl_Panelist + ' :' : ''); c4j.label('lbl_User_ID', t.lbl_User_ID ? t.lbl_User_ID + ' :' : '');
+				c4j.label('buttonBack', t.btn_Back); c4j.label('buttonNext', t.btn_Next);
+			});
+			c4j.get('api/qm/score/panelists').then(function (r) {
+				if (!r.ok) { return; }
+				var sel = document.getElementById('panelist');
+				sel.innerHTML = '';
+				var blank = document.createElement('option'); blank.value = ''; blank.textContent = ''; sel.appendChild(blank);
+				r.data.panelists.forEach(function (p) {
+					var o = document.createElement('option'); o.value = p.userID; o.textContent = p.name; o.selected = !!p.selected; sel.appendChild(o);
+				});
+				c4j.focus('userID');
+			});
+			c4j.onSubmit('qmScoreUser', function () {
+				var id = c4j.value('userID').trim() || c4j.value('panelist');
+				c4j.put('api/qm/score/panelists', { userID: id }).then(function (r) { if (!r.ok && !r.busy) { c4j.setValue('userID', ''); c4j.focus('userID'); } });
+			});
+			document.getElementById('panelist').addEventListener('change', function () { c4j.setValue('userID', ''); });
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('menu'); });
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Despatch</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Despatch</h1>
+		<form id="despatchSelect" name="despatchSelect" onsubmit="return false;">
+			<div class="button-group-vertical" id="despatchList"></div>
+			<div class="form-group"><br></div>
+			<div class="button-group" data-footer>
+				<button type="button" class="regular-btn" id="buttonPrev">Previous Page</button>
+				<button type="button" class="regular-btn" id="buttonNext">Next Page</button>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonExit">Back</button>
+				<button type="submit" class="submit-btn" id="buttonAmend">Amend</button>
+				<button type="button" class="submit-btn" id="buttonCreate">Create</button>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		c4j.page(function () {
+			var texts = {};
+			c4j.get('api/lang?keys=mod_FRM_ADMIN_DESPATCH,web_Previous_Page,web_Next_Page,web_Create,web_Amend,btn_Back').then(function (r) {
+				if (!r.ok) { return; }
+				texts = r.data.text;
+				c4j.text('buttonPrev', texts.web_Previous_Page); c4j.text('buttonNext', texts.web_Next_Page);
+				c4j.text('buttonCreate', texts.web_Create); c4j.text('buttonAmend', texts.web_Amend); c4j.text('buttonExit', texts.btn_Back);
+				render(lastList);
+			});
+			var lastList = null;
+			function render(r) {
+				if (!r) { return; }
+				c4j.text('title', (texts.mod_FRM_ADMIN_DESPATCH || 'Despatch') + ' page ' + r.data.page + ' of ' + r.data.maxPages);
+				var list = document.getElementById('despatchList');
+				list.innerHTML = '';
+				var focusMe = null;
+				r.data.despatches.forEach(function (d) {
+					var label = document.createElement('label');
+					var radio = document.createElement('input');
+					radio.type = 'radio'; radio.name = 'despatchNo'; radio.value = d.despatchNo; radio.checked = d.selected;
+					label.appendChild(radio);
+					label.appendChild(document.createTextNode(d.despatchNo + ' - ' + d.trailer));
+					list.appendChild(label);
+					list.appendChild(document.createElement('br'));
+					if (d.selected) { focusMe = radio; }
+				});
+				if (focusMe) { focusMe.focus(); } else { c4j.focus('buttonAmend'); }
+			}
+			c4j.get('api/despatch/list').then(function (r) { if (r.ok) { lastList = r; render(r); } });
+			document.getElementById('buttonPrev').addEventListener('click', function () { c4j.put('api/despatch/page', { dir: 'prev' }).then(function (r) { if (r.ok) { lastList = r; render(r); } }); });
+			document.getElementById('buttonNext').addEventListener('click', function () { c4j.put('api/despatch/page', { dir: 'next' }).then(function (r) { if (r.ok) { lastList = r; render(r); } }); });
+			document.getElementById('buttonCreate').addEventListener('click', function () { c4j.put('api/despatch/create'); });
+			c4j.onSubmit('despatchSelect', function () {
+				var chosen = document.querySelector('input[name="despatchNo"]:checked');
+				c4j.put('api/despatch/amend', { despatchNo: chosen ? chosen.value : '' });
+			});
+			document.getElementById('buttonExit').addEventListener('click', function () { c4j.put('api/despatch/exit'); });
+		});
+	</script>
+</body>
+</html>

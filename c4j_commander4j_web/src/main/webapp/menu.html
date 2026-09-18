@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Menu</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Menu</h1>
+		<form id="menus" name="menus" onsubmit="return false;">
+			<div class="menu-list" id="menuList"></div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		// One-tap menu (decided 2026-09-11): each RF menu option is a button; a tap sends the same
+		// PUT /api/menu/select the old radio list + Select button sent. The list scrolls between the
+		// fixed title and the fixed footer (c4j.layout). Native buttons only move focus with Tab, so
+		// ArrowUp/ArrowDown are handled here for the MC9400 keypad; Enter fires the focused button.
+		var DEFAULT_ICON = { MENU: 'menu.gif', FORM: 'form.gif', SCANNER: 'scanner.gif', REPORT: 'report.gif', FUNCTION: 'function.gif', EXEC: 'execute.gif', USER: 'userreports.gif' };
+		c4j.page(function () {
+			var rootTitle = '';
+			c4j.get('api/lang?keys=mod_root,btn_Back').then(function (r) {
+				if (!r.ok) { return; }
+				rootTitle = r.data.text.mod_root || '';
+				if (rootTitle && !document.getElementById('title').getAttribute('data-menu')) { c4j.text('title', rootTitle); }
+				if (r.data.text.btn_Back) { c4j.text('buttonCancel', r.data.text.btn_Back); }
+			});
+			c4j.get('api/menu').then(function (r) {
+				if (!r.ok) { return; }
+				// nested menu (schema 217): a sub-menu is titled with its own description, the top level with mod_root
+				var titleEl = document.getElementById('title');
+				if (r.data.title) { titleEl.setAttribute('data-menu', r.data.menu || ''); c4j.text('title', r.data.title); }
+				else if (rootTitle) { c4j.text('title', rootTitle); }
+				var list = document.getElementById('menuList');
+				list.innerHTML = '';
+				var focusMe = null;
+				r.data.options.forEach(function (o) {
+					var btn = document.createElement('button');
+					btn.type = 'button';
+					btn.className = 'menu-btn';
+					btn.setAttribute('data-module', o.moduleID);
+					// same rule as the desktop JDBModule.getModuleIcon: a blank icon_filename falls back to the
+					// module type's default image, a named file that is missing shows error.gif
+					var file = o.icon || DEFAULT_ICON[o.moduleType] || 'blankicon.gif';
+					var icon = document.createElement('img');
+					icon.src = 'images/menu/' + file;
+					icon.alt = '';
+					icon.onerror = function () { if (this.src.indexOf('error.gif') < 0) { this.src = 'images/menu/error.gif'; } else { this.style.visibility = 'hidden'; } };
+					icon.className = 'menu-icon';
+					var label = document.createElement('span');
+					label.className = 'menu-label';
+					label.textContent = o.description;
+					btn.appendChild(icon);
+					btn.appendChild(label);
+					btn.addEventListener('click', function () {
+						c4j.put('api/menu/select', { selectedMenuOption: o.moduleID });
+					});
+					list.appendChild(btn);
+					if (o.selected) { focusMe = btn; }
+				});
+				var first = list.querySelector('button');
+				if (focusMe) { focusMe.focus(); focusMe.scrollIntoView({ block: 'nearest' }); } else if (first) { first.focus(); }
+			});
+			document.getElementById('menuList').addEventListener('keydown', function (ev) {
+				if (ev.key !== 'ArrowDown' && ev.key !== 'ArrowUp') { return; }
+				var buttons = Array.prototype.slice.call(this.querySelectorAll('button'));
+				var i = buttons.indexOf(document.activeElement);
+				if (i < 0) { return; }
+				var next = buttons[i + (ev.key === 'ArrowDown' ? 1 : -1)];
+				if (next) { next.focus(); next.scrollIntoView({ block: 'nearest' }); }
+				ev.preventDefault();
+			});
+			// Back climbs one menu level; at the top level the server treats it as Exit (drop user, back to login)
+			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.put('api/menu/back'); });
+		});
+	</script>
+</body>
+</html>

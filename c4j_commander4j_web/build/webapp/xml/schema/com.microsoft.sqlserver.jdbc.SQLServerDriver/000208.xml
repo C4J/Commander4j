@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		DROP INDEX [sys_int_log_filename_idx] ON [dbo].[SYS_INTERFACE_LOG]
+	</statement>
+
+	<statement>
+	  	ALTER TABLE [dbo].[SYS_INTERFACE_LOG] ALTER COLUMN [FILENAME] varchar(255) COLLATE database_default NULL
+	</statement>
+
+	<statement>
+		CREATE NONCLUSTERED INDEX [sys_int_log_filename_idx] ON [dbo].[SYS_INTERFACE_LOG] ( [FILENAME] ASC )
+	</statement>
+
+	<statement>
+		ALTER TABLE [dbo].[SYS_INTERFACE_REQUEST] ALTER COLUMN [FILENAME] varchar(255) COLLATE database_default NULL
+	</statement>
+
+</DDL>

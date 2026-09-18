@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	ALTER TABLE APP_MATERIAL ADD [VALIDATE_SCAN_PALLET] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL ADD [VALIDATE_SCAN_CASE] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+<statement>
+	ALTER TABLE APP_MATERIAL ADD [VALIDATE_SCAN_EACH] VARCHAR(1) DEFAULT 'N'
+</statement>
+
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'EN', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'FR', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'DE', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'IT', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'NL', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'ES', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'HU', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'PL', 'Validate Pallet/DU GTIN', '0')
+	</statement>		
+	
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'EN', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'FR', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'DE', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'IT', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'NL', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'ES', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'HU', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'PL', 'Validate Case/DU GTIN', '0')
+	</statement>	
+	
+	
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'EN', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'FR', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'DE', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'IT', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'NL', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'ES', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'HU', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'PL', 'Validate Each/CU GTIN', '0')
+	</statement>	
+		
+</DDL>

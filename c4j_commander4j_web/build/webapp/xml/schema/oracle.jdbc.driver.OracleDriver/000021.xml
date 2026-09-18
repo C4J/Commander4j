@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+Insert into SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES) values ('RPT_HIST_SUMMARY','N','Y','REPORT',null,null,null,'ProductionSummary.jrxml',null,null,'Y','N',1)
+</statement>
+
+<statement>
+Insert into SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) values ('PALLET','RPT_HIST_SUMMARY')
+</statement>
+
+<statement>
+Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('BATCH REGEX','','Regular Expression to Validate Batch Format')
+</statement>
+
+</DDL>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Despatch Confirm</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1><span id="dlg_Despatch_Confirm">Confirm Despatch </span><span id="despatchNo"></span></h1>
+		<form id="despatchConfirm" name="despatchConfirm" onsubmit="return false;">
+			<div class="form-group"><br></div>
+			<div class="form-group"><br></div>
+			<div align="center">
+				<label for="printSTNonConfirm" id="web_Print_STN">Print STN</label>
+				<input type="checkbox" name="printSTNonConfirm" id="printSTNonConfirm"/>
+			</div>
+			<div class="form-group"><br></div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="submit" class="submit-btn" id="buttonYes">Yes</button>
+				<button type="button" class="cancel-btn" id="buttonNo">No</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.get('api/lang?keys=dlg_Despatch_Confirm,web_Print_STN,web_Yes,web_No').then(function (r) {
+				if (!r.ok) { return; }
+				c4j.text('dlg_Despatch_Confirm', r.data.text.dlg_Despatch_Confirm); c4j.text('web_Print_STN', r.data.text.web_Print_STN);
+				c4j.text('buttonYes', r.data.text.web_Yes); c4j.text('buttonNo', r.data.text.web_No);
+			});
+			c4j.get('api/despatch/header').then(function (r) { if (r.ok) { c4j.text('despatchNo', r.data.despatchNo); } c4j.focus('buttonYes'); });
+			c4j.onSubmit('despatchConfirm', function () { c4j.put('api/despatch/confirm', { yes: true, printSTNonConfirm: document.getElementById('printSTNonConfirm').checked }); });
+			document.getElementById('buttonNo').addEventListener('click', function () { c4j.put('api/despatch/confirm', { yes: false }); });
+		});
+	</script>
+</body>
+</html>

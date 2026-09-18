@@ -1,0 +1,29 @@
+<!ELEMENT Site (#PCDATA | Enabled | UniqueID | Description | URL | DatabaseDriver | DatabaseParameters)*>
+<!ATTLIST Site Number CDATA #IMPLIED>
+<!ELEMENT Hosts (#PCDATA | NumberOfSites | SplashScreen | UpdateURL | UpdateMODE | UpdateDIR | hostVersion | hostUpdatePath | SetupPassword | Site)*>
+<!ELEMENT UniqueID (#PCDATA)>
+<!ELEMENT Description (#PCDATA)>
+<!ELEMENT UpdateURL (#PCDATA)>
+<!ELEMENT jdbcUsername (#PCDATA)>
+<!ELEMENT URL (#PCDATA)>
+<!ELEMENT SetupPassword (#PCDATA)>
+<!ELEMENT hostUpdatePath (#PCDATA)>
+<!ELEMENT SplashScreen (#PCDATA)>
+<!ELEMENT jdbcServer (#PCDATA)>
+<!ELEMENT DatabaseDriver (#PCDATA | jdbcDriver | jdbcConnectString | jdbcDatabaseDateTimeToken | jdbcDatabaseSelectLimit | jdbcDatabaseSchema)*>
+<!ELEMENT jdbcPasswordEncryption (#PCDATA)>
+<!ELEMENT jdbcSID (#PCDATA)>
+<!ELEMENT jdbcDatabaseSchema (#PCDATA)>
+<!ELEMENT jdbcDriver (#PCDATA)>
+<!ELEMENT jdbcPort (#PCDATA)>
+<!ELEMENT hostVersion (#PCDATA)>
+<!ELEMENT UpdateMODE (#PCDATA)>
+<!ELEMENT UpdateDIR (#PCDATA)>
+<!ELEMENT Enabled (#PCDATA)>
+<!ELEMENT jdbcPassword (#PCDATA)>
+<!ELEMENT jdbcDatabase (#PCDATA)>
+<!ELEMENT NumberOfSites (#PCDATA)>
+<!ELEMENT jdbcDatabaseSelectLimit (#PCDATA)>
+<!ELEMENT DatabaseParameters (#PCDATA | jdbcUsername | jdbcPassword | jdbcPasswordEncryption | jdbcServer | jdbcPort | jdbcSID | jdbcDatabase)*>
+<!ELEMENT jdbcConnectString (#PCDATA)>
+<!ELEMENT jdbcDatabaseDateTimeToken (#PCDATA)>

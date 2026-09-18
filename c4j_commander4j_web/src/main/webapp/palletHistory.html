@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Pallet History</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">History</h1>
+		<form id="palletHistory" name="palletHistory" onsubmit="return false;">
+			<div class="divTable fields kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_User_ID">User ID</label></div><div class="divTableCell"><span class="value" id="userLine"></span></div></div>
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="sscc" id="web_SSCC">SSCC :</label></div>
+						<div class="divTableCell"><input type="text" id="sscc" name="sscc" autocomplete="off" maxlength="40"></div>
+					</div>
+				</div>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="historyTable">
+					<thead><tr><th id="lbl_Transaction_Date">Date</th><th id="lbl_Transaction_Type">Type</th><th id="lbl_Transaction_Subtype">SubType</th><th id="lbl_Issue_Order">Order</th><th id="lbl_Location_ID">Location</th><th id="lbl_Pallet_Quantity">Quantity</th><th id="lbl_Pallet_UOM">UOM</th></tr></thead>
+					<tbody id="history"></tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonHistory">History</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		// c4j_web_Issue palletHistory.html
+		c4j.page(function () {
+			c4j.lang(['lbl_User_ID', 'btn_Back', 'lbl_Order', 'mod_FRM_ADMIN_PALLET_HISTORY', 'web_SSCC', 'lbl_Transaction_Date', 'lbl_Transaction_Type', 'lbl_Transaction_Subtype', 'lbl_Issue_Order', 'lbl_Location_ID', 'lbl_Pallet_Quantity', 'lbl_Pallet_UOM']).then(function (t) {
+				c4j.label('lbl_User_ID', t.lbl_User_ID);
+				c4j.label('title', t.mod_FRM_ADMIN_PALLET_HISTORY); c4j.label('buttonHistory', t.mod_FRM_ADMIN_PALLET_HISTORY); c4j.label('buttonBack', t.btn_Back);
+				c4j.label('web_SSCC', t.web_SSCC ? t.web_SSCC + ' :' : '');
+				['lbl_Transaction_Date', 'lbl_Transaction_Type', 'lbl_Transaction_Subtype', 'lbl_Location_ID', 'lbl_Pallet_Quantity', 'lbl_Pallet_UOM'].forEach(function (k) { c4j.label(k, t[k]); }); c4j.label('lbl_Issue_Order', t.lbl_Order);
+			});
+			c4j.get('api/history').then(function (r) { if (r.ok) { c4j.text('userLine', r.data.username); } c4j.focus('sscc'); });
+			c4j.onSubmit('palletHistory', function () {
+				c4j.put('api/history', { sscc: c4j.value('sscc') }).then(function (r) {
+					if (r.busy) { return; }
+					var tb = document.getElementById('history');
+					tb.innerHTML = '';
+					if (r.ok && r.data && r.data.history) {
+						r.data.history.forEach(function (h) {
+							var tr = document.createElement('tr');
+							[h.date, h.type, h.subtype, h.processOrder, h.location, h.quantity, h.uom].forEach(function (v, i) { var td = document.createElement('td'); if (i === 5) { td.className = 'num'; } td.textContent = v; tr.appendChild(td); });
+							tb.appendChild(tr);
+						});
+					}
+					c4j.setValue('sscc', ''); c4j.focus('sscc');
+				});
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('menu'); });
+		});
+	</script>
+</body>
+</html>

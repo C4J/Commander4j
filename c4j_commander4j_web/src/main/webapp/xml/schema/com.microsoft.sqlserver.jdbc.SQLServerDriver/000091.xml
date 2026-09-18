@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		DROP VIEW [dbo].[view_label_data]
+	</statement>
+
+	<statement>
+		CREATE VIEW [dbo].[view_label_data]	AS 
+			SELECT dbo.APP_LABEL_DATA.*, dbo.APP_CUSTOMER.CUSTOMER_NAME, dbo.APP_MATERIAL.DESCRIPTION AS MATERIAL_DESCRIPTION
+			FROM   dbo.APP_LABEL_DATA 
+			INNER JOIN dbo.APP_CUSTOMER ON dbo.APP_LABEL_DATA.CUSTOMER_ID = dbo.APP_CUSTOMER.CUSTOMER_ID 
+			INNER JOIN dbo.APP_MATERIAL ON dbo.APP_LABEL_DATA.MATERIAL = dbo.APP_MATERIAL.MATERIAL
+	</statement>
+	
+</DDL>

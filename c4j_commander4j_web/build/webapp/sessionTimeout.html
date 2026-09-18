@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Session Timeout</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1>Session Timeout</h1>
+		<form id="sessionTimeout" name="sessionTimeout" onsubmit="return false;">
+			<br>
+			<h2>Your session has disconnected due to inactivity.</h2>
+			<br>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="submit" class="submit-btn" id="buttonRestart">Restart</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.focus('buttonRestart');
+			c4j.onSubmit('sessionTimeout', function () { c4j.put('api/session/start'); });
+		});
+	</script>
+</body>
+</html>

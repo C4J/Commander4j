@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	alter table APP_LOCATION add MSG_PALLET_STATUS varchar(1) default 'Y'
+</statement>
+
+<statement>
+	update APP_LOCATION set MSG_PALLET_STATUS='N'
+</statement>
+
+</DDL>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+    <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_WASTE_ORDER_LAB', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'waste_order_barcode.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'RPT_WASTE_ORDER_LAB')
+    </statement>
+    
+   
+	<statement>
+	    INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_RPT_WASTE_ORDER_LAB','EN','Barcode for Waste Logging','0')
+	</statement>
+	
+	<statement>
+	    INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_RPT_WASTE_ORDER_LAB','FR','Ou code barre pour la traçabilités des déchets','0')
+	</statement>
+	
+	<statement>
+	    INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_RPT_WASTE_ORDER_LAB','DE','Barcode für die Abfallprotokollierung','0')
+	</statement>
+	
+	<statement>
+	    INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_RPT_WASTE_ORDER_LAB','IT','Codice a barre per la registrazione dei rifiuti','0')
+	</statement>
+	
+	<statement>
+	    INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_RPT_WASTE_ORDER_LAB','NL','Barcode voor afvalregistratie','0')
+	</statement>
+	
+	<statement>
+	    INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_RPT_WASTE_ORDER_LAB','PL','Kod kreskowy do rejestrowania odpadow','0')
+	</statement>
+	
+	<statement>
+	    INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_RPT_WASTE_ORDER_LAB','HU','Vonalkód hulladék rögzítéséhez','0')
+	</statement>
+	
+	<statement>
+	    INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_RPT_WASTE_ORDER_LAB','ES','Código de barras para registro de residuos','0')
+	</statement>
+ 
+	<statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_WASTE_REPORTING3', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'waste_reporting3.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '')
+    </statement>
+      
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'RPT_WASTE_REPORTING3')
+    </statement> 
+    
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_ADMIN_WASTE_LOG'
+	</statement>
+
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_ADMIN_WASTE_REPORTING'
+	</statement>
+
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_WASTE_LOCATION'
+	</statement>
+	
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_WASTE_MATERIAL'
+	</statement>
+	
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_WASTE_REASON'
+	</statement>
+	
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_WASTE_REPORTING_GROUP'
+	</statement>
+	
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_WASTE_REPORTING_LOCATION'
+	</statement>
+	
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_WASTE_REPORTING_TRANSACTION'
+	</statement>
+	
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_WASTE_LOCATION_REPORTING'
+	</statement>
+	
+	<statement>	
+		UPDATE SYS_MODULES SET HELPSET_ID = 'http://commander4j.com/mw/index.php?title=Waste_Module' WHERE MODULE_ID = 'FRM_WASTE_TYPE'
+	</statement>
+    
+</DDL>

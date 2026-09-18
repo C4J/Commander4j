@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+ALTER TABLE `APP_LOCATION` ADD COLUMN `PERMITTED_PALLET_STATUS` VARCHAR(200) AFTER `MSG_PROD_CONFIRM`;
+</statement>
+
+<statement>
+ALTER TABLE `APP_LOCATION` ADD COLUMN `PERMITTED_BATCH_STATUS` VARCHAR(200) AFTER `PERMITTED_PALLET_STATUS`;
+</statement>
+
+<statement>
+UPDATE `APP_LOCATION` SET PERMITTED_PALLET_STATUS = '^Blocked^Quality Inspection^Unrestricted^';
+</statement>
+
+<statement>
+UPDATE `APP_LOCATION` SET PERMITTED_BATCH_STATUS = '^Restricted^Unrestricted^';
+</statement>
+
+</DDL>

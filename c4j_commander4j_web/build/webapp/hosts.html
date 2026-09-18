@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Host Select</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1>Hosts</h1>
+		<form id="hosts" name="hosts" onsubmit="return false;">
+			<div class="button-group-vertical" id="hostList"></div>
+			<br>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="form-group"><br></div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
+				<button type="submit" class="submit-btn" id="buttonSubmit">Select</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.get('api/hosts').then(function (r) {
+				if (!r.ok) { return; }
+				var list = document.getElementById('hostList');
+				list.innerHTML = '';
+				var first = null;
+				r.data.hosts.forEach(function (h) {
+					var label = document.createElement('label');
+					var radio = document.createElement('input');
+					radio.type = 'radio';
+					radio.name = 'selectedHost';
+					radio.value = h.siteNumber;
+					radio.checked = h.selected;
+					label.appendChild(radio);
+					label.appendChild(document.createTextNode(h.description));
+					list.appendChild(label);
+					list.appendChild(document.createElement('br'));
+					if (h.selected) { first = radio; }
+				});
+				if (first) { first.focus(); } else { c4j.focus('buttonSubmit'); }
+			});
+			c4j.onSubmit('hosts', function () {
+				var chosen = document.querySelector('input[name="selectedHost"]:checked');
+				c4j.put('api/session/host', { selectedHost: chosen ? chosen.value : '' }).then(function (r) {
+					if (r.ok && r.data && r.data.redirect) { window.location.assign(r.data.redirect); }
+				});
+			});
+			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.goTo('index'); });
+		});
+	</script>
+</body>
+</html>

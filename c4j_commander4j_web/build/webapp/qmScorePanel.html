@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Panel Scores</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Panel Scores</h1>
+		<form id="qmScorePanel" name="qmScorePanel" onsubmit="return false;">
+			<h2 id="subtitle">Select Panel</h2>
+			<div class="divTable kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_Panelist">Panelist</label></div><div class="divTableCell"><span class="value" id="panelistLine"></span></div></div>
+				</div>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="panelTable">
+					<thead><tr><th id="lbl_Panel_ID">Panel ID</th><th id="lbl_Plant">Plant</th><th id="lbl_Description">Description</th></tr></thead>
+					<tbody id="panels"></tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonNext">Next</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script src="js/qm.55579df9.js"></script>
+	<script>
+		// c4j_web_WS resultPanelSelect.html: the panels with status Ready
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_SCORES', 'dlg_Select_Panel', 'lbl_Panelist', 'lbl_Panel_ID', 'lbl_Plant', 'lbl_Description', 'btn_Back', 'btn_Next']).then(function (t) {
+				c4j.label('lbl_Panelist', t.lbl_Panelist);
+				c4j.label('title', t.mod_FRM_QM_PANEL_SCORES); c4j.label('subtitle', t.dlg_Select_Panel);
+				['lbl_Panel_ID', 'lbl_Plant', 'lbl_Description'].forEach(function (k) { c4j.label(k, t[k]); });
+				c4j.label('buttonBack', t.btn_Back); c4j.label('buttonNext', t.btn_Next);
+				load();
+			});
+			function load() {
+				c4j.get('api/qm/score/panels').then(function (r) {
+					if (!r.ok) { return; }
+					c4j.text('panelistLine', r.data.panelist);
+					qm.rows('panels', r.data.panels, { id: 'panelID', cells: [function (p) { return p.plant; }, function (p) { return { text: p.description, cls: 'wrap' }; }] });
+					document.getElementById('buttonNext').disabled = r.data.panels.length === 0;
+					if (!r.data.panels.length) { c4j.message('No panels with status Ready.'); c4j.focus('buttonBack'); }
+				});
+			}
+			c4j.onSubmit('qmScorePanel', function () {
+				var id = qm.chosen();
+				if (!id) { c4j.message('Select a panel.'); return; }
+				c4j.put('api/qm/score/panels', { panelID: id });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('qmScoreUser'); });
+		});
+	</script>
+</body>
+</html>

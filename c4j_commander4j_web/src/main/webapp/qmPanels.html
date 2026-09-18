@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Setup Panel</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Setup Panel</h1>
+		<form id="qmPanels" name="qmPanels" onsubmit="return false;">
+			<h2 id="subtitle">Panels</h2>
+			<div class="table-scroll">
+				<table class="data-table" id="panelTable">
+					<thead><tr><th id="lbl_Panel_ID">Panel ID</th><th id="lbl_Plant">Plant</th><th id="lbl_Description">Description</th><th id="lbl_Panel_Status">Status</th></tr></thead>
+					<tbody id="panels"></tbody>
+				</table>
+			</div>
+			<div class="button-group" data-footer>
+				<button type="button" class="regular-btn" id="buttonNew">New</button>
+				<button type="button" class="regular-btn" id="buttonEdit">Edit</button>
+				<button type="button" class="regular-btn" id="buttonDelete">Delete</button>
+			</div>
+			<div class="button-group" data-footer>
+				<button type="button" class="regular-btn" id="buttonScan">Scan Samples</button>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonTrays">Setup Trays</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script src="js/qm.js"></script>
+	<script>
+		// c4j_web_WS panels.html: newest 24 panels; New / Edit / Delete / Scan Samples / Setup Trays (Refresh dropped: reload = refresh)
+		var T = { dlg_Panel_Create: 'Create new Panel ?', dlg_Panel_Delete: 'Delete Panel', dlg_Panel_Delete_Warning: 'This will remove any results already recorded for assigned samples.' };
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_SETUP', 'lbl_Panels', 'lbl_Panel_ID', 'lbl_Plant', 'lbl_Description', 'lbl_Panel_Status', 'btn_New', 'btn_Edit', 'btn_Delete', 'btn_Scan_Samples', 'btn_Back', 'btn_Setup_Trays', 'dlg_Panel_Create', 'dlg_Panel_Delete', 'dlg_Panel_Delete_Warning']).then(function (t) {
+				Object.keys(T).forEach(function (k) { if (t[k]) { T[k] = t[k]; } });
+				c4j.label('title', t.mod_FRM_QM_PANEL_SETUP); c4j.label('subtitle', t.lbl_Panels);
+				['lbl_Panel_ID', 'lbl_Plant', 'lbl_Description', 'lbl_Panel_Status'].forEach(function (k) { c4j.label(k, t[k]); });
+				c4j.label('buttonNew', t.btn_New); c4j.label('buttonEdit', t.btn_Edit); c4j.label('buttonDelete', t.btn_Delete); c4j.label('buttonScan', t.btn_Scan_Samples);
+				c4j.label('buttonBack', t.btn_Back); c4j.label('buttonTrays', t.btn_Setup_Trays);
+			});
+			function load() {
+				c4j.get('api/qm/setup/panels').then(function (r) {
+					if (!r.ok) { return; }
+					qm.rows('panels', r.data.panels, { id: 'panelID', cells: [function (p) { return p.plant; }, function (p) { return { text: p.description, cls: 'wrap' }; }, function (p) { return { text: p.status, colour: qm.status(p.status) }; }] });
+					var none = r.data.panels.length === 0;
+					['buttonEdit', 'buttonDelete', 'buttonScan', 'buttonTrays'].forEach(function (id) { document.getElementById(id).disabled = none; });
+				});
+			}
+			load();
+			function withPanel(fn) { var id = qm.chosen(); if (!id) { c4j.message('Select a panel.'); return; } fn(id); }
+			document.getElementById('buttonNew').addEventListener('click', function () { if (qm.confirm(T.dlg_Panel_Create)) { c4j.put('api/qm/setup/panels/new'); } });
+			document.getElementById('buttonEdit').addEventListener('click', function () { withPanel(function (id) { c4j.put('api/qm/setup/panels/edit', { panelID: id }); }); });
+			document.getElementById('buttonDelete').addEventListener('click', function () {
+				withPanel(function (id) {
+					if (qm.confirm('*WARNING*\n\n' + T.dlg_Panel_Delete + ' [' + id + '] ?\n\n' + T.dlg_Panel_Delete_Warning)) {
+						c4j.put('api/qm/setup/panels/delete', { panelID: id }).then(function (r) { if (r.ok) { load(); } });
+					}
+				});
+			});
+			document.getElementById('buttonScan').addEventListener('click', function () { withPanel(function (id) { c4j.put('api/qm/setup/panels/samples', { panelID: id }); }); });
+			c4j.onSubmit('qmPanels', function () { withPanel(function (id) { c4j.put('api/qm/setup/panels/trays', { panelID: id }); }); });
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('menu'); });
+		});
+	</script>
+</body>
+</html>

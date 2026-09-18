@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+         
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_default', 'EN', 'Default', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_default', 'DE', 'Default', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_default', 'FR', 'Default', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_default', 'NL', 'Default', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_default', 'ES', 'Default', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_default', 'PL', 'Default', '0')
+    </statement>   
+    
+     <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_default', 'HU', 'Default', '0')
+    </statement>
+	
+	<statement>
+			ALTER TABLE [dbo].[APP_QM_DICTIONARY] ADD [DEFAULT_VALUE] varchar(50) DEFAULT ''
+	</statement>
+     
+</DDL>

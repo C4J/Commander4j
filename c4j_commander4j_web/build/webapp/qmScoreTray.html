@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Panel Scores</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Panel Scores</h1>
+		<form id="qmScoreTray" name="qmScoreTray" onsubmit="return false;">
+			<h2 id="subtitle">Select Tray</h2>
+			<div class="divTable kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="hdr_Panelist">Panelist</label></div><div class="divTableCell"><span class="value" id="panelistLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="hdr_Panel">Panel</label></div><div class="divTableCell"><span class="value" id="panelLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="hdr_Plant">Plant</label></div><div class="divTableCell"><span class="value" id="plantLine"></span></div></div>
+				</div>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="trayTable">
+					<thead><tr><th id="lbl_Tray">Tray</th><th id="lbl_Description">Description</th></tr></thead>
+					<tbody id="trays"></tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonNext">Next</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script src="js/qm.55579df9.js"></script>
+	<script>
+		// c4j_web_WS resultTraySelect.html: the trays of the chosen panel
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_SCORES', 'dlg_Select_Tray', 'lbl_Panelist', 'lbl_Panel', 'lbl_Plant', 'lbl_Tray', 'lbl_Description', 'btn_Back', 'btn_Next']).then(function (t) {
+				c4j.label('hdr_Panelist', t.lbl_Panelist); c4j.label('hdr_Panel', t.lbl_Panel); c4j.label('hdr_Plant', t.lbl_Plant);
+				c4j.label('title', t.mod_FRM_QM_PANEL_SCORES); c4j.label('subtitle', t.dlg_Select_Tray);
+				c4j.label('lbl_Tray', t.lbl_Tray); c4j.label('lbl_Description', t.lbl_Description);
+				c4j.label('buttonBack', t.btn_Back); c4j.label('buttonNext', t.btn_Next);
+				load();
+			});
+			function load() {
+				c4j.get('api/qm/score/trays').then(function (r) {
+					if (!r.ok) { return; }
+					c4j.text('panelistLine', r.data.panelist);
+					c4j.text('panelLine', r.data.panelID); c4j.text('plantLine', r.data.plant);
+					qm.rows('trays', r.data.trays, { id: 'trayID', first: function (t) { return t.traySequence; }, cells: [function (t) { return { text: t.description, cls: 'wrap' }; }] });
+					document.getElementById('buttonNext').disabled = r.data.trays.length === 0;
+					if (!r.data.trays.length) { c4j.message('No trays on this panel.'); c4j.focus('buttonBack'); }
+				});
+			}
+			c4j.onSubmit('qmScoreTray', function () {
+				var id = qm.chosen();
+				if (!id) { c4j.message('Select a tray.'); return; }
+				c4j.put('api/qm/score/trays', { trayID: id });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('qmScorePanel'); });
+		});
+	</script>
+</body>
+</html>

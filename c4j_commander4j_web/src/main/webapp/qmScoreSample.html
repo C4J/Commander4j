@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Panel Scores</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Panel Scores</h1>
+		<form id="qmScoreSample" name="qmScoreSample" onsubmit="return false;">
+			<h2 id="subtitle">Samples</h2>
+			<div class="divTable kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="hdr_Panelist">Panelist</label></div><div class="divTableCell"><span class="value" id="panelistLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="hdr_Tray">Tray</label></div><div class="divTableCell"><span class="value" id="trayLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="hdr_Plant">Plant</label></div><div class="divTableCell"><span class="value" id="plantLine"></span></div></div>
+				</div>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="sampleTable">
+					<thead><tr><th id="lbl_Sample_ID">Sample ID</th><th id="lbl_Result">Result</th><th id="lbl_Sequence_ID">Sequence</th></tr></thead>
+					<tbody id="samples"></tbody>
+				</table>
+			</div>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="decision" id="lbl_Decision">Decision :</label></div>
+						<div class="divTableCell"><select id="decision" name="decision" style="width: 100%"></select></div>
+					</div>
+				</div>
+			</div>
+			<div class="button-group" data-footer>
+				<button type="button" class="regular-btn" id="buttonSelectAll">Select All</button>
+				<button type="button" class="regular-btn" id="buttonDeselectAll">Deselect All</button>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonApply">Apply</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script src="js/qm.js"></script>
+	<script>
+		// c4j_web_WS resultSampleSelect.html: tick samples, pick a decision, Apply writes one result per ticked sample
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_SCORES', 'lbl_Samples', 'lbl_Panelist', 'lbl_Tray', 'lbl_Plant', 'lbl_Sample_ID', 'lbl_Result', 'lbl_Sequence_ID', 'lbl_Decision', 'btn_Select_All', 'btn_Deselect_All', 'btn_Back', 'btn_Apply']).then(function (t) {
+				c4j.label('hdr_Panelist', t.lbl_Panelist); c4j.label('hdr_Tray', t.lbl_Tray); c4j.label('hdr_Plant', t.lbl_Plant);
+				c4j.label('title', t.mod_FRM_QM_PANEL_SCORES); c4j.label('subtitle', t.lbl_Samples);
+				['lbl_Sample_ID', 'lbl_Result', 'lbl_Sequence_ID'].forEach(function (k) { c4j.label(k, t[k]); });
+				c4j.label('lbl_Decision', t.lbl_Decision ? t.lbl_Decision + ' :' : '');
+				c4j.label('buttonSelectAll', t.btn_Select_All); c4j.label('buttonDeselectAll', t.btn_Deselect_All);
+				c4j.label('buttonBack', t.btn_Back); c4j.label('buttonApply', t.btn_Apply);
+				load();
+			});
+			function load() {
+				c4j.get('api/qm/score/samples').then(function (r) {
+					if (!r.ok) { return; }
+					var d = r.data;
+					c4j.text('panelistLine', d.panelist);
+					c4j.text('trayLine', d.traySequence); c4j.text('plantLine', d.plant);
+					qm.rows('samples', d.samples, { id: 'sampleID', multi: true, first: function (s) { return '(' + s.sequenceLetter + ') ' + s.sampleID; }, cells: [function (s) { return s.value; }, function (s) { return { text: s.sequenceID, cls: 'num' }; }] });
+					var sel = document.getElementById('decision');
+					sel.innerHTML = '';
+					var blank = document.createElement('option'); blank.value = ''; blank.textContent = ''; sel.appendChild(blank);
+					d.decisions.forEach(function (x) {
+						var o = document.createElement('option'); o.value = x.value; o.textContent = x.value + ' - ' + x.description; o.selected = x.value === d.selectedResult; sel.appendChild(o);
+					});
+					document.getElementById('buttonApply').disabled = d.samples.length === 0;
+					if (!d.samples.length) { c4j.message('No samples on this tray.'); }
+				});
+			}
+			document.getElementById('buttonSelectAll').addEventListener('click', function () { qm.setAll(true); });
+			document.getElementById('buttonDeselectAll').addEventListener('click', function () { qm.setAll(false); });
+			c4j.onSubmit('qmScoreSample', function () {
+				var ids = qm.checked();
+				var result = c4j.value('decision');
+				if (!result) { c4j.message('Select a decision.'); return; }
+				if (!ids.length) { c4j.message('Select at least one sample.'); return; }
+				c4j.put('api/qm/score/samples', { result: result, sampleIDs: ids }).then(function (r) { if (r.ok) { load(); } });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('qmScoreTray'); });
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	ALTER TABLE SYS_PRINTERS ADD PAPER_SIZE VARCHAR(10)
+</statement>
+
+<statement>
+	ALTER TABLE `APP_MHN` ADD COLUMN `GS_GSTD_REF` VARCHAR(10)  DEFAULT '';
+</statement>
+		
+</DDL>

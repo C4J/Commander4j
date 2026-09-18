@@ -33,6 +33,7 @@ package com.commander4j.html;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedList;
 
 import org.apache.logging.log4j.Logger;
 
@@ -81,6 +82,72 @@ public class JMenuRFMenu
 	public String getCheckedIndexString() {
 		return String.valueOf(checkedIndex);
 	}	
+
+	/** The pseudo-parent of the top-level RF menu rows, as in SYS_MENUS. */
+	public static final String ROOT_MENU_ID = "root";
+
+	/**
+	 * The RF menu options for the session's user as data, in menu order - the
+	 * same rows buildMenu() renders as radio buttons, without the HTML. Added
+	 * 2026-09-11 for c4j_commander4j_web; buildMenu() is unchanged.
+	 * Since schema 217 SYS_RF_MENU is a tree like SYS_MENUS; this returns the
+	 * top level (MENU_ID = root).
+	 */
+	public LinkedList<JMenuOption> getMenuOptions() {
+		return getMenuOptions(ROOT_MENU_ID);
+	}
+
+	/**
+	 * The RF menu options directly under one menu (SYS_RF_MENU.MENU_ID, schema
+	 * 217): root for the top level, or the module id of a MENU-type row. Same
+	 * rf_active + group permission filter as buildMenu(). Added 2026-09-17 for
+	 * the nested menu in c4j_commander4j_web. A failure (schema 217 not applied,
+	 * sql key missing) is logged at warn - it would otherwise look like an
+	 * empty menu.
+	 */
+	public LinkedList<JMenuOption> getMenuOptions(String menuID) {
+
+		LinkedList<JMenuOption> result = new LinkedList<JMenuOption>();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JMenuRFMenu.getMenuOptions"));
+			stmt.setString(1, menuID);
+			stmt.setString(2, Common.userList.getUser(getSessionID()).getUserId());
+			stmt.setFetchSize(25);
+			rs = stmt.executeQuery();
+			while (rs.next())
+			{
+				JMenuOption menuOption = new JMenuOption(getHostID(), getSessionID());
+				menuOption.load(rs);
+				result.add(menuOption);
+			}
+		}
+		catch (Exception ex)
+		{
+			logger.warn("Error in JMenuRFMenu.getMenuOptions(" + menuID + ") " + ex.getMessage());
+		}
+		finally
+		{
+			try
+			{
+				if (rs != null)
+				{
+					rs.close();
+				}
+				if (stmt != null)
+				{
+					stmt.close();
+				}
+			}
+			catch (Exception ex)
+			{
+			}
+		}
+		return result;
+	}
 
 	public String buildMenu(String defaultItem) {
 

@@ -541,6 +541,12 @@ public class JDBModule
 				tb.setModuleId(getModuleId());
 				tb.delete();
 
+				// SYS_RF_MENU rows (schema 217, 2026-09-17): as a module, and as a parent menu
+				JDBRFMenu rf = new JDBRFMenu(getHostID(), getSessionID());
+				rf.setModuleId(getModuleId());
+				rf.delete();
+				rf.deleteForMenuId(getModuleId());
+
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBModule.delete"));
 				stmtupdate.setString(1, getModuleId());
 				stmtupdate.execute();
@@ -1119,6 +1125,106 @@ public class JDBModule
 		return moduleList;
 	}
 
+	/**
+	 * Menus the RF Menu editor can edit (schema 217): root plus every MENU-type
+	 * module that is RF active.
+	 */
+	public LinkedList<JDBListData> getRFMenuIds()
+	{
+		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
+		Icon icon;
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBModule.getRFMenuIds"));
+			rs = stmt.executeQuery();
+			while (rs.next())
+			{
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
+				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
+				moduleList.addLast(mld);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return moduleList;
+	}
+
+	/**
+	 * RF menu rows directly under the menu whose id is in getModuleId(), in
+	 * sequence order (schema 217; the SYS_MENUS twin is getModulesAssignedtoMenu).
+	 */
+	public LinkedList<JDBListData> getModulesAssignedtoRFMenuForMenu()
+	{
+		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
+		Icon icon;
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBModule.getModulesAssignedtoRFMenuForMenu"));
+			stmt.setString(1, getModuleId());
+			rs = stmt.executeQuery();
+			while (rs.next())
+			{
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
+				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
+				moduleList.addLast(mld);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return moduleList;
+	}
+
+	/**
+	 * RF-active FORM and MENU modules not yet under the menu whose id is in
+	 * getModuleId(), excluding that menu itself (schema 217; the SYS_MENUS twin is
+	 * getModulesUnAssignedtoMenu).
+	 */
+	public LinkedList<JDBListData> getModulesUnAssignedtoRFMenuForMenu()
+	{
+		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
+		Icon icon;
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBModule.getModulesUnAssignedtoRFMenuForMenu"));
+			stmt.setString(1, getModuleId());
+			stmt.setString(2, getModuleId());
+			rs = stmt.executeQuery();
+			while (rs.next())
+			{
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
+				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
+				moduleList.addLast(mld);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return moduleList;
+	}
+
 	public LinkedList<JDBListData> getModulesUnAssignedtoToolbar()
 	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
@@ -1343,6 +1449,9 @@ public class JDBModule
 					JDBRFMenu rf = new JDBRFMenu(getHostID(), getSessionID());
 					rf.setModuleId(getModuleId());
 					rf.renameModuleTo(newModuleId);
+
+					rf.setMenuId(getModuleId());
+					rf.renameMenuTo(newModuleId);
 
 					JDBMenus men = new JDBMenus(getHostID(), getSessionID());
 					men.setModuleId(getModuleId());

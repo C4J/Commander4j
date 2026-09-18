@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Setup Panel</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Setup Panel</h1>
+		<form id="qmSamples" name="qmSamples" onsubmit="return false;">
+			<h2 id="subtitle">Load Samples</h2>
+			<div class="divTable kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="hdr_Panel">Panel</label></div><div class="divTableCell"><span class="value" id="panelLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="hdr_Tray">Tray</label></div><div class="divTableCell"><span class="value" id="trayLine"></span></div></div>
+				</div>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="sampleTable">
+					<thead><tr><th id="lbl_Sample_ID">Sample ID</th><th id="lbl_Sequence_ID">Sequence</th></tr></thead>
+					<tbody id="samples"></tbody>
+				</table>
+			</div>
+			<div class="divTable fields">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><label for="scanData" id="lbl_Scan_Tray_Sample">Scan Tray and Sample(s) :</label></div>
+						<div class="divTableCell"><input type="text" id="scanData" name="scanData" autocomplete="off" maxlength="20"></div>
+					</div>
+				</div>
+			</div>
+			<div class="button-group" data-footer>
+				<button type="button" class="regular-btn" id="buttonDelete">Delete</button>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonAdd">Add</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script src="js/qm.js"></script>
+	<script>
+		// c4j_web_WS samples.html: scan "TRAY<n>" to pick the tray (created on the first sample if new), then scan sample ids;
+		// Enter (DataWedge CR) or Add sends the scan, Delete removes the selected sample from the tray
+		var T = { dlg_Sample_Delete: 'Delete Sample ?' };
+		c4j.page(function () {
+			c4j.lang(['mod_FRM_QM_PANEL_SETUP', 'btn_Load_Samples', 'lbl_Panel', 'lbl_Tray', 'lbl_Sample_ID', 'lbl_Sequence_ID', 'lbl_Scan_Tray_Sample', 'btn_Delete', 'btn_Back', 'btn_Add', 'dlg_Sample_Delete']).then(function (t) {
+				Object.keys(T).forEach(function (k) { if (t[k]) { T[k] = t[k]; } });
+				c4j.label('hdr_Panel', t.lbl_Panel); c4j.label('hdr_Tray', t.lbl_Tray);
+				c4j.label('title', t.mod_FRM_QM_PANEL_SETUP); c4j.label('subtitle', t.btn_Load_Samples);
+				c4j.label('lbl_Sample_ID', t.lbl_Sample_ID); c4j.label('lbl_Sequence_ID', t.lbl_Sequence_ID);
+				c4j.label('lbl_Scan_Tray_Sample', t.lbl_Scan_Tray_Sample ? t.lbl_Scan_Tray_Sample + ' :' : '');
+				c4j.label('buttonDelete', t.btn_Delete); c4j.label('buttonBack', t.btn_Back); c4j.label('buttonAdd', t.btn_Add);
+				load();
+			});
+			function load() {
+				c4j.get('api/qm/setup/samples').then(function (r) {
+					if (!r.ok) { return; }
+					var d = r.data;
+					c4j.text('panelLine', d.panelID); c4j.text('trayLine', d.traySequence || '-');
+					qm.rows('samples', d.samples, { id: 'sampleID', first: function (s) { return '(' + s.sequenceLetter + ') ' + s.sampleID; }, cells: [function (s) { return { text: s.sequenceID, cls: 'num' }; }] });
+					document.getElementById('buttonDelete').disabled = d.samples.length === 0;
+					c4j.focus('scanData');
+				});
+			}
+			c4j.onSubmit('qmSamples', function () {
+				var data = c4j.value('scanData').trim();
+				if (!data) { c4j.focus('scanData'); return; }
+				c4j.put('api/qm/setup/samples/scan', { data: data }).then(function (r) {
+					if (r.busy) { return; }
+					c4j.setValue('scanData', '');
+					if (r.ok) { load(); } else { c4j.focus('scanData'); }
+				});
+			});
+			document.getElementById('buttonDelete').addEventListener('click', function () {
+				var id = qm.chosen();
+				if (!id) { c4j.message('Select a sample.'); return; }
+				if (qm.confirm(T.dlg_Sample_Delete + ' [' + id + ']')) {
+					c4j.put('api/qm/setup/samples/delete', { sampleID: id }).then(function (r) { if (r.ok) { load(); } });
+				}
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('qmTrays'); });
+		});
+	</script>
+</body>
+</html>

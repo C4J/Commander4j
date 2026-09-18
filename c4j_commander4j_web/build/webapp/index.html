@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Welcome</title>
+	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<h1><span style="color:blue">Commander</span><span style="color:red">4j</span></h1>
+		<form id="index" name="index" onsubmit="return false;">
+			<h2>Version : <span id="version"></span></h2>
+			<div class="form-group">
+				<img src="images/splash.gif" width="100%" style="display:block; margin-left:auto; margin-right:auto;max-width:300px">
+			</div>
+			<div class="form-group"><br></div>
+			<h2>Host : <span id="server"></span></h2>
+			<div class="form-group"><br></div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="submit" class="submit-btn" id="buttonStart">Start</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.deda09e2.js"></script>
+	<script>
+		c4j.page(function () {
+			c4j.get('api/ping').then(function (r) {
+				c4j.text('version', r.data.version);
+				c4j.text('server', r.data.server);
+			});
+			c4j.onSubmit('index', function () { c4j.put('api/session/start'); });
+			c4j.focus('buttonStart');
+		});
+	</script>
+</body>
+</html>

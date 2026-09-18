@@ -152,6 +152,39 @@ public class JMenuRFDespatchList
 	}
 	
 	
+	/**
+	 * The despatches buildDespatchList() renders as radio buttons, as data: the
+	 * requested page of despatches with the given status. Sets the same
+	 * returnedPage / maxPages / despatchCount / checkedIndex that buildDespatchList
+	 * sets. Added 2026-09-11 for c4j_commander4j_web; buildDespatchList() unchanged.
+	 */
+	public LinkedList<JDBDespatch> getDespatches(String status, String defaultItem, int currentPage, int maxitems) {
+
+		itemsPerPage = maxitems;
+		defaultItem = JUtility.replaceNullStringwithBlank(defaultItem);
+
+		JDBDespatch desp = new JDBDespatch(getHostID(), getSessionID());
+		LinkedList<JDBDespatch> list = desp.browseDespatchData(status, 9999);
+		list = paginateList(list, currentPage, itemsPerPage);
+
+		checkedIndex = -1;
+		despatchCount = list.size();
+
+		for (int x = 0; x < list.size(); x++)
+		{
+			if (defaultItem.equals("") == true)
+			{
+				defaultItem = list.get(x).getDespatchNo();
+			}
+			if (list.get(x).getDespatchNo().equals(defaultItem) == true)
+			{
+				checkedIndex = x;
+			}
+		}
+
+		return list;
+	}
+
 	public String buildDespatchList(String status, String defaultItem, int currentPage,int maxitems) {
 		String result = "";
 		itemsPerPage = maxitems;

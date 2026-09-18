@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Pallet Return</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Pallet Return</h1>
+		<form id="processOrderReturnSelect" name="processOrderReturnSelect" onsubmit="return false;">
+			<h2 id="subtitle">Select Process Order</h2>
+			<div class="divTable kv">
+				<div class="divTableBody">
+					<div class="divTableRow"><div class="divTableCell"><label id="lbl_User_ID">User ID</label></div><div class="divTableCell"><span class="value" id="userLine"></span></div></div>
+					<div class="divTableRow"><div class="divTableCell"><label id="web_SSCC">SSCC</label></div><div class="divTableCell"><span class="value" id="ssccLine"></span></div></div>
+				</div>
+			</div>
+			<div class="table-scroll">
+				<table class="data-table" id="orderTable">
+					<thead><tr><th id="lbl_Issue_Order">Order</th><th id="lbl_Location_ID">Location</th><th id="lbl_Pallet_Quantity">Quantity</th><th id="lbl_Pallet_UOM">UOM</th></tr></thead>
+					<tbody id="orders"></tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="button" class="cancel-btn" id="buttonBack">Back</button>
+				<button type="submit" class="submit-btn" id="buttonReturn">Return</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.js"></script>
+	<script>
+		// c4j_web_Issue processOrderReturnSelect.html: the (order, location) rows with a returnable balance for the SSCC
+		c4j.page(function () {
+			c4j.lang(['lbl_User_ID', 'web_SSCC', 'dlg_Select_Process_Order', 'btn_Back', 'lbl_Order', 'mod_FRM_PAL_RETURN', 'lbl_Issue_Order', 'lbl_Location_ID', 'lbl_Pallet_Quantity', 'lbl_Pallet_UOM', 'btn_Return']).then(function (t) {
+				c4j.label('lbl_User_ID', t.lbl_User_ID); c4j.label('web_SSCC', t.web_SSCC);
+				c4j.label('title', t.mod_FRM_PAL_RETURN); c4j.label('subtitle', t.dlg_Select_Process_Order); c4j.label('buttonBack', t.btn_Back); c4j.label('lbl_Issue_Order', t.lbl_Order); c4j.label('lbl_Location_ID', t.lbl_Location_ID);
+				c4j.label('lbl_Pallet_Quantity', t.lbl_Pallet_Quantity); c4j.label('lbl_Pallet_UOM', t.lbl_Pallet_UOM); c4j.label('buttonReturn', t.btn_Return);
+			});
+			c4j.get('api/return/orders').then(function (r) {
+				if (!r.ok) { return; }
+				var d = r.data;
+				c4j.text('userLine', d.username);
+				c4j.text('ssccLine', d.sscc);
+				var tb = document.getElementById('orders');
+				tb.innerHTML = '';
+				var focusMe = null;
+				d.orders.forEach(function (o, i) {
+					var tr = document.createElement('tr');
+					var td = document.createElement('td');
+					var radio = document.createElement('input'); radio.type = 'radio'; radio.name = 'row'; radio.value = String(i); radio.checked = o.selected || (i === 0 && !d.orders.some(function (x) { return x.selected; }));
+					radio.setAttribute('data-order', o.processOrder); radio.setAttribute('data-location', o.location); radio.setAttribute('data-quantity', o.quantity);
+					td.appendChild(radio); td.appendChild(document.createTextNode(o.processOrder)); tr.appendChild(td);
+					var t2 = document.createElement('td'); t2.textContent = o.location; tr.appendChild(t2);
+					var t3 = document.createElement('td'); t3.className = 'num'; t3.textContent = o.quantity; tr.appendChild(t3);
+					var t4 = document.createElement('td'); t4.textContent = o.uom; tr.appendChild(t4);
+					if (radio.checked) { tr.className = 'selected'; focusMe = radio; }
+					tr.addEventListener('click', function () { radio.checked = true; Array.prototype.forEach.call(tb.querySelectorAll('tr'), function (x) { x.className = ''; }); tr.className = 'selected'; });
+					tb.appendChild(tr);
+				});
+				document.getElementById('buttonReturn').disabled = d.orders.length === 0;
+				if (focusMe) { focusMe.focus(); } else { c4j.focus('buttonBack'); }
+			});
+			c4j.onSubmit('processOrderReturnSelect', function () {
+				var chosen = document.querySelector('input[name="row"]:checked');
+				if (!chosen) { c4j.message('Select an order.'); return; }
+				c4j.put('api/return/order', { processOrder: chosen.getAttribute('data-order'), location: chosen.getAttribute('data-location'), quantity: chosen.getAttribute('data-quantity') });
+			});
+			document.getElementById('buttonBack').addEventListener('click', function () { c4j.goTo('palletReturnSelect'); });
+		});
+	</script>
+</body>
+</html>
