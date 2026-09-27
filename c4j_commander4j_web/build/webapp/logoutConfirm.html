@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>Logout</title>
+	<link href="style/commander.31ed74db.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="container">
+		<h1 id="title">Logout ?</h1>
+		<form id="logoutConfirm" name="logoutConfirm" onsubmit="return false;">
+			<div class="form-group"><br></div>
+			<div class="form-group">
+				<label id="message" style="color:black; background-color:yellow"></label>
+			</div>
+			<div class="button-group">
+				<button type="submit" class="submit-btn" id="buttonYes">Yes</button>
+				<button type="button" class="cancel-btn" id="buttonNo">No</button>
+			</div>
+		</form>
+	</div>
+	<script src="js/c4j.73c36a46.js"></script>
+	<script>
+		// Back on the top-level menu lands here (PUT /api/menu/back -> next = logoutConfirm, 2026-09-20) instead of
+		// logging out at once. Yes = the old exit (drop the user, back to login, host stays connected); No = menu.
+		// Nothing is changed in the session until Yes, so a reload just shows the question again.
+		// web_Logout (schema 218) is the plain word; the page adds the " ?". English stays when a key is missing.
+		// Focus starts on No: on the MC9400 Enter fires the focused button, so Back + Enter must not log out.
+		c4j.page(function () {
+			c4j.lang(['web_Logout', 'web_Yes', 'web_No']).then(function (t) {
+				if (t.web_Logout) { c4j.text('title', t.web_Logout + ' ?'); }
+				c4j.label('buttonYes', t.web_Yes); c4j.label('buttonNo', t.web_No);
+			});
+			c4j.focus('buttonNo');
+			c4j.onSubmit('logoutConfirm', function () { c4j.put('api/menu/exit'); });
+			document.getElementById('buttonNo').addEventListener('click', function () { c4j.goTo('menu'); });
+		});
+	</script>
+</body>
+</html>

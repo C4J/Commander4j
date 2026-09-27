@@ -4,6 +4,22 @@ Started 2026-09-11. Proof of concept. Supersedes the "merge into web_react" plan
 `Scratchpad/WebArchitectureReview.md` §9.7 (that section is kept for history).
 
 
+> **2026-09-20 evening - SCHEMA 219 (id_check clean-ups) BUILT; 218 = web_Logout only, already applied by Dave in
+> MySQL DEV, SQL Server DEV and Oracle DEV (all report 218).** Dave asked for the id_check section-B clean-ups to be
+> appended to 218; because those three copies had already consumed 000218 (the loader runs a file once per site) they
+> are `000219.xml` instead (46 guarded DML statements x 3 drivers, DTD valid), JVersion schema 219, jar rebuilt from
+> bin/ + copied to WEB-INF/lib, war rebuilt (holds 218 + 219 + the 219 jar). Dry-run twice in a rolled-back
+> transaction on MySQL DEV, SQL Server DEV and Oracle DEV: perms 3 -> 0, orphan keys 28 -> 0, mod_ keys 0 -> 40 -> 40,
+> the two RESOURCE_KEY updates land once; results identical on all three. B.4 / B.5 deliberately NOT applied (see the
+> 219 section). NEXT for Dave: apply 219 in DEV via desktop Setup (the jar's gate wants 219), MC9400 logout test.
+>
+> **2026-09-20 - LOGOUT CONFIRMATION (schema 218) BUILT.** Back on the top-level menu now
+> goes to a `logoutConfirm.html` page ("Logout ?" Yes / No; No is focused) instead of logging out at once. One new
+> language key `web_Logout` (plain "Logout", the page adds " ?") in schema 000218 x 3 drivers (8 guarded inserts,
+> DTD valid, DEV dry-run 0 -> 8 -> 8 -> rolled back, accents intact). Dave applied 218 on all three DEV copies and
+> tested with Docker the same evening ("all seems ok"). Still open: MC9400 test, Playwright harness run (not installed).
+> See "Logout confirmation - schema 218" below.
+
 > **2026-09-17 ~13:15 - NESTED RF MENU (schema 217): PHASE 2 (desktop RF Menu editor + core write path) ALSO BUILT.**
 > Core: `JInternalFrameRFMenu` rewritten on the `JInternalFrameMenuStructure` pattern (Menu | Assigned | Unassigned,
 > 818x543, root pre-selected, Save rewrites the selected menu only); `JDBRFMenu` gained create(menu,module,seq) /
@@ -478,7 +494,7 @@ bridge enabled, and the "material valid but location invalid" branch of confirm.
   form-group, divTable*, button-group, submit-btn/cancel-btn/regular-btn). web_Issue's look
   (sans-serif, flat buttons with drop shadow, light-blue focus) but rem + clamp() sizes, not px.
   Colour roles are `:root` custom properties (`--c4j-*`), one line each to flip. Message stays
-  yellow (22 pages), focus light blue, Submit/Cancel keep green/red, menu buttons web_Issue yellow.
+  yellow (22 pages), focus light blue, Submit/Cancel keep green/red, menu buttons were web_Issue yellow until 2026-09-19, now white cards (`.menu-btn`: 10px radius, thin border, icon on a rounded tile, chevron, inset teal focus ring) on a grey `.menu-page .c4j-body` panel. hosts.html (2026-09-19) is the same one-tap card list (`.menu-btn.compact`, no icon, no Select button, tap = PUT api/session/host); ArrowUp/Down for both lists live in `c4j.arrowList`. despatchSelect.html is the last `.button-group-vertical` radio list.
   The old MC92N0 (500px, 85%, green tint) / MC9300 (400px, 60%, blue tint) media queries are GONE;
   one 90% step at <=400px remains. The pre-restyle file was byte-identical to web_react `WebContent/style/commander.css`, so that is the backup.
 - `js/c4j.js` `layout()` runs in `c4j.page()` before init: the page's form is split into
@@ -610,8 +626,8 @@ c4j_commander4j_web/
     api/LangServlet        GET /api/lang?keys=a,b,c            {language, text:{key:text}}     (login required, see note)
     api/MenuServlet        GET /api/menu                       rows directly under the session's current menu (schema 217 tree) + selected, menu, title, isRoot
                            PUT /api/menu/select {selectedMenuOption}   MENU row: descend -> menu; otherwise Process.menu() preparation -> next page, or "not ported yet"
-                           PUT /api/menu/back                  inside a sub-menu: up one level (menu left re-selected) -> menu; at root: same as /exit
-                           PUT /api/menu/exit                  drop user -> login
+                           PUT /api/menu/back                  inside a sub-menu: up one level (menu left re-selected) -> menu; at root: -> logoutConfirm ("Logout ?" Yes/No, 2026-09-20)
+                           PUT /api/menu/exit                  logoutConfirm Yes: drop user -> login
                            (module permission: JDBUser.isModuleAllowed, also available to any endpoint via JsonServlet.moduleId() / refuseUnlessAllowed())
     api/PalletServlet      GET /api/pallets/state              all pallet-page session values (counts, order/material, GTIN compare, info fields)
                            PUT /api/pallets/confirm {sscc}                 palletConfirm      (FRM_PAL_PROD_CONFIRM)
@@ -669,6 +685,89 @@ Notes learned while building:
 - Smoke test method: throwaway CATALINA_BASE in the session scratchpad on port 18080, war
   copied to its webapps/, curl with a cookie jar. hosts.xml seeds into the tools Tomcat's
   `c4j_config/c4j_commander4j_web/` (same place Eclipse WTP will use).
+
+## Schema 219 - id_check section-B clean-ups (2026-09-20 evening)
+
+Dave: "ok append them" (the section-B items of `IdCheck_Assessment_2026-09-18.md`). Written as **000219**, not appended
+to 218, because MySQL DEV, SQL Server DEV and Oracle DEV had already consumed 000218 (SCHEMA VERSION 218 on all
+three) - the loader runs each file once per site, so an appended statement would never have reached them. 218 was
+restored to the exact 8-statement file those copies ran.
+
+`c4j_commander4j/xml/schema/<driver>/000219.xml`, identical on 3 drivers (+ copies in this project's xml/schema),
+46 statements, all guarded / idempotent DML:
+
+- **B.1** `DELETE FROM SYS_GROUP_PERMISSIONS WHERE MODULE_ID = ...` for `FRM_ADMIN_MATERIAL_CUS_DATA`,
+  `FRM_BOM_STRUCTURE_PRINT`, `RPT_WASTE_REPORT_LAB` (every group, not only the seeded one). The first is a typo of
+  `FRM_ADMIN_MATERIAL_CUST_DATA` (exists, FORM; the CUSTOMER group does not hold the correct id) but it is NOT
+  converted into a grant: granting a screen is a per-site Group Permissions call (Dave's 217 rule). One-line option if
+  he wants it: a guarded `INSERT ... SELECT GROUP_ID FROM SYS_GROUP_PERMISSIONS WHERE MODULE_ID = typo` before the delete.
+- **B.2** one `DELETE FROM SYS_LANGUAGE WHERE RESOURCE_KEY IN (lbl_PO_Date, lbl_PO_Status, lbl_Purchase_Order,
+  lbl_Vendor)` - 28 rows in DEV, no EN row, referenced only by the lang_review toolkit outputs.
+- **B.3** 5 keys x 8 languages = 40 guarded inserts (215 form, EN from the module HINT):
+  `mod_FRM_ADMIN_GROUP_USERS` "Group Users", `mod_FRM_ADMIN_MODULE_GROUPS` "Module Groups",
+  `mod_FRM_ADMIN_MODULE_ALTERNATE` "Alternative Module", `mod_FRM_ADMIN_WASTE_LOG_ADD` "Add Waste Log Entry",
+  `mod_FRM_ADMIN_WASTE_LOG_DELETE` "Delete Waste Log Entry"; plus two guarded
+  `UPDATE SYS_MODULES SET RESOURCE_KEY = <own key> WHERE MODULE_ID = ... AND RESOURCE_KEY = <shared key>` for
+  FRM_ADMIN_MODULE_ALTERNATE (shared mod_FRM_ADMIN_MODULE_GROUPS) and FRM_ADMIN_WASTE_LOG_DELETE (shared
+  mod_FRM_ADMIN_WASTE_LOG_ADD) - adding the shared key alone would have titled the DELETE flag "Add Waste Log Entry".
+  FRM_ADMIN_PALLET_EQUIPMENT (blank key, dead module) left alone. No apostrophes in any text (raw SQL, bare PCDATA).
+- **B.4 NOT applied** (dead SYS_MODULES rows): the scanner misses ids built by concatenation - `JInternalFrameQMSampleRecord`
+  uses the prefix `"RPT_SAMPLE_LABEL"` + dpi, and `RPT_WT_*` are launched by pattern from the weight report frame;
+  those REPORT rows carry report filenames and are granted to up to 10 groups in DEV (WIS data). Deleting = breaking.
+- **B.5 NOT applied** (49 "unreferenced" keys): `web_Yes` / `web_No` are on the list yet despatchConfirm requests them.
+  Cause (read in `id_check.py`): `QUOTED_RE` caps quoted literals at 60 chars, and that page's `api/lang?keys=...` URL is
+  63, so the whole literal is dropped before the `keys=` parser sees it. Plus the old wars still ship.
+
+`JVersion.getSchemaVersion()` 218 -> 219 (app version 12.75 untouched); jar rebuilt from bin/ with the release
+manifest (sipush 219), rsynced to WEB-INF/lib, `ant clean build war` (war holds 218 + 219 x 3 + the jar).
+
+**Dry-runs 2026-09-20 evening, statements run twice inside one rolled-back transaction, identical on all three:**
+MySQL DEV (native client), SQL Server DEV (`docker exec sqlserver sqlcmd -f 65001`, GO per statement), Oracle DEV
+(`sqlplus / as sysdba` + `ALTER SESSION SET CURRENT_SCHEMA=C##COMMANDER4J_DEV`, NLS_LANG AL32UTF8):
+perm rows 3 -> 0, orphan lang rows 28 -> 0, new mod_ rows 0 -> 40 -> 40, both RESOURCE_KEY updates applied, all
+counts back after ROLLBACK. SQL Server folds ń -> n (CP1252 varchar, as every PL row); Oracle keeps it.
+
+**Open for Dave:** apply 219 in DEV via desktop Setup (the 219 jar's gate wants 219; SQL Server + Oracle DEV via
+the same route or their own Setup), then the pending MC9400 logout test. The id_check section-A code fixes are
+untouched (desktop code, not schema). Rerun `tools/id_check/id_check.py` after 219 lands in TST to confirm B.1-B.3
+disappear from the report.
+
+## Logout confirmation - schema 218 (2026-09-20)
+
+Dave's request: a user pressing Back on the top-level menu must confirm before being logged out of the selected
+database ("Logout ?" with Yes / No; `web_Yes` / `web_No` already exist, `web_Logout` is new).
+
+**Shape (server-driven page, like despatchConfirm):** `PUT /api/menu/back` with an empty menu path now answers
+`next = logoutConfirm` and changes nothing in the session; `PUT /api/menu/exit` (already there, previously unused
+by any page) is what the Yes button calls - drop the user, back to login, host stays connected. No = `c4j.goTo('menu')`
+(the palletInfo / palletDelete pattern). A reload of the confirm page just asks the question again. The alternative
+- swapping the menu footer in place - was rejected to keep "server decides next" and one screen per page.
+
+**Page:** `logoutConfirm.html`, cloned from despatchConfirm: h1 `web_Logout + " ?"` (English "Logout ?" stays when the
+key is missing, via `c4j.lang` / `c4j.label`), Yes = submit-btn, No = cancel-btn. **Focus starts on No** (despatchConfirm
+focuses Yes): on the MC9400 Enter fires the focused button, and the point of the page is that Back + Enter must not
+log anyone out. Not added to `MenuServlet.PORTED` (that set is module screens only).
+
+**Schema 000218** (`c4j_commander4j/xml/schema/<driver>/000218.xml`, identical on 3 drivers, DTD valid, also copied
+into this project's `xml/schema` as the build script's rsync would): 8 guarded `INSERT ... SELECT ... FROM SYS_MODULES
+WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (key + language)` rows for `web_Logout`, MNEMONIC '0', the 215 form.
+Texts (Claude-written, not native-reviewed): EN Logout, DE Abmelden, ES Cerrar sesión, FR Déconnexion,
+HU Kijelentkezés, IT Disconnetti, NL Uitloggen, PL Wyloguj. `JVersion.getSchemaVersion()` 217 -> 218 (loader gate
+only; the 12.75 app version is untouched). Jar: `JVersion` compiled into `bin/`, `jar cmf0 MANIFEST.MF` from bin/
+(the script's recipe; entry list identical to the 19 Sep jar, sipush 218 verified), rsynced to WEB-INF/lib, then
+`ant clean build war` (war holds the page, the 3 xml files and the new jar). Pre-218 jar kept in the session scratchpad.
+
+**Dry-run 2026-09-20 on Commander4j_DEV** (at 217, native mysql client, one rolled-back transaction, statements run
+twice): 0 -> 8 -> 8 rows, UTF-8 intact (sesión, Déconnexion, Kijelentkezés), 0 after rollback. SQL Server / Oracle
+were NOT dry-run by me (Docker daemon down); **Dave tested with the Docker engines the same evening - "all seems ok".**
+
+**Harness:** `tools/shoot.js` lists the page and mocks `web_Logout/web_Yes/web_No`; not run (Playwright not installed
+anywhere on this Mac).
+
+**Open for Dave:** apply 218 in DEV via desktop Setup (this jar's gate wants 218), drop the war on the tools Tomcat,
+MC9400: Back at the top menu -> "Logout ?" -> No returns to the menu with the selection kept, Yes -> login page.
+The id_check assessment (2026-09-18, section B) clean-ups are schema **219** (section above), because DEV had already
+consumed 218 when Dave asked for them.
 
 ## Nested menu - schema 217 (2026-09-17)
 

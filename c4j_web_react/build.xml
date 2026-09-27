@@ -8,7 +8,7 @@
     <property name="source" value="25"/>
     
     <!-- Custom property for Tomcat libraries -->
-    <property name="tomcat.lib.dir" value="../../../../tools/apache-tomcat-11.0.21 (Java 25)/lib"/>
+    <property name="tomcat.lib.dir" value="../../../../tools/apache-tomcat-11.0.26 (Java 25)/lib"/>
 
     <!-- Classpath declarations -->
     <path id="EAR Libraries.libraryclasspath"/>

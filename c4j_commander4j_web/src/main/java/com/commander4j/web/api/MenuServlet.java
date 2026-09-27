@@ -8,8 +8,9 @@ package com.commander4j.web.api;
  *   PUT /api/menu/select {selectedMenuOption}   a MENU-type row descends into it; otherwise the same per-module
  *                                 preparation + next page as Process.menu()
  *   PUT /api/menu/back            inside a sub-menu: climb one level (the menu just left is re-selected);
- *                                 at the top level: the same as /exit
- *   PUT /api/menu/exit            menu Exit: drop the user, back to login (host stays connected)
+ *                                 at the top level: next = the logoutConfirm page ("Logout ?" Yes / No, 2026-09-20)
+ *   PUT /api/menu/exit            logoutConfirm Yes (was the menu Exit button): drop the user, back to login
+ *                                 (host stays connected)
  *
  * Since schema 217 SYS_RF_MENU is a tree like SYS_MENUS (MENU_ID = parent, top level = root); one level is shown
  * at a time (MC9400 320x405). The current path is the session value MENU_PATH: menu ids from the top, "/"-joined,
@@ -270,14 +271,17 @@ public class MenuServlet extends JsonServlet
 		return ApiResponse.goTo(page);
 	}
 
-	// ---- PUT /api/menu/back  (footer Back: up one level, or exit at the top) --
+	// ---- PUT /api/menu/back  (footer Back: up one level, or confirm logout at the top) --
+
+	/** page shown when Back is pressed at the top level: "Logout ?" with Yes (PUT /exit) and No (back to menu) */
+	static final String PAGE_LOGOUT_CONFIRM = "logoutConfirm";
 
 	private ApiResponse back(WebSession ws)
 	{
 		List<String> path = menuPath(ws);
 		if (path.isEmpty())
 		{
-			return exit(ws);
+			return ApiResponse.goTo(PAGE_LOGOUT_CONFIRM);   // nothing changes in the session until Yes calls /exit
 		}
 		String left = path.remove(path.size() - 1);
 		setMenuPath(ws, path);
@@ -285,7 +289,7 @@ public class MenuServlet extends JsonServlet
 		return ApiResponse.goTo(SessionServlet.PAGE_MENU);
 	}
 
-	// ---- PUT /api/menu/exit  (Process.menu Cancel) ---------------------------
+	// ---- PUT /api/menu/exit  (logoutConfirm Yes; was Process.menu Cancel) ---------
 
 	private ApiResponse exit(WebSession ws)
 	{

@@ -17,7 +17,8 @@
  *
  * Colour roles are custom properties: flip one line to change a role everywhere.
  * Message stays yellow (22 pages rely on it), focus is light blue, Submit/Cancel
- * keep green/red because operators know them, menu buttons use web_Issue's yellow.
+ * keep green/red because operators know them. Menu buttons were web_Issue's yellow until
+ * 2026-09-19; now white cards on a grey panel (Dave's mock-up: icon tile, chevron, focus ring).
  */
 
 :root {
@@ -33,8 +34,15 @@
 	--c4j-submit: #4CAF50;
 	--c4j-cancel: #f44336;
 	--c4j-regular: #2fbfea;
-	--c4j-menu-btn: #f1f624;
-	--c4j-menu-btn-text: #000000;
+	/* menu cards (2026-09-19, replaced the #f1f624 yellow buttons) */
+	--c4j-menu-page-bg: #eef1f5;      /* grey panel behind the card list */
+	--c4j-menu-card-bg: #ffffff;
+	--c4j-menu-card-hover: #f5f7fa;   /* desktop hover, and the stuck :hover after a tap on the MC9400 */
+	--c4j-menu-card-border: #d9dfe6;
+	--c4j-menu-card-text: #1f2d3d;
+	--c4j-menu-tile-bg: #e6edf3;      /* rounded tile behind the module's GIF icon */
+	--c4j-menu-chevron: #8a97a5;
+	--c4j-menu-accent: #1f6f8b;       /* focus ring = the operator's keypad cursor */
 	--c4j-text-size: clamp(1rem, 4vw, 1.2rem);   /* one body size: labels, values, inputs, selects, buttons, list tables, message line */
 	--c4j-gap: 0.5rem;
 	--c4j-touch: 2.5rem;        /* minimum tap height for buttons and inputs (3rem until 2026-09-12: MC9400 could not fit despatchHeader) */
@@ -236,12 +244,22 @@ button:focus-visible { outline: 3px solid var(--c4j-regular); outline-offset: 2p
 .button-group-vertical input[type="radio"] { margin: 0 0.5rem 0 0; }
 
 /* ---- one-tap menu (menu.html) ------------------------------------------------ */
+/* Card list (2026-09-19). menu.html and hosts.html put .menu-page on their .container so only those pages get the grey
+   panel; hosts.html cards carry .compact (no icon tile, shorter, so more hosts fit).
+   The focus ring is drawn INSIDE the card (inset box-shadow): the old 3px outline sat outside the button and
+   .c4j-body's overflow clipped its left/right edges, which showed on the MC9400 as two blue lines. */
+
+.menu-page .c4j-body {
+	background-color: var(--c4j-menu-page-bg);
+	border-radius: 10px;
+	padding: 0.5rem;
+}
 
 .menu-list {
 	display: flex;
 	flex-direction: column;
-	gap: var(--c4j-gap);
-	padding: 0.25rem 0.1rem;
+	gap: 0.5rem;
+	padding: 0;
 }
 
 .menu-btn {
@@ -250,19 +268,45 @@ button:focus-visible { outline: 3px solid var(--c4j-regular); outline-offset: 2p
 	gap: 0.75rem;
 	width: 100%;
 	min-height: 3.25rem;
-	padding: 0.4rem 0.9rem;
+	padding: 0.4rem 0.6rem;
 	text-align: left;
-	color: var(--c4j-menu-btn-text);
-	background-color: var(--c4j-menu-btn);
+	letter-spacing: 0;
+	font-weight: 600;
+	color: var(--c4j-menu-card-text);
+	background-color: var(--c4j-menu-card-bg);
+	border: 1px solid var(--c4j-menu-card-border);
+	border-radius: 10px;
+	box-shadow: 0 1px 2px rgba(31, 45, 61, 0.08);
 }
-.menu-btn:hover { background-color: #ffffff; }
+.menu-btn.compact { min-height: 2.75rem; padding-left: 0.9rem; }
+.menu-btn:hover  { background-color: var(--c4j-menu-card-hover); }
+.menu-btn:active { background-color: var(--c4j-menu-page-bg); box-shadow: none; }
+.menu-btn:focus-visible {
+	outline: none;
+	border-color: var(--c4j-menu-accent);
+	box-shadow: inset 0 0 0 2px var(--c4j-menu-accent);
+}
 .menu-btn .menu-icon {
 	flex: 0 0 auto;
-	width: 2rem;
-	height: 2rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	padding: 0.3rem;
+	object-fit: contain;
+	border-radius: 8px;
+	background-color: var(--c4j-menu-tile-bg);
 	image-rendering: auto;
 }
 .menu-btn .menu-label { flex: 1 1 auto; }
+.menu-btn::after {                     /* chevron */
+	content: "";
+	flex: 0 0 auto;
+	width: 0.55rem;
+	height: 0.55rem;
+	margin-right: 0.25rem;
+	border-right: 2px solid var(--c4j-menu-chevron);
+	border-bottom: 2px solid var(--c4j-menu-chevron);
+	transform: rotate(-45deg);
+}
 
 /* ---- table-like layout used by the data screens ------------------------------ */
 

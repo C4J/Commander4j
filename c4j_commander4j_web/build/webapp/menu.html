@@ -7,10 +7,10 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
 	<title>Menu</title>
-	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+	<link href="style/commander.31ed74db.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div class="container">
+	<div class="container menu-page">
 		<h1 id="title">Menu</h1>
 		<form id="menus" name="menus" onsubmit="return false;">
 			<div class="menu-list" id="menuList"></div>
@@ -22,12 +22,11 @@
 			</div>
 		</form>
 	</div>
-	<script src="js/c4j.deda09e2.js"></script>
+	<script src="js/c4j.73c36a46.js"></script>
 	<script>
 		// One-tap menu (decided 2026-09-11): each RF menu option is a button; a tap sends the same
 		// PUT /api/menu/select the old radio list + Select button sent. The list scrolls between the
-		// fixed title and the fixed footer (c4j.layout). Native buttons only move focus with Tab, so
-		// ArrowUp/ArrowDown are handled here for the MC9400 keypad; Enter fires the focused button.
+		// fixed title and the fixed footer (c4j.layout). ArrowUp/ArrowDown for the MC9400 keypad: c4j.arrowList.
 		var DEFAULT_ICON = { MENU: 'menu.gif', FORM: 'form.gif', SCANNER: 'scanner.gif', REPORT: 'report.gif', FUNCTION: 'function.gif', EXEC: 'execute.gif', USER: 'userreports.gif' };
 		c4j.page(function () {
 			var rootTitle = '';
@@ -73,15 +72,7 @@
 				var first = list.querySelector('button');
 				if (focusMe) { focusMe.focus(); focusMe.scrollIntoView({ block: 'nearest' }); } else if (first) { first.focus(); }
 			});
-			document.getElementById('menuList').addEventListener('keydown', function (ev) {
-				if (ev.key !== 'ArrowDown' && ev.key !== 'ArrowUp') { return; }
-				var buttons = Array.prototype.slice.call(this.querySelectorAll('button'));
-				var i = buttons.indexOf(document.activeElement);
-				if (i < 0) { return; }
-				var next = buttons[i + (ev.key === 'ArrowDown' ? 1 : -1)];
-				if (next) { next.focus(); next.scrollIntoView({ block: 'nearest' }); }
-				ev.preventDefault();
-			});
+			c4j.arrowList(document.getElementById('menuList'));
 			// Back climbs one menu level; at the top level the server treats it as Exit (drop user, back to login)
 			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.put('api/menu/back'); });
 		});

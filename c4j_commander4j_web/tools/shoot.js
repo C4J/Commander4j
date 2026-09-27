@@ -17,7 +17,7 @@ const menu = [
 ].map((m, i) => ({ moduleID: m[0], description: m[1], icon: m[2], moduleType: 'FORM', selected: i === 2 }));
 const mocks = {
   'api/menu': ok({ options: menu, selected: 'FRM_ADMIN_DESPATCH', menu: 'root', title: '', isRoot: true }),
-  'api/lang': ok({ language: 'EN', text: { mod_root: 'Commander4j', web_Exit: 'Exit' } }),
+  'api/lang': ok({ language: 'EN', text: { mod_root: 'Commander4j', web_Exit: 'Exit', web_Logout: 'Logout', web_Yes: 'Yes', web_No: 'No' } }),
   'api/pallets/state': ok({ confirmCount: 3, sscc: '', processOrder: '000012345', material: 'MAT001' }),
   'api/hosts': ok({ hosts: ['mySQL DEV (Local)','mySQL TST (Local)','SQL Server WIS (Docker)','Oracle IJM (Docker)','mySQL AIN (Local)','mySQL ALT (Local)','SQL Server LIV (Docker)','mySQL VAL (Local)','mySQL POL (Local)','Oracle NOR (Docker)','mySQL FRE (Local)','mySQL BIR (Local)'].map((d, i) => ({ siteNumber: String(i + 1), description: d, selected: i === 0 })) }),
   'api/session': ok({ username: 'DAVE', siteDescription: 'mySQL DEV (Local)' }),
@@ -47,7 +47,7 @@ const mocks = {
 (async () => {
   await new Promise(r => server.listen(18099, r));
   const browser = await chromium.launch();
-  const pages = ['menu', 'productionConfirm', 'wasteLog', 'despatchHeader', 'despatchSelect', 'hosts', 'sysInfo', 'processOrderIssueSelect', 'palletIssueSelect', 'palletIssueConfirm', 'processOrderReturnSelect', 'palletReturnConfirm', 'palletHistory', 'qmScoreUser', 'qmScoreSample', 'qmPanels', 'qmPanelEdit', 'qmSamples', 'qmUsers', 'qmUserEdit'];
+  const pages = ['menu', 'logoutConfirm', 'productionConfirm', 'wasteLog', 'despatchHeader', 'despatchSelect', 'hosts', 'sysInfo', 'processOrderIssueSelect', 'palletIssueSelect', 'palletIssueConfirm', 'processOrderReturnSelect', 'palletReturnConfirm', 'palletHistory', 'qmScoreUser', 'qmScoreSample', 'qmPanels', 'qmPanelEdit', 'qmSamples', 'qmUsers', 'qmUserEdit'];
   const sizes = [[320, 405], [360, 560], [360, 640], [400, 700], [480, 800], [1024, 768]];   // 320x405 = MC9400 Chrome viewport as measured by sysInfo 2026-09-13 (DPR 1.5, screen 320x534, URL bar + Android nav bar shown); 360x560 was the old guess
   for (const [w, h] of sizes) {
     const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 2, hasTouch: w < 600, isMobile: w < 600 });

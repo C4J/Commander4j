@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<!-- Schema 218 : Logout confirmation on the c4j_commander4j_web main menu, 2026-09-20.                          -->
+<!--                                                                                                             -->
+<!--              Back on the top-level RF menu used to log the user out at once; the web app now shows a       -->
+<!--              "Logout ?" page with Yes / No first (web_Yes / web_No already exist). This file adds the one   -->
+<!--              new language key, web_Logout, in the same 8 languages as schema 215. Plain "Logout" - the page -->
+<!--              appends the " ?". Guarded (NOT EXISTS on key + language) so a site's own text wins; the source -->
+<!--              row comes from SYS_MODULES because SQL Server has no DUAL. Pure DML, safe to re-run.           -->
+
+<!-- ===== web_Logout ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'web_Logout', 'EN', 'Logout', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'web_Logout' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'web_Logout', 'DE', 'Abmelden', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'web_Logout' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'web_Logout', 'ES', 'Cerrar sesión', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'web_Logout' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'web_Logout', 'FR', 'Déconnexion', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'web_Logout' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'web_Logout', 'HU', 'Kijelentkezés', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'web_Logout' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'web_Logout', 'IT', 'Disconnetti', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'web_Logout' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'web_Logout', 'NL', 'Uitloggen', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'web_Logout' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'web_Logout', 'PL', 'Wyloguj', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'web_Logout' AND LANGUAGE_ID = 'PL')
+</statement>
+
+</DDL>

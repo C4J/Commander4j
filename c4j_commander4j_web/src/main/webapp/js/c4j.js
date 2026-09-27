@@ -134,6 +134,20 @@ var c4j = (function () {
 		if (footer.childNodes.length) { host.appendChild(footer); }
 	}
 
+	// One-tap card lists (menu.html, hosts.html): native buttons only move focus with Tab, so ArrowUp/ArrowDown
+	// walk the buttons for the MC9400 keypad; Enter fires the focused button as usual.
+	function arrowList(list) {
+		list.addEventListener('keydown', function (ev) {
+			if (ev.key !== 'ArrowDown' && ev.key !== 'ArrowUp') { return; }
+			var buttons = Array.prototype.slice.call(list.querySelectorAll('button'));
+			var i = buttons.indexOf(document.activeElement);
+			if (i < 0) { return; }
+			var next = buttons[i + (ev.key === 'ArrowDown' ? 1 : -1)];
+			if (next) { next.focus(); next.scrollIntoView({ block: 'nearest' }); }
+			ev.preventDefault();
+		});
+	}
+
 	function page(init) {
 		var start = function () {
 			layout();
@@ -169,6 +183,7 @@ var c4j = (function () {
 		setValue: setValue,
 		message: message,
 		focus: focus,
-		goTo: goTo
+		goTo: goTo,
+		arrowList: arrowList
 	};
 }());

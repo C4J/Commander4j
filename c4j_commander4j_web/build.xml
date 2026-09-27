@@ -6,7 +6,7 @@
     <property name="source" value="25"/>
     
     <!-- Custom property for Tomcat libraries -->
-    <property name="tomcat.lib.dir" value="../../../../tools/apache-tomcat-11.0.21 (Java 25)/lib"/>
+    <property name="tomcat.lib.dir" value="../../../../tools/apache-tomcat-11.0.26 (Java 25)/lib"/>
     
     <path id="Web App Libraries.libraryclasspath">
         <fileset dir="src/main/webapp/WEB-INF/lib">
@@ -81,7 +81,7 @@
     </macrodef>
     <target name="stage" depends="build">
         <delete dir="build/webapp"/>
-        <copy todir="build/webapp" includeemptydirs="true">
+        <copy todir="build/webapp" includeemptydirs="true" preservelastmodified="true">
             <fileset dir="src/main/webapp"/>
         </copy>
         <fingerprint path="js/c4j" ext="js"/>

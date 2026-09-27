@@ -7,53 +7,53 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
 	<title>Host Select</title>
-	<link href="style/commander.e0e6f20f.css" rel="stylesheet" type="text/css" />
+	<link href="style/commander.31ed74db.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div class="container">
+	<div class="container menu-page">
 		<h1>Hosts</h1>
 		<form id="hosts" name="hosts" onsubmit="return false;">
-			<div class="button-group-vertical" id="hostList"></div>
-			<br>
+			<div class="menu-list" id="hostList"></div>
 			<div class="form-group">
 				<label id="message" style="color:black; background-color:yellow"></label>
 			</div>
-			<div class="form-group"><br></div>
 			<div class="button-group">
 				<button type="button" class="cancel-btn" id="buttonCancel">Back</button>
-				<button type="submit" class="submit-btn" id="buttonSubmit">Select</button>
 			</div>
 		</form>
 	</div>
-	<script src="js/c4j.deda09e2.js"></script>
+	<script src="js/c4j.73c36a46.js"></script>
 	<script>
+		// One-tap host list (2026-09-19, same card look and behaviour as menu.html): tapping a host sends the
+		// PUT /api/session/host the old radio list + Select button sent. The radio list + Select is gone; login's
+		// Back (DELETE /api/session) comes back here, so a wrong tap costs one Back.
 		c4j.page(function () {
 			c4j.get('api/hosts').then(function (r) {
 				if (!r.ok) { return; }
 				var list = document.getElementById('hostList');
 				list.innerHTML = '';
-				var first = null;
+				var focusMe = null;
 				r.data.hosts.forEach(function (h) {
-					var label = document.createElement('label');
-					var radio = document.createElement('input');
-					radio.type = 'radio';
-					radio.name = 'selectedHost';
-					radio.value = h.siteNumber;
-					radio.checked = h.selected;
-					label.appendChild(radio);
-					label.appendChild(document.createTextNode(h.description));
-					list.appendChild(label);
-					list.appendChild(document.createElement('br'));
-					if (h.selected) { first = radio; }
+					var btn = document.createElement('button');
+					btn.type = 'button';
+					btn.className = 'menu-btn compact';
+					btn.setAttribute('data-host', h.siteNumber);
+					var label = document.createElement('span');
+					label.className = 'menu-label';
+					label.textContent = h.description;
+					btn.appendChild(label);
+					btn.addEventListener('click', function () {
+						c4j.put('api/session/host', { selectedHost: h.siteNumber }).then(function (r) {
+							if (r.ok && r.data && r.data.redirect) { window.location.assign(r.data.redirect); }
+						});
+					});
+					list.appendChild(btn);
+					if (h.selected) { focusMe = btn; }
 				});
-				if (first) { first.focus(); } else { c4j.focus('buttonSubmit'); }
+				var first = list.querySelector('button');
+				if (focusMe) { focusMe.focus(); focusMe.scrollIntoView({ block: 'nearest' }); } else if (first) { first.focus(); }
 			});
-			c4j.onSubmit('hosts', function () {
-				var chosen = document.querySelector('input[name="selectedHost"]:checked');
-				c4j.put('api/session/host', { selectedHost: chosen ? chosen.value : '' }).then(function (r) {
-					if (r.ok && r.data && r.data.redirect) { window.location.assign(r.data.redirect); }
-				});
-			});
+			c4j.arrowList(document.getElementById('hostList'));
 			document.getElementById('buttonCancel').addEventListener('click', function () { c4j.goTo('index'); });
 		});
 	</script>
