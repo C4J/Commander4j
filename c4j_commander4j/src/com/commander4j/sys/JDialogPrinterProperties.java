@@ -184,7 +184,7 @@ public class JDialogPrinterProperties extends JDialog
 		jDesktopPane1.add(jTextFieldPaperSize);
 
 		JLabel4j_std jLabel_PaperSize = new JLabel4j_std();
-		jLabel_PaperSize.setText("Paper Size");
+		jLabel_PaperSize.setText(lang.get("lbl_Paper_Size"));
 		jLabel_PaperSize.setHorizontalTextPosition(SwingConstants.RIGHT);
 		jLabel_PaperSize.setHorizontalAlignment(SwingConstants.RIGHT);
 		jLabel_PaperSize.setBounds(9, 178, 125, 22);
@@ -449,7 +449,7 @@ public class JDialogPrinterProperties extends JDialog
 			jDesktopPane1.add(comboBox4jGroup);
 
 			JLabel4j_std label4j_std1 = new JLabel4j_std();
-			label4j_std1.setText("DPI");
+			label4j_std1.setText(lang.get("lbl_DPI"));
 			label4j_std1.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std1.setHorizontalAlignment(SwingConstants.RIGHT);
 			label4j_std1.setBounds(9, 145, 125, 22);

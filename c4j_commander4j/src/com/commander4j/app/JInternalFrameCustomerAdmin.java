@@ -290,7 +290,7 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 						}
 					});
 					newItemMenuItem.setText(lang.get("btn_Print"));
-					newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_CUSTOMERS"));
+					newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_CUSTOMER"));
 					popupMenu.add(newItemMenuItem);
 				}
 

@@ -280,7 +280,7 @@ public class Start
 
 						if (Common.passwordChangeRequested)
 						{
-							prompt = lang.get("lbl_Password_Change_Requested");
+							prompt = lang.get("lbl_Password_Change_Required");
 						}
 
 						if (Common.passwordChangeRequired)

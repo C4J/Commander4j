@@ -337,7 +337,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 
 			lblInspectionID = new JLabel4j_std();
 			lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblInspectionID.setText(lang.get("lbl_Location_ID"));
+			lblInspectionID.setText(lang.get("lbl_Inspection_ID"));
 			lblInspectionID.setBounds(7, 190, 133, 22);
 			jDesktopPane1.add(lblInspectionID);
 
@@ -397,15 +397,15 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 			spinnerCopies.setEditor(ne);
 			jDesktopPane1.add(spinnerCopies);
 
-			JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Print_Queue"));
-			label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-			label4j_std.setBounds(7, 370, 133, 22);
-			jDesktopPane1.add(label4j_std);
+			JLabel4j_std lblNumberOfLabels = new JLabel4j_std(lang.get("lbl_Number_Of_Labels"));
+			lblNumberOfLabels.setHorizontalAlignment(SwingConstants.TRAILING);
+			lblNumberOfLabels.setBounds(7, 370, 133, 22);
+			jDesktopPane1.add(lblNumberOfLabels);
 
-			JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Number_Of_Labels"));
-			label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-			label4j_std_1.setBounds(7, 400, 133, 22);
-			jDesktopPane1.add(label4j_std_1);
+			JLabel4j_std lblPrintQueue = new JLabel4j_std(lang.get("lbl_Print_Queue"));
+			lblPrintQueue.setHorizontalAlignment(SwingConstants.TRAILING);
+			lblPrintQueue.setBounds(7, 400, 133, 22);
+			jDesktopPane1.add(lblPrintQueue);
 
 			JLabel4j_std lblUserData3 = new JLabel4j_std();
 			lblUserData3.setText(lang.get("lbl_User_Data3"));

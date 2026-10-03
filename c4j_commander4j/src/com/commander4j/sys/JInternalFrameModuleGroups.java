@@ -96,7 +96,7 @@ public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 		setModuleID(lmodule_id);
 
 		final JHelp help = new JHelp();
-		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MODULE_MEMBERS"));
+		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MODULE_GROUPS"));
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();

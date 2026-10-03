@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<!-- Schema 222 : help buttons. SYS_MODULES.HELPSET_ID repointed at wiki.commander4j.com for 188 modules whose help  -->
+<!--              button opened nothing, the wrong page, or a page on the retired commander4j.com/mw wiki           -->
+<!--              (Documentation Audit, 2026-09-24). The wiki navigation was reorganised the same day to mirror the  -->
+<!--              schema-221 menu, and the pages Results Enquiry, Edit Sample, Panel Results, Label Printers and     -->
+<!--              Select Printer were written for the screens that had none.                                        -->
+<!--                                                                                                                -->
+<!--              Each UPDATE only fires when the site still holds the shipped value, an empty value, or an old     -->
+<!--              commander4j.com/mw address, so a site that pointed a help button at its own page keeps it.        -->
+<!--              Left alone (no page yet): FRM_ADMIN_SHIFT + functions (Shift Patterns), FRM_BARCODE_VALIDATE,     -->
+<!--              FRM_PAL_PROD_CONFIRM+, FRM_ADMIN_PALLET_EQUIPMENT, SYS_INFO.                                       -->
+<!--                                                                                                                -->
+<!--              Also: Panel Results' Print button now needs the chosen report's own permission (RPT_PANEL_RESULTS1-4) -->
+<!--              instead of RPT_WASTE_LOG, so the four reports are granted to 06_QUALITY_TECHNCN where that group    -->
+<!--              exists (guarded). Other sites had only ADMIN on the screen.                                          -->
+<!--                                                                                                                -->
+<!--              And: five screen names shortened to match the new Setup menus (Journeys, Material Types, Resources,   -->
+<!--              Scales, Workstations) in all 8 languages, guarded on the shipped text; matching HINT updates.       -->
+<!--              And: 11 generic caption keys x 8 languages for the Label Printers screen and printer properties dialog  -->
+<!--              (lbl_All, lbl_General, lbl_Pack, lbl_Type, lbl_Group, lbl_DPI, lbl_Paper_Size, lbl_Direct, lbl_Export,  -->
+<!--              lbl_Format, lbl_Path), which used hard-coded English until 12.76.                                    -->
+
+<!-- FRM_PAL_SAMPLE: (none) -&gt; Pallet Samples &amp; Faults -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Samples_%26_Faults' WHERE MODULE_ID = 'FRM_PAL_SAMPLE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Samples_%26_Faults') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_PALLET_SAMPLE: (none) -&gt; Pallet Samples Enquiries &amp; Reports -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Samples_Enquiries_%26_Reports' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_SAMPLE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Samples_Enquiries_%26_Reports') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_SAMPLE_DEFECT_TYPE: (none) -&gt; Pallet Sample Defect Types -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Defect_Types' WHERE MODULE_ID = 'FRM_ADMIN_SAMPLE_DEFECT_TYPE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Defect_Types') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_SAMPLE_DEFECT_ID: (none) -&gt; Pallet Sample Defect IDs -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Defect_IDs' WHERE MODULE_ID = 'FRM_ADMIN_SAMPLE_DEFECT_ID' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Defect_IDs') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_SAMPLE_REASON: (none) -&gt; Pallet Sample Reasons -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Reasons' WHERE MODULE_ID = 'FRM_ADMIN_SAMPLE_REASON' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Reasons') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_SHIFT_NAMES: (none) -&gt; Pallet Sample Shift Names -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Shift_Names' WHERE MODULE_ID = 'FRM_ADMIN_SHIFT_NAMES' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Shift_Names') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_PACKING_LINES: (none) -&gt; Pallet Sample Packing Lines -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Packing_Lines' WHERE MODULE_ID = 'FRM_ADMIN_PACKING_LINES' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Packing_Lines') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_SUPPLIER: (none) -&gt; Pallet Sample Supplier Admin -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Supplier_Admin' WHERE MODULE_ID = 'FRM_ADMIN_SUPPLIER' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Supplier_Admin') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_OPERATIVES: (none) -&gt; Pallet Sample Operatives -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Operatives' WHERE MODULE_ID = 'FRM_ADMIN_OPERATIVES' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Sample_Operatives') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_PANEL_RESULTS: (none) -&gt; Panel Results -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Panel_Results' WHERE MODULE_ID = 'FRM_QM_PANEL_RESULTS' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Panel_Results') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_WASTE_REPORT_ID: (none) -&gt; Waste Reporting IDs -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Waste_Reporting_IDs' WHERE MODULE_ID = 'FRM_WASTE_REPORT_ID' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Waste_Reporting_IDs') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_PRINTERS: https://wiki.commander4j.com/index.php?title=Report_Admin -&gt; Label Printers -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Label_Printers' WHERE MODULE_ID = 'FRM_ADMIN_PRINTERS' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Label_Printers') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%' OR HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Report_Admin')
+</statement>
+
+<!-- FRM_WASTE_LOCATION_REPORTING: https://wiki.commander4j.com/index.php?title=Waste_Reporting -&gt; Link Location to Reporting ID -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Link_Location_to_Reporting_ID' WHERE MODULE_ID = 'FRM_WASTE_LOCATION_REPORTING' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Link_Location_to_Reporting_ID') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%' OR HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Waste_Reporting')
+</statement>
+
+<!-- FRM_WASTE_REPORTING_LOCATION: https://wiki.commander4j.com/index.php?title=Waste_Locations -&gt; Link Reporting ID to Location -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Link_Reporting_ID_to_Location' WHERE MODULE_ID = 'FRM_WASTE_REPORTING_LOCATION' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Link_Reporting_ID_to_Location') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%' OR HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Waste_Locations')
+</statement>
+
+<!-- FRM_ADMIN_QM_DICTIONARY: http://www.commander4j.com/mw/index.php/Quality_Results_Dictionary_Admin -&gt; Dictionary -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Dictionary' WHERE MODULE_ID = 'FRM_ADMIN_QM_DICTIONARY' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Dictionary') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_QM_INSPECTION: http://www.commander4j.com/mw/index.php/Quality_Results_Inspection_Admin -&gt; Inspections -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Inspections' WHERE MODULE_ID = 'FRM_ADMIN_QM_INSPECTION' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Inspections') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_QM_SELECTLIST: http://www.commander4j.com/mw/index.php/Quality_Results_Selection_List_Admin -&gt; Selection Lists -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Selection_Lists' WHERE MODULE_ID = 'FRM_ADMIN_QM_SELECTLIST' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Selection_Lists') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_DICTIONARY: http://www.commander4j.com/mw/index.php/Quality_Results_Dictionary_Admin -&gt; Dictionary -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Dictionary' WHERE MODULE_ID = 'FRM_QM_DICTIONARY' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Dictionary') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_INSPECTION: http://www.commander4j.com/mw/index.php/Quality_Results_Inspection_Admin -&gt; Inspections -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Inspections' WHERE MODULE_ID = 'FRM_QM_INSPECTION' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Inspections') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_ACTIVITY: http://www.commander4j.com/mw/index.php/Quality_Results_Activity_Admin -&gt; Inspections -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Inspections' WHERE MODULE_ID = 'FRM_QM_ACTIVITY' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Inspections') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_RESULT_ANALYSIS: http://www.commander4j.com/mw/index.php/Quality_Control_Results_Analysis -&gt; Results Analysis and Reporting -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Results_Analysis_and_Reporting' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Results_Analysis_and_Reporting') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_RESULT_ANALYSIS_ADD: http://www.commander4j.com/mw/index.php/Quality_Control_Results_Analysis -&gt; Results Analysis and Reporting -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Results_Analysis_and_Reporting' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS_ADD' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Results_Analysis_and_Reporting') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_RESULT_ANALYSIS_DELETE: http://www.commander4j.com/mw/index.php/Quality_Control_Results_Analysis -&gt; Results Analysis and Reporting -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Results_Analysis_and_Reporting' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS_DELETE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Results_Analysis_and_Reporting') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_RESULT_ANALYSIS_EDIT: http://www.commander4j.com/mw/index.php/Quality_Control_Results_Analysis -&gt; Results Analysis and Reporting -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Results_Analysis_and_Reporting' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS_EDIT' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Results_Analysis_and_Reporting') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_RESULT_ENQUIRY: http://www.commander4j.com/mw/index.php/Quality_Control_Results_Enquiry -&gt; Results Enquiry -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Results_Enquiry' WHERE MODULE_ID = 'FRM_QM_RESULT_ENQUIRY' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Results_Enquiry') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_SAMPLE_EDIT: http://www.commander4j.com/mw/index.php/Quality_Control_Sample_Edit -&gt; Edit Sample -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Edit_Sample' WHERE MODULE_ID = 'FRM_QM_SAMPLE_EDIT' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Edit_Sample') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_RF_MENU: http://www.commander4j.com/mw/index.php?title=RF_Menu_Maintenance -&gt; Scanner Menu Maintenance -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Scanner_Menu_Maintenance' WHERE MODULE_ID = 'FRM_ADMIN_RF_MENU' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Scanner_Menu_Maintenance') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_WASTE_REPORTING: http://commander4j.com/mw/index.php?title=Waste_Module -&gt; Waste Reporting -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Waste_Reporting' WHERE MODULE_ID = 'FRM_ADMIN_WASTE_REPORTING' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Waste_Reporting') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_CM_PRINTERS: http://www.commander4j.com/mw/index.php/Select_Printer -&gt; Select Printer -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Select_Printer' WHERE MODULE_ID = 'FRM_CM_PRINTERS' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Select_Printer') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_USER_REPORT_RUN: http://www.commander4j.com/mw/index.php/Run_User_Report -&gt; Report Admin -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Report_Admin' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT_RUN' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Report_Admin') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB: http://www.commander4j.com/mw/index.php/Case_Label_Assign_to_Labeller -&gt; Case Label -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Case_Label' WHERE MODULE_ID = 'FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Case_Label') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PAL_PROD_DEC_MANUAL_EDIT_DOM: http://www.commander4j.com/mw/index.php/Case_Label_Printing -&gt; Case Label -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Case_Label' WHERE MODULE_ID = 'FRM_PAL_PROD_DEC_MANUAL_EDIT_DOM' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Case_Label') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PAL_PROD_DEC_MANUAL_EDIT_EXPIRY: http://www.commander4j.com/mw/index.php/Case_Label_Printing -&gt; Case Label -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Case_Label' WHERE MODULE_ID = 'FRM_PAL_PROD_DEC_MANUAL_EDIT_EXPIRY' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Case_Label') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PAL_DELETE: http://www.commander4j.com/mw/index.php/Delete_Pallet -&gt; Pallet Admin -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Pallet_Admin' WHERE MODULE_ID = 'FRM_PAL_DELETE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Pallet_Admin') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PAL_INFO: http://www.commander4j.com/mw/index.php/Pallet_Information_Scanner -&gt; Web Applications Overview -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Web_Applications_Overview' WHERE MODULE_ID = 'FRM_PAL_INFO' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Web_Applications_Overview') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_USER_PASS_CHANGE: http://www.commander4j.com/mw/index.php/Password_Change_Scanner -&gt; Web Applications Overview -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Web_Applications_Overview' WHERE MODULE_ID = 'FRM_USER_PASS_CHANGE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Web_Applications_Overview') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PRINTER_ADD: http://www.commander4j.com/mw/index.php/Auto_Labeller_Printer_Admin -&gt; Label Printers -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Label_Printers' WHERE MODULE_ID = 'FRM_PRINTER_ADD' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Label_Printers') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PRINTER_EDIT: http://www.commander4j.com/mw/index.php/Auto_Labeller_Printer_Admin -&gt; Label Printers -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Label_Printers' WHERE MODULE_ID = 'FRM_PRINTER_EDIT' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Label_Printers') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PRINTER_DELETE: http://www.commander4j.com/mw/index.php/Auto_Labeller_Printer_Admin -&gt; Label Printers -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Label_Printers' WHERE MODULE_ID = 'FRM_PRINTER_DELETE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Label_Printers') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_LABELLER_HISTORY: http://www.commander4j.com/mw/index.php/Auto_Labeller_History -&gt; Production Lines &amp; Labellers -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Production_Lines_%26_Labellers' WHERE MODULE_ID = 'FRM_LABELLER_HISTORY' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Production_Lines_%26_Labellers') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_SCHEMA_BROWSE: http://www.commander4j.com/mw/index.php?title=Schema_Browser -&gt; Schema Browser -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Schema_Browser' WHERE MODULE_ID = 'FRM_ADMIN_SCHEMA_BROWSE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Schema_Browser') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PAL_LABEL_COPIES: http://www.commander4j.com/mw/index.php?title=Production_Confirmation -&gt; Production Confirmation -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Production_Confirmation' WHERE MODULE_ID = 'FRM_PAL_LABEL_COPIES' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Production_Confirmation') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PROCESS_ORDER_LABEL: http://www.commander4j.com/mw/index.php?title=Process_Orders -&gt; Process Orders -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Process_Orders' WHERE MODULE_ID = 'FRM_PROCESS_ORDER_LABEL' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Process_Orders') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PRODDEC_CONFIRM: http://www.commander4j.com/mw/index.php?title=Production_Declaration -&gt; Production Declaration -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Production_Declaration' WHERE MODULE_ID = 'FRM_PRODDEC_CONFIRM' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Production_Declaration') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PRODDEC_PREVIEW: http://www.commander4j.com/mw/index.php?title=Production_Declaration -&gt; Production Declaration -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Production_Declaration' WHERE MODULE_ID = 'FRM_PRODDEC_PREVIEW' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Production_Declaration') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PRODDEC_PRINT: http://www.commander4j.com/mw/index.php?title=Production_Declaration -&gt; Production Declaration -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Production_Declaration' WHERE MODULE_ID = 'FRM_PRODDEC_PRINT' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Production_Declaration') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_PRODDEC_REPRINT: http://www.commander4j.com/mw/index.php?title=Production_Declaration -&gt; Production Declaration -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Production_Declaration' WHERE MODULE_ID = 'FRM_PRODDEC_REPRINT' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Production_Declaration') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_WASTE_LOG_ADD: (none) -&gt; Waste Log -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Waste_Log' WHERE MODULE_ID = 'FRM_ADMIN_WASTE_LOG_ADD' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Waste_Log') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_WASTE_LOG_EDIT: (none) -&gt; Waste Log -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Waste_Log' WHERE MODULE_ID = 'FRM_ADMIN_WASTE_LOG_EDIT' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Waste_Log') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_WASTE_LOG_DELETE: (none) -&gt; Waste Log -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Waste_Log' WHERE MODULE_ID = 'FRM_ADMIN_WASTE_LOG_DELETE' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Waste_Log') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_PANEL_ADMIN: (none) -&gt; Quality Panel Web Interface -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Quality_Panel_Web_Interface' WHERE MODULE_ID = 'FRM_QM_PANEL_ADMIN' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Quality_Panel_Web_Interface') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_PANEL_SCORES: (none) -&gt; Quality Panel Web Interface -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Quality_Panel_Web_Interface' WHERE MODULE_ID = 'FRM_QM_PANEL_SCORES' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Quality_Panel_Web_Interface') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_QM_PANEL_SETUP: (none) -&gt; Quality Panel Web Interface -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Quality_Panel_Web_Interface' WHERE MODULE_ID = 'FRM_QM_PANEL_SETUP' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Quality_Panel_Web_Interface') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_WEIGHT_REPORTS_DETAILS: (none) -&gt; Weight Check Reports -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Weight_Check_Reports' WHERE MODULE_ID = 'FRM_WEIGHT_REPORTS_DETAILS' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Weight_Check_Reports') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- FRM_ADMIN_DESPATCH_EQUIPMENT: (none) -&gt; Despatch -->
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Despatch' WHERE MODULE_ID = 'FRM_ADMIN_DESPATCH_EQUIPMENT' AND (HELPSET_ID IS NULL OR HELPSET_ID &lt;&gt; 'https://wiki.commander4j.com/index.php?title=Despatch') AND (HELPSET_ID IS NULL OR HELPSET_ID = '' OR HELPSET_ID LIKE '%commander4j.com/mw%')
+</statement>
+
+<!-- Panel Results print permission: RPT_PANEL_RESULTS1 -&gt; 06_QUALITY_TECHNCN (only if the group exists) -->
+<statement>
+INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) SELECT '06_QUALITY_TECHNCN', 'RPT_PANEL_RESULTS1' FROM SYS_GROUPS WHERE GROUP_ID = '06_QUALITY_TECHNCN' AND EXISTS (SELECT 1 FROM SYS_MODULES WHERE MODULE_ID = 'RPT_PANEL_RESULTS1') AND NOT EXISTS (SELECT 1 FROM SYS_GROUP_PERMISSIONS WHERE GROUP_ID = '06_QUALITY_TECHNCN' AND MODULE_ID = 'RPT_PANEL_RESULTS1')
+</statement>
+
+<!-- Panel Results print permission: RPT_PANEL_RESULTS2 -&gt; 06_QUALITY_TECHNCN (only if the group exists) -->
+<statement>
+INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) SELECT '06_QUALITY_TECHNCN', 'RPT_PANEL_RESULTS2' FROM SYS_GROUPS WHERE GROUP_ID = '06_QUALITY_TECHNCN' AND EXISTS (SELECT 1 FROM SYS_MODULES WHERE MODULE_ID = 'RPT_PANEL_RESULTS2') AND NOT EXISTS (SELECT 1 FROM SYS_GROUP_PERMISSIONS WHERE GROUP_ID = '06_QUALITY_TECHNCN' AND MODULE_ID = 'RPT_PANEL_RESULTS2')
+</statement>
+
+<!-- Panel Results print permission: RPT_PANEL_RESULTS3 -&gt; 06_QUALITY_TECHNCN (only if the group exists) -->
+<statement>
+INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) SELECT '06_QUALITY_TECHNCN', 'RPT_PANEL_RESULTS3' FROM SYS_GROUPS WHERE GROUP_ID = '06_QUALITY_TECHNCN' AND EXISTS (SELECT 1 FROM SYS_MODULES WHERE MODULE_ID = 'RPT_PANEL_RESULTS3') AND NOT EXISTS (SELECT 1 FROM SYS_GROUP_PERMISSIONS WHERE GROUP_ID = '06_QUALITY_TECHNCN' AND MODULE_ID = 'RPT_PANEL_RESULTS3')
+</statement>
+
+<!-- Panel Results print permission: RPT_PANEL_RESULTS4 -&gt; 06_QUALITY_TECHNCN (only if the group exists) -->
+<statement>
+INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) SELECT '06_QUALITY_TECHNCN', 'RPT_PANEL_RESULTS4' FROM SYS_GROUPS WHERE GROUP_ID = '06_QUALITY_TECHNCN' AND EXISTS (SELECT 1 FROM SYS_MODULES WHERE MODULE_ID = 'RPT_PANEL_RESULTS4') AND NOT EXISTS (SELECT 1 FROM SYS_GROUP_PERMISSIONS WHERE GROUP_ID = '06_QUALITY_TECHNCN' AND MODULE_ID = 'RPT_PANEL_RESULTS4')
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_JOURNEY DE: Journeys verwalten -&gt; Journeys -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Journeys' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_JOURNEY' AND LANGUAGE_ID = 'DE' AND TEXT = 'Journeys verwalten'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_JOURNEY EN: Administer Journeys -&gt; Journeys -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Journeys' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_JOURNEY' AND LANGUAGE_ID = 'EN' AND TEXT = 'Administer Journeys'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_JOURNEY FR: Administrer les voyages -&gt; Voyages -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Voyages' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_JOURNEY' AND LANGUAGE_ID = 'FR' AND TEXT = 'Administrer les voyages'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_JOURNEY HU: Journey-k kezelése -&gt; Journey-k -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Journey-k' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_JOURNEY' AND LANGUAGE_ID = 'HU' AND TEXT = 'Journey-k kezelése'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_JOURNEY IT: Gestore Viaggi -&gt; Viaggi -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Viaggi' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_JOURNEY' AND LANGUAGE_ID = 'IT' AND TEXT = 'Gestore Viaggi'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_JOURNEY NL: Beheer Journeys -&gt; Journeys -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Journeys' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_JOURNEY' AND LANGUAGE_ID = 'NL' AND TEXT = 'Beheer Journeys'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_JOURNEY PL: Administracja Journeys -&gt; Journeys -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Journeys' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_JOURNEY' AND LANGUAGE_ID = 'PL' AND TEXT = 'Administracja Journeys'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_MATERIAL_TYPE DE: Verwalten Materialarten -&gt; Materialarten -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Materialarten' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_MATERIAL_TYPE' AND LANGUAGE_ID = 'DE' AND TEXT = 'Verwalten Materialarten'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_MATERIAL_TYPE EN: Administer Material Types -&gt; Material Types -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Material Types' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_MATERIAL_TYPE' AND LANGUAGE_ID = 'EN' AND TEXT = 'Administer Material Types'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_MATERIAL_TYPE FR: Administrer les types de matériaux -&gt; Types de matériaux -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Types de matériaux' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_MATERIAL_TYPE' AND LANGUAGE_ID = 'FR' AND TEXT = 'Administrer les types de matériaux'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_MATERIAL_TYPE HU: Anyagtípusok adminisztrációja -&gt; Anyagtípusok -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Anyagtípusok' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_MATERIAL_TYPE' AND LANGUAGE_ID = 'HU' AND TEXT = 'Anyagtípusok adminisztrációja'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_MATERIAL_TYPE IT: Gestione Material Types (tipologie) -&gt; Tipi di materiale -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Tipi di materiale' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_MATERIAL_TYPE' AND LANGUAGE_ID = 'IT' AND TEXT = 'Gestione Material Types (tipologie)'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_MATERIAL_TYPE NL: Beheer Materiaal Types -&gt; Materiaal Types -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Materiaal Types' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_MATERIAL_TYPE' AND LANGUAGE_ID = 'NL' AND TEXT = 'Beheer Materiaal Types'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_MATERIAL_TYPE PL: Administracja typami materialów -&gt; Typy materiałów -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Typy materiałów' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_MATERIAL_TYPE' AND LANGUAGE_ID = 'PL' AND TEXT = 'Administracja typami materialów'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_PO_RESOURCE DE: Ressourcen verwalten -&gt; Ressourcen -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Ressourcen' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_PO_RESOURCE' AND LANGUAGE_ID = 'DE' AND TEXT = 'Ressourcen verwalten'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_PO_RESOURCE EN: Administer Resources -&gt; Resources -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Resources' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_PO_RESOURCE' AND LANGUAGE_ID = 'EN' AND TEXT = 'Administer Resources'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_PO_RESOURCE FR: Administrer les ressources -&gt; Ressources -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Ressources' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_PO_RESOURCE' AND LANGUAGE_ID = 'FR' AND TEXT = 'Administrer les ressources'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_PO_RESOURCE HU: Resource adminisztrációja -&gt; Erőforrások -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Erőforrások' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_PO_RESOURCE' AND LANGUAGE_ID = 'HU' AND TEXT = 'Resource adminisztrációja'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_PO_RESOURCE IT: Gestione Risorse -&gt; Risorse -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Risorse' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_PO_RESOURCE' AND LANGUAGE_ID = 'IT' AND TEXT = 'Gestione Risorse'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_PO_RESOURCE NL: Beheer Hulpbron -&gt; Hulpbronnen -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Hulpbronnen' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_PO_RESOURCE' AND LANGUAGE_ID = 'NL' AND TEXT = 'Beheer Hulpbron'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_PO_RESOURCE PL: Administracja zasobami -&gt; Zasoby -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Zasoby' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_PO_RESOURCE' AND LANGUAGE_ID = 'PL' AND TEXT = 'Administracja zasobami'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_SCALE DE: Waagen-Verw. -&gt; Waagen -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Waagen' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_SCALE' AND LANGUAGE_ID = 'DE' AND TEXT = 'Waagen-Verw.'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_SCALE EN: Scale Admin -&gt; Scales -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Scales' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_SCALE' AND LANGUAGE_ID = 'EN' AND TEXT = 'Scale Admin'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_SCALE ES: Admin. básculas -&gt; Básculas -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Básculas' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_SCALE' AND LANGUAGE_ID = 'ES' AND TEXT = 'Admin. básculas'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_SCALE FR: Admin balances -&gt; Balances -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Balances' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_SCALE' AND LANGUAGE_ID = 'FR' AND TEXT = 'Admin balances'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_SCALE HU: Mérleg admin. -&gt; Mérlegek -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Mérlegek' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_SCALE' AND LANGUAGE_ID = 'HU' AND TEXT = 'Mérleg admin.'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_SCALE IT: Gestione scale -&gt; Bilance -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Bilance' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_SCALE' AND LANGUAGE_ID = 'IT' AND TEXT = 'Gestione scale'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_SCALE NL: Schaalbeheerder -&gt; Weegschalen -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Weegschalen' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_SCALE' AND LANGUAGE_ID = 'NL' AND TEXT = 'Schaalbeheerder'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_SCALE PL: Admin. wag -&gt; Wagi -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Wagi' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_SCALE' AND LANGUAGE_ID = 'PL' AND TEXT = 'Admin. wag'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_WORKSTATION DE: Workstation-Administrator -&gt; Workstations -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Workstations' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_WORKSTATION' AND LANGUAGE_ID = 'DE' AND TEXT = 'Workstation-Administrator'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_WORKSTATION EN: Workstation Admin -&gt; Workstations -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Workstations' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_WORKSTATION' AND LANGUAGE_ID = 'EN' AND TEXT = 'Workstation Admin'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_WORKSTATION ES: Administrador de la estación de trabajo -&gt; Estaciones de trabajo -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Estaciones de trabajo' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_WORKSTATION' AND LANGUAGE_ID = 'ES' AND TEXT = 'Administrador de la estación de trabajo'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_WORKSTATION FR: Administrateur de poste de travail -&gt; Postes de travail -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Postes de travail' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_WORKSTATION' AND LANGUAGE_ID = 'FR' AND TEXT = 'Administrateur de poste de travail'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_WORKSTATION HU: Munkaállomás adminisztrátora -&gt; Munkaállomások -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Munkaállomások' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_WORKSTATION' AND LANGUAGE_ID = 'HU' AND TEXT = 'Munkaállomás adminisztrátora'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_WORKSTATION IT: Amministratore workstation -&gt; Workstation -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Workstation' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_WORKSTATION' AND LANGUAGE_ID = 'IT' AND TEXT = 'Amministratore workstation'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_WORKSTATION NL: Werkstation Admin -&gt; Werkstations -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Werkstations' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_WORKSTATION' AND LANGUAGE_ID = 'NL' AND TEXT = 'Werkstation Admin'
+</statement>
+
+<!-- Screen name mod_FRM_ADMIN_WORKSTATION PL: Administrator stacji roboczej -&gt; Stacje robocze -->
+<statement>
+UPDATE SYS_LANGUAGE SET TEXT = 'Stacje robocze' WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_WORKSTATION' AND LANGUAGE_ID = 'PL' AND TEXT = 'Administrator stacji roboczej'
+</statement>
+
+<!-- Screen hints follow the new EN names -->
+<statement>
+UPDATE SYS_MODULES SET HINT = 'Journeys' WHERE MODULE_ID = 'FRM_ADMIN_JOURNEY' AND HINT = 'Maintain Journey References'
+</statement>
+
+<statement>
+UPDATE SYS_MODULES SET HINT = 'Resources' WHERE MODULE_ID = 'FRM_ADMIN_PO_RESOURCE' AND HINT = 'Maintain Resources'
+</statement>
+
+<statement>
+UPDATE SYS_MODULES SET HINT = 'Scales' WHERE MODULE_ID = 'FRM_WEIGHT_SCALE' AND HINT = 'Scale Admin'
+</statement>
+
+<statement>
+UPDATE SYS_MODULES SET HINT = 'Workstations' WHERE MODULE_ID = 'FRM_WEIGHT_WORKSTATION' AND HINT = 'Workstation Admin'
+</statement>
+
+<!-- Label Printers captions: lbl_All -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_All', 'DE', 'Alle', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_All' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_All', 'EN', 'All', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_All' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_All', 'ES', 'Todos', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_All' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_All', 'FR', 'Tous', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_All' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_All', 'HU', 'Mind', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_All' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_All', 'IT', 'Tutti', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_All' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_All', 'NL', 'Alle', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_All' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_All', 'PL', 'Wszystkie', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_All' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_General -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_General', 'DE', 'Allgemein', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_General' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_General', 'EN', 'General', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_General' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_General', 'ES', 'General', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_General' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_General', 'FR', 'Général', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_General' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_General', 'HU', 'Általános', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_General' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_General', 'IT', 'Generale', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_General' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_General', 'NL', 'Algemeen', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_General' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_General', 'PL', 'Ogólne', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_General' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_Pack -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Pack', 'DE', 'Pack', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Pack' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Pack', 'EN', 'Pack', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Pack' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Pack', 'ES', 'Pack', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Pack' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Pack', 'FR', 'Pack', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Pack' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Pack', 'HU', 'Pack', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Pack' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Pack', 'IT', 'Pack', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Pack' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Pack', 'NL', 'Pack', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Pack' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Pack', 'PL', 'Pack', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Pack' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_Type -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Type', 'DE', 'Typ', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Type' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Type', 'EN', 'Type', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Type' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Type', 'ES', 'Tipo', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Type' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Type', 'FR', 'Type', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Type' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Type', 'HU', 'Típus', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Type' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Type', 'IT', 'Tipo', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Type' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Type', 'NL', 'Type', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Type' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Type', 'PL', 'Typ', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Type' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_Group -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Group', 'DE', 'Gruppe', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Group' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Group', 'EN', 'Group', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Group' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Group', 'ES', 'Grupo', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Group' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Group', 'FR', 'Groupe', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Group' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Group', 'HU', 'Csoport', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Group' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Group', 'IT', 'Gruppo', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Group' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Group', 'NL', 'Groep', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Group' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Group', 'PL', 'Grupa', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Group' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_DPI -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_DPI', 'DE', 'DPI', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_DPI' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_DPI', 'EN', 'DPI', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_DPI' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_DPI', 'ES', 'DPI', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_DPI' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_DPI', 'FR', 'DPI', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_DPI' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_DPI', 'HU', 'DPI', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_DPI' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_DPI', 'IT', 'DPI', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_DPI' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_DPI', 'NL', 'DPI', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_DPI' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_DPI', 'PL', 'DPI', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_DPI' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_Paper_Size -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Paper_Size', 'DE', 'Papierformat', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Paper_Size' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Paper_Size', 'EN', 'Paper Size', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Paper_Size' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Paper_Size', 'ES', 'Tamaño de papel', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Paper_Size' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Paper_Size', 'FR', 'Format du papier', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Paper_Size' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Paper_Size', 'HU', 'Papírméret', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Paper_Size' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Paper_Size', 'IT', 'Formato carta', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Paper_Size' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Paper_Size', 'NL', 'Papierformaat', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Paper_Size' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Paper_Size', 'PL', 'Rozmiar papieru', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Paper_Size' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_Direct -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Direct', 'DE', 'Direkt', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Direct' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Direct', 'EN', 'Direct', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Direct' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Direct', 'ES', 'Directo', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Direct' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Direct', 'FR', 'Direct', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Direct' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Direct', 'HU', 'Közvetlen', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Direct' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Direct', 'IT', 'Diretto', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Direct' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Direct', 'NL', 'Direct', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Direct' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Direct', 'PL', 'Bezpośredni', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Direct' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_Export -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Export', 'DE', 'Export', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Export' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Export', 'EN', 'Export', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Export' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Export', 'ES', 'Exportar', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Export' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Export', 'FR', 'Export', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Export' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Export', 'HU', 'Export', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Export' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Export', 'IT', 'Esporta', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Export' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Export', 'NL', 'Export', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Export' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Export', 'PL', 'Eksport', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Export' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_Format -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Format', 'DE', 'Format', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Format' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Format', 'EN', 'Format', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Format' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Format', 'ES', 'Formato', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Format' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Format', 'FR', 'Format', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Format' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Format', 'HU', 'Formátum', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Format' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Format', 'IT', 'Formato', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Format' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Format', 'NL', 'Formaat', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Format' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Format', 'PL', 'Format', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Format' AND LANGUAGE_ID = 'PL')
+</statement>
+
+<!-- Label Printers captions: lbl_Path -->
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Path', 'DE', 'Pfad', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Path' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Path', 'EN', 'Path', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Path' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Path', 'ES', 'Ruta', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Path' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Path', 'FR', 'Chemin', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Path' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Path', 'HU', 'Útvonal', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Path' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Path', 'IT', 'Percorso', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Path' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Path', 'NL', 'Pad', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Path' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) SELECT 'lbl_Path', 'PL', 'Ścieżka', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'lbl_Path' AND LANGUAGE_ID = 'PL')
+</statement>
+
+</DDL>

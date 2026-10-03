@@ -814,7 +814,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		if (jListModules.isSelectionEmpty() == false)
 		{
 			lModuleId = ((JDBListData) jListModules.getSelectedValue()).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_MODULE_MEMBERS", lModuleId);
+			JLaunchMenu.runForm("FRM_ADMIN_MODULE_GROUPS", lModuleId);
 		}
 	}
 

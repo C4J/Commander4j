@@ -327,7 +327,7 @@ public class JInternalFrameWTWorkstationAdmin extends javax.swing.JInternalFrame
 					}
 				});
 				newItemMenuItem.setText(lang.get("btn_Print"));
-				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WORKSTATION"));
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WORKSTATIONS"));
 				popupMenu.add(newItemMenuItem);
 			}
 

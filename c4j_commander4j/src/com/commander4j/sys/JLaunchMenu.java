@@ -492,7 +492,7 @@ public class JLaunchMenu
 
 		}
 
-		if (optionName.equals("FRM_ADMIN_PRINTER_EDIT"))
+		if (optionName.equals("FRM_PRINTER_EDIT"))
 		{
 			final JDialogPrinterProperties u;
 			u = new JDialogPrinterProperties(Common.mainForm, strParam1, strParam2);
@@ -2234,7 +2234,7 @@ public class JLaunchMenu
 			}
 		}
 
-		if (optionName.equals("FRM_ADMIN_MODULE_MEMBERS"))
+		if (optionName.equals("FRM_ADMIN_MODULE_GROUPS"))
 		{
 			final JInternalFrameModuleGroups u;
 			if (isLoaded(JInternalFrameModuleGroups.class))
@@ -2248,7 +2248,7 @@ public class JLaunchMenu
 			}
 		}
 
-		if (optionName.equals("FRM_ADMIN_GROUP_MEMBERS"))
+		if (optionName.equals("FRM_ADMIN_GROUP_USERS"))
 		{
 			final JInternalFrameGroupUsers u;
 			if (isLoaded(JInternalFrameGroupUsers.class))

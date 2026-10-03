@@ -745,7 +745,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
-							sortBy("Panell ID");
+							sortBy("Panel ID");
 						}
 					});
 					newItemMenuItem.setText(lang.get("lbl_Panel_ID"));
@@ -1536,7 +1536,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			jDesktopPane1.add(jButtonPrint);
 			jButtonPrint.setText(lang.get("btn_Print"));
 			jButtonPrint.setBounds(486, 168, 123, 32);
-			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_LOG"));
+			jButtonPrint.setEnabled(false);
 			jButtonPrint.setMnemonic(lang.getMnemonicChar());
 			jButtonPrint.addActionListener(new ActionListener()
 			{
@@ -1604,7 +1604,15 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			jComboBoxReportType.setModel(jComboBoxReportTypeModel);
 			jComboBoxReportType.setBounds(134, 136, 182, 22);
 			jComboBoxReportType.setSelectedItem("Daily Panel Summary");
+			jComboBoxReportType.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					updatePrintButton();
+				}
+			});
 			jDesktopPane1.add(jComboBoxReportType);
+			updatePrintButton();
 
 			ComboBoxModel<JDBViewProductGroups> jComboBox3Model = new DefaultComboBoxModel<JDBViewProductGroups>(productGroupList);
 			comboBoxProductGroups.setModel(jComboBox3Model);
@@ -1651,38 +1659,53 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		}
 	}
 
+	/**
+	 * The report module behind the selected Report Type. Each report has its own
+	 * permission, so the Print button follows the report the user has chosen.
+	 */
+	private String reportModuleForSelectedType()
+	{
+		Object type = jComboBoxReportType.getSelectedItem();
+
+		if ("Detail Report".equals(type))
+		{
+			return "RPT_PANEL_RESULTS1";
+		}
+		if ("Summary Report".equals(type))
+		{
+			return "RPT_PANEL_RESULTS2";
+		}
+		if ("Daily Panel Summary".equals(type))
+		{
+			return "RPT_PANEL_RESULTS3";
+		}
+		if ("Daily Panel Detail".equals(type))
+		{
+			return "RPT_PANEL_RESULTS4";
+		}
+		return "";
+	}
+
+	private void updatePrintButton()
+	{
+		String module = reportModuleForSelectedType();
+		jButtonPrint.setEnabled(module.equals("") == false && Common.userList.getUser(Common.sessionID).isModuleAllowed(module));
+	}
+
 	private void print()
 	{
+		String module = reportModuleForSelectedType();
+
+		if (module.equals("") || Common.userList.getUser(Common.sessionID).isModuleAllowed(module) == false)
+		{
+			return;
+		}
+
 		jComboBoxSortBy.setSelectedIndex(0);
 
-		if (jComboBoxReportType.getSelectedItem().equals("Detail Report"))
-		{
-			PreparedStatement temp = buildSQL(qPrint);
-			JLaunchReport.runReport("RPT_PANEL_RESULTS1", null, "", temp, "");
-			JDBQuery.closeStatement(temp);
-		}
-
-		if (jComboBoxReportType.getSelectedItem().equals("Summary Report"))
-		{
-			PreparedStatement temp = buildSQL(qPrint);
-			JLaunchReport.runReport("RPT_PANEL_RESULTS2", null, "", temp, "");
-			JDBQuery.closeStatement(temp);
-		}
-
-		if (jComboBoxReportType.getSelectedItem().equals("Daily Panel Summary"))
-		{
-			PreparedStatement temp = buildSQL(qPrint);
-			JLaunchReport.runReport("RPT_PANEL_RESULTS3", null, "", temp, "");
-			JDBQuery.closeStatement(temp);
-		}
-
-		if (jComboBoxReportType.getSelectedItem().equals("Daily Panel Detail"))
-		{
-			PreparedStatement temp = buildSQL(qPrint);
-			JLaunchReport.runReport("RPT_PANEL_RESULTS4", null, "", temp, "");
-			JDBQuery.closeStatement(temp);
-		}
-
+		PreparedStatement temp = buildSQL(qPrint);
+		JLaunchReport.runReport(module, null, "", temp, "");
+		JDBQuery.closeStatement(temp);
 	}
 
 	/**

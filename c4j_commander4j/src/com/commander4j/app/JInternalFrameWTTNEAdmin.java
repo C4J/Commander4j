@@ -188,7 +188,7 @@ public class JInternalFrameWTTNEAdmin extends javax.swing.JInternalFrame
 
 	private void print()
 	{
-		JLaunchReport.runReport("RPT_TNEs", null, "", null, "");
+		JLaunchReport.runReport("RPT_TNES", null, "", null, "");
 	}
 
 	private void excel()

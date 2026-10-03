@@ -73,10 +73,10 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame
 	private JComboBox4j<String> comboBoxPrinterTypes = new JComboBox4j<String>();
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_status jStatusText = new JLabel4j_status();
-	private JRadioButton4j rdbtnAll = new JRadioButton4j("All");
-	private JRadioButton4j rdbtnGeneral = new JRadioButton4j("General");
-	private JRadioButton4j rdbtnPack = new JRadioButton4j("Pack");
-	private JRadioButton4j rdbtnPallet = new JRadioButton4j("Pallet");
+	private JRadioButton4j rdbtnAll = new JRadioButton4j(lang.get("lbl_All"));
+	private JRadioButton4j rdbtnGeneral = new JRadioButton4j(lang.get("lbl_General"));
+	private JRadioButton4j rdbtnPack = new JRadioButton4j(lang.get("lbl_Pack"));
+	private JRadioButton4j rdbtnPallet = new JRadioButton4j(lang.get("lbl_Pallet"));
 	private JScrollPane4j jScrollPane1;
 	private JTable4j jTable1;
 	private PreparedStatement listStatement;
@@ -317,7 +317,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame
 
 							if (len > JDBPrinters.field_printer_id)
 							{
-								printerID = printerID.substring(1, JDBPrinters.field_printer_id);
+								printerID = printerID.substring(0, JDBPrinters.field_printer_id);
 							}
 
 							Object[] printerGroups = Common.printerGroup;
@@ -337,7 +337,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame
 								{
 
 									populateList("", "");
-									JLaunchMenu.runDialog("FRM_ADMIN_PRINTER_EDIT", printerID, groupId);
+									JLaunchMenu.runDialog("FRM_PRINTER_EDIT", printerID, groupId);
 									populateList("", "");
 								}
 							}
@@ -486,13 +486,13 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame
 			getContentPane().add(comboBoxPrinterTypes);
 
 			JLabel4j_std label4j_Type = new JLabel4j_std();
-			label4j_Type.setText("Type");
+			label4j_Type.setText(lang.get("lbl_Type"));
 			label4j_Type.setHorizontalAlignment(SwingConstants.RIGHT);
 			label4j_Type.setBounds(481, 8, 75, 22);
 			getContentPane().add(label4j_Type);
 
 			JLabel4j_std label4j_Group = new JLabel4j_std();
-			label4j_Group.setText("Group");
+			label4j_Group.setText(lang.get("lbl_Group"));
 			label4j_Group.setHorizontalAlignment(SwingConstants.RIGHT);
 			label4j_Group.setBounds(12, 8, 94, 22);
 			getContentPane().add(label4j_Group);
@@ -513,7 +513,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame
 			printerID = jTable1.getValueAt(row, JDBPrintersTableModel.PrinterID_Col).toString();
 			groupID = jTable1.getValueAt(row, JDBPrintersTableModel.Group_Col).toString();
 
-			JLaunchMenu.runDialog("FRM_ADMIN_PRINTER_EDIT", printerID, groupID);
+			JLaunchMenu.runDialog("FRM_PRINTER_EDIT", printerID, groupID);
 			populateList(printerID, groupID);
 		}
 	}

@@ -320,12 +320,12 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				jTextFieldMaterial.setText(jTable1.getValueAt(row, 0).toString());
 			}
 
-			if (fieldname.equals(lang.get("lbl_Material_Location")) == true)
+			if (fieldname.equals(lang.get("lbl_Location_ID")) == true)
 			{
 				jTextFieldLocation.setText(jTable1.getValueAt(row, 1).toString());
 			}
 
-			if (fieldname.equals("lbl_Material_Location_Status") == true)
+			if (fieldname.equals(lang.get("lbl_Status")) == true)
 			{
 				jComboBoxStatus.setSelectedItem(jTable1.getValueAt(row, 2).toString());
 			}
@@ -464,7 +464,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 							sortBy("LOCATION_ID");
 						}
 					});
-					newItemMenuItem.setText(lang.get("lbl_Material_Location"));
+					newItemMenuItem.setText(lang.get("lbl_Location_ID"));
 					sortByMenu.add(newItemMenuItem);
 				}
 
@@ -510,7 +510,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 							filterBy(newItemMenuItem.getText());
 						}
 					});
-					newItemMenuItem.setText(lang.get("lbl_Location"));
+					newItemMenuItem.setText(lang.get("lbl_Location_ID"));
 					filterByMenu.add(newItemMenuItem);
 				}
 

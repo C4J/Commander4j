@@ -36,6 +36,7 @@ import java.util.HashMap;
 
 import javax.swing.table.AbstractTableModel;
 
+import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBPrinters;
 import com.commander4j.sys.Common;
 
@@ -59,7 +60,9 @@ public class JDBPrintersTableModel extends AbstractTableModel
 	public static final int Export_Path_Col = 13;
 
 	// Names of the columns
-	private String[] mcolNames = { "Printer ID","Group", "Description", "Type","Language","DPI", "Paper Size","IP Address", "Port", "Enabled", "Direct","Export","Format","Path" };
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private String[] mcolNames = { lang.get("lbl_Printer_ID"), lang.get("lbl_Group"), lang.get("lbl_Description"), lang.get("lbl_Type"), lang.get("lbl_Language"), lang.get("lbl_DPI"), lang.get("lbl_Paper_Size"),
+			lang.get("lbl_IP_Address"), lang.get("lbl_Port"), lang.get("lbl_Enabled"), lang.get("lbl_Direct"), lang.get("lbl_Export"), lang.get("lbl_Format"), lang.get("lbl_Path") };
 	private ResultSet mResultSet;
 	private int prowCount = -1;
 	private HashMap<Integer,JDBPrinters> cache = new HashMap<Integer,JDBPrinters>();

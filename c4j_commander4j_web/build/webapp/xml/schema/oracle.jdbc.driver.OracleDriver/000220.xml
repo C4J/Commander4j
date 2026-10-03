@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<!-- Schema 220 : id_check assessment section A.5 - missing language key, 2026-09-21.                           -->
+<!--                                                                                                             -->
+<!--              JInternalFrameSampleDefectIDAdmin asks "dlg_Defect_ID_Delete <id> ?" before deleting a        -->
+<!--              sample defect id, but only dlg_Defect_ID_Add / _Rename and dlg_Defect_Type_Delete exist, so   -->
+<!--              the prompt showed "<host> dlg_Defect_ID_Delete". Adds the key in the same 8 languages as      -->
+<!--              schema 215, texts modelled on dlg_Defect_Type_Delete. Guarded (NOT EXISTS on key + language)  -->
+<!--              so a site's own text wins; source row from SYS_MODULES because SQL Server has no DUAL.        -->
+<!--              Pure DML, safe to re-run.                                                                      -->
+
+<!-- ===== dlg_Defect_ID_Delete ===== -->
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'dlg_Defect_ID_Delete', 'EN', 'Delete Defect ID', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'dlg_Defect_ID_Delete' AND LANGUAGE_ID = 'EN')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'dlg_Defect_ID_Delete', 'DE', 'Fehler-ID löschen', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'dlg_Defect_ID_Delete' AND LANGUAGE_ID = 'DE')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'dlg_Defect_ID_Delete', 'ES', 'Eliminar identificación de defecto', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'dlg_Defect_ID_Delete' AND LANGUAGE_ID = 'ES')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'dlg_Defect_ID_Delete', 'FR', 'Supprimer ID défaut', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'dlg_Defect_ID_Delete' AND LANGUAGE_ID = 'FR')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'dlg_Defect_ID_Delete', 'HU', 'Hibaazonosító törlése', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'dlg_Defect_ID_Delete' AND LANGUAGE_ID = 'HU')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'dlg_Defect_ID_Delete', 'IT', 'Elimina ID difetto', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'dlg_Defect_ID_Delete' AND LANGUAGE_ID = 'IT')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'dlg_Defect_ID_Delete', 'NL', 'Verwijder defect-ID', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'dlg_Defect_ID_Delete' AND LANGUAGE_ID = 'NL')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) SELECT 'dlg_Defect_ID_Delete', 'PL', 'Usuń identyfikator defektu', '0' FROM SYS_MODULES WHERE MODULE_ID = 'SYS_INFO' AND NOT EXISTS (SELECT 1 FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'dlg_Defect_ID_Delete' AND LANGUAGE_ID = 'PL')
+</statement>
+
+</DDL>

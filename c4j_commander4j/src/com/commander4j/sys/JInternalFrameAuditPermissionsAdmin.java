@@ -363,7 +363,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 					}
 				});
 				newItemMenuItem.setText(lang.get("btn_Print"));
-				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_AUDIT_ACTIVITY"));
+				newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_AUDIT_PERMISSIONS"));
 				popupMenu.add(newItemMenuItem);
 			}
 

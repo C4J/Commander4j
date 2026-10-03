@@ -113,7 +113,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 		super();
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-		mod.getModuleProperties("FRM_ADMIN_JOURNEY_REF_EDIT");
+		mod.getModuleProperties("FRM_ADMIN_JOURNEY_EDIT");
 		title = mod.getDescription();
 
 		initGUI();

@@ -166,7 +166,7 @@ public class JInternalFrameGroupAdmin extends javax.swing.JInternalFrame
 		if (jListGroups.isSelectionEmpty() == false)
 		{
 			lGroupId = (String) jListGroups.getSelectedValue();
-			JLaunchMenu.runForm("FRM_ADMIN_GROUP_MEMBERS", lGroupId);
+			JLaunchMenu.runForm("FRM_ADMIN_GROUP_USERS", lGroupId);
 		}
 	}
 

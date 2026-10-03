@@ -1108,12 +1108,12 @@ public class JUtility
 
 				if (result == null)
 				{
-					result = "http://commander4j.com/mw/index.php?title=No_Help_Found";
+					result = "https://wiki.commander4j.com/index.php?title=No_Help_Found";
 				}
 			}
 			else
 			{
-				result = "http://commander4j.com/mw/index.php?title=No_Help_Found";
+				result = "https://wiki.commander4j.com/index.php?title=No_Help_Found";
 			}
 
 			result = result.replace("{base_dir}", Common.base_dir);
@@ -1121,7 +1121,7 @@ public class JUtility
 		}
 		catch (Exception ex)
 		{
-			result = "http://commander4j.com/mw/index.php?title=No_Help_Found";
+			result = "https://wiki.commander4j.com/index.php?title=No_Help_Found";
 		}
 
 		return result;
