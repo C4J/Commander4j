@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<!-- Schema 223 : Oracle only. VIEW_AUTO_LABELLER_PRINTER on Oracle is recreated so that the   -->
+<!--              TOTAL_GROSS_KG / TOTAL_NET_KG columns use BASE_QUANTITY, matching this        -->
+<!--              platform. Nothing to do on MySQL. (SYS_INTERFACE_REQUEST.FILENAME was already  -->
+<!--              widened from the 252 in schema 208 to 255 in schema 210.)                      -->
+
+<statement>null</statement>
+
+</DDL>
