@@ -106,11 +106,13 @@ public class JInternalFrameMenuTree extends JInternalFrame
 			{
 				component.setForeground(Common.color_tree_selected_foreground);
 				component.setBackground(Common.color_tree_selected_background);
+				component.setFont(Common.font_tree_selected);
 			}
 			else
 			{
 				component.setForeground(Common.color_text_label_std);
 				component.setBackground(Common.color_tree_background);
+				component.setFont(Common.font_tree);
 			}
 
 
@@ -119,6 +121,27 @@ public class JInternalFrameMenuTree extends JInternalFrame
 			setToolTipText(getMenuHint(value));
 
 			return component;
+		}
+
+		// Always reserve the width of the bold (selected) font. The tree lays a node out
+		// before it is selected, so a plain-width cell would truncate the bold text with "...".
+		@Override
+		public Dimension getPreferredSize() {
+			Dimension size = super.getPreferredSize();
+			String text = getText();
+
+			if ((size != null) && (text != null))
+			{
+				int boldWidth = getFontMetrics(Common.font_tree_selected).stringWidth(text);
+				int currentWidth = getFontMetrics(getFont()).stringWidth(text);
+
+				if (boldWidth > currentWidth)
+				{
+					size.width = size.width + (boldWidth - currentWidth);
+				}
+			}
+
+			return size;
 		}
 
 		protected String getMenuItemType(Object value) {
@@ -234,7 +257,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		treeview.setVerticalScrollBarPolicy(JScrollPane4j.VERTICAL_SCROLLBAR_AS_NEEDED);
 		treeview.setHorizontalScrollBarPolicy(JScrollPane4j.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		treeview.getViewport().setOpaque(true);
-		treeview.getViewport().setBackground(Common.color_app_window);
+		treeview.getViewport().setBackground(Common.color_tree_background);
 
 		container.add(treeview);
 

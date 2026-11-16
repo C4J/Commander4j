@@ -263,7 +263,7 @@ public class JFrameCompareDB extends JFrame
 			// ---- Host 1 label + combobox ----------------------------------------
 			JLabel4j_std lblHost1 = new JLabel4j_std("Host 1:");
 			lblHost1.setFont(new Font("Arial", Font.BOLD, 11));
-			lblHost1.setBounds(5, 18, 52, 21);
+			lblHost1.setBounds(5, 19, 52, 21);
 			desktopPane.add(lblHost1);
 
 			comboHost1 = new JComboBox4j<>();
@@ -279,7 +279,8 @@ public class JFrameCompareDB extends JFrame
 
 			// ---- Buttons --------------------------------------------------------
 			btnCompare = new JButton4j("Compare");
-			btnCompare.setBounds(389, 14, 100, 25);
+			btnCompare.setIcon(Common.icon_compare_16x16);
+			btnCompare.setBounds(369, 10, 120, 35);
 			btnCompare.setEnabled(false);
 			desktopPane.add(btnCompare);
 			btnCompare.addActionListener(new ActionListener()
@@ -291,7 +292,8 @@ public class JFrameCompareDB extends JFrame
 			});
 
 			btnRefresh = new JButton4j("Refresh");
-			btnRefresh.setBounds(497, 14, 100, 25);
+			btnRefresh.setIcon(Common.icon_refresh_16x16);
+			btnRefresh.setBounds(490, 10, 120, 35);
 			btnRefresh.setEnabled(false);
 			desktopPane.add(btnRefresh);
 			btnRefresh.addActionListener(new ActionListener()
@@ -303,7 +305,8 @@ public class JFrameCompareDB extends JFrame
 			});
 
 			btnClose = new JButton4j("Close");
-			btnClose.setBounds(605, 14, 90, 25);
+			btnClose.setIcon(Common.icon_close_16x16);
+			btnClose.setBounds(732, 10, 120, 35);
 			desktopPane.add(btnClose);
 			btnClose.addActionListener(new ActionListener()
 			{
@@ -315,7 +318,8 @@ public class JFrameCompareDB extends JFrame
 			});
 
 			btnIgnoreList = new JButton4j("Ignore List");
-			btnIgnoreList.setBounds(703, 14, 100, 25);
+			btnIgnoreList.setIcon(Common.icon_ignore_16x16);
+			btnIgnoreList.setBounds(611, 10, 120, 35);
 			desktopPane.add(btnIgnoreList);
 			btnIgnoreList.addActionListener(new ActionListener()
 			{
@@ -343,11 +347,11 @@ public class JFrameCompareDB extends JFrame
 			// ---- Host 2 label + combobox ----------------------------------------
 			JLabel4j_std lblHost2 = new JLabel4j_std("Host 2:");
 			lblHost2.setFont(new Font("Arial", Font.BOLD, 11));
-			lblHost2.setBounds(870, 18, 52, 21);
+			lblHost2.setBounds(930, 19, 52, 21);
 			desktopPane.add(lblHost2);
 
 			comboHost2 = new JComboBox4j<>();
-			comboHost2.setBounds(925, 15, 270, 25);
+			comboHost2.setBounds(985, 15, 270, 25);
 			desktopPane.add(comboHost2);
 			comboHost2.addActionListener(new ActionListener()
 			{

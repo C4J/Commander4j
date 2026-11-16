@@ -28,6 +28,7 @@ package com.commander4j.sys;
  */
 
 import java.awt.BorderLayout;
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -355,6 +356,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 		jtb.add(btnExit);
 
 		desktopPane.add(treeMenu);
+		desktopPane.setBackground(Common.color_main_background);
 
 		treeMenu.setVisible(false);
 		try

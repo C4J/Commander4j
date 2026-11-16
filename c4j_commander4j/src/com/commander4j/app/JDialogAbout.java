@@ -123,9 +123,9 @@ public class JDialogAbout extends javax.swing.JDialog
 
 			jDesktopPane1 = new JDesktopPane4j();
 
-			jDesktopPane1.setBounds(0, 0, 411, 344);
+			jDesktopPane1.setBounds(0, 0, 404, 334);
 			this.getContentPane().add(jDesktopPane1);
-			jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 231));
+			jDesktopPane1.setPreferredSize(new java.awt.Dimension(403, 231));
 			jDesktopPane1.setLayout(null);
 
 			jButtonOk = new JButton4j(Common.icon_ok_16x16);
@@ -198,7 +198,7 @@ public class JDialogAbout extends javax.swing.JDialog
 			jLabelEmail.setHorizontalAlignment(SwingConstants.CENTER);
 			jDesktopPane1.add(jLabelEmail);
 			jLabelEmail.setText("Email : " + Common.appSupportEmail);
-			jLabelEmail.setBounds(6, 245, 398, 14);
+			jLabelEmail.setBounds(1, 245, 398, 14);
 			jLabelEmail.setForeground(new Color(0, 0, 255));
 			jLabelEmail.addMouseListener(new MouseAdapter()
 			{
@@ -234,17 +234,17 @@ public class JDialogAbout extends javax.swing.JDialog
 			jLabelVersion = new JLabel4j_std();
 			jDesktopPane1.add(jLabelVersion);
 			jLabelVersion.setText("Version " + JVersion.getProgramVersion());
-			jLabelVersion.setBounds(6, 170, 398, 28);
+			jLabelVersion.setBounds(1, 170, 398, 28);
 			jLabelVersion.setFont(new Font("Dialog", Font.BOLD, 22));
 			jLabelVersion.setForeground(Color.RED);
 			jLabelVersion.setHorizontalAlignment(SwingConstants.CENTER);
 
 			JLabel4j_std labelLogo = new JLabel4j_std("New label");
 			labelLogo.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "about.jpg"));
-			labelLogo.setBounds(4, 0, 404, 169);
+			labelLogo.setBounds(2, 2, 404, 141);
 			jDesktopPane1.add(labelLogo);
 
-			this.setSize(411, 368);
+			this.setSize(403, 368);
 		}
 		catch (Exception e)
 		{

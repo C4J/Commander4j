@@ -197,6 +197,7 @@ public class Common
 	public final static Font font_textArea = new java.awt.Font("Monospaced", 0, 14);
 	public final static Font font_title = new Font("Arial", Font.ITALIC, 12);
 	public final static Font font_tree = new Font("Arial", Font.PLAIN, 12);
+	public final static Font font_tree_selected = font_tree.deriveFont(Font.BOLD);
 	public final static Font font_tree_tooltip = new Font( "Monospaced", Font.PLAIN, 14);
 
 	public static final TableCellRenderer_Default renderer_table = new TableCellRenderer_Default();
@@ -205,6 +206,7 @@ public class Common
 
 	public final static Color color_app_window = new Color(241, 241, 241);
 	public final static Color color_app_window_main = Color.WHITE;
+
 
 	public final static Color color_app_window_properties = new Color(241, 241, 241);
 	public final static Color color_background_result_error = new Color(236,52,56);
@@ -263,9 +265,10 @@ public class Common
 	
 	public final static Color color_textfield_max_input_size_color = Color.RED;
 	public final static Color color_toolbar_background = new Color(233,236,242);
-	public final static Color color_tree_background = Color.WHITE;
-	public final static Color color_tree_selected_background = new Color(184, 207, 229);
-	public final static Color color_tree_selected_foreground = Color.BLACK;
+	public final static Color color_tree_background = color_toolbar_background;;
+	public final static Color color_tree_selected_background = color_toolbar_background;
+	public final static Color color_tree_selected_foreground = Color.RED;
+	public final static Color color_main_background = color_toolbar_background;
 
 	public static final JDBListRenderer renderer_list = new JDBListRenderer(JDBListRenderer.Normal);
 	public static final JDBListRenderer renderer_list_assigned  = new JDBListRenderer(JDBListRenderer.Assigned);
@@ -304,6 +307,7 @@ public class Common
 	public final static Icon icon_close_32x32 = Common.imageIconloader.getImageIcon32x32(Common.image_close);
 	public final static Icon icon_collapse_all_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_collapse_all);
 	public final static Icon icon_collapse_node_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_collapse_node);
+	public final static Icon icon_compare_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_compare);
 	public final static Icon icon_confirm_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_confirm);
 	public final static Icon icon_connect_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_connect);
 	public final static Icon icon_copy_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_copy);
@@ -332,6 +336,7 @@ public class Common
 	public final static Icon icon_hold_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_hold);
 	public final static Icon icon_home_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_home);
 	public final static Icon icon_home_32x32 = Common.imageIconloader.getImageIcon32x32(Common.image_home);
+	public final static Icon icon_ignore_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_ignore);
 	public final static Icon icon_import_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_import);
 	public final static Icon icon_interface_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_interface);
 	public final static Icon icon_label_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_label);
@@ -402,6 +407,7 @@ public class Common
 	public final static String image_close = "exit.gif";
 	public final static String image_collapse_all = "collapseall.gif";
 	public final static String image_collapse_node = "collapsenode.gif";
+	public final static String image_compare = "compare.png";
 	public final static String image_confirm = "CMD_Icon.gif";
 	public final static String image_connect = "connect.gif";
 	public final static String image_copy = "copy.gif";
@@ -430,6 +436,7 @@ public class Common
 	public final static String image_hold = "hold.gif";
 	public final static String image_home = "home.gif";
 	public final static String image_import = "file_open.gif";
+	public final static String image_ignore = "ignore.gif";
 	public final static String image_interface = "interface.gif";
 	public final static String image_jasperreport = "jasperreport.gif";
 	public final static String image_label = "label.gif";
